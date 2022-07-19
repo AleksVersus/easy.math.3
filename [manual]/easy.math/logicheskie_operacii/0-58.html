@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/qsp_code.css" />
+	<title>Easy Math — Логические операции</title>
+</head>
+<body>
+
+        <div class="em_AROUND">
+            <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math/releases/download/v.2.4.0/easy.math.2.4.0.rar" title="скачать последнюю версию библиотеки в формате rar">
+                <h1>easy.math.qsp v. 2.4.0</h1>
+            </a>
+            <!-- Исправить ссылку -->
+            <div class="em_PAGE">
+                <div><a href="../manual.html">Назад</a></div>
+                
+                <h3 class="emH3">Логические операции</h3>
+                
+                <a id="add"></a><h4 class="emH4">#add#</h4>
+                
+                <p>Функция выполняет побайтовое сложение двух чисел, с переполнением. Складывать можно два числа абсолютно любой длины (если используются числовые значения для аргументов, они должны укладываться в пределы от 0 до 2147483647).</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - первое число (сколько угодно длинное), можно <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> (ограниченное значение).
+                    <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - второе число (сколько угодно длинное), можно <span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> (ограниченное значение).
+                </p>
+                <p>Любой посторонний символ интерпретируется, как <span class="emNUM">0</span> (нуль). Т.е. суммируются только целые положительные числа.</p>
+                <p>Использует функцию <span class="emFOLD">#zero#</span>.</p>
+                <p>Суммирует два целых числа любой длины по следующим правилам:</p>
+                <ul>
+                    <li>
+                        <p>Каждое число представляет собой запись из цифр. Цифры условно назовём байтами, само число - словом.</p>
+                    </li>
+                    <li>
+                        <p>Количество байтов в одном слове может быть больше, чем в другом. В таком случае слово с меньшим количеством байтов приводится к длине слова с большим количеством байтов.</p>
+                        <div class="Monokai-Code">
+                            Например&nbsp;<span class="Monokai-Numeric">998765</span>
+                            <br>и&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Numeric">273</span>
+                            <br><span class="Monokai-Numeric">273</span>&nbsp;приводится&nbsp;к&nbsp;длине&nbsp;<span class="Monokai-Numeric">998765</span>&nbsp;добавлением&nbsp;недостающих&nbsp;байтов.
+                            <br><span class="Monokai-Numeric">273</span>&nbsp;->&nbsp;&nbsp;&nbsp;<span class="Monokai-Numeric"><span style="color:#ff81ee;">000</span>273</span>
+                        </div>
+                    </li>
+                    <li>
+                        <p>Байты нумеруются справа налево! По разрядам, начиная с нулевого.</p>
+                        <div class="Monokai-Code">
+                            слово&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Numeric">998765</span>
+                            <br>номер&nbsp;байта&nbsp;<span class="Monokai-Func">5</span>4<span class="Monokai-Func">3</span>2<span class="Monokai-Func">1</span>0
+                        </div>
+                    </li>
+                    <li><p>Слова суммируются побайтово (поразрядно), начиная с нулевого. Итог вычислений записывается в слово Сумма.</p></li>
+                    <li>
+                        <p>Если при суммировании байтов на одном разряде происходит переполнение, т.е. число оказывается больше одного разряда, лишний разряд переносится на следующий байт.</p>
+                        <p>Пример:</p>
+                        <div class="Monokai-Code">
+                            <span class="Monokai-Numeric">998765</span>
+                            <br>+
+                            <br><span class="Monokai-Numeric">000273</span>
+                            <br>------
+                            <br><span class="Monokai-Numeric">999038</span>&nbsp;:&nbsp;/5+3=8/6+7=<span class="Monokai-SysVar">1</span>3/2+7+<span class="Monokai-SysVar">1</span>=<span class="Monokai-Func">1</span>0/8+<span class="Monokai-Func">1</span>+0=9/9+0=9/9+0=9/
+                            <br><span class="Monokai-Numeric">999038</span>&nbsp;:&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;8/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9/&nbsp;&nbsp;&nbsp;&nbsp;9/&nbsp;&nbsp;&nbsp;&nbsp;9/
+                        </div>
+                    </li>
+                    <li>
+                        <p>В случае если переполнение происходит на суммировании последних байтов, лишний разряд переносится на нулевой байт Суммы.</p>
+                        <p>Пример:</p>
+                        <div class="Monokai-Code">
+                            &nbsp;<span class="Monokai-Numeric">998765</span>
+                            <br>&nbsp;+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <br>&nbsp;<span class="Monokai-Numeric">001273</span>
+                            <br>&nbsp;------
+                            <br><span style="color:#888888;text-decoration:line-through;">1</span><span class="Monokai-Numeric">000038</span>&nbsp;-&nbsp;слово Сумма
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+1
+                            <br>&nbsp;------
+                            <br>&nbsp;<span class="Monokai-Numeric">000039</span>&nbsp;-&nbsp;итог.&nbsp;Слово&nbsp;Сумма.&nbsp;Будет&nbsp;записано&nbsp;в&nbsp;<span class="Monokai-SysVar">$result</span>
+                        </div>
+                    </li>
+                    <li>
+                        <p>Результатом работы функции является слово Сумма. Это текстовая запись числа без потери разрядов. Т.е. если были два числа: из пяти символов и из двух символов, - результат обязательно будет состоять из пяти символов.</p>
+                    </li>
+                </ul>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#add#'</span>,<span class="Monokai-Numeric">998765</span>,<span class="Monokai-Numeric">273</span>)=<span class="Monokai-String">'999038'</span><br>
+                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#add#'</span>,<span class="Monokai-String">'9987Y5'</span>,<span class="Monokai-String">'-273'</span>)=<span class="Monokai-String">'998978'</span><br>
+                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#add#'</span>,<span class="Monokai-String">'999999'</span>,<span class="Monokai-String">'6273'</span>)=<span class="Monokai-String">'006273'</span>
+                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#add#'</span>,<span class="Monokai-String">'998705'</span>,<span class="Monokai-String">'5773'</span>)=<span class="Monokai-String">'004479'</span>
+                </div>
+                
+                <a id="dev"></a><h4 class="emH4">#dev#</h4>
+                
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - уменьшаемое (любой длины), можно <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> (ограниченное значение).
+                    <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - вычитаемое (любой длины), можно <span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> (ограниченное значение).
+                </p>
+                <p>Результат - текстовое значение (слово Сумма) без потери разрядов.</p>
+                <p>Использует функцию <span class="emFOLD">#zero#</span>.</p>
+                <p>Побайтовое вычитание. Вычитает из одного числа другое. Оба числа приводятся к одной длине по аналогии с <span class="emFOLD">#add#</span>.</p>
+                <p>Далее происходит поразрядное вычитание. Причём если в результате получается отрицательное число в байт записывается 10+число, в следующий разряд переносится -1</p>
+                <p>Пример:</p>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Numeric">990763</span><br>
+                    -<br>
+                    <span class="Monokai-Numeric">099271</span><br>
+                    ------<br>
+                    <span class="Monokai-Numeric">981492</span><br>
+                </div>
+                <p>Если отрицательное число получается на последнем байте последний байт вычисляется по общим правилам, а из нулевого байта Суммы вычитается 1.</p>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#dev#'</span>,<span class="Monokai-Numeric">998765</span>,<span class="Monokai-Numeric">273</span>)=<span class="Monokai-String">'998492'</span><br>
+                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#dev#'</span>,<span class="Monokai-String">'9987Y5'</span>,<span class="Monokai-String">'-273'</span>)=<span class="Monokai-String">'998432'</span>
+                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#dev#'</span>,<span class="Monokai-String">'999999'</span>,<span class="Monokai-String">'6273'</span>)=<span class="Monokai-String">'993726'</span>
+                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#dev#'</span>,<span class="Monokai-String">'998705'</span>,<span class="Monokai-String">'5773'</span>)=<span class="Monokai-String">'992932'</span>
+                </div>
+                
+                <a id="rtp"></a><h4 class="emH4">#rtp#</h4>
+                
+                <p>Процедура меняет местами значение двух переменных.</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имя первой переменной
+                    <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - имя второй переменной
+                </p>
+                <h5>Пример использования:</h5>
+                <div class="Monokai-Code">
+                    a<span class="Monokai-Assign">=</span><span class="Monokai-Numeric">6</span>
+                    <br>b<span class="Monokai-Assign">=</span><span class="Monokai-Numeric">9</span>
+                    <br><span class="Monokai-Operator">gosub</span> <span class="Monokai-String">'#rtp#'</span>,<span class="Monokai-String">'a'</span>,<span class="Monokai-String">'b'</span>
+                    <br>a
+                    <br>b
+                    <br>
+                    <br>$c<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span>=<span class="Monokai-String">'citated'</span>
+                    <br>$d<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">19</span>]</span>=<span class="Monokai-String">'legated'</span>
+                    <br><span class="Monokai-Operator">gosub</span> <span class="Monokai-String">'#rtp#'</span>,<span class="Monokai-String">'$c[0]'</span>,<span class="Monokai-String">'$d[19]'</span>
+                    <br>$c<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span>
+                    <br>$d<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">19</span>]</span>
+                </div>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">9
+                    <br>6
+                    <br>legated
+                    <br>citated
+                </div>
+                <div><a href="../manual.html">Назад</a></div>
+            </div>
+            <div class="em_Epigraph">
+                <div class="em_subText">
+                    <p>Aleks Versus'Easy Libraries'2013-2021</p>
+                    <p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-2021</p>
+                </div>
+            </div>
+            <div class="stickUP"><a href="#UP" title="Вверх"><img src="../../res/img/uparrow_btn.png"></a></div>
+        </div>
+
+</body>
+</html>

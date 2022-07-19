@@ -1,0 +1,102 @@
+QSP-Game стартовая локация для теста библиотеки easy.math.
+# !easy.math!
+if $args[0]="":
+	showobjs 0
+	showstat 0
+	showacts 0
+	$fname="Consolas"
+	usehtml=0
+	$usercom='!--test--!'	
+	"easy.math v 2.4.0 для QSP 5.7.0"
+	"
+	По всем вопросам и предложениям обращаться:
+
+	*	aleksversus@mail.ru
+	*	aleksversus.narod.ru
+	*	https://vk.com/id40090736
+	
+	Обучающие видео по программированию на QSP:
+	
+	*	https://www.youtube.com/channel/UCwX8RW2B9yTUFdlivtCGAgA
+
+	Любую функцию можно опробовать прямо здесь, введя её в поле ввода.
+
+	Для нормального функционирования библиотеки с Quest Navigator - в начале игры напишите следующую строку:
+
+		$AVS_PLAYERTYPE='[QN]'
+
+	"
+elseif $args[0]='version':
+	result=2400
+end
+--- !easy.math! ---------------------------------
+Если значение метки build_easy_math равно Off, выключаем обработку следующих строк
+Это приведёт к тому, что ни одна из меток не будет определена, а значит и функции,
+не определённые в стороннем проекте, не будут включены в сборку
+!@pp:if(build_easy_math==Off):nopp
+Вспомогательные операции
+!@pp:var(em_minvar)
+!@pp:var(em_maxvar)
+!@pp:var(em_get_tag_num)
+!@pp:var(em_get_tag_cont)
+!@pp:var(em_get_word_inpos)
+!@pp:var(em_gettype)
+!@pp:var(em_killvar_olegus)
+!@pp:var(em_rergb)
+Операции с дробными числами
+!@pp:var(em_sqrt)
+!@pp:var(em_addition)
+!@pp:var(em_div)
+!@pp:var(em_multiply)
+!@pp:var(em_rounddiv)
+!@pp:var(em_sim)
+!@pp:var(em_indiv)
+!@pp:var(em_dz)
+!@pp:var(em_invert)
+!@pp:var(em_razdiv)
+!@pp:var(em_undiv)
+Операции логические
+!@pp:var(em_add)
+!@pp:var(em_dev)
+!@pp:var(em_rtp)
+Операции с текстом
+!@pp:var(em_widetrim)
+!@pp:var(em_chk_array_word)
+!@pp:var(em_chk_obj_word)
+!@pp:var(em_rndstr)
+!@pp:var(em_str_inarray)
+!@pp:var(em_str_thin)
+!@pp:var(em_zstr)
+Операции с шестнадцатеричными числами
+!@pp:var(em_col_inv)
+!@pp:var(em_col_rgb)
+!@pp:var(em_col)
+!@pp:var(em_dec_col)
+!@pp:var(em_dec_hex)
+!@pp:var(em_hex_dec)
+Операции с массивами
+!@pp:var(em_array_simp)
+!@pp:var(em_arr_chtype)
+!@pp:var(em_array_clr)
+!@pp:var(em_array_dsrt)
+!@pp:var(em_array_ins)
+!@pp:var(em_array_prnt_few)
+!@pp:var(em_array_prnt)
+!@pp:var(em_array_rand)
+!@pp:var(em_array_rstd)
+!@pp:var(em_array_sort)
+!@pp:var(em_array_srch)
+!@pp:var(em_array_strt)
+Операции с целыми числами
+!@pp:var(em_abs)
+!@pp:var(em_exp)
+!@pp:var(em_random)
+!@pp:var(em_lg)
+!@pp:var(em_log)
+!@pp:var(em_even)
+!@pp:var(em_raz)
+!@pp:var(em_summ)
+Операции с координатной сеткой
+!@pp:var(em_coords_get)
+
+!@pp:endif

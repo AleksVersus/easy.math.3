@@ -1,0 +1,104 @@
+QSP-Game функция simplificate сравнивает два числа и выдаёт в результат большее.
+$args[0] - первое число, только текстовое значение
+$args[1] - второе число, только текстовое значение
+$result - результат, текстовое значение
+!@pp:if(em_sim):include
+# #sim#
+$args[9]=$args[9]	& !@ инициализация аргументов
+$args[0]=$func('#dz#',$args[0],1)	& !@ убираем лишние нули из чисел
+$args[1]=$func('#dz#',$args[1],1)	& !@ убираем лишние нули из чисел
+
+if instr($args[0],'.')=0: $args[0]+='.0'	& !@ если точки нет, дописываем
+if instr($args[1],'.')=0: $args[1]+='.0'	& !@ если точки нет, дописываем
+
+if $args[0]=$args[1]:
+	!@ если числа равны, возвращаем первое и закрываем
+	$result=$func('#dz#',$args[0])
+	exit
+else
+	!@ если числа не равны
+	!@ получаем знаки чисел
+	if instr($args[0],'-')=1:
+		$args['number_0']=$mid($args[0],2)	& !@ получаем модуль числа
+		$args['+0']='-'	& !@ выставляем знак
+	else
+		$args['number_0']=$args[0]	& !@ получаем модуль числа
+		$args['+0']=''	& !@ выставляем знак
+	end
+	if instr($args[1],'-')=1:
+		$args['number_1']=$mid($args[1],2)	& !@ получаем модуль числа
+		$args['+1']='-'	& !@ выставляем знак
+	else
+		$args['number_1']=$args[1]	& !@ получаем модуль числа
+		$args['+1']=''	& !@ выставляем знак
+	end
+	!@ сравниваем за счёт знаков
+	if $args['+0']='-' and $args['+1']<>'-':
+		!@ если первое число отрицательное, а второе нет, возвращаем второе число
+		$result=$func('#dz#',$args[1])
+		exit
+	elseif $args['+1']='-' and $args['+0']<>'-':
+		!@ если второе число отрицательное, а первое нет, возвращаем второе число
+		$result=$func('#dz#',$args[0])
+		exit
+	else
+		!@ сравнение за счёт знаков не удалось, сравниваем по частям
+		$args['int_0']=$mid($args['number_0'],1,instr($args['number_0'],'.')-1)
+		args['len_0']=len($args['int_0'])
+		$args['int_1']=$mid($args['number_1'],1,instr($args['number_1'],'.')-1)
+		args['len_1']=len($args['int_1'])
+		!@ нужно сравнить целые числа, доводим их до одинаковой длины
+		if args['len_0']>args['len_1']:
+			!@ если длина первого числа больше второго, приводим длину второго к первому
+			$args['int_1']=$func('#zero#',args['len_0']-args['len_1'])+$args['int_1']
+		elseif args['len_0']<args['len_1']:
+			!@ если длина второго числа больше первого, приводим длину первого к второму
+			$args['int_0']=$func('#zero#',args['len_1']-args['len_0'])+$args['int_0']
+		end
+		!@ сравниваем числа
+		if $args['int_1']=$args['int_0']:
+			!@ если целые части равны, сравниваем дробные части
+			$args['float_0']=$mid($args['number_0'],instr($args['number_0'],'.')+1)
+			$args['float_1']=$mid($args['number_1'],instr($args['number_1'],'.')+1)
+			!@ 
+			if $max($args['float_1'],$args['float_0'])=$args['float_1']:
+				!@ если второе число больше первого
+				jump 'second'
+			elseif $max($args['float_1'],$args['float_0'])=$args['float_0']:
+				!@ если второе число больше первого
+				jump 'first'
+			end
+		elseif $max($args['int_1'],$args['int_0'])=$args['int_1']:
+			!@ если второе число больше первого
+			:second
+			if $args['+1']='-':
+				!@ если числа отрицательные, то большее число по модулю на самом деле меньшее:
+				$result=$func('#dz#',$args[0])
+				exit
+			else
+				$result=$func('#dz#',$args[1])
+				exit
+			end
+		elseif $max($args['int_1'],$args['int_0'])=$args['int_0']:
+			!@ если второе число больше первого
+			:first
+			if $args['+1']='-':
+				!@ если числа отрицательные, то большее число по модулю на самом деле меньшее:
+				$result=$func('#dz#',$args[1])
+				exit
+			else
+				$result=$func('#dz#',$args[0])
+				exit
+			end
+		end
+	end
+end
+$result=$func('#dz#',$result)
+--- #sim# ---------------------------------
+!@pp:endif
+
+Функция использует функции библиотеки #dz# и #zero#
+!@pp:if(em_sim!=True):nopp
+!@pp:var(em_dz)
+!@pp:var(em_zstr)
+!@pp:endif

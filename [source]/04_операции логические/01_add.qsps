@@ -1,0 +1,45 @@
+QSP-Game Функция выполняет побайтовое сложение двух чисел с переполнением на последнем байте.
+$args[0] - первое число (сколько угодно длинное), можно  args[0] (ограниченное значение).
+$args[1] - второе число (сколько угодно длинное), можно  args[1] (ограниченное значение).
+!@pp:if(em_add):include
+# #add#
+!@ инициализация аргументов и приведение к единой длине:
+if $args[0]='': $args[0]=$str(args[0]) else $args[0] = $args[0]	& !@ первое слагаемое
+if $args[1]='': $args[1]=$str(args[1]) else $args[1] = $args[1]	& !@ второе слагаемое
+args['max_len']=max(len($args[0]),len($args[1]))
+$args[0]=$func('#zero#',args['max_len']-len($args[0]))+$args[0]
+$args[1]=$func('#zero#',args['max_len']-len($args[1]))+$args[1]
+:prev
+$result=''	& !@ исходное значение результата пусто
+args['i'] = args['max_len']	& !@ счётчик выставляем по макимальной длине
+args['lst_byte'] = 0	& !@ значение переполнения
+:for
+if args['i']>0:
+	!@ цикл выполняем, пока счётчик не достигнет нуля
+	!@ складываем две цифры на разряде
+	args['res_byte']=val($mid($args[0],args['i'],1))+val($mid($args[1],args['i'],1))+args['lst_byte']
+	!@ вычисляем переполнение
+	args['lst_byte']=args['res_byte']/10
+	!@ вычисляем полученную цифру на текущем разряде
+	args['res_byte']=args['res_byte'] mod 10
+	!@ записываем полученную цифру в результат
+	$result=$str(args['res_byte'])+$result
+	!@ повторяем
+	args['i']-=1
+	jump 'for'
+elseif args['lst_byte']>0:
+	!@ если после всех итерраций осталось число в переполнении
+	!@ новым первым слагаемым оказывается полученный результат
+	$args[0]=$result
+	!@ новым вторым слагаемым оказывается переполнение
+	$args[1]=$func('#zero#',args['max_len']-len($str(args['lst_byte'])))+$str(args['lst_byte'])
+	jump 'prev'
+end
+--- #add# ---------------------------------
+!@pp:endif
+
+Функция использует функцию #zero#
+
+!@pp:if(em_add!=True):nopp
+!@pp:var(em_zstr)
+!@pp:endif

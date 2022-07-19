@@ -1,0 +1,21 @@
+QSP-Game Процедура, идею которой на форуме QSP изложил Olegus. Удаляет элемент массива по текстовому индексу. Работает как с текстовыми, так и с числовыми массивами.
+$args[0] - имя массива.
+$args[1 ... 8] - текстовые индексы. Процедура позволяет удалять одновременно до восьми элементов массива.
+!@pp:if(em_killvar_olegus):include
+# kill.var.olegus
+args['size']=arrsize('$args')	& !@ инициализация аргументов и получение их числа
+if instr($args[0],'$')<>1: $args[0]='$'+$args[0]	& !@ если передано не текстовое название массива
+args['i']=1
+:for
+if args['i']<args['size']:
+	!@ выполняем цикл, пока не встретим пустое значение
+	$args['rnd']="'щЭcmыz9!T7K1АЙ@>FуОk7aСeV0mвзZхaAVSMARKUPDOWNY4З9ЪaХМDXqKA6ЛTЯк2цГРYцЙОЮX_6jmпКЫЖUxuАmlюVщцтщЭcmыz9!T7K1АЙ@>FуОk7aСeV0mвзZхaAVSMARKUPDOWNY4З9ЪaХМDXqKA6ЛTЯк2цГРYцЙОЮX_6jmпКЫЖUxuАmlюVщцт'"
+	dynamic "<<$args[0]>>['<<$args[args['i']]>>']=$args[0]",$args['rnd']
+	killvar $args[0],arrpos($args[0],$args['rnd'])
+	args['i']+=1
+	jump 'for'
+end
+--- kill.var.olegus ---------------------------------
+!@pp:endif
+
+Функция не использует иных функций библиотеки

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/qsp_code.css" />
+	<title>Easy Math — Операции с рациональными числами</title>
+</head>
+<body>
+        <div class="em_AROUND">
+            <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math/releases/download/v.2.4.0/easy.math.2.4.0.rar" title="скачать последнюю версию библиотеки в формате rar">
+                <h1>easy.math.qsp v. 2.4.0</h1>
+            </a>
+            <!-- Исправить ссылку -->
+            <div class="em_PAGE">
+                <div><a href="../manual.html">Назад</a></div>
+                <h3>Операции с дробными числами</h3>
+                
+                <a id="dz"></a><h4>#dz#</h4>
+
+                <p>Одна из основных функций, позволяющая упразднять несущественные нули в конце натурального числа, а так же все несущественные нули в начале.
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - обрабатываемое число, только в текстовом виде.
+                    <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - разряд до которого требуется удалить нули. 1 - до целых, 10 - до десятых, 100 - до сотых и т.д, по умолчанию 1.
+                    <br><span class="emVAR">&nbsp;$result</span> - текстовое значение вида <span class="emTEXT">000.000</span>
+                </p>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dz#'</span>,<span class="Monokai-String">'64'</span>,<span class="Monokai-Numeric">100</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'64'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dz#'</span>,<span class="Monokai-String">'64.0080000'</span>,<span class="Monokai-Numeric">1</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'64.008'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dz#'</span>,<span class="Monokai-String">'64.0080000'</span>,<span class="Monokai-Numeric">100</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'64.008'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dz#'</span>,<span class="Monokai-String">'64.0080000'</span>,<span class="Monokai-Numeric">10000</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'64.0080'</span>
+                </div>
+                
+                <a id="indiv"></a><h4>#indiv#</h4>
+
+                <p>Вычисляет рациональное частное от целых чисел.</p>
+                <p class="em_CODE">
+                    <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - делимое;
+                    <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - делитель, по умолчанию = 100;
+                    <br><span class="emVAR">&nbsp;args[<span class="emNUM">2</span>]</span> - точность вычисления. 1 - до целых, 10 - до десятых, 100 - до сотых и т.д. По умолчанию, вычисляет до девятого знака после запятой (максимальное значение аргумента).<br><span class="emVAR">&nbsp;$result</span> - текстовое значение вида <span class="emTEXT">000.000</span>
+                </p>
+
+                <p>Использует функцию <span class="emFOLD">#dz#</span>
+                <p>Имеются ограничения на значения аргументов (для QSP 5.7.0 в пределах [-2147483648 ... 2147483647]).
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#indiv#'</span>,<span class="Monokai-Operator">-</span><span class="Monokai-Numeric">950000</span>,<span class="Monokai-Numeric">1000</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'-950'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#indiv#'</span>,<span class="Monokai-Numeric">64</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'0.64'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#indiv#'</span>,<span class="Monokai-Numeric">64</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">1</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'8'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#indiv#'</span>,<span class="Monokai-Numeric">64</span>,<span class="Monokai-Numeric">7</span>,<span class="Monokai-Numeric">100000</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'9.14285'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#indiv#'</span>,<span class="Monokai-Numeric">64</span>,<span class="Monokai-Numeric">7</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'9.142857142'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#indiv#'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">125</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'0.064'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#indiv#'</span>,<span class="Monokai-Numeric">150</span>,<span class="Monokai-Numeric">100</span>,<span class="Monokai-Numeric">10</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'1.5'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#indiv#'</span>,<span class="Monokai-Numeric">200</span>,<span class="Monokai-Numeric">100</span>,<span class="Monokai-Numeric">10</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'2'</span>
+                </div>
+                
+                <a id="undiv"></a><h4>#undiv#</h4>
+
+                <p>Переводит рациональное число в целое (фактически умножает рациональное число на круглое число, с округлением-отсечением дробной части).</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - рациональное число
+                    <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - точность перевода 10 - один знак после запятой, 100 - два знака, и т.д, по умолчанию до последнего знака после запятой
+                    <br><span class="emVAR">&nbsp;&nbsp;result</span> - целое число
+                </p>
+                <p>Не использует дополнительных функций, однако есть ограничение на значения аргументов и результата (для QSP 5.7.0 в пределах [-2147483648 ... 2147483647]).</p>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#undiv#'</span>,<span class="Monokai-String">'1'</span>,<span class="Monokai-Numeric">1000</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1000</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#undiv#'</span>,<span class="Monokai-String">'-1'</span>,<span class="Monokai-Numeric">1000</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-Operator">-</span><span class="Monokai-Numeric">1000</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#undiv#'</span>,<span class="Monokai-String">'0.123'</span>,<span class="Monokai-Numeric">100</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">12</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#undiv#'</span>,<span class="Monokai-String">'0.123'</span>,<span class="Monokai-Numeric">10</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#undiv#'</span>,<span class="Monokai-String">'0.123'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">123</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#undiv#'</span>,<span class="Monokai-String">'1.23'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">123</span>
+                </div>
+                
+                <a id="razdiv"></a><h4>#razdiv#</h4>
+
+                <p>Получает разрядность дробной части числа в виде целого круглого числа
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - число в текстовом виде
+                    <br><span class="emVAR">&nbsp;&nbsp;result</span> - число, в числовом виде (соответственно для QSP 5.7.0 в пределах [-2147483648 ... 2147483647])
+                </p>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#razdiv#'</span>,<span class="Monokai-String">'0.64'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">100</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#razdiv#'</span>,<span class="Monokai-String">'0.064'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">1000</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#razdiv#'</span>,<span class="Monokai-String">'0.640'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">1000</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#razdiv#'</span>,<span class="Monokai-String">'0.647777'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">1000000</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#razdiv#'</span>,<span class="Monokai-String">'-7777.64'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">100</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#razdiv#'</span>,<span class="Monokai-String" style="color:#ff0000;">'-7777.646666666666666666666666'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Operator" style="color:#ff0000;">-</span><span class="Monokai-Numeric" style="color:#ff0000;">1593835520</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">! - превышено допустимое значение, результат неверен!!!</span>
+                </div>
+                
+                <a id="rounddiv"></a><h4>#rounddiv#</h4>
+
+                <p>Округляет число до указанной разрядности</p>
+                <p>возможны варианты 1, 10, 100, 1000 и т.п., и 0.1, 0.01 и т.п.</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - рациональное число в текстовом виде;
+                    <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - разрядность. Возможны варианты: 1, 10, 100, 1000 и т.п., и 0.1, 0.01 и т.п.;
+                    <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - <span class="emTEXT">[up]</span> в сторону увеличения, <span class="emTEXT">[down]</span> - с округлением-отсечением; если не указано, используются правила округления к ближайшему целому.
+                </p>
+                <p> Функция работоспособна, но не доработана (актуально для версии библиотеки 2.1.4 и ниже). Использует функции <span class="emFOLD">#dz#</span>, <span class="emFOLD">#zero#</span>.</p>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">"#rounddiv#"</span>,<span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"0.1"</span>)</span>&nbsp;&nbsp;&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'945.5'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">"#rounddiv#"</span>,<span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"0.1"</span>,<span class="Monokai-String">'[down]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'945.5'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">"#rounddiv#"</span>,<span class="Monokai-String">"945.444"</span>,<span class="Monokai-String">"0.1"</span>,<span class="Monokai-String">'[up]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'945.5'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">"#rounddiv#"</span>,<span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"0.01"</span>)</span>&nbsp;&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'945.46'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">"#rounddiv#"</span>,<span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"0.001"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'945.459'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">"#rounddiv#"</span>,<span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"1"</span>)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'945'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">"#rounddiv#"</span>,<span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"10"</span>)</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'950'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">"#rounddiv#"</span>,<span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"100"</span>)</span>&nbsp;&nbsp;&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'900'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">"#rounddiv#"</span>,<span class="Monokai-String">"-945.459"</span>,<span class="Monokai-String">"10"</span>)</span>&nbsp;&nbsp;&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-950'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">"#rounddiv#"</span>,<span class="Monokai-String">"-945.459"</span>,<span class="Monokai-String">"0.01"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-945.46'</span>
+                </div>
+                
+                <a id="plus"></a><h4>#+#</h4>
+
+                <p>Функция сложения. Может суммировать целые и дробные числа любого знака любой длины (ограничение на значение текстовых переменных для QSP 5.7.0 около 2Гб).</p>
+                <p>Использует функции <span class="emFOLD">#zero#</span>, <span class="emFOLD">#add#</span>, <span class="emFOLD">#dev#</span>, <span class="emFOLD">#dz#</span>. Каждая из этих функций включает в себя один и более циклов, в результате чего могут наблюдаться заметные подвисания плеера для ОЧЕНЬ больших чисел. Вычисления могут оказаться долгими, но они будет произведены - результат гарантирован.</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - девять слагаемых. Могут быть переданы в числовом виде (для QSP 5.7.0 в пределах [-2147483648 ... 2147483647]).
+                    <br><span class="emVAR">&nbsp;$result</span> - всегда текстовое значение.
+                </p>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"-9"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'0.05'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"-9.05"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'0'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"9"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'18.05'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"9.55"</span>,<span class="Monokai-String">"9.25"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'27.85'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+#'</span>,<span class="Monokai-String">'9.99'</span>,<span class="Monokai-String">"9.999"</span>,<span class="Monokai-String">"9.9"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'29.889'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+#'</span>,<span class="Monokai-String">'384.384'</span>,<span class="Monokai-String">"92.8"</span>,<span class="Monokai-Numeric">3</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'480.184'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+#'</span>,<span class="Monokai-String">'283'</span>,<span class="Monokai-String">'126'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'409'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+#'</span>,<span class="Monokai-String">'283'</span>,<span class="Monokai-String">'-126'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'157'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+#'</span>,<span class="Monokai-String">'-283'</span>,<span class="Monokai-String">'126'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-157'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+#'</span>,<span class="Monokai-String">'-283'</span>,<span class="Monokai-String">'-126'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-409'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">"#+#"</span>,<span class="Monokai-String">"-234"</span>,<span class="Monokai-String">"125"</span>,<span class="Monokai-String">"-13.7890303"</span>,<span class="Monokai-String">"3484889"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'3484766.2109697'</span>
+                </div>
+                <p> Будьте внимательны. Функция работает с переменными <span class="emARR">minus_em_plus</span>, <span class="emARR">i_em_plus</span>, <span class="emARR">o_em_plus</span>, <span class="emARR">len_em_plus</span>. Если вы используете такие же переменные в своей игре, переименуйте переменные в функции.</p>
+                
+                <a id="umn"></a><h4>#*#</h4>
+
+                <p>Перемножает несколько чисел любой длины.
+                <p>Внимание! Функция использует функции <span class="emFOLD">#add#</span>, <span class="emFOLD">#zero#</span>, <span class="emFOLD">#dz#</span>, каждая из которых основана на циклических расчётах. Сама функция использует для подсчёта 4 цикла, что может замедлять работу программ при вычислении больших значений. Тем не менее функция работает, хотя и несколько подвешивает игру, если выполнять несколько умножений подряд.
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - девять множителей. Могут быть переданы в числовом виде (для QSP 5.7.0 в пределах [-2147483648 ... 2147483647]).
+                    <br><span class="emVAR">&nbsp;$result</span> - всегда текстовое значение.
+                </p>
+                
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#*#'</span>,<span class="Monokai-String">"38.4"</span>,<span class="Monokai-String">"2.5"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'96'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#*#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"-9.05"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-81.9025'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#*#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"10"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'90.5'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#*#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"9.55"</span>,<span class="Monokai-String">"9.25"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'799.454375'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#*#'</span>,<span class="Monokai-String">'9.99'</span>,<span class="Monokai-String">"-9.999"</span>,<span class="Monokai-String">"9.9"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-988.911099'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#*#'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'512'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#*#'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-512'</span>
+                </div>
+                
+                <a id="del"></a><h4>#:#</h4>
+
+                <p>Функция деления любого числа на любое.</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - делимое, только текстовое
+                    <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - делитель, только текстовое
+                    <br><span class="emVAR">&nbsp;args[<span class="emNUM">2</span>]</span> - точность 1 -целые- 10 десятые доли, 100 сотые, 1000 - тысячные.
+                    <br><span class="emVAR">&nbsp;$result</span> - частное, текстовое значение
+                </p>
+                <p>Используются функции <span class="emFOLD">#dz#</span>, <span class="emFOLD">#zero#</span>, <span class="emFOLD">#dev#</span>.</p>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#:#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"-9"</span>,<span class="Monokai-Numeric">10000</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-1.0055'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#:#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">'-9.05'</span>,<span class="Monokai-Numeric">10000</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-1'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#:#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"10"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'0.905'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#:#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"9.55"</span>,<span class="Monokai-Numeric">10000</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'0.9476'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#:#'</span>,<span class="Monokai-String">'9.99'</span>,<span class="Monokai-String">"9.999"</span>,<span class="Monokai-Numeric">10000</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'0.999'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#:#'</span>,<span class="Monokai-String">'9.99'</span>,<span class="Monokai-String">"9.999"</span>,<span class="Monokai-Numeric">1000000</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'0.999099'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#:#'</span>,<span class="Monokai-String">'-1.69'</span>,<span class="Monokai-String">"1.3"</span>,<span class="Monokai-Numeric">10000</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-1.3'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#:#'</span>,<span class="Monokai-String">'1.69'</span>,<span class="Monokai-String">"1.3"</span>,<span class="Monokai-Numeric">10000</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'1.3'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#:#'</span>,<span class="Monokai-String">'-1.69'</span>,<span class="Monokai-String">"-1.3"</span>,<span class="Monokai-Numeric">10000</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'1.3'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#:#'</span>,<span class="Monokai-String">'1.69'</span>,<span class="Monokai-String">"-1.3"</span>,<span class="Monokai-Numeric">10000</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-1.3'</span>
+                </div>
+                
+                <p>Прежде данная функция выглядела так:</p>
+                <div class="Monokai-Code">
+                    <span style="color:#ae81ff;"># #:#</span><br>
+                    <span class="Monokai-SysVar">$args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-SysVar">$args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><br>
+                    <span class="Monokai-SysVar">$args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dz#'</span>,<span class="Monokai-SysVar">$args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span>,<span class="Monokai-Numeric">1</span>)</span><br>
+                    <span class="Monokai-SysVar">$args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dz#'</span>,<span class="Monokai-SysVar">$args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span>,<span class="Monokai-Numeric">1</span>)</span><br>
+                    <span class="Monokai-SysVar">args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-SysVar">args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><br>
+                    <span class="Monokai-SysVar">args</span><span class="Monokai-Qbracket">[<span class="Monokai-String">'max'</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Func">max</span><span class="Monokai-Qbracket">(<span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#razdiv#'</span>,<span class="Monokai-SysVar">$args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span>)</span>,<span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#razdiv#'</span>,<span class="Monokai-SysVar">$args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span>)</span>)</span><br>
+                    <span class="Monokai-SysVar">args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#undiv#'</span>,<span class="Monokai-SysVar">$args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span>,<span class="Monokai-SysVar">args</span><span class="Monokai-Qbracket">[<span class="Monokai-String">'max'</span>]</span>)</span><br>
+                    <span class="Monokai-SysVar">args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#undiv#'</span>,<span class="Monokai-SysVar">$args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span>,<span class="Monokai-SysVar">args</span><span class="Monokai-Qbracket">[<span class="Monokai-String">'max'</span>]</span>)</span><br>
+                    <span class="Monokai-SysVar">$result</span><span class="Monokai-Assign">=</span><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#indiv#'</span>,<span class="Monokai-SysVar">args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span>,<span class="Monokai-SysVar">args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span>,<span class="Monokai-SysVar">args</span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span>)</span><br>
+                    <span style="color:#a6e22e;">--- #:# ---------------------------------</span>
+                </div>
+                <p>Это давало повышенную скорость работы. Где-то в 10 раз быстрее. Однако это и накладывало некоторые ограничения на аргументы. Например, старая версия функции неверно вычисляла вот такие значения:</p>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#:#'</span>,<span class="Monokai-String">'3123.869504'</span>,<span class="Monokai-String">"3.7"</span>,<span class="Monokai-Numeric">1000000</span>)</span><span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-316.512916'</span>
+                </div>
+                <p>Теперь ограничение связано только с числом знаков после запятой, до которого можно выполнить вычисления.</p>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#:#'</span>,<span class="Monokai-String">'3123.869504'</span>,<span class="Monokai-String">"3.7"</span>,<span class="Monokai-Numeric">1000000</span>)</span><span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'844.289055'</span>
+                </div>
+                
+                <a id="sim"></a><h4>#sim#</h4>
+
+                <p>Функция сравнивает два числа и выдаёт в результат большее.</p>
+                <p>Функция использует функции <span class="emFOLD">#dz#</span>, <span class="emFOLD">#zero#</span>, соответственно для неё актуальны все ограничения связанные с этими функциями.</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - первое число, только текстовое значение
+                    <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - второе число, только текстовое значение
+                    <br><span class="emVAR">&nbsp;$result</span> - результат, текстовое значение
+                </p>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#sim#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"-9"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'9.05'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#sim#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">'-9.05'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'9.05'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#sim#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"10"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'10'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#sim#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"9.55"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'9.55'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#sim#'</span>,<span class="Monokai-String">'9.99'</span>,<span class="Monokai-String">"9.999"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'9.999'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#sim#'</span>,<span class="Monokai-String">'-1.69'</span>,<span class="Monokai-String">"1.3"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'1.3'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#sim#'</span>,<span class="Monokai-String">'-1.69'</span>,<span class="Monokai-String">"-1.3"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-1.3'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#sim#'</span>,<span class="Monokai-String">'1.69'</span>,<span class="Monokai-String">"1.3"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'1.69'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#sim#'</span>,<span class="Monokai-String">'1.69'</span>,<span class="Monokai-String">"-1.3"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'1.69'</span>
+                </div>
+                <p>Внимание, результаты функции даются в обработке функцией <span class="emFOLD">#dz#</span>, а значит они могут отличаться по количеству символов с данными, передаваемыми в аргументах. Будьте аккуратны при использовании сравнений.
+                    
+                <a id="sqrt"></a><h4>#sqrt#</h4>
+
+                <p>Вычисление квадратного корня методом Ньютона.</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - число, текстовое значение
+                    <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - точность. Целое число: 100 - сотые, 1000 - тысячные и т.д.
+                    <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - первое приближение, только текстовое значение. Вы можете указать примерно чему будет равен результат. Это ускорит вычисление
+                </p>
+                <h5>Как работает:</h5>
+                <p style="font-size:0.9em;padding-bottom:1em;">Существует простое линейное уравнение, повторяя вычисление которого несколько раз, мы получаем корень числа с некоторой погрешностью. Чем чаще мы производим вычисление, тем точнее результат. Округление числа производится до требуемого знака после запятой. Когда предыдущее вычисленное значение становится равно предыдущему, проверяется погрешность вычисления. Если погрешность не превышает 0.00000001, число принимается. В противном случае выдаётся ноль.</p>
+                <p>Функция использует <span class="emFOLD">#:#</span>, <span class="emFOLD">#*#</span>, <span class="emFOLD">#+#</span>, в связи с чем к ней применимы те же ограничения, что и к этим функциям. Так же поскольку производится несколько десятков и сотен циклических вычислений, функция может заметно подвешивать игру даже при вычислении небольших значений. В настоящее время функция позволяет использовать значение первого приближения, чтобы сократить время расчётов. Значение необходимо передавать вторым аргументом (<span class="emVAR">$args[<span class="emNUM">2</span>]</span>). В будущем таблицы приближений небольших чисел будут непосредственно встроены в функцию.
+                <h5>Результат работы функции:</h5>
+                <p>Даётся в условной записи. Функции в QSP по-прежнему вызываются с помощью ключевого слова $func.</p>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#sqrt#'</span>,<span class="Monokai-String">'1000'</span>,<span class="Monokai-Numeric">10000</span>,<span class="Monokai-String">"31"</span>)</span>
+                </div>
+                <div class="Monokai-Code">
+                    #SQRT# 1000, точность 10000 = <span class="Monokai-String">31.6227</span><br>
+                    #SQRT# 16, точность 10000 = <span class="Monokai-String">4</span><br>
+                    #SQRT# 257, точность 100000 = <span class="Monokai-String">16.03121</span><br>
+                    #SQRT# 257, точность 10000 = <span class="Monokai-String">16.0312</span><br>
+                    #SQRT# 257, точность 1000 = <span class="Monokai-String">16.031</span><br>
+                    #SQRT# 257, точность 100 = <span class="Monokai-String">16.03</span><br>
+                    #SQRT# 2.1, точность 100 = <span class="Monokai-String">1.44</span><br>
+                    #SQRT# 259, точность 100 = <span class="Monokai-String">16.09</span><br>
+                    #SQRT# 260, точность 100 = <span class="Monokai-String">16.12</span><br>
+                    #SQRT# 1.69, точность 100 = <span class="Monokai-String">1.3</span><br>
+                    #SQRT# 0.69, точность 10000 = <span class="Monokai-String">0.8306</span>
+                </div>
+                                
+                <p>при вычислении без первого приближения расчёт для всех значений в совокупности даёт 9 секунд задержки. При вычислении с первым приближением близким по значению к результату, время на все вычисления составило 3 секунды задержки. Наибольшее количество времени ушло на вычисление корня из 1000, причём без первого приближения это время оказалось в два раза больше, чем с первым приближением.</p>
+                
+                <a id="invert"></a><h4>#invert#</h4>
+
+                <p>Простая функция . Подставляет в начало строки <span class="emTEXT">'-'</span>, если его там нет, и убирает, если он там есть.</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - строка (по идее число в текстовой записи)
+                    <br><span class="emVAR">&nbsp;$result</span> - полученная строка
+                </p>
+                <p>Честно говоря необходимость в этой функции отпала, когда была разработана вторая версия библиотеки. Поскольку я не помню, где ещё я мог использовать эту функцию, я её оставил. Тем не менее может пригодиться, скажем, для быстрого инвертирования шестнадцатеричных чисел.</p>
+                <div><a href="../manual.html">Назад</a></div>
+            </div>
+            <!-- Page -->
+            <div class="em_Epigraph">
+                <div class="em_subText">
+                    <p>Aleks Versus'Easy Libraries'2013-2021</p>
+                    <p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-2021</p>
+                </div>
+            </div>
+            <div class="stickUP"><a href="#UP" title="Вверх"><img src="../../res/img/uparrow_btn.png"></a></div>
+        </div>
+    
+</body>
+</html>

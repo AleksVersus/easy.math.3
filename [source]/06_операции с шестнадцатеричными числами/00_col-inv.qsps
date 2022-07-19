@@ -1,0 +1,21 @@
+QSP-Game Возвращает шестнадцатеричный код цвета противоположного указанному.
+$args[0] - шестнадцатеричный код цвета
+$result - результат: шестнадцатеричный код цвета
+!@pp:if(em_col_inv):include
+# #col-inv#
+if len($args[0])<>6: exit
+$args['r'] = '-'+$mid($args[0],1,2)
+$args['g'] = '-'+$mid($args[0],3,2)
+$args['b'] = '-'+$mid($args[0],5,2)
+$args['rr'] = $mid($func('#+col#','ffffff',$args['r']),1,2)
+$args['gg'] = $mid($func('#+col#','ffffff',$args['g']),1,2)
+$args['bb'] = $mid($func('#+col#','ffffff',$args['b']),1,2)
+$result = $args['rr']+$args['gg']+$args['bb']
+--- #col-inv# ---------------------------------
+!@pp:endif
+
+Функция использует функцию #+col# бибилотеки.
+Подключение дополнительной функции:
+!@pp:if(em_col_inv!=True):nopp
+!@pp:var(em_col)
+!@pp:endif

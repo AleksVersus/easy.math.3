@@ -1,0 +1,18 @@
+QSP-Game Логарифмирование
+args[0] - число
+args[1] - основание
+result - максимально близкая к этому числу и по основанию степень
+!@pp:if(em_log):include
+# em.log
+args[9]=args[9]
+if args[1]=0: args[1]=10
+args['base']=1
+result=0
+:for
+if no (args[0]/args['base']<args[1]):
+	args['base']=args['base']*args[1]
+	result+=1
+	jump 'for'
+end
+- em.log
+!@pp:endif

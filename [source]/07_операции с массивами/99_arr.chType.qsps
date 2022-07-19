@@ -1,0 +1,80 @@
+QSP-GAME изменяет тип содержимого массива. То есть меняется тип каждой отдельной ячейки.
+$args[0] - название массива, для которого требуется поменять тип. Можно указывать как с символом '$', так и без него перед именем.
+$args[1] - управление:
+	[string] - все ячейки массива приводятся к строковому типу (по умолчанию);
+	[number] - все ячейки массива приводятся к числовому типу;
+	[reverse] - тип ячеек меняется на противоположный (не знаю, кому это может понадобиться);
+	[hard] - режим, расширяющий работу режима [string], при этом ячейкам, тип которых определяется как 'empty' (см. функцию "em.var.getType"), принудительно присваивается строковое значение "0".
+$args[2] - результирующий массив. Если не указано, результат помещается в исходный массив.
+!@pp:if(em_arr_chtype):include
+# em.arr.chType
+$args[0]=$args[0] & !@ название массива
+$args[1]=$lcase($args[1])
+if $args[1]='': $args[1]='[string]' else $args[1]=$args[1] & !@ управление:>
+if $args[2]='': $args[2]=$args[0] & !@ название результирующего массива
+if instr($args[0], '$')=1: $args[0]=$mid($args[0],2)
+if instr($args[2], '$')=1: $args[2]=$mid($args[2],2)
+killvar 'easy_math_temp'
+if instr($args[1],'[reverse]')<>0: $args['type']='reverse'
+if instr($args[1],'[number]')<>0: $args['type']='number'
+if instr($args[1],'[string]')<>0: $args['type']='string'
+if instr($args[1],'[hard]')<>0: $args['hard']='hard'
+$args['dyn.StrInNum']="easy_math_temp[args[0]]=val($<<$args[0]>>[args[0]])"
+$args['dyn.NumInStr']="$easy_math_temp[args[0]]=$str(<<$args[0]>>[args[0]])"
+$args['dyn.StrInStr']="$easy_math_temp[args[0]]=$<<$args[0]>>[args[0]]"
+$args['dyn.NumInNum']="easy_math_temp[args[0]]=<<$args[0]>>[args[0]]"
+args['i']=0
+args['s']=arrsize($args[0])
+:for_reverse
+if args['i']<args['s']:
+	!@ ------------------------- данный блок кода можно заменить на em.var.getType ------------------------
+		$args['var.getType']='<<$args[0]>>[<<args["i"]>>]' & !@ имя переменной с $ иили без не важно
+		if instr($args['var.getType'], '$')=1: $args['var.getType']=$mid($args['var.getType'],2)
+		args['string.gt']=dyneval("if $<<$args['var.getType']>><>'': result=1 else result=0")
+		args['number.gt']=dyneval("if <<$args['var.getType']>><>0: result=1 else result=0")
+		if args['string.gt']=1 and args['number.gt']=1:
+			$args['result.gt']='both' & !@ в переменной содержатся оба типа данных. По сути это ошибка
+		elseif args['string.gt']=1 and args['number.gt']=0:
+			$args['result.gt']='string' & !@ переменная содержит текстовое значение
+		elseif args['string.gt']=0 and args['number.gt']=1:
+			$args['result.gt']='number' & !@ переменная содержит числовое значение
+		elseif args['string.gt']=0 and args['number.gt']=0:
+			$args['result.gt']='empty' & !@ переменная не содержит значений, либо содержит значения по-умолчанию
+		end
+		$args['t']=$args['result.gt']
+	!@ ------------------------- данный блок кода можно заменить на em.var.getType ------------------------
+	!@ преобразуем в строковый
+	if $args['type']='string' and ($args['t']='string' or $args['t']='empty' or $args['t']='both'): $args['dyn']='StrInStr'
+	if $args['type']='string' and $args['t']='number': $args['dyn']='NumInStr'
+	if $args['type']='string' and $args['t']='empty' and $args['hard']='hard': $args['dyn']='NumInStr' 
+	!@ преобразуем в числовой
+	if $args['type']='number' and ($args['t']='string' or $args['t']='empty'): $args['dyn']='StrInNum'
+	if $args['type']='number' and ($args['t']='number' or $args['t']='both'): $args['dyn']='NumInNum'
+	!@ для реверса
+	if $args['type']='reverse' and ($args['t']='string' or $args['t']='empty'): $args['dyn']='StrInNum'
+	if $args['type']='reverse' and $args['t']='number': $args['dyn']='NumInStr'
+	if $args['type']='reverse' and $args['t']='both': $args['dyn']='both'
+	if $args['dyn']='StrInNum':
+		dynamic $args['dyn.StrInNum'],args['i']
+	elseif $args['dyn']='NumInStr':
+		dynamic $args['dyn.NumInStr'],args['i']
+	elseif $args['dyn']='both':
+		dynamic $args['dyn.StrInStr'],args['i']
+		dynamic $args['dyn.NumInNum'],args['i']
+	elseif $args['dyn']='NumInNum':
+		dynamic $args['dyn.NumInNum'],args['i']
+	elseif $args['dyn']='StrInStr':
+		dynamic $args['dyn.StrInStr'],args['i']
+	end
+	args['i']+=1
+	jump 'for_reverse'
+end
+if $args[0]=$args[2]:
+	killvar $args[0]
+end
+copyarr $args[2],'easy_math_temp'
+killvar 'easy_math_temp'
+--- em.arr.chType ---------------------------------
+!@pp:endif
+
+Функция не использует иных функций библиотеки

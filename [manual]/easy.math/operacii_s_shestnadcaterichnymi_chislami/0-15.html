@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/qsp_code.css" />
+	<title>Easy Math — Операции с шестнадцатеричными числами</title>
+</head>
+<body>
+    <div class="em_AROUND">
+            <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math/releases/download/v.2.4.0/easy.math.2.4.0.rar" title="скачать последнюю версию библиотеки в формате rar">
+                <h1>easy.math.qsp v. 2.4.0</h1>
+            </a>
+            <!-- Исправить ссылку -->
+            <div class="em_PAGE">
+                <div><a href="../manual.html">Назад</a></div>
+                <h3>Операции над шестнадцатеричными числами</h3>
+                
+                <a id="hexdec"></a><h4>#hex-dec#</h4>
+
+                <p>Функция перевода из гексаметричного числа в декаметричное. Не работает с отрицательными значениями.</p>
+                <p>Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет те же ограничения на значение результата, что и прочие фукции, т.е. результат должен лежать в пределе [-2147483648 ... 2147483647] (для Q.S.P. 5.7.0).</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - шестнадцатеричное число (текстовое значение). Значения в пределе <span class="emTEXT">7fffffff</span>
+                    <br><span class="emVAR">&nbsp;&nbsp;result</span> - полученное число
+                </p>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ff'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">255</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'22'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">34</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'10'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">16</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'1'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">1</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'a'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">10</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ffaa233'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">268083763</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ffaa23'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">16755235</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ffaa2'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">1047202</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ffaa233451'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Operator" style="color:#ff0000;">-</span><span class="Monokai-Numeric" style="color:#ff0000;">1440533423</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ffaa23345'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Operator" style="color:#ff0000;">-</span><span class="Monokai-Numeric" style="color:#ff0000;">90033339</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ffaa2334'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Operator" style="color:#ff0000;">-</span><span class="Monokai-Numeric" style="color:#ff0000;">5627084</span>
+                </div>
+                <p>Как видно, последние три результата получились отрицательными, значит превышены пределы значений результата, а соответственно и числа, которые переводятся в десятеричную систему тоже превышают предел.
+                </p>
+                <a id="dechex"></a><h4>#dec-hex#</h4>
+
+                <p>Функция перевода из декаметричного числа в гексаметричное. Не работает с отрицательными значениями.</p>
+                <p>Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет ограничения на значения аргумента в пределе [-2147483648 ... 2147483647] (для Q.S.P. 5.7.0).</p>
+                <p class="em_CODE">
+                    <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - целое число (числовой вид). Значения в пределе 2147483647
+                    <br><span class="emVAR">&nbsp;$result</span> - полученная строка
+                </p>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-hex#'</span>,<span class="Monokai-Numeric">2147483647</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'7fffffff'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-hex#'</span>,<span class="Monokai-Numeric">214</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'d6'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-hex#'</span>,<span class="Monokai-Numeric">255</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ff'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-hex#'</span>,<span class="Monokai-Numeric">10</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'a'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-hex#'</span>,<span class="Monokai-Numeric">9</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'9'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-hex#'</span>,<span class="Monokai-Numeric">2147483648</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String" style="color:#ff0000;">'-0'</span>
+                </div>
+                <p>Как видно, последний результат получился отрицательным, потому что был превышен предел на значения аргумента.</p>
+                
+                <a id="deccol"></a><h4>#dec-col#</h4>
+
+                <p>Преобразует десятеричное число в шестнадцатеричное. Отличием от функции <span class="emFOLD">#dec-hex#</span> является ограничение на значение аргумента в пределах [-255 ... 255]. Если пределы превышены, функция выдаёт в результат <span class="emTEXT">ff</span>. Любое число в пределах преобразуется к двуразрядному шестнадцатеричному числу. Таким образом ограничение на результат лежит в пределах [<span class="emTEXT">-ff</span> ... <span class="emTEXT">ff</span>].</p>
+                <p class="em_CODE">
+                    <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - число целое, десятеричное.
+                    <br><span class="emVAR">&nbsp;$result</span> - шестнадцатеричное двуразрядное число (текстовое значение).
+                </p>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-col#'</span>,<span class="Monokai-Numeric">2147483647</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'ff'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-col#'</span>,<span class="Monokai-Numeric">214</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'d6'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-col#'</span>,<span class="Monokai-Numeric">255</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ff'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-col#'</span>,<span class="Monokai-Operator">-</span><span class="Monokai-Numeric">10</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-0a'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-col#'</span>,<span class="Monokai-Numeric">256</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ff'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-col#'</span>,<span class="Monokai-Numeric">16</span>)</span>  <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'10'</span>
+                </div>
+                
+                <a id="col"></a><h4>#+col#</h4>
+
+                <p>Функция предназначена для изменения цвета для HTML; использует функции <span class="emFOLD">#hex-dec#</span> и <span class="emFOLD">#dec-col#</span>.</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
+                    <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - значение. Шестнадцатеричный формат, двузначное число. (может быть отрицательным)
+                </p>
+                <p>Функция действует следующим образом: разбивает первый аргумент на три двузначных шестнадцатеричных числа, и к каждому из чисел прибавляет второй аргумент. Если сумма превышает значение <span class="emTEXT">ff</span>, она приводится к <span class="emTEXT">ff</span>. И напротив, если сумма оказывается меньше <span class="emNUM">0</span>, она приводится к <span class="emNUM">0</span>. Таким образом результат работы функции лежит в пределах [<span class="emTEXT">000000</span> ... <span class="emTEXT">ffffff</span>]</p>
+                <p>Это может пригодиться для плавного гашения цвета, или наоборот. Функция используется в движке игры <span class="emTEXT">"МАГИКОН"</span>, чтобы гасить цвета заголовков в зависимости от уровней.</p>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+col#'</span>,<span class="Monokai-String">'ff0000'</span>,<span class="Monokai-String">'-44'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'bb0000'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+col#'</span>,<span class="Monokai-String">'000000'</span>,<span class="Monokai-String">'-44'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'000000'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+col#'</span>,<span class="Monokai-String">'dd0000'</span>,<span class="Monokai-String">'22'</span>)</span>  <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ff2222'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+col#'</span>,<span class="Monokai-String">'dd8822'</span>,<span class="Monokai-String">'-44'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'994400'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+col#'</span>,<span class="Monokai-String">'dd8822'</span>,<span class="Monokai-String">'44'</span>)</span>  <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ffcc66'</span>
+                </div>
+                
+                <a id="colrgb"></a><h4>#col-rgb#</h4>
+
+                <p>Данная функция преобразует цвет, записанный в шестнадцатеричной форме, в числовой код цвета, понятный QSP; использует функцию <span class="emFOLD">#hex-dec#</span>.</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным);<br>
+                    <span class="emVAR">result</span> - числовой код цвета в формате QSP.
+                </p>
+                <p>Функция является как бы надстройкой системной функции <span class="emFUNC">rgb</span> и работает следующим образом: шестнадцатеричный код цвета разбивается на три двузначных шестнадцатеричных числа, которые преобразуются в десятеричные числа и передаются функции <span class="emFUNC">rgb</span> в качестве аргументов.</p>
+                <p>Если в качестве аргумента указать неверное шестнадцатеричное число, функция всё равно вернёт результат, заменив неверные символы нулями. То же самое произойдёт, если указать отрицательное шестнадцатеричное число. Минус будет считаться неизвестным символом и <span class="emFOLD">#hex-dec#</span> заменит его на ноль. Последняя цифра будет отсечена.</p>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#col-rgb#'</span>,<span class="Monokai-String">'ff0000'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-16776961'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#col-rgb#'</span>,<span class="Monokai-String">'000000'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-16777216'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#col-rgb#'</span>,<span class="Monokai-String">'dd0000'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-16776995'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#col-rgb#'</span>,<span class="Monokai-String">'dd8822'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-14513955'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#col-rgb#'</span>,<span class="Monokai-String" style="color:#ff6543;">'ffmm00'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-16776961'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#col-rgb#'</span>,<span class="Monokai-String" style="color:#ff6543;">'-0000ff'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-15794176'</span>
+                </div>
+                
+                <a id="colinv"></a><h4>#col-inv#</h4>
+
+                <p>Возвращает шестнадцатеричный код цвета противоположного указанному; использует функцию <span class="emFOLD">#+col#</span>.</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
+                </p>
+                <p>Принцип работы прост. Берётся максимальное значение для цветовой составляющей, и из него вычитается соответствующее значение цветовой составляющей исходного цвета. Полученные результаты склеиваются, в результате — цвет противоположный исходному.</p>
+
+                <h5>Результат работы функции:</h5>
+                
+                <p>В качестве результата работы функции наглядная таблица исходных цветов и противоложных им.</p>
+                <p></p>
+                <div class="Monokai-Code">
+                    <table class="em_plusBRD">
+                        <tr>
+                            <td>
+                                Исходный
+                            </td>
+                            <td>
+                                Противоположный
+                            </td>
+                        </tr>                
+                        <tr>
+                            <td style="color:#ffffff;background-color:#000000;width:50%;">
+                                #000000
+                            </td>
+                            <td style="color:#000000;background-color:#ffffff;width:50%;">
+                                #ffffff
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:#000000;background-color:#ffffff;width:50%;">
+                                #ffffff
+                            </td>
+                            <td style="color:#ffffff;background-color:#000000;width:50%;">
+                                #000000
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:#000;background-color:#238C90;width:50%;">
+                                #238c90
+                            </td>
+                            <td style="color:#000;background-color:#dc736f;width:50%;">
+                                #dc736f
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:#000;background-color:#902B10;width:50%;">
+                                #902b10
+                            </td>
+                            <td style="color:#000;background-color:#6fd4ef;width:50%;">
+                                #6fd4ef
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:#000;background-color:#C7C000;width:50%;">
+                                #c7c000
+                            </td>
+                            <td style="color:#000;background-color:#383fff;width:50%;">
+                                #383fff
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:#000;background-color:#07C701;width:50%;">
+                                #07c701
+                            </td>
+                            <td style="color:#000;background-color:#f838fe;width:50%;">
+                                #f838fe
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+                <p>&nbsp;</p>
+                <div><a href="../manual.html">Назад</a></div>
+            </div>
+            <div class="em_Epigraph">
+                <div class="em_subText">
+                    <p>Aleks Versus'Easy Libraries'2013-2021</p>
+                    <p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-2021</p>
+                </div>
+            </div>
+            <div class="stickUP"><a href="#UP" title="Вверх"><img src="../../res/img/uparrow_btn.png"></a></div>
+        </div>
+</body>
+</html>

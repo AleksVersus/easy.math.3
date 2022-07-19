@@ -1,0 +1,17 @@
+{
+	"project":
+	[
+		{
+			"build":"D:\\my\\GameDev\\QuestSoftPlayer\\games\\+releases+\\+lib+\\launcher.em\\easy.math.qsp",
+			"folders":[{"path":"D:\\my\\GameDev\\QuestSoftPlayer\\games\\+lib+\\easy.math\\[source]"}]
+		},
+		{
+			"build":"D:\\my\\GameDev\\QuestSoftPlayer\\games\\+releases+\\+lib+\\launcher.em\\launcher.em.qsp",
+			"files":[{"path":"D:\\my\\GameDev\\QuestSoftPlayer\\games\\+releases+\\+lib+\\launcher.em\\launcher.em.qsps"}]
+		}
+	],
+	"converter":"D:\\my\\GameDev\\QuestSoftPlayer\\QSP 570 QG 400b\\txt2gam.exe",
+	"player":"D:\\my\\GameDev\\QuestSoftPlayer\\QSP 570 QG 400b\\qspgui.exe",
+	"save_txt2gam":"False",
+	"start":"D:\\my\\GameDev\\QuestSoftPlayer\\games\\+releases+\\+lib+\\launcher.em\\launcher.em.qsp"
+}

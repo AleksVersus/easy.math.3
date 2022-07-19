@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/qsp_code.css" />
+	<title>Easy Math — Операции с координатной сеткой</title>
+</head>
+<body>
+       <div class="em_AROUND">
+            <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math/releases/download/v.2.4.0/easy.math.2.4.0.rar" title="скачать последнюю версию библиотеки в формате rar"><h1>easy.math.qsp v. 2.4.0</h1></a>
+            <div class="em_PAGE">
+                <div><a href="../manual.html">Назад</a></div>
+                <h3>Работа с координатной сеткой</h3>
+                
+                <a id="coordsget"></a><h4>#coords.get#</h4>
+                
+                
+                <p>Определяет координаты ячейки по текущему номеру ячейки. Эта функция пригодится при организации двумерного массива, через одномерный, или при отрисовке игровых полей заданной ширины.
+                <div class="em_CODE">
+                    <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - текущий номер ячейки или блока <span class="emTT">N</span>;
+                    <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - ширина поля <span class="emTT">W</span>;
+                    <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - управление:
+                    <ul>
+                        <li><span class="emTEXT">[x]</span> - координата по оси X;</li>
+                        <li><span class="emTEXT">[y]</span> - координата по оси Y;</li>
+                        <li>пустое значение, <span class="emTEXT">[xy]</span> или <span class="emTEXT">[x][y]</span> - обе координаты возвращаются в формате <span class="emTEXT">[x:00] [y:99]</span>.</li>
+                    </ul>
+                </div>
+                <h5>Пример таблицы:</h5>
+                <div class="Monokai-Code">
+                    y/x&nbsp;&nbsp;|&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+                    <br>---&nbsp;-|----------------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N&nbsp;=&nbsp;x&nbsp;+&nbsp;y&nbsp;*&nbsp;W
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;0|&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N&nbsp;-&nbsp;номер&nbsp;ячейки
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;-&nbsp;координата&nbsp;по&nbsp;горизонтали
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;1|&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;-&nbsp;координата&nbsp;по&nbsp;вертикали
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W&nbsp;-&nbsp;ширина&nbsp;прямоугольника&nbsp;=Xmax+1
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;2|&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;<span style="background-color:#ffffff33;">&nbsp;10&nbsp;</span>&nbsp;11
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;=&nbsp;N/W
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;3|&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;=&nbsp;N&nbsp;-&nbsp;Y&nbsp;*&nbsp;W
+                </div>
+                <h5>Результат работы функции:</h5>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">func</span>(<span class="Monokai-String">'#coords.get#'</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3+1</span>,<span class="Monokai-String">'[x]'</span>)=<span class="Monokai-Numeric">2</span>
+                    <br><span class="Monokai-Func">func</span>(<span class="Monokai-String">'#coords.get#'</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3+1</span>,<span class="Monokai-String">'[y]'</span>)=<span class="Monokai-Numeric">2</span>
+                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#coords.get#'</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3+1</span>)=<span class="Monokai-String">"[x:2] [y:2]"</span>
+                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#coords.get#'</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">4</span>,<span class="Monokai-String">'[x][y]'</span>)=<span class="Monokai-String">"[x:2] [y:2]"</span>
+                </div>
+                <p>&nbsp;</p>
+                <div><a href="../manual.html">Назад</a></div>
+            </div>
+            <div class="em_Epigraph">
+                <div class="em_subText">
+                    <p>Aleks Versus'Easy Libraries'2013-2021</p>
+                    <p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-2021</p>
+                </div>
+            </div>
+            <div class="stickUP"><a href="#UP" title="Вверх"><img src="../../res/img/uparrow_btn.png"></a></div>
+        </div>
+</body>
+</html>

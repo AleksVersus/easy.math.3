@@ -1,0 +1,75 @@
+QSP-Game Процедура сравнения содержимого двух массивов.
+
+$args[0]- первый массив (исследуемый).
+$args[1] - второй массив (исследуемый).
+$args[2] - управляющая конструкция.
+	* Если указано пустое значение - массивы сравниваются на предмет полной идентичности.
+	* Если указано "[simp]" - массивы сортируются по одинаковым правилам и вновь сравниваются. Такое сравнение называется сравнением на подобие, т.е. в обоих массивах присутствуют одинаковые элементы, но расположенные в разном порядке. Сортировка производится во временные массивы и на исследуемые массивы не влияет.
+	* Если указано "[conc]" массивы сравниваются на совпадение хотя бы одного элемента.
+	* Если при сравнении необходимо исключить пустые ячейки, необходимо добавить управляющее слово "[se]" или "[space exclude]" к управляющей конструкции.
+!@pp:if(em_array_simp):include
+# #array.simp#
+$args[9]=$args[9]	& !@ инициализация аргументов
+if instr($args[0],'$')<>0 or instr($args[1],'$')<>0: $args['$']='$'
+$args['em.array.simp']='true'	& !@ результат сравнения по умолчанию true
+$args[2]=$lcase($args[2])	& !@ переводим управляющие конструкции в нижний регистр
+if instr($args[2],'[space exclude]')<>0: $args[2]=$replace($args[2],'[space exclude]','[se]')
+if instr($args[2],'[simp]')<>0 or instr($args[2],'[se]')<>0:
+	!@ если сравниваем на подобие, или исключаем пустые значения
+	gs '#array.sort#',$args[0],'','','easy_math_sort_0_array'	& !@ сортируем первый массив и помещаем его во временный
+	gs '#array.sort#',$args[1],'','','easy_math_sort_1_array'	& !@ сортируем второй массив и помещаем его во временный
+	$args[0]=$args['$']+'easy_math_sort_0_array'	& !@ назначаем новые имена
+	$args[1]=$args['$']+'easy_math_sort_1_array'
+	if instr($args[2],'[se]')<>0:
+		!@ если нужно не учитывать пустые значения (нули), удаляем их из массивов
+		gs '#array.clr#',$args[0]
+		gs '#array.clr#',$args[1]
+	end
+end
+if arrsize($args[0])<>arrsize($args[1]) and instr($args[2],'[conc]')=0:
+	!@ если сравниваем на подобие или идентичность и размеры массивов отличаются - массивы не могут быть подобны или идентичны
+	$args['em.array.simp']='false'
+	jump 'overkill_and_exit'
+elseif (arrsize($args[0])=0 or arrsize($args[1])=0) and arrsize($args[0])<>arrsize($args[1]):
+	!@ если размер одного массива равен нулю, а другого нет - массивы не идентичны
+	$args['em.array.simp']='false'
+	jump 'overkill_and_exit'
+elseif arrsize($args[0])>arrsize($args[1]) and instr($args[2],'[conc]')<>0:
+	!@ нам достаточно перебрать элементы меньшего массива, чтобы проверить на совпадение хотя бы одного элемента
+	$args['t']=$args[0]
+	$args[0]=$args[1]
+	$args[1]=$args['t']
+end
+args[9]=arrsize($args[0])-1	& !@ выставляем счётчик
+:for_you
+if args[9]>-1:
+	!@ пока счётчик больше -1, выполняем:
+	if instr($args[2],'[conc]')<>0:
+		!@ если сравниваем на совпадение хотя бы одного элемента
+		$args['em.array.simp']=$dyneval("if arrpos('<<$args[0]>>',<<$args[1]>>[args[0]])<>-1: $result='true' else $result='false'",args[9])	& !@ если элемент присутствует в массиве, значит мы получили нужный результат
+		if $args['em.array.simp']<>'false': jump 'overkill_and_exit'
+	else
+		!@ теперь сравниваем на идентичность, так как к этому моменту массивы уже отсортированы и почищены (опционально)
+		$args['em.array.simp']=$dyneval("if <<$args[0]>>[args[0]]=<<$args[1]>>[args[0]]: $result='true' else $result='false'",args[9])	& !@ если элементы совпадают, возвращаем true, и поиск будет происходить до тех пор, пока не исчерпается счётчик, или dyneval не вернёт false
+		if $args['em.array.simp']='false': jump 'overkill_and_exit'
+	end
+	args[9]-=1
+	jump 'for_you'
+end
+:overkill_and_exit
+!@ удаляем временные массивы
+killvar 'easy_math_sort_0_array'
+killvar 'easy_math_sort_1_array'
+!@ возвращаем результат
+$result=$args['em.array.simp']
+--- #array.simp# ---------------------------------
+!@pp:endif
+
+Функция использует функции array.clr и array.sort
+
+!@pp:if(em_array_simp!=True):nopp
+
+!@pp:var(em_array_clr)
+!@pp:var(em_array_sort)
+
+!@pp:endif

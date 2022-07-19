@@ -1,0 +1,47 @@
+QSP-Game Получает содержимое одиночного тега[1] из строки.
+!@pp:if(em_get_tag_num):include
+# get.tag.num
+$args[9]=$args[9]	& !@ инициализация аргументов
+!@ если указан ключ /h - в результат можно выводить только шестнадцатеричное число
+if $mid($args[1],len($args[1])-1)='/h': $args[1]=$replace($args[1],'/h') & $args['hex']='hex'
+if $strfind($args[0],'\['+$args[1]+':'+'([^][]*?)'+'\]')<>'':
+	!@ [tag:any symbols]
+	$args['result.num'] = $strfind($args[0],'\['+$args[1]+':'+'([^][]+?)'+'\]',1)
+	jump 'results'
+elseif $strfind($args[0],'<'+$args[1]+':'+'([^><]*?)'+'>')<>'':
+	!@ <tag:any symbols>
+	$args['result.num'] = $strfind($args[0],'<'+$args[1]+':'+'([^><]+?)'+'>',1)
+	jump 'results'
+elseif $strfind($args[0],'\{'+$args[1]+':'+'([^}{]*?)'+'\}')<>'':
+	!@ {tag:any symbols}
+	$args['result.num'] = $strfind($args[0],'\{'+$args[1]+':'+'([^}{]+?)'+'\}',1)
+	jump 'results'
+elseif $strfind($args[0],'\('+$args[1]+':'+'([^)(]*?)'+'\)')<>'':
+	!@ (tag:any symbols)
+	$args['result.num'] = $strfind($args[0],'\('+$args[1]+':'+'([^)(]+?)'+'\)',1)
+	jump 'results'
+elseif $strfind($args[0],$args[1]+'=("|'+"')([\s\S]*?)\1")<>'':
+	!@ tag="any symbols"
+	!@ tag='any symbols'
+	$args['result.num'] = $strfind($args[0],$args[1]+'=("|'+"')([\s\S]*?)\1",2)
+	jump 'results'
+elseif $strfind($args[0],$args[1]+'(:|=#)[\S]+')<>'':
+	!@ tag:non_space_symbols
+	!@ tag=#non_space_symbols
+	$args['result.num'] = $strfind($args[0],$args[1]+'(:|=#)([\S]+)',2)
+	:results
+	if $args['hex']='hex' and $strfind($args['result.num'],'^([0-9A-Fa-f\-]+)([\S]*)$')='':
+		!@ если число не шестнадцатеричное, но был установлен ключ, ничего не возвращаем
+		$result=''
+		exit
+	elseif $args['hex']='hex':
+		!@ если ключ был установлен и число шестнадцатеричное, получаем это число
+		$args['result.num'] = $strfind($args['result.num'],'^([0-9A-Fa-f\-]+)([\S]*)$',1)
+	end
+	!@ результат возвращаем только в текстовом виде
+	$result=$args['result.num']
+end
+--- get.tag.num ---------------------------------
+!@pp:endif
+
+Функция не использует иных функций библиотеки.

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/qsp_code.css" />
+	<title>Easy Math — Операции с целыми числами</title>
+</head>
+<body>
+
+        <div class="em_AROUND">
+            <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math/releases/download/v.2.4.0/easy.math.2.4.0.rar" title="скачать последнюю версию библиотеки в формате rar">
+                <h1>easy.math.qsp v. 2.4.0</h1>
+            </a>
+            <!-- Исправить ссылку -->
+            <div class="em_PAGE">
+                <div><a href="../manual.html#integer">Назад</a></div>
+				<h3>Операции с целыми числами</h3>
+                <section>
+                    <a id="even"></a><h4>#even#</h4>
+
+                    <p>Функция предназначена для округления целых чисел.</p>
+
+                    <p class="em_CODE">
+                        <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - число
+                        <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - разрядность округления: <span class="emNUM">10</span> - десятки, <span class="emNUM">100</span> - сотни, <span class="emNUM">1000</span> - тысячи, и т.д.; если не указано принимается равным <span class="emNUM">100</span>.
+                        <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - правило округления числа: <span class="emTEXT">[up]</span> - в сторону увеличения; <span class="emTEXT">[down]</span> - в сторону уменьшения; пустое значение - по правилам округления: последнее число перед округляемым разрядом меньше пяти - округляем в меньшую сторону, больше четырёх - в большую.
+                    </p>
+                    <p>Округление отрицательных чисел поддерживается.</p>
+
+                    <h5>Результат работы функции:</h5>
+
+                    <div class="Monokai-Code">
+                        <span class="Monokai-Func">func</span>&nbsp;<span class="Monokai-Qbracket">(<span class="Monokai-String">"#even#"</span>,<span class="Monokai-Numeric">549</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-String">"up"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">550</span><br>
+                        <span class="Monokai-Func">func</span>&nbsp;<span class="Monokai-Qbracket">(<span class="Monokai-String">"#even#"</span>,<span class="Monokai-Numeric">549</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-String">"down"</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">540</span><br>
+                        <span class="Monokai-Func">func</span>&nbsp;<span class="Monokai-Qbracket">(<span class="Monokai-String">"#even#"</span>,<span class="Monokai-Numeric">549</span>,<span class="Monokai-Numeric">1000</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">1000</span><br>
+                        <span class="Monokai-Func">func</span>&nbsp;<span class="Monokai-Qbracket">(<span class="Monokai-String">"#even#"</span>,<span style="color:#66d9ef;">-</span><span class="Monokai-Numeric">5545</span>,<span class="Monokai-Numeric">12</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span style="color:#66d9ef;">-</span><span class="Monokai-Numeric">5500</span><br>
+                        <span class="Monokai-Func">func</span>&nbsp;<span class="Monokai-Qbracket">(<span class="Monokai-String">"#even#"</span>,<span class="Monokai-Numeric">45599</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">45600</span><br>
+                        <span class="Monokai-Func">func</span>&nbsp;<span class="Monokai-Qbracket">(<span class="Monokai-String">"#even#"</span>,<span style="color:#66d9ef;">-</span><span class="Monokai-Numeric">45599</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span style="color:#66d9ef;">-</span><span class="Monokai-Numeric">45600</span>
+                    </div>
+                </section>
+                <section>
+                    <a id="sum"></a><h4>#sum#</h4>             
+                
+                    <p>Функция предназначена для суммирования значений всех элементов массива. Причём суммироваться будут даже элементы, индексируемые через текстовые значения.</p>
+                    <p>Используйте только для заведомо малых значений - функция корректно работает с числами, укладывающимися в определённые интервалы.</p>
+                    <p class="em_CODE">
+                        <span class="emVAR">$args[<span class="emNUM">0</span>]</span> — имя массива (текстовое значение).<br>
+                        <span class="emVAR">$args[<span class="emNUM">1</span>]</span> — разделитель, который будет вставляться между значениями, если склеиваются значения элементов текстового массива. По умолчанию пробел. Склейка без разделителя через передачу <span class="emTEXT">/se</span>.
+                    </p>
+                    <p>Результатом работы функции может быть число или текст, в зависимости от того, сумму числового или текстового массива вы хотите получить. Значения массива при этом не изменяются.</p>
+                    <div class="Monokai-Code">
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#sum#'</span>,<span class="Monokai-String">'mass1'</span>)</span>
+                    </div>
+                </section>
+                <section>
+                    <a id="raz"></a><h4>#raz#</h4>
+
+                    <p>Получает разрядность целого числа в виде круглого числа.</p>
+                    <p class="em_CODE">
+                        <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - число
+                    </p>
+                    <p>Отрицательные числа поддерживаются.</p>
+
+                    <h5>Результат работы функции:</h5>
+
+                    <div class="Monokai-Code">
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#raz#'</span>,<span class="Monokai-Numeric">36</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">10</span><br>
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#raz#'</span>,<span class="Monokai-Numeric">360</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">100</span><br>
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#raz#'</span>,<span class="Monokai-Numeric">366</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">100</span><br>
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#raz#'</span>,<span class="Monokai-Numeric">9999</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">1000</span><br>
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#raz#'</span>,<span class="Monokai-Operator">-</span><span class="Monokai-Numeric">45023</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">10000</span>
+                    </div>
+                </section>
+                <section>
+				    <a id="quart"></a><h4>#^#</h4>
+					
+					<p>функция предназначена для возведения целого числа в степень.</p>
+					<p class="em_CODE">
+						<span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - основание, целое число
+						<br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - показатель, целое положительное число
+					</p>
+					<p>Следует заметить, что для подсчёта функция использует цикл. Если Вы возводите число, пусть даже единицу, в большую степень, вычисления на слабых компьютерах могут заметно подвешивать игру.</p>
+
+					<h5>Результат работы функции:</h5>
+
+					<div class="Monokai-Code">
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#^#'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">6</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">46656</span><br>
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#^#'</span>,<span class="Monokai-Numeric">4</span>,<span class="Monokai-Numeric">2</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">16</span><br>
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#^#'</span>,<span class="Monokai-Numeric">4</span>,<span class="Monokai-Numeric">3</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">64</span><br>
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#^#'</span>,<span class="Monokai-Numeric">4</span>,<span class="Monokai-Numeric">4</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">256</span><br>
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#^#'</span>,<span class="Monokai-Numeric">250</span>,<span class="Monokai-Numeric">2</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">62500</span>
+                    </div>
+                </section>
+                <section>
+				    <a id="minus"></a><h4>#-#</h4>
+					<p>Модуль разницы двух целых чисел.</p>
+					<p class="em_CODE">
+						<span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - первое число, целое
+						<br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - второе число, целое
+					</p>
+					<p>Эта функция несёт не столько какую-то практическую пользу, сколько сокращает запись. Например, есть две переменные, разницу между которыми нам надо вычислить. Вот запись без использования функции:</p>
+					<div class="Monokai-Code">
+                        <span class="Monokai-Construct">if</span> a<span class="Monokai-Operator">></span>b<span class="Monokai-Operator">:</span> c<span class="Monokai-Assign">=</span>a<span class="Monokai-Operator">-</span>b <span class="Monokai-Construct">else</span> c<span class="Monokai-Assign">=</span>b<span class="Monokai-Operator">-</span>a
+                    </div>
+					<p>Или:</p>
+					<div class="Monokai-Code">
+                        c<span class="Monokai-Assign">=</span>a<span class="Monokai-Operator">-</span>b<br>
+                        <span class="Monokai-Construct">if</span> c<span class="Monokai-Operator">&lt;</span><span class="Monokai-Numeric">0</span><span class="Monokai-Operator">:</span> c<span class="Monokai-Assign">=</span><span class="Monokai-Operator">-</span>c
+                    </div>
+					<p>Двадцать знаков в первом случае, пятнадцать во втором, не считая пробелов. Теперь функция:</p>
+					<div class="Monokai-Code">
+                        c<span class="Monokai-Assign">=</span><span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'#-#'</span>,a,b<span class="Monokai-Qbracket">)</span>
+                    </div>
+					<p>Семнадцать знаков. Выглядит неубедительно, потому как взяты переменные с короткими именами. А что если вместо этих переменных пришлось использовать такие:&nbsp;</p>
+					<div class="Monokai-Code">
+                        <span class="Monokai-Construct">if</span>&nbsp;a_easy_math<span class="Monokai-Operator">></span>b_easy_math<span class="Monokai-Operator">:</span>&nbsp;c_easy_math<span class="Monokai-Assign">=</span>a_easy_math<span class="Monokai-Operator">-</span>b_easy_math&nbsp;<span class="Monokai-Construct">else</span>&nbsp;c_easy_math<span class="Monokai-Assign">=</span>b_easy_math<span class="Monokai-Operator">-</span>a_easy_math
+                    </div>
+					<p>сто четыре символа. А теперь функция:</p>
+					<div class="Monokai-Code">
+                        c_easy_math<span class="Monokai-Assign">=</span><span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'#-#'</span>,a_easy_math,b_easy_math<span class="Monokai-Qbracket">)</span>
+                    </div>
+					<p>сорок семь символов - запись вдвое короче.</p>
+                </section>
+                
+                <section>
+				    <a id="em_random"></a><h4>em.random</h4>
+					<p>Функция выбрасывает случайное число в указанных промежутках.</p>
+					<p class="em_CODE">
+						<span class="emVAR">$args[<span class="emNUM">0</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - промежутки чисел в формате <span class="emTEXT">'11-99'</span>.
+					</p>
+                    <h5>Пример вызова функции:</h5>
+					<div class="Monokai-Code">
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.random'</span>,<span class="Monokai-String">'10-24'</span>,<span class="Monokai-String">'34-49'</span>)</span>
+                    </div>
+                    <p>В данном случае функция будет выбрасывать случайные числа от 10 до 24, и от 34 до 49, включительно.</p>
+                </section>
+                
+                <section>
+				    <a id="em_log"></a><h4>em.log</h4>
+					<p>Логарифмирование по указанному основанию.</p>
+					<p class="em_CODE">
+						<span class="emVAR">args[<span class="emNUM">0</span>]</span> - число, которое логарифмируем;<br>
+                        <span class="emVAR">args[<span class="emNUM">1</span>]</span> - основание, по которому логарифмируем (по умолчанию 10);<br>
+                        <span class="emVAR">result</span> - максимально близкая к этому числу степень по указанному основанию.
+					</p>
+                    <h5>Результат работы функции:</h5>
+					<div class="Monokai-Code">
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.log'</span>,<span class="Monokai-Numeric">10</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.log'</span>,<span class="Monokai-Numeric">100</span>,<span class="Monokai-Numeric">2</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">6</span><br>
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.log'</span>,<span class="Monokai-Numeric">1000</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4</span><br>
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.log'</span>,<span class="Monokai-Numeric">2345</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4</span><br>
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.log'</span>,<span class="Monokai-Numeric">1013</span>,<span class="Monokai-Numeric">13</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
+                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.log'</span>,<span class="Monokai-Numeric">567</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span>
+                    </div>
+                </section>
+                <div><a href="../manual.html#integer">Назад</a></div>
+            </div>
+            <!-- Page -->
+            <div class="em_Epigraph">
+                <div class="em_subText">
+                    <p>Aleks Versus'Easy Libraries'2013-2021</p>
+                    <p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-2021</p>
+                </div>
+            </div>
+            <div class="stickUP"><a href="#UP" title="Вверх"><img src="../../res/img/uparrow_btn.png"></a></div>
+        </div>
+
+</body>
+</html>

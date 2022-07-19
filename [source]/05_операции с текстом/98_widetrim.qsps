@@ -1,0 +1,39 @@
+QSP-Game Функция похожа на функцию TRIM. Она удаляет прилегающие символы пробелов, табуляций и переводов строк. Так же функция позволяет убирать все символы преформатирования из текста.
+$args[0] - обрабатываемый текст
+$args[1] - управляющее слово: [strip].
+!@pp:if(em_widetrim):include
+# #widetrim#
+$args[9]=$args[9]	& !@ инициализация аргументов
+$args[1]=$lcase($args[1])	& !@ переводим в нижний регистр
+$args['\n']='
+'
+gosub '#str.inArray#',$args[0],'$easy_math_temp_massive','','[trim]'	& !@ разбиваем текст на строки и строки помещаем в массив
+!@ если первый и последний элемент содержат только пробелы или пусты, удаляем их
+:for1
+if arrsize('$easy_math_temp_massive')>0 and ($easy_math_temp_massive[0]='' or strcomp($easy_math_temp_massive[0],'\s+')<>0):
+	killvar '$easy_math_temp_massive',0
+	jump 'for1'
+end
+:for2
+if arrsize('$easy_math_temp_massive')>0 and ($easy_math_temp_massive[]='' or strcomp($easy_math_temp_massive[],'\s+')<>0):
+	killvar '$easy_math_temp_massive',arrsize('$easy_math_temp_massive')-1
+	jump 'for2'
+end
+if instr($args[1],'[strip]')<>0: $args['addcomm']='[strip]'	& !@ выставляем добавленную команду
+$args['res']=""
+:res
+if arrsize('$easy_math_temp_massive')>0:
+	if $args['addcomm']='[strip]': $easy_math_temp_massive[0]=$trim($easy_math_temp_massive[0])
+	$args['res']+=$easy_math_temp_massive[0]+$args['\n']
+	killvar '$easy_math_temp_massive',0
+	jump 'res'
+end
+killvar '$easy_math_temp_massive'
+$result=$mid($args['res'],1,len($args['res'])-1)
+--- #widetrim# ---------------------------------
+!@pp:endif
+
+Используется функция библиотеки #str.inArray#
+!@pp:if(em_widetrim!=True):nopp
+!@pp:var(em_str_inarray)
+!@pp:endif

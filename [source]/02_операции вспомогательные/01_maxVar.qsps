@@ -1,0 +1,97 @@
+QSP-Game ПЕРЕМЕННАЯ С НАИБОЛЬШИМ ЗНАЧЕНИЕМ
+Функция вычисляет название переменной с наибольшим значением
+В качестве аргументов передаются названия переменных или ячеек массивов.
+Первый аргумент рассматривается, как список, поэтому в него можно вносить несколько названий переменных через запятую. При этом нельзя, чтобы все эти названия содержали в себе запятые. Например mass["12,45"] - недопустимо. Такие названия можно перечислять в последующих аргументах, либо при указании использовать вместо запятой строку %&#44;% - это сочетание будет автоматически заменяться на запятую при обработке переменной: mass["12%&#44;%45"]
+кроме того каждое название переменной может быть отмечено ключом /arr, тогда указанная переменная будет рассматриваться как массив.
+Последний аргумент может содержать управляющие конструкции:
+[list] - в результат выдаётся список переменных с максимальным значением, если это значение в нескольких переменных совпадает.
+[max] - поиск максимального значения (по умолчанию)
+[min] - поиск минимального значения, имеет приоритет над [max], если указаны оба.
+!@pp:if(em_maxvar):include
+# em.maxVar
+$args[9]=$args[9]
+$args['\n']='
+'
+$args['>or<']='>'
+killvar '$easy_math_varname'
+gosub '#str.inArray#',$args[0],'$easy_math_varname',',','NOTSPACE [strip]'
+!@ этот цикл добирает оставшиеся переменные
+args['i']=1
+:for
+if args['i']<9 and args['stop']=0:
+	$args['comm']=$strfind($lcase($args[args['i']]),'\[(list|max|min)\]')
+	if $args['comm']<>'' or $args[args['i']]='':
+		args['stop']=1
+		$args[args['i']]=$lcase($args[args['i']])
+		if instr($args[args['i']],'[list]')<>0: $args['list']='[list]'
+		if instr($args[args['i']],'[min]')<>0:
+			$args['>or<']='<'
+		elseif instr($args[args['i']],'[max]')<>0:
+			$args['>or<']='>'
+		end
+	else:
+		$easy_math_varname[]=$args[args['i']]
+	end
+	args['i']+=1
+	jump 'for'
+end
+!@ следующий цикл перебирает переменные, помещая их значения и названия в отдельный массив
+args['i']=0
+args['s']=arrsize('$easy_math_varname')
+if $args['>or<']='>': args['maximal_result']=-2147483647
+if $args['>or<']='<': args['maximal_result']=2147483647
+:for_list
+if args['i']<args['s']:
+	$easy_math_varname[args['i']]=$replace($easy_math_varname[args['i']],'%&#44;%',',')
+	if $mid($easy_math_varname[args['i']],len($easy_math_varname[args['i']])-3)='/arr':
+		!@ если имеется ввиду не имя переменной, а имя массива
+		$args['arr']=$mid($easy_math_varname[args['i']],1,len($easy_math_varname[args['i']])-4)
+		if $args['>or<']='>': args['maxarr']=max($args['arr'])
+		if $args['>or<']='<': args['maxarr']=min($args['arr'])
+		if (args['maxarr']>=args['maximal_result'] and  $args['>or<']='>') or (args['maxarr']<=args['maximal_result'] and  $args['>or<']='<'):
+			if args['maxarr']>args['maximal_result'] and $args['>or<']='>': $args['list_of_var']=''
+			if args['maxarr']<args['maximal_result'] and $args['>or<']='<': $args['list_of_var']=''
+			args['pos']=-1
+			:for_arr
+			args['pos']=arrpos(args['pos']+1,$args['arr'],args['maxarr'])
+			if (args['pos']<>-1 and args['mp']<>args['pos']) or args['pos']=0:
+				args['mp']=args['pos']
+				$args['list_of_var']+="<<$args['arr']>>[<<args['pos']>>]"+$args['\n']
+				jump 'for_arr'
+			end
+			args['maximal_result']=args['maxarr']
+		end
+	else:
+		!@ если имеется ввиду имя переменной
+		$args['simpl']=$dyneval("
+			$result=''
+			if <<$easy_math_varname[args['i']]>> <<$args['>or<']>> <<args['maximal_result']>>:
+				$result='over' & ! больше
+			elseif <<$easy_math_varname[args['i']]>> = <<args['maximal_result']>>:
+				$result='equals' & ! равно
+			end
+			")
+		if $args['simpl']<>'':
+			if $args['simpl']='over': $args['list_of_var']=''
+			$args['list_of_var']+=$easy_math_varname[args['i']]+$args['\n']
+			args['maximal_result']=dyneval("result=<<$easy_math_varname[args['i']]>>")
+		end
+	end
+	args['i']+=1
+	jump 'for_list'
+end
+if $args['list']<>'':
+	$result=$mid($args['list_of_var'],1,len($args['list_of_var'])-1)
+else:
+	$result=$func('get.word.inPos',$args['list_of_var'],1,$args['\n'])
+end
+killvar 'easy_math_varname'
+- em.maxVar
+!@pp:endif
+
+Функция использует функции get.word.inPos и str.inArray
+
+!@pp:if(em_maxvar!=True):nopp
+!@pp:var(em_str_inarray)
+!@pp:var(em_get_word_inpos)
+!@pp:endif

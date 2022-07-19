@@ -1,0 +1,27 @@
+QSP-Game Функция предназначена для изменения цвета для HTML.
+$args[0] - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
+$args[1] - значение. Шестнадцатеричный формат, двузначное число. (может быть отрицательным)
+!@pp:if(em_col):include
+# #+col#
+$args[9]=$args[9]
+if instr($args[1],'-')=1: $args['+']='-' else $args['+']='+'
+$args[1] = $replace($args[1],'-')
+args['r_col_plus']=dyneval('result = '+$func('#hex-dec#',$mid($args[0],1,2))+$args['+']+$func('#hex-dec#',$args[1]))
+args['g_col_plus']=dyneval('result = '+$func('#hex-dec#',$mid($args[0],3,2))+$args['+']+$func('#hex-dec#',$args[1]))
+args['b_col_plus']=dyneval('result = '+$func('#hex-dec#',$mid($args[0],5,2))+$args['+']+$func('#hex-dec#',$args[1]))
+if args['r_col_plus']>255: args['r_col_plus']=255
+if args['r_col_plus']<0: args['r_col_plus']=0
+if args['g_col_plus']>255: args['g_col_plus']=255
+if args['g_col_plus']<0: args['g_col_plus']=0
+if args['b_col_plus']>255: args['b_col_plus']=255
+if args['b_col_plus']<0: args['b_col_plus']=0
+$args['+col'] = $func('#dec-hex#',args['r_col_plus'])+$func('#dec-hex#',args['g_col_plus'])+$func('#dec-hex#',args['b_col_plus'])
+$result=$args['+col']
+--- #+col# ---------------------------------
+!@pp:endif
+
+Функция использует функции hex-dec и dec-col
+!@pp:if(em_col!=True):nopp
+!@pp:var(em_hex_dec)
+!@pp:var(em_dec_hex)
+!@pp:endif
