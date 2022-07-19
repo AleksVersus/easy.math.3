@@ -2,26 +2,16 @@ QSP-Game Функция выбрасывания случайного числа
 func('em.random','10-24','34-49')
 !@pp:if(em_random):include
 # em.random
-$args[9]=$args[9] & !@ промежутки вида 10-24 34-49 и т.д.
-killvar 'easy_math_temp'
-args['i']=0
-:for
-if strcomp($args[args['i']],'\d+\-\d+')<>0:
+local easy_math_temp, j, k
+loop local i=0 while strcomp($args[i],'\d+\-\d+')<>0 step i+=1:
 	!@ получение чисел. Можно использовать функцию get.word.inPos
-	args['j']=val($strfind($args[args['i']],'(\d+)(\-)',1))
-	args['2']=val($strfind($args[args['i']],'(\-)(\d+)',2))
-	:for_j
-	if args['j']<=args['2']:
-		if arrpos('easy_math_temp',args['j'])=-1:
-			easy_math_temp[]=args['j']
-			args['j']+=1 & jump 'for_j'
-		end
+	j=val($strfind($args[i],'(\d+)(\-)',1))
+	k=val($strfind($args[i],'(\-)(\d+)',2))
+	loop while j<=k and arrpos('easy_math_temp',j)=-1 step j+=1:
+			easy_math_temp[]=j
 	end
-	args['i']+=1 & jump 'for'
 end
-args['result']=easy_math_temp[rand(0,arrsize('easy_math_temp')-1)]
-killvar 'easy_math_temp'
-result=args['result']
+result=easy_math_temp[rand(0,arrsize('easy_math_temp')-1)]
 --- em.random ---------------------------------
 !@pp:endif
 
