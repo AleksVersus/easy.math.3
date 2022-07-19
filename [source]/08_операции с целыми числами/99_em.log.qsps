@@ -12,3 +12,10 @@ loop local base=1 while no (args[0]/base<args[1]):
 end
 - em.log
 !@pp:endif
+
+@em.log(10)
+@em.log(100,2)
+@em.log(1000,5)
+@em.log(2345,5)
+@em.log(1013,13)
+@em.log(567)
