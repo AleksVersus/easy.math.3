@@ -7,7 +7,7 @@ if $args[0]="":
 	$fname="Consolas"
 	usehtml=0
 	$usercom='!--test--!'	
-	"easy.math v 2.4.0 для QSP 5.7.0"
+	"easy.math v 3.0.0 для QSP 5.8.0"
 	"
 	По всем вопросам и предложениям обращаться:
 
@@ -20,14 +20,9 @@ if $args[0]="":
 	*	https://www.youtube.com/channel/UCwX8RW2B9yTUFdlivtCGAgA
 
 	Любую функцию можно опробовать прямо здесь, введя её в поле ввода.
-
-	Для нормального функционирования библиотеки с Quest Navigator - в начале игры напишите следующую строку:
-
-		$AVS_PLAYERTYPE='[QN]'
-
 	"
 elseif $args[0]='version':
-	result=2400
+	result=3000
 end
 --- !easy.math! ---------------------------------
 Если значение метки build_easy_math равно Off, выключаем обработку следующих строк
