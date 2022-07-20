@@ -16,3 +16,7 @@ result=easy_math_temp[rand(0,arrsize('easy_math_temp')-1)]
 !@pp:endif
 
 Функция не использует иных функций библиотеки
+
+act "Случ":
+	@em.random('10-24','34-49')
+end
