@@ -36,7 +36,6 @@ end
 !@pp:var(em_tag_getcont)
 !@pp:var(em_str_getWord)
 !@pp:var(em_gettype)
-!@pp:var(em_killvar_olegus)
 !@pp:var(em_dergb)
 Операции с дробными числами
 !@pp:var(em_sqrt)
@@ -47,13 +46,11 @@ end
 !@pp:var(em_sim)
 !@pp:var(em_indiv)
 !@pp:var(em_dz)
-!@pp:var(em_invert)
 !@pp:var(em_razdiv)
 !@pp:var(em_undiv)
 Операции логические
 !@pp:var(em_add)
 !@pp:var(em_dev)
-!@pp:var(em_rtp)
 Операции с текстом
 !@pp:var(em_widetrim)
 !@pp:var(em_chk_array_word)
