@@ -32,7 +32,7 @@ elseif $strfind($args[0],$args[1]+'(:|=#)[\S]+')<>'':
 	:results
 	if it_hex and $strfind($res_num,'^([0-9A-Fa-f\-]+)([\S]*)$')='':
 		!@ если число не шестнадцатеричное, но был установлен ключ, ничего не возвращаем
-		$result=''
+		killvar '$result'
 		exit
 	elseif it_hex:
 		!@ если ключ был установлен и число шестнадцатеричное, получаем это число
@@ -45,3 +45,13 @@ end
 !@pp:endif
 
 Функция не использует иных функций библиотеки.
+
+$text="[count:текст с пробелом] <cord:68> log:непробельные_символы color=#ff8899 tag='многа букав'"
+
+@em.tag.getNum($text,'count')	& !@ "текст с пробелом"
+@em.tag.getNum($text,'cord')	& !@ '68'
+@em.tag.getNum($text,'log')	& !@ "непробельные_символы"
+@em.tag.getNum($text,'color')	& !@ "ff8899"
+@em.tag.getNum($text,'tag')	& !@ "многа букав"
+@em.tag.getNum($text,'tag/h')	& !@ не выведет ничего
+@em.tag.getNum($text,'color/h')	& !@ "ff8899"

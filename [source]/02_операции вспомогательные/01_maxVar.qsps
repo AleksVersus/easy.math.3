@@ -83,15 +83,15 @@ end
 if $args['list']<>'':
 	$result=$mid($args['list_of_var'],1,len($args['list_of_var'])-1)
 else:
-	$result=$func('get.word.inPos',$args['list_of_var'],1,$args['\n'])
+	$result=$func('em.str.getWord',$args['list_of_var'],1,$args['\n'])
 end
 killvar 'easy_math_varname'
 - em.maxVar
 !@pp:endif
 
-Функция использует функции get.word.inPos и str.inArray
+Функция использует функции em.str.getWord и str.inArray
 
 !@pp:if(em_maxvar!=True):nopp
 !@pp:var(em_str_inarray)
-!@pp:var(em_get_word_inpos)
+!@pp:var(em_str_getWord)
 !@pp:endif

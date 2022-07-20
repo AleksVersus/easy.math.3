@@ -29,3 +29,11 @@ end
 !@pp:endif
 
 Функция не использует иных функций библиотеки.
+
+$text="[count:текст с пробелом:count] <cord:странный и непонятный текст:cord> log:п р о б е л ь н ы е и непробельные символы:log <color>ff8899</color> [tag]многа букав[/tag]"
+
+@em.tag.getCont($text,'count')	& !@ "текст с пробелом"
+@em.tag.getCont($text,'cord')	& !@ "странный и непонятный текст"
+@em.tag.getCont($text,'log')	& !@ "п р о б е л ь н ы е и непробельные символы"
+@em.tag.getCont($text,'color')	& !@ "ff8899"
+@em.tag.getCont($text,'tag')	& !@ "многа букав"

@@ -34,7 +34,7 @@ end
 !@pp:var(em_maxvar)
 !@pp:var(em_tag_getnum)
 !@pp:var(em_tag_getcont)
-!@pp:var(em_get_word_inpos)
+!@pp:var(em_str_getWord)
 !@pp:var(em_gettype)
 !@pp:var(em_killvar_olegus)
 !@pp:var(em_dergb)

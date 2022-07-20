@@ -4,7 +4,7 @@ func('em.random','10-24','34-49')
 # em.random
 local easy_math_temp, j, k
 loop local i=0 while strcomp($args[i],'\d+\-\d+')<>0 step i+=1:
-	!@ получение чисел. Можно использовать функцию get.word.inPos
+	!@ получение чисел. Можно использовать функцию em.str.getWord
 	j=val($strfind($args[i],'(\d+)(\-)',1))
 	k=val($strfind($args[i],'(\-)(\d+)',2))
 	loop while j<=k and arrpos('easy_math_temp',j)=-1 step j+=1:
