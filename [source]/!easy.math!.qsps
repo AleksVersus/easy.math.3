@@ -37,7 +37,7 @@ end
 !@pp:var(em_get_word_inpos)
 !@pp:var(em_gettype)
 !@pp:var(em_killvar_olegus)
-!@pp:var(em_rergb)
+!@pp:var(em_dergb)
 Операции с дробными числами
 !@pp:var(em_sqrt)
 !@pp:var(em_addition)
