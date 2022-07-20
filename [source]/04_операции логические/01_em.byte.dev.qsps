@@ -1,0 +1,64 @@
+QSP-Game Побайтовое вычитание с переполнением
+$args[0] - уменьшаемое (любой длины), можно  args[0] (ограниченное значение).
+$args[1] - вычитаемое (любой длины), можно  args[1] (ограниченное значение).
+!@pp:if(em_dev):include
+# em.byte.dev
+!@ инициализация аргументов и приведение к одной длине
+local max_len, $term
+if $args[0]='': $args[0]=$str(args[0]) else $args[0] = $args[0]	& !@ уменьшаемое
+if $args[1]='': $args[1]=$str(args[1]) else $args[1] = $args[1]	& !@ вычитаемое
+max_len=max(len($args[0]),len($args[1]))
+$term[0]=@em.zero(max_len-len($args[0]))+$args[0]
+$term[1]=@em.zero(max_len-len($args[1]))+$args[1]
+loop local last_byte,run=0,1 while run:
+	$result=''	& !@ исходное значение результата пусто
+	last_byte = 0	& !@ значение переполнения
+	loop local i,res_byte=max_len,0 while i>0 step i-=1:
+		!@ цикл выполняем, пока счётчик не достигнет нуля
+		!@ вычитаем цифры на разряде
+		res_byte=val($mid($term[0],i,1))-val($mid($term[1],i,1))+last_byte
+		if res_byte<0:
+			!@ если разница получилась отрицательной
+			!@ приводим её к положительному значению
+			res_byte=10+res_byte
+			!@ в переполнение записываем -1
+			last_byte=-1
+		else
+			!@ если разница положительная, в переполнение идёт 0
+			last_byte=0
+		end
+		!@ записываем полученную цифру в результат
+		$result=$str(res_byte)+$result
+	end
+	if last_byte=-1:
+		!@ если после всех итерраций осталось число в переполнении
+		!@ новым уменьшаемым оказывается полученный результат
+		$term[0]=$result
+		!@ новым вычитаемым оказывается единица
+		$term[1]=@em.zero(max_len-1)+'1'
+	else
+		run=0
+	end
+end
+--- em.byte.dev ---------------------------------
+!@pp:endif
+
+Функция использует функцию em.zero
+
+!@pp:if(em_add!=True):nopp
+!@pp:var(em_zstr)
+!@pp:endif
+
+Для тестов
+
+@em.byte.dev(998765,273)	& !@ '998492'
+@em.byte.dev('9987Y5','-273')	& !@ '998432'
+@em.byte.dev('999999','6273')	& !@ '993726'
+@em.byte.dev('998705','5773')	& !@ '992932'
+
+arrsize('max_len')
+arrsize('$term')
+arrsize('i')
+arrsize('last_byte')
+arrsize('res_byte')
+arrsize('run')

@@ -49,7 +49,7 @@ $args['dev']=$func('em.zero',args['int_size'],args['float_size'],'9')
 if args['i']<=args['b']:
 	$args["number_<<args['i']>>"]=$func('em.zero',args['int_size']-len($args["int_<<args['i']>>"]))+$args["int_<<args['i']>>"]+$args["float_<<args['i']>>"]+$func('em.zero',args['float_size']-len($args["float_<<args['i']>>"]))
 	if $args["+<<args['i']>>"]='-':
-		$args["number_<<args['i']>>"]=$func('#dev#',$args['dev'],$args["number_<<args['i']>>"])
+		$args["number_<<args['i']>>"]=$func('em.byte.dev',$args['dev'],$args["number_<<args['i']>>"])
 	end
 	args['i']+=1
 	jump 'к_целому'
@@ -64,7 +64,7 @@ if args['i']<=args['b']:
 	jump 'for'
 end
 if instr($args['sum'],'9')=1:
-	$args['result']=$func('#dev#',$args['dev'],$args['sum'])
+	$args['result']=$func('em.byte.dev',$args['dev'],$args['sum'])
 	$args['+']='-'
 else
 	$args['result']=$args['sum']
