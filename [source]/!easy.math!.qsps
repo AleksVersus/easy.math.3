@@ -32,8 +32,8 @@ end
 Вспомогательные операции
 !@pp:var(em_minvar)
 !@pp:var(em_maxvar)
-!@pp:var(em_get_tag_num)
-!@pp:var(em_get_tag_cont)
+!@pp:var(em_tag_getnum)
+!@pp:var(em_tag_getcont)
 !@pp:var(em_get_word_inpos)
 !@pp:var(em_gettype)
 !@pp:var(em_killvar_olegus)
