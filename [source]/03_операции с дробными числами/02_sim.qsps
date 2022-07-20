@@ -50,10 +50,10 @@ else
 		!@ нужно сравнить целые числа, доводим их до одинаковой длины
 		if args['len_0']>args['len_1']:
 			!@ если длина первого числа больше второго, приводим длину второго к первому
-			$args['int_1']=$func('#zero#',args['len_0']-args['len_1'])+$args['int_1']
+			$args['int_1']=$func('em.zero',args['len_0']-args['len_1'])+$args['int_1']
 		elseif args['len_0']<args['len_1']:
 			!@ если длина второго числа больше первого, приводим длину первого к второму
-			$args['int_0']=$func('#zero#',args['len_1']-args['len_0'])+$args['int_0']
+			$args['int_0']=$func('em.zero',args['len_1']-args['len_0'])+$args['int_0']
 		end
 		!@ сравниваем числа
 		if $args['int_1']=$args['int_0']:
@@ -97,7 +97,7 @@ $result=$func('#dz#',$result)
 --- #sim# ---------------------------------
 !@pp:endif
 
-Функция использует функции библиотеки #dz# и #zero#
+Функция использует функции библиотеки #dz# и em.zero
 !@pp:if(em_sim!=True):nopp
 !@pp:var(em_dz)
 !@pp:var(em_zstr)

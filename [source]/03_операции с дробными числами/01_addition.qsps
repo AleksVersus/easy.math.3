@@ -44,10 +44,10 @@ args['int_size']+=2
 args['float_size']+=2
 !@ следующий цикл приводит число к целому для сложения с переполнением
 args['i']=0
-$args['dev']=$func('#zero#',args['int_size'],args['float_size'],'9')
+$args['dev']=$func('em.zero',args['int_size'],args['float_size'],'9')
 :к_целому
 if args['i']<=args['b']:
-	$args["number_<<args['i']>>"]=$func('#zero#',args['int_size']-len($args["int_<<args['i']>>"]))+$args["int_<<args['i']>>"]+$args["float_<<args['i']>>"]+$func('#zero#',args['float_size']-len($args["float_<<args['i']>>"]))
+	$args["number_<<args['i']>>"]=$func('em.zero',args['int_size']-len($args["int_<<args['i']>>"]))+$args["int_<<args['i']>>"]+$args["float_<<args['i']>>"]+$func('em.zero',args['float_size']-len($args["float_<<args['i']>>"]))
 	if $args["+<<args['i']>>"]='-':
 		$args["number_<<args['i']>>"]=$func('#dev#',$args['dev'],$args["number_<<args['i']>>"])
 	end
@@ -56,10 +56,10 @@ if args['i']<=args['b']:
 end
 !@ следующий цикл - суммирование чисел
 args['i']=0
-$args['sum']=$func('#zero#',args['int_size'],args['float_size'])
+$args['sum']=$func('em.zero',args['int_size'],args['float_size'])
 :for
 if args['i']<=args['b']:
-	$args['sum']=$func('#add#',$args['sum'],$args["number_<<args['i']>>"])
+	$args['sum']=$func('em.byte.add',$args['sum'],$args["number_<<args['i']>>"])
 	args['i']+=1
 	jump 'for'
 end

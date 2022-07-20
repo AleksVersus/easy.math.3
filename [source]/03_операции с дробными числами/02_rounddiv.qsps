@@ -28,21 +28,21 @@ $args['float_1']=$mid($args[1],instr($args[1],'.')+1)
 !@ приводим числа к единой длине за счёт нулей (на один больше)
 if len($args['int_0'])>len($args['int_1']):
 	args['int.len']=len($args['int_0'])-len($args['int_1'])
-	$args['int_1']=$func('#zero#',args['int.len']+1)+$args['int_1']
-	$args['int_0']=$func('#zero#',1)+$args['int_0']
+	$args['int_1']=$func('em.zero',args['int.len']+1)+$args['int_1']
+	$args['int_0']=$func('em.zero',1)+$args['int_0']
 else
 	args['int.len']=len($args['int_1'])-len($args['int_0'])
-	$args['int_0']=$func('#zero#',args['int.len']+1)+$args['int_0']
-	$args['int_1']=$func('#zero#',1)+$args['int_1']
+	$args['int_0']=$func('em.zero',args['int.len']+1)+$args['int_0']
+	$args['int_1']=$func('em.zero',1)+$args['int_1']
 end
 if len($args['float_0'])>len($args['float_1']):
 	args['int.len']=len($args['float_0'])-len($args['float_1'])
-	$args['float_1']=$args['float_1']+$func('#zero#',args['int.len']+1)
-	$args['float_0']=$args['float_0']+$func('#zero#',1)
+	$args['float_1']=$args['float_1']+$func('em.zero',args['int.len']+1)
+	$args['float_0']=$args['float_0']+$func('em.zero',1)
 else
 	args['int.len']=len($args['float_1'])-len($args['float_0'])
-	$args['float_0']=$args['float_0']+$func('#zero#',args['int.len']+1)
-	$args['float_1']=$args['float_1']+$func('#zero#',1)
+	$args['float_0']=$args['float_0']+$func('em.zero',args['int.len']+1)
+	$args['float_1']=$args['float_1']+$func('em.zero',1)
 end
 args['dot']=len($args['int_0']) & !@ получаем позицию точки
 $args['num_0']=$args['int_0']+$args['float_0']	& !@ число без точки
@@ -56,7 +56,7 @@ else:
 	args['digit_5']=val($mid($args['num_0'],args['digit'],1))	& !@ число под этим символом
 end
 if args['digit_5']<5: args['digit_next']=0 else args['digit_next']=1	& !@ переносим единицу в следующий разряд
-$args['num_0']=$mid($args['num_0'],1,args['digit']-1)+'0'+$func('#zero#',len($args['num_1'])-args['digit'])	& !@ вставляем ноль вместо разряда округления и до конца числа
+$args['num_0']=$mid($args['num_0'],1,args['digit']-1)+'0'+$func('em.zero',len($args['num_1'])-args['digit'])	& !@ вставляем ноль вместо разряда округления и до конца числа
 :for
 if args['digit_next']=1:
 	args['digit_10']=val($mid($args['num_0'],args['digit']-1,1))
@@ -74,7 +74,7 @@ $result=$func('#dz#',$args['+']+$args['int_r']+'.'+$args['float_r'])
 --- #rounddiv# ---------------------------------
 !@pp:endif
 
-Функция использует функции #zero# и #dz#.
+Функция использует функции em.zero и #dz#.
 
 !@pp:if(em_rounddiv!=True):nopp
 !@pp:var(em_dz)

@@ -2,44 +2,48 @@ QSP-Game Функция выполняет побайтовое сложение
 $args[0] - первое число (сколько угодно длинное), можно  args[0] (ограниченное значение).
 $args[1] - второе число (сколько угодно длинное), можно  args[1] (ограниченное значение).
 !@pp:if(em_add):include
-# #add#
+# em.byte.add
 !@ инициализация аргументов и приведение к единой длине:
+local $term, max_len
 if $args[0]='': $args[0]=$str(args[0]) else $args[0] = $args[0]	& !@ первое слагаемое
 if $args[1]='': $args[1]=$str(args[1]) else $args[1] = $args[1]	& !@ второе слагаемое
-args['max_len']=max(len($args[0]),len($args[1]))
-$args[0]=$func('#zero#',args['max_len']-len($args[0]))+$args[0]
-$args[1]=$func('#zero#',args['max_len']-len($args[1]))+$args[1]
-:prev
-$result=''	& !@ исходное значение результата пусто
-args['i'] = args['max_len']	& !@ счётчик выставляем по макимальной длине
-args['lst_byte'] = 0	& !@ значение переполнения
-:for
-if args['i']>0:
-	!@ цикл выполняем, пока счётчик не достигнет нуля
-	!@ складываем две цифры на разряде
-	args['res_byte']=val($mid($args[0],args['i'],1))+val($mid($args[1],args['i'],1))+args['lst_byte']
-	!@ вычисляем переполнение
-	args['lst_byte']=args['res_byte']/10
-	!@ вычисляем полученную цифру на текущем разряде
-	args['res_byte']=args['res_byte'] mod 10
-	!@ записываем полученную цифру в результат
-	$result=$str(args['res_byte'])+$result
-	!@ повторяем
-	args['i']-=1
-	jump 'for'
-elseif args['lst_byte']>0:
-	!@ если после всех итерраций осталось число в переполнении
-	!@ новым первым слагаемым оказывается полученный результат
-	$args[0]=$result
-	!@ новым вторым слагаемым оказывается переполнение
-	$args[1]=$func('#zero#',args['max_len']-len($str(args['lst_byte'])))+$str(args['lst_byte'])
-	jump 'prev'
+max_len=max(len($args[0]),len($args[1]))
+$term[0]=@em.zero(max_len-len($args[0]))+$args[0]
+$term[1]=@em.zero(max_len-len($args[1]))+$args[1]
+loop local last_byte,run=0,1 while run:
+	$result=''
+	last_byte=0
+	loop local i,res_byte=max_len,0 while i>0 step i-=1:
+		!@ цикл выполняем, пока счётчик не достигнет нуля
+		!@ складываем две цифры на разряде
+		res_byte=val($mid($term[0],i,1))+val($mid($term[1],i,1))+last_byte
+		!@ вычисляем переполнение
+		last_byte=res_byte/10
+		!@ вычисляем полученную цифру на текущем разряде
+		res_byte=res_byte mod 10
+		!@ записываем полученную цифру в результат
+		$result=$str(res_byte)+$result
+	end
+	if last_byte>0:
+		!@ если после всех итерраций осталось число в переполнении
+		!@ новым первым слагаемым оказывается полученный результат
+		$term[0]=$result
+		!@ новым вторым слагаемым оказывается переполнение
+		$term[1]=@em.zero(max_len-len($str(last_byte)))+$str(last_byte)
+	else
+		run=0	& !@ прерываем внешний цикл
+	end
 end
---- #add# ---------------------------------
+--- em.byte.add ---------------------------------
 !@pp:endif
 
-Функция использует функцию #zero#
+Функция использует функцию em.zero
 
 !@pp:if(em_add!=True):nopp
 !@pp:var(em_zstr)
 !@pp:endif
+
+@em.byte.add(998765,273)	& !@ '999038'
+@em.byte.add('9987Y5','-273')	& !@ '998978'
+@em.byte.add('999999','6273')	& !@ '006273'
+@em.byte.add('998705','5773')	& !@ '004479'

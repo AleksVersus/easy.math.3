@@ -7,8 +7,8 @@ $args[1] - вычитаемое (любой длины), можно  args[1] (о
 if $args[0]='': $args[0]=$str(args[0]) else $args[0] = $args[0]	& !@ уменьшаемое
 if $args[1]='': $args[1]=$str(args[1]) else $args[1] = $args[1]	& !@ вычитаемое
 args['max_len']=max(len($args[0]),len($args[1]))
-$args[0]=$func('#zero#',args['max_len']-len($args[0]))+$args[0]
-$args[1]=$func('#zero#',args['max_len']-len($args[1]))+$args[1]
+$args[0]=$func('em.zero',args['max_len']-len($args[0]))+$args[0]
+$args[1]=$func('em.zero',args['max_len']-len($args[1]))+$args[1]
 :prev
 $result=''	& !@ исходное значение результата пусто
 args['i'] = args['max_len']	& !@ счётчик выставляем по макимальной длине
@@ -38,13 +38,13 @@ elseif args['lst_byte']=-1:
 	!@ новым уменьшаемым оказывается полученный результат
 	$args[0]=$result
 	!@ новым вычитаемым оказывается единица
-	$args[1]=$func('#zero#',args['max_len']-1)+'1'
+	$args[1]=$func('em.zero',args['max_len']-1)+'1'
 	jump 'prev'
 end
 --- #dev# ---------------------------------
 !@pp:endif
 
-Функция использует функцию #zero#
+Функция использует функцию em.zero
 
 !@pp:if(em_add!=True):nopp
 !@pp:var(em_zstr)
