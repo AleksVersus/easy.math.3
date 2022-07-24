@@ -52,7 +52,7 @@ end
 !@pp:var(em_add)
 !@pp:var(em_dev)
 Операции с текстом
-!@pp:var(em_widetrim)
+!@pp:var(em_str_widetrim)
 !@pp:var(em_arr_search)
 !@pp:var(em_chk_obj_word)
 !@pp:var(em_str_random)
