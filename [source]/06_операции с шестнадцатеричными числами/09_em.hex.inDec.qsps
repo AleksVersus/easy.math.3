@@ -1,0 +1,34 @@
+QSP-Game Функция, конвертирующая шестнадцатеричное число в десятеричное
+$args[0] — шестнадцатеричное число
+result - десятеричное число
+!@pp:if(em_hex_indec):include
+# em.hex.inDec
+$args[0]=$lcase($args[0])	& !@ переводим в нижний регистр все символы hex-числа (строка)
+local $last_symbol
+result=0
+loop local i,t,lenght=0,0,len($args[0]) while i<lenght step i+=1:
+	!@ пока счётчик меньше длины строки
+	$last_symbol=$mid($args[0],len($args[0])-i,1) & !@ вырезаем из строки указанную hex-цифру
+	t=instr('0123456789abcdef',$last_symbol)-1 & !@ определяем значение цифры по таблице сопоставления
+	loop local j=i while j>0 step j-=1:
+		!@ умножаем на 16 столько раз, каков номер разряда у текущей цифры
+		t*=16
+	end
+	result+=t	& !@ прибавляем к результату полученное число
+end
+--- em.hex.inDec ---------------------------------
+!@pp:endif
+
+Функция не использует иных функций библиотеки.
+
+@em.hex.inDec('ff')	& !@ 255
+@em.hex.inDec('22')	& !@ 34
+@em.hex.inDec('10')	& !@ 16
+@em.hex.inDec('1')	& !@ 1
+@em.hex.inDec('a')	& !@ 10
+@em.hex.inDec('ffaa233')	& !@ 268083763
+@em.hex.inDec('ffaa23')	& !@ 16755235
+@em.hex.inDec('ffaa2')	& !@ 1047202
+@em.hex.inDec('ffaa233451')	& !@ -1440533423
+@em.hex.inDec('ffaa23345')	& !@ -90033339
+@em.hex.inDec('ffaa2334')	& !@ -5627084
