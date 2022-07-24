@@ -53,10 +53,10 @@ end
 !@pp:var(em_dev)
 Операции с текстом
 !@pp:var(em_widetrim)
-!@pp:var(em_chk_array_word)
+!@pp:var(em_arr_search)
 !@pp:var(em_chk_obj_word)
 !@pp:var(em_str_random)
-!@pp:var(em_str_inarray)
+!@pp:var(em_str_inarr)
 !@pp:var(em_str_thin)
 !@pp:var(em_zstr)
 Операции с шестнадцатеричными числами
