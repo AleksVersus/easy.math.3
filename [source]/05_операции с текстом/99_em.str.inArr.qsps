@@ -1,7 +1,7 @@
 QSP-Game Функция выбирает слова между разделителями в массив
-!@pp:if(em_str_inarray):include
-# #str.inArray#
-$args[9]=$args[9]	& !@ инициализация аргументов
+!@pp:if(em_str_inarr):include
+# em.str.inArr
+$args[9]=$args[9]	& !@ инициализация аргументов для защиты от дурака
 $args[3] = $lcase($args[3])
 if $args[2] = '':
 $args[2]='
@@ -22,10 +22,8 @@ if $strfind($args[3],'\[left\]')='[left]' and $strfind($args[3],'\[regular\]')<>
 if $strfind($args[3],'\[right\]')='[right]' and $strfind($args[3],'\[regular\]')<>'[regular]': $args['r']=$args[2]
 !@ удаляем массивы, чтобы старые значения не мешали:
 killvar $args[1]
-killvar '$easy_math_copy_array'
-:for
-!@ цикл выполняется, пока длина строки больше нуля
-if len($args[0])>0:
+local $easy_math_copy_array
+loop while len($args[0])>0:
 	if $strfind($args[3],'\[regular\]')='':
 		args['div']=instr($args[0],$args[2])	& !@ с какого символа разделитель входит в строку
 		$args['div.']=$args[2]	& !@ рассматриваемый разделитель совпадает с заданным
@@ -49,7 +47,6 @@ if len($args[0])>0:
 		if $strfind($args[3],'\[ucase\]')='[ucase]': $args['vs']=$UCASE($args['vs']) & !@ при ucase переводим строки в нижний регистр
 		$easy_math_copy_array[]=$args['l']+$args['vs']+$args['r']
 	end
-	jump 'for'
 end
 if $strfind($args[3],'\[trim\]')<>'':
 	!@ в режиме trim удаляем первый и последний элементы, если они пустые, либо содержат только разделители
@@ -61,8 +58,7 @@ if $strfind($args[3],'\[trim\]')<>'':
 	end
 end
 copyarr $args[1],'$easy_math_copy_array'	& !@ копируем временный массив в искомый
-killvar '$easy_math_copy_array'	& !@ удаляем временный массив
---- #str.inArray# ---------------------------------
+--- em.str.inArr ---------------------------------
 !@pp:endif
 Из переданного блока текста выбираются строки, находящиеся между разделителями, в том числе строка до первого разделителя и после последнего. В качестве разделителя можно задать что угодно: символ, слово, строку. Для того, чтобы задать несколько разделителей, или неявный разделитель (шаблон разделителя. Например, html-тег), можно использовать регулярные выражения.
 $args[0] - отрывок текста, который нужно разбить на строки
