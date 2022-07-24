@@ -6,9 +6,9 @@ elseif instr($lcase($user_text),'sqrt')=1:
 	if isnum($args[0])=0: $args[0]=$dyneval("$result=$str(<<$args[0]>>)")
 	$func('#sqrt#',$args[0])
 elseif $user_text='gen id':
-	*pl $func('#rndstr#',8,'[ot]','0123456789abcdef')+'-'+$func('#rndstr#',4,'[ot]','0123456789abcdef')+'-'+$func('#rndstr#',4,'[ot]','0123456789abcdef')+'-'+$func('#rndstr#',4,'[ot]','0123456789abcdef')+'-'+$func('#rndstr#',12,'[ot]','0123456789abcdef')
+	*pl $func('em.str.random',8,'[ot]','0123456789abcdef')+'-'+$func('em.str.random',4,'[ot]','0123456789abcdef')+'-'+$func('em.str.random',4,'[ot]','0123456789abcdef')+'-'+$func('em.str.random',4,'[ot]','0123456789abcdef')+'-'+$func('em.str.random',12,'[ot]','0123456789abcdef')
 elseif $user_text='gen pass':
-	*pl $func('#rndstr#',16,'[inc][\z][\d]','!@#$')
+	*pl $func('em.str.random',16,'[inc][\z][\d]','!@#$')
 else
 	dynamic $user_text
 end
