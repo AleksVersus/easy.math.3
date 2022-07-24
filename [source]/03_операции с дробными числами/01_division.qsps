@@ -93,7 +93,7 @@ args[2] = args[2]
 args['max']=max(func('em.divdigs',$args[0]),func('em.divdigs',$args[1]))
 args[0] = func('em.undiv',$args[0],args['max'])
 args[1] = func('em.undiv',$args[1],args['max'])
-$result=$func('#indiv#',args[0],args[1],args[2])
+$result=$func('em.indiv',args[0],args[1],args[2])
 !--- #:# ---------------------------------
 
 Это давало повышенную скорость работы. Где-то в 10 раз быстрее. Однако это и накладывало некоторые ограничения на аргументы. Например, старая версия функции неверно вычисляла вот такие значения:
