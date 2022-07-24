@@ -6,8 +6,8 @@ $result - частное, текстовое значение
 !@pp:if(em_div):include
 # #:#
 $args[9]=$args[9]	& !@ инициализация аргументов 
-$args[0]=$func('#dz#',$args[0],1)
-$args[1]=$func('#dz#',$args[1],1)
+$args[0]=$func('em.dz',$args[0],1)
+$args[1]=$func('em.dz',$args[1],1)
 if args[2]<1: args[2]=1000
 !@ получаем знак
 if instr($args[0],'-')=1:
@@ -80,15 +80,15 @@ if args[2]>0:
 	end
 	jump 'for'
 end
-$result=$args['+']+$func('#dz#',$args['результат'])
+$result=$args['+']+$func('em.dz',$args['результат'])
 --- #:# ---------------------------------
 !@pp:endif
 
 Прежде данная функция выглядела так:
 !# #:#
 $args[9]=$args[9]
-$args[0]=$func('#dz#',$args[0],1)
-$args[1]=$func('#dz#',$args[1],1)
+$args[0]=$func('em.dz',$args[0],1)
+$args[1]=$func('em.dz',$args[1],1)
 args[2] = args[2]
 args['max']=max(func('em.divdigs',$args[0]),func('em.divdigs',$args[1]))
 args[0] = func('em.undiv',$args[0],args['max'])
@@ -103,7 +103,7 @@ $func('#:#','3123.869504',"3.7",1000000)
 Теперь ограничение связано только с числом знаков после запятой, до которого можно выполнить вычисления.
 = 844.289055
 
-Функция использует функции #dz# em.byte.dev и em.zero
+Функция использует функции em.dz em.byte.dev и em.zero
 
 !@pp:if(em_addition!=True):nopp
 !@pp:var(em_dz)

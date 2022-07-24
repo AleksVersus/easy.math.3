@@ -82,14 +82,14 @@ if args['minus']=1: $args['+']='-' else $args['+']=''
 $args['float_result']=$mid($args['произведение.результат'],len($args['произведение.результат'])-args['float']+1)
 $args['int_result']=$mid($args['произведение.результат'],1,len($args['произведение.результат'])-args['float'])
 if $args['float_result']<>'':
-	$result=$args['+']+$func('#dz#',$args['int_result']+'.'+$args['float_result'])
+	$result=$args['+']+$func('em.dz',$args['int_result']+'.'+$args['float_result'])
 else
-	$result=$args['+']+$func('#dz#',$args['int_result'])
+	$result=$args['+']+$func('em.dz',$args['int_result'])
 end
 --- #*# ---------------------------------
 !@pp:endif
 
-Функция использует функции #dz#, em.zero, em.byte.add
+Функция использует функции em.dz, em.zero, em.byte.add
 
 !@pp:if(em_multiply!=True):nopp
 !@pp:var(em_dz)

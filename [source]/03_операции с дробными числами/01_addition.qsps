@@ -71,7 +71,7 @@ else
 	$args['+']=''
 end
 $args['result']=$args['+']+$mid($args['result'],1,args['int_size'])+"."+$mid($args['result'],args['int_size']+1)
-$result=$func('#dz#',$args['result'])
+$result=$func('em.dz',$args['result'])
 --- #+# ---------------------------------
 !@pp:endif
 

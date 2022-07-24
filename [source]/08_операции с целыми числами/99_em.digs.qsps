@@ -2,10 +2,11 @@ QSP-Game Получает разрядность целого числа в ви
 args[0] - число
 result - число, указывающее на разрядность
 base_10 - основание
-!@pp:if(em_raz):include
+!@pp:if(em_digs):include
 # em.digs
 if args[0]<0: args[0]=-args[0]	& !@ модуль числа для удобства вычислений
-loop local base10=1 while no (args[0]/base_10<10):
+local base_10=1
+loop while no (args[0]/base_10<10):
 	base_10*=10
 end
 result=base_10	& !@ возвращение результата
@@ -13,3 +14,9 @@ result=base_10	& !@ возвращение результата
 !@pp:endif
 
 Функция не использует иных функций библиотеки
+
+@em.digs(36) = 10
+@em.digs(360) = 100
+@em.digs(366) = 100
+@em.digs(9999) = 1000
+@em.digs(-45023) = 10000

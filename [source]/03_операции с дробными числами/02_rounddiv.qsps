@@ -70,11 +70,11 @@ end
 !@ снова разделяем число на целую и дробную часть
 $args['int_r']=$mid($args['num_0'],1,args['dot'])
 $args['float_r']=$mid($args['num_0'],args['dot']+1)
-$result=$func('#dz#',$args['+']+$args['int_r']+'.'+$args['float_r'])
+$result=$func('em.dz',$args['+']+$args['int_r']+'.'+$args['float_r'])
 --- #rounddiv# ---------------------------------
 !@pp:endif
 
-Функция использует функции em.zero и #dz#.
+Функция использует функции em.zero и em.dz.
 
 !@pp:if(em_rounddiv!=True):nopp
 !@pp:var(em_dz)
