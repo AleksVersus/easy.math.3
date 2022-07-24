@@ -79,7 +79,7 @@ $result=$func('em.dz',$args['result'])
 
 !@pp:if(em_addition!=True):nopp
 !@pp:var(em_dz)
-!@pp:var(em_zstr)
+!@pp:var(em_zero)
 !@pp:var(em_add)
 !@pp:var(em_dev)
 !@pp:endif

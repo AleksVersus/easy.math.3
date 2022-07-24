@@ -1,7 +1,7 @@
 QSP-Game генерация строки, состоящей из повторяющихся наборов символов
 args[0] - сколько раз должен повториться набор символов
 $args[1] - набор символов, который должен повториться
-!@pp:if(em_zstr):include
+!@pp:if(em_zero):include
 # em.zero
 if $args[1]='': $args[1]='0' else $args[1]=$args[1]
 loop while args[0]>0 step args[0]-=1:

@@ -100,5 +100,5 @@ $result=$func('em.dz',$result)
 Функция использует функции библиотеки em.dz и em.zero
 !@pp:if(em_sim!=True):nopp
 !@pp:var(em_dz)
-!@pp:var(em_zstr)
+!@pp:var(em_zero)
 !@pp:endif

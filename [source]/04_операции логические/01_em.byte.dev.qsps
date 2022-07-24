@@ -46,7 +46,7 @@ end
 Функция использует функцию em.zero
 
 !@pp:if(em_add!=True):nopp
-!@pp:var(em_zstr)
+!@pp:var(em_zero)
 !@pp:endif
 
 Для тестов

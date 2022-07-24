@@ -78,5 +78,5 @@ $result=$func('em.dz',$args['+']+$args['int_r']+'.'+$args['float_r'])
 
 !@pp:if(em_rounddiv!=True):nopp
 !@pp:var(em_dz)
-!@pp:var(em_zstr)
+!@pp:var(em_zero)
 !@pp:endif
