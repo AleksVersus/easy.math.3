@@ -15,7 +15,7 @@ if args['g_col_plus']>255: args['g_col_plus']=255
 if args['g_col_plus']<0: args['g_col_plus']=0
 if args['b_col_plus']>255: args['b_col_plus']=255
 if args['b_col_plus']<0: args['b_col_plus']=0
-$args['+col'] = $func('#dec-hex#',args['r_col_plus'])+$func('#dec-hex#',args['g_col_plus'])+$func('#dec-hex#',args['b_col_plus'])
+$args['+col'] = $func('em.dec.inHex',args['r_col_plus'])+$func('em.dec.inHex',args['g_col_plus'])+$func('em.dec.inHex',args['b_col_plus'])
 $result=$args['+col']
 --- #+col# ---------------------------------
 !@pp:endif
@@ -23,5 +23,5 @@ $result=$args['+col']
 Функция использует функции hex-dec и dec-col
 !@pp:if(em_col!=True):nopp
 !@pp:var(em_hex_indec)
-!@pp:var(em_dec_hex)
+!@pp:var(em_dec_inhex)
 !@pp:endif

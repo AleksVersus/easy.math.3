@@ -1,0 +1,42 @@
+QSP-Game Функция, конвертирующая десятеричное число в шестнадцатеричное
+args[0] — десятеричное число
+$result - шестнадцатеричное число
+!@pp:if(em_dec_inhex):include
+# em.dec.inHex
+local $minus, base_16, num_of_digit
+$result=''
+if args[0]<0: args[0]=-args[0] & $minus='-'	& !@ поддержка отрицательных чисел
+!@ генерируем последнее основание и номер последнего разряда:
+base_16=1
+num_of_digit=0
+loop while no (args[0]/base_16<16) step num_of_digit+=1:
+	base_16*=16
+end
+loop local run=1 while run:
+	if num_of_digit=0:
+		$result+=$mid('0123456789abcdef',args[0]+1,1)	& !@ получаем символ числа (hex-цифру)
+		run=0
+	else
+		$result+=$mid('0123456789abcdef',args[0]/base_16+1,1)	& !@ получаем hex-цифру
+		args[0]=args[0] mod base_16	& !@ числом становится остаток от деления на основание
+		num_of_digit-=1
+		!@ --- получение нового основания. Можно заменить на функцию #^# (em.EXP)
+			base_16=1
+			loop local i=num_of_digit while i>0 step i-=1:
+				base_16*=16
+			end
+		!@ ------------------------- получение нового основания -----------------
+	end
+end
+$result=$minus+$result
+--- em.dec.inHex ---------------------------------
+!@pp:endif
+
+Функция не использует иных функций библиотеки.
+
+@em.dec.inHex(2147483647)	& !@ '7fffffff'
+@em.dec.inHex(214)	& !@ 'd6'
+@em.dec.inHex(255)	& !@ 'ff'
+@em.dec.inHex(10)	& !@ 'a'
+@em.dec.inHex(9)	& !@ '9'
+@em.dec.inHex(2147483648)	& !@ '-0'

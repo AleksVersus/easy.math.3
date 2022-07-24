@@ -64,7 +64,7 @@ end
 !@pp:var(em_col_rgb)
 !@pp:var(em_col)
 !@pp:var(em_dec_col)
-!@pp:var(em_dec_hex)
+!@pp:var(em_dec_inhex)
 !@pp:var(em_hex_indec)
 Операции с массивами
 !@pp:var(em_array_simp)
