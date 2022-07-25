@@ -19,7 +19,7 @@ if $args[0]="":
 	
 	*	https://www.youtube.com/channel/UCwX8RW2B9yTUFdlivtCGAgA
 
-	Любую функцию можно опробовать прямо здесь, введя её в поле ввода.
+	Для получения списка команд, введите команду 'help' в поле ввода.
 	"
 elseif $args[0]='version':
 	result=3000
@@ -71,7 +71,7 @@ end
 !@pp:var(em_array_clr)
 !@pp:var(em_array_dsrt)
 !@pp:var(em_array_ins)
-!@pp:var(em_arr_print_few)
+!@pp:var(em_arr_fewprint)
 !@pp:var(em_arr_print)
 !@pp:var(em_arr_randfill)
 !@pp:var(em_arr_restand)

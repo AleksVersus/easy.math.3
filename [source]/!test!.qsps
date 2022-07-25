@@ -1,14 +1,20 @@
 # !--test--!
-if $user_text='logs':
-	$func('em.arr.print','$log','[only result]')
+if $trim($lcase($user_text))='help':
+	*pl "logs — выводит содержимое массива '$log'. В этот массив можно сохранять сообщения при отладке модуля."
+	*pl "sqrt(N) — выводит результат вычисления квадратного корня из числа N."
+	*pl "gen id — генерирует уникальный идентификатор типа UUID четвёртой версии."
+	*pl "gen pass — генерирует парольную фразу из шестнадцати случайных символов (буквы латинского алфавита, цифры, !@#$)."
+	*pl "Любая иная строчка будет воспринята, как код QSP на выполнение. Таким образом вы можете выполнить любую строчку кода QSP, просто введя её в строке ввода."
+elseif $user_text='logs':
+	*pl @em.arr.print('$log','[only result]')
 elseif instr($lcase($user_text),'sqrt')=1:
 	$args[0]=$trim($replace($replace($replace($user_text,'sqrt'),'('),')'))
 	if isnum($args[0])=0: $args[0]=$dyneval("$result=$str(<<$args[0]>>)")
-	$func('#sqrt#',$args[0])
+	*pl $func('#sqrt#',$args[0])
 elseif $user_text='gen id':
-	*pl $func('em.str.random',8,'[ot]','0123456789abcdef')+'-'+$func('em.str.random',4,'[ot]','0123456789abcdef')+'-'+$func('em.str.random',4,'[ot]','0123456789abcdef')+'-'+$func('em.str.random',4,'[ot]','0123456789abcdef')+'-'+$func('em.str.random',12,'[ot]','0123456789abcdef')
+	*pl @em.str.random(8,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(12,'[ot]','0123456789abcdef')
 elseif $user_text='gen pass':
-	*pl $func('em.str.random',16,'[inc][\z][\d]','!@#$')
+	*pl @em.str.random(16,'[inc][\z][\d]','!@#$')
 else
 	dynamic $user_text
 end
