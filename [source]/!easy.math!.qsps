@@ -71,7 +71,7 @@ end
 !@pp:var(em_array_clr)
 !@pp:var(em_array_dsrt)
 !@pp:var(em_array_ins)
-!@pp:var(em_arr_fewprint)
+!@pp:var(em_fewarrs_print)
 !@pp:var(em_arr_print)
 !@pp:var(em_arr_randfill)
 !@pp:var(em_arr_restand)
