@@ -3,8 +3,9 @@ $args[0] - шестнадцатеричное число RRGGBB
 result - числовой код цвета в формате понятном QSP
 !@pp:if(en_col_inrgb):include
 # em.col.inRGB
-if no strcomp($args[0],'[A-Fa-f0-9]{6}'): result = 0 & exit & !@ если переданное число не соответствует критериям, цветовой код по умолчанию
-result=rgb(@em.hex.inDec($mid($args[0],1,2)),@em.hex.inDec($mid($args[0],3,2)),@em.hex.inDec($mid($args[0],5,2)))
+if (no strcomp($args[0],'[A-Fa-f0-9]{6}')) and (no strcomp($args[0],'[A-Fa-f0-9]{8}')): result = 0 & exit & !@ если переданное число не соответствует критериям, цветовой код по умолчанию
+if len($args[0])=6: $args[0]+='ff'
+result=rgb(@em.hex.inDec($mid($args[0],1,2)),@em.hex.inDec($mid($args[0],3,2)),@em.hex.inDec($mid($args[0],5,2)),@em.hex.inDec($mid($args[0],7,2)))
 --- em.col.inRGB ---------------------------------
 !@pp:endif
 Функция использует функцию em.hex.inDec. Для её автоматического подключения при сборке
@@ -18,3 +19,4 @@ result=rgb(@em.hex.inDec($mid($args[0],1,2)),@em.hex.inDec($mid($args[0],3,2)),@
 @em.col.inRGB('dd8822')	& !@ '-14513955'
 @em.col.inRGB('ffmm00')	& !@ '0'
 @em.col.inRGB('-0000ff')	& !@ '0'
+@em.col.inRGB('238c9088')	& !@ '-2003792861'	& !@ альфа-канал поддерживается
