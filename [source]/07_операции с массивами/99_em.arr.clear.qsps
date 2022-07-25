@@ -28,4 +28,14 @@ copyarr $args[0],'em_arr_clear_copy_array'
 
 Функция не использует иных функций библиотеки
 
+i[0]=1
+i[1]=2
+i[2]=3
+i[3]=1
+i[4]=2
+i[5]=3
+i[6]=1
+i[7]=2
 
+@em.arr.clear('i',2)
+@em.arr.print('i')
