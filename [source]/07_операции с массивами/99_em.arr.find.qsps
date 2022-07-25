@@ -5,13 +5,13 @@ $args[1] - управление:
 	* [max] - поиск максимального значения (по умолчанию),
 	* [min] - поиск минимального значения.
 	* [pos] - если указано, в результат будет возвращена позиция элемента, в противном случае - значение.
-	* [all] - выводит позицию и значение в формате "pos:value"
+	* [all] - выводит позицию и значение в кортеже (pos,value)
 $args[2] - нижний предел числа (по умолчанию минимальное число в массиве). Внимание! Для определения границы используются текстовые значения.
 $args[3] - верхний предел числа (по умолчанию максимальное число в массиве). Внимание! Для определения границы используются текстовые значения.
  args[4] - от какого элемента вести поиск (по умолчанию от нулевого).
  args[5] - до какого элемента вести поиск (по умолчанию до последнего).
-!@pp:if(em_array_srch):include
-# #array.srch#
+!@pp:if(em_arr_find):include
+# em.arr.find
 if $args[0]='': $result='error' & exit
 $args[1]=$lcase($args[1])
 if instr($args[1],'[min]')=0: $args[1]+='[max]'
@@ -33,9 +33,9 @@ if args[4]>args[5]:
 	args[5]=args['t']
 end
 $args['result']='false'	& !@ результат по умолчанию
+local easy_math_copy_array
 copyarr 'easy_math_copy_array',$args[0]
-:for
-if no args[4]>args[5]:
+loop while no args[4]>args[5] step args[4]+=1:
 	!@ args[4] - выступает счётчиком. Пока счётчик не превысит верхнюю границу, выполняем
 	if easy_math_copy_array[args[4]]>=args[2] and easy_math_copy_array[args[4]]<=args[3]:
 		!@ следующий фрагмент кода не упрощается.
@@ -60,13 +60,10 @@ if no args[4]>args[5]:
 			exit
 		end
 	end
-	args[4]+=1	& !@ увеличиваем счётчик
-	jump 'for'	& !@ повторяем
 end
-killvar 'easy_math_copy_array'	& !@ удаляем временный массив
 if instr($args[1],'[all]')<>0 and $args['result']='true':
 	!@ если выводим и позицию и число, то в таком формате
-	$result="<<args['pos']>>:<<args['m']>>"
+	$result=(args['pos'],args['m'])
 elseif instr($args[1],'[pos]')<>0 and $args['result']='true':
 	!@ если искали позицию, возвращаем позицию
 	$result=$str(args['pos'])
@@ -76,7 +73,23 @@ elseif $args['result']='true':
 else
 	$result='false'
 end
---- #array.srch# ---------------------------------
+--- em.arr.find ---------------------------------
 !@pp:endif
 
 Функция не использует иных функций библиотеки
+
+mass[0]=574
+mass[1]=668
+mass[2]=413
+mass[3]=765
+mass[4]=478
+mass[5]=205
+mass[6]=701
+mass[7]=272
+
+@em.arr.find('mass','[max]')	& !@ '765'
+@em.arr.find('mass','[max]','','',0,2)	& !@ '668'
+@em.arr.find('mass','[min]','400','600')	& !@ '413'
+@em.arr.find('mass','[min]','400','600',3,6)	& !@ '478'
+@em.arr.find('mass','[min][pos]','400','600',3,6)	& !@ '4'
+@em.arr.find('mass','[min]','900','1000',3,6)	& !@ 'false'
