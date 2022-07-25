@@ -75,8 +75,8 @@ end
 !@pp:var(em_array_prnt)
 !@pp:var(em_array_rand)
 !@pp:var(em_array_rstd)
-!@pp:var(em_array_sort)
-!@pp:var(em_array_srch)
+!@pp:var(em_arr_sort)
+!@pp:var(em_arr_find)
 !@pp:var(em_arr_strtfill)
 Операции с целыми числами
 !@pp:var(em_abs)

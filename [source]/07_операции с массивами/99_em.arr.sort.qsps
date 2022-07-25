@@ -1,71 +1,61 @@
 QSP-Game сортирует значения массива (используется метод сортировки "пузырьком"). Результатом работы программы могут быть три разных массива. Направление сортировки: от нулевого элемента к последнему.
 !!!ВНИМАНИЕ!!! Сортировка затрагивает лишь ту часть массива, которая указана. Если вы отсортировали текстовую часть массива, числовая останется неизменной. И наоборот: при сортировке числовой части массива, текстовая не меняется. Для сортировки обеих частей нужно отсортировать одну из них, с сохранением значений перестановки в опорный массив, а за тем по опорному массиву функцией array.rstd перетасовать значения в другой части.
 Аргументы смотри ниже, после конца локации.
-!@pp:if(em_array_sort):include
-# #array.sort#
+!@pp:if(em_arr_sort):include
+# em.arr.sort
 $args[9]=$args[9]	& !@ инициализация аргументов
 if $strfind($args[1],'\[.*?\]')='': $args[1]='[up]' else $args[1]=$lcase($args[1])	& !@ управление по умолчанию, или иное
 if instr($args[2],'$')=1: $args[2]=$mid($args[2],2)	& !@ опорный массив может быть только числовым
 if $args[3]='': $args[3]=$args[0]	& !@ если результирующий массив не указан, результат помещается в исследуемый массив
 !@ уничтожаем временные массивы перед использованием функции
-killvar 'easy_math_sort_array' & !@ массив, в котором хранится порядок перетасованных элементов.
-killvar 'easy_math_copy_array' & !@ массив, в который копируется сортируемый массив для получения значений
-killvar 'easy_math_result_array' & !@ массив, в который будет помещаться результат сортировки
+local easy_math_sort_array & !@ массив, в котором хранится порядок перетасованных элементов.
+local easy_math_copy_array & !@ массив, в который копируется сортируемый массив для получения значений
+local easy_math_result_array & !@ массив, в который будет помещаться результат сортировки
 if instr($args[0],'$')=1: $args['$']='$' else $args['$']=''	& !@ переменная маркер, отмечающая тип массива
 copyarr $args['$']+'easy_math_copy_array',$args[0]		& !@ копируем во временный (колода) массив исследуемый
 copyarr $args['$']+'easy_math_result_array',$args[0]	& !@ копируем во временный (результирующий) массив исследуемый
 if $args[2]<>'':
 	!@ если задано имя опорного массива, заполняем временный опорный порядковыми номерами
-	args['i']=0
-	:for
-	if args['i']<arrsize($args['$']+'easy_math_copy_array'):
-		easy_math_sort_array[args['i']]=args['i']
-		args['i']+=1
-		jump 'for'
+	loop local i,size=0,arrsize($args['$']+'easy_math_copy_array') while i<size step i+=1:
+		easy_math_sort_array[i]=i
 	end
 end
 !@ выставляем направление сортировки
-if instr($args[0],'[down]')<>0:
+if instr($args[1],'[down]')<>0:
 	$args['direction']='down'
 else
 	$args['direction']='up'
 end
-args['i']=-1
-:prohody
-if arrsize($args['$']+'easy_math_copy_array')>0:
+loop local i=-1 while arrsize($args['$']+'easy_math_copy_array')>0 step i+=1:
 	!@ пока размер временного массива больше нуля
 	dynamic "
+!@pp:объявляем локальные переменные внутри dynamic
+		local <<$args['$']>>find, kill_pos, real_pos, <<$args['$']>>temp
 !@pp:в зависимости от порядка сортировки ищем наибольшее или наименьшее значение
 		if $args[0]='up':
-			<<$args['$']>>args['find']=<<$args['$']>>max('<<$args['$']>>easy_math_copy_array')
+			<<$args['$']>>find=<<$args['$']>>max('<<$args['$']>>easy_math_copy_array')
 		elseif $args[0]='down':
-			<<$args['$']>>args['find']=<<$args['$']>>min('<<$args['$']>>easy_math_copy_array')
+			<<$args['$']>>find=<<$args['$']>>min('<<$args['$']>>easy_math_copy_array')
 		end
 !@pp:ищем позицию, в которой размещён данный элемент в колоде
-		args['killpos']=arrpos('<<$args['$']>>easy_math_copy_array',<<$args['$']>>args['find'])
+		kill_pos=arrpos('<<$args['$']>>easy_math_copy_array',<<$args['$']>>find)
 !@pp:удаляем элемент из колоды
-		killvar '<<$args['$']>>easy_math_copy_array',args['killpos']
+		killvar '<<$args['$']>>easy_math_copy_array',kill_pos
 !@pp:ищем действительную позицию, исключив отсортированные
-		args['realpos']=arrpos(args[1]+1,'<<$args['$']>>easy_math_result_array',<<$args['$']>>args['find'])
+		real_pos=arrpos('<<$args['$']>>easy_math_result_array',<<$args['$']>>find,args[1]+1)
 !@pp:используя временную переменную, меняем элементы местами
-		<<$args['$']>>args['temp']=<<$args['$']>>easy_math_result_array[args['realpos']]
-		<<$args['$']>>easy_math_result_array[args['realpos']]=<<$args['$']>>easy_math_result_array[args[1]+1]
-		<<$args['$']>>easy_math_result_array[args[1]+1]=<<$args['$']>>args['temp']
+		<<$args['$']>>temp=<<$args['$']>>easy_math_result_array[real_pos]
+		<<$args['$']>>easy_math_result_array[real_pos]=<<$args['$']>>easy_math_result_array[args[1]+1]
+		<<$args['$']>>easy_math_result_array[args[1]+1]=<<$args['$']>>temp
 !@pp:используя временную переменную, меняем местами номера элементов
-		args['temp']=easy_math_sort_array[args['realpos']]
-		easy_math_sort_array[args['realpos']]=easy_math_sort_array[args[1]+1]
-		easy_math_sort_array[args[1]+1]=args['temp']
-	",$args['direction'],args['i']
-	args['i']+=1
-	jump 'prohody'
+		temp=easy_math_sort_array[real_pos]
+		easy_math_sort_array[real_pos]=easy_math_sort_array[args[1]+1]
+		easy_math_sort_array[args[1]+1]=temp
+	",$args['direction'],i
 end
 if $args[2]<>'': copyarr $args[2],'easy_math_sort_array'	& !@ если задан опорный, копируем в него перетасованные номера элементов
 copyarr $args[3],$args['$']+'easy_math_result_array'	& !@ копируем результат в результирующий массив
-!@ удаляем временные массивы по завершении работы функции
-killvar 'easy_math_sort_array'
-killvar 'easy_math_copy_array'
-killvar 'easy_math_result_array'
---- #array.sort# ---------------------------------
+--- em.arr.sort ---------------------------------
 !@pp:endif
 
 $args[0] - название массива, элементы которого необходимо отсортировать (исследуемый массив), обязательный параметр
@@ -74,3 +64,80 @@ $args[2] - имя массива, в который будут помещены 
 $args[3] - название массива результатов, т.е. массива, в который будут переданы результаты сортировки. Если не указано, массивом результатов становится исследуемый. (результирующий)
 
 Функция не использует иных функций библиотеки.
+
+old_mass[0]=157
+old_mass[1]=250
+old_mass[2]=709
+old_mass[3]=413
+old_mass[4]=532
+old_mass[5]=779
+old_mass[6]=730
+old_mass[7]=565
+
+@em.arr.sort('old_mass')
+
+loop local i,size=0,arrsize('old_mass') while i<size step i+=1:
+	*pl "old_mass[<<i>>]=<<old_mass[i]>>"
+end
+
+*pl
+
+old_mass[0]=966
+old_mass[1]=812
+old_mass[2]=796
+old_mass[3]=304
+old_mass[4]=678
+old_mass[5]=118
+old_mass[6]=901
+old_mass[7]=132
+
+@em.arr.sort('old_mass','[down]','em_array')
+
+
+loop local i,size=0,arrsize('old_mass') while i<size step i+=1:
+	*pl "old_mass[<<i>>]=<<old_mass[i]>>"
+end
+loop local i,size=0,arrsize('em_array') while i<size step i+=1:
+	*pl "em_array[<<i>>]=<<em_array[i]>>"
+end
+
+*pl
+
+old_mass[0]=967
+old_mass[1]=629
+old_mass[2]=541
+old_mass[3]=290
+old_mass[4]=852
+old_mass[5]=334
+old_mass[6]=318
+old_mass[7]=529
+
+@em.arr.sort('old_mass','[down]','em_array','new_mass')
+
+loop local i,size=0,arrsize('old_mass') while i<size step i+=1:
+	*pl "old_mass[<<i>>]=<<old_mass[i]>>"
+end
+loop local i,size=0,arrsize('em_array') while i<size step i+=1:
+	*pl "em_array[<<i>>]=<<em_array[i]>>"
+end
+loop local i,size=0,arrsize('new_mass') while i<size step i+=1:
+	*pl "new_mass[<<i>>]=<<new_mass[i]>>"
+end
+
+*pl
+
+$mass[0]='88ff88'
+$mass[1]='ff00ff'
+$mass[2]='0ff0f8'
+$mass[3]='ffffff'
+$mass[4]='8888ff'
+$mass[5]='fff8f8'
+
+@em.arr.sort('$mass','[down]','em_array')
+
+loop local i,size=0,arrsize('$mass') while i<size step i+=1:
+	*pl "$mass[<<i>>]=<<$mass[i]>>"
+end
+loop local i,size=0,arrsize('em_array') while i<size step i+=1:
+	*pl "em_array[<<i>>]=<<em_array[i]>>"
+end
