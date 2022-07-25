@@ -1,0 +1,45 @@
+QSP-Game функция обратная функции сортировки. По опорному массиву восстанавливаем массив к состоянию до сортировки.
+$args[0]- массив, данные в котором необходимо восстановить (исследуемый)
+$args[1] - массив фиксации, где находится список, согласно которому перетасованы элементы (опорный)
+$args[2] - массив результатов - сюда помещается итог перетасовки, если не указан результат помещается в исходный массив.
+!@pp:if(em_arr_desort):include
+# em.arr.deSort
+if instr($args[1],'$')=1: $args[1]=$mid($args[1],2)	& !@ массив фиксации не может быть строковым
+if $args[2]='': $args[2]=$args[0]	& !@ если не указан массив результатов, результат помещается в исходный
+local em_arr_desort_source_array, em_arr_desort_sort_array, em_arr_desort_desort_array
+copyarr 'em_arr_desort_source_array',$args[0]	& !@ копируем исходный массив в локальный
+copyarr 'em_arr_desort_sort_array',$args[1]	& !@ копируем опорный массив в локальный
+if instr($args[0],'$')=1: $args['$']='$' else $args['$']=''	& !@ маркер типа массива
+!@ с помощью цикла перставляем элементы согласно опорному массиву.
+!@ все манипуляции в цикле производятся с локальными массивами, поэтому можно использовать локальные переменные
+!@ даже если функция должна поместить результат в глобальные массив с тем же именем
+loop local i,j,size=0,0,arrsize('em_arr_desort_sort_array') while i<size step i+=1:
+	j=arrpos('em_arr_desort_sort_array',i)
+	dynamic "<<$args['$']>>em_arr_desort_desort_array[args[0]] = <<$args['$']>>em_arr_desort_source_array[args[1]]",i,j
+end
+!@ копируем перетасованный временный массив в результирующий
+copyarr $args[2],'em_arr_desort_desort_array'
+--- em.arr.deSort ---------------------------------
+!@pp:endif
+
+Функция не использует иных функций библиотеки.
+
+em_arr_desort_source_array - исходный массив
+em_arr_desort_sort_array - опорный массив
+em_arr_desort_desort_array — массив с десортировкой
+
+old_mass[0]=949
+old_mass[1]=913
+old_mass[2]=269
+old_mass[3]=901
+old_mass[4]=257
+old_mass[5]=561
+old_mass[6]=529
+old_mass[7]=293
+!@ сортируем массив
+@em.arr.sort('old_mass','[down]','em_array')
+@em.arr.print('old_mass')
+@em.arr.print('em_array')
+!@ восстанавливаем исходный массив в новом массиве
+@em.arr.deSort('old_mass','em_array','new_mass')
+@em.arr.print('new_mass')

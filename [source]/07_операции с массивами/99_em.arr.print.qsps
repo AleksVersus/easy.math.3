@@ -49,7 +49,7 @@ loop local i,j,size=start_cell,end_cell,arrsize('easy_math_copy_array') while (i
 		end
 	elseif $type='int':
 		!@ если пытаемся получить число, просто вписываем его
-		$array_print+=$str(easy_math_copy_array[i])
+		$array_print+=$str(easy_math_copy_array[i])+$delimiter
 	end
 end
 !@ если последний разделитель следует исключить, вырезаем
