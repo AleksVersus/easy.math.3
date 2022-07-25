@@ -1,27 +1,27 @@
 QSP-Game Функция предназначена для изменения цвета для HTML.
 $args[0] - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
 $args[1] - значение. Шестнадцатеричный формат, двузначное число. (может быть отрицательным)
-!@pp:if(em_col):include
-# #+col#
-$args[9]=$args[9]
-if instr($args[1],'-')=1: $args['+']='-' else $args['+']='+'
-$args[1] = $replace($args[1],'-')
-args['r_col_plus']=dyneval('result = '+$func('em.hex.inDec',$mid($args[0],1,2))+$args['+']+$func('em.hex.inDec',$args[1]))
-args['g_col_plus']=dyneval('result = '+$func('em.hex.inDec',$mid($args[0],3,2))+$args['+']+$func('em.hex.inDec',$args[1]))
-args['b_col_plus']=dyneval('result = '+$func('em.hex.inDec',$mid($args[0],5,2))+$args['+']+$func('em.hex.inDec',$args[1]))
-if args['r_col_plus']>255: args['r_col_plus']=255
-if args['r_col_plus']<0: args['r_col_plus']=0
-if args['g_col_plus']>255: args['g_col_plus']=255
-if args['g_col_plus']<0: args['g_col_plus']=0
-if args['b_col_plus']>255: args['b_col_plus']=255
-if args['b_col_plus']<0: args['b_col_plus']=0
-$args['+col'] = $func('em.dec.inHex',args['r_col_plus'])+$func('em.dec.inHex',args['g_col_plus'])+$func('em.dec.inHex',args['b_col_plus'])
-$result=$args['+col']
---- #+col# ---------------------------------
+!@pp:if(em_col_add):include
+# em.col.add
+local red,green,blue,$minus
+if instr($args[1],'-')=1: $minus='-' & $args[1]=$mid($args[1],2) else $minus='+'
+red=dyneval('result = '+@em.hex.inDec($mid($args[0],1,2))+$minus+@em.hex.inDec($args[1]))
+green=dyneval('result = '+@em.hex.inDec($mid($args[0],3,2))+$minus+@em.hex.inDec($args[1]))
+blue=dyneval('result = '+@em.hex.inDec($mid($args[0],5,2))+$minus+@em.hex.inDec($args[1]))
+if red>255: red=255
+if red<0: red=0
+if green>255: green=255
+if green<0: green=0
+if blue>255: blue=255
+if blue<0: blue=0
+$result=@em.dec.inHex(red)+@em.dec.inHex(green)+@em.dec.inHex(blue)
+--- em.col.add ---------------------------------
 !@pp:endif
 
-Функция использует функции hex-dec и dec-col
-!@pp:if(em_col!=True):nopp
+Функция использует функции em.hex.inDec и em.dec.inHex
+!@pp:if(em_col_add!=True):nopp
 !@pp:var(em_hex_indec)
 !@pp:var(em_dec_inhex)
 !@pp:endif
+
+

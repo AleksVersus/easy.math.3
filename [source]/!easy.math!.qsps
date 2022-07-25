@@ -60,9 +60,9 @@ end
 !@pp:var(em_str_thin)
 !@pp:var(em_zero)
 Операции с шестнадцатеричными числами
-!@pp:var(em_col_inv)
-!@pp:var(em_col_rgb)
-!@pp:var(em_col)
+!@pp:var(em_col_add_inv)
+!@pp:var(em_col_add_rgb)
+!@pp:var(em_col_add)
 !@pp:var(em_dec_col)
 !@pp:var(em_dec_inhex)
 !@pp:var(em_hex_indec)
