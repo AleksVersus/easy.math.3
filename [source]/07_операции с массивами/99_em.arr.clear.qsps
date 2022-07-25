@@ -1,0 +1,31 @@
+QSP-Game Функция для удаления из массива всех элементов с указанным значением.
+$args[0] - название массива.
+$args[1] - значение, которое хотим удалить из массива.
+!@pp:if(em_arr_clear):include
+# em.arr.clear
+local em_arr_clear_copy_array
+copyarr 'em_arr_clear_copy_array',$args[0]
+loop local run,pos,size=1,0,arrsize('em_arr_clear_copy_array') while run:
+	!@ в зависимости от того, название текстового или числового массива передано, ищем текстовое или числовое значение
+	if instr($args[0],'$')=1:
+		!@ поиск среди текстовых значений массива
+		pos=arrpos('em_arr_clear_copy_array',$args[1],pos)
+	else
+		!@ поиск среди числовых значений массива
+		pos=arrpos('em_arr_clear_copy_array',args[1],pos)
+	end
+	!@ если элемент найден, размер массива больше нуля, и счётчик не исчерпан
+	if pos<>-1 and arrsize('em_arr_clear_copy_array')>0 and size>0:
+		killvar 'em_arr_clear_copy_array',pos	& !@ удаляем элемент
+		size-=1	& !@ уменьшаем значение счётчика
+	else
+		run=0
+	end
+end
+copyarr $args[0],'em_arr_clear_copy_array'
+--- em.arr.clear ---------------------------------
+!@pp:endif
+
+Функция не использует иных функций библиотеки
+
+

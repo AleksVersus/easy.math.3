@@ -22,8 +22,8 @@ if instr($args[2],'[simp]')<>0 or instr($args[2],'[se]')<>0:
 	$args[1]=$args['$']+'easy_math_sort_1_array'
 	if instr($args[2],'[se]')<>0:
 		!@ если нужно не учитывать пустые значения (нули), удаляем их из массивов
-		gs '#array.clr#',$args[0]
-		gs '#array.clr#',$args[1]
+		gs 'em.arr.clear',$args[0]
+		gs 'em.arr.clear',$args[1]
 	end
 end
 if arrsize($args[0])<>arrsize($args[1]) and instr($args[2],'[conc]')=0:
@@ -69,7 +69,7 @@ $result=$args['em.array.simp']
 
 !@pp:if(em_array_simp!=True):nopp
 
-!@pp:var(em_array_clr)
+!@pp:var(em_arr_clear)
 !@pp:var(em_arr_sort)
 
 !@pp:endif
