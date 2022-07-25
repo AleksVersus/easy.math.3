@@ -89,6 +89,6 @@ end
 !@pp:var(em_digs)
 !@pp:var(em_summ)
 Операции с координатной сеткой
-!@pp:var(em_coords_get)
+!@pp:var(em_map_cell_getcoords)
 
 !@pp:endif
