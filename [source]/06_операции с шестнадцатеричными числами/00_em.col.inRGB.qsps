@@ -1,0 +1,20 @@
+QSP-Game Преобразует цвет из шестнадцатеричного формата в формат rgb, который использует qsp
+$args[0] - шестнадцатеричное число RRGGBB
+result - числовой код цвета в формате понятном QSP
+!@pp:if(en_col_inrgb):include
+# em.col.inRGB
+if no strcomp($args[0],'[A-Fa-f0-9]{6}'): result = 0 & exit & !@ если переданное число не соответствует критериям, цветовой код по умолчанию
+result=rgb(@em.hex.inDec($mid($args[0],1,2)),@em.hex.inDec($mid($args[0],3,2)),@em.hex.inDec($mid($args[0],5,2)))
+--- em.col.inRGB ---------------------------------
+!@pp:endif
+Функция использует функцию em.hex.inDec. Для её автоматического подключения при сборке
+!@pp:if(en_col_inrgb!=True):nopp
+!@pp:var(em_hex_indec)
+!@pp:endif
+
+@em.col.inRGB('ff0000')	& !@ '-16776961'
+@em.col.inRGB('000000')	& !@ '-16777216'
+@em.col.inRGB('dd0000')	& !@ '-16776995'
+@em.col.inRGB('dd8822')	& !@ '-14513955'
+@em.col.inRGB('ffmm00')	& !@ '0'
+@em.col.inRGB('-0000ff')	& !@ '0'

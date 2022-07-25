@@ -24,4 +24,8 @@ $result=@em.dec.inCol(red)+@em.dec.inCol(green)+@em.dec.inCol(blue)
 !@pp:var(em_dec_inhex)
 !@pp:endif
 
-
+@em.col.add('ff0000','-44')	& !@ 'bb0000'
+@em.col.add('000000','-44')	& !@ '000000'
+@em.col.add('dd0000','22')	& !@ 'ff2222'
+@em.col.add('dd8822','-44')	& !@ '994400'
+@em.col.add('dd8822','44')	& !@ 'ffcc66'
