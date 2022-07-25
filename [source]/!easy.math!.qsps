@@ -73,7 +73,7 @@ end
 !@pp:var(em_array_ins)
 !@pp:var(em_array_prnt_few)
 !@pp:var(em_array_prnt)
-!@pp:var(em_array_rand)
+!@pp:var(em_arr_randfill)
 !@pp:var(em_arr_restand)
 !@pp:var(em_arr_sort)
 !@pp:var(em_arr_find)

@@ -4,19 +4,37 @@ args[1] - количество формируемых элементов, обя
 args[2] - номер элемента, с которого необходимо начать.
 args[3] - нижняя граница случайного числа (по умолчанию - ноль)
 args[4] - верхняя граница случайного числа (по умолчанию - тысяча)
-!@pp:if(em_array_rand):include
-# #array.rand#
+!@pp:if(em_arr_randfill):include
+# em.arr.randFill
 args[9]=args[9]	& !@ инициализация аргументов
 if args[4]=0: args[4]=1000
-:for
-if args[1]>0:
+loop while args[1]>0 step args[1]-=1:
 	!@ пока args[1] больше нуля выполняем цикл
 	dynamic '<<$args[0]>>[<<args[2]>>] = rand(<<args[3]>>,<<args[4]>>)'
-	args[1]-=1	& !@ args[1] выступает в качестве счётчика
 	args[2]+=1	& !@ увеличиваем номер элемента, которому в дальнейшем присвоим значения
-	jump 'for'
 end
---- #array.rand# ---------------------------------
+--- em.arr.randFill ---------------------------------
 !@pp:endif
 
 Функция не использует иных функций библиотеки
+
+@em.arr.randFill('mass1',8)
+
+loop local i,size=0,arrsize('mass1') while i<size step i+=1:
+	*pl "mass1[<<i>>]=<<mass1[i]>>"
+end
+*pl
+
+@em.arr.randFill('mass2',6,2)
+
+loop local i,size=0,arrsize('mass2') while i<size step i+=1:
+	*pl "mass2[<<i>>]=<<mass2[i]>>"
+end
+*pl
+
+@em.arr.randFill('mass3',6,2,10,20)
+
+loop local i,size=0,arrsize('mass3') while i<size step i+=1:
+	*pl "mass3[<<i>>]=<<mass3[i]>>"
+end
+*pl
