@@ -3,6 +3,8 @@ $args[0 ... 8]- имена массивов, содержимое которых
 $args[8 ... 1] - управляющая конструкция. Записывается последним аргументом. Можно использовать следующие конструкции в любых комбинациях:
 	[only result] - выводит только содержимое массивов, не показывая их названий и номеров ячеек. Таблица при этом на экран выводиться не будет.
 	[no table] - выводит массивы на экран, но не облекает их в таблицу.
+Из-за того, что данная функция работает напрямую с данными из массивов было решено не использовать здесь локальные переменные,
+чтобы случайно не перекрыть возможные названия массивов.
 !@pp:if(em_fewarrs_print):include
 # em.fewArrs.print
 !@ в принципе инициализация здесь не нужна. Все аргументы являются названиями массивов.
@@ -38,15 +40,12 @@ else
 	if $args['table']<>'' or $args['command_in_last']='': $args['table']='<table border=1 cellpadding=5>'
 	if $args['table']<>'': $args['table']+='<tr><td>#</td>'
 	!@ с помощью цикла добавляем имена массивов в список
-	args['i']=0
-	:mass
-	if args['i']<9 and $strfind($args[args['i']],'\[.+?\]')='' and $args[args['i']]<>'':
+	
+	loop args['i']=0 while args['i']<9 and $strfind($args[args['i']],'\[.+?\]')='' and $args[args['i']]<>'' step args['i']+=1:
 		!@ пока счётчик не достигнет девяти, или мы не встретим аргумент с управлением, или пустой аргумент
 		if $args['table']<>'': $args['table']+="<td><<$args[args['i']]>></td>"	& !@ создаём ячейку, только если уже набираем таблицу
 		args['this_size']=arrsize($args[args['i']])	& !@ получаем размер указанного массива
 		if args['this_size']>args['size']: args['size']=args['this_size']	& !@ если размер этого массива больше размера предыдущего массива, записываем размер текущего в переменную size
-		args['i']+=1	& !@ увеичиваем счётчик
-		jump 'mass'	& !@ повторяем
 	end
 	if args['size']=0:
 		!@ если размеры всех массивов равны нулю, выводим сообщениме.
@@ -55,15 +54,11 @@ else
 	end
 	if $args['table']<>'': $args['table']+='</tr>'	& !@ закрываем строку
 	!@ следующий цикл выводит уже непосредственно результаты
-	args['b']=0	& !@ счётчик
-	:for
-	if args['b']<args['size']:
+	loop args['b']=0 while args['b']<args['size'] step args['b']+=1:
 		!@ пока счётчик не достигнет размера самого большого массива
-		args['i']=0
 		if $args['table']<>'': $args['table']+="<tr><td><<args['b']>></td>"	& !@ для вывода в виде таблицы формируем строку и первую ячейку
 		!@ этот цикл выводит содержимое ячеек под одним индексом
-		:zap
-		if args['i']<9 and $strfind($args[args['i']],'\[.+?\]')='' and $args[args['i']]<>'':
+		loop args['i']=0 while args['i']<9 and $strfind($args[args['i']],'\[.+?\]')='' and $args[args['i']]<>'' step args['i']+=1:
 			!@ пока счётчик не достигнет девяти, или мы не встретим аргумент с управлением, или пустой аргумент
 			if $args['only result']<>'only result' and $args['table']='':
 				!@ это не режим только результат, но и не режим вывода таблицы
@@ -77,8 +72,23 @@ else
 				if $args['table']<>'':
 					!@ если мы имеем дело с таблицей
 					$args['cell']+=$dyneval("
+!@pp:в ячейке может содержаться кортеж, тогда нам необходимо вывести кортеж
+						if instr(<<$args[args['i']]>>[args[0]],'')<>0:
+							$result+='('
+							loop local pos,$temp,$string=0,'',<<$args[args['i']]>>[args[0]] while len($string)>0:
+								pos=instr($string,'',pos)
+								if pos=0:
+									!@ если указанный символ в строке не найден, значит остаток строки — последний элемент
+									$result+=$string
+									$string=''
+								else
+									$result+=$mid($string,1,pos-1)+','
+									$string=$mid($string,pos+1)
+								end
+							end
+							$result+=')'
 !@pp:не пустые ячейки обрабатываем, чтобы заменить некоторые символы для вывода
-						if <<$args[args['i']]>>[args[0]]<>'':
+						elseif <<$args[args['i']]>>[args[0]]<>'':
 							$result = $replace(<<$args[args['i']]>>[args[0]],' ','&nbsp;')
 							$result = $replace($result,'<','&lt;')
 							$result = $replace($result,'>','&gt;')
@@ -90,9 +100,47 @@ else
 				else
 					!@ для не таблицы просто добавляем значение
 					if $args['only result']<>'only result':
-						$args['cell']+="'"+$dyneval("$result = $replace(<<$args[args['i']]>>[args[0]],""'"",""''"")",args['b'])+"'"
+						$args['cell']+="'"+$dyneval("
+!@pp:в ячейке может содержаться как кортеж, так и обычная строка
+						if instr(<<$args[args['i']]>>[args[0]],'')<>0:
+							$result+='('
+							loop local pos,$temp,$string=0,'',<<$args[args['i']]>>[args[0]] while len($string)>0:
+								pos=instr($string,'',pos)
+								if pos=0:
+									!@ если указанный символ в строке не найден, значит остаток строки — последний элемент
+									$result+=$string
+									$string=''
+								else
+									$result+=$mid($string,1,pos-1)+','
+									$string=$mid($string,pos+1)
+								end
+							end
+							$result+=')'
+						else
+							$result = $replace(<<$args[args['i']]>>[args[0]],""'"",""''"")
+						end
+						",args['b'])+"'"
 					else
-						$args['cell']+=$dyneval("$result = <<$args[args['i']]>>[args[0]]",args['b'])
+						$args['cell']+=$dyneval("
+!@pp:в ячейке может содержаться, как кортеж, так и обычная строка
+						if instr(<<$args[args['i']]>>[args[0]],'')<>0:
+							$result+='('
+							loop local pos,$temp,$string=0,'',<<$args[args['i']]>>[args[0]] while len($string)>0:
+								pos=instr($string,'',pos)
+								if pos=0:
+									!@ если указанный символ в строке не найден, значит остаток строки — последний элемент
+									$result+=$string
+									$string=''
+								else
+									$result+=$mid($string,1,pos-1)+','
+									$string=$mid($string,pos+1)
+								end
+							end
+							$result+=')'
+						else
+							$result = <<$args[args['i']]>>[args[0]]
+						end
+						",args['b'])
 					end
 				end
 			else
@@ -108,12 +156,8 @@ else
 			else:
 				$args['result']+=$args['cell']
 			end
-			args['i']+=1
-			jump 'zap'
 		end
 		if $args['table']<>'': $args['table']+="</tr>" else $args['result']+=$args['/n/r']	& !@ для таблицы закрываем строку, для не таблицы начинаем новую
-		args['b']+=1	& !@ увеличиваем счётчик
-		jump 'for'	& !@ повторяем
 	end
 	if $args['table']<>'': $args['table']+='</table>'
 end
@@ -129,3 +173,27 @@ end
 !@pp:endif
 
 Функция не использует иных функций библиотеки
+
+$a[]='нулевая ячейка'
+$a[]='   первая ячейка   '
+$a[]=' вторая ячейка'
+$a[]=''
+$a[]='четвёртая'' ячейка'
+$a[]="   пятая яче'йка"
+$a[]=''
+$a[]='седьмая ячейка'
+
+$b[]='нулевая ячейка'
+$b[]='   первая ячейка   '
+$b[]=' вторая ячейка'
+$b[]='3'
+$b[]=(3,5,6,'string',6)
+$b[]='   пятая ячейка'
+$b[]='6'
+$b[]='7'
+usehtml=1
+@em.fewArrs.print('$a','$b')
+@em.fewArrs.print('$a','$b','[only result]')
+@em.fewArrs.print('$a','$b','[no table]')
+@em.fewArrs.print('$c','$d')
+@em.fewArrs.print('$a','$b','[no table]','$f')
