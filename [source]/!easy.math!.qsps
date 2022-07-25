@@ -54,7 +54,6 @@ end
 Операции с текстом
 !@pp:var(em_str_widetrim)
 !@pp:var(em_arr_search)
-!@pp:var(em_chk_obj_word)
 !@pp:var(em_str_random)
 !@pp:var(em_str_inarr)
 !@pp:var(em_str_thin)
@@ -78,7 +77,7 @@ end
 !@pp:var(em_array_rstd)
 !@pp:var(em_array_sort)
 !@pp:var(em_array_srch)
-!@pp:var(em_array_strt)
+!@pp:var(em_arr_strtfill)
 Операции с целыми числами
 !@pp:var(em_abs)
 !@pp:var(em_exp)
