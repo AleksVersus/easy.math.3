@@ -2,27 +2,52 @@ QSP-Game Процедура перетасовывает элементы мас
 $args[0] - массив, данные в котором необходимо перетасовать (исследуемый);
 $args[1] - массив фиксации, где находится список, согласно которому тасуются элементы (опорный);
 $args[2] - массив результатов - сюда помещается итог перетасовки, если не указан результат помещается в исходный массив.
-!@pp:if(em_array_rstd):include
-# #array.rstd#
+!@pp:if(em_arr_restand):include
+# em.arr.restand
 $args[9]=$args[9]	& !@ инициализация аргументов
 if instr($args[1],'$')=1: $args[1]=$mid($args[1],2)	& !@ опорный массив не может быть текстовым
 if $args[2]='': $args[2]=$args[0]	& !@ если не указан результирующий массив, результат помещается в исходный
 if instr($args[0],'$')=1: $args['$']='$' else $args['$']=''	& !@ маркер указания на тип
-killvar 'easy_math_sort_array'	& !@ удаляем временный массив (защита от дурака)
-killvar $args['$']+'easy_math_copy_array'	& !@ удаляем временный массив (защита от дурака)
+local easy_math_copy_array, easy_math_sort_array
 copyarr 'easy_math_sort_array',$args[1]	& !@ копируем опорный массив во временный
 !@ с помощью цикла вставляем элементы во временный массив
-args['i']=0
-:for
-if args['i']<arrsize('easy_math_sort_array'):
-	dynamic $args['$']+"easy_math_copy_array[args[0]] = "+$args[0]+"[args[1]]",args['i'],easy_math_sort_array[args['i']]
-	args['i']+=1
-	jump 'for'
+loop local i,size=0,arrsize('easy_math_sort_array') while i<size step i+=1:
+	dynamic $args['$']+"easy_math_copy_array[args[0]] = "+$args[0]+"[args[1]]",i,easy_math_sort_array[i]
 end
 copyarr $args[2],$args['$']+"easy_math_copy_array"	& !@ копируем данные из временного массива в результирующий
-killvar $args['$']+'easy_math_copy_array'	& !@ удаляем временный массив
-killvar 'easy_math_sort_array'	& !@ удаляем временный массив
---- #array.rstd# ---------------------------------
+--- em.arr.restand ---------------------------------
 !@pp:endif
 
 Функция не использует иных функций библиотеки
+
+$arr_mass[0]='голова'
+$arr_mass[1]='плечи'
+$arr_mass[2]='грудь'
+$arr_mass[3]='живот'
+$arr_mass[4]='бёдра'
+$arr_mass[5]='колени'
+$arr_mass[6]='икры'
+$arr_mass[7]='ступни'
+
+old_mass[0]=722
+old_mass[1]=136
+old_mass[2]=788
+old_mass[3]=177
+old_mass[4]=780
+old_mass[5]=97
+old_mass[6]=649
+old_mass[7]=75
+
+@em.arr.sort('old_mass','[down]','em_array')
+@em.arr.restand('$arr_mass','em_array','$new_mass')
+
+loop local i,size=0,arrsize('old_mass') while i<size step i+=1:
+	*pl "old_mass[<<i>>]=<<old_mass[i]>>"
+end
+loop local i,size=0,arrsize('em_array') while i<size step i+=1:
+	*pl "em_array[<<i>>]=<<em_array[i]>>"
+end
+loop local i,size=0,arrsize('$new_mass') while i<size step i+=1:
+	*pl "$new_mass[<<i>>]='<<$new_mass[i]>>'"
+end
+
