@@ -1,0 +1,33 @@
+QSP-Game Возвращает шестнадцатеричный код цвета противоположного указанному.
+$args[0] - шестнадцатеричный код цвета
+$result - результат: шестнадцатеричный код цвета
+Альфа-канал не инвертируется.
+!@pp:if(em_col_inv):include
+# em.col.inv
+if (no strcomp($args[0],'[A-Fa-f0-9]{6}')) and (no strcomp($args[0],'[A-Fa-f0-9]{8}')): exit & !@ если переданное число не соответствует критериям, просто выходим
+local $red,$green,$blue,$r,$g,$b,$alpha
+$r = '-'+$mid($args[0],1,2)
+$g = '-'+$mid($args[0],3,2)
+$b = '-'+$mid($args[0],5,2)
+if len($args[0])=8: $alpha=$mid($args[0],7,2) else $alpha=''
+$red = $mid(@em.col.add('ffffff',$r),1,2)
+$green = $mid(@em.col.add('ffffff',$g),1,2)
+$blue = $mid(@em.col.add('ffffff',$b),1,2)
+$result = $red+$green+$blue+$alpha
+--- em.col.inv ---------------------------------
+!@pp:endif
+
+Функция использует функцию em.col.add бибилотеки.
+Подключение дополнительной функции:
+!@pp:if(em_col_inv!=True):nopp
+!@pp:var(em_col_add)
+!@pp:endif
+
+@em.col.inv('000000')	& !@ 'ffffff'
+@em.col.inv('ffffff')	& !@ '000000'
+@em.col.inv('238c90')	& !@ 'dc736f'
+@em.col.inv('902b10')	& !@ '6fd4ef'
+@em.col.inv('c7c000')	& !@ '383fff'
+@em.col.inv('07c701')	& !@ 'f838fe'
+@em.col.inv('c7c00084')	& !@ '383fff84'
+@em.col.inv('07c7014d')	& !@ 'f838fe4d'
