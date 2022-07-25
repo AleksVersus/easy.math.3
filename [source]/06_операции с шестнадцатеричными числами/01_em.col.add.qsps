@@ -14,7 +14,7 @@ if green>255: green=255
 if green<0: green=0
 if blue>255: blue=255
 if blue<0: blue=0
-$result=@em.dec.inHex(red)+@em.dec.inHex(green)+@em.dec.inHex(blue)
+$result=@em.dec.inCol(red)+@em.dec.inCol(green)+@em.dec.inCol(blue)
 --- em.col.add ---------------------------------
 !@pp:endif
 
