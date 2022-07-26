@@ -74,9 +74,7 @@ loop local i,size=0,arrsize('em_arr_chtype_old_array') while i<size step i+=1:
 	end
 end
 },$args[0],$args[1],$args[2]	& !@ передаём в dynamic все аргументы, хотя все они нам и не нужны.
-if $args[0]=$args[2]:
-	killvar $args[0]
-end
+if $args[0]=$args[2]: killvar $args[0]
 copyarr $args[2],'em_arr_chtype_new_array'
 --- em.arr.chType ---------------------------------
 !@pp:endif
