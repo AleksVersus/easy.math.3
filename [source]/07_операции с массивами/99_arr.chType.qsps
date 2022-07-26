@@ -30,30 +30,16 @@ if instr($args[1],'[reverse]')<>0: $type='reverse'
 if instr($args[1],'[number]')<>0: $type='number'
 if instr($args[1],'[string]')<>0: $type='string'
 if instr($args[1],'[hard]')<>0: $hard='hard'
-!@ $convert['StrInNum']={em_arr_chtype_new_array[args[0]]=val($em_arr_chtype_old_array[args[0]])}
-!@ $convert['NumInStr']={$em_arr_chtype_new_array[args[0]]=$str(em_arr_chtype_old_array[args[0]])}
-!@ $convert['StrInStr']={$em_arr_chtype_new_array[args[0]]=$em_arr_chtype_old_array[args[0]]}
-!@ $convert['NumInNum']={em_arr_chtype_new_array[args[0]]=em_arr_chtype_old_array[args[0]]}
-!@ $convert['TplInStr']={
-!@ !@ типичный алгоритм преобразования кортежа в строку
-!@ $em_arr_chtype_new_array[args[0]]+='('
-!@ loop local pos,$string=0,$em_arr_chtype_old_array[args[0]] while len($string)>0:
-!@ 	pos=instr($string,'',pos)
-!@ 	if pos=0:
-!@ 		$em_arr_chtype_new_array[args[0]]+=$string
-!@ 		$string=''
-!@ 	else
-!@ 		$em_arr_chtype_new_array[args[0]]+=$mid($string,1,pos-1)+','
-!@ 		$string=$mid($string,pos+1)
-!@ 	end
-!@ end
-!@ $em_arr_chtype_new_array[args[0]]+=')'
-!@ }
+$convert['StrInNum']={em_arr_chtype_new_array[args[0]]=val($em_arr_chtype_old_array[args[0]])}
+$convert['NumInStr']={$em_arr_chtype_new_array[args[0]]=$str(em_arr_chtype_old_array[args[0]])}
+$convert['StrInStr']={$em_arr_chtype_new_array[args[0]]=$em_arr_chtype_old_array[args[0]]}
+$convert['NumInNum']={em_arr_chtype_new_array[args[0]]=em_arr_chtype_old_array[args[0]]}
+$convert['TplInStr']={$em_arr_chtype_new_array[args[0]]='('+$replace($em_arr_chtype_old_array[args[0]],'',',')+')'}
 loop local i,size=0,arrsize('em_arr_chtype_old_array') while i<size step i+=1:
 	!@ ------------------------- данный блок кода можно заменить на em.var.getType ------------------------
-		!@ getType['tuple']=dyneval({result=iif($em_arr_chtype_old_array[args[0]]<>'' and instr($em_arr_chtype_old_array[args[0]],'')<>0,1,0)},i)
-		!@ getType['string']=dyneval({result=iif($em_arr_chtype_old_array[args[0]]<>'',1,0)},i)
-		!@ getType['number']=dyneval({result=iif(em_arr_chtype_old_array[args[0]]<>0,1,0)},i)
+		getType['tuple']=dyneval({result=iif($em_arr_chtype_old_array[args[0]]<>'' and instr($em_arr_chtype_old_array[args[0]],'')<>0,1,0)},i)
+		getType['string']=dyneval({result=iif($em_arr_chtype_old_array[args[0]]<>'',1,0)},i)
+		getType['number']=dyneval({result=iif(em_arr_chtype_old_array[args[0]]<>0,1,0)},i)
 		if getType['string'] and getType['number'] and getType['tuple']:
 			$resType='both' & !@ в переменной содержатся все типы данных. По сути это ошибка
 		elseif getType['tuple']:
@@ -62,7 +48,7 @@ loop local i,size=0,arrsize('em_arr_chtype_old_array') while i<size step i+=1:
 			$resType='string' & !@ переменная содержит текстовое значение
 		elseif no (getType['string'] or getType['tuple']) and getType['number']:
 			$resType='number' & !@ переменная содержит числовое значение
-		elseif no (getType['string'] or getType['number'] or getType['tuple']:
+		elseif no (getType['string'] or getType['number'] or getType['tuple']):
 			$resType='empty' & !@ переменная не содержит значений, либо содержит значения по-умолчанию
 		end
 	!@ ------------------------- данный блок кода можно заменить на em.var.getType ------------------------
@@ -76,6 +62,7 @@ loop local i,size=0,arrsize('em_arr_chtype_old_array') while i<size step i+=1:
 	if $type='number' and ($resType='number' or $resType='both'): $mode='NumInNum'
 	!@ для реверса
 	if $type='reverse' and ($resType='string' or $resType='empty' or $resType='tuple'): $mode='StrInNum'
+	if $type='reverse' and $hard='hard' and $resType='empty': $mode='NumInStr'
 	if $type='reverse' and $resType='number': $mode='NumInStr'
 	if $type='reverse' and $resType='both': $mode='both'	& !@ данный режим не должен выпадать в 5.8.0
 	if $mode='both':
@@ -86,7 +73,7 @@ loop local i,size=0,arrsize('em_arr_chtype_old_array') while i<size step i+=1:
 		dynamic $convert[$mode],i
 	end
 end
- },$args[0],$args[1],$args[2]	& !@ передаём в dynamic все аргументы, хотя все они нам и не нужны.
+},$args[0],$args[1],$args[2]	& !@ передаём в dynamic все аргументы, хотя все они нам и не нужны.
 if $args[0]=$args[2]:
 	killvar $args[0]
 end
@@ -95,3 +82,21 @@ copyarr $args[2],'em_arr_chtype_new_array'
 !@pp:endif
 
 Функция не использует иных функций библиотеки
+
+$mass[0]='123'              
+$mass[1]='456'             
+mass[2]=789                 
+mass[3]=901                 
+$mass[4]='stringAbout'
+$mass[5]='555'
+$mass[6]=(123,56,23,9,137)   
+$mass[7]=''                
+$mass[8]='123'
+mass[9]=4569
+
+@em.arr.chType('mass','[string]','mass_str')
+@em.arr.chType('mass','[number]','mass_num')
+@em.arr.chType('mass','[reverse]','mass_rev')
+@em.arr.chType('mass','[string][hard]','mass_strh')
+@em.arr.chType('mass','[reverse][hard]','mass_revh')
+@em.fewArrs.print('$mass','mass','$mass_str','mass_num','$mass_rev','mass_rev','$mass_strh','$mass_revh','mass_revh')

@@ -33,19 +33,7 @@ loop local i,j,size=start_cell,end_cell,arrsize('easy_math_copy_array') while (i
 			if instr($commands,'[trim]')<>0: $inline=$trim($inline)
 			$array_print+=$quotes+$inline+$quotes+$delimiter
 		else
-			$array_print+="("
-			loop local pos,$temp,$string=0,"",$easy_math_copy_array[i] while len($string)>0:
-				pos=instr($string,'',pos)
-				if pos=0:
-					!@ если указанный символ в строке не найден, значит остаток строки — последний элемент
-					$array_print+=$string
-					$string=''
-				else
-					$array_print+=$mid($string,1,pos-1)+','
-					$string=$mid($string,pos+1)
-				end
-			end
-			$array_print+=")"+$delimiter
+			$array_print+="("+$replace($easy_math_copy_array[i],'',',')+')'+$delimiter
 		end
 	elseif $type='int':
 		!@ если пытаемся получить число, просто вписываем его

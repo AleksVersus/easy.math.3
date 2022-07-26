@@ -74,19 +74,7 @@ else
 					$args['cell']+=$dyneval("
 !@pp:в ячейке может содержаться кортеж, тогда нам необходимо вывести кортеж
 						if instr(<<$args[args['i']]>>[args[0]],'')<>0:
-							$result+='('
-							loop local pos,$temp,$string=0,'',<<$args[args['i']]>>[args[0]] while len($string)>0:
-								pos=instr($string,'',pos)
-								if pos=0:
-									!@ если указанный символ в строке не найден, значит остаток строки — последний элемент
-									$result+=$string
-									$string=''
-								else
-									$result+=$mid($string,1,pos-1)+','
-									$string=$mid($string,pos+1)
-								end
-							end
-							$result+=')'
+							$result+='('+$replace(<<$args[args['i']]>>[args[0]],'',',')+')'
 !@pp:не пустые ячейки обрабатываем, чтобы заменить некоторые символы для вывода
 						elseif <<$args[args['i']]>>[args[0]]<>'':
 							$result = $replace(<<$args[args['i']]>>[args[0]],' ','&nbsp;')
@@ -103,19 +91,7 @@ else
 						$args['cell']+="'"+$dyneval("
 !@pp:в ячейке может содержаться как кортеж, так и обычная строка
 						if instr(<<$args[args['i']]>>[args[0]],'')<>0:
-							$result+='('
-							loop local pos,$temp,$string=0,'',<<$args[args['i']]>>[args[0]] while len($string)>0:
-								pos=instr($string,'',pos)
-								if pos=0:
-									!@ если указанный символ в строке не найден, значит остаток строки — последний элемент
-									$result+=$string
-									$string=''
-								else
-									$result+=$mid($string,1,pos-1)+','
-									$string=$mid($string,pos+1)
-								end
-							end
-							$result+=')'
+							$result+='('+$replace(<<$args[args['i']]>>[args[0]],'',',')+')'
 						else
 							$result = $replace(<<$args[args['i']]>>[args[0]],""'"",""''"")
 						end
@@ -124,19 +100,7 @@ else
 						$args['cell']+=$dyneval("
 !@pp:в ячейке может содержаться, как кортеж, так и обычная строка
 						if instr(<<$args[args['i']]>>[args[0]],'')<>0:
-							$result+='('
-							loop local pos,$temp,$string=0,'',<<$args[args['i']]>>[args[0]] while len($string)>0:
-								pos=instr($string,'',pos)
-								if pos=0:
-									!@ если указанный символ в строке не найден, значит остаток строки — последний элемент
-									$result+=$string
-									$string=''
-								else
-									$result+=$mid($string,1,pos-1)+','
-									$string=$mid($string,pos+1)
-								end
-							end
-							$result+=')'
+							$result+='('+$replace(<<$args[args['i']]>>[args[0]],'',',')+')'
 						else
 							$result = <<$args[args['i']]>>[args[0]]
 						end

@@ -35,7 +35,7 @@ end
 !@pp:var(em_tag_getnum)
 !@pp:var(em_tag_getcont)
 !@pp:var(em_str_getWord)
-!@pp:var(em_gettype)
+!@pp:var(em_var_gettype)
 !@pp:var(em_dergb)
 Операции с дробными числами
 !@pp:var(em_sqrt)
