@@ -5,75 +5,92 @@ $args[1] - управление:
 	[number] - все ячейки массива приводятся к числовому типу;
 	[reverse] - тип ячеек меняется на противоположный (не знаю, кому это может понадобиться);
 	[hard] - режим, расширяющий работу режима [string], при этом ячейкам, тип которых определяется как 'empty' (см. функцию "em.var.getType"), принудительно присваивается строковое значение "0".
+	Смысла конвертировать массив некортежей в массив кортежей нет, поэтому преобразование к кортежам не будет. Кортежи преобразуются в строки, но не в числа.
 $args[2] - результирующий массив. Если не указано, результат помещается в исходный массив.
+
 !@pp:if(em_arr_chtype):include
 # em.arr.chType
 $args[0]=$args[0] & !@ название массива
+if $args[1]='': $args[1]='[string]' else $args[1]=$args[1] & !@ управление
 $args[1]=$lcase($args[1])
-if $args[1]='': $args[1]='[string]' else $args[1]=$args[1] & !@ управление:>
 if $args[2]='': $args[2]=$args[0] & !@ название результирующего массива
+!@ инициализируем локальные массивы, имена которых мы вряд ли передадим внутрь функции
+local em_arr_chtype_old_array, em_arr_chtype_new_array
+!@ копируем в em_arr_chtype_old_array значения из переданного массива
+copyarr 'em_arr_chtype_old_array',$args[0]
+!@ получаем «чистые» имена исходного и конечного массивов
 if instr($args[0], '$')=1: $args[0]=$mid($args[0],2)
 if instr($args[2], '$')=1: $args[2]=$mid($args[2],2)
-killvar 'easy_math_temp'
-if instr($args[1],'[reverse]')<>0: $args['type']='reverse'
-if instr($args[1],'[number]')<>0: $args['type']='number'
-if instr($args[1],'[string]')<>0: $args['type']='string'
-if instr($args[1],'[hard]')<>0: $args['hard']='hard'
-$args['dyn.StrInNum']="easy_math_temp[args[0]]=val($<<$args[0]>>[args[0]])"
-$args['dyn.NumInStr']="$easy_math_temp[args[0]]=$str(<<$args[0]>>[args[0]])"
-$args['dyn.StrInStr']="$easy_math_temp[args[0]]=$<<$args[0]>>[args[0]]"
-$args['dyn.NumInNum']="easy_math_temp[args[0]]=<<$args[0]>>[args[0]]"
-args['i']=0
-args['s']=arrsize($args[0])
-:for_reverse
-if args['i']<args['s']:
+!@ дальнейшие манипуляции производим внутри dynamic. Поскольку внутри dynamic мы будем работать только с заранее предопределёнными
+!@ именами массивов em_arr_chtype_old_array, em_arr_chtype_new_array, мы можем использовать любые локальные переменные независимо
+!@ от того смену типа какого массива должна сделать наша функция
+dynamic {
+local $type, $hard, $convert, getType, $resType, $mode
+if instr($args[1],'[reverse]')<>0: $type='reverse'
+if instr($args[1],'[number]')<>0: $type='number'
+if instr($args[1],'[string]')<>0: $type='string'
+if instr($args[1],'[hard]')<>0: $hard='hard'
+!@ $convert['StrInNum']={em_arr_chtype_new_array[args[0]]=val($em_arr_chtype_old_array[args[0]])}
+!@ $convert['NumInStr']={$em_arr_chtype_new_array[args[0]]=$str(em_arr_chtype_old_array[args[0]])}
+!@ $convert['StrInStr']={$em_arr_chtype_new_array[args[0]]=$em_arr_chtype_old_array[args[0]]}
+!@ $convert['NumInNum']={em_arr_chtype_new_array[args[0]]=em_arr_chtype_old_array[args[0]]}
+!@ $convert['TplInStr']={
+!@ !@ типичный алгоритм преобразования кортежа в строку
+!@ $em_arr_chtype_new_array[args[0]]+='('
+!@ loop local pos,$string=0,$em_arr_chtype_old_array[args[0]] while len($string)>0:
+!@ 	pos=instr($string,'',pos)
+!@ 	if pos=0:
+!@ 		$em_arr_chtype_new_array[args[0]]+=$string
+!@ 		$string=''
+!@ 	else
+!@ 		$em_arr_chtype_new_array[args[0]]+=$mid($string,1,pos-1)+','
+!@ 		$string=$mid($string,pos+1)
+!@ 	end
+!@ end
+!@ $em_arr_chtype_new_array[args[0]]+=')'
+!@ }
+loop local i,size=0,arrsize('em_arr_chtype_old_array') while i<size step i+=1:
 	!@ ------------------------- данный блок кода можно заменить на em.var.getType ------------------------
-		$args['var.getType']='<<$args[0]>>[<<args["i"]>>]' & !@ имя переменной с $ иили без не важно
-		if instr($args['var.getType'], '$')=1: $args['var.getType']=$mid($args['var.getType'],2)
-		args['string.gt']=dyneval("if $<<$args['var.getType']>><>'': result=1 else result=0")
-		args['number.gt']=dyneval("if <<$args['var.getType']>><>0: result=1 else result=0")
-		if args['string.gt']=1 and args['number.gt']=1:
-			$args['result.gt']='both' & !@ в переменной содержатся оба типа данных. По сути это ошибка
-		elseif args['string.gt']=1 and args['number.gt']=0:
-			$args['result.gt']='string' & !@ переменная содержит текстовое значение
-		elseif args['string.gt']=0 and args['number.gt']=1:
-			$args['result.gt']='number' & !@ переменная содержит числовое значение
-		elseif args['string.gt']=0 and args['number.gt']=0:
-			$args['result.gt']='empty' & !@ переменная не содержит значений, либо содержит значения по-умолчанию
+		!@ getType['tuple']=dyneval({result=iif($em_arr_chtype_old_array[args[0]]<>'' and instr($em_arr_chtype_old_array[args[0]],'')<>0,1,0)},i)
+		!@ getType['string']=dyneval({result=iif($em_arr_chtype_old_array[args[0]]<>'',1,0)},i)
+		!@ getType['number']=dyneval({result=iif(em_arr_chtype_old_array[args[0]]<>0,1,0)},i)
+		if getType['string'] and getType['number'] and getType['tuple']:
+			$resType='both' & !@ в переменной содержатся все типы данных. По сути это ошибка
+		elseif getType['tuple']:
+			$resType='tuple'
+		elseif getType['string'] and no (getType['number'] or getType['tuple']):
+			$resType='string' & !@ переменная содержит текстовое значение
+		elseif no (getType['string'] or getType['tuple']) and getType['number']:
+			$resType='number' & !@ переменная содержит числовое значение
+		elseif no (getType['string'] or getType['number'] or getType['tuple']:
+			$resType='empty' & !@ переменная не содержит значений, либо содержит значения по-умолчанию
 		end
-		$args['t']=$args['result.gt']
 	!@ ------------------------- данный блок кода можно заменить на em.var.getType ------------------------
 	!@ преобразуем в строковый
-	if $args['type']='string' and ($args['t']='string' or $args['t']='empty' or $args['t']='both'): $args['dyn']='StrInStr'
-	if $args['type']='string' and $args['t']='number': $args['dyn']='NumInStr'
-	if $args['type']='string' and $args['t']='empty' and $args['hard']='hard': $args['dyn']='NumInStr' 
+	if $type='string' and ($resType='string' or $resType='empty' or $resType='both'): $mode='StrInStr'
+	if $type='string' and $resType='tuple': $mode='TplInStr'
+	if $type='string' and $resType='number': $mode='NumInStr'
+	if $type='string' and $resType='empty' and $hard='hard': $mode='NumInStr' 
 	!@ преобразуем в числовой
-	if $args['type']='number' and ($args['t']='string' or $args['t']='empty'): $args['dyn']='StrInNum'
-	if $args['type']='number' and ($args['t']='number' or $args['t']='both'): $args['dyn']='NumInNum'
+	if $type='number' and ($resType='string' or $resType='empty' or $resType='tuple'): $mode='StrInNum'
+	if $type='number' and ($resType='number' or $resType='both'): $mode='NumInNum'
 	!@ для реверса
-	if $args['type']='reverse' and ($args['t']='string' or $args['t']='empty'): $args['dyn']='StrInNum'
-	if $args['type']='reverse' and $args['t']='number': $args['dyn']='NumInStr'
-	if $args['type']='reverse' and $args['t']='both': $args['dyn']='both'
-	if $args['dyn']='StrInNum':
-		dynamic $args['dyn.StrInNum'],args['i']
-	elseif $args['dyn']='NumInStr':
-		dynamic $args['dyn.NumInStr'],args['i']
-	elseif $args['dyn']='both':
-		dynamic $args['dyn.StrInStr'],args['i']
-		dynamic $args['dyn.NumInNum'],args['i']
-	elseif $args['dyn']='NumInNum':
-		dynamic $args['dyn.NumInNum'],args['i']
-	elseif $args['dyn']='StrInStr':
-		dynamic $args['dyn.StrInStr'],args['i']
+	if $type='reverse' and ($resType='string' or $resType='empty' or $resType='tuple'): $mode='StrInNum'
+	if $type='reverse' and $resType='number': $mode='NumInStr'
+	if $type='reverse' and $resType='both': $mode='both'	& !@ данный режим не должен выпадать в 5.8.0
+	if $mode='both':
+		!@ данный режим ошибочный, но я его оставляю, пока не отловлю возможные баги
+		dynamic $convert['StrInStr'],i
+		dynamic $convert['NumInNum'],i
+	else
+		dynamic $convert[$mode],i
 	end
-	args['i']+=1
-	jump 'for_reverse'
 end
+ },$args[0],$args[1],$args[2]	& !@ передаём в dynamic все аргументы, хотя все они нам и не нужны.
 if $args[0]=$args[2]:
 	killvar $args[0]
 end
-copyarr $args[2],'easy_math_temp'
-killvar 'easy_math_temp'
+copyarr $args[2],'em_arr_chtype_new_array'
 --- em.arr.chType ---------------------------------
 !@pp:endif
 
