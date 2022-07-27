@@ -7,6 +7,7 @@
 		},
 		{
 			"build":"D:\\my\\GameDev\\QuestSoftPlayer\\games\\+releases+\\+lib+\\launcher.em\\launcher.em.qsp",
+			"folders":[{"path":"D:\\my\\GameDev\\QuestSoftPlayer\\games\\+releases+\\+lib+\\launcher.em\\[autotest]"}],
 			"files":[{"path":"D:\\my\\GameDev\\QuestSoftPlayer\\games\\+releases+\\+lib+\\launcher.em\\launcher.em.qsps"}]
 		}
 	],

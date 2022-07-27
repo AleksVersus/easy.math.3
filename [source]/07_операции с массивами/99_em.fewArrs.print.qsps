@@ -71,40 +71,42 @@ else
 				!@ выводим строковые значения массива
 				if $args['table']<>'':
 					!@ если мы имеем дело с таблицей
-					$args['cell']+=$dyneval("
-!@pp:в ячейке может содержаться кортеж, тогда нам необходимо вывести кортеж
-						if instr(<<$args[args['i']]>>[args[0]],'')<>0:
-							$result+='('+$replace(<<$args[args['i']]>>[args[0]],'',',')+')'
-!@pp:не пустые ячейки обрабатываем, чтобы заменить некоторые символы для вывода
-						elseif <<$args[args['i']]>>[args[0]]<>'':
-							$result = $replace(<<$args[args['i']]>>[args[0]],' ','&nbsp;')
+					$args['cell']+=$dyneval({
+						!@ $args[1] - название массива
+						!@ $args[0] - номер ячейки
+						!@ в ячейке может содержаться кортеж, тогда нам необходимо вывести кортеж
+						if instr($arritem($args[1],args[0]),'')<>0:
+							$result+='('+$replace($arritem($args[1],args[0]),'',',')+')'
+							!@ не пустые ячейки обрабатываем, чтобы заменить некоторые символы для вывода
+						elseif $arritem($args[1],args[0])<>'':
+							$result = $replace($arritem($args[1],args[0]),' ','&nbsp;')
 							$result = $replace($result,'<','&lt;')
 							$result = $replace($result,'>','&gt;')
 						else
-!@pp:в пустых ячейках ставим пробелы
+							!@ в пустых ячейках ставим пробелы
 							$result='&nbsp;'
 						end
-					",args['b'])
+					},args['b'],$args[args['i']])
 				else
 					!@ для не таблицы просто добавляем значение
 					if $args['only result']<>'only result':
-						$args['cell']+="'"+$dyneval("
-!@pp:в ячейке может содержаться как кортеж, так и обычная строка
-						if instr(<<$args[args['i']]>>[args[0]],'')<>0:
-							$result+='('+$replace(<<$args[args['i']]>>[args[0]],'',',')+')'
-						else
-							$result = $replace(<<$args[args['i']]>>[args[0]],""'"",""''"")
-						end
-						",args['b'])+"'"
+						$args['cell']+="'"+$dyneval({
+							!@ в ячейке может содержаться как кортеж, так и обычная строка
+							if instr($arritem($args[1],args[0]),'')<>0:
+								$result+='('+$replace($arritem($args[1],args[0]),'',',')+')'
+							else
+								$result = $replace($arritem($args[1],args[0]),"'","''")
+							end
+						},args['b'],$args[args['i']])+"'"
 					else
-						$args['cell']+=$dyneval("
-!@pp:в ячейке может содержаться, как кортеж, так и обычная строка
-						if instr(<<$args[args['i']]>>[args[0]],'')<>0:
-							$result+='('+$replace(<<$args[args['i']]>>[args[0]],'',',')+')'
-						else
-							$result = <<$args[args['i']]>>[args[0]]
-						end
-						",args['b'])
+						$args['cell']+=$dyneval({
+							!@ в ячейке может содержаться, как кортеж, так и обычная строка
+							if instr($arritem($args[1],args[0]),'')<>0:
+								$result+='('+$replace($arritem($args[1],args[0]),'',',')+')'
+							else
+								$result = $arritem($args[1],args[0])
+							end
+						},args['b'],$args[args['i']])
 					end
 				end
 			else
