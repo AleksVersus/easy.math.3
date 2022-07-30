@@ -3,101 +3,101 @@ $args[0] - делимое, только текстовое
 $args[1] - делитель, только текстовое
 args[2] - точность 1 -целые- 10 десятые доли, 100 сотые, 1000 - тысячные.
 $result - частное, текстовое значение
+minus - знак, а так же метка знака $minus
+$int - целая часть числа
+$fract - дробная часть числа
+fract_len — длина дробной части
+$divident - делимое
+$divisor - делитель
+$res - результат
+$approx - приближение
 !@pp:if(em_div):include
-# #:#
-$args[9]=$args[9]	& !@ инициализация аргументов 
-$args[0]=$func('em.dz',$args[0],1)
-$args[1]=$func('em.dz',$args[1],1)
+# em.div
+local minus, $int, $fract, $divident, $divisor, $res, $approx, digit, $subtract
+$args[0]=@em.dz($args[0],1)
+$args[1]=@em.dz($args[1],1)
 if args[2]<1: args[2]=1000
 !@ получаем знак
-if instr($args[0],'-')=1:
-	$args[0]=$mid($args[0],2)
-	args['minus']=1-args['minus']
-end
-if instr($args[1],'-')=1:
-	$args[1]=$mid($args[1],2)
-	args['minus']=1-args['minus']
-end
+if instr($args[0],'-')=1: $args[0]=$mid($args[0],2) & minus=1-minus
+if instr($args[1],'-')=1: $args[1]=$mid($args[1],2) & minus=1-minus
 !@ выставляем метку знака
-if args['minus']=1: $args['+']='-' else $args['+']=''
+if minus=1: $minus='-' else $minus=''
 !@ делим на целую и дробную часть
-	!@ делимое
+!@ делимое
 if instr($args[0],'.')<>0:
-	$args['int_0']=$mid($args[0],1,instr($args[0],'.')-1)
-	$args['float_0']=$mid($args[0],instr($args[0],'.')+1)
+	$int[0]=$mid($args[0],1,instr($args[0],'.')-1)
+	$fract[0]=$mid($args[0],instr($args[0],'.')+1)
 else:
-	$args['int_0']=$args[0]
-	$args['float_0']=''
+	$int[0]=$args[0]
+	$fract[0]=''
 end
-args['len_0']=len($args['float_0'])
+fract_len[0]=len($fract[0])
 	!@ делитель
 if instr($args[1],'.')<>0:
-	$args['int_1']=$mid($args[1],1,instr($args[1],'.')-1)
-	$args['float_1']=$mid($args[1],instr($args[1],'.')+1)
+	$int[1]=$mid($args[1],1,instr($args[1],'.')-1)
+	$fract[1]=$mid($args[1],instr($args[1],'.')+1)
 else:
-	$args['int_1']=$args[1]
-	$args['float_1']=''
+	$int[1]=$args[1]
+	$fract[1]=''
 end
-args['len_1']=len($args['float_1'])
+fract_len[1]=len($fract[1])
 !@ приводим дробную часть к одной длине
-if args['len_1']>args['len_0']:
+if fract_len[1]>fract_len[0]:
 	!@ если длина дробной части делителя больше, приводим длину делимого к ней
-	$args['float_0']+=$func('em.zero',args['len_1']-args['len_0'])
+	$fract[0]+=@em.zero(fract_len[1]-fract_len[0])
 else
 	!@ в противном случае приводим длину делителя к делимому
-	$args['float_1']+=$func('em.zero',args['len_0']-args['len_1'])
+	$fract[1]+=@em.zero(fract_len[0]-fract_len[1])
 end
 !@ теперь можно подготовить оба числа к работе с ними, как с целыми
-$args[0]=$args['int_0']+$args['float_0']
-$args[1]=$args['int_1']+$args['float_1']
+$divident=$int[0]+$fract[0]
+$divisor=$int[1]+$fract[1]
 !@ результат будем записывать в переменную:
-$args['результат']='0'
+$res='0'
 !@ первое приближение для вычисления
-$args['приближение']=$mid($args[0],1,len($args[1]))
-$args[0]=$mid($args[0],len($args[1])+1)
-args['цифра']=0
-:for
-if args[2]>0:
-	$args['вычитание']=$func('em.byte.dev','0'+$args['приближение'],'0'+$args[1])
-	if instr($args['вычитание'],'9')=1:
+$approx=$mid($divident,1,len($divisor))
+$divident=$mid($divident,len($divisor)+1)
+digit=0
+loop local i=args[2] while i>0:
+	$subtract=@em.byte.dev('0'+$approx,'0'+$divisor)
+	if instr($subtract,'9')=1:
 		!@ если при попытке вычесть из приближения делитель, получается отрицательный результат
 		!@ переходим к следующему разряду, т.е.
-		$args['результат']+=$str(args['цифра'])	& !@ набраную цифру приписываем к результату
-		args['цифра']=0
-		if len($args[0])>0:
+		$res+=$str(digit)	& !@ набраную цифру приписываем к результату
+		digit=0
+		if len($divident)>0:
 			!@ если есть из чего набирать числа, добираем следующую цифру
-			$args['приближение']+=$mid($args[0],1,1)
-			$args[0]=$mid($args[0],2)
+			$approx+=$mid($divident,1,1)
+			$divident=$mid($divident,2)
 		else
-			if instr($args['результат'],'.')=0: $args['результат']+='.'
-			$args['приближение']+='0'
+			if instr($res,'.')=0: $res+='.'
+			$approx+='0'
 		end
-		if instr($args['результат'],'.')<>0: args[2]=args[2]/10
+		if instr($res,'.')<>0: i/=10
 	else
 		!@ если при попытке вычесть получаем положительный результат
-		args['цифра']+=1	& !@ увеличиваем набираемую цифру
-		$args['приближение']=$mid($args['вычитание'],2)	& !@ приближение теперь равно вычитанию
+		digit+=1	& !@ увеличиваем набираемую цифру
+		$approx=$mid($subtract,2)	& !@ приближение теперь равно вычитанию
 	end
-	jump 'for'
 end
-$result=$args['+']+$func('em.dz',$args['результат'])
---- #:# ---------------------------------
+$result=$minus+@em.dz($res)
+--- em.div ---------------------------------
 !@pp:endif
 
 Прежде данная функция выглядела так:
-!# #:#
+!# em.div
 $args[9]=$args[9]
-$args[0]=$func('em.dz',$args[0],1)
-$args[1]=$func('em.dz',$args[1],1)
+$args[0]=@em.dz($args[0],1)
+$args[1]=@em.dz($args[1],1)
 args[2] = args[2]
 args['max']=max(func('em.divdigs',$args[0]),func('em.divdigs',$args[1]))
 args[0] = func('em.undiv',$args[0],args['max'])
 args[1] = func('em.undiv',$args[1],args['max'])
 $result=$func('em.indiv',args[0],args[1],args[2])
-!--- #:# ---------------------------------
+!--- em.div ---------------------------------
 
 Это давало повышенную скорость работы. Где-то в 10 раз быстрее. Однако это и накладывало некоторые ограничения на аргументы. Например, старая версия функции неверно вычисляла вот такие значения:
-$func('#:#','3123.869504',"3.7",1000000)
+$func('em.div','3123.869504',"3.7",1000000)
 = -316.512916
 
 Теперь ограничение связано только с числом знаков после запятой, до которого можно выполнить вычисления.
@@ -110,3 +110,14 @@ $func('#:#','3123.869504',"3.7",1000000)
 !@pp:var(em_zero)
 !@pp:var(em_dev)
 !@pp:endif
+
+@em.div('9.05',"-9",10000)		& !@ '-1.0055'
+@em.div('9.05','-9.05',10000)	& !@ '-1'
+@em.div('9.05',"10")			& !@ '0.905'
+@em.div('9.05',"9.55",10000)	& !@ '0.9476'
+@em.div('9.99',"9.999",10000)	& !@ '0.999'
+@em.div('9.99',"9.999",1000000)	& !@ '0.999099'
+@em.div('-1.69',"1.3",10000)	& !@ '-1.3'
+@em.div('1.69',"1.3",10000)		& !@ '1.3'
+@em.div('-1.69',"-1.3",10000)	& !@ '1.3'
+@em.div('1.69',"-1.3",10000)	& !@ '-1.3'
