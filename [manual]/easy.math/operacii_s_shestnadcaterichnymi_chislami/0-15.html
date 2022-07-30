@@ -17,7 +17,7 @@
                 <div><a href="../manual.html">Назад</a></div>
                 <h3>Операции над шестнадцатеричными числами</h3>
                 
-                <a id="hexdec"></a><h4>#hex-dec#</h4>
+                <a id="hexdec"></a><h4>em.hex.inDec</h4>
 
                 <p>Функция перевода из гексаметричного числа в декаметричное. Не работает с отрицательными значениями.</p>
                 <p>Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет те же ограничения на значение результата, что и прочие фукции, т.е. результат должен лежать в пределе [-2147483648 ... 2147483647] (для Q.S.P. 5.7.0).</p>
@@ -27,21 +27,21 @@
                 </p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ff'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">255</span><br>
-                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'22'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">34</span><br>
-                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'10'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">16</span><br>
-                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'1'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">1</span><br>
-                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'a'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">10</span><br>
-                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ffaa233'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">268083763</span><br>
-                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ffaa23'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">16755235</span><br>
-                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ffaa2'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">1047202</span><br>
-                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ffaa233451'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Operator" style="color:#ff0000;">-</span><span class="Monokai-Numeric" style="color:#ff0000;">1440533423</span><br>
-                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ffaa23345'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Operator" style="color:#ff0000;">-</span><span class="Monokai-Numeric" style="color:#ff0000;">90033339</span><br>
-                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#hex-dec#'</span>,<span class="Monokai-String">'ffaa2334'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Operator" style="color:#ff0000;">-</span><span class="Monokai-Numeric" style="color:#ff0000;">5627084</span>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.hex.inDec'</span>,<span class="Monokai-String">'ff'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">255</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.hex.inDec'</span>,<span class="Monokai-String">'22'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">34</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.hex.inDec'</span>,<span class="Monokai-String">'10'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">16</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.hex.inDec'</span>,<span class="Monokai-String">'1'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">1</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.hex.inDec'</span>,<span class="Monokai-String">'a'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">10</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.hex.inDec'</span>,<span class="Monokai-String">'ffaa233'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">268083763</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.hex.inDec'</span>,<span class="Monokai-String">'ffaa23'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">16755235</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.hex.inDec'</span>,<span class="Monokai-String">'ffaa2'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Numeric">1047202</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.hex.inDec'</span>,<span class="Monokai-String">'ffaa233451'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Operator" style="color:#ff0000;">-</span><span class="Monokai-Numeric" style="color:#ff0000;">1440533423</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.hex.inDec'</span>,<span class="Monokai-String">'ffaa23345'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Operator" style="color:#ff0000;">-</span><span class="Monokai-Numeric" style="color:#ff0000;">90033339</span><br>
+                    <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.hex.inDec'</span>,<span class="Monokai-String">'ffaa2334'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-Operator" style="color:#ff0000;">-</span><span class="Monokai-Numeric" style="color:#ff0000;">5627084</span>
                 </div>
                 <p>Как видно, последние три результата получились отрицательными, значит превышены пределы значений результата, а соответственно и числа, которые переводятся в десятеричную систему тоже превышают предел.
                 </p>
-                <a id="dechex"></a><h4>#dec-hex#</h4>
+                <a id="dechex"></a><h4>em.dec.inHex</h4>
 
                 <p>Функция перевода из декаметричного числа в гексаметричное. Не работает с отрицательными значениями.</p>
                 <p>Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет ограничения на значения аргумента в пределе [-2147483648 ... 2147483647] (для Q.S.P. 5.7.0).</p>
@@ -51,35 +51,35 @@
                 </p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-hex#'</span>,<span class="Monokai-Numeric">2147483647</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'7fffffff'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-hex#'</span>,<span class="Monokai-Numeric">214</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'d6'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-hex#'</span>,<span class="Monokai-Numeric">255</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ff'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-hex#'</span>,<span class="Monokai-Numeric">10</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'a'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-hex#'</span>,<span class="Monokai-Numeric">9</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'9'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-hex#'</span>,<span class="Monokai-Numeric">2147483648</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String" style="color:#ff0000;">'-0'</span>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.dec.inHex'</span>,<span class="Monokai-Numeric">2147483647</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'7fffffff'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.dec.inHex'</span>,<span class="Monokai-Numeric">214</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'d6'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.dec.inHex'</span>,<span class="Monokai-Numeric">255</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ff'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.dec.inHex'</span>,<span class="Monokai-Numeric">10</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'a'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.dec.inHex'</span>,<span class="Monokai-Numeric">9</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'9'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.dec.inHex'</span>,<span class="Monokai-Numeric">2147483648</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String" style="color:#ff0000;">'-0'</span>
                 </div>
                 <p>Как видно, последний результат получился отрицательным, потому что был превышен предел на значения аргумента.</p>
                 
-                <a id="deccol"></a><h4>#dec-col#</h4>
+                <a id="deccol"></a><h4>em.dec.inCol</h4>
 
-                <p>Преобразует десятеричное число в шестнадцатеричное. Отличием от функции <span class="emFOLD">#dec-hex#</span> является ограничение на значение аргумента в пределах [-255 ... 255]. Если пределы превышены, функция выдаёт в результат <span class="emTEXT">ff</span>. Любое число в пределах преобразуется к двуразрядному шестнадцатеричному числу. Таким образом ограничение на результат лежит в пределах [<span class="emTEXT">-ff</span> ... <span class="emTEXT">ff</span>].</p>
+                <p>Преобразует десятеричное число в шестнадцатеричное. Отличием от функции <span class="emFOLD">em.dec.inHex</span> является ограничение на значение аргумента в пределах [-255 ... 255]. Если пределы превышены, функция выдаёт в результат <span class="emTEXT">ff</span>. Любое число в пределах преобразуется к двуразрядному шестнадцатеричному числу. Таким образом ограничение на результат лежит в пределах [<span class="emTEXT">-ff</span> ... <span class="emTEXT">ff</span>].</p>
                 <p class="em_CODE">
                     <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - число целое, десятеричное.
                     <br><span class="emVAR">&nbsp;$result</span> - шестнадцатеричное двуразрядное число (текстовое значение).
                 </p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-col#'</span>,<span class="Monokai-Numeric">2147483647</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'ff'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-col#'</span>,<span class="Monokai-Numeric">214</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'d6'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-col#'</span>,<span class="Monokai-Numeric">255</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ff'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-col#'</span>,<span class="Monokai-Operator">-</span><span class="Monokai-Numeric">10</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-0a'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-col#'</span>,<span class="Monokai-Numeric">256</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ff'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#dec-col#'</span>,<span class="Monokai-Numeric">16</span>)</span>  <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'10'</span>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.dec.inCol'</span>,<span class="Monokai-Numeric">2147483647</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'ff'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.dec.inCol'</span>,<span class="Monokai-Numeric">214</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'d6'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.dec.inCol'</span>,<span class="Monokai-Numeric">255</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ff'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.dec.inCol'</span>,<span class="Monokai-Operator">-</span><span class="Monokai-Numeric">10</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-0a'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.dec.inCol'</span>,<span class="Monokai-Numeric">256</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ff'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.dec.inCol'</span>,<span class="Monokai-Numeric">16</span>)</span>  <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'10'</span>
                 </div>
                 
-                <a id="col"></a><h4>#+col#</h4>
+                <a id="col"></a><h4>em.col.add</h4>
 
-                <p>Функция предназначена для изменения цвета для HTML; использует функции <span class="emFOLD">#hex-dec#</span> и <span class="emFOLD">#dec-col#</span>.</p>
+                <p>Функция предназначена для изменения цвета для HTML; использует функции <span class="emFOLD">em.hex.inDec</span> и <span class="emFOLD">em.dec.inCol</span>.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - значение. Шестнадцатеричный формат, двузначное число. (может быть отрицательным)
@@ -88,35 +88,35 @@
                 <p>Это может пригодиться для плавного гашения цвета, или наоборот. Функция используется в движке игры <span class="emTEXT">"МАГИКОН"</span>, чтобы гасить цвета заголовков в зависимости от уровней.</p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+col#'</span>,<span class="Monokai-String">'ff0000'</span>,<span class="Monokai-String">'-44'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'bb0000'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+col#'</span>,<span class="Monokai-String">'000000'</span>,<span class="Monokai-String">'-44'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'000000'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+col#'</span>,<span class="Monokai-String">'dd0000'</span>,<span class="Monokai-String">'22'</span>)</span>  <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ff2222'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+col#'</span>,<span class="Monokai-String">'dd8822'</span>,<span class="Monokai-String">'-44'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'994400'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#+col#'</span>,<span class="Monokai-String">'dd8822'</span>,<span class="Monokai-String">'44'</span>)</span>  <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ffcc66'</span>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.col.add'</span>,<span class="Monokai-String">'ff0000'</span>,<span class="Monokai-String">'-44'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'bb0000'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.col.add'</span>,<span class="Monokai-String">'000000'</span>,<span class="Monokai-String">'-44'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'000000'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.col.add'</span>,<span class="Monokai-String">'dd0000'</span>,<span class="Monokai-String">'22'</span>)</span>  <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ff2222'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.col.add'</span>,<span class="Monokai-String">'dd8822'</span>,<span class="Monokai-String">'-44'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'994400'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.col.add'</span>,<span class="Monokai-String">'dd8822'</span>,<span class="Monokai-String">'44'</span>)</span>  <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'ffcc66'</span>
                 </div>
                 
-                <a id="colrgb"></a><h4>#col-rgb#</h4>
+                <a id="colrgb"></a><h4>em.col.inRGB</h4>
 
-                <p>Данная функция преобразует цвет, записанный в шестнадцатеричной форме, в числовой код цвета, понятный QSP; использует функцию <span class="emFOLD">#hex-dec#</span>.</p>
+                <p>Данная функция преобразует цвет, записанный в шестнадцатеричной форме, в числовой код цвета, понятный QSP; использует функцию <span class="emFOLD">em.hex.inDec</span>.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным);<br>
                     <span class="emVAR">result</span> - числовой код цвета в формате QSP.
                 </p>
                 <p>Функция является как бы надстройкой системной функции <span class="emFUNC">rgb</span> и работает следующим образом: шестнадцатеричный код цвета разбивается на три двузначных шестнадцатеричных числа, которые преобразуются в десятеричные числа и передаются функции <span class="emFUNC">rgb</span> в качестве аргументов.</p>
-                <p>Если в качестве аргумента указать неверное шестнадцатеричное число, функция всё равно вернёт результат, заменив неверные символы нулями. То же самое произойдёт, если указать отрицательное шестнадцатеричное число. Минус будет считаться неизвестным символом и <span class="emFOLD">#hex-dec#</span> заменит его на ноль. Последняя цифра будет отсечена.</p>
+                <p>Если в качестве аргумента указать неверное шестнадцатеричное число, функция всё равно вернёт результат, заменив неверные символы нулями. То же самое произойдёт, если указать отрицательное шестнадцатеричное число. Минус будет считаться неизвестным символом и <span class="emFOLD">em.hex.inDec</span> заменит его на ноль. Последняя цифра будет отсечена.</p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#col-rgb#'</span>,<span class="Monokai-String">'ff0000'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-16776961'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#col-rgb#'</span>,<span class="Monokai-String">'000000'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-16777216'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#col-rgb#'</span>,<span class="Monokai-String">'dd0000'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-16776995'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#col-rgb#'</span>,<span class="Monokai-String">'dd8822'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-14513955'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#col-rgb#'</span>,<span class="Monokai-String" style="color:#ff6543;">'ffmm00'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-16776961'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#col-rgb#'</span>,<span class="Monokai-String" style="color:#ff6543;">'-0000ff'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-15794176'</span>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.col.inRGB'</span>,<span class="Monokai-String">'ff0000'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-16776961'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.col.inRGB'</span>,<span class="Monokai-String">'000000'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-16777216'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.col.inRGB'</span>,<span class="Monokai-String">'dd0000'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-16776995'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.col.inRGB'</span>,<span class="Monokai-String">'dd8822'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-14513955'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.col.inRGB'</span>,<span class="Monokai-String" style="color:#ff6543;">'ffmm00'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-16776961'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.col.inRGB'</span>,<span class="Monokai-String" style="color:#ff6543;">'-0000ff'</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-15794176'</span>
                 </div>
                 
-                <a id="colinv"></a><h4>#col-inv#</h4>
+                <a id="colinv"></a><h4>em.col.inv</h4>
 
-                <p>Возвращает шестнадцатеричный код цвета противоположного указанному; использует функцию <span class="emFOLD">#+col#</span>.</p>
+                <p>Возвращает шестнадцатеричный код цвета противоположного указанному; использует функцию <span class="emFOLD">em.col.add</span>.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
                 </p>

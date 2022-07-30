@@ -16,7 +16,7 @@
                 <div><a href="../manual.html">Назад</a></div>
                 <h3>Операции над массивами</h3>
                 <!-- Страница первая -->
-                <a id="arrayprnt"></a><h4>#array.prnt#</h4>
+                <a id="arrayprnt"></a><h4>em.arr.print</h4>
                 
                 <p>Иногда необходимо просмотреть содержимое массива, или записать его в удобном виде в переменную. Для этого приходится вводить цикличиские конструкции непосредственно в код. Данная функция предназначена для того, чтобы избавить Вас от необходимости строить такие конструкции каждый раз. Достаточно указать аргументом имя массива и функция вернёт в результате столбец со значениями.</p>
                 <div class="em_CODE">
@@ -43,11 +43,11 @@
                 </div>
                 <h5>Примеры вызова функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.prnt#'</span>,<span class="Monokai-String">'mass'</span>)</span><br>
+                    <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'mass'</span>)</span><br>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Comment">  - выведет на экран числовые значения массива 'mass'</span><br>
-                    <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.prnt#'</span>,<span class="Monokai-String">'$mass'</span>)</span><br>
+                    <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$mass'</span>)</span><br>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Comment">  - выведет на экран текстовые значения массива '$mass'</span><br>
-                    <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.prnt#'</span>,<span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'[only&nbsp;Result]'</span>)</span><br>
+                    <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'[only&nbsp;Result]'</span>)</span><br>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Comment">  - выведет на экран только содержимое массива '$mass'</span>
                 </div>
                 <h5>Результаты вызова функции:</h5>
@@ -65,7 +65,7 @@
                 </div>
                 <p class="emTEXT">Вывод массива:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.prnt#'</span>,<span class="Monokai-String">'$a'</span>)</span><span class="Monokai-Assign">=</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$a'</span>)</span><span class="Monokai-Assign">=</span><br>
                     <span class="Monokai-String" style="color:#44bb44;">
                         "$a[0]='нулевая&nbsp;ячейка'<br>
                         $a[1]='&nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;'<br>
@@ -79,7 +79,7 @@
                 </div>
                 <p class="emTEXT">Выводим исключительно значения массива:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.prnt#'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[only&nbsp;result]'</span>)</span><span class="Monokai-Assign">=</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[only&nbsp;result]'</span>)</span><span class="Monokai-Assign">=</span><br>
                     <span class="Monokai-String" style="color:#44bb44;">"нулевая ячейка<br>
                     &nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;<br>
                     &nbsp;&nbsp;вторая&nbsp;ячейка<br>
@@ -92,7 +92,7 @@
                 </div>
                 <p class="emTEXT">Выводим значения массива с отсечением прилегающих пробелов в каждом значении:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.prnt#'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim]'</span>)</span><span class="Monokai-Assign">=</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim]'</span>)</span><span class="Monokai-Assign">=</span><br>
                     <span class="Monokai-String" style="color:#44bb44;">
                         "$a[0]='нулевая&nbsp;ячейка'<br>
                         $a[1]='первая&nbsp;ячейка'<br>
@@ -107,16 +107,16 @@
                 </div>
                 <p class="emTEXT">Выводим исключительно значения массива, со второго по пятый элемент, включительно, с отсечением прилегающих пробелов в каждом значении; в качестве разделителя используем вертикальную черту:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.prnt#'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim]&nbsp;[only&nbsp;result]'</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim]&nbsp;[only&nbsp;result]'</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span>
                     <br><span class="Monokai-String" style="color:#44bb44;">"вторая&nbsp;ячейка||четвёртая&nbsp;ячейка|пятая&nbsp;ячейка|"</span>
                 </div>
                 <p class="emTEXT">Выводим исключительно значения массива, со второго по пятый элемент, включительно, с отсечением прилегающих пробелов в каждом значении; в качестве разделителя используем вертикальную черту; последний разделитель опускаем:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.prnt#'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim]&nbsp;[only&nbsp;result]&nbsp;[not&nbsp;last]'</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim]&nbsp;[only&nbsp;result]&nbsp;[not&nbsp;last]'</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span>
                     <br><span class="Monokai-String" style="color:#44bb44;">"вторая&nbsp;ячейка||четвёртая&nbsp;ячейка|пятая&nbsp;ячейка"</span>
                 </div>
                 
-                <a id="arrayprntfew"></a><h4>#array.prnt.few#</h4>
+                <a id="arrayprntfew"></a><h4>em.fewArrs.print</h4>
                 
                 <p>Данная функция позволяет выводить на экран содержимое сразу нескольких массивов, для сравнения например.</p>
                 <p>По умолчанию функция выводит содержимое всех массивов в виде таблицы, однако вывод таблицей можно отключить, использовав в последнем аргументе управляющую конструкцию <span class="emTEXT">[no&nbsp;table]</span>. Последним аргументом может быть как имя массива так и управляющая конструкция. Функция считает управляющей конструкцией всякую строку в последнем аргументе, в которой между непробельными символами находится пробельный (или другой недопустимый знак). Прилегающие пробелы в остальных аргументах уничтожаются, поэтому вы можете записать имя массива в аргументе скажем так <span class="emTEXT">"&nbsp;$mass&nbsp;"</span> (апострофы по правилам QSP для записи текстовых значений). Если же вы допустите в имени массива ошибку, функция известит вас об этом.</p>
@@ -156,7 +156,7 @@
                 </div>
                 <p class="emTEXT">Вывод двух массивов:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.prnt.few#'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>)</span><span class="Monokai-Assign">=</span>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.fewArrs.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>)</span><span class="Monokai-Assign">=</span>
                     <table  class="Monokai-String" style="color:#44bb44;border:1px solid;border-spacing:0.3em;">
                         <tr>
                             <td style="border:1px solid;border-spacing:0.3em;">#</td>
@@ -207,7 +207,7 @@
                 </div>
                 <p class="emTEXT">Вывод двух массивов, только значения:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.prnt.few#'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>,<span class="Monokai-String">'[only&nbsp;result]'</span>)</span><span class="Monokai-Assign">=</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.fewArrs.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>,<span class="Monokai-String">'[only&nbsp;result]'</span>)</span><span class="Monokai-Assign">=</span><br>
                     <span class="Monokai-String" style="color:#44bb44;">
                         "нулевая&nbsp;ячейка&nbsp;&nbsp;нулевая&nbsp;ячейка<br>
                         &nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;<br>
@@ -221,7 +221,7 @@
                 </div>
                 <p class="emTEXT">Вывод двух массивов, без таблицы:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.prnt.few#'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>,<span class="Monokai-String">'[no&nbsp;table]'</span>)</span><span class="Monokai-Assign">=</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.fewArrs.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>,<span class="Monokai-String">'[no&nbsp;table]'</span>)</span><span class="Monokai-Assign">=</span><br>
                     <span class="Monokai-String" style="color:#44bb44;">
                         "$a[0]='нулевая&nbsp;ячейка'&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;$b[0]='нулевая&nbsp;ячейка'<br>
                         $a[1]='&nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;'&nbsp;&amp;&nbsp;&nbsp;&nbsp;$b[1]='&nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;'<br>
@@ -235,16 +235,16 @@
                 </div>
                 <p class="emTEXT">Вывод двух пустых массивов:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.prnt.few#'</span>,<span class="Monokai-String">'$c'</span>,<span class="Monokai-String">'$d'</span>)</span><span class="Monokai-Assign">=</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.fewArrs.print'</span>,<span class="Monokai-String">'$c'</span>,<span class="Monokai-String">'$d'</span>)</span><span class="Monokai-Assign">=</span><br>
                     <span class="Monokai-String" style="color:#44bb44;">"All your massives are empty."</span>
                 </div>
                 <p class="emTEXT">Ошибочное написание имени массива:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.prnt.few#'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>,<span class="Monokai-String">'[no&nbsp;table]'</span>,<span class="Monokai-String">'$f'</span>)</span><span class="Monokai-Assign">=</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.fewArrs.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>,<span class="Monokai-String">'[no&nbsp;table]'</span>,<span class="Monokai-String">'$f'</span>)</span><span class="Monokai-Assign">=</span><br>
                     <span class="Monokai-String" style="color:#44bb44;">"Error: Array's name is not correct. ARGS[2]: '[no table]'"</span>
                 </div>
                 
-                <a id="arrayins"></a><h4 class="emH4">#array.ins#</h4>
+                <a id="arrayins"></a><h4 class="emH4">em.arr.insert</h4>
                 
                 <p></p>
                 <p>Функция для вставки элемента в массив со сдвигом вправо.</p>
@@ -267,8 +267,8 @@
                 </div>
                 <p class="emTEXT">Вставка по числовому или текстовому индексу:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.ins#'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">4</span><br>
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.ins#'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-String">'text'</span><br>
+                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.insert'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">4</span><br>
+                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.insert'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-String">'text'</span><br>
                     <br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">574</span><br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">668</span><br>
@@ -281,7 +281,7 @@
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">272</span>
                 </div>
                 
-                <a id="arrayclr"></a><h4 class="emH4">#array.clr#</h4>
+                <a id="arrayclr"></a><h4 class="emH4">em.arr.clear</h4>
                 
                 <p></p>
                 <p>Функция для удаления из массива всех элементов с указанным значением.</p>
@@ -303,7 +303,7 @@
                 </div>
                 <p class="emTEXT">Удаляем все двойки:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.clr#'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">2</span><br>
+                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.clear'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">2</span><br>
                     <br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br>
@@ -372,7 +372,7 @@
                 <p>Скорость работы функции: около 17 секунд на 100 000 элементов.</p>
                 <hr>
                 <!-- Страница вторая -->
-                <a id="arrayrand"></a><h4>#array.rand#</h4>
+                <a id="arrayrand"></a><h4>em.arr.randFill</h4>
 
                 <p>Генерирует случайные числа и заполняет ими указанный массив. Если массив существует, его значения будут перезаписаны.</p>
                 <p class="em_CODE">
@@ -384,7 +384,7 @@
                 </p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.rand#'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">8</span><br>
+                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">8</span><br>
                     <br>
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">574</span><br>
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">668</span><br>
@@ -395,7 +395,7 @@
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">701</span><br>
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">272</span><br>
                     <br>
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.rand#'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">2</span><br>
+                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">2</span><br>
                     <br>
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
@@ -406,7 +406,7 @@
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">334</span><br>
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">950</span><br>
                     <br>
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.rand#'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">20</span><br>
+                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">20</span><br>
                     <br>
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
@@ -418,7 +418,7 @@
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">17</span>
                 </div>
                 
-                <a id="arraystrt"></a><h4>#array.strt#</h4>
+                <a id="arraystrt"></a><h4>em.arr.strtFill</h4>
                 
                 <p>Заполняет массив порядковыми числами. Если массив существует, его значения будут перезаписаны.</p>
                 <p class="em_CODE">
@@ -430,7 +430,7 @@
                 </p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.strt#'</span>,<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span><br>
+                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.strtFill'</span>,<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span><br>
                     <br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
@@ -441,7 +441,7 @@
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">6</span><br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">7</span><br>
                     <br>
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.strt#'</span>,<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">4</span><br>
+                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.strtFill'</span>,<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">4</span><br>
                     <br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
@@ -452,7 +452,7 @@
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
                     <br>
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.strt#'</span>,<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">0</span>,<span class="Monokai-Numeric">2</span><br>
+                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.strtFill'</span>,<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">0</span>,<span class="Monokai-Numeric">2</span><br>
                     <br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
@@ -463,7 +463,7 @@
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
                     <br>
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.strt#'</span>,<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">5</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">2</span><br>
+                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.strtFill'</span>,<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">5</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">2</span><br>
                     <br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
@@ -475,7 +475,7 @@
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">5</span>
                 </div>
                 
-                <a id="arraysort"></a><h4 class="emH4">#array.sort#</h4>
+                <a id="arraysort"></a><h4 class="emH4">em.arr.sort</h4>
                 
                 <p>Программа сортирует значения массива (используется метод сортировки "пузырьком"). Результатом работы программы могут быть три разных массива. Направление сортировки: от нулевого элемента к последнему.</p>
                 <p class="em_CODE">
@@ -489,11 +489,11 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                         <tr>
-                            <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.rand#'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
+                            <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
                             <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Генерируем массив случайных чисел</span></td>
                         </tr>
                         <tr>
-                            <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.sort#'</span>,<span class="Monokai-String">'old_mass'</span></td>
+                            <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'old_mass'</span></td>
                             <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортируем полученный массив</span></td>
                         </tr>
                     </table>
@@ -541,11 +541,11 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                     <tr>
-                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.rand#'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
+                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Генерируем массив случайных чисел</span></td>
                     </tr>
                     <tr>
-                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.sort#'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span></td>
+                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортируем полученный массив вниз</span></td>
                     </tr>
                     </table>
@@ -602,11 +602,11 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                     <tr>
-                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.rand#'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
+                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Генерируем массив случайных чисел</span></td>
                     </tr>
                     <tr>
-                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.sort#'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">'new_mass'</span></td>
+                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">'new_mass'</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортируем полученный массив вниз</span></td>
                     </tr>
                     </table>
@@ -672,7 +672,7 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                     <tr>
-                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.sort#'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span></td>
+                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Сортировка текстовых значений массива</span></td>
                     </tr>
                     </table>
@@ -723,10 +723,10 @@
                 <p>В массиве <span class="emARR">old_mass</span> число <span class="emNUM">967</span> было в нулевой позиции (было значением нулевого элемента). После сортировки оно было помещено в седьмую позицию, поэтому в массиве <span class="emARR">em_array</span> в седьмую позицию добавлен номер старой позиции элемента со значением <span class="emNUM">967</span>.</p>
                 <p>Далее число <span class="emNUM">629</span>, которое в массиве <span class="emARR">old_mass</span> было в первой позиции, переместилось в пятую позицию массива результатов (<span class="emARR">new_mass</span>). Поэтому в массиве <span class="emARR">em_array</span> в пятую позицию был добавлен номер <span class="emNUM">1</span>.</p>
                 <p>Для чего это нужно. Используя массив результатов и массив фиксации позиций (<span class="emARR">em_array</span>) можно вернуть исходное состоние массива, или изменить другие массивы соответственно массиву результатов.</p>
-                <p style="color:#880000;">ВНИМАНИЕ! Сортировка затрагивает лишь ту часть массива, которая указана. Если вы отсортировали текстовую часть массива, числовая останется неизменной. И наоборот: при сортировке числовой части массива, текстовая не меняется. Для сортировки обеих частей нужно отсортировать одну из них, с сохранением значений перестановки в массив фиксации, а затем по массиву фиксации функцией <span class="emFOLD">#array.rstd#</span> перетасовать значения в другой части.</p>
+                <p style="color:#880000;">ВНИМАНИЕ! Сортировка затрагивает лишь ту часть массива, которая указана. Если вы отсортировали текстовую часть массива, числовая останется неизменной. И наоборот: при сортировке числовой части массива, текстовая не меняется. Для сортировки обеих частей нужно отсортировать одну из них, с сохранением значений перестановки в массив фиксации, а затем по массиву фиксации функцией <span class="emFOLD">em.arr.restand</span> перетасовать значения в другой части.</p>
                 <p style="color:#ff0000;">ВНИМАНИЕ!!! Во избежание ошибок не следует хранить в массиве одновременно текстовые и числовые значения!</p>
                 
-                <a id="arrayrstd"></a><h4 class="emH4">#array.rstd#</h4>
+                <a id="arrayrstd"></a><h4 class="emH4">em.arr.restand</h4>
                 
                 <p>Процедура перетасовывает элементы массива согласно сведениям в массиве фиксации.</p>
                 <p class="em_CODE">
@@ -738,15 +738,15 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                         <tr>
-                            <td style="vertical-align: top;"><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.rand#'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
+                            <td style="vertical-align: top;"><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
                             <td style="vertical-align: top;"><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Генерируем значения опорного массива (для примера)</span></td>
                         </tr>
                         <tr>
-                            <td style="vertical-align: top;"><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.sort#'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span></td>
+                            <td style="vertical-align: top;"><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span></td>
                             <td style="vertical-align: top;"><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортировка значений в опорном массиве</span></td>
                         </tr>
                         <tr>
-                            <td style="vertical-align: top;"><strong><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.rstd#'</span>,<span class="Monokai-String">'$arr_mass'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">$new_mass'</span></strong></td>
+                            <td style="vertical-align: top;"><strong><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.restand'</span>,<span class="Monokai-String">'$arr_mass'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">$new_mass'</span></strong></td>
                             <td style="vertical-align: top;"><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(2) Перетасовка значений из исходного массива в соответствии с данными из массива фиксации позиций</span></td>
                         </tr>
                     </table>
@@ -821,7 +821,7 @@
                     </table>
                 </div>
                 
-                <a id="arraydsrt"></a><h4 class="emH4">#array.dsrt#</h4>
+                <a id="arraydsrt"></a><h4 class="emH4">em.arr.deSort</h4>
                 
                 <p></p>
                 <p>Процедура, восстанавливающая состояние массива до сортировки по значениям в массиве фиксации.</p>
@@ -834,15 +834,15 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                         <tr>
-                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.rand#'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
+                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Генерируем случайный массив</span></td>
                         </tr>
                         <tr>
-                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.sort#'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span></td>
+                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортируем значения в массиве</span></td>
                         </tr>
                         <tr>
-                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.dsrt#'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">'new_mass'</span></td>
+                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.deSort'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">'new_mass'</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(2) Восстановление массива к исходному состоянию</span></td>
                         </tr>
                     </table>
@@ -905,7 +905,7 @@
                     </table>
                 </div>
                 
-                <a id="arraysimp"></a><h4 class="emH4">#array.simp#</h4>
+                <a id="arraysimp"></a><h4 class="emH4">em.arr.simp</h4>
                 
                 <p></p>
                 <p>Процедура сравнения содержимого двух массивов.</p>
@@ -934,7 +934,7 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                     <tr>
-                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.rand#'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-Numeric">8</span></td>
+                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-Numeric">8</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Генерируем случайный массив</span></td>
                     </tr>
                     <tr>
@@ -942,19 +942,19 @@
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Создаём точную копию массива</span></td>
                     </tr>
                     <tr>
-                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#array.sort#'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">''</span>,<span class="Monokai-String">''</span>,<span class="Monokai-String">'mass3'</span></td>
+                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">''</span>,<span class="Monokai-String">''</span>,<span class="Monokai-String">'mass3'</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(2) Сортируем значения и помещаем их в новый массив</span></td>
                     </tr>
                     <tr>
-                        <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.simp#'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass2'</span>)</span></td>
+                        <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.simp'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass2'</span>)</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(3) Сравниваем на идентичность идентичные массивы</span></td>
                     </tr>
                     <tr>
-                    <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.simp#'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass3'</span>)</span></td>
+                    <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.simp'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass3'</span>)</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(4) Сравниваем на идентичность подобные массивы</span></td>
                     </tr>
                     <tr>
-                    <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.simp#'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass3'</span>,<span class="Monokai-String">'[simp]'</span>)</span></td>
+                    <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.simp'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass3'</span>,<span class="Monokai-String">'[simp]'</span>)</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(5) Сравниваем на подобие подобные массивы</span></td>
                     </tr>
                     </table>
@@ -1015,7 +1015,7 @@
                 </div>
                 <p class="emP">Сравнение текстовых значений массивов происходит аналогично. Если хотя бы у одного из массивов будет стоять выбор по текстовым значениям (т.е. имя массива будет начинаться с $), будут сравниваться текстовые значения.
                     
-                <a id="arraysrch"></a><h4 class="emH4">#array.srch#</h4>
+                <a id="arraysrch"></a><h4 class="emH4">em.arr.find</h4>
                 
                 <p></p>
                 <p>Функция производит поиск максимального или минимального значения в массиве. В отличие от функций <span class="emFUNC">MAX</span> и <span class="emFUNC">MIN</span> можно указать область и пределы поиска, а так же запросить позицию найденного элемента. Если ни одно число по указанным параметрам не подходит, функция возвращает слово <span class="emTEXT">false</span>.</p>
@@ -1047,17 +1047,17 @@
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">272</span>
                 </div>
                 <p class="emTEXT">Поиск максимального значения:</p>
-                <div class="Monokai-Code"><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.srch#'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[max]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'765'</span></div>
+                <div class="Monokai-Code"><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.find'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[max]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'765'</span></div>
                 <p class="emTEXT">Поиск максимального значения в указанной области:</p>
-                <div class="Monokai-Code"><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.srch#'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[max]'</span>,<span class="Monokai-String">''</span>,<span class="Monokai-String">''</span>,<span class="Monokai-Numeric">0</span>,<span class="Monokai-Numeric">2</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'668'</span></div>
+                <div class="Monokai-Code"><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.find'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[max]'</span>,<span class="Monokai-String">''</span>,<span class="Monokai-String">''</span>,<span class="Monokai-Numeric">0</span>,<span class="Monokai-Numeric">2</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'668'</span></div>
                 <p class="emTEXT">Поиск минимального значения в заданных пределах:</p>
-                <div class="Monokai-Code"><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.srch#'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,<span class="Monokai-String">'400'</span>,<span class="Monokai-String">'600'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'413'</span></div>
+                <div class="Monokai-Code"><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.find'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,<span class="Monokai-String">'400'</span>,<span class="Monokai-String">'600'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'413'</span></div>
                 <p class="emTEXT">Поиск минимального значения в заданных пределах и в указанной области:</p>
-                <div class="Monokai-Code"><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.srch#'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,<span class="Monokai-String">'400'</span>,<span class="Monokai-String">'600'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">6</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'478'</span></div>
+                <div class="Monokai-Code"><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.find'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,<span class="Monokai-String">'400'</span>,<span class="Monokai-String">'600'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">6</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'478'</span></div>
                 <p class="emTEXT">Поиск минимального значения в заданных пределах и в указанной области с получением позиции элемента:</p>
-                <div class="Monokai-Code"><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.srch#'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,<span class="Monokai-String">'400'</span>,<span class="Monokai-String">'600'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-String">'pos'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'4'</span></div>
+                <div class="Monokai-Code"><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.find'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,<span class="Monokai-String">'400'</span>,<span class="Monokai-String">'600'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-String">'pos'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'4'</span></div>
                 <p class="emTEXT">Поиск невозможного значения в заданных пределах и в указанной области:</p>
-                <div class="Monokai-Code"><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#array.srch#'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,<span class="Monokai-String">'900'</span>,<span class="Monokai-String">'1000'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">6</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'false'</span></div>
+                <div class="Monokai-Code"><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.find'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,<span class="Monokai-String">'900'</span>,<span class="Monokai-String">'1000'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">6</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'false'</span></div>
                 
                 
                 <div><a href="../manual.html">Назад</a></div>

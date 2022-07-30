@@ -25,7 +25,7 @@
                     <ul>
                         <li><span class="emTEXT">[x]</span> - координата по оси X;</li>
                         <li><span class="emTEXT">[y]</span> - координата по оси Y;</li>
-                        <li>пустое значение, <span class="emTEXT">[xy]</span> или <span class="emTEXT">[x][y]</span> - обе координаты возвращаются в формате <span class="emTEXT">[x:00] [y:99]</span>.</li>
+                        <li>пустое значение, <span class="emTEXT">[xy]</span> или <span class="emTEXT">[x][y]</span> - обе координаты возвращаются в виде кортежа.</li>
                     </ul>
                 </div>
                 <h5>Пример таблицы:</h5>
@@ -42,10 +42,10 @@
                 </div>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">func</span>(<span class="Monokai-String">'em.map.cell.getCoords'</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3+1</span>,<span class="Monokai-String">'[x]'</span>)=<span class="Monokai-Numeric">2</span>
-                    <br><span class="Monokai-Func">func</span>(<span class="Monokai-String">'em.map.cell.getCoords'</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3+1</span>,<span class="Monokai-String">'[y]'</span>)=<span class="Monokai-Numeric">2</span>
-                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'em.map.cell.getCoords'</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3+1</span>)=<span class="Monokai-String">"[x:2] [y:2]"</span>
-                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'em.map.cell.getCoords'</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">4</span>,<span class="Monokai-String">'[x][y]'</span>)=<span class="Monokai-String">"[x:2] [y:2]"</span>
+                    <span class="Monokai-UnFunc">@em.map.cell.getCoords</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3</span><span class="Monokai-Operator">+</span><span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'[x]'</span><span class="Monokai-Qbracket">)</span>   <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">2</span><br>
+                    <span class="Monokai-UnFunc">@em.map.cell.getCoords</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3</span><span class="Monokai-Operator">+</span><span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'[y]'</span><span class="Monokai-Qbracket">)</span>   <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">2</span><br>
+                    <span class="Monokai-UnFunc">@em.map.cell.getCoords</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3</span><span class="Monokai-Operator">+</span><span class="Monokai-Numeric">1</span><span class="Monokai-Qbracket">)</span>   <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">кортеж </span><span class="Monokai-Comment">(</span><span class="Monokai-Comment">2,2)</span><br>
+                    <span class="Monokai-UnFunc">@em.map.cell.getCoords</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">4</span>,<span class="Monokai-String">'[x][y]'</span><span class="Monokai-Qbracket">)</span>   <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">кортеж </span><span class="Monokai-Comment">(</span><span class="Monokai-Comment">2,2)</span>
                 </div>
                 <p>&nbsp;</p>
                 <div><a href="../manual.html">Назад</a></div>
