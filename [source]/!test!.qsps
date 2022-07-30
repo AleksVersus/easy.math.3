@@ -15,6 +15,8 @@ elseif $user_text='gen id':
 	*pl @em.str.random(8,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(12,'[ot]','0123456789abcdef')
 elseif $user_text='gen pass':
 	*pl @em.str.random(16,'[inc][\z][\d]','!@#$')
+elseif $user_text='autotest' and loc('em.autotest.self'):
+	@em.autotest.self
 else
 	dynamic $user_text
 end
