@@ -1,0 +1,89 @@
+QSP-Game Округляет число до указанной разрядности (Округление к ближайшему целому )
+$args[0] - число
+$args[1] - разрядность возможны варианты 1, 10, 100, 1000 и т.п., и 0.1, 0.01 и т.п.
+$args[2] - [up] в сторону увеличения, [down] - с округлением-отсечением
+!@pp:if(em_round):include
+# em.round
+local $minus, $float, $digits, int_len, dot_pos, dig
+if instr($args[0],'-')=1:
+	$args[0]=$mid($args[0],2)
+	$minus='-'
+else
+	$args[0]=$args[0]
+	$minus=''
+end
+if args[1]<>0: $args[1]=$str(args[1])	& !@ если разрядность окргуления указана числом, переводим в строковый вид
+if $args[1]='' or $args[1]='0': $args[1]='1'	& !@ если разрядность округления не задана, задаём
+!@ если одно из переданных чисел не дробное, задаём дробную часть
+if instr($args[0],'.')=0: $args[0]+='.0'
+if instr($args[1],'.')=0: $args[1]+='.0'
+$result=$args[0]	& !@ по умолчанию возвращаемое значение совпадает с исходным
+!@ если запись разрядности неверна, возвращаем результат
+if strcomp($args[1],'(10*?\.0+)|(0.0*1)')=0: exit
+!@ получаем целую и дробную части числа и разрядности
+$float['int']=$mid($args[0],1,instr($args[0],'.')-1)
+$float['fract']=$mid($args[0],instr($args[0],'.')+1)
+$digits['int']=$mid($args[1],1,instr($args[1],'.')-1)
+$digits['fract']=$mid($args[1],instr($args[1],'.')+1)
+!@ приводим числа к единой длине за счёт нулей (на один больше)
+if len($float['int'])>len($digits['int']):
+	int_len=len($float['int'])-len($digits['int'])
+	$digits['int']=@em.zero(int_len+1)+$digits['int']
+	$float['int']='0'+$float['int']
+else
+	int_len=len($digits['int'])-len($float['int'])
+	$float['int']=@em.zero(int_len+1)+$float['int']
+	$digits['int']='0'+$digits['int']
+end
+if len($float['fract'])>len($digits['fract']):
+	int_len=len($float['fract'])-len($digits['fract'])
+	$digits['fract']+=@em.zero(int_len+1)
+	$float['fract']+='0'
+else
+	int_len=len($digits['fract'])-len($float['fract'])
+	$float['fract']+=@em.zero(int_len+1)
+	$digits['fract']+='0'
+end
+dot_pos=len($float['int']) & !@ получаем позицию точки
+$float['number']=$float['int']+$float['fract']	& !@ число без точки
+$digits['number']=$digits['int']+$digits['fract']	& !@ разряд без точки
+dig['after_pos']=instr($digits['number'],'1')+1	& !@ номер следующего символа за округляемым (счётчик)
+if instr($args[2],'[up]')<>0:
+	dig['after_value']=9
+elseif instr($args[2],'[down]')<>0:
+	dig['after_value']=0
+else:
+	dig['after_value']=val($mid($float['number'],dig['after_pos'],1))	& !@ число под этим символом
+end
+if dig['after_value']<5: dig['next_value']=0 else dig['next_value']=1	& !@ переносим единицу в следующий разряд
+$float['number']=$mid($float['number'],1,dig['after_pos']-1)+'0'+@em.zero(len($digits['number'])-dig['after_pos'])	& !@ вставляем ноль вместо разряда округления и до конца числа
+loop local dig_10, summ = 1,1 while dig['next_value']=1:
+	dig_10=val($mid($float['number'],dig['after_pos']-1,1))
+	summ=dig_10+dig['next_value']
+	dig['next_value']=summ/10
+	summ=summ mod 10
+	$float['number']=$mid($float['number'],1,dig['after_pos']-2)+$str(summ)+$mid($float['number'],dig['after_pos'])
+	dig['after_pos']-=1
+end
+!@ снова разделяем число на целую и дробную часть
+$result=@em.dz($minus+$mid($float['number'],1,dot_pos)+'.'+$mid($float['number'],dot_pos+1))
+--- em.round ---------------------------------
+!@pp:endif
+
+Функция использует функции em.zero и em.dz.
+
+!@pp:if(em_round!=True):nopp
+!@pp:var(em_dz)
+!@pp:var(em_zero)
+!@pp:endif
+
+@em.round("945.459","0.1")  		& !@ '945.5'
+@em.round("945.459","0.1",'[down]')	& !@ '945.4'
+@em.round("945.444","0.1",'[up]')	& !@ '945.5'
+@em.round("945.459","0.01")  		& !@ '945.46'
+@em.round("945.459","0.001")		& !@ '945.459'
+@em.round("945.459","1")    		& !@ '945'
+@em.round("945.459","10")   		& !@ '950'
+@em.round("945.459","100")  		& !@ '900'
+@em.round("-945.459","10")  		& !@ '-950'
+@em.round("-945.459","0.01")		& !@ '-945.46'
