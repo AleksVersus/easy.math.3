@@ -39,7 +39,7 @@ end
 !@pp:var(em_dergb)
 Операции с дробными числами
 !@pp:var(em_sqrt)
-!@pp:var(em_addition)
+!@pp:var(em_add)
 !@pp:var(em_div)
 !@pp:var(em_mult)
 !@pp:var(em_round)

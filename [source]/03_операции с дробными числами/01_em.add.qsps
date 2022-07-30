@@ -1,0 +1,90 @@
+QSP-Game Функция сложения. Может суммировать целые и дробные числа любого знака любой длины (ограничение на значение текстовых переменных для QSP 5.7.0 около 2Гб).
+$args[0] ... $args[8] - девять слагаемых. Могут быть переданы в числовом виде (для QSP 5.7.0 в пределах [-2147483648 ... 2147483647]).
+$result - всегда текстовое значение.
+$int, $fract, $minus - целая и дробная части числа, а так же его знак
+int_len, fract_len - длина целой и дробной части числа
+$nines - добивочные девятки
+$number - число приведено к целому в строковом представлении
+$summ - сумма
+!@pp:if(em_add):include
+# em.add
+local $int, $fract, $minus, int_len, fract_len, $nines
+local $number, $summ
+!@ инициализация чисел
+loop local i,b,size=0,-1,arrsize('args') while i<size step i+=1:
+	if $args[i]='' and args[i]<>0:
+		!@ если передана не строка, а число, переводим число в строку
+		$args[i]=$str(args[i])
+	end
+	if $args[i]<>'' and $strfind($args[i],'^0+(\.0+)?$')='':
+		b+=1	& !@ счётчик найденных чисел
+		!@ если передана строка, и дробное число в ней не равно нулю
+		if instr($args[i],'-')=1:
+			!@ если в чииле есть знак минус, помечаем число минусом
+			$minus[b]='-'
+			$args[i]=$mid($args[i],2)
+		else
+			$minus[b]=''
+			$args[i]=$args[i]
+		end
+		!@ если в числе есть точка, разделяем число на целую и дробную часть
+		if instr($args[i],'.')<>0:
+			$int[b]=$mid($args[i],1,instr($args[i],'.')-1)
+			$fract[b]=$mid($args[i],instr($args[i],'.')+1)
+		else
+			$int[b]=$args[i]
+			$fract[b]='0'
+		end
+		!@ если длина числа больше максимальной, записываем в максимальные эту длину
+		if len($int[b])>int_len: int_len=len($int[b])
+		if len($fract[b])>fract_len: fract_len=len($fract[b])
+	end
+end
+!@ увеличиваем число разрядов в числе, чтобы избежать различных эксцессов
+int_len+=2
+fract_len+=2
+!@ следующий цикл приводит число к целому для сложения с переполнением
+$nines=@em.zero(int_len+fract_len,'9')
+loop local i,b=0,arrsize('$int') while i<b step i+=1:
+	$number[i]=@em.zero(int_len-len($int[i]))+$int[i]+$fract[i]+@em.zero(fract_len-len($fract[i]))
+	if $minus[i]='-':
+		$number[i]=@em.byte.dev($nines,$number[i])
+	end
+end
+!@ следующий цикл - суммирование чисел
+$summ=@em.zero(int_len+fract_len)
+loop local i,b=0,arrsize('$int') while i<b step i+=1:
+	$summ=@em.byte.add($summ,$number[i])
+end
+!@ ВНИМАНИЕ. Повторное использование локальных переменных
+if instr($summ,'9')=1:
+	$summ=@em.byte.dev($nines,$summ)
+	$minus='-'
+else
+	$summ=$summ
+	$minus=''
+end
+$result=@em.dz($minus+$mid($summ,1,int_len)+"."+$mid($summ,int_len+1))
+--- em.add ---------------------------------
+!@pp:endif
+
+Функция использует функции add, dev, zero, dz
+
+!@pp:if(em_add!=True):nopp
+!@pp:var(em_dz)
+!@pp:var(em_zero)
+!@pp:var(em_add)
+!@pp:var(em_dev)
+!@pp:endif
+
+@em.add('9.05','-9')							& !@ '0.05'
+@em.add('9.05','-9.05')							& !@ '0'
+@em.add('9.05','9')								& !@ '18.05'
+@em.add('9.05','9.55','9.25')					& !@ '27.85'
+@em.add('9.99','9.999','9.9')					& !@ '29.889'
+@em.add('384.384','92.8',3)						& !@ '480.184'
+@em.add('283','126')							& !@ '409'
+@em.add('283','-126')							& !@ '157'
+@em.add('-283','126')							& !@ '-157'
+@em.add('-283','-126')							& !@ '-409'
+@em.add('-234','125','-13.7890303','3484889')	& !@ '3484766.2109697'
