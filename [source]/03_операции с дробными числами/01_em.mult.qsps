@@ -1,0 +1,93 @@
+QSP-Game Перемножает несколько чисел любой длины.
+$args[0] ... $args[8] - девять множителей. Могут быть переданы в числовом виде (для QSP 5.7.0 в пределах [-2147483648 ... 2147483647]).
+$result - всегда текстовое значение.
+minus - знак, который получится в результате умножения 1 - минус (число отрицательное), 0 - плюс (число положительное).
+!@pp:if(em_mult):include
+# em.mult
+!@ следующий цикл инициализирует числа
+local minus, dot_pos, fract_len
+loop local i,size=0,arrsize('args') while i<size step i+=1:
+	if len($args[i])=0:
+		!@ если передано не строковое значение, значит передано числовое
+		$args[i]=$str(args[i])
+	end
+	if $args[i]='0': $result='0' & exit	& !@ если передан нуль, то результат равен нулю, выходим
+	!@ убираем минус из числа
+	if instr($args[i],'-')=1:
+		$args[i]=$mid($args[i],2)
+		minus=1-minus	& !@ помечаем наличие минуса в числе
+	end
+	!@ убираем точку из числа
+	if instr($args[i],'.')<>0:
+		dot_pos=instr($args[i],'.')	& !@ вхождение точки
+		fract_len+=len($args[i])-dot_pos	& !@ число знаков после точки
+		$args[i]=$replace($args[i],'.')
+	end
+end
+local $multiply, first_multiplier, second_multiplier, stack
+!@ следующий цикл перемножает числа по порядку
+$multiply['result']=$args[0]	& !@ результат приравниваем к нулевому аргументу
+loop local i,size=1,arrsize('args') while i<size step i+=1:
+	!@ цикл выполняется, пока счётчик не достигнет числа аргументов
+	!@ теперь нам нужно сделать следующее. Разложить множитель на отдельные цифры по разрядам
+	!@ каждую цифру умножить на новое произведение, затем суммировать результаты
+	second_multiplier['digit']=len($args[i])	& !@ множителем является очередное число в аргументе
+	$multiply['last']=''	& !@ последнее перемножение равно пустому значению
+	loop while second_multiplier['digit']>0 step second_multiplier['digit']-=1:
+		!@ цикл выполняется, пока не переберём каждый разряд, начиная с конца
+		second_multiplier['value']=val($mid($args[i],second_multiplier['digit'],1))
+		!@ в этом цикл открываем ещё один цикл. Здесь перебираются разряды первого множителя - произведения от предыдущих перемножений
+		first_multiplier['digit']=len($multiply['result'])	& !@ номер последней цифры численно совпадает с длиной строки
+		$multiply['next']=''
+		stack=0
+		loop while first_multiplier['digit']>0 step first_multiplier['digit']-=1:
+			!@ цикл выполняется, пока не достигент нуля. Т.е пока не переберём все разряды
+			first_multiplier['value']=val($mid($multiply['result'],first_multiplier['digit'],1))
+			!@ перемножаем числа и прибавляем к ним остаток от предыдущего умножения
+			multiply['itteration']=first_multiplier['value']*second_multiplier['value']+stack
+			!@ получаем цифру
+			multiply['digit']=(multiply['itteration'] mod 10)
+			!@ получаем остаток в переполнение
+			stack=multiply['itteration']/10
+			!@ набираем число
+			$multiply['next']=$str(multiply['digit'])+$multiply['next']
+		end
+		!@ когда число набрано, не забываем добрать его переполнением
+		if stack>0: $multiply['next']=$str(stack)+$multiply['next']
+		!@ теперь когда у нас есть число, приводим его к разряду
+		$multiply['next']+=@em.zero(len($args[i])-second_multiplier['digit'])
+		!@ теперь, когда у нас есть число приведённое к разряду, прибавляем число к предыдущему
+		$multiply['last']=@em.byte.add($multiply['last'],$multiply['next'])
+	end
+	!@ последнее перемножение становится произведением
+	$multiply['result']=$multiply['last']
+end
+!@ назначаем знак
+if minus=1: $minus='-' else $minus=''
+!@ теперь назначаем точку
+local $res
+$res['fract']=$mid($multiply['result'],len($multiply['result'])-fract_len+1)
+$res['int']=$mid($multiply['result'],1,len($multiply['result'])-fract_len)
+if $res['fract']<>'':
+	$result=$minus+@em.dz($res['int']+'.'+$res['fract'])
+else
+	$result=$minus+@em.dz($res['int'])
+end
+--- em.mult ---------------------------------
+!@pp:endif
+
+Функция использует функции em.dz, em.zero, em.byte.add
+
+!@pp:if(em_mult!=True):nopp
+!@pp:var(em_dz)
+!@pp:var(em_zero)
+!@pp:var(em_add)
+!@pp:endif
+
+@em.mult("38.4","2.5")	& !@ '96'
+@em.mult('9.05',"-9.05")	& !@ '-81.9025'
+@em.mult('9.05',"10")	& !@ '90.5'
+@em.mult('9.05',"9.55","9.25")	& !@ '799.454375'
+@em.mult('9.99',"-9.999","9.9")	& !@ '-988.911099'
+@em.mult('2','2','2','2','2','2','2','2','2')	& !@ '512'
+@em.mult('-2','-2','-2','-2','-2','-2','-2','-2','-2')	& !@ '-512'
