@@ -10,7 +10,7 @@ elseif $user_text='logs':
 elseif instr($lcase($user_text),'sqrt')=1:
 	$args[0]=$trim($replace($replace($replace($user_text,'sqrt'),'('),')'))
 	if isnum($args[0])=0: $args[0]=$dyneval("$result=$str(<<$args[0]>>)")
-	*pl $func('#sqrt#',$args[0])
+	*pl @em.sqrt($args[0])
 elseif $user_text='gen id':
 	*pl @em.str.random(8,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(12,'[ot]','0123456789abcdef')
 elseif $user_text='gen pass':

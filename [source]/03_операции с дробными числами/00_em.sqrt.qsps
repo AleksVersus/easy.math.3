@@ -1,0 +1,114 @@
+QSP-Game Вычисление квадратного корня методом Ньютона.
+$args[0] - число, текстовое значение
+args[1] - точность. Целое число: 100 - сотые, 1000 - тысячные и т.д.
+$args[2] - первое приближение, только текстовое значение. Вы можете указать примерно чему будет равен результат. Это ускорит вычисление
+
+$res - результат вычисления, промежуточный
+$quad - результат возведения в квадрат
+!@pp:if(em_sqrt):include
+# em.sqrt
+local $res, $quad
+if args[1] = 0: args[1] = 100
+if $args[2]='':
+	$args[2]=$dyneval({
+		local $int	& !@ целая часть числа
+		if instr($args[0],'.')<>0: $int=$mid($args[0],1,instr($args[0],'.')-1) else $int=$args[0]
+		if len($int)>10 or (len($int)=10 and $mid($int,1,1)='2'): $result='46340' & exit
+		if (len($int)=10 and $mid($int,1,1)='1') or (len($int)=9 and $mid($int,1,1)='9'): $result='31622' & exit
+		if (len($int)=9 and $mid($int,1,1)='1') or (len($int)=8 and $mid($int,1,1)='9'): $result='10000' & exit
+		if (len($int)=8 and $mid($int,1,1)='1') or (len($int)=7 and $mid($int,1,1)='9'): $result='3162' & exit
+		if (len($int)=7 and $mid($int,1,1)='1') or (len($int)=6 and $mid($int,1,1)='9'): $result='1000' & exit
+		if (len($int)=6 and $mid($int,1,1)='1') or (len($int)=5 and $mid($int,1,1)='9'): $result='316' & exit
+		if (len($int)=5 and $mid($int,1,1)='1') or (len($int)=4 and $mid($int,1,1)='9'): $result='100' & exit
+		if (len($int)=4 and $mid($int,1,1)='8'): $result='90' & exit
+		if (len($int)=4 and $mid($int,1,1)='7'): $result='84' & exit
+		if (len($int)=4 and $mid($int,1,1)='6'): $result='78' & exit
+		if (len($int)=4 and $mid($int,1,1)='5'): $result='71' & exit
+		if (len($int)=4 and $mid($int,1,1)='4'): $result='64' & exit
+		if (len($int)=4 and $mid($int,1,1)='3'): $result='55' & exit
+		if (len($int)=4 and $mid($int,1,1)='2'): $result='45' & exit
+		if (len($int)=4 and $mid($int,1,1)='1'): $result='32' & exit
+		if len($int)=3:
+			int=val($int)
+			if int>960: $result='32' & exit
+			if int>900: $result='31' & exit
+			if int>841: $result='30' & exit
+			if int>784: $result='29' & exit
+			if int>729: $result='28' & exit
+			if int>676: $result='27' & exit
+			if int>625: $result='26' & exit
+			if int>576: $result='25' & exit
+			if int>529: $result='24' & exit
+			if int>484: $result='23' & exit
+			if int>441: $result='22' & exit
+			if int>400: $result='21' & exit
+			if int>361: $result='20' & exit
+			if int>324: $result='19' & exit
+			if int>289: $result='18' & exit
+			if int>256: $result='17' & exit
+			if int>225: $result='16' & exit
+			if int>196: $result='15' & exit
+			if int>169: $result='14' & exit
+			if int>144: $result='13' & exit
+			if int>121: $result='12' & exit
+			if int>100: $result='11' & exit
+			if int>81: $result='10' & exit
+			if int>64: $result='9' & exit
+			if int>49: $result='8' & exit
+			if int>36: $result='7' & exit
+			if int>25: $result='6' & exit
+			if int>16: $result='5' & exit
+			if int>9: $result='4' & exit
+			if int>4: $result='3' & exit
+			if int>1: $result='2' & exit
+			if int>0: $result='1' & exit
+		end
+		$result='1'
+
+	}),$args[0]
+end
+loop local run=1 while run:
+	$res = @em.div(@em.add($args[2],@em.div($args[0],$args[2],args[1])),'2',args[1])
+	$quad = @em.mult($res,$res)
+	if $res<>$args[2]:
+		$args[2]=$res
+	else
+		run=0
+		$result=$res
+		exit
+	end
+end
+--- em.sqrt ---------------------------------
+!@pp:endif
+
+Используются функции 'em.div', em.add, 'em.mult'
+
+!@pp:if(em_sqrt!=True):nopp
+!@pp:var(em_mult)
+!@pp:var(em_add)
+!@pp:var(em_div)
+!@pp:endif
+
+Существует простое линейное уравнение, повторяя вычисление которого несколько раз, мы получаем корень числа с некоторой погрешностью. Чем чаще мы производим вычисление, тем точнее результат. Округление числа производится до требуемого знака после запятой. Когда предыдущее вычисленное значение становится равно предыдущему, проверяется погрешность вычисления. Если погрешность не превышает 0.00000001, число принимается. В противном случае выдаётся ноль.
+
+Функция использует em.div, em.mult, em.add, в связи с чем к ней применимы те же ограничения, что и к этим функциям. Так же поскольку производится несколько десятков и сотен циклических вычислений, функция может заметно подвешивать игру даже при вычислении небольших значений. В настоящее время функция позволяет использовать значение первого приближения, чтобы сократить время расчётов. Значение необходимо передавать вторым аргументом ($args[2]).
+
+По сравнению с QSP версии 5.7.0 данная функция существенно ускорила свою работу. Для плееров версии 5.7.0 при вычислении без первого приближения расчёт для всех значений в совокупности даёт 9 секунд задержки. При вычислении с первым приближением близким по значению к результату, время на все вычисления составило 3 секунды задержки. Наибольшее количество времени ушло на вычисление корня из 1000, причём без первого приближения это время оказалось в два раза больше, чем с первым приближением.
+
+Текущий вариант функции даёт полторы секунды задержки на все вычисления! И это без указания первого приближения, т.е. приближения берутся те, которые предоставляет сама функция. Код для проверки будущих вариаций функции:
+
+local old_time, new_time
+old_time=msecscount
+@em.sqrt('1000',10000)	& !@ 31.6227
+@em.sqrt('16',10000)	& !@ 4
+@em.sqrt('257',100000)	& !@ 16.03121
+@em.sqrt('257',10000)	& !@ 16.0312
+@em.sqrt('257',1000)	& !@ 16.031
+@em.sqrt('257',100)		& !@ 16.03
+@em.sqrt('2.1',100)		& !@ 1.44
+@em.sqrt('259',100)		& !@ 16.09
+@em.sqrt('260',100)		& !@ 16.12
+@em.sqrt('1.69',100)	& !@ 1.3
+@em.sqrt('0.69',10000)	& !@ 0.8306
+new_time=msecscount
+*pl "time: <<new_time - old_time>>"
