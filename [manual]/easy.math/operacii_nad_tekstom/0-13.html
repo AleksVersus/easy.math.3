@@ -20,7 +20,7 @@
                 
                 <h3>Операции с текстом</h3>
                 
-                <a id="zero"></a><h4>#zero#</h4>
+                <a id="zero"></a><h4>em.zero</h4>
                 
                 <p>Функция предназначена для генерации строки из повторяющихся групп символов.</p>
                 <p class="em_CODE">
@@ -31,14 +31,14 @@
                 <p>Количество повторений символов, как видно, ограничено ограничениями Вашего плеера на использование значений переменных (для QSP 5.7.0 в пределе [-2147483648 ... 2147483647]).</p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">13</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'0000000000000'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'1'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'1111111111111'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'10'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'10101010101010101010101010'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'a'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'aaaaaaaaaaaaa'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'bla'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'blablabla'</span>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.zero'</span>,<span class="Monokai-Numeric">13</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'0000000000000'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.zero'</span>,<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'1'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'1111111111111'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.zero'</span>,<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'10'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'10101010101010101010101010'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.zero'</span>,<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'a'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'aaaaaaaaaaaaa'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.zero'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'bla'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'blablabla'</span>
                 </div>
                 
-                <a id="rndstr"></a><h4>#rndstr#</h4>
+                <a id="rndstr"></a><h4>em.str.random</h4>
                 
                 
                 <p>Функция получает строку случайных символов</p>
@@ -71,16 +71,16 @@
                 <p>Подробнее о том, какие символы будут в сгенерированной строке, смотрите исходник функции с 4 по 10 строчки.</p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#rndstr#'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'вЗНзГШмf'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#rndstr#'</span>,<span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'[inc][\d][\z][\я]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'у1ЭAXВ6чГVЫДJМxD'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#rndstr#'</span>,<span class="Monokai-Numeric">16</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'"i!TОж5wПЬрYхв#а'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#rndstr#'</span>,<span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'[inc][\d][\z][\я]'</span>,<span class="Monokai-String">'$&nbsp;@&nbsp;!'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'cл4фYЛ7@EnoiЪm&nbsp;А'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#rndstr#'</span>,<span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'24680'</span>,<span class="Monokai-String">'&nbsp;&nbsp;©'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'f!с/&nbsp;Xsэu\ZlcХ"u'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#rndstr#'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'&nbsp;c}fjрIЩB'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#rndstr#'</span>,<span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'[inc][\d][\z][\я]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'БxПxуИЧаgрsмщю9д'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#rndstr#'</span>,<span class="Monokai-Numeric">16</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">',5яN}BВPсИ>kJlw['</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#rndstr#'</span>,<span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'[inc][\d][\z][\я]'</span>,<span class="Monokai-String">'$&nbsp;@&nbsp;!'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'@rtwЪnЦFЩиВлМяf'</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#rndstr#'</span>,<span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'2&nbsp;4&nbsp;6&nbsp;8&nbsp;0'</span>,<span class="Monokai-String">'&nbsp;&nbsp;©'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Q©)ь©gЪ*Вл&lt;С@ррх'</span>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.random'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'вЗНзГШмf'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.random'</span>,<span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'[inc][\d][\z][\я]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'у1ЭAXВ6чГVЫДJМxD'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.random'</span>,<span class="Monokai-Numeric">16</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'"i!TОж5wПЬрYхв#а'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.random'</span>,<span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'[inc][\d][\z][\я]'</span>,<span class="Monokai-String">'$&nbsp;@&nbsp;!'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'cл4фYЛ7@EnoiЪm&nbsp;А'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.random'</span>,<span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'24680'</span>,<span class="Monokai-String">'&nbsp;&nbsp;©'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'f!с/&nbsp;Xsэu\ZlcХ"u'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.random'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'&nbsp;c}fjрIЩB'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.random'</span>,<span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'[inc][\d][\z][\я]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'БxПxуИЧаgрsмщю9д'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.random'</span>,<span class="Monokai-Numeric">16</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">',5яN}BВPсИ>kJlw['</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.random'</span>,<span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'[inc][\d][\z][\я]'</span>,<span class="Monokai-String">'$&nbsp;@&nbsp;!'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'@rtwЪnЦFЩиВлМяf'</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.random'</span>,<span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'2&nbsp;4&nbsp;6&nbsp;8&nbsp;0'</span>,<span class="Monokai-String">'&nbsp;&nbsp;©'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Q©)ь©gЪ*Вл&lt;С@ррх'</span>
                 </div>
                 
                 <a id="chkobjword"></a><h4>#chk.obj.word#</h4>
@@ -92,7 +92,7 @@
                 <p>Поиск осуществляется только по конкретному значению. Результатом является число.</p>
                 <p>Раньше мне приходилось часто совершать поиск по конкретному значению в инвентаре. Сейчас такая необходимость отпала. Но функция осталась, поскольку некоторые игры до сих пор используют её. Вполне возможно, что и Вам она пригодится.</p>
                 
-                <a id="chkarrayword"></a><h4>#chk.array.word#</h4>
+                <a id="chkarrayword"></a><h4>em.arr.search</h4>
                 
                 <p>Находит позицию элемента в массиве, содержащего регулярное выражение, либо возвращает -1</p>
                 <p class="em_CODE">
@@ -104,7 +104,7 @@
                 <p>Функция использует arrcomp, однако, в отличие от arrcomp, находит элемент, который <span style="text-decoration:underline;">содержит</span> строку, соответствующую регулярному выражению, а не тот элемент, который полностью соответствует регулярному выражению.</p>
                 <p>При больших размерах массива (более 1000 элементов на core-i5/x64/2,5 ГГц/8 Гб RAM), функция может заметно подвешивать плеер.</p>
                 
-                <a id="strinarray"></a><h4>#str.inArray#</h4>
+                <a id="strinarray"></a><h4>em.str.inArr</h4>
                 
                 <p>Из переданного блока текста выбираются строки, находящиеся между разделителями, в том числе строка до первого разделителя и после последнего. В качестве разделителя можно задать что угодно: символ, слово, строку. Для того, чтобы задать несколько разделителей, или неявный разделитель (шаблон разделителя. Например, html-тег), можно использовать регулярные выражения.</p>
                 <div class="em_CODE">
@@ -135,7 +135,7 @@
                 </div>
                 <p>Разбиваем на строки по символу переноса строки:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#str.inArray#'</span>,$text,<span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'<br>
+                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.str.inArr'</span>,$text,<span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'<br>
                     '</span>,<span class="Monokai-String">''</span>
                 </div>
                 <p>Результат:</p>
@@ -147,7 +147,7 @@
                 </div>
                 <p>Разбиваем на строки по пробелу:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#str.inArray#'</span>,$text,<span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'&nbsp;'</span>,<span class="Monokai-String">''</span>
+                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.str.inArr'</span>,$text,<span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'&nbsp;'</span>,<span class="Monokai-String">''</span>
                 </div>
                 <p>Результат (Заметьте, что символ переноса строки в этом случае попадает в результирующие строки. Туда же попадают знаки препинания и прочее):</p>
                 <div class="Monokai-Code">
@@ -178,7 +178,7 @@
                 </div>
                 <p>А вот пример выборки по нескольким разделителям с игнорированием пустых строк. Из текста будут выбраны исключительно слова:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'#str.inArray#'</span>,$text,<span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'("|!|\?|-|,|;|:|\.| |<br>
+                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.str.inArr'</span>,$text,<span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'("|!|\?|-|,|;|:|\.| |<br>
                     )'</span>,<span class="Monokai-String">'[notspace] [regular] [lcase]'</span>
                 </div>
                 <p>Результат:</p>
@@ -206,7 +206,7 @@
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">20</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'желать'</span>
                 </div>
                 
-                <a id="widetrim"></a><h4>#widetrim#</h4>
+                <a id="widetrim"></a><h4>em.str.widetrim</h4>
                 
                 <p>Функция похожа на функцию <span class="emFUNC">TRIM</span>. Она удаляет прилегающие символы пробелов, табуляций и переводов строк. Так же функция позволяет убирать все символы преформатирования из текста.</p>
                 <p class="em_CODE">
@@ -227,7 +227,7 @@
                 </div>
                 <p>Результат расширенного отсечения:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'#widetrim#'</span>,$text<span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.str.widetrim'</span>,$text<span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><br>
                     <span class="Monokai-String" style="color:#44bb44;">"&nbsp;&nbsp;&nbsp;первая&nbsp;строка&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;<br>
                     вторая&nbsp;строка&nbsp;2<br>
                     &nbsp;&nbsp;&nbsp;<br>
@@ -235,7 +235,7 @@
                 </div>
                 <p>Результат отсечения символов преформатирования:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'#widetrim#'</span>,$text,<span class="Monokai-String">'[strip]'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.str.widetrim'</span>,$text,<span class="Monokai-String">'[strip]'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><br>
                     <span class="Monokai-String" style="color:#44bb44;">"первая&nbsp;строка&nbsp;1<br>
                     вторая&nbsp;строка&nbsp;2<br>
                         <br>
@@ -243,7 +243,7 @@
                 </div>
                 <p>В последнем случае остекаются не только пробелы и символы табуляции перед строками, но и в конце.</p>
                 
-                <a id="strthin"></a><h4>#str.thin#</h4>
+                <a id="strthin"></a><h4>em.str.thin</h4>
                 
                 <p>Предназначение этой функции разрежать строку. Через определённое количество символов в строку вставляются разделители.</p>
                 <div class="em_CODE">
@@ -259,13 +259,13 @@
                 </div>
                 <h5>Примеры:</h5>
                 <div class="Monokai-Code" style="white-space:nowrap;">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#str.thin#'</span>,<span class="Monokai-String">'профессура'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"п&nbsp;р&nbsp;о&nbsp;ф&nbsp;е&nbsp;с&nbsp;с&nbsp;у&nbsp;р&nbsp;а"</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#str.thin#'</span>,<span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'|'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"п|р|о|ф|е|с|с|у|р|а"</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#str.thin#'</span>,<span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'|'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"про|фес|сур|а"</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#str.thin#'</span>,<span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[up]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"п|роф|есс|ура"</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#str.thin#'</span>,<span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[left]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"|про|фес|сур|а"</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#str.thin#'</span>,<span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[right]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"пр|оф|ес|су|ра|"</span><br>
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#str.thin#'</span>,<span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'||'</span>,<span class="Monokai-String">'[left]&nbsp;[right]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"||п||р||о||ф||е||с||с||у||р||а||"</span>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.thin'</span>,<span class="Monokai-String">'профессура'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"п&nbsp;р&nbsp;о&nbsp;ф&nbsp;е&nbsp;с&nbsp;с&nbsp;у&nbsp;р&nbsp;а"</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.thin'</span>,<span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'|'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"п|р|о|ф|е|с|с|у|р|а"</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.thin'</span>,<span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'|'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"про|фес|сур|а"</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.thin'</span>,<span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[up]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"п|роф|есс|ура"</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.thin'</span>,<span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[left]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"|про|фес|сур|а"</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.thin'</span>,<span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[right]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"пр|оф|ес|су|ра|"</span><br>
+                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.str.thin'</span>,<span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'||'</span>,<span class="Monokai-String">'[left]&nbsp;[right]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"||п||р||о||ф||е||с||с||у||р||а||"</span>
                 </div>
                 <div><a href="../manual.html">Назад</a></div>
             </div>

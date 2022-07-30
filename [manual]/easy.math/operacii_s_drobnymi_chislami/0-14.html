@@ -101,7 +101,7 @@
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - разрядность. Возможны варианты: 1, 10, 100, 1000 и т.п., и 0.1, 0.01 и т.п.;
                     <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - <span class="emTEXT">[up]</span> в сторону увеличения, <span class="emTEXT">[down]</span> - с округлением-отсечением; если не указано, используются правила округления к ближайшему целому.
                 </p>
-                <p> Функция работоспособна, но не доработана (актуально для версии библиотеки 2.1.4 и ниже). Использует функции <span class="emFOLD">#dz#</span>, <span class="emFOLD">#zero#</span>.</p>
+                <p> Функция работоспособна, но не доработана (актуально для версии библиотеки 2.1.4 и ниже). Использует функции <span class="emFOLD">#dz#</span>, <span class="emFOLD">em.zero</span>.</p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">"#rounddiv#"</span>,<span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"0.1"</span>)</span>&nbsp;&nbsp;&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'945.5'</span><br>
@@ -119,7 +119,7 @@
                 <a id="plus"></a><h4>#+#</h4>
 
                 <p>Функция сложения. Может суммировать целые и дробные числа любого знака любой длины (ограничение на значение текстовых переменных для QSP 5.7.0 около 2Гб).</p>
-                <p>Использует функции <span class="emFOLD">#zero#</span>, <span class="emFOLD">#add#</span>, <span class="emFOLD">#dev#</span>, <span class="emFOLD">#dz#</span>. Каждая из этих функций включает в себя один и более циклов, в результате чего могут наблюдаться заметные подвисания плеера для ОЧЕНЬ больших чисел. Вычисления могут оказаться долгими, но они будет произведены - результат гарантирован.</p>
+                <p>Использует функции <span class="emFOLD">em.zero</span>, <span class="emFOLD">em.byte.add</span>, <span class="emFOLD">em.byte.dev</span>, <span class="emFOLD">#dz#</span>. Каждая из этих функций включает в себя один и более циклов, в результате чего могут наблюдаться заметные подвисания плеера для ОЧЕНЬ больших чисел. Вычисления могут оказаться долгими, но они будет произведены - результат гарантирован.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - девять слагаемых. Могут быть переданы в числовом виде (для QSP 5.7.0 в пределах [-2147483648 ... 2147483647]).
                     <br><span class="emVAR">&nbsp;$result</span> - всегда текстовое значение.
@@ -143,7 +143,7 @@
                 <a id="umn"></a><h4>#*#</h4>
 
                 <p>Перемножает несколько чисел любой длины.
-                <p>Внимание! Функция использует функции <span class="emFOLD">#add#</span>, <span class="emFOLD">#zero#</span>, <span class="emFOLD">#dz#</span>, каждая из которых основана на циклических расчётах. Сама функция использует для подсчёта 4 цикла, что может замедлять работу программ при вычислении больших значений. Тем не менее функция работает, хотя и несколько подвешивает игру, если выполнять несколько умножений подряд.
+                <p>Внимание! Функция использует функции <span class="emFOLD">em.byte.add</span>, <span class="emFOLD">em.zero</span>, <span class="emFOLD">#dz#</span>, каждая из которых основана на циклических расчётах. Сама функция использует для подсчёта 4 цикла, что может замедлять работу программ при вычислении больших значений. Тем не менее функция работает, хотя и несколько подвешивает игру, если выполнять несколько умножений подряд.
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - девять множителей. Могут быть переданы в числовом виде (для QSP 5.7.0 в пределах [-2147483648 ... 2147483647]).
                     <br><span class="emVAR">&nbsp;$result</span> - всегда текстовое значение.
@@ -169,7 +169,7 @@
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">2</span>]</span> - точность 1 -целые- 10 десятые доли, 100 сотые, 1000 - тысячные.
                     <br><span class="emVAR">&nbsp;$result</span> - частное, текстовое значение
                 </p>
-                <p>Используются функции <span class="emFOLD">#dz#</span>, <span class="emFOLD">#zero#</span>, <span class="emFOLD">#dev#</span>.</p>
+                <p>Используются функции <span class="emFOLD">#dz#</span>, <span class="emFOLD">em.zero</span>, <span class="emFOLD">em.byte.dev</span>.</p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'#:#'</span>,<span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"-9"</span>,<span class="Monokai-Numeric">10000</span>)</span>&nbsp;<span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-String">'-1.0055'</span><br>
@@ -209,7 +209,7 @@
                 <a id="sim"></a><h4>#sim#</h4>
 
                 <p>Функция сравнивает два числа и выдаёт в результат большее.</p>
-                <p>Функция использует функции <span class="emFOLD">#dz#</span>, <span class="emFOLD">#zero#</span>, соответственно для неё актуальны все ограничения связанные с этими функциями.</p>
+                <p>Функция использует функции <span class="emFOLD">#dz#</span>, <span class="emFOLD">em.zero</span>, соответственно для неё актуальны все ограничения связанные с этими функциями.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - первое число, только текстовое значение
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - второе число, только текстовое значение

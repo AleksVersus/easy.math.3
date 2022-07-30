@@ -19,7 +19,7 @@
                 
                 <h3 class="emH3">Логические операции</h3>
                 
-                <a id="add"></a><h4 class="emH4">#add#</h4>
+                <a id="add"></a><h4 class="emH4">em.byte.add</h4>
                 
                 <p>Функция выполняет побайтовое сложение двух чисел, с переполнением. Складывать можно два числа абсолютно любой длины (если используются числовые значения для аргументов, они должны укладываться в пределы от 0 до 2147483647).</p>
                 <p class="em_CODE">
@@ -27,7 +27,7 @@
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - второе число (сколько угодно длинное), можно <span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> (ограниченное значение).
                 </p>
                 <p>Любой посторонний символ интерпретируется, как <span class="emNUM">0</span> (нуль). Т.е. суммируются только целые положительные числа.</p>
-                <p>Использует функцию <span class="emFOLD">#zero#</span>.</p>
+                <p>Использует функцию <span class="emFOLD">em.zero</span>.</p>
                 <p>Суммирует два целых числа любой длины по следующим правилам:</p>
                 <ul>
                     <li>
@@ -82,21 +82,21 @@
                 </ul>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#add#'</span>,<span class="Monokai-Numeric">998765</span>,<span class="Monokai-Numeric">273</span>)=<span class="Monokai-String">'999038'</span><br>
-                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#add#'</span>,<span class="Monokai-String">'9987Y5'</span>,<span class="Monokai-String">'-273'</span>)=<span class="Monokai-String">'998978'</span><br>
-                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#add#'</span>,<span class="Monokai-String">'999999'</span>,<span class="Monokai-String">'6273'</span>)=<span class="Monokai-String">'006273'</span>
-                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#add#'</span>,<span class="Monokai-String">'998705'</span>,<span class="Monokai-String">'5773'</span>)=<span class="Monokai-String">'004479'</span>
+                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'em.byte.add'</span>,<span class="Monokai-Numeric">998765</span>,<span class="Monokai-Numeric">273</span>)=<span class="Monokai-String">'999038'</span><br>
+                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'em.byte.add'</span>,<span class="Monokai-String">'9987Y5'</span>,<span class="Monokai-String">'-273'</span>)=<span class="Monokai-String">'998978'</span><br>
+                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'em.byte.add'</span>,<span class="Monokai-String">'999999'</span>,<span class="Monokai-String">'6273'</span>)=<span class="Monokai-String">'006273'</span>
+                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'em.byte.add'</span>,<span class="Monokai-String">'998705'</span>,<span class="Monokai-String">'5773'</span>)=<span class="Monokai-String">'004479'</span>
                 </div>
                 
-                <a id="dev"></a><h4 class="emH4">#dev#</h4>
+                <a id="dev"></a><h4 class="emH4">em.byte.dev</h4>
                 
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - уменьшаемое (любой длины), можно <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> (ограниченное значение).
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - вычитаемое (любой длины), можно <span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> (ограниченное значение).
                 </p>
                 <p>Результат - текстовое значение (слово Сумма) без потери разрядов.</p>
-                <p>Использует функцию <span class="emFOLD">#zero#</span>.</p>
-                <p>Побайтовое вычитание. Вычитает из одного числа другое. Оба числа приводятся к одной длине по аналогии с <span class="emFOLD">#add#</span>.</p>
+                <p>Использует функцию <span class="emFOLD">em.zero</span>.</p>
+                <p>Побайтовое вычитание. Вычитает из одного числа другое. Оба числа приводятся к одной длине по аналогии с <span class="emFOLD">em.byte.add</span>.</p>
                 <p>Далее происходит поразрядное вычитание. Причём если в результате получается отрицательное число в байт записывается 10+число, в следующий разряд переносится -1</p>
                 <p>Пример:</p>
                 <div class="Monokai-Code">
@@ -109,10 +109,10 @@
                 <p>Если отрицательное число получается на последнем байте последний байт вычисляется по общим правилам, а из нулевого байта Суммы вычитается 1.</p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#dev#'</span>,<span class="Monokai-Numeric">998765</span>,<span class="Monokai-Numeric">273</span>)=<span class="Monokai-String">'998492'</span><br>
-                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#dev#'</span>,<span class="Monokai-String">'9987Y5'</span>,<span class="Monokai-String">'-273'</span>)=<span class="Monokai-String">'998432'</span>
-                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#dev#'</span>,<span class="Monokai-String">'999999'</span>,<span class="Monokai-String">'6273'</span>)=<span class="Monokai-String">'993726'</span>
-                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#dev#'</span>,<span class="Monokai-String">'998705'</span>,<span class="Monokai-String">'5773'</span>)=<span class="Monokai-String">'992932'</span>
+                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'em.byte.dev'</span>,<span class="Monokai-Numeric">998765</span>,<span class="Monokai-Numeric">273</span>)=<span class="Monokai-String">'998492'</span><br>
+                    <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'em.byte.dev'</span>,<span class="Monokai-String">'9987Y5'</span>,<span class="Monokai-String">'-273'</span>)=<span class="Monokai-String">'998432'</span>
+                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'em.byte.dev'</span>,<span class="Monokai-String">'999999'</span>,<span class="Monokai-String">'6273'</span>)=<span class="Monokai-String">'993726'</span>
+                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'em.byte.dev'</span>,<span class="Monokai-String">'998705'</span>,<span class="Monokai-String">'5773'</span>)=<span class="Monokai-String">'992932'</span>
                 </div>
                 
                 <a id="rtp"></a><h4 class="emH4">#rtp#</h4>
