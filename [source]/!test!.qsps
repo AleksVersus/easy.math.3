@@ -1,23 +1,42 @@
 # !--test--!
-if $trim($lcase($user_text))='help':
+local $em_test_parse, $nr
+$nr='
+'
+local $commandline=$lcase($trim($user_text))
+
+if instr($commandline,' ')<>0:
+	@em.str.inArr($commandline,'$em_test_parse',' ','[notspace][strip][lcase]')
+end
+if $commandline='help':
 	*pl "logs — выводит содержимое массива '$log'. В этот массив можно сохранять сообщения при отладке модуля."
 	*pl "sqrt(N) — выводит результат вычисления квадратного корня из числа N."
 	*pl "gen id — генерирует уникальный идентификатор типа UUID четвёртой версии."
 	*pl "gen pass — генерирует парольную фразу из шестнадцати случайных символов (буквы латинского алфавита, цифры, !@#$)."
 	*pl "Любая иная строчка будет воспринята, как код QSP на выполнение. Таким образом вы можете выполнить любую строчку кода QSP, просто введя её в строке ввода."
-elseif $user_text='logs':
+elseif $commandline='logs':
 	*pl @em.arr.print('$log','[only result]')
-elseif instr($lcase($user_text),'sqrt')=1:
-	$args[0]=$trim($replace($replace($replace($user_text,'sqrt'),'('),')'))
-	if isnum($args[0])=0: $args[0]=$dyneval("$result=$str(<<$args[0]>>)")
-	*pl @em.sqrt($args[0])
-elseif $user_text='gen id':
+elseif instr($commandline,'sqrt')=1:
+	killvar '$em_test_parse'
+	$em_test_parse[0]=$mid($commandline,instr($commandline,'(')+1,instr($commandline,')')-instr($commandline,'(')-1)
+	if isnum($em_test_parse[0])=0: $em_test_parse[0]=$dyneval("$result=$str(<<$em_test_parse[0]>>)")
+	*pl @em.sqrt($em_test_parse[0])
+elseif $commandline='gen id':
 	*pl @em.str.random(8,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(12,'[ot]','0123456789abcdef')
-elseif $user_text='gen pass':
+elseif $commandline='gen pass':
 	*pl @em.str.random(16,'[inc][\z][\d]','!@#$')
-elseif $user_text='autotest' and loc('em.autotest.self'):
-	@em.autotest.self
+elseif instr($trim($lcase($commandline)),'gen mass')=1:
+	local count
+	if $em_test_parse[2]<>'':
+		if $em_test_parse[3]<>'' and isnum($em_test_parse[3]): count=val($em_test_parse[3]) else count=10
+		@em.arr.randFill($em_test_parse[2],count)
+		@em.arr.print($em_test_parse[2])
+	else
+		*pl "Error input. Tape:"
+		*pl "gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS>"
+	end
+elseif instr($commandline,'autotest') and loc('em.autotest.self'):
+		@em.autotest.self($em_test_parse[1],$em_test_parse[2])
 else
-	dynamic $user_text
+	dynamic $commandline
 end
 --- !--test--! ---------------------------------

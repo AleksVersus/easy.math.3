@@ -8,6 +8,7 @@ $quad - результат возведения в квадрат
 !@pp:if(em_sqrt):include
 # em.sqrt
 local $res, $quad
+if $args[0]='': $args[0]=$str(args[0])
 if args[1] = 0: args[1] = 100
 if $args[2]='':
 	$args[2]=$dyneval({
