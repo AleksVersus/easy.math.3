@@ -1,0 +1,272 @@
+QSP-Game Функция тестов для easy.math
+
+Автоматические тесты для easy.math
+
+# em.autotest
+$args[0]=$lcase($args[0])
+local $nr='
+'
+if $args[0]='em.fewarrs.print':
+	dynamic {
+		local a, b
+		$a[]='нулевая ячейка'
+		$a[]='   первая ячейка   '
+		$a[]=' вторая ячейка'
+		$a[]=''
+		$a[]='четвёртая'' ячейка'
+		$a[]="   пятая яче'йка"
+		$a[]=''
+		$a[]='седьмая ячейка'
+
+		$b[]='нулевая ячейка'
+		$b[]='   первая ячейка   '
+		$b[]=' вторая ячейка'
+		$b[]='3'
+		$b[]=(3,5,6,'string',6)
+		$b[]='   пятая ячейка'
+		$b[]='6'
+		$b[]='7'
+		usehtml=1
+		@em.fewArrs.print('$a','$b')
+		@em.fewArrs.print('$a','$b','[only result]')
+		@em.fewArrs.print('$a','$b','[no table]')
+		@em.fewArrs.print('$c','$d')
+		@em.fewArrs.print('$a','$b','[no table]','$f')
+	}
+elseif $args[0]='em.simpl':
+	$result=dyneval ({
+		$result+=@em.simpl('9.05',"-9")+$nr		& !@ '9.05'
+		$result+=@em.simpl('9.05','-9.05')+$nr	& !@ '9.05'
+		$result+=@em.simpl('9.05',"10")+$nr		& !@ '10'
+		$result+=@em.simpl('9.05',"9.55")+$nr	& !@ '9.55'
+		$result+=@em.simpl('9.99',"9.999")+$nr	& !@ '9.999'
+		$result+=@em.simpl('-1.69',"1.3")+$nr	& !@ '1.3'
+		$result+=@em.simpl('-1.69',"-1.3")+$nr	& !@ '-1.3'
+		$result+=@em.simpl('1.69',"1.3")+$nr	& !@ '1.69'
+		$result+=@em.simpl('1.69',"-1.3")+$nr	& !@ '1.69'
+	})
+elseif $args[0]='em.round':
+	$result=$dyneval ({
+		$result+=@em.round("945.459","0.1")+$nr  			& !@ '945.5'
+		$result+=@em.round("945.459","0.1",'[down]')+$nr	& !@ '945.4'
+		$result+=@em.round("945.444","0.1",'[up]')+$nr		& !@ '945.5'
+		$result+=@em.round("945.459","0.01")+$nr  			& !@ '945.46'
+		$result+=@em.round("945.459","0.001")+$nr			& !@ '945.459'
+		$result+=@em.round("945.459","1")+$nr    			& !@ '945'
+		$result+=@em.round("945.459","10")+$nr   			& !@ '950'
+		$result+=@em.round("945.459","100")+$nr  			& !@ '900'
+		$result+=@em.round("-945.459","10")+$nr  			& !@ '-950'
+		$result+=@em.round("-945.459","0.01")+$nr			& !@ '-945.46'
+	})
+elseif $args[0]='em.mult':
+	$result=$dyneval ({
+		$result+=@em.mult("38.4","2.5")+$nr									& !@ '96'
+		$result+=@em.mult('9.05',"-9.05")+$nr								& !@ '-81.9025'
+		$result+=@em.mult('9.05',"10")+$nr									& !@ '90.5'
+		$result+=@em.mult('9.05',"9.55","9.25")+$nr							& !@ '799.454375'
+		$result+=@em.mult('9.99',"-9.999","9.9")+$nr						& !@ '-988.911099'
+		$result+=@em.mult('2','2','2','2','2','2','2','2','2')+$nr			& !@ '512'
+		$result+=@em.mult('-2','-2','-2','-2','-2','-2','-2','-2','-2')+$nr	& !@ '-512'
+	})
+elseif $args[0]='em.div':
+	$result=$dyneval ({
+		$result+=@em.div('9.05',"-9",10000)+$nr		& !@ '-1.0055'
+		$result+=@em.div('9.05','-9.05',10000)+$nr	& !@ '-1'
+		$result+=@em.div('9.05',"10")+$nr			& !@ '0.905'
+		$result+=@em.div('9.05',"9.55",10000)+$nr	& !@ '0.9476'
+		$result+=@em.div('9.99',"9.999",10000)+$nr	& !@ '0.999'
+		$result+=@em.div('9.99',"9.999",1000000)+$nr	& !@ '0.999099'
+		$result+=@em.div('-1.69',"1.3",10000)+$nr	& !@ '-1.3'
+		$result+=@em.div('1.69',"1.3",10000)+$nr		& !@ '1.3'
+		$result+=@em.div('-1.69',"-1.3",10000)+$nr	& !@ '1.3'
+		$result+=@em.div('1.69',"-1.3",10000)+$nr	& !@ '-1.3'
+	})
+elseif $args[0]='em.add':
+	$result=$dyneval({
+		$result+=@em.add('9.05','-9')+$nr							& !@ '0.05'
+		$result+=@em.add('9.05','-9.05')+$nr						& !@ '0'
+		$result+=@em.add('9.05','9')+$nr							& !@ '18.05'
+		$result+=@em.add('9.05','9.55','9.25')+$nr					& !@ '27.85'
+		$result+=@em.add('9.99','9.999','9.9')+$nr					& !@ '29.889'
+		$result+=@em.add('384.384','92.8',3)+$nr					& !@ '480.184'
+		$result+=@em.add('283','126')+$nr							& !@ '409'
+		$result+=@em.add('283','-126')+$nr							& !@ '157'
+		$result+=@em.add('-283','126')+$nr							& !@ '-157'
+		$result+=@em.add('-283','-126')+$nr							& !@ '-409'
+		$result+=@em.add('-234','125','-13.7890303','3484889')+$nr	& !@ '3484766.2109697'
+	})
+elseif $args[0]='em.sqrt':
+	$result=$dyneval({
+		$result+=@em.sqrt('1000',10000)+$nr	& !@ 31.6227
+		$result+=@em.sqrt('16',10000)+$nr	& !@ 4
+		$result+=@em.sqrt('257',100000)+$nr	& !@ 16.03121
+		$result+=@em.sqrt('257',10000)+$nr	& !@ 16.0312
+		$result+=@em.sqrt('257',1000)+$nr	& !@ 16.031
+		$result+=@em.sqrt('257',100)+$nr	& !@ 16.03
+		$result+=@em.sqrt('2.1',100)+$nr	& !@ 1.44
+		$result+=@em.sqrt('259',100)+$nr	& !@ 16.09
+		$result+=@em.sqrt('260',100)+$nr	& !@ 16.12
+		$result+=@em.sqrt('1.69',100)+$nr	& !@ 1.3
+		$result+=@em.sqrt('0.69',10000)+$nr	& !@ 0.8306
+	})
+elseif $args[0]='em.maxvar':
+	$result=$dyneval({
+		local old_mass, old_mass_1, old_mass_2, oldmass, oldold, new_mass, mass
+		old_mass[0]=788
+		old_mass[1]=136
+		old_mass[2]=788
+		old_mass[3]=177
+		old_mass[4]=75
+		old_mass[5]=97
+		old_mass[6]=649
+		old_mass[7]=75
+
+		old_mass_1[0]=774
+		old_mass_1[1]=587
+		old_mass_1[2]=513
+		old_mass_1[3]=394
+		old_mass_1[4]=332
+		old_mass_1[5]=247
+		old_mass_1[6]=724
+		old_mass_1[7]=660
+		old_mass_1[8]=806
+		old_mass_1[9]=130
+
+		oldmass[0]=828
+		oldmass[1]=69
+		oldmass[2]=865
+		oldmass[3]=473
+		oldmass[4]=529
+		oldmass[5]=965
+		oldmass[6]=666
+		oldmass[7]=44
+		oldmass[8]=480
+		oldmass[9]=108
+
+		old_mass_2[0]=925
+		old_mass_2[1]=3
+		old_mass_2[2]=446
+		old_mass_2[3]=853
+		old_mass_2[4]=152
+		old_mass_2[5]=756
+		old_mass_2[6]=933
+		old_mass_2[7]=638
+		old_mass_2[8]=286
+		old_mass_2[9]=86
+
+		oldold[0]=310
+		oldold[1]=780
+		oldold[2]=544
+		oldold[3]=325
+		oldold[4]=110
+		oldold[5]=666
+		oldold[6]=482
+		oldold[7]=738
+		oldold[8]=945
+		oldold["textindex"]=476
+
+		new_mass[0]=9
+		new_mass[1]=270
+		new_mass[2]=446
+		new_mass[3]=640
+		new_mass[4]=945
+		new_mass[5]=783
+		new_mass[6]=942
+		new_mass[7]=847
+		new_mass[8]=254
+		new_mass[9]=678
+
+		mass[23]=375
+		mass[45]=49
+		$result+=@em.maxVar('old_mass','new_mass','mass[23]','mass[45]')+$nr
+		$result+=@em.maxVar('old_mass_1,oldmass,old_mass_2,oldold/arr','new_mass/arr','mass[23]','mass[45]')+$nr
+		$result+=@em.maxVar('old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]','new_mass','mass[23]','mass[45]')+$nr
+		$result+=@em.maxVar('old_mass','new_mass','mass[23]','mass[45]','[list]')+$nr
+		$result+=@em.maxVar('old_mass_1,oldmass,old_mass_2,oldold/arr','new_mass/arr','mass[23]','mass[45]','[list]')+$nr
+		$result+=@em.maxVar('old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]','new_mass','mass[23]','mass[45]','[list]')+$nr
+		$result+=@em.maxVar('old_mass/arr')+$nr
+		$result+=@em.maxVar('old_mass/arr','[list]')+$nr
+		$result+=@em.maxVar('old_mass/arr','[list][min]')+$nr
+	})
+elseif $args[0]='em.minvar':
+	$result=$dyneval({
+		local old_mass, old_mass_1, old_mass_2, oldmass, oldold, new_mass, mass
+		old_mass[0]=788
+		old_mass[1]=136
+		old_mass[2]=788
+		old_mass[3]=177
+		old_mass[4]=75
+		old_mass[5]=97
+		old_mass[6]=649
+		old_mass[7]=75
+
+		old_mass_1[0]=774
+		old_mass_1[1]=587
+		old_mass_1[2]=513
+		old_mass_1[3]=394
+		old_mass_1[4]=332
+		old_mass_1[5]=247
+		old_mass_1[6]=724
+		old_mass_1[7]=660
+		old_mass_1[8]=806
+		old_mass_1[9]=130
+
+		oldmass[0]=828
+		oldmass[1]=69
+		oldmass[2]=865
+		oldmass[3]=473
+		oldmass[4]=529
+		oldmass[5]=965
+		oldmass[6]=666
+		oldmass[7]=44
+		oldmass[8]=480
+		oldmass[9]=108
+
+		old_mass_2[0]=925
+		old_mass_2[1]=3
+		old_mass_2[2]=446
+		old_mass_2[3]=853
+		old_mass_2[4]=152
+		old_mass_2[5]=756
+		old_mass_2[6]=933
+		old_mass_2[7]=638
+		old_mass_2[8]=286
+		old_mass_2[9]=86
+
+		oldold[0]=310
+		oldold[1]=780
+		oldold[2]=544
+		oldold[3]=325
+		oldold[4]=110
+		oldold[5]=666
+		oldold[6]=482
+		oldold[7]=738
+		oldold[8]=945
+		oldold["textindex"]=476
+
+		new_mass[0]=9
+		new_mass[1]=270
+		new_mass[2]=446
+		new_mass[3]=640
+		new_mass[4]=945
+		new_mass[5]=783
+		new_mass[6]=942
+		new_mass[7]=847
+		new_mass[8]=254
+		new_mass[9]=678
+
+		mass[23]=375
+		mass[45]=49
+		$result+=@em.minVar('old_mass','new_mass','mass[23]','mass[45]')+$nr
+		$result+=@em.minVar('old_mass_1,oldmass,old_mass_2,oldold/arr','new_mass/arr','mass[23]','mass[45]')+$nr
+		$result+=@em.minVar('old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]','new_mass','mass[23]','mass[45]')+$nr
+		$result+=@em.minVar('old_mass','new_mass','mass[23]','mass[45]','[list]')+$nr
+		$result+=@em.minVar('old_mass_1,oldmass,old_mass_2,oldold/arr','new_mass/arr','mass[23]','mass[45]','[list]')+$nr
+		$result+=@em.minVar('old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]','new_mass','mass[23]','mass[45]','[list]')+$nr
+		$result+=@em.minVar('old_mass/arr')+$nr
+		$result+=@em.minVar('old_mass/arr','[list]')+$nr
+		$result+=@em.minVar('old_mass/arr','[list][max]')+$nr
+	})
+end
+--- em.autotest ---------------------------------
+

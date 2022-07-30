@@ -1,4 +1,5 @@
-# !--test--!
+QSP-Game Локация предназначена для быстрого теста библиотеки. Монтируется безусловно.
+# em.uc
 local $em_test_parse, $nr
 $nr='
 '
@@ -39,4 +40,4 @@ elseif instr($commandline,'autotest') and loc('em.autotest.self'):
 else
 	dynamic $commandline
 end
---- !--test--! ---------------------------------
+--- em.uc ---------------------------------

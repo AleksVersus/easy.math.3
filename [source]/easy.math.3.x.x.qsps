@@ -6,7 +6,7 @@ if $args[0]="":
 	showacts 0
 	$fname="Consolas"
 	usehtml=0
-	$usercom='!--test--!'	
+	$usercom='em.uc'	
 	"easy.math v 3.0.0 для QSP 5.8.0"
 	"
 	По всем вопросам и предложениям обращаться:

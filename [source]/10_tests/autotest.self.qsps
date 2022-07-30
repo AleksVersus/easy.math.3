@@ -1,0 +1,157 @@
+QSP-Game часть автотеста, отвечающая за сравнение
+# em.autotest.self
+local $res, $example, $functions
+$args[0]=$lcase($args[0])
+$args[1]=$lcase($args[1])
+!@ em.simpl
+if instr($args[0],'em.simpl')<>0 or $args[0]='':
+$functions[]='em.simpl'
+$example['em.simpl']="9.05
+9.05
+10
+9.55
+9.999
+1.3
+-1.3
+1.69
+1.69
+"
+end
+
+!@ em.round
+if instr($args[0],'em.round')<>0 or $args[0]='':
+$functions[]='em.round'
+$example['em.round']="945.5
+945.4
+945.5
+945.46
+945.459
+945
+950
+900
+-950
+-945.46
+"
+end
+
+!@ em.mult
+if instr($args[0],'em.mult')<>0 or $args[0]='':
+$functions[]='em.mult'
+$example['em.mult']="96
+-81.9025
+90.5
+799.454375
+-988.911099
+512
+-512
+"
+end
+!@ em.div
+if instr($args[0],'em.div')<>0 or $args[0]='':
+$functions[]='em.div'
+$example['em.div']="-1.0055
+-1
+0.905
+0.9476
+0.999
+0.999099
+-1.3
+1.3
+1.3
+-1.3
+"
+end
+!@ em.add
+if instr($args[0],'em.add')<>0 or $args[0]='':
+$functions[]='em.add'
+$example['em.add']="0.05
+0
+18.05
+27.85
+29.889
+480.184
+409
+157
+-157
+-409
+3484766.2109697
+"
+end
+!@ em.sqrt
+if instr($args[0],'em.sqrt')<>0 or $args[0]='':
+$functions[]='em.sqrt'
+$example['em.sqrt']="31.6227
+4
+16.03121
+16.0312
+16.031
+16.03
+1.44
+16.09
+16.12
+1.3
+0.8306
+"
+end
+!@ em.maxVar
+if instr($args[0],'em.maxvar')<>0 or $args[0]='':
+$functions[]='em.maxvar'
+$example['em.maxvar']="old_mass
+oldold[8]
+old_mass_2
+old_mass
+oldold[8]
+new_mass[4]
+old_mass_2
+old_mass[0]
+old_mass[0]
+old_mass[2]
+old_mass[4]
+old_mass[7]
+"
+end
+!@ em.minVar
+if instr($args[0],'em.minvar')<>0 or $args[0]='':
+$functions[]='em.minvar'
+$example['em.minvar']="new_mass
+new_mass[0]
+oldold[13]
+new_mass
+new_mass[0]
+oldold[13]
+old_mass[4]
+old_mass[4]
+old_mass[7]
+old_mass[4]
+old_mass[7]
+"
+end
+*pl "Start of Autotest." & wait 1000
+loop local i,size=0,arrsize('$functions') while i<size step i+=1:
+	if loc($functions[i]):
+		*pl "Function '<<$functions[i]>>' is exist."
+		wait 1000
+		$res=@em.autotest($functions[i])
+		if $res=$example[$functions[i]]:
+			*pl "Autotest of '<<$functions[i]>>' completed. All Ok!"
+			wait 1000
+		else
+			*pl "Autotest Error. Dif Result:"
+			*pl "<table border=1 cellspacing=5><tr><td>Еxpected results:</td><td>Obtained results:</td></tr><tr><td><<$example[$functions[i]]>></td><td><<$res>></td></tr>"
+			if $args[1]='compile':
+				local $f,$r
+				loop local j,size=1,max(len($example[$functions[i]]),len($res)) while j<=size step j+=1:
+					$f=$mid($example[$functions[i]],j,1)
+					$r=$mid($res,j,1)
+					if $f<>$r: *p "[<<j>>:<<$f>>:<<$r>>] "
+				end
+			end
+			wait 1000
+		end
+	else
+		*pl "Function '<<$functions[i]>>' doesn't exist. Location not found."
+		wait 1000
+	end
+end
+*pl "End of Autotest." & wait 1000
+- em.autotest.self
