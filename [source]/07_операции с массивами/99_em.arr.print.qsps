@@ -2,8 +2,8 @@ QSP-Game возвращает содержимое массива
 Аргументы см. ниже
 !@pp:if(em_arr_print):include
 # em.arr.print
-local easy_math_copy_array	& !@ объявляем локальный массив для хранения выводимых значений
-copyarr 'easy_math_copy_array',$args[0]	& !@ копируем значения в локальный массив
+local em_arr_print_copy_array	& !@ объявляем локальный массив для хранения выводимых значений
+copyarr 'em_arr_print_copy_array',$args[0]	& !@ копируем значения в локальный массив
 !@ инициализируем локальные переменные
 local $type, $quotes, $only_result, $array_print, $inline
 local $array_name,$commands,$delimiter,start_cell,end_cell=$args[0],$args[1],$args[2],args[3],args[4]
@@ -23,21 +23,21 @@ else
 	$quotes=""
 	$only_result='yep'
 end
-loop local i,j,size=start_cell,end_cell,arrsize('easy_math_copy_array') while (i<size and (i<=j or j=0)) step i+=1:
+loop local i,j,size=start_cell,end_cell,arrsize('em_arr_print_copy_array') while (i<size and (i<=j or j=0)) step i+=1:
 	!@ если не указано, что нужно вывести только значения массивов, к выводимым значениям добавляется название массива и номер ячейки
 	if $only_result='': $array_print+=$array_name+"[<<i>>]="
 	if $type='str':
 		!@ если пытаемся получить строковые значения, это может быть строка или кортеж
-		if instr($easy_math_copy_array[i],'')=0:
-			$inline=$replace($easy_math_copy_array[i],$quotes,"''")
+		if instr($em_arr_print_copy_array[i],'')=0:
+			$inline=$replace($em_arr_print_copy_array[i],$quotes,"''")
 			if instr($commands,'[trim]')<>0: $inline=$trim($inline)
 			$array_print+=$quotes+$inline+$quotes+$delimiter
 		else
-			$array_print+="("+$replace($easy_math_copy_array[i],'',',')+')'+$delimiter
+			$array_print+="("+$replace($em_arr_print_copy_array[i],'',',')+')'+$delimiter
 		end
 	elseif $type='int':
 		!@ если пытаемся получить число, просто вписываем его
-		$array_print+=$str(easy_math_copy_array[i])+$delimiter
+		$array_print+=$str(em_arr_print_copy_array[i])+$delimiter
 	end
 end
 !@ если последний разделитель следует исключить, вырезаем

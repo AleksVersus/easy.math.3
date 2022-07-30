@@ -9,10 +9,10 @@ QSP-Game ПЕРЕМЕННАЯ С НАИБОЛЬШИМ ЗНАЧЕНИЕМ
 [min] - поиск минимального значения, имеет приоритет над [max], если указаны оба.
 !@pp:if(em_maxvar):include
 # em.maxVar
-args['size']=arrsize('args') & local easy_math_varname	& !@ инициализируем аргументы и локальные переменные
+args['size']=arrsize('args') & local em_maxvar_varname	& !@ инициализируем аргументы и локальные переменные
 $args['\n']=''
 $args['>or<']='>'
-@em.str.inArr($args[0],'$easy_math_varname',',','NOTSPACE [strip]')
+@em.str.inArr($args[0],'$em_maxvar_varname',',','NOTSPACE [strip]')
 
 !@ этот цикл добирает оставшиеся переменные
 loop args['i']=1 while args['i']<args['size'] and args['stop']=0 step args['i']+=1:
@@ -27,18 +27,18 @@ loop args['i']=1 while args['i']<args['size'] and args['stop']=0 step args['i']+
 			$args['>or<']='>'
 		end
 	else:
-		$easy_math_varname[]=$args[args['i']]
+		$em_maxvar_varname[]=$args[args['i']]
 	end
 end
 
 !@ следующий цикл перебирает переменные, помещая их значения и названия в отдельный массив
 if $args['>or<']='>': args['maximal_result']=-2147483647
 if $args['>or<']='<': args['maximal_result']=2147483647
-loop args['i'],args['s']=0,arrsize('$easy_math_varname') while args['i']<args['s'] step args['i']+=1:
-	$easy_math_varname[args['i']]=$replace($easy_math_varname[args['i']],'%&#44;%',',')
-	if $mid($easy_math_varname[args['i']],len($easy_math_varname[args['i']])-3)='/arr':
+loop args['i'],args['s']=0,arrsize('$em_maxvar_varname') while args['i']<args['s'] step args['i']+=1:
+	$em_maxvar_varname[args['i']]=$replace($em_maxvar_varname[args['i']],'%&#44;%',',')
+	if $mid($em_maxvar_varname[args['i']],len($em_maxvar_varname[args['i']])-3)='/arr':
 		!@ если имеется ввиду не имя переменной, а имя массива
-		$args['arr']=$mid($easy_math_varname[args['i']],1,len($easy_math_varname[args['i']])-4)
+		$args['arr']=$mid($em_maxvar_varname[args['i']],1,len($em_maxvar_varname[args['i']])-4)
 		if $args['>or<']='>': args['maxarr']=max($args['arr'])
 		if $args['>or<']='<': args['maxarr']=min($args['arr'])
 		if (args['maxarr']>=args['maximal_result'] and  $args['>or<']='>') or (args['maxarr']<=args['maximal_result'] and  $args['>or<']='<'):
@@ -60,16 +60,16 @@ loop args['i'],args['s']=0,arrsize('$easy_math_varname') while args['i']<args['s
 		!@ если имеется ввиду имя переменной
 		$args['simpl']=$dyneval("
 			$result=''
-			if <<$easy_math_varname[args['i']]>> <<$args['>or<']>> <<args['maximal_result']>>:
+			if <<$em_maxvar_varname[args['i']]>> <<$args['>or<']>> <<args['maximal_result']>>:
 				$result='over' & ! больше
-			elseif <<$easy_math_varname[args['i']]>> = <<args['maximal_result']>>:
+			elseif <<$em_maxvar_varname[args['i']]>> = <<args['maximal_result']>>:
 				$result='equals' & ! равно
 			end
 			")
 		if $args['simpl']<>'':
 			if $args['simpl']='over': $args['list_of_var']=''
-			$args['list_of_var']+=$easy_math_varname[args['i']]+$args['\n']
-			args['maximal_result']=dyneval("result=<<$easy_math_varname[args['i']]>>")
+			$args['list_of_var']+=$em_maxvar_varname[args['i']]+$args['\n']
+			args['maximal_result']=dyneval("result=<<$em_maxvar_varname[args['i']]>>")
 		end
 	end
 end
@@ -90,7 +90,7 @@ end
 !@pp:var(em_str_getWord)
 !@pp:endif
 
-Внимание!!! Функция собрана на ARGS дабы избежать пересечения с большинством возможных имён переменных. Не пытайтесь передавать в функцию значения массива args или easy_math_varname
+Внимание!!! Функция собрана на ARGS дабы избежать пересечения с большинством возможных имён переменных. Не пытайтесь передавать в функцию значения массива args или em_maxvar_varname
 
 Обратите внимание!!! Здесь нельзя просто убрать кавычки у dyneval в первом случае, поскольку подставляется не только имя переменной, но так же и знак выражения. Если избавляться от кавычек, то придётся переписать данный кусок кода в более развёрнутом виде с дополнительными условиями.
 

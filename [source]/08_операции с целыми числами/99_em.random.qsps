@@ -2,16 +2,16 @@ QSP-Game Функция выбрасывания случайного числа
 func('em.random','10-24','34-49')
 !@pp:if(em_random):include
 # em.random
-local easy_math_temp, j, k
+local em_random_temp_array, j, k
 loop local i=0 while strcomp($args[i],'\d+\-\d+')<>0 step i+=1:
 	!@ получение чисел. Можно использовать функцию em.str.getWord
 	j=val($strfind($args[i],'(\d+)(\-)',1))
 	k=val($strfind($args[i],'(\-)(\d+)',2))
-	loop while j<=k and arrpos('easy_math_temp',j)=-1 step j+=1:
-			easy_math_temp[]=j
+	loop while j<=k and arrpos('em_random_temp_array',j)=-1 step j+=1:
+		em_random_temp_array[]=j
 	end
 end
-result=easy_math_temp[rand(0,arrsize('easy_math_temp')-1)]
+result=em_random_temp_array[rand(0,arrsize('em_random_temp_array')-1)]
 --- em.random ---------------------------------
 !@pp:endif
 

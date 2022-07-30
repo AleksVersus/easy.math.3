@@ -7,7 +7,7 @@ args[2] - индекс элемента, куда хотим поместить 
 !@pp:if(em_arr_insert):include
 # em.arr.insert
 $args[9] = $args[9]	& !@ инициализация аргументов
-local easy_math_copy_array_1, easy_math_copy_array_2
+local em_arr_insert_copy_array_1, em_arr_insert_copy_array_2
 if instr($args[0],'$')=1:
 	!@ если имеем дело с текстовым массивом
 	$args[3]='$'	& !@ выставляем переменной-маркеру значение '$' (используется как префик названию массива)
@@ -17,22 +17,22 @@ else
 	$args[3]=''	& !@ переменная-маркер с пустым значением
 	$args[5]=$str(args[1])	& !@ для dyneval и dynamic значение из аргумента просто приводится к строке
 end
-copyarr "easy_math_copy_array_1",$args[0],0,args[2]	& !@ копируем во временный массив первую часть исходного массива
-copyarr "easy_math_copy_array_2",$args[0],args[2]	& !@ копируем во второй временный массив вторую часть исх. массива
+copyarr "em_arr_insert_copy_array_1",$args[0],0,args[2]	& !@ копируем во временный массив первую часть исходного массива
+copyarr "em_arr_insert_copy_array_2",$args[0],args[2]	& !@ копируем во второй временный массив вторую часть исх. массива
 !@ была мысль избавиться от dynamic и использовать arritem, однако
 !@ для использования arritem всё равно нужно заранее знать, какого типа значение
 !@ я пытаюсь извлечь из массива. В принципе можно написать два одинаковых цикла для того и другого случая,
 !@ но тогда мне вообще не нужен dynamic и arritem.
 dynamic "
 !@pp:вставляем элемент в конец массива
-	<<$args[3]>>easy_math_copy_array_1[]=<<$args[5]>>
+	<<$args[3]>>em_arr_insert_copy_array_1[]=<<$args[5]>>
 !@pp:циклом переносим из временного массива вторую часть массива в исходный
-	loop while arrsize('<<$args[3]>>easy_math_copy_array_2')>0:
-		<<$args[3]>>easy_math_copy_array_1[]=<<$args[3]>>easy_math_copy_array_2[0]
-		killvar '<<$args[3]>>easy_math_copy_array_2',0
+	loop while arrsize('<<$args[3]>>em_arr_insert_copy_array_2')>0:
+		<<$args[3]>>em_arr_insert_copy_array_1[]=<<$args[3]>>em_arr_insert_copy_array_2[0]
+		killvar '<<$args[3]>>em_arr_insert_copy_array_2',0
 	end
 "
-copyarr $args[0],"<<$args[3]>>easy_math_copy_array_1"	& !@ копируем обратно в исходный массив первую часть из временного массива
+copyarr $args[0],"<<$args[3]>>em_arr_insert_copy_array_1"	& !@ копируем обратно в исходный массив первую часть из временного массива
 --- em.arr.insert ---------------------------------
 !@pp:endif
 

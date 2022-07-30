@@ -8,13 +8,13 @@ $args[9]=$args[9]	& !@ инициализация аргументов
 if instr($args[1],'$')=1: $args[1]=$mid($args[1],2)	& !@ опорный массив не может быть текстовым
 if $args[2]='': $args[2]=$args[0]	& !@ если не указан результирующий массив, результат помещается в исходный
 if instr($args[0],'$')=1: $args['$']='$' else $args['$']=''	& !@ маркер указания на тип
-local easy_math_copy_array, easy_math_sort_array
-copyarr 'easy_math_sort_array',$args[1]	& !@ копируем опорный массив во временный
+local em_arr_restand_copy_array, em_arr_restand_sort_array
+copyarr 'em_arr_restand_sort_array',$args[1]	& !@ копируем опорный массив во временный
 !@ с помощью цикла вставляем элементы во временный массив
-loop local i,size=0,arrsize('easy_math_sort_array') while i<size step i+=1:
-	dynamic $args['$']+"easy_math_copy_array[args[0]] = "+$args[0]+"[args[1]]",i,easy_math_sort_array[i]
+loop local i,size=0,arrsize('em_arr_restand_sort_array') while i<size step i+=1:
+	dynamic $args['$']+"em_arr_restand_copy_array[args[0]] = "+$args[0]+"[args[1]]",i,em_arr_restand_sort_array[i]
 end
-copyarr $args[2],$args['$']+"easy_math_copy_array"	& !@ копируем данные из временного массива в результирующий
+copyarr $args[2],$args['$']+"em_arr_restand_copy_array"	& !@ копируем данные из временного массива в результирующий
 --- em.arr.restand ---------------------------------
 !@pp:endif
 
