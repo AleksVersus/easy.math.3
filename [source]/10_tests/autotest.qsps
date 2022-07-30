@@ -1,13 +1,13 @@
 QSP-Game Функция тестов для easy.math
 
 Автоматические тесты для easy.math
-
+!@pp:if(em_autotest):include
 # em.autotest
 $args[0]=$lcase($args[0])
 local $nr='
 '
 if $args[0]='em.fewarrs.print':
-	dynamic {
+	$result=$dyneval({
 		local a, b
 		$a[]='нулевая ячейка'
 		$a[]='   первая ячейка   '
@@ -26,13 +26,12 @@ if $args[0]='em.fewarrs.print':
 		$b[]='   пятая ячейка'
 		$b[]='6'
 		$b[]='7'
-		usehtml=1
-		@em.fewArrs.print('$a','$b')
-		@em.fewArrs.print('$a','$b','[only result]')
-		@em.fewArrs.print('$a','$b','[no table]')
-		@em.fewArrs.print('$c','$d')
-		@em.fewArrs.print('$a','$b','[no table]','$f')
-	}
+		$result+=@em.fewArrs.print('$a','$b')+$nr	
+		$result+=@em.fewArrs.print('$a','$b','[only result]')+$nr	
+		$result+=@em.fewArrs.print('$a','$b','[no table]')+$nr	
+		$result+=@em.fewArrs.print('$c','$d')+$nr	
+		$result+=@em.fewArrs.print('$a','$b','[no table]','$f')+$nr
+	})
 elseif $args[0]='em.simpl':
 	$result=dyneval ({
 		$result+=@em.simpl('9.05',"-9")+$nr		& !@ '9.05'
@@ -269,4 +268,4 @@ elseif $args[0]='em.minvar':
 	})
 end
 --- em.autotest ---------------------------------
-
+!@pp:endif

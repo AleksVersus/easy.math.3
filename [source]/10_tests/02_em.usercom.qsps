@@ -35,7 +35,7 @@ elseif instr($trim($lcase($commandline)),'gen mass')=1:
 		*pl "Error input. Tape:"
 		*pl "gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS>"
 	end
-elseif instr($commandline,'autotest') and loc('em.autotest.self'):
+elseif instr($commandline,'autotest')=1 and loc('em.autotest.self'):
 		@em.autotest.self($em_test_parse[1],$em_test_parse[2])
 else
 	dynamic $commandline
