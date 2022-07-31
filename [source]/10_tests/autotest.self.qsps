@@ -4,6 +4,16 @@ QSP-Game часть автотеста, отвечающая за сравнен
 local $res, $example, $functions, $nr
 $args[0]=$lcase($args[0])
 $args[1]=$lcase($args[1])
+!@ em.byte.add
+if instr($args[0],'em.byte.add')<>0 or $args[0]='':
+$functions[]='em.byte.add'
+$example['em.byte.add']="999038998978006273004479"
+end
+!@ em.byte.dev
+if instr($args[0],'em.byte.dev')<>0 or $args[0]='':
+$functions[]='em.byte.dev'
+$example['em.byte.dev']="998492998432993726992932"
+end
 !@ em.fewarrs.print
 if instr($args[0],'em.fewarrs.print')<>0 or $args[0]='':
 $functions[]='em.fewarrs.print'

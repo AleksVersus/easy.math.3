@@ -266,6 +266,20 @@ elseif $args[0]='em.minvar':
 		$result+=@em.minVar('old_mass/arr','[list]')+$nr
 		$result+=@em.minVar('old_mass/arr','[list][max]')+$nr
 	})
+elseif $args[0]='em.byte.add':
+	$result=$dyneval({
+		$result+=@em.byte.add(998765,273)	& !@ '999038'
+		$result+=@em.byte.add('9987Y5','-273')	& !@ '998978'
+		$result+=@em.byte.add('999999','6273')	& !@ '006273'
+		$result+=@em.byte.add('998705','5773')	& !@ '004479'
+	})
+elseif $args[0]='em.byte.dev':
+	$result=$dyneval({
+		$result+=@em.byte.add(998765,273)	& !@ '999038'
+		$result+=@em.byte.add('9987Y5','-273')	& !@ '998978'
+		$result+=@em.byte.add('999999','6273')	& !@ '006273'
+		$result+=@em.byte.add('998705','5773')	& !@ '004479'
+	})
 end
 --- em.autotest ---------------------------------
 !@pp:endif
