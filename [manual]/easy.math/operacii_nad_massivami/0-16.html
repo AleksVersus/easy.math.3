@@ -43,35 +43,35 @@
                 </div>
                 <h5>Примеры вызова функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'mass'</span>)</span><br>
+                    <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>)</span><br>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Comment">  - выведет на экран числовые значения массива 'mass'</span><br>
-                    <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$mass'</span>)</span><br>
+                    <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$mass'</span>)</span><br>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Comment">  - выведет на экран текстовые значения массива '$mass'</span><br>
-                    <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'[only&nbsp;Result]'</span>)</span><br>
+                    <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'[only&nbsp;Result]'</span>)</span><br>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Comment">  - выведет на экран только содержимое массива '$mass'</span>
                 </div>
                 <h5>Результаты вызова функции:</h5>
 
                 <p class="emTEXT">Заготовленный массив:</p>
                 <div class="Monokai-Code">
-                    $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'нулевая&nbsp;ячейка'</span><br>
-                    $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'&nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;'</span><br>
-                    $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'&nbsp;вторая&nbsp;ячейка'</span><br>
+                    $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'нулевая ячейка'</span><br>
+                    $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'   первая ячейка   '</span><br>
+                    $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">' вторая ячейка'</span><br>
                     $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span><br>
-                    $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-String">='четвёртая&nbsp;ячейка'</span><br>
-                    $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'&nbsp;&nbsp;&nbsp;пятая&nbsp;ячейка'</span><br>
+                    $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">1</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">5</span>,<span class="Monokai-Numeric">6</span><span class="Monokai-Qbracket">)</span><br>
+                    $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Operator">=</span><span class="Monokai-String">'   пятая ячейка'</span><br>
                     $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span><br>
-                    $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'седьмая&nbsp;ячейка'</span>
+                    $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Operator">=</span><span class="Monokai-String">'седьмая ячейка'</span>
                 </div>
                 <p class="emTEXT">Вывод массива:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$a'</span>)</span><span class="Monokai-Assign">=</span><br>
-                    <span class="Monokai-String" style="color:#44bb44;">
+                    <span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>)</span><span class="Monokai-Assign">=</span><br>
+                    <span class="Monokai-String" style="color:#8dd6a5;">
                         "$a[0]='нулевая&nbsp;ячейка'<br>
                         $a[1]='&nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;'<br>
                         $a[2]='&nbsp;вторая&nbsp;ячейка'<br>
                         $a[3]=''<br>
-                        $a[4]='четвёртая&nbsp;ячейка'<br>
+                        $a[4]='(1,2,3,5,6)'<br>
                         $a[5]='&nbsp;&nbsp;&nbsp;пятая&nbsp;ячейка'<br>
                         $a[6]=''<br>
                         $a[7]='седьмая&nbsp;ячейка'<br>
@@ -79,12 +79,12 @@
                 </div>
                 <p class="emTEXT">Выводим исключительно значения массива:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[only&nbsp;result]'</span>)</span><span class="Monokai-Assign">=</span><br>
-                    <span class="Monokai-String" style="color:#44bb44;">"нулевая ячейка<br>
+                    <span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[only&nbsp;result]'</span>)</span><span class="Monokai-Assign">=</span><br>
+                    <span class="Monokai-String" style="color:#8dd6a5;">"нулевая ячейка<br>
                     &nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;<br>
                     &nbsp;&nbsp;вторая&nbsp;ячейка<br>
                     <br>
-                    четвёртая&nbsp;ячейка<br>
+                    (1,2,3,5,6)<br>
                     &nbsp;&nbsp;&nbsp;пятая&nbsp;ячейка<br>
                     <br>
                     седьмая&nbsp;ячейка<br>
@@ -92,13 +92,13 @@
                 </div>
                 <p class="emTEXT">Выводим значения массива с отсечением прилегающих пробелов в каждом значении:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim]'</span>)</span><span class="Monokai-Assign">=</span><br>
-                    <span class="Monokai-String" style="color:#44bb44;">
+                    <span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim]'</span>)</span><span class="Monokai-Assign">=</span><br>
+                    <span class="Monokai-String" style="color:#8dd6a5;">
                         "$a[0]='нулевая&nbsp;ячейка'<br>
                         $a[1]='первая&nbsp;ячейка'<br>
                         $a[2]='вторая&nbsp;ячейка'<br>
                         $a[3]=''<br>
-                        $a[4]='четвёртая&nbsp;ячейка'<br>
+                        $a[4]='(1,2,3,5,6)'<br>
                         $a[5]='пятая&nbsp;ячейка'<br>
                         $a[6]=''<br>
                         $a[7]='седьмая&nbsp;ячейка'<br>
@@ -107,13 +107,13 @@
                 </div>
                 <p class="emTEXT">Выводим исключительно значения массива, со второго по пятый элемент, включительно, с отсечением прилегающих пробелов в каждом значении; в качестве разделителя используем вертикальную черту:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim]&nbsp;[only&nbsp;result]'</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span>
-                    <br><span class="Monokai-String" style="color:#44bb44;">"вторая&nbsp;ячейка||четвёртая&nbsp;ячейка|пятая&nbsp;ячейка|"</span>
+                    <span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim]&nbsp;[only&nbsp;result]'</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span>
+                    <br><span class="Monokai-String" style="color:#8dd6a5;">"вторая&nbsp;ячейка||(1,2,3,5,6)|пятая&nbsp;ячейка|"</span>
                 </div>
                 <p class="emTEXT">Выводим исключительно значения массива, со второго по пятый элемент, включительно, с отсечением прилегающих пробелов в каждом значении; в качестве разделителя используем вертикальную черту; последний разделитель опускаем:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim]&nbsp;[only&nbsp;result]&nbsp;[not&nbsp;last]'</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span>
-                    <br><span class="Monokai-String" style="color:#44bb44;">"вторая&nbsp;ячейка||четвёртая&nbsp;ячейка|пятая&nbsp;ячейка"</span>
+                    <span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim]&nbsp;[only&nbsp;result]&nbsp;[not&nbsp;last]'</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span>
+                    <br><span class="Monokai-String" style="color:#8dd6a5;">"вторая&nbsp;ячейка||(1,2,3,5,6)|пятая&nbsp;ячейка"</span>
                 </div>
                 
                 <a id="arrayprntfew"></a><h4>em.fewArrs.print</h4>
@@ -157,7 +157,7 @@
                 <p class="emTEXT">Вывод двух массивов:</p>
                 <div class="Monokai-Code">
                     <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.fewArrs.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>)</span><span class="Monokai-Assign">=</span>
-                    <table  class="Monokai-String" style="color:#44bb44;border:1px solid;border-spacing:0.3em;">
+                    <table  class="Monokai-String" style="color:#8dd6a5;border:1px solid;border-spacing:0.3em;">
                         <tr>
                             <td style="border:1px solid;border-spacing:0.3em;">#</td>
                             <td style="border:1px solid;border-spacing:0.3em;">$a</td>
@@ -208,7 +208,7 @@
                 <p class="emTEXT">Вывод двух массивов, только значения:</p>
                 <div class="Monokai-Code">
                     <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.fewArrs.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>,<span class="Monokai-String">'[only&nbsp;result]'</span>)</span><span class="Monokai-Assign">=</span><br>
-                    <span class="Monokai-String" style="color:#44bb44;">
+                    <span class="Monokai-String" style="color:#8dd6a5;">
                         "нулевая&nbsp;ячейка&nbsp;&nbsp;нулевая&nbsp;ячейка<br>
                         &nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;<br>
                         &nbsp;вторая&nbsp;ячейка&nbsp;&nbsp;&nbsp;вторая&nbsp;ячейка<br>
@@ -222,7 +222,7 @@
                 <p class="emTEXT">Вывод двух массивов, без таблицы:</p>
                 <div class="Monokai-Code">
                     <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.fewArrs.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>,<span class="Monokai-String">'[no&nbsp;table]'</span>)</span><span class="Monokai-Assign">=</span><br>
-                    <span class="Monokai-String" style="color:#44bb44;">
+                    <span class="Monokai-String" style="color:#8dd6a5;">
                         "$a[0]='нулевая&nbsp;ячейка'&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;$b[0]='нулевая&nbsp;ячейка'<br>
                         $a[1]='&nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;'&nbsp;&amp;&nbsp;&nbsp;&nbsp;$b[1]='&nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;'<br>
                         $a[2]='&nbsp;вторая&nbsp;ячейка'&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;$b[2]='&nbsp;вторая&nbsp;ячейка'<br>
@@ -236,12 +236,12 @@
                 <p class="emTEXT">Вывод двух пустых массивов:</p>
                 <div class="Monokai-Code">
                     <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.fewArrs.print'</span>,<span class="Monokai-String">'$c'</span>,<span class="Monokai-String">'$d'</span>)</span><span class="Monokai-Assign">=</span><br>
-                    <span class="Monokai-String" style="color:#44bb44;">"All your massives are empty."</span>
+                    <span class="Monokai-String" style="color:#8dd6a5;">"All your massives are empty."</span>
                 </div>
                 <p class="emTEXT">Ошибочное написание имени массива:</p>
                 <div class="Monokai-Code">
                     <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.fewArrs.print'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>,<span class="Monokai-String">'[no&nbsp;table]'</span>,<span class="Monokai-String">'$f'</span>)</span><span class="Monokai-Assign">=</span><br>
-                    <span class="Monokai-String" style="color:#44bb44;">"Error: Array's name is not correct. ARGS[2]: '[no table]'"</span>
+                    <span class="Monokai-String" style="color:#8dd6a5;">"Error: Array's name is not correct. ARGS[2]: '[no table]'"</span>
                 </div>
                 
                 <a id="arrayins"></a><h4 class="emH4">em.arr.insert</h4>

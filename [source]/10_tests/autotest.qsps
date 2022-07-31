@@ -280,6 +280,24 @@ elseif $args[0]='em.byte.dev':
 		$result+=@em.byte.add('999999','6273')	& !@ '006273'
 		$result+=@em.byte.add('998705','5773')	& !@ '004479'
 	})
+elseif $args[0]='em.arr.print':
+	$result=$dyneval({
+		local $a
+		$a[]='нулевая ячейка'
+		$a[]='   первая ячейка   '
+		$a[]=' вторая ячейка'
+		$a[]=''
+		$a[]=(1,2,3,5,6)
+		$a[]='   пятая ячейка'
+		$a[]=''
+		$a[]='седьмая ячейка'
+
+		$result+=@em.arr.print('$a')+$nr
+		$result+=@em.arr.print('$a','[only result]')+$nr
+		$result+=@em.arr.print('$a','[trim]')+$nr
+		$result+=@em.arr.print('$a','[trim] [only result]','|',2,5)+$nr
+		$result+=@em.arr.print('$a','[trim] [only result] [not last]','|',2,5)+$nr
+	})
 end
 --- em.autotest ---------------------------------
 !@pp:endif
