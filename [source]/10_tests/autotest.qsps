@@ -328,7 +328,105 @@ elseif $args[0]='em.arr.clear':
 		@em.arr.clear('i',2)
 		$result=@em.arr.print('i')
 	})
+elseif $args[0]='em.zero':
+	$result=$dyneval({
+		$result+=@em.zero(13)+$nr	& !@ '0000000000000'
+		$result+=@em.zero(13,'1')+$nr	& !@ '1111111111111'
+		$result+=@em.zero(13,'10')+$nr	& !@ '10101010101010101010101010'
+		$result+=@em.zero(13,'a')+$nr	& !@ 'aaaaaaaaaaaaa'
+		$result+=@em.zero(3,'bla')+$nr	& !@ 'blablabla'
+	})
+elseif $args[0]='em.str.inarr':
+		$result=$dyneval({
+local $text, $mass_ex_1, $mass_ex_2, $mass_ex_3
+local $mass_res_1, $mass_res_2, $mass_res_3
+$text="Адское Пекло и Небеса -
+Я весь мир мечтаю продать.
+Время - деньги. Пусть стрелки бегут на часах -
+И мне нечего больше желать."
+$mass_ex_1[0]='Адское Пекло и Небеса -'
+$mass_ex_1[1]='Я весь мир мечтаю продать.'
+$mass_ex_1[2]='Время - деньги. Пусть стрелки бегут на часах -'
+$mass_ex_1[3]='И мне нечего больше желать.'
+$mass_ex_2[0]='Адское'
+$mass_ex_2[1]='Пекло'
+$mass_ex_2[2]='и'
+$mass_ex_2[3]='Небеса'
+$mass_ex_2[4]='-
+Я'
+$mass_ex_2[5]='весь'
+$mass_ex_2[6]='мир'
+$mass_ex_2[7]='мечтаю'
+$mass_ex_2[8]='продать.
+Время'
+$mass_ex_2[9]='-'
+$mass_ex_2[10]='деньги.'
+$mass_ex_2[11]='Пусть'
+$mass_ex_2[12]='стрелки'
+$mass_ex_2[13]='бегут'
+$mass_ex_2[14]='на'
+$mass_ex_2[15]='часах'
+$mass_ex_2[16]='-
+И'
+$mass_ex_2[17]='мне'
+$mass_ex_2[18]='нечего'
+$mass_ex_2[19]='больше'
+$mass_ex_2[20]='желать.'
+$mass_ex_3[0]='адское'
+$mass_ex_3[1]='пекло'
+$mass_ex_3[2]='и'
+$mass_ex_3[3]='небеса'
+$mass_ex_3[4]='я'
+$mass_ex_3[5]='весь'
+$mass_ex_3[6]='мир'
+$mass_ex_3[7]='мечтаю'
+$mass_ex_3[8]='продать'
+$mass_ex_3[9]='время'
+$mass_ex_3[10]='деньги'
+$mass_ex_3[11]='пусть'
+$mass_ex_3[12]='стрелки'
+$mass_ex_3[13]='бегут'
+$mass_ex_3[14]='на'
+$mass_ex_3[15]='часах'
+$mass_ex_3[16]='и'
+$mass_ex_3[17]='мне'
+$mass_ex_3[18]='нечего'
+$mass_ex_3[19]='больше'
+$mass_ex_3[20]='желать'
+@em.str.inArr($text,'$mass_res_1','
+','')
 
+loop local i,size=0,arrsize('$mass_res_1') while i<size step i+=1:
+	if $mass_res_1[i]<>$mass_ex_1[i]: result-=1
+end
+
+@em.str.inArr($text,'$mass_res_2',' ','')
+
+loop local i,size=0,arrsize('$mass_res_1') while i<size step i+=1:
+	if $mass_res_2[i]<>$mass_ex_2[i]: result-=1
+end
+
+@em.str.inArr($text,'$mass_res_3','("|!|\?|-|,|;|:|\.| |
+)','[notspace] [regular] [lcase]')
+
+loop local i,size=0,arrsize('$mass_res_3') while i<size step i+=1:
+	if $mass_res_3[i]<>$mass_ex_3[i]: result-=1
+end
+$result=$str(result)
+		})
+elseif $args[0]='em.str.thin':
+	$result=$dyneval({
+		$result+=@em.str.thin('профессура')+$nr	& !@ "п р о ф е с с у р а"
+		$result+=@em.str.thin('профессура',1,'|')+$nr	& !@ "п|р|о|ф|е|с|с|у|р|а"
+		$result+=@em.str.thin('профессура',1,'|','[right]')+$nr	& !@ "п|р|о|ф|е|с|с|у|р|а"
+		$result+=@em.str.thin('профессура',1,'|','[left]')+$nr	& !@ "п|р|о|ф|е|с|с|у|р|а"
+		$result+=@em.str.thin('профессура',1,'|','[right][left]')+$nr	& !@ "п|р|о|ф|е|с|с|у|р|а"
+		$result+=@em.str.thin('профессура',3,'|')+$nr	& !@ "про|фес|сур|а"
+		$result+=@em.str.thin('профессура',3,'|','[up]')+$nr	& !@ "п|роф|есс|ура"
+		$result+=@em.str.thin('профессура',3,'|','[left]')+$nr	& !@ "|про|фес|сур|а"
+		$result+=@em.str.thin('профессура',2,'|','[right]')+$nr	& !@ "пр|оф|ес|су|ра|"
+		$result+=@em.str.thin('профессура',1,'||','[left] [right]')+$nr	& !@ "||п||р||о||ф||е||с||с||у||р||а||"
+	})
 end
 --- em.autotest ---------------------------------
 !@pp:endif

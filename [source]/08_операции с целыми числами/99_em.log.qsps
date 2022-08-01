@@ -13,9 +13,9 @@ end
 - em.log
 !@pp:endif
 
-@em.log(10)
-@em.log(100,2)
-@em.log(1000,5)
-@em.log(2345,5)
-@em.log(1013,13)
-@em.log(567)
+@em.log(10)	& !@ 1
+@em.log(100,2)	& !@ 6
+@em.log(1000,5)	& !@ 4
+@em.log(2345,5)	& !@ 4
+@em.log(1013,13)	& !@ 2
+@em.log(567)	& !@ 2

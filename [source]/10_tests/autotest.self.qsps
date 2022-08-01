@@ -220,7 +220,36 @@ i[4]=1
 "
 end
 
-
+!@ em.zero
+if instr($args[0],'em.zero')<>0 or $args[0]='':
+$functions[]='em.zero'
+$example['em.zero']="0000000000000
+1111111111111
+10101010101010101010101010
+aaaaaaaaaaaaa
+blablabla
+"
+end
+!@ em.str.inarr
+if instr($args[0],'em.str.inarr')<>0 or $args[0]='':
+$functions[]='em.str.inarr'
+$example['em.str.inarr']="0"
+end
+!@ em.str.thin
+if instr($args[0],'em.str.thin')<>0 or $args[0]='':
+$functions[]='em.str.thin'
+$example['em.str.thin']="п р о ф е с с у р а
+п|р|о|ф|е|с|с|у|р|а
+п|р|о|ф|е|с|с|у|р|а|
+|п|р|о|ф|е|с|с|у|р|а
+|п|р|о|ф|е|с|с|у|р|а|
+про|фес|сур|а
+п|роф|есс|ура
+|про|фес|сур|а
+пр|оф|ес|су|ра|
+||п||р||о||ф||е||с||с||у||р||а||
+"
+end
 *pl "Start of Autotest." & wait 1000
 loop local i,size=0,arrsize('$functions') while i<size step i+=1:
 	if loc($functions[i]):
