@@ -298,6 +298,53 @@ elseif $args[0]='em.arr.print':
 		$result+=@em.arr.print('$a','[trim] [only result]','|',2,5)+$nr
 		$result+=@em.arr.print('$a','[trim] [only result] [not last]','|',2,5)+$nr
 	})
+elseif $args[0]='em.arr.insert':
+	$result=$dyneval({
+		local mass
+		mass[0]=574
+		mass[1]=668
+		mass[2]=413
+		mass[3]=765
+		mass[4]=478
+		mass[5]=205
+		mass[6]=701
+		mass[7]=272
+
+		@em.arr.insert('mass',6,4)
+		$result+=@em.arr.print('mass')
+	})
+elseif $args[0]='em.arr.simpl':
+	$result=$dyneval({
+		
+	})
+elseif $args[0]='em.arr.insert':
+	$result=$dyneval({
+		
+	})
+elseif $args[0]='em.arr.insert':
+	$result=$dyneval({
+		
+	})
+elseif $args[0]='em.arr.insert':
+	$result=$dyneval({
+		
+	})
+elseif $args[0]='em.arr.insert':
+	$result=$dyneval({
+		
+	})
+elseif $args[0]='em.arr.insert':
+	$result=$dyneval({
+		
+	})
+elseif $args[0]='em.arr.insert':
+	$result=$dyneval({
+		
+	})
+elseif $args[0]='em.arr.insert':
+	$result=$dyneval({
+		
+	})
 end
 --- em.autotest ---------------------------------
 !@pp:endif

@@ -195,6 +195,20 @@ $a[7]='седьмая ячейка'
 вторая ячейка||(1,2,3,5,6)|пятая ячейка
 "
 end
+!@ em.arr.insert
+if instr($args[0],'em.arr.insert')<>0 or $args[0]='':
+$functions[]='em.arr.insert'
+$example['em.arr.insert']="mass[0]=574
+mass[1]=668
+mass[2]=413
+mass[3]=765
+mass[4]=6
+mass[5]=478
+mass[6]=205
+mass[7]=701
+mass[8]=272
+"
+end
 *pl "Start of Autotest." & wait 1000
 loop local i,size=0,arrsize('$functions') while i<size step i+=1:
 	if loc($functions[i]):

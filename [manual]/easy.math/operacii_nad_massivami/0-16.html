@@ -250,7 +250,7 @@
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - название массива.
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - значение, которое хотим присвоить элементу.
-                    <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - индекс элемента, куда хотим поместить новое значение, можно строковый.
+                    <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - индекс элемента, куда хотим поместить новое значение.
                 </p>
                 <h5>Результат работы функции:</h5>
                 <p class="emTEXT">Заготовленный массив:</p>
@@ -259,16 +259,15 @@
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">668</span><br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">413</span><br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">765</span><br>
-                    mass<span class="Monokai-Qbracket">[<span class="Monokai-String">'text'</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">478</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">! числовой индекс данного элемента: 4</span><br>
+                    mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">478</span><br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">205</span><br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">701</span><br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">272</span>
                 </div>
                 <p class="emTEXT">Вставка по числовому или текстовому индексу:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.insert'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">4</span><br>
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.insert'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-String">'text'</span><br>
-                    <br>
+                    <span class="Monokai-UnFunc">@em.arr.insert</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">4</span>)</span><br>
+                    <span class="Monokai-Comment">! теперь массив содержит следующий набор значений:</span><br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">574</span><br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">668</span><br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">413</span><br>
@@ -904,7 +903,7 @@
                     </table>
                 </div>
                 
-                <a id="arraysimp"></a><h4 class="emH4">em.arr.simp</h4>
+                <a id="arraysimp"></a><h4 class="emH4">em.arr.simpl</h4>
                 
                 <p></p>
                 <p>Процедура сравнения содержимого двух массивов.</p>
@@ -945,15 +944,15 @@
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(2) Сортируем значения и помещаем их в новый массив</span></td>
                     </tr>
                     <tr>
-                        <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.simp'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass2'</span>)</span></td>
+                        <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.simpl'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass2'</span>)</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(3) Сравниваем на идентичность идентичные массивы</span></td>
                     </tr>
                     <tr>
-                    <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.simp'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass3'</span>)</span></td>
+                    <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.simpl'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass3'</span>)</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(4) Сравниваем на идентичность подобные массивы</span></td>
                     </tr>
                     <tr>
-                    <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.simp'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass3'</span>,<span class="Monokai-String">'[simp]'</span>)</span></td>
+                    <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.simpl'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass3'</span>,<span class="Monokai-String">'[simp]'</span>)</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(5) Сравниваем на подобие подобные массивы</span></td>
                     </tr>
                     </table>
