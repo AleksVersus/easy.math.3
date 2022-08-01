@@ -313,38 +313,22 @@ elseif $args[0]='em.arr.insert':
 		@em.arr.insert('mass',6,4)
 		$result+=@em.arr.print('mass')
 	})
-elseif $args[0]='em.arr.simpl':
+elseif $args[0]='em.arr.clear':
 	$result=$dyneval({
-		
+		local i
+		i[0]=1
+		i[1]=2
+		i[2]=3
+		i[3]=1
+		i[4]=2
+		i[5]=3
+		i[6]=1
+		i[7]=2
+
+		@em.arr.clear('i',2)
+		$result=@em.arr.print('i')
 	})
-elseif $args[0]='em.arr.insert':
-	$result=$dyneval({
-		
-	})
-elseif $args[0]='em.arr.insert':
-	$result=$dyneval({
-		
-	})
-elseif $args[0]='em.arr.insert':
-	$result=$dyneval({
-		
-	})
-elseif $args[0]='em.arr.insert':
-	$result=$dyneval({
-		
-	})
-elseif $args[0]='em.arr.insert':
-	$result=$dyneval({
-		
-	})
-elseif $args[0]='em.arr.insert':
-	$result=$dyneval({
-		
-	})
-elseif $args[0]='em.arr.insert':
-	$result=$dyneval({
-		
-	})
+
 end
 --- em.autotest ---------------------------------
 !@pp:endif

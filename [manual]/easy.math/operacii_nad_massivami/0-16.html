@@ -301,7 +301,7 @@
                 </div>
                 <p class="emTEXT">Удаляем все двойки:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.clear'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">2</span><br>
+                    <span class="Monokai-UnFunc">@em.arr.clear</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">2</span>)</span><br>
                     <br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br>
@@ -326,53 +326,36 @@
                     <span class="emVAR">$args[<span class="emNUM">2</span>]</span> - результирующий массив. Если не указано, результат помещается в исходный массив.
                 </div>
                 <h5>Результаты работы функции:</h5>
-                <p>Изменение типа ячеек на противоположный:</p>
+                <p>Пример заполнения массивов, вызова функции и вывода на экран получившихся значений:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Comment">!&nbsp;пример&nbsp;исходного&nbsp;массива&nbsp;&nbsp;&amp;&nbsp;!&nbsp;исходные&nbsp;типы&nbsp;!&nbsp;типы&nbsp;после&nbsp;reverse&nbsp;!&nbsp;значения&nbsp;после&nbsp;reverse</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'123'</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;123</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'456'</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;456</span><br>
-                    mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">789</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;'789'</span><br>
-                    mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">901</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;'901'</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'444'</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">44</span>&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;'444'&nbsp;&amp;&nbsp;44</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'555'</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">55</span>&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;'555'&nbsp;&amp;&nbsp;55</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;''&nbsp;&amp;&nbsp;0</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span style="Monokai-Assign">=</span><span class="Monokai-String">''</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;''&nbsp;&amp;&nbsp;0</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'123'</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span>&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;123</span><br>
-                    mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4569</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;$mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><span class="Monokai-Assign">=</span><span style="color:#e6db74;">'</span><span style="color:#e6db74;">'</span>&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;'4569'</span>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'123'</span>              <br>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'456'</span>             <br>
+                    mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">789</span>                 <br>
+                    mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">901</span>                 <br>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'stringAbout'</span><br>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'555'</span><br>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">123</span>,<span class="Monokai-Numeric">56</span>,<span class="Monokai-Numeric">23</span>,<span class="Monokai-Numeric">9</span>,<span class="Monokai-Numeric">137</span><span class="Monokai-Qbracket">)</span>   <br>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span>                <br>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'123'</span><br>
+                    mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4569</span><br>
+                    <br>
+                    <span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[string]'</span>,<span class="Monokai-String">'mass_str'</span><span class="Monokai-Qbracket">)</span><br>
+                    <span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[number]'</span>,<span class="Monokai-String">'mass_num'</span><span class="Monokai-Qbracket">)</span><br>
+                    <span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[reverse]'</span>,<span class="Monokai-String">'mass_rev'</span><span class="Monokai-Qbracket">)</span><br>
+                    <span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[string][hard]'</span>,<span class="Monokai-String">'mass_strh'</span><span class="Monokai-Qbracket">)</span><br>
+                    <span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[reverse][hard]'</span>,<span class="Monokai-String">'mass_revh'</span><span class="Monokai-Qbracket">)</span><br>
+                    <span class="Monokai-UnFunc">@em.fewArrs.print</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'$mass_str'</span>,<span class="Monokai-String">'mass_num'</span>,<span class="Monokai-String">'$mass_rev'</span>,<span class="Monokai-String">'mass_rev'</span>,<span class="Monokai-String">'$mass_strh'</span>,<span class="Monokai-String">'$mass_revh'</span>,<span class="Monokai-String">'mass_revh'</span><span class="Monokai-Qbracket">)</span>
                 </div>
-                <p>Изменение типа ячеек на строковый:</p>
+                <p>А вот так будет выглядеть содержимое этих массивов:</p>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Comment">!&nbsp;пример&nbsp;исходного&nbsp;массива&nbsp;&nbsp;&amp;&nbsp;!&nbsp;исходные&nbsp;типы&nbsp;!&nbsp;типы&nbsp;после&nbsp;string&nbsp;&nbsp;!&nbsp;значения&nbsp;после&nbsp;string</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'123'</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;'123'</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'456'</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;'456'</span><br>
-                    mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">789</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;'789'</span><br>
-                    mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">901</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;'901'</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'444'</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">44</span>&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;'444'</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'555'</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">55</span>&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;'555'</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;''&nbsp;&amp;&nbsp;0</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;''&nbsp;&amp;&nbsp;0</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'123'</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span>&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;'123'</span><br>
-                    mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4569</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;$mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><span class="Monokai-Assign">=</span><span style="color:#e6db74;">'</span><span style="color:#e6db74;">'</span>&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;'4569'</span>
+                    <table class="em_plusBRD"><tr><td>#</td><td>$mass</td><td>mass</td><td>$mass_str</td><td>mass_num</td><td>$mass_rev</td><td>mass_rev</td><td>$mass_strh</td><td>$mass_revh</td><td>mass_revh</td></tr><tr><td>0</td><td>123</td><td>0</td><td>123</td><td>123</td><td>&nbsp;</td><td>123</td><td>123</td><td>&nbsp;</td><td>123</td></tr><tr><td>1</td><td>456</td><td>0</td><td>456</td><td>456</td><td>&nbsp;</td><td>456</td><td>456</td><td>&nbsp;</td><td>456</td></tr><tr><td>2</td><td>&nbsp;</td><td>789</td><td>789</td><td>789</td><td>789</td><td>0</td><td>789</td><td>789</td><td>0</td></tr><tr><td>3</td><td>&nbsp;</td><td>901</td><td>901</td><td>901</td><td>901</td><td>0</td><td>901</td><td>901</td><td>0</td></tr><tr><td>4</td><td>stringAbout</td><td>0</td><td>stringAbout</td><td>0</td><td>&nbsp;</td><td>0</td><td>stringAbout</td><td>&nbsp;</td><td>0</td></tr><tr><td>5</td><td>555</td><td>0</td><td>555</td><td>555</td><td>&nbsp;</td><td>555</td><td>555</td><td>&nbsp;</td><td>555</td></tr><tr><td>6</td><td>(123,56,23,9,137)</td><td>0</td><td>(123,56,23,9,137)</td><td>0</td><td>&nbsp;</td><td>0</td><td>(123,56,23,9,137)</td><td>&nbsp;</td><td>0</td></tr><tr><td>7</td><td>&nbsp;</td><td>0</td><td>&nbsp;</td><td>0</td><td>&nbsp;</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>8</td><td>123</td><td>0</td><td>123</td><td>123</td><td>&nbsp;</td><td>123</td><td>123</td><td>&nbsp;</td><td>123</td></tr><tr><td>9</td><td>&nbsp;</td><td>4569</td><td>4569</td><td>4569</td><td>4569</td><td>0</td><td>4569</td><td>4569</td><td>0</td></tr></table>
                 </div>
-                <p>Изменение типа ячеек на числовой:</p>
-                <div class="Monokai-Code">
-                    <span class="Monokai-Comment">!&nbsp;пример&nbsp;исходного&nbsp;массива&nbsp;&nbsp;&amp;&nbsp;!&nbsp;исходные&nbsp;типы&nbsp;!&nbsp;типы&nbsp;после&nbsp;number&nbsp;&nbsp;&nbsp;!&nbsp;значения&nbsp;после&nbsp;number</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'123'</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;123</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'456'</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;456</span><br>
-                    mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">789</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;789</span><br>
-                    mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">901</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;901</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'444'</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">44</span>&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;44</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'555'</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">55</span>&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;55</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;''&nbsp;&amp;&nbsp;0</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;''&nbsp;&amp;&nbsp;0</span><br>
-                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'123'</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span>&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;123</span><br>
-                    mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4569</span>&nbsp;<span class="Monokai-Operator">&amp;</span>&nbsp;$mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><span class="Monokai-Assign">=</span><span style="color:#e6db74;">'</span><span style="color:#e6db74;">'</span>&nbsp;&nbsp;<span class="Monokai-Operator">&amp;&nbsp;</span><span class="Monokai-Comment">!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;4569</span></div>
-                <p>Скорость работы функции: около 17 секунд на 100 000 элементов.</p>
+                <p>Поскольку функция фактически перебирает массив с созданием нового, она может заметно подвешивать игру при очень больших размерах массива: 7,5 сеекунд для массива из 100000 элементов. В 5.7.0 данная функция требовала 17 секунд на стотысячный массив.</p>
                 <hr>
                 <!-- Страница вторая -->
                 <a id="arrayrand"></a><h4>em.arr.randFill</h4>
 
-                <p>Генерирует случайные числа и заполняет ими указанный массив. Если массив существует, его значения будут перезаписаны.</p>
+                <p>Генерирует случайные числа и заполняет ими указанный массив. Если массив существует, новые значения затрут уже имеющиеся.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span>- название массива, элементы которого необходимо сформировать (исследуемый массив), обязательный параметр
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - количество формируемых элементов, обязательный параметр
@@ -382,29 +365,29 @@
                 </p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">8</span><br>
+                    <span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass1'</span>,<span class="Monokai-Numeric">8</span>)</span><br>
                     <br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">574</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">668</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">413</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">765</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">478</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">205</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">701</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">272</span><br>
+                    mass1<span class="Monokai-Operator">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">574</span><br>
+                    mass1<span class="Monokai-Operator">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">668</span><br>
+                    mass1<span class="Monokai-Operator">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">413</span><br>
+                    mass1<span class="Monokai-Operator">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">765</span><br>
+                    mass1<span class="Monokai-Operator">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">478</span><br>
+                    mass1<span class="Monokai-Operator">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">205</span><br>
+                    mass1<span class="Monokai-Operator">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">701</span><br>
+                    mass1<span class="Monokai-Operator">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">272</span><br>
                     <br>
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">2</span><br>
+                    <span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass2'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">2</span>)</span><br>
                     <br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">174</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">371</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">69</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">732</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">334</span><br>
-                    mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">950</span><br>
+                    mass2<span class="Monokai-Operator">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
+                    mass2<span class="Monokai-Operator">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
+                    mass2<span class="Monokai-Operator">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">174</span><br>
+                    mass2<span class="Monokai-Operator">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">371</span><br>
+                    mass2<span class="Monokai-Operator">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">69</span><br>
+                    mass2<span class="Monokai-Operator">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">732</span><br>
+                    mass2<span class="Monokai-Operator">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">334</span><br>
+                    mass2<span class="Monokai-Operator">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">950</span><br>
                     <br>
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">20</span><br>
+                    <span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">20</span>)</span><br>
                     <br>
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
@@ -428,7 +411,7 @@
                 </p>
                 <h5>Результат работы функции:</h5>
                 <div class="Monokai-Code">
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.strtFill'</span>,<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span><br>
+                    <span class="Monokai-UnFunc">@em.arr.strtFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span>)</span><br>
                     <br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
@@ -439,38 +422,38 @@
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">6</span><br>
                     a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">7</span><br>
                     <br>
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.strtFill'</span>,<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">4</span><br>
+                    <span class="Monokai-UnFunc">@em.arr.strtFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'b'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">4</span>)</span><br>
                     <br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
+                    b<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
+                    b<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
+                    b<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
+                    b<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br>
+                    b<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4</span><br>
+                    b<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
+                    b<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
+                    b<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
                     <br>
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.strtFill'</span>,<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">0</span>,<span class="Monokai-Numeric">2</span><br>
+                    <span class="Monokai-UnFunc">@em.arr.strtFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'v'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">0</span>,<span class="Monokai-Numeric">2</span>)</span><br>
                     <br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
+                    v<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
+                    v<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
+                    v<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
+                    v<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
+                    v<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
+                    v<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
+                    v<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br>
+                    v<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br>
                     <br>
-                    <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.strtFill'</span>,<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">5</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">2</span><br>
+                    <span class="Monokai-UnFunc">@em.arr.strtFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'g'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">5</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">2</span>)</span><br>
                     <br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">5</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4</span><br>
-                    a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">5</span>
+                    g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
+                    g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
+                    g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br>
+                    g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4</span><br>
+                    g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">5</span><br>
+                    g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br>
+                    g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4</span><br>
+                    g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">5</span>
                 </div>
                 
                 <a id="arraysort"></a><h4 class="emH4">em.arr.sort</h4>
@@ -487,11 +470,11 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                         <tr>
-                            <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
+                            <td><span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
                             <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Генерируем массив случайных чисел</span></td>
                         </tr>
                         <tr>
-                            <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'old_mass'</span></td>
+                            <td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>)</span></td>
                             <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортируем полученный массив</span></td>
                         </tr>
                     </table>
@@ -539,11 +522,11 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                     <tr>
-                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
+                    <td><span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Генерируем массив случайных чисел</span></td>
                     </tr>
                     <tr>
-                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span></td>
+                    <td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span>)</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортируем полученный массив вниз</span></td>
                     </tr>
                     </table>
@@ -600,11 +583,11 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                     <tr>
-                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
+                    <td><span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Генерируем массив случайных чисел</span></td>
                     </tr>
                     <tr>
-                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">'new_mass'</span></td>
+                        <td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">'new_mass'</span>)</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортируем полученный массив вниз</span></td>
                     </tr>
                     </table>
@@ -670,7 +653,7 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                     <tr>
-                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span></td>
+                    <td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span>)</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Сортировка текстовых значений массива</span></td>
                     </tr>
                     </table>
@@ -832,11 +815,11 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                         <tr>
-                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
+                        <td><span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Генерируем случайный массив</span></td>
                         </tr>
                         <tr>
-                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span></td>
+                        <td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span>)</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортируем значения в массиве</span></td>
                         </tr>
                         <tr>
@@ -932,7 +915,7 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                     <tr>
-                    <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-Numeric">8</span></td>
+                    <td><span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass1'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Генерируем случайный массив</span></td>
                     </tr>
                     <tr>
@@ -940,7 +923,7 @@
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Создаём точную копию массива</span></td>
                     </tr>
                     <tr>
-                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">''</span>,<span class="Monokai-String">''</span>,<span class="Monokai-String">'mass3'</span></td>
+                        <td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">''</span>,<span class="Monokai-String">''</span>,<span class="Monokai-String">'mass3'</span>)</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(2) Сортируем значения и помещаем их в новый массив</span></td>
                     </tr>
                     <tr>

@@ -209,6 +209,18 @@ mass[7]=701
 mass[8]=272
 "
 end
+!@ em.arr.clear
+if instr($args[0],'em.arr.clear')<>0 or $args[0]='':
+$functions[]='em.arr.clear'
+$example['em.arr.clear']="i[0]=1
+i[1]=3
+i[2]=1
+i[3]=3
+i[4]=1
+"
+end
+
+
 *pl "Start of Autotest." & wait 1000
 loop local i,size=0,arrsize('$functions') while i<size step i+=1:
 	if loc($functions[i]):
