@@ -719,15 +719,15 @@
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                         <tr>
-                            <td style="vertical-align: top;"><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.randFill'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span></td>
+                            <td><span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
                             <td style="vertical-align: top;"><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Генерируем значения опорного массива (для примера)</span></td>
                         </tr>
                         <tr>
-                            <td style="vertical-align: top;"><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.sort'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span></td>
+                            <td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span>)</span></td>
                             <td style="vertical-align: top;"><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортировка значений в опорном массиве</span></td>
                         </tr>
                         <tr>
-                            <td style="vertical-align: top;"><strong><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.restand'</span>,<span class="Monokai-String">'$arr_mass'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">$new_mass'</span></strong></td>
+                            <td><span class="Monokai-UnFunc">@em.arr.restand</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$arr_mass'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">$new_mass'</span></span><span class="Monokai-Qbracket">()</span></td>
                             <td style="vertical-align: top;"><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(2) Перетасовка значений из исходного массива в соответствии с данными из массива фиксации позиций</span></td>
                         </tr>
                     </table>
@@ -823,7 +823,7 @@
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортируем значения в массиве</span></td>
                         </tr>
                         <tr>
-                        <td><span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'em.arr.deSort'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">'new_mass'</span></td>
+                        <td><span class="Monokai-UnFunc">@em.arr.deSort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">'new_mass'</span>)</span></td>
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(2) Восстановление массива к исходному состоянию</span></td>
                         </tr>
                     </table>
@@ -927,15 +927,15 @@
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(2) Сортируем значения и помещаем их в новый массив</span></td>
                     </tr>
                     <tr>
-                        <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.simpl'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass2'</span>)</span></td>
+                        <td><span class="Monokai-UnFunc">@em.arr.simpl</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass2'</span>)</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(3) Сравниваем на идентичность идентичные массивы</span></td>
                     </tr>
                     <tr>
-                    <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.simpl'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass3'</span>)</span></td>
+                    <td><span class="Monokai-UnFunc">@em.arr.simpl</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass3'</span>)</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(4) Сравниваем на идентичность подобные массивы</span></td>
                     </tr>
                     <tr>
-                    <td><span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'em.arr.simpl'</span>,<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass3'</span>,<span class="Monokai-String">'[simp]'</span>)</span></td>
+                    <td><span class="Monokai-UnFunc">@em.arr.simpl</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass1'</span>,<span class="Monokai-String">'mass3'</span>,<span class="Monokai-String">'[simp]'</span>)</span></td>
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(5) Сравниваем на подобие подобные массивы</span></td>
                     </tr>
                     </table>
