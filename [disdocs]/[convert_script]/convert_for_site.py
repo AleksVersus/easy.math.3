@@ -83,7 +83,7 @@ def recombinePage(page,link_replace_dict):
 		for key in link_replace_dict:
 			match=re.match(key,link['href'])
 			if match!=None:
-				print(link['href'].replace(key,link_replace_dict[key]))
+				print(link['href'],link['href'].replace(key,link_replace_dict[key]))
 
 if __name__ == '__main__':
 	main()
