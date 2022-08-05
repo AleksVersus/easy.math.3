@@ -17,7 +17,7 @@
                 <div><a href="../manual.html">Назад</a></div>
                 <h3>Операции над шестнадцатеричными числами</h3>
                 
-                <a id="hexdec"></a><h4>em.hex.inDec</h4>
+                <a id="em_hex_indec"></a><h4>em.hex.inDec</h4>
 
                 <p>Функция перевода из гексаметричного числа в декаметричное. Не работает с отрицательными значениями.</p>
                 <p>Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет те же ограничения на значение результата, что и прочие фукции, т.е. результат должен лежать в пределе [-2147483647 ... 2147483647] (для Q.S.P. 5.8.0).</p>
@@ -41,7 +41,7 @@
                 </div>
                 <p>Как видно, последние три результата получились отрицательными, значит превышены пределы значений результата, а соответственно и числа, которые переводятся в десятеричную систему тоже превышают предел.
                 </p>
-                <a id="dechex"></a><h4>em.dec.inHex</h4>
+                <a id="em_dec_inhex"></a><h4>em.dec.inHex</h4>
 
                 <p>Функция перевода из декаметричного числа в гексаметричное. Не работает с отрицательными значениями.</p>
                 <p>Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет ограничения на значения аргумента в пределе [-2147483647 ... 2147483647] (для Q.S.P. 5.8.0). Аргумент, превышающий предел, приводится к максимально возможному в QSP значению.</p>
@@ -59,7 +59,7 @@
                     <span class="Monokai-UnFunc">@em.dec.inHex</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">2147483648</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '7fffffff'</span>
                 </div>
                 
-                <a id="deccol"></a><h4>em.dec.inCol</h4>
+                <a id="em_dec_incol"></a><h4>em.dec.inCol</h4>
 
                 <p>Преобразует десятеричное число в шестнадцатеричное. Отличием от функции <span class="emFOLD">em.dec.inHex</span> является ограничение на значение аргумента в пределах [-255 ... 255]. Если пределы превышены, функция выдаёт в результат <span class="emTEXT">ff</span>. Любое число в пределах преобразуется к двуразрядному шестнадцатеричному числу. Таким образом ограничение на результат лежит в пределах [<span class="emTEXT">-ff</span> ... <span class="emTEXT">ff</span>].</p>
                 <p class="em_CODE">
@@ -76,7 +76,7 @@
                     <span class="Monokai-UnFunc">@em.dec.inCol</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">16</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '10'</span>
                 </div>
                 
-                <a id="col"></a><h4>em.col.add</h4>
+                <a id="em_col_add"></a><h4>em.col.add</h4>
 
                 <p>Функция предназначена для изменения цвета для HTML; использует функции <span class="emFOLD">em.hex.inDec</span> и <span class="emFOLD">em.dec.inCol</span>.</p>
                 <p class="em_CODE">
@@ -95,7 +95,7 @@
                     <span class="Monokai-UnFunc">@em.col.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'dd882299'</span>,<span class="Monokai-String">'44'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'ffcc6699' - составляющая альфаканала не затрагивается</span>
                 </div>
                 
-                <a id="colrgb"></a><h4>em.col.inRGB</h4>
+                <a id="em_col_inrgb"></a><h4>em.col.inRGB</h4>
 
                 <p>Данная функция преобразует цвет, записанный в шестнадцатеричной форме, в числовой код цвета, понятный QSP; использует функцию <span class="emFOLD">em.hex.inDec</span>.</p>
                 <p class="em_CODE">
@@ -115,7 +115,7 @@
                     <span class="Monokai-UnFunc">@em.col.inRGB</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'238c9088'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-2003792861'	— альфа-канал поддерживается</span>
                 </div>
                 
-                <a id="colinv"></a><h4>em.col.inv</h4>
+                <a id="em_col_inv"></a><h4>em.col.inv</h4>
 
                 <p>Возвращает шестнадцатеричный код цвета противоположного указанному; использует функцию <span class="emFOLD">em.col.add</span>.</p>
                 <p class="em_CODE">

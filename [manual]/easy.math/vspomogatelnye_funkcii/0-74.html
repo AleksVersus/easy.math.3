@@ -15,7 +15,7 @@
             <div class="em_PAGE">
                 <div><a href="../manual.html">Назад</a></div>
                 <h3>Вспомогательные функции</h3>
-                <a id="getwordinpos"></a><h4>em.str.getWord</h4>
+                <a id="em_str_getword"></a><h4>em.str.getWord</h4>
                     
                     <p>Функция из строки вида <span class="emTEXT">aaa|bbb|ccc|...|yyy|zzz</span> получает подстроку, стоящую в указанной позиции. Подстроки помещаются между разделителями. По умолчанию разделителем является вертикальная черта.</p>
                     <p class="em_CODE">
@@ -42,7 +42,7 @@
                         <span class="Monokai-UnFunc">@em.str.getWord</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-Numeric">14</span>,<span class="Monokai-String">"а"</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "брь"</span><br>
                         <span class="Monokai-UnFunc">@em.str.getWord</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">"брь"</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "|Ноя"</span>
                     </div>
-                <a id="gettagnum"></a><h4>em.tag.getNum</h4>
+                <a id="em_tag_getnum"></a><h4>em.tag.getNum</h4>
                     
                     <p>Получает содержимое одиночного тега<a href="#bottom1" id="upping1" class="em_PRIM">[1]</a> из строки.
                     
@@ -77,7 +77,7 @@
                         <span class="Monokai-UnFunc">@em.tag.getNum</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'tag/h'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">не </span><span class="Monokai-Comment">выведет </span><span class="Monokai-Comment">ничего</span><br>
                         <span class="Monokai-UnFunc">@em.tag.getNum</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'color/h'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "ff8899"</span>
                     </div>
-                <a id="gettagcont"></a><h4>em.tag.getCont</h4>
+                <a id="em_tag_getcont"></a><h4>em.tag.getCont</h4>
                 
                     <p>Получает содержимое двойного тега из строки.</p>
                     <p class="em_CODE">
@@ -108,7 +108,7 @@
                         <span class="Monokai-UnFunc">@em.tag.getCont</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'tag'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "многа букав"</span>
                     </div>
                 
-                <a id="emmaxvar"></a><h4>em.maxVar</h4>
+                <a id="em_maxvar"></a><h4>em.maxVar</h4>
                     
                     <p>Возвращает название переменной, содержащей максимальное значение.</p>
                     <p class="em_CODE">
@@ -159,7 +159,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;old_mass[7]'</span>
                     </div>
                 
-                <a id="emminvar"></a><h4>em.minVar</h4>
+                <a id="em_minvar"></a><h4>em.minVar</h4>
                     
                     <p>Возвращает название переменной, содержащей минимальное значение.</p>
                     <p class="em_CODE">
@@ -208,7 +208,8 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Comment">old_mass[7]'</span>
                     </div>
                     <p>Данная функция является надстройкой над функцией <span class="emTEXT">em.maxVar</span>.</p>
-                <a id="emvargettype"></a><h4>em.var.getType</h4>
+                    
+                <a id="em_var_gettype"></a><h4>em.var.getType</h4>
                     
                     <p>Функция получает тип переменной.</p>
                     <div class="em_CODE">

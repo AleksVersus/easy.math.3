@@ -17,7 +17,7 @@
                 <div><a href="../manual.html">Назад</a></div>
                 <h3>Операции с дробными числами</h3>
                 
-                <a id="dz"></a><h4>em.dz</h4>
+                <a id="em_dz"></a><h4>em.dz</h4>
 
                 <p>Одна из основных функций, позволяющая упразднять несущественные нули в конце натурального числа, а так же все несущественные нули в начале.
                 <p class="em_CODE">
@@ -33,7 +33,7 @@
                     <span class="Monokai-UnFunc">@em.dz</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'64.0080000'</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '64.0080'</span>
                 </div>
                 
-                <a id="indiv"></a><h4>em.indiv</h4>
+                <a id="em_indiv"></a><h4>em.indiv</h4>
 
                 <p>Вычисляет рациональное частное от целых чисел.</p>
                 <p class="em_CODE">
@@ -56,7 +56,7 @@
                     <span class="Monokai-UnFunc">@em.indiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">200</span>,<span class="Monokai-Numeric">100</span>,<span class="Monokai-Numeric">10</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '2'</span>
                 </div>
                 
-                <a id="undiv"></a><h4>em.undiv</h4>
+                <a id="em_undiv"></a><h4>em.undiv</h4>
 
                 <p>Переводит рациональное число в целое (фактически умножает рациональное число на круглое число, с округлением-отсечением дробной части).</p>
                 <p class="em_CODE">
@@ -75,7 +75,7 @@
                     <span class="Monokai-UnFunc">@em.undiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1.23'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">123</span>
                 </div>
                 
-                <a id="razdiv"></a><h4>em.divdigs</h4>
+                <a id="em_divdigs"></a><h4>em.divdigs</h4>
 
                 <p>Получает разрядность дробной части числа в виде целого круглого числа
                 <p class="em_CODE">
@@ -92,7 +92,7 @@
                     <span class="Monokai-UnFunc">@em.divdigs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String" style="color:#ff5252;">'-7777.646666666666666666666666'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">-1593835520 </span><span class="Monokai-Comment">&amp; </span><span class="Monokai-Comment">! </span><span class="Monokai-Comment">- </span><span class="Monokai-Comment">превышено </span><span class="Monokai-Comment">допустимое </span><span class="Monokai-Comment">значение, </span><span class="Monokai-Comment">результат </span><span class="Monokai-Comment">неверен!!!</span>
                 </div>
                 
-                <a id="rounddiv"></a><h4>em.round</h4>
+                <a id="em_round"></a><h4>em.round</h4>
 
                 <p>Округляет число до указанной разрядности</p>
                 <p>возможны варианты 1, 10, 100, 1000 и т.п., и 0.1, 0.01 и т.п.</p>
@@ -116,7 +116,7 @@
                     <span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"-945.459"</span>,<span class="Monokai-String">"0.01"</span><span class="Monokai-Qbracket">)</span>		<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-945.46'</span>
                 </div>
                 
-                <a id="plus"></a><h4>em.add</h4>
+                <a id="em_add"></a><h4>em.add</h4>
 
                 <p>Функция сложения. Может суммировать целые и дробные числа любого знака любой длины (ограничение на значение текстовых переменных для QSP 5.8.0 около 2Гб).</p>
                 <p>Использует функции <span class="emFOLD">em.zero</span>, <span class="emFOLD">em.byte.add</span>, <span class="emFOLD">em.byte.dev</span>, <span class="emFOLD">em.dz</span>. Каждая из этих функций включает в себя один и более циклов, в результате чего могут наблюдаться заметные подвисания плеера для ОЧЕНЬ больших чисел. Вычисления могут оказаться долгими, но они будет произведены - результат гарантирован.</p>
@@ -139,7 +139,7 @@
                         <span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-234'</span>,<span class="Monokai-String">'125'</span>,<span class="Monokai-String">'-13.7890303'</span>,<span class="Monokai-String">'3484889'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '3484766.2109697'</span>
                 </div>
                 
-                <a id="umn"></a><h4>em.mult</h4>
+                <a id="em_mult"></a><h4>em.mult</h4>
 
                 <p>Перемножает несколько чисел любой длины.
                 <p>Внимание! Функция использует функции <span class="emFOLD">em.byte.add</span>, <span class="emFOLD">em.zero</span>, <span class="emFOLD">em.dz</span>, каждая из которых основана на циклических расчётах. Сама функция использует для подсчёта 4 цикла, что может замедлять работу программ при вычислении больших значений. Тем не менее функция работает, хотя и несколько подвешивает игру, если выполнять несколько умножений подряд.
@@ -159,7 +159,7 @@
                     <span class="Monokai-UnFunc">@em.mult</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-512'</span>
                 </div>
                 
-                <a id="del"></a><h4>em.div</h4>
+                <a id="em_div"></a><h4>em.div</h4>
 
                 <p>Функция деления любого числа на любое.</p>
                 <p class="em_CODE">
@@ -186,7 +186,7 @@
                 <p>В <a href="https://github.com/AleksVersus/easy.math.3/blob/main/%5Bsource%5D/03_операции%20с%20дробными%20числами/01_em.div.qsps" target="_blank">исходном коде</a> данной функции вы можете найти вариант с более быстрым вычислением частного от деления двух чисел. Однако для этого варианта существуют ограничения на принимаемые и возвращаемые значения, будьте внимательны, если собираетесь использовать его.</p>
                 
                 
-                <a id="sim"></a><h4>em.simpl</h4>
+                <a id="em_simpl"></a><h4>em.simpl</h4>
 
                 <p>Функция сравнивает два числа и выдаёт в результат большее.</p>
                 <p>Функция использует функции <span class="emFOLD">em.dz</span>, <span class="emFOLD">em.zero</span>, соответственно для неё актуальны все ограничения связанные с этими функциями.</p>
@@ -214,7 +214,7 @@
                     <span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span>$first,$second<span class="Monokai-Qbracket">)</span>
                 </div>
                     
-                <a id="sqrt"></a><h4>em.sqrt</h4>
+                <a id="em_sqrt"></a><h4>em.sqrt</h4>
 
                 <p>Вычисление квадратного корня методом Ньютона.</p>
                 <p class="em_CODE">

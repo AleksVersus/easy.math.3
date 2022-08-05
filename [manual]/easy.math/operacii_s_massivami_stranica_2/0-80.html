@@ -14,11 +14,11 @@
             </a>
             <div class="em_PAGE">
                 <div><a href="../manual.html">Назад</a></div>
-                <h3>Операции над массивами</h3>
+                <h3>Операции над массивами. Страница 2</h3>
                 
                 <section id="em_arrays_page_2">
                 <!-- Страница вторая -->
-                <a id="arrayrand"></a><h4>em.arr.randFill</h4>
+                <a id="#em_arr_randFill"></a><h4>em.arr.randFill</h4>
 
                 <p>Генерирует случайные числа и заполняет ими указанный массив. Если массив существует, новые значения затрут уже имеющиеся.</p>
                 <p class="em_CODE">
@@ -64,7 +64,7 @@
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">17</span>
                 </div>
                 
-                <a id="arraystrt"></a><h4>em.arr.strtFill</h4>
+                <a id="#em_arr_strtFill"></a><h4>em.arr.strtFill</h4>
                 
                 <p>Заполняет массив порядковыми числами. Если массив существует, его значения будут перезаписаны.</p>
                 <p class="em_CODE">
@@ -121,7 +121,7 @@
                     g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">5</span>
                 </div>
                 
-                <a id="arraysort"></a><h4 class="emH4">em.arr.sort</h4>
+                <a id="#em_arr_sort"></a><h4 class="emH4">em.arr.sort</h4>
                 
                 <p>Программа сортирует значения массива (используется метод сортировки "пузырьком"). Результатом работы программы могут быть три разных массива. Направление сортировки: от нулевого элемента к последнему.</p>
                 <p class="em_CODE">
@@ -372,7 +372,7 @@
                 <p style="color:#880000;">ВНИМАНИЕ! Сортировка затрагивает лишь ту часть массива, которая указана. Если вы отсортировали текстовую часть массива, числовая останется неизменной. И наоборот: при сортировке числовой части массива, текстовая не меняется. Для сортировки обеих частей нужно отсортировать одну из них, с сохранением значений перестановки в массив фиксации, а затем по массиву фиксации функцией <span class="emFOLD">em.arr.restand</span> перетасовать значения в другой части.</p>
                 <p style="color:#ff0000;">ВНИМАНИЕ!!! Во избежание ошибок не следует хранить в массиве одновременно текстовые и числовые значения!</p>
                 
-                <a id="arrayrstd"></a><h4 class="emH4">em.arr.restand</h4>
+                <a id="em_arr_restand"></a><h4 class="emH4">em.arr.restand</h4>
                 
                 <p>Процедура перетасовывает элементы массива согласно сведениям в массиве фиксации.</p>
                 <p class="em_CODE">
@@ -467,7 +467,7 @@
                     </table>
                 </div>
                 
-                <a id="arraydsrt"></a><h4 class="emH4">em.arr.deSort</h4>
+                <a id="em_arr_desort"></a><h4 class="emH4">em.arr.deSort</h4>
                 
                 <p></p>
                 <p>Процедура, восстанавливающая состояние массива до сортировки по значениям в массиве фиксации.</p>
@@ -551,7 +551,7 @@
                     </table>
                 </div>
                 
-                <a id="arraysimp"></a><h4 class="emH4">em.arr.simpl</h4>
+                <a id="em_arr_simpl"></a><h4 class="emH4">em.arr.simpl</h4>
                 
                 <p></p>
                 <p>Процедура сравнения содержимого двух массивов.</p>
@@ -661,7 +661,7 @@
                 </div>
                 <p class="emP">Сравнение текстовых значений массивов происходит аналогично. Если хотя бы у одного из массивов будет стоять выбор по текстовым значениям (т.е. имя массива будет начинаться с $), будут сравниваться текстовые значения.
                     
-                <a id="arraysrch"></a><h4 class="emH4">em.arr.find</h4>
+                <a id="em_arr_find"></a><h4 class="emH4">em.arr.find</h4>
                 
                 <p></p>
                 <p>Функция производит поиск максимального или минимального значения в массиве. В отличие от функций <span class="emFUNC">MAX</span> и <span class="emFUNC">MIN</span> можно указать область и пределы поиска, а так же запросить позицию найденного элемента. Если ни одно число по указанным параметрам не подходит, функция возвращает слово <span class="emTEXT">false</span>.</p>
