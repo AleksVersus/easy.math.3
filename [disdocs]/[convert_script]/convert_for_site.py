@@ -26,15 +26,64 @@ def main():
 		"rabota_s_koordinatnoj_setkoj/0-82.html":"http://aleksversus.narod.ru/index/rabota_s_koordinatnoj_setkoj/0-82",
 		"istorija_versij/0-83.html":"http://aleksversus.narod.ru/index/istorija_versij/0-83"
 	}
+	image_replace_dict={
+		"../../res/img/uparrow_btn.png":"/img/_site/button/uparrow_btn.png",
+		"../res/img/uparrow_btn.png":"/img/_site/button/uparrow_btn.png"
+	}
 	page_path_list=[
-		["..\\..\\[manual]\\easy.math\\istorija_versij\\0-83.html","D:\\my\\projects\\narod.ru\\aleksversus.narod.ru\\pages\\qsp\\Easy Libraries\\easy.math.3"]
+		[
+			"..\\..\\[manual]\\easy.math\\istorija_versij\\0-83.html",
+			"D:\\my\\projects\\narod.ru\\aleksversus.narod.ru\\pages\\qsp\\Easy Libraries\\easy.math.3\\istorija_versij\\0-83.html"
+		],
+		[
+			"..\\..\\[manual]\\easy.math\\logicheskie_operacii\\0-76.html",
+			"D:\\my\\projects\\narod.ru\\aleksversus.narod.ru\\pages\\qsp\\Easy Libraries\\easy.math.3\\logicheskie_operacii\\0-76.html"
+		],
+		[
+			"..\\..\\[manual]\\easy.math\\operacii_s_celymi_chislami\\0-81.html",
+			"D:\\my\\projects\\narod.ru\\aleksversus.narod.ru\\pages\\qsp\\Easy Libraries\\easy.math.3\\operacii_s_celymi_chislami\\0-81.html"
+		],
+		[
+			"..\\..\\[manual]\\easy.math\\vspomogatelnye_funkcii\\0-74.html",
+			"D:\\my\\projects\\narod.ru\\aleksversus.narod.ru\\pages\\qsp\\Easy Libraries\\easy.math.3\\vspomogatelnye_funkcii\\0-74.html"
+		],
+		[
+			"..\\..\\[manual]\\easy.math\\operacii_s_drobnymi_chislami\\0-75.html",
+			"D:\\my\\projects\\narod.ru\\aleksversus.narod.ru\\pages\\qsp\\Easy Libraries\\easy.math.3\\operacii_s_drobnymi_chislami\\0-75.html"
+		],
+		[
+			"..\\..\\[manual]\\easy.math\\operacii_s_tekstom\\0-77.html",
+			"D:\\my\\projects\\narod.ru\\aleksversus.narod.ru\\pages\\qsp\\Easy Libraries\\easy.math.3\\operacii_s_tekstom\\0-77.html"
+		],
+		[
+			"..\\..\\[manual]\\easy.math\\operacii_s_shestnadcaterichnymi_chislami\\0-78.html",
+			"D:\\my\\projects\\narod.ru\\aleksversus.narod.ru\\pages\\qsp\\Easy Libraries\\easy.math.3\\operacii_s_shestnadcaterichnymi_chislami\\0-78.html"
+		],
+		[
+			"..\\..\\[manual]\\easy.math\\operacii_s_massivami\\0-79.html",
+			"D:\\my\\projects\\narod.ru\\aleksversus.narod.ru\\pages\\qsp\\Easy Libraries\\easy.math.3\\operacii_s_massivami\\0-79.html"
+		],
+		[
+			"..\\..\\[manual]\\easy.math\\operacii_s_massivami_stranica_2\\0-80.html",
+			"D:\\my\\projects\\narod.ru\\aleksversus.narod.ru\\pages\\qsp\\Easy Libraries\\easy.math.3\\operacii_s_massivami_stranica_2\\0-80.html"
+		],
+		[
+			"..\\..\\[manual]\\easy.math\\rabota_s_koordinatnoj_setkoj\\0-82.html",
+			"D:\\my\\projects\\narod.ru\\aleksversus.narod.ru\\pages\\qsp\\Easy Libraries\\easy.math.3\\rabota_s_koordinatnoj_setkoj\\0-82.html"
+		],
+		[
+			"..\\..\\[manual]\\easy.math\\manual.html",
+			"D:\\my\\projects\\narod.ru\\aleksversus.narod.ru\\pages\\qsp\\Easy Libraries\\easy.math.3\\0-73_manual.html"
+		]
 	]
 	for page_path in page_path_list:
 		with open(page_path[0],'r',encoding='utf-8') as file:
 			page=file.read()
-		export_soup=recombinePage(page,link_replace_dict)
+		export_soup=recombinePage(page,link_replace_dict,image_replace_dict)
+		with open(page_path[1],'w',encoding='utf-8') as file:
+			file.write(str(export_soup))
 
-def recombinePage(page,link_replace_dict):
+def recombinePage(page,link_replace_dict,image_replace_dict):
 	soup=BeautifulSoup(page,'html.parser')
 	soup.head.clear()
 	new_tag = soup.new_tag('meta')
@@ -79,11 +128,33 @@ def recombinePage(page,link_replace_dict):
 	links_list=soup.find_all('a')
 	for link in links_list:
 		# перебираем все ссылки на странице
+		try:
+			p=link['href']
+		except:
+			p=''
 		# нужно сравнить присутсвует ли в текущей ссылке какая-нибудь из составляющих
-		for key in link_replace_dict:
-			match=re.match(key,link['href'])
+		if p!='':
+			for key in link_replace_dict:
+				if key in link['href']:
+					link['href']=link['href'].replace(key,link_replace_dict[key])
+	new_tag=soup.new_tag('style')
+	new_tag['type']='text/css'
+	new_tag.string="@import url(/css/qsp/qsp_code.css);"
+	soup.body.append(new_tag)
+	image_list=soup.find_all('img')
+	for image in image_list:
+		# перебираем все ссылки на странице
+		# нужно сравнить присутсвует ли в текущей ссылке какая-нибудь из составляющих
+		for key in image_replace_dict:
+			match=re.match(key,image['src'])
 			if match!=None:
-				print(link['href'],link['href'].replace(key,link_replace_dict[key]))
+				image['src']=image['src'].replace(key,image_replace_dict[key])
+	subscribe=soup.find('div',{"id":"em_subscribe"})
+	years=subscribe.find_all('span',{"class":"subscribe_year"})
+	for year in years:
+		year.string="$YEAR$"
+	return soup
+
 
 if __name__ == '__main__':
 	main()
