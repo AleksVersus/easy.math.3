@@ -101,31 +101,13 @@
                     </div>
                     <p>Извлечённые значения:</p>
                     <div class="Monokai-Code">
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.tag.getCont'</span>,$text,<span class="Monokai-String">'count'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"текст с пробелом"</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.tag.getCont'</span>,$text,<span class="Monokai-String">'cord'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"странный и непонятный текст"</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.tag.getCont'</span>,$text,<span class="Monokai-String">'log'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"п р о б е л ь н ы е и непробельные символы"</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.tag.getCont'</span>,$text,<span class="Monokai-String">'color'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"ff8899"</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.tag.getCont'</span>,$text,<span class="Monokai-String">'tag'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">"многа букав"</span>
+                        <span class="Monokai-UnFunc">@em.tag.getCont</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'count'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "текст с пробелом"</span><br>
+                        <span class="Monokai-UnFunc">@em.tag.getCont</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'cord'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "странный и непонятный текст"</span><br>
+                        <span class="Monokai-UnFunc">@em.tag.getCont</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'log'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "п р о б е л ь н ы е и непробельные символы"</span><br>
+                        <span class="Monokai-UnFunc">@em.tag.getCont</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'color'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "ff8899"</span><br>
+                        <span class="Monokai-UnFunc">@em.tag.getCont</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'tag'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "многа букав"</span>
                     </div>
-                <a id="killvarolegus"></a><h4>kill.var.olegus</h4>
-                    
-                    <p>Процедура, идею которой на форуме QSP изложил Olegus. Удаляет элемент массива по текстовому индексу. Работает как с текстовыми, так и с числовыми массивами.</p>
-                    <p class="em_CODE">
-                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имя массива.
-                    <br><span class="emVAR">$args[<span class="emNUM">1 ... 8</span>]</span> - текстовые индексы. Процедура позволяет удалять одновременно до восьми элементов массива.
-                    </p>
-                    <h5>Результат работы процедуры:</h5>
-                    <div class="Monokai-Code">
-                        $a<span class="Monokai-Qbracket">[<span class="Monokai-String">'text'</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'56'</span><br>
-                        $a<span class="Monokai-Qbracket">[<span class="Monokai-String">'for'</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'112'</span><br>
-                        $a<span class="Monokai-Qbracket">[<span class="Monokai-String">'of'</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'9432'</span><br>
-                        <br>
-                        <span class="Monokai-Operator">gosub</span>&nbsp;<span class="Monokai-String">'kill.var.olegus'</span>,<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'for'</span><br>
-                        <br>
-                        $a<span class="Monokai-Qbracket">[<span class="Monokai-String">'text'</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'56'</span><br>
-                        $a<span class="Monokai-Qbracket">[<span class="Monokai-String">'for'</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span><br>
-                        $a<span class="Monokai-Qbracket">[<span class="Monokai-String">'of'</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'9432'</span>
-                    </div>
+                
                 <a id="emmaxvar"></a><h4>em.maxVar</h4>
                     
                     <p>Возвращает название переменной, содержащей максимальное значение.</p>
@@ -135,16 +117,16 @@
                     </p>
                     <p>Пример:</p>
                     <div class="Monokai-Code">
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.maxVar'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'new_mass'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span><span class="Monokai-Qbracket">)</span>
+                        <span class="Monokai-UnFunc">@em.maxVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'new_mass'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
                     <p>В <span class="emVAR">$args[<span class="emNUM">0</span>]</span> может быть не одно, а несколько имён переменных или конкретных ячеек массива, разделённых запятыми:</p>
                     <div class="Monokai-Code">
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.maxVar'</span>,<span class="Monokai-String">'old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]'</span>,<span class="Monokai-String">'new_mass'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span><span class="Monokai-Qbracket">)</span>
+                        <span class="Monokai-UnFunc">@em.maxVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]'</span>,<span class="Monokai-String">'new_mass'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
                     <p>При указании текстовых индексов для элементов массива в таком списке недопустимо, чтобы в этих текстовых индексах присутствовали запятые. Для указания таких ячеек массива используйте аргументы с <span class="emVAR">$args[<span class="emNUM">1</span>]</span> по <span class="emVAR">$args[<span class="emNUM">8</span>]</span>, либо замените в индексах запятые на <span class="emTEXT">%&amp;#44;%</span>.</p>
                     <p>Если нужно провести поиск максимального среди всех значений массива, можно использовать ключ <span class="emTEXT">/arr</span>, чтобы указать, что данное имя является не просто именем переменной (то есть нулевой ячейки массива), но и всего массива.</p>
                     <div class="Monokai-Code">
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.maxVar'</span>,<span class="Monokai-String">'old_mass_1,oldmass,old_mass_2,oldold/arr'</span>,<span class="Monokai-String">'new_mass/arr'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span><span class="Monokai-Qbracket">)</span>
+                        <span class="Monokai-UnFunc">@em.maxVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass_1,oldmass,old_mass_2,oldold/arr'</span>,<span class="Monokai-String">'new_mass/arr'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
                     <p>В последнем аргументе (номер аргумента при этом не важен) можно использовать управляющие конструкции. Аргументы после аргумента с управляющими конструкциями будут проигнорированы.</p>
                     <p>Список управляющих конструкций:</p>
@@ -154,7 +136,7 @@
                         <li><span class="emTEXT">[min]</span> - в этом режиме функция производит поиск минимального значения. Имеет приоритет над <span class="emTEXT">[max]</span>, если указаны оба.</li>
                     </ul>
                     <div class="Monokai-Code">
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.maxVar'</span>,<span class="Monokai-String">'oldold/arr,new_mass/arr'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'[list]'</span>,<span class="Monokai-String">'mass[45]'</span><span class="Monokai-Qbracket">)</span>
+                        <span class="Monokai-UnFunc">@em.maxVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'oldold/arr,new_mass/arr'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'[list]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
                     <h5>Результат работы функции:</h5>
                     <div class="Monokai-Code">
@@ -167,16 +149,15 @@
                         old_mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">649</span><br>
                         old_mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">75</span><br>
                         <br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.maxVar'</span>,<span class="Monokai-String">'old_mass/arr'</span><span class="Monokai-Qbracket">)</span><br>
+                        <span class="Monokai-UnFunc">@em.maxVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass/arr'</span>)</span><br>
                         <span class="Monokai-Comment">!  'old_mass[0]'</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.maxVar'</span>,<span class="Monokai-String">'old_mass/arr'</span>,<span class="Monokai-String">'[list]'</span><span class="Monokai-Qbracket">)</span><br>
+                        <span class="Monokai-UnFunc">@em.maxVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass/arr'</span>,<span class="Monokai-String">'[list]'</span>)</span><br>
                         <span class="Monokai-Comment">!  'old_mass[0]<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;old_mass[2]'</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.maxVar'</span>,<span class="Monokai-String">'old_mass/arr'</span>,<span class="Monokai-String">'[list][min]'</span><span class="Monokai-Qbracket">)</span><br>
+                        <span class="Monokai-UnFunc">@em.maxVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass/arr'</span>,<span class="Monokai-String">'[list][min]'</span>)</span><br>
                         <span class="Monokai-Comment">!  'old_mass[4]<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;old_mass[7]'</span>
                     </div>
-                    <p>Скорость работы функции 4 мс на 100 000 значений. Или 4 секунды на 10 000 000 значений.</p>
                 
                 <a id="emminvar"></a><h4>em.minVar</h4>
                     
@@ -187,16 +168,16 @@
                     </p>
                     <p> Пример:</p>
                     <div class="Monokai-Code">
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.minVar'</span>,<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'new_mass'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span><span class="Monokai-Qbracket">)</span>
+                        <span class="Monokai-UnFunc">@em.minVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'new_mass'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
                     <p>В <span class="emVAR">$args[<span class="emNUM">0</span>]</span> может быть не одно, а несколько имён переменных или конкретных ячеек массива, разделённых запятыми:</p>
                     <div class="Monokai-Code">
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.minVar'</span>,<span class="Monokai-String">'old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]'</span>,<span class="Monokai-String">'new_mass'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span><span class="Monokai-Qbracket">)</span>
+                        <span class="Monokai-UnFunc">@em.minVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]'</span>,<span class="Monokai-String">'new_mass'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
                     <p>При указании текстовых индексов для элементов массива в таком списке недопустимо, чтобы в этих текстовых индексах присутствовали запятые. Для указания таких ячеек массива используйте аргументы с <span class="emVAR">$args[<span class="emNUM">1</span>]</span> по <span class="emVAR">$args[<span class="emNUM">8</span>]</span>, либо замените в индексах запятые на <span class="emTEXT">%&amp;#44;%</span>.</p>
                     <p>Если нужно провести поиск минимального среди всех значений массива, можно использовать ключ <span class="emTEXT">/arr</span>, чтобы указать, что данное имя является не просто именем переменной (то есть нулевой ячейки массива), но и всего массива.</p>
                     <div class="Monokai-Code">
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.minVar'</span>,<span class="Monokai-String">'old_mass_1,oldmass,old_mass_2,oldold/arr'</span>,<span class="Monokai-String">'new_mass/arr'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span><span class="Monokai-Qbracket">)</span>
+                        <span class="Monokai-UnFunc">@em.minVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass_1,oldmass,old_mass_2,oldold/arr'</span>,<span class="Monokai-String">'new_mass/arr'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
                     <p>В последнем аргументе (номер аргумента при этом не важен) можно использовать управляющие конструкции. Аргументы после аргумента с управляющими конструкциями будут проигнорированы.</p>
                     <p>Список управляющих конструкций:</p>
@@ -204,7 +185,7 @@
                         <li><span class="emTEXT">[list]</span> - в этом режиме функция возвращает список всех имён переменных, содержащих минимальное значение, если это значение присутствует во всех этих переменных.</li>
                     </ul>
                     <div class="Monokai-Code">
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.minVar'</span>,<span class="Monokai-String">'oldold/arr,new_mass/arr'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'[list]'</span>,<span class="Monokai-String">'mass[45]'</span><span class="Monokai-Qbracket">)</span>
+                        <span class="Monokai-UnFunc">@em.minVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'oldold/arr,new_mass/arr'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'[list]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
                     <h5>Результат работы функции:</h5>
                     <div class="Monokai-Code">
@@ -217,12 +198,12 @@
                         old_mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">649</span><br>
                         old_mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">75</span><br>
                         <br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.minVar'</span>,<span class="Monokai-String">'old_mass/arr'</span><span class="Monokai-Qbracket">)</span><br>
+                        <span class="Monokai-UnFunc">@em.minVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass/arr'</span>)</span><br>
                         <span class="Monokai-Comment">!  'old_mass[4]'</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.minVar'</span>,<span class="Monokai-String">'old_mass/arr'</span>,<span class="Monokai-String">'[list]'</span><span class="Monokai-Qbracket">)</span><br>
+                        <span class="Monokai-UnFunc">@em.minVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass/arr'</span>,<span class="Monokai-String">'[list]'</span>)</span><br>
                         <span class="Monokai-Comment">!  'old_mass[4]</span><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Comment">old_mass[7]'</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.minVar'</span>,<span class="Monokai-String">'old_mass/arr'</span>,<span class="Monokai-String">'[list][max]'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">! в данном случае поиск максимального работать не будет!!!</span><br>
+                        <span class="Monokai-UnFunc">@em.minVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass/arr'</span>,<span class="Monokai-String">'[list][max]'</span>)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">! в данном случае поиск максимального работать не будет!!!</span><br>
                         <span class="Monokai-Comment">!  'old_mass[4]</span><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Comment">old_mass[7]'</span>
                     </div>
@@ -248,58 +229,59 @@
                     </div>
                     <p>Вызов:</p>
                     <div class="Monokai-Code">
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.var.getType'</span>,&nbsp;<span class="Monokai-String">'$имя_переменной'</span><span class="Monokai-Qbracket">)</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.var.getType'</span>,&nbsp;<span class="Monokai-String">'array["string"]'</span><span class="Monokai-Qbracket">)</span>
+                        <span class="Monokai-UnFunc">@em.var.getType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'$имя_переменной'</span><span class="Monokai-Qbracket">)</span><br>
+                        <span class="Monokai-UnFunc">@em.var.getType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'array["string"]'</span><span class="Monokai-Qbracket">)</span>
                     </div>
                     <p>Символ <span class="emTEXT">"$"</span> перед названием переменной при определении типа роли не играет.</p>
-                    <p>Обратите внимание: функция написана для версии плеера 5.7.0 и ниже, поэтому она возвращает результат сообразно принципу работы массивов для плееров версии 5.7.0 и ниже.</p>
-                    <p>Проверить тип локальных переменных с помощью данной функции нельзя.</p>
+                    <p>Проверить тип переменных <span class="emVAR">args</span> и <span class="emVAR">result</span> с помощью данной функции нельзя, однако можно проверить тип любой другой локальной переменной.</p>
                     <h5>Примеры:</h5>
                     <div class="Monokai-Code">
-                        <span class="Monokai-Comment">! заранее заданные значения</span><br>
                         $string<span class="Monokai-Assign">=</span><span class="Monokai-String">'text'</span><br>
                         number<span class="Monokai-Assign">=</span><span class="Monokai-Numeric">123</span><br>
                         $varname<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'text'</span>&nbsp;<span class="Monokai-Operator">&amp;</span> varname<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">123</span><br>
                         $emptyvar<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span><br>
                         emptyvar<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
+                        $tuple<span class="Monokai-Assign">=</span><span class="Monokai-Qbracket">(<span class="Monokai-Numeric">1</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">3</span>)</span><br>
                         <span class="Monokai-Comment">! результат работы функции</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.var.getType'</span>,<span class="Monokai-String">'$string'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'string'</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.var.getType'</span>,<span class="Monokai-String">'number'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'number'</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.var.getType'</span>,<span class="Monokai-String">'$number'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'number'</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.var.getType'</span>,<span class="Monokai-String">'string'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'string'</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.var.getType'</span>,<span class="Monokai-String">'$varname'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'both'</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.var.getType'</span>,<span class="Monokai-String">'$emptyvar[0]'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'empty'</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.var.getType'</span>,<span class="Monokai-String">'emptyvar[1]'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'empty'</span>
-                    </div>
+                        <span class="Monokai-UnFunc">@em.var.getType</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$string'</span>)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'string'</span><br>
+                        <span class="Monokai-UnFunc">@em.var.getType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'number'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'number'</span><br>
+                        <span class="Monokai-UnFunc">@em.var.getType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'$number'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'number'</span><br>
+                        <span class="Monokai-UnFunc">@em.var.getType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'string'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'string'</span><br>
+                        <span class="Monokai-UnFunc">@em.var.getType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'$varname'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'number'</span><br>
+                        <span class="Monokai-UnFunc">@em.var.getType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'$emptyvar[0]'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'empty'</span><br>
+                        <span class="Monokai-UnFunc">@em.var.getType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'emptyvar[1]'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'empty'</span><br>
+                        <span class="Monokai-UnFunc">@em.var.getType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'$tuple'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'tuple'</span>
+                </div>
                 
                 <a id="rergb"></a><h4>em.deRGB</h4>
                     
                     <p>Функция обратная функции rgb, встроенной в QSP. То есть данная функция наоборот: переводит числовой код цвета в три составляющие.</p>
                     <div class="em_CODE">
                         <span class="emVAR">args[<span class="emNUM">0</span>]</span> - числовой код цвета.
-                        <br/><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - управляющая конструкция. Указывает, какую составляющую мы хотим получить (можно комбинировать):
-                        <ul>
-                            <li><span class="emTEXT">[red]</span> - красная составляющая,</li>
-                            <li><span class="emTEXT">[green]</span> - зелёная составляющая,</li>
-                            <li><span class="emTEXT">[blue]</span> - синяя составляющая.</li>
-                        </ul>
-                        <span class="emVAR">$res</span><span class="emVAR">ult</span> или <span class="emVAR">res</span><span class="emVAR">ult</span> - функция возвращает все три составляющие в виде строки текста (если указать хотя бы два управляющих слова или не указать ни одного), или возвращает в виде числа одну составляющую (если указать одну управляющую конструкцию).
+                        <br/><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - управляющая конструкция. При желании вы можете передать в этом параметре ключ <span class="emTEXT">'\wa'</span>, чтобы в результат была включена составляющая альфа-канала.
+                        <br/>
+                        <span class="emVAR">$result</span> или <span class="emVAR">result</span> - функция возвращает все три составляющие в виде кортежа (если указать хотя бы два управляющих слова, или не указать ни одного), или возвращает в виде числа одну составляющую (если указать одну управляющую конструкцию).
                     </div>
                     <h5>Результат работы функции:</h5>
                     <div class="Monokai-Code">
-                        yellow<span class="Monokai-Assign">=</span><span class="Monokai-Func">rgb</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">255</span>,<span class="Monokai-Numeric">255</span>,<span class="Monokai-Numeric">0</span><span class="Monokai-Qbracket">)</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.deRGB'</span>, yellow<span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'255|255|0'</span><br>
-                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.deRGB'</span>, yellow,&nbsp;<span class="Monokai-String">'[red]'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">255</span><br>
-                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.deRGB'</span>, yellow,&nbsp;<span class="Monokai-String">'[green]'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">255</span><br>
-                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.deRGB'</span>, yellow,&nbsp;<span class="Monokai-String">'[blue]'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br>
-                        <br>
-                        knaki<span class="Monokai-Assign">=</span><span class="Monokai-Func">rgb</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">240</span>,<span class="Monokai-Numeric">230</span>,<span class="Monokai-Numeric">140</span><span class="Monokai-Qbracket">)</span><br>
-                        <span class="Monokai-Func">$func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.deRGB'</span>, knaki,&nbsp;<span class="Monokai-String">'[blue][red]'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'240|230|140'</span><br>
-                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.deRGB'</span>, knaki,&nbsp;<span class="Monokai-String">'[red]'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">240</span><br>
-                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.deRGB'</span>, knaki,&nbsp;<span class="Monokai-String">'[green]'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">230</span><br>
-                        <span class="Monokai-Func">func</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'em.deRGB'</span>, knaki,&nbsp;<span class="Monokai-String">'[blue]'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">140</span><br>
-                        <span class="Monokai-Operator">-</span> <span class="Monokai-String">[test]</span>
-                    </div>
+yellow<span class="Monokai-Assign">=</span><span class="Monokai-Func">rgb</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">255</span>,<span class="Monokai-Numeric">255</span>,<span class="Monokai-Numeric">0</span><span class="Monokai-Qbracket">)</span><br>
+seablue<span class="Monokai-Assign">=</span><span class="Monokai-Func">rgb</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">0</span>,<span class="Monokai-Numeric">98</span>,<span class="Monokai-Numeric">98</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">#006262</span><br>
+red,green,blue <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-UnFunc">@em.deRGB</span><span class="Monokai-Qbracket">(</span>yellow<span class="Monokai-Qbracket">)</span><br>
+<span class="Monokai-Operator">*pl</span>&nbsp;<span style="color:#e6db74;">"</span><span style="color:#a6e22e;">&lt;&lt;</span>red<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>green<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>blue<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">"</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">255,255,0</span><br>
+red,green,blue <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-UnFunc">@em.deRGB</span><span class="Monokai-Qbracket">(</span>seablue<span class="Monokai-Qbracket">)</span><br>
+<span class="Monokai-Operator">*pl</span>&nbsp;<span style="color:#e6db74;">"</span><span style="color:#a6e22e;">&lt;&lt;</span>red<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>green<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>blue<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">"</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">0,98,98</span><br>
+<br>
+knaki<span class="Monokai-Assign">=</span><span class="Monokai-Func">rgb</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">240</span>,<span class="Monokai-Numeric">230</span>,<span class="Monokai-Numeric">140</span>,<span class="Monokai-Numeric">100</span><span class="Monokai-Qbracket">)</span><br>
+red,green,blue <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-UnFunc">@em.deRGB</span><span class="Monokai-Qbracket">(</span>knaki<span class="Monokai-Qbracket">)</span><br>
+<span class="Monokai-Operator">*pl</span>&nbsp;<span style="color:#e6db74;">"</span><span style="color:#a6e22e;">&lt;&lt;</span>red<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>green<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>blue<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">"</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">240,230,140</span><br>
+red,green,blue,alpha <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-UnFunc">@em.deRGB</span><span class="Monokai-Qbracket">(</span>knaki,<span class="Monokai-String">'/</span><span style="color:#e6db74;">wa'</span><span class="Monokai-Qbracket">)</span><br>
+<span class="Monokai-Operator">*pl</span>&nbsp;<span style="color:#e6db74;">"</span><span style="color:#a6e22e;">&lt;&lt;</span>red<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>green<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>blue<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>alpha<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">"</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">240,230,140,100</span><br>
+<br>
+knaki<span class="Monokai-Assign">=</span><span class="Monokai-Func">rgb</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">240</span>,<span class="Monokai-Numeric">230</span>,<span class="Monokai-Numeric">140</span>,<span class="Monokai-Numeric">237</span><span class="Monokai-Qbracket">)</span><br>
+red,green,blue <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-UnFunc">@em.deRGB</span><span class="Monokai-Qbracket">(</span>knaki<span class="Monokai-Qbracket">)</span><br>
+<span class="Monokai-Operator">*pl</span>&nbsp;<span style="color:#e6db74;">"</span><span style="color:#a6e22e;">&lt;&lt;</span>red<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>green<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>blue<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">"</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">240,230,140</span><br>
+red,green,blue,alpha <span class="Monokai-Assign">=</span>&nbsp;<span class="Monokai-UnFunc">@em.deRGB</span><span class="Monokai-Qbracket">(</span>knaki,<span class="Monokai-String">'/</span><span style="color:#e6db74;">wa'</span><span class="Monokai-Qbracket">)</span><br>
+<span class="Monokai-Operator">*pl</span>&nbsp;<span style="color:#e6db74;">"</span><span style="color:#a6e22e;">&lt;&lt;</span>red<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>green<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>blue<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>alpha<span style="color:#a6e22e;">>></span><span style="color:#e6db74;">"</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">240,230,140,237</span></div>
                 <hr>
                 <h4>Примечания:</h4>
                 <p><a id="bottom1"></a><a href="#upping1" class="em_PRIM" title="Назад">[1]</a> Теги - это метки в тексте, которые отмечают некоторую информацию. В контексте данного руководства и связанных с библиотекой программ различаются одиночные и двойные теги. Одиночные теги отличаются тем, что не требуют закрытия. Двойные теги состоят из открывающего и закрывающего элементов. Содержимое тегов - это информация, которую они отмечают, или выделяют. Пример: <span class="emTEXT">&lt;p&gt;Текст параграфа&lt;/p&gt;</span> - здесь мы видим открывающий и закрывающий элементы тега <span class="emTEXT">'p'</span>, между которыми размещён текст. В контексте данного руководства <span class="emTEXT">'p'</span> — это корень тега, — а текст, размещённый между элементами тега, называется содержимым тега.</p>

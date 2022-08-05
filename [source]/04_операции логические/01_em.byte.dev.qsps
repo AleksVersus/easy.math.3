@@ -1,7 +1,7 @@
 QSP-Game Побайтовое вычитание с переполнением
 $args[0] - уменьшаемое (любой длины), можно  args[0] (ограниченное значение).
 $args[1] - вычитаемое (любой длины), можно  args[1] (ограниченное значение).
-!@pp:if(em_dev):include
+!@pp:if(em_byte_dev):include
 # em.byte.dev
 !@ инициализация аргументов и приведение к одной длине
 local max_len, $term
@@ -45,7 +45,7 @@ end
 
 Функция использует функцию em.zero
 
-!@pp:if(em_add!=True):nopp
+!@pp:if(em_byte_dev!=True):nopp
 !@pp:var(em_zero)
 !@pp:endif
 

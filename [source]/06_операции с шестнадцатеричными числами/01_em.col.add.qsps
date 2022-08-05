@@ -3,18 +3,20 @@ $args[0] - цвет. Шестнадцатеричный формат, шести
 $args[1] - значение. Шестнадцатеричный формат, двузначное число. (может быть отрицательным)
 !@pp:if(em_col_add):include
 # em.col.add
-local red,green,blue,$minus
+if (no strcomp($args[0],'[A-Fa-f0-9]{6}')) and (no strcomp($args[0],'[A-Fa-f0-9]{8}')): $result = $args[0] & exit & !@ если переданное число не соответствует критериям, его и возвращаем
+local red,green,blue,$minus,$alpha
 if instr($args[1],'-')=1: $minus='-' & $args[1]=$mid($args[1],2) else $minus='+'
 red=dyneval('result = '+@em.hex.inDec($mid($args[0],1,2))+$minus+@em.hex.inDec($args[1]))
 green=dyneval('result = '+@em.hex.inDec($mid($args[0],3,2))+$minus+@em.hex.inDec($args[1]))
 blue=dyneval('result = '+@em.hex.inDec($mid($args[0],5,2))+$minus+@em.hex.inDec($args[1]))
+$alpha=$mid($args[0],7,2)
 if red>255: red=255
 if red<0: red=0
 if green>255: green=255
 if green<0: green=0
 if blue>255: blue=255
 if blue<0: blue=0
-$result=@em.dec.inCol(red)+@em.dec.inCol(green)+@em.dec.inCol(blue)
+$result=@em.dec.inCol(red)+@em.dec.inCol(green)+@em.dec.inCol(blue)+$alpha
 --- em.col.add ---------------------------------
 !@pp:endif
 
@@ -29,3 +31,4 @@ $result=@em.dec.inCol(red)+@em.dec.inCol(green)+@em.dec.inCol(blue)
 @em.col.add('dd0000','22')	& !@ 'ff2222'
 @em.col.add('dd8822','-44')	& !@ '994400'
 @em.col.add('dd8822','44')	& !@ 'ffcc66'
+@em.col.add('dd882299','44')	& !@ 'ffcc6699' - составляющая альфаканала не затрагивается

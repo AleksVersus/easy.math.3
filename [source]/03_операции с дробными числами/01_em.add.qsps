@@ -68,13 +68,13 @@ $result=@em.dz($minus+$mid($summ,1,int_len)+"."+$mid($summ,int_len+1))
 --- em.add ---------------------------------
 !@pp:endif
 
-Функция использует функции add, dev, zero, dz
+Функция использует функции em.byte.add, em.byte.dev, em.zero, em.dz
 
 !@pp:if(em_add!=True):nopp
 !@pp:var(em_dz)
 !@pp:var(em_zero)
-!@pp:var(em_add)
-!@pp:var(em_dev)
+!@pp:var(em_byte_add)
+!@pp:var(em_byte_dev)
 !@pp:endif
 
 @em.add('9.05','-9')							& !@ '0.05'

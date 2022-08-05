@@ -39,4 +39,4 @@ $result=$minus+$result
 @em.dec.inHex(255)	& !@ 'ff'
 @em.dec.inHex(10)	& !@ 'a'
 @em.dec.inHex(9)	& !@ '9'
-@em.dec.inHex(2147483648)	& !@ '-0'
+@em.dec.inHex(2147483648)	& !@ '7fffffff'

@@ -51,8 +51,8 @@ end
 !@pp:var(em_div_digs)
 !@pp:var(em_undiv)
 Операции логические
-!@pp:var(em_add)
-!@pp:var(em_dev)
+!@pp:var(em_byte_add)
+!@pp:var(em_byte_dev)
 Операции с текстом
 !@pp:var(em_str_widetrim)
 !@pp:var(em_arr_search)

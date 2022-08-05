@@ -84,16 +84,16 @@ $result=$minus+@em.dz($res)
 --- em.div ---------------------------------
 !@pp:endif
 
-Прежде данная функция выглядела так:
+Вариант функции для ускорения вычислений (есть ограничения на значения аргументов):
 !# em.div
-$args[9]=$args[9]
-$args[0]=@em.dz($args[0],1)
-$args[1]=@em.dz($args[1],1)
-args[2] = args[2]
-args['max']=max(func('em.divdigs',$args[0]),func('em.divdigs',$args[1]))
-args[0] = func('em.undiv',$args[0],args['max'])
-args[1] = func('em.undiv',$args[1],args['max'])
-$result=$func('em.indiv',args[0],args[1],args[2])
+local maximal, $divident, $divisor, accuracy
+$divident=@em.dz($args[0],1)
+$divisor=@em.dz($args[1],1)
+accuracy = args[2]
+maximal=max(@em.divdigs($divident),@em.divdigs($divisor))
+divident = @em.undiv($divident,maximal)
+dividsor = @em.undiv($divisor,maximal)
+$result=@em.indiv(divident,divisor,accuracy)
 !--- em.div ---------------------------------
 
 Это давало повышенную скорость работы. Где-то в 10 раз быстрее. Однако это и накладывало некоторые ограничения на аргументы. Например, старая версия функции неверно вычисляла вот такие значения:
@@ -108,7 +108,7 @@ $func('em.div','3123.869504',"3.7",1000000)
 !@pp:if(em_add!=True):nopp
 !@pp:var(em_dz)
 !@pp:var(em_zero)
-!@pp:var(em_dev)
+!@pp:var(em_byte_dev)
 !@pp:endif
 
 @em.div('9.05',"-9",10000)		& !@ '-1.0055'
