@@ -275,10 +275,10 @@ elseif $args[0]='em.byte.add':
 	})
 elseif $args[0]='em.byte.dev':
 	$result=$dyneval({
-		$result+=@em.byte.add(998765,273)	& !@ '999038'
-		$result+=@em.byte.add('9987Y5','-273')	& !@ '998978'
-		$result+=@em.byte.add('999999','6273')	& !@ '006273'
-		$result+=@em.byte.add('998705','5773')	& !@ '004479'
+		$result+=@em.byte.dev(998765,273)	& !@ '998492'
+		$result+=@em.byte.dev('9987Y5','-273')	& !@ '998432'
+		$result+=@em.byte.dev('999999','6273')	& !@ '993726'
+		$result+=@em.byte.dev('998705','5773')	& !@ '992932'
 	})
 elseif $args[0]='em.arr.print':
 	$result=$dyneval({
