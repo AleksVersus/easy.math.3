@@ -9,15 +9,24 @@ if $args[0]="":
 	$usercom='em.uc'	
 	"easy.math v 3.0.0 для QSP 5.8.0"
 	"
+	Репозиторий с исходниками библиотеки:
+
+	*	https://github.com/AleksVersus/easy.math
+
 	По всем вопросам и предложениям обращаться:
 
 	*	aleksversus@mail.ru
-	*	aleksversus.narod.ru
 	*	https://vk.com/id40090736
+
+	Заходите на мой сайт:
+
+	*	aleksversus.narod.ru
 	
 	Обучающие видео по программированию на QSP:
 	
 	*	https://www.youtube.com/channel/UCwX8RW2B9yTUFdlivtCGAgA
+
+	Любую функцию можно опробовать прямо здесь, введя её в поле ввода.
 
 	Для получения списка команд, введите команду 'help' в поле ввода.
 	"
