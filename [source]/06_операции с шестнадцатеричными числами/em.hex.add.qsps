@@ -1,0 +1,54 @@
+QSP-Game Функция складывает два шестнадцатеричных числа
+$args[0] - первое слагаемое /обязательно текстовое/
+$args[1] - второе слагаемое /обязательно текстовое/
+!@pp:if(em_hex_add):include
+# em.hex.add
+!@ инициализация локальных переменных и приведение слагаемых к единой длине
+local $first_add,$second_add=$lcase($args[0]),$lcase($args[1])	& !@ инициализируем слагаемые
+local max_len, number, $value
+number['0']=0 & $value[0]='0'
+number['1']=1 & $value[1]='1'
+number['2']=2 & $value[2]='2'
+number['3']=3 & $value[3]='3'
+number['4']=4 & $value[4]='4'
+number['5']=5 & $value[5]='5'
+number['6']=6 & $value[6]='6'
+number['7']=7 & $value[7]='7'
+number['8']=8 & $value[8]='8'
+number['9']=9 & $value[9]='9'
+number['a']=10 & $value[10]='a'
+number['b']=11 & $value[11]='b'
+number['c']=12 & $value[12]='c'
+number['d']=13 & $value[13]='d'
+number['e']=14 & $value[14]='e'
+number['f']=15 & $value[15]='f'
+if len($first_add)>len($second_add): max_len=len($first_add) else max_len=len($second_add)
+$first_add=@em.zero(max_len-len($first_add))+$first_add
+$second_add=@em.zero(max_len-len($second_add))+$second_add
+loop local last_byte,run=0,1 while run:
+	$result=''
+	last_byte=0
+	loop local i,res_byte=max_len,0 while i>0 step i-=1:
+		!@ цикл выполняем, пока счётчик не достигнет нуля
+		!@ складываем две цифры на разряде
+		res_byte=number[$mid($first_add,i,1)]+number[$mid($second_add,i,1)]+last_byte
+		!@ вычисляем переполнение
+		last_byte=res_byte/16
+		!@ вычисляем полученную цифру на текущем разряде
+		res_byte=res_byte mod 16
+		!@ записываем полученную цифру в результат
+		$result=$value[res_byte]+$result
+	end
+	if last_byte>0:
+		!@ если после всех итерраций осталось число в переполнении
+		!@ Это число ставим самым верхним разрядом
+		$result=$value[last_byte]+$result	
+	end
+	run=0	& !@ прерываем внешний цикл
+end
+--- em.hex.add ---------------------------------
+!@pp:endif
+
+!@pp:if(em_hex_add!=True):nopp
+!@pp:var(em_zero)
+!@pp:endif

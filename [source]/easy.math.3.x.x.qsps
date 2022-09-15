@@ -76,6 +76,7 @@ end
 !@pp:var(em_dec_incol)
 !@pp:var(em_dec_inhex)
 !@pp:var(em_hex_indec)
+!@pp:var(em_hex_add)
 Операции с массивами
 !@pp:var(em_arr_simp)
 !@pp:var(em_arr_chtype)

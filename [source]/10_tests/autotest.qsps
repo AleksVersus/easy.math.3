@@ -416,16 +416,25 @@ $result=$str(result)
 		})
 elseif $args[0]='em.str.thin':
 	$result=$dyneval({
-		$result+=@em.str.thin('профессура')+$nr	& !@ "п р о ф е с с у р а"
-		$result+=@em.str.thin('профессура',1,'|')+$nr	& !@ "п|р|о|ф|е|с|с|у|р|а"
-		$result+=@em.str.thin('профессура',1,'|','[right]')+$nr	& !@ "п|р|о|ф|е|с|с|у|р|а"
-		$result+=@em.str.thin('профессура',1,'|','[left]')+$nr	& !@ "п|р|о|ф|е|с|с|у|р|а"
-		$result+=@em.str.thin('профессура',1,'|','[right][left]')+$nr	& !@ "п|р|о|ф|е|с|с|у|р|а"
-		$result+=@em.str.thin('профессура',3,'|')+$nr	& !@ "про|фес|сур|а"
-		$result+=@em.str.thin('профессура',3,'|','[up]')+$nr	& !@ "п|роф|есс|ура"
-		$result+=@em.str.thin('профессура',3,'|','[left]')+$nr	& !@ "|про|фес|сур|а"
-		$result+=@em.str.thin('профессура',2,'|','[right]')+$nr	& !@ "пр|оф|ес|су|ра|"
-		$result+=@em.str.thin('профессура',1,'||','[left] [right]')+$nr	& !@ "||п||р||о||ф||е||с||с||у||р||а||"
+		$result+=@em.str.thin('профессура')+$nr
+		$result+=@em.str.thin('профессура',1,'|')+$nr
+		$result+=@em.str.thin('профессура',1,'|','[right]')+$nr
+		$result+=@em.str.thin('профессура',1,'|','[left]')+$nr
+		$result+=@em.str.thin('профессура',1,'|','[right][left]')+$nr
+		$result+=@em.str.thin('профессура',3,'|')+$nr
+		$result+=@em.str.thin('профессура',3,'|','[up]')+$nr
+		$result+=@em.str.thin('профессура',3,'|','[left]')+$nr
+		$result+=@em.str.thin('профессура',2,'|','[right]')+$nr
+		$result+=@em.str.thin('профессура',1,'||','[left] [right]')+$nr
+	})
+elseif $args[0]='em.hex.add':
+	$result=$dyneval({
+		$result+=@em.hex.add('ffeeff','a1')+$nr
+		$result+=@em.hex.add('f0','f')+$nr
+		$result+=@em.hex.add('ff','1')+$nr
+		$result+=@em.hex.add('ffe','1')+$nr
+		$result+=@em.hex.add('fef','1')+$nr
+		$result+=@em.hex.add('aaaaaa','cc')+$nr
 	})
 end
 --- em.autotest ---------------------------------

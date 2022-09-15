@@ -209,6 +209,17 @@ mass[7]=701
 mass[8]=272
 "
 end
+!@ em.arr.insert
+if instr($args[0],'em.hex.add')<>0 or $args[0]='':
+$functions[]='em.hex.add'
+$example['em.hex.add']="ffefa0
+ff
+100
+fff
+ff0
+aaab76
+"
+end
 !@ em.arr.clear
 if instr($args[0],'em.arr.clear')<>0 or $args[0]='':
 $functions[]='em.arr.clear'
