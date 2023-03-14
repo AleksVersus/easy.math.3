@@ -82,6 +82,7 @@ end
 !@pp:var(em_arr_chtype)
 !@pp:var(em_arr_clear)
 !@pp:var(em_arr_desort)
+!@pp:var(em_arr_fill)
 !@pp:var(em_arr_insert)
 !@pp:var(em_fewarrs_print)
 !@pp:var(em_arr_print)
