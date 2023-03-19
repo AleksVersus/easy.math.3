@@ -66,11 +66,10 @@ if $args[2]='':
 		end
 		$result='1'
 
-	}),$args[0]
+	}, $args[0])
 end
 loop local run=1 while run:
-	$res = @em.div(@em.add($args[2],@em.div($args[0],$args[2],args[1])),'2',args[1])
-	$quad = @em.mult($res,$res)
+	$res = @em.div(@em.add($args[2], @em.div($args[0],$args[2],args[1])), '2', args[1])
 	if $res<>$args[2]:
 		$args[2]=$res
 	else
