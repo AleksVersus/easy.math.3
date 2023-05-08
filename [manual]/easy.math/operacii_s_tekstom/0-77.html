@@ -4,31 +4,29 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
 	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
-    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
-    <link type="text/css" rel="stylesheet" href="../../res/css/qsp_code.css" />
 
 	<title>Easy Math — Операции с Текстом</title>
 </head>
 <body>
-    <div class="em_AROUND">
-            <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math.3/releases" title="Скачать последнюю версию библиотеки со страницы релизов" target="_blank">
-                <h1>easy.math.qsp v. 3.0.0</h1>
-            </a>
-            <!-- Исправить ссылку -->
-            <div class="em_PAGE">
-                <div><a href="../manual.html">Назад</a></div>
+    <div class="avs-page-wrapper">
+        <div class="easy-lib-page">
+            <article class="e-block">
+                <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+                    <h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+                </a>
+                <div class="avs-pages-button__wrapper"><a class="avs-pages-button__link" href="../manual.html"><div class="avs-pages-button">Назад</div></a></div>
                 
-                <h3>Операции с текстом</h3>
+                <h3 class="avs-article-h3">Операции с текстом</h3>
                 
-                <a id="em_zero"></a><h4>em.zero</h4>
+                <a id="em_zero"></a><h4 class="avs-article-h4">em.zero</h4>
                 
-                <p>Функция предназначена для генерации строки из повторяющихся групп символов.</p>
+                <p class="avs-article-p">Функция предназначена для генерации строки из повторяющихся групп символов.</p>
                 <p class="em_CODE">
                     <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - количество генерируемых групп (только число)
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - какие символы должны присутствовать в строке. По умолчанию <span class="emTEXT">'0'</span>. Только текстовое значение.
                 </p>
-                <p>Если написать в <span class="emVAR">$args[<span class="emNUM">1</span>]</span> не один символ а группу, будет сгенерирована строка из <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> повторяющихся групп символов.</p>
-                <h5>Результат работы функции:</h5>
+                <p class="avs-article-p">Если написать в <span class="emVAR">$args[<span class="emNUM">1</span>]</span> не один символ а группу, будет сгенерирована строка из <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> повторяющихся групп символов.</p>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.zero</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">13</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0000000000000'</span><br>
                     <span class="Monokai-UnFunc">@em.zero</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'1'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '1111111111111'</span><br>
@@ -37,10 +35,10 @@
                     <span class="Monokai-UnFunc">@em.zero</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'bla'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'blablabla'</span>
                 </div>
                 
-                <a id="em_str_random"></a><h4>em.str.random</h4>
+                <a id="em_str_random"></a><h4 class="avs-article-h4">em.str.random</h4>
                 
                 
-                <p>Функция получает строку случайных символов</p>
+                <p class="avs-article-p">Функция получает строку случайных символов</p>
                 <div class="em_CODE">
                     <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - необходимая длина строки. Если не задана, выбирается случайным образом от 1 до 8 символов. Только число
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - символы, которых не должно быть в строке, либо управляющая конструкция: 
@@ -67,8 +65,8 @@
                     </ul>
                     <span class="emVAR">$args[<span class="emNUM">2</span>]</span> - символы, стоящие здесь, напротив включаются в строку (например, можно добавить пробел к стандартному набору символов, или символ табуляции). Только текст.
                 </div>
-                <p>Подробнее о том, какие символы будут в сгенерированной строке, смотрите исходник функции с 4 по 10 строчки.</p>
-                <h5>Результат работы функции:</h5>
+                <p class="avs-article-p">Подробнее о том, какие символы будут в сгенерированной строке, смотрите исходник функции с 4 по 10 строчки.</p>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.str.random</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'вЗНзГШмf'</span><br>
                     <span class="Monokai-UnFunc">@em.str.random</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'[inc][\d][\z][\я]'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'у1ЭAXВ6чГVЫДJМxD'</span><br>
@@ -83,23 +81,23 @@
                 </div>
                 
                 
-                <a id="em_arr_search"></a><h4>em.arr.search</h4>
+                <a id="em_arr_search"></a><h4 class="avs-article-h4">em.arr.search</h4>
                 
-                <p>Находит позицию элемента в массиве, содержащего регулярное выражение, либо возвращает -1</p>
+                <p class="avs-article-p">Находит позицию элемента в массиве, содержащего регулярное выражение, либо возвращает -1</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имя массива
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - регулярное выражение
                     <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - <span class="emTEXT">[first]</span> или <span class="emTEXT">[last]</span> - первая или последняя позиция
                     <br><span class="emVAR">args[<span class="emNUM">3</span>]</span>, <span class="emVAR">args[<span class="emNUM">4</span>]</span> - с какого по какой элемент проводить поиск
                 </p>
-                <p>Функция использует arrcomp, однако, в отличие от arrcomp, находит элемент, который <span style="text-decoration:underline;">содержит</span> строку, соответствующую регулярному выражению, а не тот элемент, который полностью соответствует регулярному выражению.</p>
-                <p>При больших размерах массива (более 1000 элементов на core-i5/x64/2,5 ГГц/8 Гб RAM), функция может заметно подвешивать плеер.</p>
+                <p class="avs-article-p">Функция использует arrcomp, однако, в отличие от arrcomp, находит элемент, который <span style="text-decoration:underline;">содержит</span> строку, соответствующую регулярному выражению, а не тот элемент, который полностью соответствует регулярному выражению.</p>
+                <p class="avs-article-p">При больших размерах массива (более 1000 элементов на core-i5/x64/2,5 ГГц/8 Гб RAM), функция может заметно подвешивать плеер.</p>
                 
-                <a id="em_str_inarr"></a><h4>em.str.inArr</h4>
+                <a id="em_str_inarr"></a><h4 class="avs-article-h4">em.str.inArr</h4>
                 
-                <p>Из переданного блока текста выбираются строки, находящиеся между разделителями, в том числе строка до первого разделителя и после последнего. В качестве разделителя можно задать что угодно: символ, слово, строку. Для того, чтобы задать несколько разделителей, или неявный разделитель (шаблон разделителя. Например, html-тег), можно использовать регулярные выражения.</p>
+                <p class="avs-article-p">Из переданного блока текста выбираются строки, находящиеся между разделителями, в том числе строка до первого разделителя и после последнего. В качестве разделителя можно задать что угодно: символ, слово, строку. Для того, чтобы задать несколько разделителей, или неявный разделитель (шаблон разделителя. Например, html-тег), можно использовать регулярные выражения.</p>
                 <div class="em_CODE">
-                    <p>
+                    <p class="avs-article-p">
                         <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - отрывок текста, который нужно разбить на строки
                         <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - имя массива, в который нужно поместить полученные строки
                         <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - разделитель, по которому нужно произвести выборку строк.
@@ -116,31 +114,31 @@
                             <li><span class="emTEXT">[strip]</span> - у всех значений, обнаруженных между разделителями, будут отсечены прилегающие пробелы.</li>
                     </ul>
                 </div>
-                <h5>Примеры использования:</h5>
-                <p>Посмотрим на выборку строк по разным разделителям на примере одного текста. Текст помещаем в переменную для удобства записи:</p>
+                <h5 class="avs-article-h5">Примеры использования:</h5>
+                <p class="avs-article-p">Посмотрим на выборку строк по разным разделителям на примере одного текста. Текст помещаем в переменную для удобства записи:</p>
                 <div class="Monokai-Code">
                     $text<span class="Monokai-Assign">=</span><span class="Monokai-String">"Адское&nbsp;Пекло&nbsp;и&nbsp;Небеса&nbsp;-<br>
                     Я&nbsp;весь&nbsp;мир&nbsp;мечтаю&nbsp;продать.<br>
                     Время&nbsp;-&nbsp;деньги.&nbsp;Пусть&nbsp;стрелки&nbsp;бегут&nbsp;на&nbsp;часах&nbsp;-<br>
                     И&nbsp;мне&nbsp;нечего&nbsp;больше&nbsp;желать."</span>
                 </div>
-                <p>Разбиваем на строки по символу переноса строки:</p>
+                <p class="avs-article-p">Разбиваем на строки по символу переноса строки:</p>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.str.inArr</span><span class="Monokai-Qbracket">(</span>$text<span class="Monokai-Operator">,</span><span class="Monokai-String">'$mass'</span><span class="Monokai-Operator">,</span><span class="Monokai-String">'<br>
                     '</span><span class="Monokai-Operator">,</span><span class="Monokai-String">''</span><span class="Monokai-Qbracket">)</span>
                 </div>
-                <p>Результат:</p>
+                <p class="avs-article-p">Результат:</p>
                 <div class="Monokai-Code">
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Адское&nbsp;Пекло&nbsp;и&nbsp;Небеса&nbsp;-'</span><br>
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Я&nbsp;весь&nbsp;мир&nbsp;мечтаю&nbsp;продать.'</span><br>
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Время&nbsp;-&nbsp;деньги.&nbsp;Пусть&nbsp;стрелки&nbsp;бегут&nbsp;на&nbsp;часах&nbsp;-'</span><br>
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'И&nbsp;мне&nbsp;нечего&nbsp;больше&nbsp;желать.'</span>
                 </div>
-                <p>Разбиваем на строки по пробелу:</p>
+                <p class="avs-article-p">Разбиваем на строки по пробелу:</p>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.str.inArr</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'$mass'</span><span class="Monokai-Operator">,</span><span class="Monokai-String">'&nbsp;'</span><span class="Monokai-Operator">,</span><span class="Monokai-String">''</span><span class="Monokai-Qbracket">)</span>
                 </div>
-                <p>Результат (Заметьте, что символ переноса строки в этом случае попадает в результирующие строки. Туда же попадают знаки препинания и прочее):</p>
+                <p class="avs-article-p">Результат (Заметьте, что символ переноса строки в этом случае попадает в результирующие строки. Туда же попадают знаки препинания и прочее):</p>
                 <div class="Monokai-Code">
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Адское'</span><br>
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Пекло'</span><br>
@@ -167,12 +165,12 @@
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">19</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'больше'</span><br>
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">20</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'желать.'</span>
                 </div>
-                <p>А вот пример выборки по нескольким разделителям с игнорированием пустых строк. Из текста будут выбраны исключительно слова:</p>
+                <p class="avs-article-p">А вот пример выборки по нескольким разделителям с игнорированием пустых строк. Из текста будут выбраны исключительно слова:</p>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.str.inArr</span><span class="Monokai-Qbracket">(</span>$text<span class="Monokai-Operator">,</span><span class="Monokai-String">'$mass'</span><span class="Monokai-Operator">,</span><span class="Monokai-String">'("|!|\?|-|,|;|:|\.|&nbsp;|<br>
                     )'</span><span class="Monokai-Operator">,</span><span class="Monokai-String">'[notspace]&nbsp;[regular]&nbsp;[lcase]'</span><span class="Monokai-Qbracket">)</span>
                 </div>
-                <p>Результат:</p>
+                <p class="avs-article-p">Результат:</p>
                 <div class="Monokai-Code">
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'адское'</span><br>
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'пекло'</span><br>
@@ -197,15 +195,15 @@
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">20</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'желать'</span>
                 </div>
                 
-                <a id="em_str_widetrim"></a><h4>em.str.widetrim</h4>
+                <a id="em_str_widetrim"></a><h4 class="avs-article-h4">em.str.widetrim</h4>
                 
-                <p>Функция похожа на функцию <span class="emFUNC">TRIM</span>. Она удаляет прилегающие символы пробелов, табуляций и переводов строк. Так же функция позволяет убирать все символы преформатирования из текста.</p>
+                <p class="avs-article-p">Функция похожа на функцию <span class="emFUNC">TRIM</span>. Она удаляет прилегающие символы пробелов, табуляций и переводов строк. Так же функция позволяет убирать все символы преформатирования из текста.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - обрабатываемый текст
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - управляющее слово: <span class="emTEXT">[strip]</span> — в каждой строке отсекаются прилегающие пробелы.
                 </p>
-                <h5>Пример работы:</h5>
-                <p>Для удобства помещаем текст в переменную:</p>
+                <h5 class="avs-article-h5">Пример работы:</h5>
+                <p class="avs-article-p">Для удобства помещаем текст в переменную:</p>
                 <div class="Monokai-Code">
                     $text<span class="Monokai-Assign">=</span><span class="Monokai-String">"&nbsp;&nbsp;&nbsp;&nbsp;<br>
                     &nbsp;&nbsp;&nbsp;<br>
@@ -216,7 +214,7 @@
                     &nbsp;&nbsp;&nbsp;<br>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"</span>
                 </div>
-                <p>Результат расширенного отсечения:</p>
+                <p class="avs-article-p">Результат расширенного отсечения:</p>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.str.widetrim</span><span class="Monokai-Qbracket">(</span>$text<span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><br>
                     <span class="Monokai-String" style="color:#8dd6a5;">"&nbsp;&nbsp;&nbsp;первая&nbsp;строка&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;<br>
@@ -224,7 +222,7 @@
                     &nbsp;&nbsp;&nbsp;<br>
                     &nbsp;&nbsp;третья&nbsp;строка"</span>
                 </div>
-                <p>Результат отсечения символов преформатирования:</p>
+                <p class="avs-article-p">Результат отсечения символов преформатирования:</p>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.str.widetrim</span><span class="Monokai-Qbracket">(</span>$text<span class="Monokai-Operator">,</span><span class="Monokai-String">'[strip]'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><br>
                     <span class="Monokai-String" style="color:#8dd6a5;">"первая&nbsp;строка&nbsp;1<br>
@@ -232,11 +230,11 @@
                         <br>
                     третья&nbsp;строка"</span>
                 </div>
-                <p>В последнем случае остекаются не только пробелы и символы табуляции перед строками, но и в конце.</p>
+                <p class="avs-article-p">В последнем случае остекаются не только пробелы и символы табуляции перед строками, но и в конце.</p>
                 
-                <a id="em_str_thin"></a><h4>em.str.thin</h4>
+                <a id="em_str_thin"></a><h4 class="avs-article-h4">em.str.thin</h4>
                 
-                <p>Предназначение этой функции разрежать строку. Через определённое количество символов в строку вставляются разделители.</p>
+                <p class="avs-article-p">Предназначение этой функции разрежать строку. Через определённое количество символов в строку вставляются разделители.</p>
                 <div class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - строка, текст;
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - через какое количество символов вставлять разделитель. По умолчанию разделитель вставляется через каждый один символ;
@@ -248,7 +246,7 @@
                         <li><span class="emTEXT">[left]</span> - добавляет разделитель перед разрежаемой строкой.</li>
                     </ul>
                 </div>
-                <h5>Примеры:</h5>
+                <h5 class="avs-article-h5">Примеры:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "п р о ф е с с у р а"</span><br>
                     <span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'|'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "п|р|о|ф|е|с|с|у|р|а"</span><br>
@@ -261,15 +259,16 @@
                     <span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[right]'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "пр|оф|ес|су|ра|"</span><br>
                     <span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'||'</span>,<span class="Monokai-String">'[left]&nbsp;[right]'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "||п||р||о||ф||е||с||с||у||р||а||"</span>
                 </div>
-                <div><a href="../manual.html">Назад</a></div>
-            </div>
-            <div class="em_Epigraph">
-                <div class="em_subText" id="em_subscribe">
-                    <p>Aleks Versus'Easy Libraries'2013-<span class="subscribe_year">2022</span></p>
-                    <p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe_year">2022</span></p>
+                <div class="avs-pages-button__wrapper"><a class="avs-pages-button__link" href="../manual.html"><div class="avs-pages-button">Назад</div></a></div>
+             </article>
+            <aside class="e-block">
+                <div class="avs-page-stamp" id="em_subscribe">
+                    <p class="avs-empty">Aleks Versus'Easy Libraries'2013-<span class="subscribe_year">$YEAR$</span></p>
+                    <p class="avs-aempty">Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe_year">$YEAR$</span></p>
                 </div>
-            </div>
-            <div class="stickUP"><a href="#UP" title="Вверх"><img src="../../res/img/uparrow_btn.png"></a></div>
+            </aside>
         </div>
+    </div>
+    <div class="em-stick-upper"><a class="avs-page-external-link" href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn.png" /></a></div>
 </body>
 </html>

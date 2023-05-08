@@ -3,26 +3,25 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
-        <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
-        <link type="text/css" rel="stylesheet" href="../../res/css/qsp_code.css" />
         <title>Easy Math — Операции с Массивами</title>
     </head>
     <body>
-        <div class="em_AROUND">
-            <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math.3/releases" title="Скачать последнюю версию библиотеки со страницы релизов" target="_blank">
-                <h1>easy.math.qsp v. 3.0.0</h1>
-            </a>
-            <div class="em_PAGE">
-                <div><a href="../manual.html">Назад</a></div>
-                <h3>Операции над массивами. Страница 1</h3>
+<div class="avs-page-wrapper">
+        <div class="easy-lib-page">
+            <article class="e-block">
+                <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+                    <h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+                </a>
+                <div class="avs-pages-button__wrapper"><a class="avs-pages-button__link" href="../manual.html"><div class="avs-pages-button">Назад</div></a></div>
+                <h3 class="avs-article-h3">Операции над массивами. Страница 1</h3>
                 
                 <section id="em_arrays_page_1">
                 <!-- Страница первая -->
-                <a id="em_arr_print"></a><h4>em.arr.print</h4>
+                <a id="em_arr_print"></a><h4 class="avs-article-h4">em.arr.print</h4>
                 
-                <p>Иногда необходимо просмотреть содержимое массива, или записать его в удобном виде в переменную. Для этого приходится вводить цикличиские конструкции непосредственно в код. Данная функция предназначена для того, чтобы избавить Вас от необходимости строить такие конструкции каждый раз. Достаточно указать аргументом имя массива и функция вернёт в результате столбец со значениями.</p>
+                <p class="avs-article-p">Иногда необходимо просмотреть содержимое массива, или записать его в удобном виде в переменную. Для этого приходится вводить цикличиские конструкции непосредственно в код. Данная функция предназначена для того, чтобы избавить Вас от необходимости строить такие конструкции каждый раз. Достаточно указать аргументом имя массива и функция вернёт в результате столбец со значениями.</p>
                 <div class="em_CODE">
-                    <p>
+                    <p class="avs-article-p">
                         <span class="emVAR">$args[<span class="emNUM">0</span>]</span>- имя массива, содержимое которого необходимо просмотреть.
                         <br/><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - управляющая конструкция. Можно использовать три команды в любых комбинациях:
                     </p>
@@ -37,13 +36,13 @@
                             <span class="emTEXT">[not last]</span> - исключает добавление разделителя за последним выводимым значением.
                         </li>
                     </ul>
-                    <p>
+                    <p class="avs-article-p">
                         <span class="emVAR">$args[<span class="emNUM">2</span>]</span> - этим параметром задаётся разделитель между выводимыми значениями. По умолчанию, т.е. когда параметр не указан или равен пустому значению, между выводимыми значениями вставляется символ перевода строки. Чтобы результаты выводились без вставки разделителя, необходимо указать ключ <span class="emTEXT">/se</span>.
                         <br/><span class="emVAR">&nbsp;args[<span class="emNUM">3</span>]</span> - начало вывода. Номер элемента, с которого начинается вывод значений (включительно).
                         <br/><span class="emVAR">&nbsp;args[<span class="emNUM">4</span>]</span> - окончание вывода. Номер элемента, до которого следует продолжать вывод значений (включительно).
                     </p>
                 </div>
-                <h5>Примеры вызова функции:</h5>
+                <h5 class="avs-article-h5">Примеры вызова функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>)</span><br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Comment">  - выведет на экран числовые значения массива 'mass'</span><br/>
@@ -52,7 +51,7 @@
                     <span class="Monokai-Operator">*pl</span>&nbsp;<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'[only&nbsp;Result]'</span>)</span><br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Comment">  - выведет на экран только содержимое массива '$mass'</span>
                 </div>
-                <h5>Результаты вызова функции:</h5>
+                <h5 class="avs-article-h5">Результаты вызова функции:</h5>
 
                 <p class="emTEXT">Заготовленный массив:</p>
                 <div class="Monokai-Code">
@@ -118,13 +117,13 @@
                     <br/><span class="Monokai-String" style="color:#8dd6a5;">"вторая&nbsp;ячейка||(1,2,3,5,6)|пятая&nbsp;ячейка"</span>
                 </div>
                 
-                <a id="em_fewarrs_print"></a><h4>em.fewArrs.print</h4>
+                <a id="em_fewarrs_print"></a><h4 class="avs-article-h4">em.fewArrs.print</h4>
                 
-                <p>Данная функция позволяет выводить на экран содержимое сразу нескольких массивов, для сравнения например.</p>
-                <p>По умолчанию функция выводит содержимое всех массивов в виде таблицы, однако вывод таблицей можно отключить, использовав в последнем аргументе управляющую конструкцию <span class="emTEXT">[no&nbsp;table]</span>. Последним аргументом может быть как имя массива так и управляющая конструкция. Функция считает управляющей конструкцией всякую строку в последнем аргументе, в которой между непробельными символами находится пробельный (или другой недопустимый знак). Прилегающие пробелы в остальных аргументах уничтожаются, поэтому вы можете записать имя массива в аргументе скажем так <span class="emTEXT">"&nbsp;$mass&nbsp;"</span> (апострофы по правилам QSP для записи текстовых значений). Если же вы допустите в имени массива ошибку, функция известит вас об этом.</p>
+                <p class="avs-article-p">Данная функция позволяет выводить на экран содержимое сразу нескольких массивов, для сравнения например.</p>
+                <p class="avs-article-p">По умолчанию функция выводит содержимое всех массивов в виде таблицы, однако вывод таблицей можно отключить, использовав в последнем аргументе управляющую конструкцию <span class="emTEXT">[no&nbsp;table]</span>. Последним аргументом может быть как имя массива так и управляющая конструкция. Функция считает управляющей конструкцией всякую строку в последнем аргументе, в которой между непробельными символами находится пробельный (или другой недопустимый знак). Прилегающие пробелы в остальных аргументах уничтожаются, поэтому вы можете записать имя массива в аргументе скажем так <span class="emTEXT">"&nbsp;$mass&nbsp;"</span> (апострофы по правилам QSP для записи текстовых значений). Если же вы допустите в имени массива ошибку, функция известит вас об этом.</p>
                 <div class="em_CODE">
-                    <p><span class="emVAR">$args[<span class="emNUM">0 ... 8</span>]</span>- имена массивов, содержимое которых необходимо просмотреть.</p>
-                    <p><span class="emVAR">$args[<span class="emNUM">8 ... 1</span>]</span> - управляющая конструкция. Записывается последним аргументом. Можно использовать следующие конструкции в любых комбинациях:</p>
+                    <p class="avs-article-p"><span class="emVAR">$args[<span class="emNUM">0 ... 8</span>]</span>- имена массивов, содержимое которых необходимо просмотреть.</p>
+                    <p class="avs-article-p"><span class="emVAR">$args[<span class="emNUM">8 ... 1</span>]</span> - управляющая конструкция. Записывается последним аргументом. Можно использовать следующие конструкции в любых комбинациях:</p>
                     <ul>
                         <li>
                             <span class="emTEXT">[only result]</span> - выводит только содержимое массивов, не показывая их названий и номеров ячеек. Таблица при этом на экран выводиться не будет.
@@ -134,7 +133,7 @@
                         </li>
                     </ul>
                 </div>
-                <h5>Результаты вызова функции:</h5>
+                <h5 class="avs-article-h5">Результаты вызова функции:</h5>
                 <p class="emTEXT">Заготовленные массивы:</p>
                 <div class="Monokai-Code">
                     $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'нулевая ячейка'</span><br/>
@@ -247,13 +246,13 @@
                 
                 <a id="em_arr_insert"></a><h4 class="emH4">em.arr.insert</h4>
                 
-                <p>Функция для вставки элемента в массив со сдвигом вправо.</p>
+                <p class="avs-article-p">Функция для вставки элемента в массив со сдвигом вправо.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - название массива.
                     <br/><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - значение, которое хотим присвоить элементу.
                     <br/><span class="emVAR">args[<span class="emNUM">2</span>]</span> - индекс элемента, куда хотим поместить новое значение.
                 </p>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <p class="emTEXT">Заготовленный массив:</p>
                 <div class="Monokai-Code">
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">574</span><br/>
@@ -282,12 +281,12 @@
                 
                 <a id="em_arr_clear"></a><h4 class="emH4">em.arr.clear</h4>
                 
-                <p>Функция для удаления из массива всех элементов с указанным значением.</p>
+                <p class="avs-article-p">Функция для удаления из массива всех элементов с указанным значением.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - название массива.
                     <br/><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - значение, которое хотим удалить из массива.
                 </p>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <p class="emTEXT">Заготовленный массив:</p>
                 <div class="Monokai-Code">
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br/>
@@ -310,9 +309,9 @@
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span>
                 </div>
                 
-                <a id="em_arr_chtype"></a><h4>em.arr.chType</h4>
+                <a id="em_arr_chtype"></a><h4 class="avs-article-h4">em.arr.chType</h4>
                 
-                <p>Процедура изменяет тип содержимого массива. То есть меняется тип каждой отдельной ячейки.</p>
+                <p class="avs-article-p">Процедура изменяет тип содержимого массива. То есть меняется тип каждой отдельной ячейки.</p>
                 <div class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - название массива, для которого требуется поменять тип. Можно указывать как с символом <span class="emTEXT">'$'</span>, так и без него перед именем.
                     <br/> <span class="emVAR">$args[<span class="emNUM">1</span>]</span> - управление:
@@ -324,8 +323,8 @@
                     </ul>
                     <span class="emVAR">$args[<span class="emNUM">2</span>]</span> - результирующий массив. Если не указано, результат помещается в исходный массив.
                 </div>
-                <h5>Результаты работы функции:</h5>
-                <p>Пример заполнения массивов, вызова функции и вывода на экран получившихся значений:</p>
+                <h5 class="avs-article-h5">Результаты работы функции:</h5>
+                <p class="avs-article-p">Пример заполнения массивов, вызова функции и вывода на экран получившихся значений:</p>
                 <div class="Monokai-Code">
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'123'</span>              <br/>
                     $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'456'</span>             <br/>
@@ -345,24 +344,25 @@
                     <span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[reverse][hard]'</span>,<span class="Monokai-String">'mass_revh'</span><span class="Monokai-Qbracket">)</span><br/>
                     <span class="Monokai-UnFunc">@em.fewArrs.print</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'$mass_str'</span>,<span class="Monokai-String">'mass_num'</span>,<span class="Monokai-String">'$mass_rev'</span>,<span class="Monokai-String">'mass_rev'</span>,<span class="Monokai-String">'$mass_strh'</span>,<span class="Monokai-String">'$mass_revh'</span>,<span class="Monokai-String">'mass_revh'</span><span class="Monokai-Qbracket">)</span>
                 </div>
-                <p>А вот так будет выглядеть содержимое этих массивов:</p>
+                <p class="avs-article-p">А вот так будет выглядеть содержимое этих массивов:</p>
                 <div class="Monokai-Code">
                     <table class="em_plusBRD"><tr><td>#</td><td>$mass</td><td>mass</td><td>$mass_str</td><td>mass_num</td><td>$mass_rev</td><td>mass_rev</td><td>$mass_strh</td><td>$mass_revh</td><td>mass_revh</td></tr><tr><td>0</td><td>123</td><td>0</td><td>123</td><td>123</td><td>&nbsp;</td><td>123</td><td>123</td><td>&nbsp;</td><td>123</td></tr><tr><td>1</td><td>456</td><td>0</td><td>456</td><td>456</td><td>&nbsp;</td><td>456</td><td>456</td><td>&nbsp;</td><td>456</td></tr><tr><td>2</td><td>&nbsp;</td><td>789</td><td>789</td><td>789</td><td>789</td><td>0</td><td>789</td><td>789</td><td>0</td></tr><tr><td>3</td><td>&nbsp;</td><td>901</td><td>901</td><td>901</td><td>901</td><td>0</td><td>901</td><td>901</td><td>0</td></tr><tr><td>4</td><td>stringAbout</td><td>0</td><td>stringAbout</td><td>0</td><td>&nbsp;</td><td>0</td><td>stringAbout</td><td>&nbsp;</td><td>0</td></tr><tr><td>5</td><td>555</td><td>0</td><td>555</td><td>555</td><td>&nbsp;</td><td>555</td><td>555</td><td>&nbsp;</td><td>555</td></tr><tr><td>6</td><td>(123,56,23,9,137)</td><td>0</td><td>(123,56,23,9,137)</td><td>0</td><td>&nbsp;</td><td>0</td><td>(123,56,23,9,137)</td><td>&nbsp;</td><td>0</td></tr><tr><td>7</td><td>&nbsp;</td><td>0</td><td>&nbsp;</td><td>0</td><td>&nbsp;</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>8</td><td>123</td><td>0</td><td>123</td><td>123</td><td>&nbsp;</td><td>123</td><td>123</td><td>&nbsp;</td><td>123</td></tr><tr><td>9</td><td>&nbsp;</td><td>4569</td><td>4569</td><td>4569</td><td>4569</td><td>0</td><td>4569</td><td>4569</td><td>0</td></tr></table>
                 </div>
-                <p>Поскольку функция фактически перебирает массив с созданием нового, она может заметно подвешивать игру при очень больших размерах массива: 7,5 сеекунд для массива из 100000 элементов. В 5.7.0 данная функция требовала 17 секунд на стотысячный массив.</p>
+                <p class="avs-article-p">Поскольку функция фактически перебирает массив с созданием нового, она может заметно подвешивать игру при очень больших размерах массива: 7,5 сеекунд для массива из 100000 элементов. В 5.7.0 данная функция требовала 17 секунд на стотысячный массив.</p>
                 <hr>
                 <!-- конец первой страницы -->
                 </section> 
                 
-                <div><a href="../manual.html">Назад</a></div>
-            </div>
-            <div class="em_Epigraph">
-                <div class="em_subText" id="em_subscribe">
-                    <p>Aleks Versus'Easy Libraries'2013-<span class="subscribe_year">2022</span></p>
-                    <p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe_year">2022</span></p>
+                <div class="avs-pages-button__wrapper"><a class="avs-pages-button__link" href="../manual.html"><div class="avs-pages-button">Назад</div></a></div>
+             </article>
+            <aside class="e-block">
+                <div class="avs-page-stamp" id="em_subscribe">
+                    <p class="avs-empty">Aleks Versus'Easy Libraries'2013-<span class="subscribe_year">$YEAR$</span></p>
+                    <p class="avs-aempty">Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe_year">$YEAR$</span></p>
                 </div>
-            </div>
-            <div class="stickUP"><a href="#UP" title="Вверх"><img src="../../res/img/uparrow_btn.png"></a></div>
+            </aside>
         </div>
+    </div>
+    <div class="em-stick-upper"><a class="avs-page-external-link" href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn.png" /></a></div>
     </body>
 </html>

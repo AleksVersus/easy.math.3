@@ -3,24 +3,23 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
-        <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
-    <link type="text/css" rel="stylesheet" href="../../res/css/qsp_code.css" />
         <title>Easy Math — Операции с Массивами</title>
     </head>
     <body>
-        <div class="em_AROUND">
-            <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math.3/releases" title="Скачать последнюю версию библиотеки со страницы релизов" target="_blank">
-                <h1>easy.math.qsp v. 3.0.0</h1>
-            </a>
-            <div class="em_PAGE">
-                <div><a href="../manual.html">Назад</a></div>
-                <h3>Операции над массивами. Страница 2</h3>
+        <div class="avs-page-wrapper">
+        <div class="easy-lib-page">
+            <article class="e-block">
+                <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+                    <h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+                </a>
+                <div class="avs-pages-button__wrapper"><a class="avs-pages-button__link" href="../manual.html"><div class="avs-pages-button">Назад</div></a></div>
+                <h3 class="avs-article-h3">Операции над массивами. Страница 2</h3>
                 
                 <section id="em_arrays_page_2">
                 <!-- Страница вторая -->
-                <a id="#em_arr_randFill"></a><h4>em.arr.randFill</h4>
+                <a id="#em_arr_randFill"></a><h4 class="avs-article-h4">em.arr.randFill</h4>
 
-                <p>Генерирует случайные числа и заполняет ими указанный массив. Если массив существует, новые значения затрут уже имеющиеся.</p>
+                <p class="avs-article-p">Генерирует случайные числа и заполняет ими указанный массив. Если массив существует, новые значения затрут уже имеющиеся.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span>- название массива, элементы которого необходимо сформировать (исследуемый массив), обязательный параметр
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - количество формируемых элементов, обязательный параметр
@@ -28,7 +27,7 @@
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">3</span>]</span> - нижняя граница случайного числа (по умолчанию - ноль)
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">4</span>]</span> - верхняя граница случайного числа (по умолчанию - тысяча)
                 </p>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass1'</span>,<span class="Monokai-Numeric">8</span>)</span><br>
                     <br>
@@ -64,9 +63,9 @@
                     mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">17</span>
                 </div>
                 
-                <a id="#em_arr_strtFill"></a><h4>em.arr.strtFill</h4>
+                <a id="#em_arr_strtFill"></a><h4 class="avs-article-h4">em.arr.strtFill</h4>
                 
-                <p>Заполняет массив порядковыми числами. Если массив существует, его значения будут перезаписаны.</p>
+                <p class="avs-article-p">Заполняет массив порядковыми числами. Если массив существует, его значения будут перезаписаны.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span>- название массива, элементы которого необходимо сформировать (исследуемый массив), обязательный параметр
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - количество формируемых элементов, обязательный параметр
@@ -74,7 +73,7 @@
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">3</span>]</span> - нижняя граница чисел. С какого числа начинать заполнение.
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">4</span>]</span> - с какого элемента начинать заполнение.
                 </p>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.arr.strtFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span>)</span><br>
                     <br>
@@ -123,15 +122,15 @@
                 
                 <a id="#em_arr_sort"></a><h4 class="emH4">em.arr.sort</h4>
                 
-                <p>Программа сортирует значения массива (используется метод сортировки "пузырьком"). Результатом работы программы могут быть три разных массива. Направление сортировки: от нулевого элемента к последнему.</p>
+                <p class="avs-article-p">Программа сортирует значения массива (используется метод сортировки "пузырьком"). Результатом работы программы могут быть три разных массива. Направление сортировки: от нулевого элемента к последнему.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - название массива, элементы которого необходимо отсортировать (исследуемый массив), обязательный параметр
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - порядок сортировки элементов массива: <span class="emTEXT">'[up]'</span> или ничего - значения сортируются от большего к меньшему, <span class="emTEXT">'[down]'</span> - значения сортируются от меньшего к большему.
                     <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - имя массива, в который будут помещены исходные номера элементов исследуемого массива в порядке сортировки. Например, если при сортировке местами поменялись первый и второй элемент, первый элемент указанного массива получит номер 2, а второй - 1.
                     <br><span class="emVAR">$args[<span class="emNUM">3</span>]</span> - название массива результатов, т.е. массива, в который будут переданы результаты сортировки. Если не указано, массивом результатов становится исследуемый.
                 </p>
-                <h5>Результат работы функции:</h5>
-                <h6>Простая сортировка. Результат записывается в исходный массив.</h6>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
+                <h6 class="avs-article-h6">Простая сортировка. Результат записывается в исходный массив.</h6>
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                         <tr>
@@ -143,7 +142,7 @@
                             <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортируем полученный массив</span></td>
                         </tr>
                     </table>
-                    <p></p>
+                    <p class="avs-article-p"></p>
                     <table class="em_plusBRD">
                         <tr>
                             <td>Исследуемый массив до сортировки</td>
@@ -183,7 +182,7 @@
                         </tr>
                     </table>                                                    
                 </div>
-                <h6>Обратная сортировка с получением позиций. Результат записывается в исходный массив. </h6>
+                <h6 class="avs-article-h6">Обратная сортировка с получением позиций. Результат записывается в исходный массив. </h6>
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                     <tr>
@@ -195,7 +194,7 @@
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортируем полученный массив вниз</span></td>
                     </tr>
                     </table>
-                    <p></p>
+                    <p class="avs-article-p"></p>
                     <table class="em_plusBRD">
                     <tr>
                     <td>Исследуемый массив до сортировки</td>
@@ -244,7 +243,7 @@
                     </tr>
                     </table>
                 </div>
-                <h6>Обратная сортировка с получением позиций. Результат записывается в новый массив. </h6>
+                <h6 class="avs-article-h6">Обратная сортировка с получением позиций. Результат записывается в новый массив. </h6>
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                     <tr>
@@ -256,7 +255,7 @@
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(1) Сортируем полученный массив вниз</span></td>
                     </tr>
                     </table>
-                    <p></p>
+                    <p class="avs-article-p"></p>
                     <table class="em_plusBRD">
                     <tr>
                     <td>Исследуемый массив до сортировки</td>
@@ -314,7 +313,7 @@
                     </tr>
                     </table>
                 </div>
-                <h6>Простая сортировка текстовых значений с получением позиций. Результат записывается в исходный массив.</h6>
+                <h6 class="avs-article-h6">Простая сортировка текстовых значений с получением позиций. Результат записывается в исходный массив.</h6>
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                     <tr>
@@ -322,7 +321,7 @@
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(0) Сортировка текстовых значений массива</span></td>
                     </tr>
                     </table>
-                    <p></p>
+                    <p class="avs-article-p"></p>
                     <table class="em_plusBRD">
                     <tr>
                     <td>Исследуемый массив до сортировки</td>
@@ -365,22 +364,22 @@
                     </tr>
                     </table>
                 </div>
-                <p>Наверное необходимо пояснить смысл столбца <span class="emTEXT">"Изменения в позициях элементов"</span>, прежде чем переходить к следующей функции. Покажу на примере предпоследней таблицы.</p>
-                <p>В массиве <span class="emARR">old_mass</span> число <span class="emNUM">967</span> было в нулевой позиции (было значением нулевого элемента). После сортировки оно было помещено в седьмую позицию, поэтому в массиве <span class="emARR">em_array</span> в седьмую позицию добавлен номер старой позиции элемента со значением <span class="emNUM">967</span>.</p>
-                <p>Далее число <span class="emNUM">629</span>, которое в массиве <span class="emARR">old_mass</span> было в первой позиции, переместилось в пятую позицию массива результатов (<span class="emARR">new_mass</span>). Поэтому в массиве <span class="emARR">em_array</span> в пятую позицию был добавлен номер <span class="emNUM">1</span>.</p>
-                <p>Для чего это нужно. Используя массив результатов и массив фиксации позиций (<span class="emARR">em_array</span>) можно вернуть исходное состоние массива, или изменить другие массивы соответственно массиву результатов.</p>
+                <p class="avs-article-p">Наверное необходимо пояснить смысл столбца <span class="emTEXT">"Изменения в позициях элементов"</span>, прежде чем переходить к следующей функции. Покажу на примере предпоследней таблицы.</p>
+                <p class="avs-article-p">В массиве <span class="emARR">old_mass</span> число <span class="emNUM">967</span> было в нулевой позиции (было значением нулевого элемента). После сортировки оно было помещено в седьмую позицию, поэтому в массиве <span class="emARR">em_array</span> в седьмую позицию добавлен номер старой позиции элемента со значением <span class="emNUM">967</span>.</p>
+                <p class="avs-article-p">Далее число <span class="emNUM">629</span>, которое в массиве <span class="emARR">old_mass</span> было в первой позиции, переместилось в пятую позицию массива результатов (<span class="emARR">new_mass</span>). Поэтому в массиве <span class="emARR">em_array</span> в пятую позицию был добавлен номер <span class="emNUM">1</span>.</p>
+                <p class="avs-article-p">Для чего это нужно. Используя массив результатов и массив фиксации позиций (<span class="emARR">em_array</span>) можно вернуть исходное состоние массива, или изменить другие массивы соответственно массиву результатов.</p>
                 <p style="color:#880000;">ВНИМАНИЕ! Сортировка затрагивает лишь ту часть массива, которая указана. Если вы отсортировали текстовую часть массива, числовая останется неизменной. И наоборот: при сортировке числовой части массива, текстовая не меняется. Для сортировки обеих частей нужно отсортировать одну из них, с сохранением значений перестановки в массив фиксации, а затем по массиву фиксации функцией <span class="emFOLD">em.arr.restand</span> перетасовать значения в другой части.</p>
                 <p style="color:#ff0000;">ВНИМАНИЕ!!! Во избежание ошибок не следует хранить в массиве одновременно текстовые и числовые значения!</p>
                 
                 <a id="em_arr_restand"></a><h4 class="emH4">em.arr.restand</h4>
                 
-                <p>Процедура перетасовывает элементы массива согласно сведениям в массиве фиксации.</p>
+                <p class="avs-article-p">Процедура перетасовывает элементы массива согласно сведениям в массиве фиксации.</p>
                 <p class="em_CODE">
                 <span class="emVAR">$args[<span class="emNUM">0</span>]</span>- массив, данные в котором необходимо перетасовать (исследуемый)
                 <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - массив фиксации, где находится список, согласно которому тасуются элементы
                 <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - массив результатов - сюда помещается итог перетасовки, если не указан результат помещается в исходный массив.
                 </p>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                         <tr>
@@ -396,7 +395,7 @@
                             <td style="vertical-align: top;"><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(2) Перетасовка значений из исходного массива в соответствии с данными из массива фиксации позиций</span></td>
                         </tr>
                     </table>
-                    <p></p>
+                    <p class="avs-article-p"></p>
                     <table class="em_plusBRD">
                     <tr>
                     <td>Исследуемый массив до сортировки</td>
@@ -469,13 +468,13 @@
                 
                 <a id="em_arr_desort"></a><h4 class="emH4">em.arr.deSort</h4>
                 
-                <p>Процедура, восстанавливающая состояние массива до сортировки по значениям в массиве фиксации.</p>
+                <p class="avs-article-p">Процедура, восстанавливающая состояние массива до сортировки по значениям в массиве фиксации.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span>- массив, данные в котором необходимо восстановить (исследуемый)
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - массив фиксации, где находится список, согласно которому тасуются элементы
                     <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - массив результатов - сюда помещается итог перетасовки, если не указан результат помещается в исходный массив.
                 </p>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                         <tr>
@@ -491,7 +490,7 @@
                         <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(2) Восстановление массива к исходному состоянию</span></td>
                         </tr>
                     </table>
-                    <p></p>
+                    <p class="avs-article-p"></p>
                     <table class="em_plusBRD">
                         <tr>
                         <td>Исследуемый массив до сортировки</td>
@@ -552,9 +551,9 @@
                 
                 <a id="em_arr_simpl"></a><h4 class="emH4">em.arr.simpl</h4>
                 
-                <p>Процедура сравнения содержимого двух массивов.</p>
+                <p class="avs-article-p">Процедура сравнения содержимого двух массивов.</p>
                 <div class="em_CODE">
-                    <p>
+                    <p class="avs-article-p">
                         <span class="emVAR">$args[<span class="emNUM">0</span>]</span>- первый массив (исследуемый).
                         <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - второй массив (исследуемый).
                         <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - управляющая конструкция:
@@ -566,15 +565,15 @@
                         <li class="emLI">Если при сравнении необходимо исключить пустые ячейки, необходимо добавить управляющее слово <span class="emTEXT">[se]</span> или <span class="emTEXT">[space exclude]</span> к управляющей конструкции.</li>
                     </ul>
                 </div>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="em_CODE">
-                    <p><span class="emVAR">&nbsp;$result</span> - принимает два значения:</p>
+                    <p class="avs-article-p"><span class="emVAR">&nbsp;$result</span> - принимает два значения:</p>
                     <ul>
                         <li class="emLI"><span class="emTEXT">"true"</span> - массивы идентичны, подобны, либо в них есть совпадающие элементы (в зависимости от условий сравнения)</li>
                         <li class="emLI"> <span class="emTEXT">"false"</span> - сравнение показало, что массивы не идентичны, не подобны, или не имеют совпадающих элементов (в зависимости от условий сравнения)</li>
                     </ul>
                 </div>
-                <p></p>
+                <p class="avs-article-p"></p>
                 <div class="Monokai-Code">
                     <table class="emTEXT">
                     <tr>
@@ -602,7 +601,7 @@
                     <td><span class="Monokai-Comment">&nbsp;&nbsp;&nbsp;(5) Сравниваем на подобие подобные массивы</span></td>
                     </tr>
                     </table>
-                    <p></p>
+                    <p class="avs-article-p"></p>
                     <table class="em_plusBRD">
                     <tr>
                     <td>Исследуемый массив</td>
@@ -661,8 +660,8 @@
                     
                 <a id="em_arr_find"></a><h4 class="emH4">em.arr.find</h4>
                 
-                <p></p>
-                <p>Функция производит поиск максимального или минимального значения в массиве. В отличие от функций <span class="emFUNC">MAX</span> и <span class="emFUNC">MIN</span> можно указать область и пределы поиска, а так же запросить позицию найденного элемента. Если ни одно число по указанным параметрам не подходит, функция возвращает слово <span class="emTEXT">false</span>.</p>
+                <p class="avs-article-p"></p>
+                <p class="avs-article-p">Функция производит поиск максимального или минимального значения в массиве. В отличие от функций <span class="emFUNC">MAX</span> и <span class="emFUNC">MIN</span> можно указать область и пределы поиска, а так же запросить позицию найденного элемента. Если ни одно число по указанным параметрам не подходит, функция возвращает слово <span class="emTEXT">false</span>.</p>
                 <div class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - название массива.
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - управление (можно комбинировать):
@@ -677,8 +676,8 @@
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">4</span>]</span> - от какого элемента вести поиск (по умолчанию от нулевого).
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">5</span>]</span> - до какого элемента вести поиск (по умолчанию до последнего).
                 </div>
-                <h5>Результат работы функции:</h5>
-                <p>Результат работы функции всегда возвращается в текстовом виде.</p>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
+                <p class="avs-article-p">Результат работы функции всегда возвращается в текстовом виде.</p>
                 <p class="emTEXT">Заготовленный массив:</p>
                 <div class="Monokai-Code">
                     mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">574</span><br>
@@ -705,15 +704,16 @@
             <!-- конец второй страницы -->
             </section>  
                 
-                <div><a href="../manual.html">Назад</a></div>
-            </div>
-            <div class="em_Epigraph">
-                <div class="em_subText" id="em_subscribe">
-                    <p>Aleks Versus'Easy Libraries'2013-<span class="subscribe_year">2022</span></p>
-                    <p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe_year">2022</span></p>
+                <div class="avs-pages-button__wrapper"><a class="avs-pages-button__link" href="../manual.html"><div class="avs-pages-button">Назад</div></a></div>
+             </article>
+            <aside class="e-block">
+                <div class="avs-page-stamp" id="em_subscribe">
+                    <p class="avs-empty">Aleks Versus'Easy Libraries'2013-<span class="subscribe_year">$YEAR$</span></p>
+                    <p class="avs-aempty">Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe_year">$YEAR$</span></p>
                 </div>
-            </div>
-            <div class="stickUP"><a href="#UP" title="Вверх"><img src="../../res/img/uparrow_btn.png"></a></div>
+            </aside>
         </div>
+    </div>
+    <div class="em-stick-upper"><a class="avs-page-external-link" href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn.png" /></a></div>
     </body>
 </html>

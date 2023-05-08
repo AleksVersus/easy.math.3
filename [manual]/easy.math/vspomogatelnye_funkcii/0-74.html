@@ -3,21 +3,20 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
-    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
-    <link type="text/css" rel="stylesheet" href="../../res/css/qsp_code.css" />
 	<title>Easy Math — Coordinates</title>
 </head>
 <body>
-        <div class="em_AROUND">
-            <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math.3/releases" title="Скачать последнюю версию библиотеки со страницы релизов" target="_blank">
-                <h1>easy.math.qsp v. 3.0.0</h1>
-            </a>
-            <div class="em_PAGE">
-                <div><a href="../manual.html">Назад</a></div>
-                <h3>Вспомогательные функции</h3>
-                <a id="em_str_getword"></a><h4>em.str.getWord</h4>
+<div class="avs-page-wrapper">
+        <div class="easy-lib-page">
+            <article class="e-block">
+                <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+                    <h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+                </a>
+                <div class="avs-pages-button__wrapper"><a class="avs-pages-button__link" href="../manual.html"><div class="avs-pages-button">Назад</div></a></div>
+                <h3 class="avs-article-h3">Вспомогательные функции</h3>
+                <a id="em_str_getword"></a><h4 class="avs-article-h4">em.str.getWord</h4>
                     
-                <p>
+                <p class="avs-article-p">
                     Функция из строки вида <span class="emTEXT">aaa|bbb|ccc|...|yyy|zzz</span> получает подстроку, стоящую в указанной позиции. Подстроки помещаются между разделителями. По умолчанию разделителем является вертикальная черта.
                 </p>
                     <p class="em_CODE">
@@ -25,12 +24,12 @@
                         <br/><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - позиция, из которой нужно получить подстроку.
                         <br/><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - разделитель. По умолчанию в качестве разделителя используется вертикальная черта.
                     </p>
-                    <h5>Результат работы функции:</h5>
-                    <p>Заготовленная строка:</p>
+                    <h5 class="avs-article-h5">Результат работы функции:</h5>
+                    <p class="avs-article-p">Заготовленная строка:</p>
                     <div class="Monokai-Code">
                         $text<span class="Monokai-Assign">=</span><span class="Monokai-String">"Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь"</span>
                     </div>
-                    <p>Примеры работы функции:</p>
+                    <p class="avs-article-p">Примеры работы функции:</p>
                     <div class="Monokai-Code">
                         <span class="Monokai-UnFunc">@em.str.getWord</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-Numeric">2</span><span class="Monokai-Qbracket">)</span>       <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "Февраль"</span><br/>
                         <span class="Monokai-UnFunc">@em.str.getWord</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-Numeric">5</span><span class="Monokai-Qbracket">)</span>       <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "Май"</span><br/>
@@ -44,15 +43,15 @@
                         <span class="Monokai-UnFunc">@em.str.getWord</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-Numeric">14</span>,<span class="Monokai-String">"а"</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "брь"</span><br/>
                         <span class="Monokai-UnFunc">@em.str.getWord</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">"брь"</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "|Ноя"</span>
                     </div>
-                <a id="em_tag_getnum"></a><h4>em.tag.getNum</h4>
+                <a id="em_tag_getnum"></a><h4 class="avs-article-h4">em.tag.getNum</h4>
                     
-                    <p>Получает содержимое одиночного тега<a href="#bottom1" id="upping1" class="em_PRIM">[1]</a> из строки.</p>
+                    <p class="avs-article-p">Получает содержимое одиночного тега<a class="avs-page-external-link" href="#bottom1" id="upping1" class="em_PRIM">[1]</a> из строки.</p>
                     
                     <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - текст, из которого нужно извлечь содержимое тега.
                     <br/><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - корень тега. Можно указать ключ <span class="emTEXT">/h</span>, чтобы вести проверку, соответствуют ли символы шестнадцатеричному числу; в этом случае, если содержимое тега не соответствует шестнадцатеричному числу, функция вернёт пустую строку.</p>
-                    <p>Результат - только текстовое значение.</p>
-                    <p>Примеры одиночных тегов с корнем <span class="emFOLD">tag</span>:</p>
+                    <p class="avs-article-p">Результат - только текстовое значение.</p>
+                    <p class="avs-article-p">Примеры одиночных тегов с корнем <span class="emFOLD">tag</span>:</p>
                     <div class="Monokai-Code">
                         <span class="Monokai-SysVar">tag</span><span class="Monokai-Operator">:</span><span class="Monokai-String">non_space_symbols</span>
                         <br/><span class="Monokai-Operator"><span class="Monokai-SysVar">tag</span>=#<span class="Monokai-String">non_space_symbols</span></span>
@@ -63,13 +62,13 @@
                         <br/><span class="Monokai-Operator"><span class="Monokai-SysVar">tag</span>="<span class="Monokai-String">any symbols</span>"</span>
                         <br/><span class="Monokai-Operator"><span class="Monokai-SysVar">tag</span>='<span class="Monokai-String">any symbols</span>'</span>
                     </div>
-                    <p>Первые два типа записей не должны содержать пробельных символов, остальные - могут. Тем не менее не рекомендуется использовать данную функцию для извлечения данных с пробельными символами.</p>
-                    <h5>Результат работы функции:</h5>
-                    <p>Заготовленная строка:</p>
+                    <p class="avs-article-p">Первые два типа записей не должны содержать пробельных символов, остальные - могут. Тем не менее не рекомендуется использовать данную функцию для извлечения данных с пробельными символами.</p>
+                    <h5 class="avs-article-h5">Результат работы функции:</h5>
+                    <p class="avs-article-p">Заготовленная строка:</p>
                     <div class="Monokai-Code">
                         $text<span class="Monokai-Assign">=</span><span class="Monokai-String">"[count:текст с пробелом] &lt;cord:68&gt; log:непробельные_символы color=#ff8899 tag='многа букав'"</span>
                     </div>
-                    <p>Извлечённые значения:</p>
+                    <p class="avs-article-p">Извлечённые значения:</p>
                     <div class="Monokai-Code">
                         <span class="Monokai-UnFunc">@em.tag.getNum</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'count'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "текст с пробелом"</span><br/>
                         <span class="Monokai-UnFunc">@em.tag.getNum</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'cord'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '68'</span><br/>
@@ -79,15 +78,15 @@
                         <span class="Monokai-UnFunc">@em.tag.getNum</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'tag/h'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">не </span><span class="Monokai-Comment">выведет </span><span class="Monokai-Comment">ничего</span><br/>
                         <span class="Monokai-UnFunc">@em.tag.getNum</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'color/h'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "ff8899"</span>
                     </div>
-                <a id="em_tag_getcont"></a><h4>em.tag.getCont</h4>
+                <a id="em_tag_getcont"></a><h4 class="avs-article-h4">em.tag.getCont</h4>
                 
-                    <p>Получает содержимое двойного тега из строки.</p>
+                    <p class="avs-article-p">Получает содержимое двойного тега из строки.</p>
                     <p class="em_CODE">
                         <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - текст, содержащий тег.
                         <br/><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - корень тега.
                     </p>
-                    <p>Результатом может быть только текстовое значение.</p>
-                    <p>Примеры двойных тегов с корнем <span class="emFOLD">tag</span>:</p>
+                    <p class="avs-article-p">Результатом может быть только текстовое значение.</p>
+                    <p class="avs-article-p">Примеры двойных тегов с корнем <span class="emFOLD">tag</span>:</p>
                     <div class="Monokai-Code">
                         &nbsp;<span class="Monokai-Operator"><span class="Monokai-SysVar">tag</span>:<span class="Monokai-String">any symbols</span>:<span class="Monokai-SysVar">tag</span></span>
                         <br/><span class="Monokai-Operator">[<span class="Monokai-SysVar">tag</span>:<span class="Monokai-String">any symbols</span>:<span class="Monokai-SysVar">tag</span>]</span>
@@ -96,12 +95,12 @@
                         <br/><span class="Monokai-Operator">[<span class="Monokai-SysVar">tag</span>]<span class="Monokai-String">any symbols</span>[/<span class="Monokai-SysVar">tag</span>]</span>
                         <br/><span class="Monokai-Operator">&lt;<span class="Monokai-SysVar">tag</span>&gt;<span class="Monokai-String">any symbols</span>&lt;/<span class="Monokai-SysVar">tag</span>&gt;</span>
                     </div>
-                    <h5>Результат работы функции:</h5>
-                    <p>Заготовленная строка:</p>
+                    <h5 class="avs-article-h5">Результат работы функции:</h5>
+                    <p class="avs-article-p">Заготовленная строка:</p>
                     <div class="Monokai-Code">
                         $text<span class="Monokai-Assign">=</span><span class="Monokai-String">"[count:текст с пробелом:count] &lt;cord:странный и непонятный текст:cord&gt; log:п р о б е л ь н ы е и непробельные символы:log &lt;color&gt;ff8899&lt;/color&gt; [tag]многа букав[/tag]"</span>
                     </div>
-                    <p>Извлечённые значения:</p>
+                    <p class="avs-article-p">Извлечённые значения:</p>
                     <div class="Monokai-Code">
                         <span class="Monokai-UnFunc">@em.tag.getCont</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'count'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "текст с пробелом"</span><br/>
                         <span class="Monokai-UnFunc">@em.tag.getCont</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'cord'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "странный и непонятный текст"</span><br/>
@@ -110,28 +109,28 @@
                         <span class="Monokai-UnFunc">@em.tag.getCont</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'tag'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "многа букав"</span>
                     </div>
                 
-                <a id="em_maxvar"></a><h4>em.maxVar</h4>
+                <a id="em_maxvar"></a><h4 class="avs-article-h4">em.maxVar</h4>
                     
-                    <p>Возвращает название переменной, содержащей максимальное значение.</p>
+                    <p class="avs-article-p">Возвращает название переменной, содержащей максимальное значение.</p>
                     <p class="em_CODE">
                         <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имена переменных, или точные указания на ячейки массивов, перечисленные списком через запятую
                         <span class="emVAR">$args[<span class="emNUM">1</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - каждый аргумент — отдельное имя переменной, или указание на конкретную ячейку массива, либо управляющая конструкция.
                     </p>
-                    <p>Пример:</p>
+                    <p class="avs-article-p">Пример:</p>
                     <div class="Monokai-Code">
                         <span class="Monokai-UnFunc">@em.maxVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'new_mass'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
-                    <p>В <span class="emVAR">$args[<span class="emNUM">0</span>]</span> может быть не одно, а несколько имён переменных или конкретных ячеек массива, разделённых запятыми:</p>
+                    <p class="avs-article-p">В <span class="emVAR">$args[<span class="emNUM">0</span>]</span> может быть не одно, а несколько имён переменных или конкретных ячеек массива, разделённых запятыми:</p>
                     <div class="Monokai-Code">
                         <span class="Monokai-UnFunc">@em.maxVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]'</span>,<span class="Monokai-String">'new_mass'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
-                    <p>При указании текстовых индексов для элементов массива в таком списке недопустимо, чтобы в этих текстовых индексах присутствовали запятые. Для указания таких ячеек массива используйте аргументы с <span class="emVAR">$args[<span class="emNUM">1</span>]</span> по <span class="emVAR">$args[<span class="emNUM">8</span>]</span>, либо замените в индексах запятые на <span class="emTEXT">%&amp;#44;%</span>.</p>
-                    <p>Если нужно провести поиск максимального среди всех значений массива, можно использовать ключ <span class="emTEXT">/arr</span>, чтобы указать, что данное имя является не просто именем переменной (то есть нулевой ячейки массива), но и всего массива.</p>
+                    <p class="avs-article-p">При указании текстовых индексов для элементов массива в таком списке недопустимо, чтобы в этих текстовых индексах присутствовали запятые. Для указания таких ячеек массива используйте аргументы с <span class="emVAR">$args[<span class="emNUM">1</span>]</span> по <span class="emVAR">$args[<span class="emNUM">8</span>]</span>, либо замените в индексах запятые на <span class="emTEXT">%&amp;#44;%</span>.</p>
+                    <p class="avs-article-p">Если нужно провести поиск максимального среди всех значений массива, можно использовать ключ <span class="emTEXT">/arr</span>, чтобы указать, что данное имя является не просто именем переменной (то есть нулевой ячейки массива), но и всего массива.</p>
                     <div class="Monokai-Code">
                         <span class="Monokai-UnFunc">@em.maxVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass_1,oldmass,old_mass_2,oldold/arr'</span>,<span class="Monokai-String">'new_mass/arr'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
-                    <p>В последнем аргументе (номер аргумента при этом не важен) можно использовать управляющие конструкции. Аргументы после аргумента с управляющими конструкциями будут проигнорированы.</p>
-                    <p>Список управляющих конструкций:</p>
+                    <p class="avs-article-p">В последнем аргументе (номер аргумента при этом не важен) можно использовать управляющие конструкции. Аргументы после аргумента с управляющими конструкциями будут проигнорированы.</p>
+                    <p class="avs-article-p">Список управляющих конструкций:</p>
                     <ul>
                         <li><span class="emTEXT">[list]</span> - в этом режиме функция возвращает список всех имён переменных, содержащих максимальное значение, если это значение присутствует во всех этих переменных.</li>
                         <li><span class="emTEXT">[max]</span> - в этом режиме функция производит поиск максимального значения. Режим по умолчанию, т.е. можно не указывать.</li>
@@ -140,7 +139,7 @@
                     <div class="Monokai-Code">
                         <span class="Monokai-UnFunc">@em.maxVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'oldold/arr,new_mass/arr'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'[list]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
-                    <h5>Результат работы функции:</h5>
+                    <h5 class="avs-article-h5">Результат работы функции:</h5>
                     <div class="Monokai-Code">
                         old_mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">788</span><br/>
                         old_mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">136</span><br/>
@@ -161,35 +160,35 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;old_mass[7]'</span>
                     </div>
                 
-                <a id="em_minvar"></a><h4>em.minVar</h4>
+                <a id="em_minvar"></a><h4 class="avs-article-h4">em.minVar</h4>
                     
-                    <p>Возвращает название переменной, содержащей минимальное значение.</p>
+                    <p class="avs-article-p">Возвращает название переменной, содержащей минимальное значение.</p>
                     <p class="em_CODE">
                         <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имена переменных, или точные указания на ячейки массивов, перечисленные списком через запятую
                         <span class="emVAR">$args[<span class="emNUM">1</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - каждый аргумент — отдельное имя переменной, или указание на конкретную ячейку массива, либо управляющая конструкция.
                     </p>
-                    <p> Пример:</p>
+                    <p class="avs-article-p"> Пример:</p>
                     <div class="Monokai-Code">
                         <span class="Monokai-UnFunc">@em.minVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'new_mass'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
-                    <p>В <span class="emVAR">$args[<span class="emNUM">0</span>]</span> может быть не одно, а несколько имён переменных или конкретных ячеек массива, разделённых запятыми:</p>
+                    <p class="avs-article-p">В <span class="emVAR">$args[<span class="emNUM">0</span>]</span> может быть не одно, а несколько имён переменных или конкретных ячеек массива, разделённых запятыми:</p>
                     <div class="Monokai-Code">
                         <span class="Monokai-UnFunc">@em.minVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]'</span>,<span class="Monokai-String">'new_mass'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
-                    <p>При указании текстовых индексов для элементов массива в таком списке недопустимо, чтобы в этих текстовых индексах присутствовали запятые. Для указания таких ячеек массива используйте аргументы с <span class="emVAR">$args[<span class="emNUM">1</span>]</span> по <span class="emVAR">$args[<span class="emNUM">8</span>]</span>, либо замените в индексах запятые на <span class="emTEXT">%&amp;#44;%</span>.</p>
-                    <p>Если нужно провести поиск минимального среди всех значений массива, можно использовать ключ <span class="emTEXT">/arr</span>, чтобы указать, что данное имя является не просто именем переменной (то есть нулевой ячейки массива), но и всего массива.</p>
+                    <p class="avs-article-p">При указании текстовых индексов для элементов массива в таком списке недопустимо, чтобы в этих текстовых индексах присутствовали запятые. Для указания таких ячеек массива используйте аргументы с <span class="emVAR">$args[<span class="emNUM">1</span>]</span> по <span class="emVAR">$args[<span class="emNUM">8</span>]</span>, либо замените в индексах запятые на <span class="emTEXT">%&amp;#44;%</span>.</p>
+                    <p class="avs-article-p">Если нужно провести поиск минимального среди всех значений массива, можно использовать ключ <span class="emTEXT">/arr</span>, чтобы указать, что данное имя является не просто именем переменной (то есть нулевой ячейки массива), но и всего массива.</p>
                     <div class="Monokai-Code">
                         <span class="Monokai-UnFunc">@em.minVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass_1,oldmass,old_mass_2,oldold/arr'</span>,<span class="Monokai-String">'new_mass/arr'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
-                    <p>В последнем аргументе (номер аргумента при этом не важен) можно использовать управляющие конструкции. Аргументы после аргумента с управляющими конструкциями будут проигнорированы.</p>
-                    <p>Список управляющих конструкций:</p>
+                    <p class="avs-article-p">В последнем аргументе (номер аргумента при этом не важен) можно использовать управляющие конструкции. Аргументы после аргумента с управляющими конструкциями будут проигнорированы.</p>
+                    <p class="avs-article-p">Список управляющих конструкций:</p>
                     <ul>
                         <li><span class="emTEXT">[list]</span> - в этом режиме функция возвращает список всех имён переменных, содержащих минимальное значение, если это значение присутствует во всех этих переменных.</li>
                     </ul>
                     <div class="Monokai-Code">
                         <span class="Monokai-UnFunc">@em.minVar</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'oldold/arr,new_mass/arr'</span>,<span class="Monokai-String">'mass[23]'</span>,<span class="Monokai-String">'[list]'</span>,<span class="Monokai-String">'mass[45]'</span>)</span>
                     </div>
-                    <h5>Результат работы функции:</h5>
+                    <h5 class="avs-article-h5">Результат работы функции:</h5>
                     <div class="Monokai-Code">
                         old_mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">788</span><br/>
                         old_mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">136</span><br/>
@@ -209,11 +208,11 @@
                         <span class="Monokai-Comment">!  'old_mass[4]</span><br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="Monokai-Comment">old_mass[7]'</span>
                     </div>
-                    <p>Данная функция является надстройкой над функцией <span class="emTEXT">em.maxVar</span>.</p>
+                    <p class="avs-article-p">Данная функция является надстройкой над функцией <span class="emTEXT">em.maxVar</span>.</p>
                     
-                <a id="em_var_gettype"></a><h4>em.var.getType</h4>
+                <a id="em_var_gettype"></a><h4 class="avs-article-h4">em.var.getType</h4>
                     
-                    <p>Функция получает тип переменной.</p>
+                    <p class="avs-article-p">Функция получает тип переменной.</p>
                     <div class="em_CODE">
                         <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имя переменной/массива. Можно указывать название непосредственно переменной/массива, или конкретную ячейку масссива.
                         <br/><span class="emVAR">$result</span> - в результате функция возвращает строку:
@@ -230,14 +229,14 @@
                             <li><span class="emTEXT">'empty'</span> - этот результат означает, что переменная не создана, либо содержит значение по умолчанию, текстовое и числовое.</li>
                         </ul>
                     </div>
-                    <p>Вызов:</p>
+                    <p class="avs-article-p">Вызов:</p>
                     <div class="Monokai-Code">
                         <span class="Monokai-UnFunc">@em.var.getType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'$имя_переменной'</span><span class="Monokai-Qbracket">)</span><br/>
                         <span class="Monokai-UnFunc">@em.var.getType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'array["string"]'</span><span class="Monokai-Qbracket">)</span>
                     </div>
-                    <p>Символ <span class="emTEXT">"$"</span> перед названием переменной при определении типа роли не играет.</p>
-                    <p>Проверить тип переменных <span class="emVAR">args</span> и <span class="emVAR">result</span> с помощью данной функции нельзя, однако можно проверить тип любой другой локальной переменной.</p>
-                    <h5>Примеры:</h5>
+                    <p class="avs-article-p">Символ <span class="emTEXT">"$"</span> перед названием переменной при определении типа роли не играет.</p>
+                    <p class="avs-article-p">Проверить тип переменных <span class="emVAR">args</span> и <span class="emVAR">result</span> с помощью данной функции нельзя, однако можно проверить тип любой другой локальной переменной.</p>
+                    <h5 class="avs-article-h5">Примеры:</h5>
                     <div class="Monokai-Code">
                         $string<span class="Monokai-Assign">=</span><span class="Monokai-String">'text'</span><br/>
                         number<span class="Monokai-Assign">=</span><span class="Monokai-Numeric">123</span><br/>
@@ -256,16 +255,16 @@
                         <span class="Monokai-UnFunc">@em.var.getType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'$tuple'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'tuple'</span>
                 </div>
                 
-                <a id="rergb"></a><h4>em.deRGB</h4>
+                <a id="rergb"></a><h4 class="avs-article-h4">em.deRGB</h4>
                     
-                    <p>Функция обратная функции rgb, встроенной в QSP. То есть данная функция наоборот: переводит числовой код цвета в три составляющие.</p>
+                    <p class="avs-article-p">Функция обратная функции rgb, встроенной в QSP. То есть данная функция наоборот: переводит числовой код цвета в три составляющие.</p>
                     <div class="em_CODE">
                         <span class="emVAR">args[<span class="emNUM">0</span>]</span> - числовой код цвета.
                         <br/><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - управляющая конструкция. При желании вы можете передать в этом параметре ключ <span class="emTEXT">'\wa'</span>, чтобы в результат была включена составляющая альфа-канала.
                         <br/>
                         <span class="emVAR">$result</span> или <span class="emVAR">result</span> - функция возвращает все три составляющие в виде кортежа (если указать хотя бы два управляющих слова, или не указать ни одного), или возвращает в виде числа одну составляющую (если указать одну управляющую конструкцию).
                     </div>
-                    <h5>Результат работы функции:</h5>
+                    <h5 class="avs-article-h5">Результат работы функции:</h5>
                     <div class="Monokai-Code">
                         yellow<span class="Monokai-Assign">=</span><span class="Monokai-Func">rgb</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">255</span>,<span class="Monokai-Numeric">255</span>,<span class="Monokai-Numeric">0</span><span class="Monokai-Qbracket">)</span><br/>
                         seablue<span class="Monokai-Assign">=</span><span class="Monokai-Func">rgb</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">0</span>,<span class="Monokai-Numeric">98</span>,<span class="Monokai-Numeric">98</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">#006262</span><br/>
@@ -287,17 +286,18 @@
                         <span class="Monokai-Operator">*pl</span>&nbsp;<span style="color:#e6db74;">"</span><span style="color:#a6e22e;">&lt;&lt;</span>red<span style="color:#a6e22e;">&gt;&gt;</span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>green<span style="color:#a6e22e;">&gt;&gt;</span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>blue<span style="color:#a6e22e;">&gt;&gt;</span><span style="color:#e6db74;">,</span><span style="color:#a6e22e;">&lt;&lt;</span>alpha<span style="color:#a6e22e;">&gt;&gt;</span><span style="color:#e6db74;">"</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">240,230,140,237</span>
                     </div>
                 <hr>
-                <h4>Примечания:</h4>
-                <p><a id="bottom1"></a><a href="#upping1" class="em_PRIM" title="Назад">[1]</a> Теги - это метки в тексте, которые отмечают некоторую информацию. В контексте данного руководства и связанных с библиотекой программ различаются одиночные и двойные теги. Одиночные теги отличаются тем, что не требуют закрытия. Двойные теги состоят из открывающего и закрывающего элементов. Содержимое тегов - это информация, которую они отмечают, или выделяют. Пример: <span class="emTEXT">&lt;p&gt;Текст параграфа&lt;/p&gt;</span> - здесь мы видим открывающий и закрывающий элементы тега <span class="emTEXT">'p'</span>, между которыми размещён текст. В контексте данного руководства <span class="emTEXT">'p'</span> — это корень тега, — а текст, размещённый между элементами тега, называется содержимым тега.</p>
-                <div><a href="../manual.html">Назад</a></div>
-            </div>
-            <div class="em_Epigraph">
-                <div class="em_subText" id="em_subscribe">
-                    <p>Aleks Versus'Easy Libraries'2013-<span class="subscribe_year">2022</span></p>
-                    <p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe_year">2022</span></p>
+                <h4 class="avs-article-h4">Примечания:</h4>
+                <p class="avs-article-p"><a id="bottom1"></a><a class="avs-page-external-link" href="#upping1" class="em_PRIM" title="Назад">[1]</a> Теги - это метки в тексте, которые отмечают некоторую информацию. В контексте данного руководства и связанных с библиотекой программ различаются одиночные и двойные теги. Одиночные теги отличаются тем, что не требуют закрытия. Двойные теги состоят из открывающего и закрывающего элементов. Содержимое тегов - это информация, которую они отмечают, или выделяют. Пример: <span class="emTEXT">&lt;p&gt;Текст параграфа&lt;/p&gt;</span> - здесь мы видим открывающий и закрывающий элементы тега <span class="emTEXT">'p'</span>, между которыми размещён текст. В контексте данного руководства <span class="emTEXT">'p'</span> — это корень тега, — а текст, размещённый между элементами тега, называется содержимым тега.</p>
+                <div class="avs-pages-button__wrapper"><a class="avs-pages-button__link" href="../manual.html"><div class="avs-pages-button">Назад</div></a></div>
+             </article>
+            <aside class="e-block">
+                <div class="avs-page-stamp" id="em_subscribe">
+                    <p class="avs-empty">Aleks Versus'Easy Libraries'2013-<span class="subscribe_year">$YEAR$</span></p>
+                    <p class="avs-aempty">Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe_year">$YEAR$</span></p>
                 </div>
-            </div>
-            <div class="stickUP"><a href="#UP" title="Вверх"><img src="../../res/img/uparrow_btn.png"></a></div>
+            </aside>
         </div>
+    </div>
+    <div class="em-stick-upper"><a class="avs-page-external-link" href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn.png" /></a></div>
 </body>
 </html>

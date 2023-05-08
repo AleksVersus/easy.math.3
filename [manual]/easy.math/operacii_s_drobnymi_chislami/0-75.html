@@ -3,29 +3,27 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
-    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
-    <link type="text/css" rel="stylesheet" href="../../res/css/qsp_code.css" />
 	<title>Easy Math — Операции с рациональными числами</title>
 </head>
 <body>
-        <div class="em_AROUND">
-            <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math.3/releases" title="Скачать последнюю версию библиотеки со страницы релизов" target="_blank">
-                <h1>easy.math.qsp v. 3.0.0</h1>
-            </a>
-            <!-- Исправить ссылку -->
-            <div class="em_PAGE">
-                <div><a href="../manual.html">Назад</a></div>
-                <h3>Операции с дробными числами</h3>
+<div class="avs-page-wrapper">
+        <div class="easy-lib-page">
+            <article class="e-block">
+                <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+                    <h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+                </a>
+                <div class="avs-pages-button__wrapper"><a class="avs-pages-button__link" href="../manual.html"><div class="avs-pages-button">Назад</div></a></div>
+                <h3 class="avs-article-h3">Операции с дробными числами</h3>
                 
-                <a id="em_dz"></a><h4>em.dz</h4>
+                <a id="em_dz"></a><h4 class="avs-article-h4">em.dz</h4>
 
-                <p>Одна из основных функций, позволяющая упразднять несущественные нули в конце натурального числа, а так же все несущественные нули в начале.</p>
+                <p class="avs-article-p">Одна из основных функций, позволяющая упразднять несущественные нули в конце натурального числа, а так же все несущественные нули в начале.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - обрабатываемое число, только в текстовом виде.
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - разряд до которого требуется удалить нули. 1 - до целых, 10 - до десятых, 100 - до сотых и т.д, по умолчанию 1.
                     <br><span class="emVAR">&nbsp;$result</span> - текстовое значение вида <span class="emTEXT">000.000</span>
                 </p>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.dz</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'64'</span>,<span class="Monokai-Numeric">100</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '64'</span><br>
                     <span class="Monokai-UnFunc">@em.dz</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'64.0080000'</span>,<span class="Monokai-Numeric">1</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '64.008'</span><br>
@@ -33,18 +31,18 @@
                     <span class="Monokai-UnFunc">@em.dz</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'64.0080000'</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '64.0080'</span>
                 </div>
                 
-                <a id="em_indiv"></a><h4>em.indiv</h4>
+                <a id="em_indiv"></a><h4 class="avs-article-h4">em.indiv</h4>
 
-                <p>Вычисляет рациональное частное от целых чисел.</p>
+                <p class="avs-article-p">Вычисляет рациональное частное от целых чисел.</p>
                 <p class="em_CODE">
                     <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - делимое;
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - делитель, по умолчанию = 100;
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">2</span>]</span> - точность вычисления. 1 - до целых, 10 - до десятых, 100 - до сотых и т.д. По умолчанию, вычисляет до девятого знака после запятой (максимальное значение аргумента).<br><span class="emVAR">&nbsp;$result</span> - текстовое значение вида <span class="emTEXT">000.000</span>
                 </p>
 
-                <p>Использует функцию <span class="emFOLD">em.dz</span></p>
-                <p>Имеются ограничения на значения аргументов (для QSP 5.8.0 в пределах [-2147483647 ... 2147483647]).</p>
-                <h5>Результат работы функции:</h5>
+                <p class="avs-article-p">Использует функцию <span class="emFOLD">em.dz</span></p>
+                <p class="avs-article-p">Имеются ограничения на значения аргументов (для QSP 5.8.0 в пределах [-2147483647 ... 2147483647]).</p>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.indiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Operator">-</span><span class="Monokai-Numeric">950000</span>,<span class="Monokai-Numeric">1000</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-950'</span><br>
                     <span class="Monokai-UnFunc">@em.indiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">64</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0.64'</span><br>
@@ -56,16 +54,16 @@
                     <span class="Monokai-UnFunc">@em.indiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">200</span>,<span class="Monokai-Numeric">100</span>,<span class="Monokai-Numeric">10</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '2'</span>
                 </div>
                 
-                <a id="em_undiv"></a><h4>em.undiv</h4>
+                <a id="em_undiv"></a><h4 class="avs-article-h4">em.undiv</h4>
 
-                <p>Переводит рациональное число в целое (фактически умножает рациональное число на круглое число, с округлением-отсечением дробной части).</p>
+                <p class="avs-article-p">Переводит рациональное число в целое (фактически умножает рациональное число на круглое число, с округлением-отсечением дробной части).</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - рациональное число
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - точность перевода 10 - один знак после запятой, 100 - два знака, и т.д, по умолчанию до последнего знака после запятой
                     <br><span class="emVAR">&nbsp;&nbsp;result</span> - целое число
                 </p>
-                <p>Не использует дополнительных функций, однако есть ограничение на значения аргументов и результата (для QSP 5.8.0 в пределах [-2147483647 ... 2147483647]).</p>
-                <h5>Результат работы функции:</h5>
+                <p class="avs-article-p">Не использует дополнительных функций, однако есть ограничение на значения аргументов и результата (для QSP 5.8.0 в пределах [-2147483647 ... 2147483647]).</p>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.undiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1'</span>,<span class="Monokai-Numeric">1000</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1000</span><br>
                     <span class="Monokai-UnFunc">@em.undiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-1'</span>,<span class="Monokai-Numeric">1000</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">-1000</span><br>
@@ -75,14 +73,14 @@
                     <span class="Monokai-UnFunc">@em.undiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1.23'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">123</span>
                 </div>
                 
-                <a id="em_divdigs"></a><h4>em.divdigs</h4>
+                <a id="em_divdigs"></a><h4 class="avs-article-h4">em.divdigs</h4>
 
-                <p>Получает разрядность дробной части числа в виде целого круглого числа</p>
+                <p class="avs-article-p">Получает разрядность дробной части числа в виде целого круглого числа</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - число в текстовом виде
                     <br><span class="emVAR">&nbsp;&nbsp;result</span> - число, в числовом виде (соответственно для QSP 5.8.0 в пределах [-2147483647 ... 2147483647])
                 </p>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.divdigs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'0.64'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">100</span><br>
                     <span class="Monokai-UnFunc">@em.divdigs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'0.064'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1000</span><br>
@@ -92,17 +90,17 @@
                     <span class="Monokai-UnFunc">@em.divdigs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String" style="color:#ff5252;">'-7777.646666666666666666666666'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">-1593835520 </span><span class="Monokai-Comment">&amp; </span><span class="Monokai-Comment">! </span><span class="Monokai-Comment">- </span><span class="Monokai-Comment">превышено </span><span class="Monokai-Comment">допустимое </span><span class="Monokai-Comment">значение, </span><span class="Monokai-Comment">результат </span><span class="Monokai-Comment">неверен!!!</span>
                 </div>
                 
-                <a id="em_round"></a><h4>em.round</h4>
+                <a id="em_round"></a><h4 class="avs-article-h4">em.round</h4>
 
-                <p>Округляет число до указанной разрядности</p>
-                <p>возможны варианты 1, 10, 100, 1000 и т.п., и 0.1, 0.01 и т.п.</p>
+                <p class="avs-article-p">Округляет число до указанной разрядности</p>
+                <p class="avs-article-p">возможны варианты 1, 10, 100, 1000 и т.п., и 0.1, 0.01 и т.п.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - рациональное число в текстовом виде;
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - разрядность. Возможны варианты: 1, 10, 100, 1000 и т.п., и 0.1, 0.01 и т.п.;
                     <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - <span class="emTEXT">[up]</span> в сторону увеличения, <span class="emTEXT">[down]</span> - с округлением-отсечением; если не указано, используются правила округления к ближайшему целому.
                 </p>
-                <p>Использует функции <span class="emFOLD">em.dz</span>, <span class="emFOLD">em.zero</span>.</p>
-                <h5>Результат работы функции:</h5>
+                <p class="avs-article-p">Использует функции <span class="emFOLD">em.dz</span>, <span class="emFOLD">em.zero</span>.</p>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"0.1"</span><span class="Monokai-Qbracket">)</span>  		<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '945.5'</span><br>
                     <span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"0.1"</span>,<span class="Monokai-String">'[</span><span style="color:#e6db74;">down]'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '945.4'</span><br>
@@ -116,15 +114,15 @@
                     <span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"-945.459"</span>,<span class="Monokai-String">"0.01"</span><span class="Monokai-Qbracket">)</span>		<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-945.46'</span>
                 </div>
                 
-                <a id="em_add"></a><h4>em.add</h4>
+                <a id="em_add"></a><h4 class="avs-article-h4">em.add</h4>
 
-                <p>Функция сложения. Может суммировать целые и дробные числа любого знака любой длины (ограничение на значение текстовых переменных для QSP 5.8.0 около 2Гб).</p>
-                <p>Использует функции <span class="emFOLD">em.zero</span>, <span class="emFOLD">em.byte.add</span>, <span class="emFOLD">em.byte.dev</span>, <span class="emFOLD">em.dz</span>. Каждая из этих функций включает в себя один и более циклов, в результате чего могут наблюдаться заметные подвисания плеера для ОЧЕНЬ больших чисел. Вычисления могут оказаться долгими, но они будет произведены - результат гарантирован.</p>
+                <p class="avs-article-p">Функция сложения. Может суммировать целые и дробные числа любого знака любой длины (ограничение на значение текстовых переменных для QSP 5.8.0 около 2Гб).</p>
+                <p class="avs-article-p">Использует функции <span class="emFOLD">em.zero</span>, <span class="emFOLD">em.byte.add</span>, <span class="emFOLD">em.byte.dev</span>, <span class="emFOLD">em.dz</span>. Каждая из этих функций включает в себя один и более циклов, в результате чего могут наблюдаться заметные подвисания плеера для ОЧЕНЬ больших чисел. Вычисления могут оказаться долгими, но они будет произведены - результат гарантирован.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - девять слагаемых. Могут быть переданы в числовом виде (для QSP 5.8.0 в пределах [-2147483647 ... 2147483647]).
                     <br><span class="emVAR">&nbsp;$result</span> - всегда текстовое значение.
                 </p>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                         <span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">'-9'</span><span class="Monokai-Qbracket">)</span>							<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0.05'</span><br>
                         <span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">'-9.05'</span><span class="Monokai-Qbracket">)</span>							<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0'</span><br>
@@ -139,16 +137,16 @@
                         <span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-234'</span>,<span class="Monokai-String">'125'</span>,<span class="Monokai-String">'-13.7890303'</span>,<span class="Monokai-String">'3484889'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '3484766.2109697'</span>
                 </div>
                 
-                <a id="em_mult"></a><h4>em.mult</h4>
+                <a id="em_mult"></a><h4 class="avs-article-h4">em.mult</h4>
 
-                <p>Перемножает несколько чисел любой длины.</p>
-                <p>Внимание! Функция использует функции <span class="emFOLD">em.byte.add</span>, <span class="emFOLD">em.zero</span>, <span class="emFOLD">em.dz</span>, каждая из которых основана на циклических расчётах. Сама функция использует для подсчёта 4 цикла, что может замедлять работу программ при вычислении больших значений. Тем не менее функция работает, хотя и несколько подвешивает игру, если выполнять несколько умножений подряд.</p>
+                <p class="avs-article-p">Перемножает несколько чисел любой длины.</p>
+                <p class="avs-article-p">Внимание! Функция использует функции <span class="emFOLD">em.byte.add</span>, <span class="emFOLD">em.zero</span>, <span class="emFOLD">em.dz</span>, каждая из которых основана на циклических расчётах. Сама функция использует для подсчёта 4 цикла, что может замедлять работу программ при вычислении больших значений. Тем не менее функция работает, хотя и несколько подвешивает игру, если выполнять несколько умножений подряд.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - девять множителей. Могут быть переданы в числовом виде (для QSP 5.8.0 в пределах [-2147483647 ... 2147483647]).
                     <br><span class="emVAR">&nbsp;$result</span> - всегда текстовое значение.
                 </p>
                 
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.mult</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"38.4"</span>,<span class="Monokai-String">"2.5"</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '96'</span><br>
                     <span class="Monokai-UnFunc">@em.mult</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"-9.05"</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-81.9025'</span><br>
@@ -159,17 +157,17 @@
                     <span class="Monokai-UnFunc">@em.mult</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-512'</span>
                 </div>
                 
-                <a id="em_div"></a><h4>em.div</h4>
+                <a id="em_div"></a><h4 class="avs-article-h4">em.div</h4>
 
-                <p>Функция деления любого числа на любое.</p>
+                <p class="avs-article-p">Функция деления любого числа на любое.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - делимое, только текстовое
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - делитель, только текстовое
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">2</span>]</span> - точность 1 -целые- 10 десятые доли, 100 сотые, 1000 - тысячные.
                     <br><span class="emVAR">&nbsp;$result</span> - частное, текстовое значение
                 </p>
-                <p>Используются функции <span class="emFOLD">em.dz</span>, <span class="emFOLD">em.zero</span>, <span class="emFOLD">em.byte.dev</span>.</p>
-                <h5>Результат работы функции:</h5>
+                <p class="avs-article-p">Используются функции <span class="emFOLD">em.dz</span>, <span class="emFOLD">em.zero</span>, <span class="emFOLD">em.byte.dev</span>.</p>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.div</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"-9"</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span>		<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-1.0055'</span><br>
                     <span class="Monokai-UnFunc">@em.div</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">'-9.05'</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-1'</span><br>
@@ -183,19 +181,19 @@
                     <span class="Monokai-UnFunc">@em.div</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1.69'</span>,<span class="Monokai-String">"-1.3"</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-1.3'</span>
                 </div>
                 
-                <p>В <a href="https://github.com/AleksVersus/easy.math.3/blob/main/%5Bsource%5D/03_операции%20с%20дробными%20числами/01_em.div.qsps" target="_blank">исходном коде</a> данной функции вы можете найти вариант с более быстрым вычислением частного от деления двух чисел. Однако для этого варианта существуют ограничения на принимаемые и возвращаемые значения, будьте внимательны, если собираетесь использовать его.</p>
+                <p class="avs-article-p">В <a class="avs-page-external-link" href="https://github.com/AleksVersus/easy.math.3/blob/main/%5Bsource%5D/03_операции%20с%20дробными%20числами/01_em.div.qsps" target="_blank">исходном коде</a> данной функции вы можете найти вариант с более быстрым вычислением частного от деления двух чисел. Однако для этого варианта существуют ограничения на принимаемые и возвращаемые значения, будьте внимательны, если собираетесь использовать его.</p>
                 
                 
-                <a id="em_simpl"></a><h4>em.simpl</h4>
+                <a id="em_simpl"></a><h4 class="avs-article-h4">em.simpl</h4>
 
-                <p>Функция сравнивает два числа и выдаёт в результат большее.</p>
-                <p>Функция использует функции <span class="emFOLD">em.dz</span>, <span class="emFOLD">em.zero</span>, соответственно для неё актуальны все ограничения связанные с этими функциями.</p>
+                <p class="avs-article-p">Функция сравнивает два числа и выдаёт в результат большее.</p>
+                <p class="avs-article-p">Функция использует функции <span class="emFOLD">em.dz</span>, <span class="emFOLD">em.zero</span>, соответственно для неё актуальны все ограничения связанные с этими функциями.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - первое число, только текстовое значение
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - второе число, только текстовое значение
                     <br><span class="emVAR">&nbsp;$result</span> - результат, текстовое значение
                 </p>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"-9"</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '9.05'</span><br>
                     <span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">'-9.05'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '9.05'</span><br>
@@ -207,26 +205,26 @@
                     <span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1.69'</span>,<span class="Monokai-String">"1.3"</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '1.69'</span><br>
                     <span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1.69'</span>,<span class="Monokai-String">"-1.3"</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '1.69'</span>
                 </div>
-                <p>Внимание!!! Результаты функции даются в обработке функцией <span class="emFOLD">em.dz</span>, а значит они могут отличаться по количеству символов с данными, передаваемыми в аргументах. Корректное сравнение возможно только при предварительном приведении чисел к общему виду через <span class="emFOLD">em.dz</span>:</p>
+                <p class="avs-article-p">Внимание!!! Результаты функции даются в обработке функцией <span class="emFOLD">em.dz</span>, а значит они могут отличаться по количеству символов с данными, передаваемыми в аргументах. Корректное сравнение возможно только при предварительном приведении чисел к общему виду через <span class="emFOLD">em.dz</span>:</p>
                 <div class="Monokai-Code">
                     $first<span class="Monokai-Assign">=</span><span class="Monokai-UnFunc">@em.dz</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"19.050000"</span><span class="Monokai-Qbracket">)</span><br>
                     $second<span class="Monokai-Assign">=</span><span class="Monokai-UnFunc">@em.dz</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"19.05"</span><span class="Monokai-Qbracket">)</span><br>
                     <span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span>$first,$second<span class="Monokai-Qbracket">)</span>
                 </div>
                     
-                <a id="em_sqrt"></a><h4>em.sqrt</h4>
+                <a id="em_sqrt"></a><h4 class="avs-article-h4">em.sqrt</h4>
 
-                <p>Вычисление квадратного корня методом Ньютона.</p>
+                <p class="avs-article-p">Вычисление квадратного корня методом Ньютона.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - число, текстовое значение
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - точность. Целое число: 100 - сотые, 1000 - тысячные и т.д.
                     <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - первое приближение, только текстовое значение. Вы можете указать примерно чему будет равен результат. Это ускорит вычисление
                 </p>
-                <h5>Как работает:</h5>
+                <h5 class="avs-article-h5">Как работает:</h5>
                 <p style="font-size:0.9em;padding-bottom:1em;">Существует простое линейное уравнение, повторяя вычисление которого несколько раз, мы получаем корень числа с некоторой погрешностью. Чем чаще мы производим вычисление, тем точнее результат. Округление числа производится до требуемого знака после запятой. Когда предыдущее вычисленное значение становится равно предыдущему, проверяется погрешность вычисления. Если погрешность не превышает 0.00000001, число принимается. В противном случае выдаётся ноль.</p>
-                <p>Функция использует <span class="emFOLD">em.div</span>, <span class="emFOLD">em.mult</span>, <span class="emFOLD">em.add</span>, в связи с чем к ней применимы те же ограничения, что и к этим функциям. Так же поскольку производится несколько десятков и сотен циклических вычислений, функция может заметно подвешивать игру даже при вычислении небольших значений. В настоящее время функция позволяет использовать значение первого приближения, чтобы сократить время расчётов. Значение необходимо передавать вторым аргументом (<span class="emVAR">$args[<span class="emNUM">2</span>]</span>). В функцию встроена собственная небольшая таблица приближений.</p>
+                <p class="avs-article-p">Функция использует <span class="emFOLD">em.div</span>, <span class="emFOLD">em.mult</span>, <span class="emFOLD">em.add</span>, в связи с чем к ней применимы те же ограничения, что и к этим функциям. Так же поскольку производится несколько десятков и сотен циклических вычислений, функция может заметно подвешивать игру даже при вычислении небольших значений. В настоящее время функция позволяет использовать значение первого приближения, чтобы сократить время расчётов. Значение необходимо передавать вторым аргументом (<span class="emVAR">$args[<span class="emNUM">2</span>]</span>). В функцию встроена собственная небольшая таблица приближений.</p>
                 
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1000'</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">31.6227</span><br>
                     <span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'16'</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">4</span><br>
@@ -240,21 +238,21 @@
                     <span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1.69'</span>,<span class="Monokai-Numeric">100</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1.3</span><br>
                     <span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'0.69'</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">0.8306</span>
                 </div>
-                <p>По сравнению с QSP версии 5.7.0 данная функция существенно ускорила свою работу. Для плееров версии 5.7.0 при вычислении без первого приближения расчёт для всех ниже приведённых вызовов в совокупности даёт 9 секунд задержки. При вычислении с первым приближением близким по значению к результату, время на все вычисления составило 3 секунды задержки. Наибольшее количество времени ушло на вычисление корня из 1000, причём без первого приближения это время оказалось в два раза больше, чем с первым приближением.</p>
-                <p>Текущий вариант функции даёт полторы секунды задержки на все вычисления! И это без указания первого приближения, т.е. приближения берутся те, которые предоставляет сама функция.</p>
+                <p class="avs-article-p">По сравнению с QSP версии 5.7.0 данная функция существенно ускорила свою работу. Для плееров версии 5.7.0 при вычислении без первого приближения расчёт для всех ниже приведённых вызовов в совокупности даёт 9 секунд задержки. При вычислении с первым приближением близким по значению к результату, время на все вычисления составило 3 секунды задержки. Наибольшее количество времени ушло на вычисление корня из 1000, причём без первого приближения это время оказалось в два раза больше, чем с первым приближением.</p>
+                <p class="avs-article-p">Текущий вариант функции даёт полторы секунды задержки на все вычисления! И это без указания первого приближения, т.е. приближения берутся те, которые предоставляет сама функция.</p>
                 
                 
-                <div><a href="../manual.html">Назад</a></div>
-            </div>
-            <!-- Page -->
-            <div class="em_Epigraph">
-                <div class="em_subText" id="em_subscribe">
-                    <p>Aleks Versus'Easy Libraries'2013-<span class="subscribe_year">2022</span></p>
-                    <p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe_year">2022</span></p>
+                <div class="avs-pages-button__wrapper"><a class="avs-pages-button__link" href="../manual.html"><div class="avs-pages-button">Назад</div></a></div>
+            </article>
+            <aside class="e-block">
+                <div class="avs-page-stamp" id="em_subscribe">
+                    <p class="avs-empty">Aleks Versus'Easy Libraries'2013-<span class="subscribe_year">$YEAR$</span></p>
+                    <p class="avs-aempty">Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe_year">$YEAR$</span></p>
                 </div>
-            </div>
-            <div class="stickUP"><a href="#UP" title="Вверх"><img src="../../res/img/uparrow_btn.png"></a></div>
+            </aside>
         </div>
+    </div>
+    <div class="em-stick-upper"><a class="avs-page-external-link" href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn.png" /></a></div>
     
 </body>
 </html>

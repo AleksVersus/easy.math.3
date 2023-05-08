@@ -3,29 +3,27 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
-    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
-    <link type="text/css" rel="stylesheet" href="../../res/css/qsp_code.css" />
 	<title>Easy Math — Операции с шестнадцатеричными числами</title>
 </head>
 <body>
-    <div class="em_AROUND">
-            <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math.3/releases" title="Скачать последнюю версию библиотеки со страницы релизов" target="_blank">
-                <h1>easy.math.qsp v. 3.0.0</h1>
-            </a>
-            <!-- Исправить ссылку -->
-            <div class="em_PAGE">
-                <div><a href="../manual.html">Назад</a></div>
-                <h3>Операции над шестнадцатеричными числами</h3>
+    <div class="avs-page-wrapper">
+        <div class="easy-lib-page">
+            <article class="e-block">
+                <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+                    <h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+                </a>
+                <div class="avs-pages-button__wrapper"><a class="avs-pages-button__link" href="../manual.html"><div class="avs-pages-button">Назад</div></a></div>
+                <h3 class="avs-article-h3">Операции над шестнадцатеричными числами</h3>
                 
-                <a id="em_hex_indec"></a><h4>em.hex.inDec</h4>
+                <a id="em_hex_indec"></a><h4 class="avs-article-h4">em.hex.inDec</h4>
 
-                <p>Функция перевода из гексаметричного числа в декаметричное. Не работает с отрицательными значениями.</p>
-                <p>Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет те же ограничения на значение результата, что и прочие фукции, т.е. результат должен лежать в пределе [-2147483647 ... 2147483647] (для Q.S.P. 5.8.0).</p>
+                <p class="avs-article-p">Функция перевода из гексаметричного числа в декаметричное. Не работает с отрицательными значениями.</p>
+                <p class="avs-article-p">Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет те же ограничения на значение результата, что и прочие фукции, т.е. результат должен лежать в пределе [-2147483647 ... 2147483647] (для Q.S.P. 5.8.0).</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - шестнадцатеричное число (текстовое значение). Значения в пределе <span class="emTEXT">7fffffff</span>
                     <br><span class="emVAR">&nbsp;&nbsp;result</span> - полученное число
                 </p>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ff'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">255</span><br>
                     <span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'22'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">34</span><br>
@@ -39,17 +37,17 @@
                     <span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ffaa23345'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment" style="color:#ff4242;">-90033339</span><br>
                     <span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ffaa2334'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment" style="color:#ff4242;">-5627084</span>
                 </div>
-                <p>Как видно, последние три результата получились отрицательными, значит превышены пределы значений результата, а соответственно и числа, которые переводятся в десятеричную систему тоже превышают предел.
+                <p class="avs-article-p">Как видно, последние три результата получились отрицательными, значит превышены пределы значений результата, а соответственно и числа, которые переводятся в десятеричную систему тоже превышают предел.
                 </p>
-                <a id="em_dec_inhex"></a><h4>em.dec.inHex</h4>
+                <a id="em_dec_inhex"></a><h4 class="avs-article-h4">em.dec.inHex</h4>
 
-                <p>Функция перевода из декаметричного числа в гексаметричное. Не работает с отрицательными значениями.</p>
-                <p>Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет ограничения на значения аргумента в пределе [-2147483647 ... 2147483647] (для Q.S.P. 5.8.0). Аргумент, превышающий предел, приводится к максимально возможному в QSP значению.</p>
+                <p class="avs-article-p">Функция перевода из декаметричного числа в гексаметричное. Не работает с отрицательными значениями.</p>
+                <p class="avs-article-p">Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет ограничения на значения аргумента в пределе [-2147483647 ... 2147483647] (для Q.S.P. 5.8.0). Аргумент, превышающий предел, приводится к максимально возможному в QSP значению.</p>
                 <p class="em_CODE">
                     <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - целое число (числовой вид). Значения в пределе 2147483647
                     <br><span class="emVAR">&nbsp;$result</span> - полученная строка
                 </p>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.dec.inHex</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">2147483647</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '7fffffff'</span><br>
                     <span class="Monokai-UnFunc">@em.dec.inHex</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">214</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'd6'</span><br>
@@ -59,14 +57,14 @@
                     <span class="Monokai-UnFunc">@em.dec.inHex</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">2147483648</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '7fffffff'</span>
                 </div>
                 
-                <a id="em_dec_incol"></a><h4>em.dec.inCol</h4>
+                <a id="em_dec_incol"></a><h4 class="avs-article-h4">em.dec.inCol</h4>
 
-                <p>Преобразует десятеричное число в шестнадцатеричное. Отличием от функции <span class="emFOLD">em.dec.inHex</span> является ограничение на значение аргумента в пределах [-255 ... 255]. Если пределы превышены, функция выдаёт в результат <span class="emTEXT">ff</span>. Любое число в пределах преобразуется к двуразрядному шестнадцатеричному числу. Таким образом ограничение на результат лежит в пределах [<span class="emTEXT">-ff</span> ... <span class="emTEXT">ff</span>].</p>
+                <p class="avs-article-p">Преобразует десятеричное число в шестнадцатеричное. Отличием от функции <span class="emFOLD">em.dec.inHex</span> является ограничение на значение аргумента в пределах [-255 ... 255]. Если пределы превышены, функция выдаёт в результат <span class="emTEXT">ff</span>. Любое число в пределах преобразуется к двуразрядному шестнадцатеричному числу. Таким образом ограничение на результат лежит в пределах [<span class="emTEXT">-ff</span> ... <span class="emTEXT">ff</span>].</p>
                 <p class="em_CODE">
                     <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - число целое, десятеричное.
                     <br><span class="emVAR">&nbsp;$result</span> - шестнадцатеричное двуразрядное число (текстовое значение).
                 </p>
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.dec.inCol</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">2147483647</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'ff'</span><br>
                     <span class="Monokai-UnFunc">@em.dec.inCol</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">214</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'd6'</span><br>
@@ -76,16 +74,16 @@
                     <span class="Monokai-UnFunc">@em.dec.inCol</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">16</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '10'</span>
                 </div>
                 
-                <a id="em_col_add"></a><h4>em.col.add</h4>
+                <a id="em_col_add"></a><h4 class="avs-article-h4">em.col.add</h4>
 
-                <p>Функция предназначена для изменения цвета для HTML; использует функции <span class="emFOLD">em.hex.inDec</span> и <span class="emFOLD">em.dec.inCol</span>.</p>
+                <p class="avs-article-p">Функция предназначена для изменения цвета для HTML; использует функции <span class="emFOLD">em.hex.inDec</span> и <span class="emFOLD">em.dec.inCol</span>.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
                     <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - значение. Шестнадцатеричный формат, двузначное число. (может быть отрицательным)
                 </p>
-                <p>Функция действует следующим образом: разбивает первый аргумент на три двузначных шестнадцатеричных числа, и к каждому из чисел прибавляет второй аргумент. Если сумма превышает значение <span class="emTEXT">ff</span>, она приводится к <span class="emTEXT">ff</span>. И напротив, если сумма оказывается меньше <span class="emNUM">0</span>, она приводится к <span class="emNUM">0</span>. Таким образом результат работы функции лежит в пределах [<span class="emTEXT">000000</span> ... <span class="emTEXT">ffffff</span>]</p>
-                <p>Это может пригодиться для плавного гашения цвета, или наоборот. Функция используется в движке игры <span class="emTEXT">"МАГИКОН"</span>, чтобы гасить цвета заголовков в зависимости от уровней.</p>
-                <h5>Результат работы функции:</h5>
+                <p class="avs-article-p">Функция действует следующим образом: разбивает первый аргумент на три двузначных шестнадцатеричных числа, и к каждому из чисел прибавляет второй аргумент. Если сумма превышает значение <span class="emTEXT">ff</span>, она приводится к <span class="emTEXT">ff</span>. И напротив, если сумма оказывается меньше <span class="emNUM">0</span>, она приводится к <span class="emNUM">0</span>. Таким образом результат работы функции лежит в пределах [<span class="emTEXT">000000</span> ... <span class="emTEXT">ffffff</span>]</p>
+                <p class="avs-article-p">Это может пригодиться для плавного гашения цвета, или наоборот. Функция используется в движке игры <span class="emTEXT">"МАГИКОН"</span>, чтобы гасить цвета заголовков в зависимости от уровней.</p>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.col.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ff0000'</span>,<span class="Monokai-String">'-44'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'bb0000'</span><br>
                     <span class="Monokai-UnFunc">@em.col.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'000000'</span>,<span class="Monokai-String">'-44'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '000000'</span><br>
@@ -95,16 +93,16 @@
                     <span class="Monokai-UnFunc">@em.col.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'dd882299'</span>,<span class="Monokai-String">'44'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'ffcc6699' - составляющая альфаканала не затрагивается</span>
                 </div>
                 
-                <a id="em_col_inrgb"></a><h4>em.col.inRGB</h4>
+                <a id="em_col_inrgb"></a><h4 class="avs-article-h4">em.col.inRGB</h4>
 
-                <p>Данная функция преобразует цвет, записанный в шестнадцатеричной форме, в числовой код цвета, понятный QSP; использует функцию <span class="emFOLD">em.hex.inDec</span>.</p>
+                <p class="avs-article-p">Данная функция преобразует цвет, записанный в шестнадцатеричной форме, в числовой код цвета, понятный QSP; использует функцию <span class="emFOLD">em.hex.inDec</span>.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным);<br>
                     <span class="emVAR">result</span> - числовой код цвета в формате QSP.
                 </p>
-                <p>Функция является как бы надстройкой системной функции <span class="emFUNC">rgb</span> и работает следующим образом: шестнадцатеричный код цвета разбивается на три двузначных шестнадцатеричных числа, которые преобразуются в десятеричные числа и передаются функции <span class="emFUNC">rgb</span> в качестве аргументов.</p>
-                <p>Если в качестве аргумента указать неверное шестнадцатеричное число, функция всё равно вернёт результат, заменив неверные символы нулями. То же самое произойдёт, если указать отрицательное шестнадцатеричное число. Минус будет считаться неизвестным символом и <span class="emFOLD">em.hex.inDec</span> заменит его на ноль. Последняя цифра будет отсечена.</p>
-                <h5>Результат работы функции:</h5>
+                <p class="avs-article-p">Функция является как бы надстройкой системной функции <span class="emFUNC">rgb</span> и работает следующим образом: шестнадцатеричный код цвета разбивается на три двузначных шестнадцатеричных числа, которые преобразуются в десятеричные числа и передаются функции <span class="emFUNC">rgb</span> в качестве аргументов.</p>
+                <p class="avs-article-p">Если в качестве аргумента указать неверное шестнадцатеричное число, функция всё равно вернёт результат, заменив неверные символы нулями. То же самое произойдёт, если указать отрицательное шестнадцатеричное число. Минус будет считаться неизвестным символом и <span class="emFOLD">em.hex.inDec</span> заменит его на ноль. Последняя цифра будет отсечена.</p>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 <div class="Monokai-Code">
                     <span class="Monokai-UnFunc">@em.col.inRGB</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ff0000'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-16776961'</span><br>
                     <span class="Monokai-UnFunc">@em.col.inRGB</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'000000'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-16777216'</span><br>
@@ -115,18 +113,18 @@
                     <span class="Monokai-UnFunc">@em.col.inRGB</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'238c9088'</span><span class="Monokai-Qbracket">)</span>&nbsp;<span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-2003792861'	— альфа-канал поддерживается</span>
                 </div>
                 
-                <a id="em_col_inv"></a><h4>em.col.inv</h4>
+                <a id="em_col_inv"></a><h4 class="avs-article-h4">em.col.inv</h4>
 
-                <p>Возвращает шестнадцатеричный код цвета противоположного указанному; использует функцию <span class="emFOLD">em.col.add</span>.</p>
+                <p class="avs-article-p">Возвращает шестнадцатеричный код цвета противоположного указанному; использует функцию <span class="emFOLD">em.col.add</span>.</p>
                 <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
                 </p>
-                <p>Принцип работы прост. Берётся максимальное значение для цветовой составляющей, и из него вычитается соответствующее значение цветовой составляющей исходного цвета. Полученные результаты склеиваются, в результате — цвет противоположный исходному.</p>
+                <p class="avs-article-p">Принцип работы прост. Берётся максимальное значение для цветовой составляющей, и из него вычитается соответствующее значение цветовой составляющей исходного цвета. Полученные результаты склеиваются, в результате — цвет противоположный исходному.</p>
 
-                <h5>Результат работы функции:</h5>
+                <h5 class="avs-article-h5">Результат работы функции:</h5>
                 
-                <p>В качестве результата работы функции наглядная таблица исходных цветов и противоложных им.</p>
-                <p></p>
+                <p class="avs-article-p">В качестве результата работы функции наглядная таблица исходных цветов и противоложных им.</p>
+                <p class="avs-article-p"></p>
                 <div class="Monokai-Code">
                     <table class="em_plusBRD">
                         <tr>
@@ -216,16 +214,17 @@
                         
                     </table>
                     </div>
-                <p>&nbsp;</p>
-                <div><a href="../manual.html">Назад</a></div>
-            </div>
-            <div class="em_Epigraph">
-                <div class="em_subText" id="em_subscribe">
-                    <p>Aleks Versus'Easy Libraries'2013-<span class="subscribe_year">2022</span></p>
-                    <p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe_year">2022</span></p>
+                <p class="avs-article-p">&nbsp;</p>
+                <div class="avs-pages-button__wrapper"><a class="avs-pages-button__link" href="../manual.html"><div class="avs-pages-button">Назад</div></a></div>
+             </article>
+            <aside class="e-block">
+                <div class="avs-page-stamp" id="em_subscribe">
+                    <p class="avs-empty">Aleks Versus'Easy Libraries'2013-<span class="subscribe_year">$YEAR$</span></p>
+                    <p class="avs-aempty">Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe_year">$YEAR$</span></p>
                 </div>
-            </div>
-            <div class="stickUP"><a href="#UP" title="Вверх"><img src="../../res/img/uparrow_btn.png"></a></div>
+            </aside>
         </div>
+    </div>
+    <div class="em-stick-upper"><a class="avs-page-external-link" href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn.png" /></a></div>
 </body>
 </html>
