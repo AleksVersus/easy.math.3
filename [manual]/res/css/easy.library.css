@@ -75,6 +75,7 @@ html {
   margin: 0.5em 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .avs-pages-button__left-combine {
@@ -476,7 +477,7 @@ html {
 .easy-lib-page .avs-articles-instruction {
   margin: 1em 0;
   padding: 0;
-  padding-left: 1em;
+  padding-left: 2em;
 }
 .easy-lib-page .avs-articles-instruction .avs-articles-instruction {
   margin: 0.1em 0;
