@@ -9,11 +9,14 @@ if instr($commandline,' ')<>0:
 	@em.str.inArr($commandline,'$em_test_parse',' ','[notspace][strip][lcase]')
 end
 if $commandline='help':
-	*pl "logs — выводит содержимое массива '$log'. В этот массив можно сохранять сообщения при отладке модуля."
-	*pl "sqrt(N) — выводит результат вычисления квадратного корня из числа N."
-	*pl "gen id — генерирует уникальный идентификатор типа UUID четвёртой версии."
-	*pl "gen pass — генерирует парольную фразу из шестнадцати случайных символов (буквы латинского алфавита, цифры, !@#$)."
-	*pl "Любая иная строчка будет воспринята, как код QSP на выполнение. Таким образом вы можете выполнить любую строчку кода QSP, просто введя её в строке ввода."
+	*pl & *pl "logs — выводит содержимое массива '$log'. В этот массив можно сохранять сообщения при отладке модуля."
+	*pl & *pl "sqrt(N) — выводит результат вычисления квадратного корня из числа N."
+	*pl & *pl "gen id — генерирует уникальный идентификатор типа UUID четвёртой версии."
+	*pl & *pl "gen pass — генерирует парольную фразу из шестнадцати случайных символов (буквы латинского алфавита, цифры, !@#$)."
+	*pl & *pl "gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS> — генерирует массив с именем <ARRAY_NAME> из <NUMBER_of_ELEMENTS> элементов."
+	*pl & *pl "autotest — запускает на выполнение автотесты библиотеки для проверки её работоспособности. Внимание!!! Автотесты нужны для отладки самой библиотеки, или для проверки корректности её функций перед окончательной сборкой. Из окончательной сборки автотесты можно удалить."
+	*pl "Для теста отдельной функции, можно указать её название как аргумент команде autotest. Например: `autotest em.str.thin`."
+	*pl & *pl "Любая иная строчка будет воспринята, как код QSP на выполнение. Таким образом вы можете выполнить любую строчку кода QSP, просто введя её в строке ввода."
 elseif $commandline='logs':
 	*pl @em.arr.print('$log','[only result]')
 elseif instr($commandline,'sqrt')=1:
@@ -35,8 +38,8 @@ elseif instr($trim($lcase($commandline)),'gen mass')=1:
 		*pl "Error input. Tape:"
 		*pl "gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS>"
 	end
-elseif instr($commandline,'autotest')=1 and loc('em.autotest.self'):
-		@em.autotest.self($em_test_parse[1],$em_test_parse[2])
+elseif instr($commandline,'autotest') = 1 and loc('em.autotest.self'):
+	@em.autotest.self($em_test_parse[1], $em_test_parse[2])
 else
 	dynamic $commandline
 end
