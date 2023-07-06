@@ -25,7 +25,7 @@ elseif instr($commandline,'sqrt')=1:
 	if isnum($em_test_parse[0])=0: $em_test_parse[0]=$dyneval("$result=$str(<<$em_test_parse[0]>>)")
 	*pl @em.sqrt($em_test_parse[0])
 elseif $commandline='gen id':
-	*pl @em.str.random(8,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(4,'[ot]','0123456789abcdef')+'-'+@em.str.random(12,'[ot]','0123456789abcdef')
+	*pl @em.gen_uuid()
 elseif $commandline='gen pass':
 	*pl @em.str.random(16,'[inc][\z][\d]','!@#$')
 elseif instr($trim($lcase($commandline)),'gen mass')=1:
