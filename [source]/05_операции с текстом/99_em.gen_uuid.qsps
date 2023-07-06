@@ -2,8 +2,8 @@ QSP-Game Генерация UUID
 
 # em.gen_uuid
 local $symbols_ = '0123456789abcdef'
-loop local i = 0 while i < 35 step i += 1:
-	if no instr('[9][14][21][26]', '[<<i>>]') = 0:
+loop local i = 0 while i < 36 step i += 1:
+	if no instr('[8][13][18][23]', '[<<i>>]') = 0:
 		$result += '-'
 	else
 		$result += $str($mid($symbols_, rand(1,len($symbols_)), 1))
