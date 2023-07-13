@@ -4,45 +4,45 @@ $args[1] - второе слагаемое /обязательно тексто�
 !@pp:if(em_hex_add):include
 # em.hex.add
 !@ инициализация локальных переменных и приведение слагаемых к единой длине
-local $first_add,$second_add=$lcase($args[0]),$lcase($args[1])	& !@ инициализируем слагаемые
-local max_len, number, $value
-number['0']=0 & $value[0]='0'
-number['1']=1 & $value[1]='1'
-number['2']=2 & $value[2]='2'
-number['3']=3 & $value[3]='3'
-number['4']=4 & $value[4]='4'
-number['5']=5 & $value[5]='5'
-number['6']=6 & $value[6]='6'
-number['7']=7 & $value[7]='7'
-number['8']=8 & $value[8]='8'
-number['9']=9 & $value[9]='9'
-number['a']=10 & $value[10]='a'
-number['b']=11 & $value[11]='b'
-number['c']=12 & $value[12]='c'
-number['d']=13 & $value[13]='d'
-number['e']=14 & $value[14]='e'
-number['f']=15 & $value[15]='f'
-if len($first_add)>len($second_add): max_len=len($first_add) else max_len=len($second_add)
-$first_add=@em.zero(max_len-len($first_add))+$first_add
-$second_add=@em.zero(max_len-len($second_add))+$second_add
-loop local last_byte,run=0,1 while run:
+local $first_add_, $second_add_ = $lcase($args[0]), $lcase($args[1])	& !@ инициализируем слагаемые
+local max_len_, number_, $value_
+number_['0']=0 & $value_[0]='0'
+number_['1']=1 & $value_[1]='1'
+number_['2']=2 & $value_[2]='2'
+number_['3']=3 & $value_[3]='3'
+number_['4']=4 & $value_[4]='4'
+number_['5']=5 & $value_[5]='5'
+number_['6']=6 & $value_[6]='6'
+number_['7']=7 & $value_[7]='7'
+number_['8']=8 & $value_[8]='8'
+number_['9']=9 & $value_[9]='9'
+number_['a']=10 & $value_[10]='a'
+number_['b']=11 & $value_[11]='b'
+number_['c']=12 & $value_[12]='c'
+number_['d']=13 & $value_[13]='d'
+number_['e']=14 & $value_[14]='e'
+number_['f']=15 & $value_[15]='f'
+if len($first_add_)>len($second_add_): max_len_=len($first_add_) else max_len_=len($second_add_)
+$first_add_=@em.zero(max_len_-len($first_add_))+$first_add_
+$second_add_=@em.zero(max_len_-len($second_add_))+$second_add_
+loop local last_byte_,run=0,1 while run:
 	$result=''
-	last_byte=0
-	loop local i,res_byte=max_len,0 while i>0 step i-=1:
+	last_byte_=0
+	loop local i,res_byte_=max_len_,0 while i>0 step i-=1:
 		!@ цикл выполняем, пока счётчик не достигнет нуля
 		!@ складываем две цифры на разряде
-		res_byte=number[$mid($first_add,i,1)]+number[$mid($second_add,i,1)]+last_byte
+		res_byte_=number_[$mid($first_add_,i,1)]+number_[$mid($second_add_,i,1)]+last_byte_
 		!@ вычисляем переполнение
-		last_byte=res_byte/16
+		last_byte_=res_byte_/16
 		!@ вычисляем полученную цифру на текущем разряде
-		res_byte=res_byte mod 16
+		res_byte_=res_byte_ mod 16
 		!@ записываем полученную цифру в результат
-		$result=$value[res_byte]+$result
+		$result=$value_[res_byte_]+$result
 	end
-	if last_byte>0:
+	if last_byte_>0:
 		!@ если после всех итерраций осталось число в переполнении
 		!@ Это число ставим самым верхним разрядом
-		$result=$value[last_byte]+$result	
+		$result=$value_[last_byte_]+$result	
 	end
 	run=0	& !@ прерываем внешний цикл
 end
