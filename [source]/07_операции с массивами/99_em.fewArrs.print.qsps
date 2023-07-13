@@ -3,6 +3,7 @@ $args[0 ... 8]- имена массивов, содержимое которых
 $args[8 ... 1] - управляющая конструкция. Записывается последним аргументом. Можно использовать следующие конструкции в любых комбинациях:
 	[only result] - выводит только содержимое массивов, не показывая их названий и номеров ячеек. Таблица при этом на экран выводиться не будет.
 	[no table] - выводит массивы на экран, но не облекает их в таблицу.
+	[range onscreen:N-M] - указываем границы вывода
 Из-за того, что данная функция работает напрямую с данными из массивов было решено не использовать здесь локальные переменные,
 чтобы случайно не перекрыть возможные названия массивов.
 !@pp:if(em_fewarrs_print):include
@@ -29,6 +30,15 @@ if $args['command_in_last']='yep':
 	if instr($args['construct'],'[no table]')<>0: $args['table']='' else $args['table']='yep'
 	!@ по управляющей конструкции понимаем, нужно ли выводить одни только результаты
 	if instr($args['construct'],'[only result]')<>0: $args['table']='' & $args['only result']='only result'
+	!@ получаем номера первого и последнего элементов, которые хотим вывести
+	if instr($args['construct'], '[range onscreen:')<>0:
+		args['start_count'] = $strfind($args['construct'], '\[range onscreen:(\d+)\-\d+\]', 1)
+		!@ вместо последнего элемента нам нужен следующий за последним
+		args['end_count'] = $strfind($args['construct'], '\[range onscreen:\d+\-(\d+)\]', 1) + 1
+	else:
+		args['start_count'] = 0
+		args['end_count'] = -1
+	end
 	jump 'print'	& !@ переходим к выводу (содержится в этом же условии, поэтому jump)
 elseif args['error_name_pos']<>-1 and args['error_name_pos']<>args['last']:
 	!@ если мы имеем дело не с командой, и это не последний аргумент, значит имя массива задано неверно, возвращаем 
@@ -51,6 +61,15 @@ else
 		!@ если размеры всех массивов равны нулю, выводим сообщениме.
 		$result='Error: All your massives are empty.'
 		exit
+	end
+	if args['start_count'] > args['size'] - 1:
+		!@ если мы превысили максимальный индекс, нужно приравнять начало к последнему возможному индексу
+		args['start_count'] = args['size'] - 1
+	end
+	if args['end_count'] > args['size'] or args['end_count'] = -1:
+		args['end_count'] = args['size']
+	elseif args['end_count'] <= args['start_count']:
+		args['end_count'] = args['start_count'] + 1
 	end
 	if $args['table']<>'': $args['table']+='</tr>'	& !@ закрываем строку
 	!@ следующий цикл выводит уже непосредственно результаты
