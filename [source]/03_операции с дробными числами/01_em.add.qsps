@@ -1,17 +1,17 @@
 QSP-Game Функция сложения. Может суммировать целые и дробные числа любого знака любой длины (ограничение на значение текстовых переменных для QSP 5.7.0 около 2Гб).
-$args[0] ... $args[8] - девять слагаемых. Могут быть переданы в числовом виде (для QSP 5.7.0 в пределах [-2147483648 ... 2147483647]).
+$args[0] ... $args[8] - девять слагаемых. Могут быть переданы в числовом виде (для QSP 5.8.0 в пределах [-2147483648 ... 2147483647]).
 $result - всегда текстовое значение.
-$int, $fract, $minus - целая и дробная части числа, а так же его знак
-int_len, fract_len - длина целой и дробной части числа
-$nines - добивочные девятки
-$number - число приведено к целому в строковом представлении
-$summ - сумма
+$int_, $fract_, $minus_ - целая и дробная части числа, а так же его знак
+int_len_, fract_len_ - длина целой и дробной части числа
+$nines_ - добивочные девятки
+$number_ - число приведено к целому в строковом представлении
+$summ_ - сумма
 !@pp:if(em_add):include
 # em.add
-local $int, $fract, $minus, int_len, fract_len, $nines
-local $number, $summ
+local $int_, $fract_, $minus_, int_len_, fract_len_, $nines_
+local $number_, $summ_
 !@ инициализация чисел
-loop local i,b,size=0,-1,arrsize('args') while i<size step i+=1:
+loop local i,b,size_=0,-1,arrsize('args') while i<size_ step i+=1:
 	if $args[i]='' and args[i]<>0:
 		!@ если передана не строка, а число, переводим число в строку
 		$args[i]=$str(args[i])
@@ -21,50 +21,50 @@ loop local i,b,size=0,-1,arrsize('args') while i<size step i+=1:
 		!@ если передана строка, и дробное число в ней не равно нулю
 		if instr($args[i],'-')=1:
 			!@ если в числе есть знак минус, помечаем число минусом
-			$minus[b]='-'
+			$minus_[b]='-'
 			$args[i]=$mid($args[i],2)
 		else
-			$minus[b]=''
+			$minus_[b]=''
 			$args[i]=$args[i]
 		end
 		!@ если в числе есть точка, разделяем число на целую и дробную часть
 		if instr($args[i],'.')<>0:
-			$int[b]=$mid($args[i],1,instr($args[i],'.')-1)
-			$fract[b]=$mid($args[i],instr($args[i],'.')+1)
+			$int_[b]=$mid($args[i],1,instr($args[i],'.')-1)
+			$fract_[b]=$mid($args[i],instr($args[i],'.')+1)
 		else
-			$int[b]=$args[i]
-			$fract[b]='0'
+			$int_[b]=$args[i]
+			$fract_[b]='0'
 		end
 		!@ если длина числа больше максимальной, записываем в максимальные эту длину
-		if len($int[b])>int_len: int_len=len($int[b])
-		if len($fract[b])>fract_len: fract_len=len($fract[b])
+		if len($int_[b])>int_len_: int_len_=len($int_[b])
+		if len($fract_[b])>fract_len_: fract_len_=len($fract_[b])
 	end
 end
 !@ увеличиваем число разрядов в числе, чтобы избежать различных эксцессов
-int_len+=2
-fract_len+=2
+int_len_+=2
+fract_len_+=2
 !@ следующий цикл приводит число к целому для сложения с переполнением
-$nines=@em.zero(int_len+fract_len,'9')
-loop local i,b=0,arrsize('$int') while i<b step i+=1:
-	$number[i]=@em.zero(int_len-len($int[i]))+$int[i]+$fract[i]+@em.zero(fract_len-len($fract[i]))
-	if $minus[i]='-':
-		$number[i]=@em.byte.dev($nines,$number[i])
+$nines_=@em.zero(int_len_+fract_len_,'9')
+loop local i,b=0,arrsize('$int_') while i<b step i+=1:
+	$number_[i]=@em.zero(int_len_-len($int_[i]))+$int_[i]+$fract_[i]+@em.zero(fract_len_-len($fract_[i]))
+	if $minus_[i]='-':
+		$number_[i]=@em.byte.dev($nines_,$number_[i])
 	end
 end
 !@ следующий цикл - суммирование чисел
-$summ=@em.zero(int_len+fract_len)
-loop local i,b=0,arrsize('$int') while i<b step i+=1:
-	$summ=@em.byte.add($summ,$number[i])
+$summ_=@em.zero(int_len_+fract_len_)
+loop local i,b=0,arrsize('$int_') while i<b step i+=1:
+	$summ_=@em.byte.add($summ_,$number_[i])
 end
 !@ ВНИМАНИЕ. Повторное использование локальных переменных
-if instr($summ,'9')=1:
-	$summ=@em.byte.dev($nines,$summ)
-	$minus='-'
+if instr($summ_,'9')=1:
+	$summ_=@em.byte.dev($nines_,$summ_)
+	$minus_='-'
 else
-	$summ=$summ
-	$minus=''
+	$summ_=$summ_
+	$minus_=''
 end
-$result=@em.dz($minus+$mid($summ,1,int_len)+"."+$mid($summ,int_len+1))
+$result=@em.dz($minus_+$mid($summ_,1,int_len_)+"."+$mid($summ_,int_len_+1))
 --- em.add ---------------------------------
 !@pp:endif
 
