@@ -49,14 +49,17 @@ else
 	!@ если списка команд нет, или управление не отключает генерацию таблицы, добавляем теги таблицы.
 	if $args['table']<>'' or $args['command_in_last']='': $args['table']='<table border=1 cellpadding=5>'
 	if $args['table']<>'': $args['table']+='<tr><td>#</td>'
+
 	!@ с помощью цикла добавляем имена массивов в список
-	
 	loop args['i']=0 while args['i']<9 and $strfind($args[args['i']],'\[.+?\]')='' and $args[args['i']]<>'' step args['i']+=1:
 		!@ пока счётчик не достигнет девяти, или мы не встретим аргумент с управлением, или пустой аргумент
 		if $args['table']<>'': $args['table']+="<td><<$args[args['i']]>></td>"	& !@ создаём ячейку, только если уже набираем таблицу
 		args['this_size']=arrsize($args[args['i']])	& !@ получаем размер указанного массива
 		if args['this_size']>args['size']: args['size']=args['this_size']	& !@ если размер этого массива больше размера предыдущего массива, записываем размер текущего в переменную size
 	end
+
+	if $args['table']<>'': $args['table']+='</tr>'	& !@ закрываем строку
+
 	if args['size']=0:
 		!@ если размеры всех массивов равны нулю, выводим сообщениме.
 		$result='Error: All your massives are empty.'
@@ -71,9 +74,9 @@ else
 	elseif args['end_count'] <= args['start_count']:
 		args['end_count'] = args['start_count'] + 1
 	end
-	if $args['table']<>'': $args['table']+='</tr>'	& !@ закрываем строку
+	
 	!@ следующий цикл выводит уже непосредственно результаты
-	loop args['b']=0 while args['b']<args['size'] step args['b']+=1:
+	loop args['b']=args['start_count'] while args['b']<args['end_count'] step args['b']+=1:
 		!@ пока счётчик не достигнет размера самого большого массива
 		if $args['table']<>'': $args['table']+="<tr><td><<args['b']>></td>"	& !@ для вывода в виде таблицы формируем строку и первую ячейку
 		!@ этот цикл выводит содержимое ячеек под одним индексом
