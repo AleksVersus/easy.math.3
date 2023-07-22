@@ -2,49 +2,49 @@ QSP-Game возвращает содержимое массива
 Аргументы см. ниже
 !@pp:if(em_arr_print):include
 # em.arr.print
-local em_arr_print_copy_array	& !@ объявляем локальный массив для хранения выводимых значений
-copyarr 'em_arr_print_copy_array',$args[0]	& !@ копируем значения в локальный массив
+local em_arr_print_copy_array_	& !@ объявляем локальный массив для хранения выводимых значений
+copyarr 'em_arr_print_copy_array_', $args[0]	& !@ копируем значения в локальный массив
 !@ инициализируем локальные переменные
-local $type, $quotes, $only_result, $array_print, $inline
-local $array_name,$commands,$delimiter,start_cell,end_cell=$args[0],$args[1],$args[2],args[3],args[4]
-$commands = $lcase($commands)	& !@ переводим команды в нижний регистр
-if $delimiter='': $delimiter='
-'	& !@ если $delimiter не указано, в качестве разделителя использует символ переноса строки
-if $delimiter='/se': $delimiter=''	& !@ если указан ключ,разделитель не используется
-if start_cell<0: start_cell=0	& !@ защита от дурака
-if end_cell<start_cell: end_cell=0	& !@ защита от дурака
+local $type_, $quotes_, $only_result_, $array_print_, $inline_
+local $array_name_, $commands_, $delimiter_, start_cell_, end_cell_ = $args[0], $args[1], $args[2], args[3], args[4]
+$commands_ = $lcase($commands_)	& !@ переводим команды в нижний регистр
+if $delimiter_ = '': $delimiter_ = '
+'	& !@ если $delimiter_ не указано, в качестве разделителя использует символ переноса строки
+if $delimiter_ = '/se': $delimiter_ = ''	& !@ если указан ключ,разделитель не используется
+if start_cell_ < 0: start_cell_ = 0	& !@ защита от дурака
+if end_cell_ < start_cell_: end_cell_ = 0	& !@ защита от дурака
 !@ если название массива начинается с $, мы имеем дело с текстовым массивом
-if instr($array_name,'$')=1: $type='str' else $type='int'
+if instr($array_name_, '$') = 1: $type_ = 'str' else $type_ = 'int'
 !@ если не выводим только результаты, содержимое оборачивается в кавычки
-if instr($commands,'[only result]')=0:
-	$quotes="'"
-	$only_result=''
+if instr($commands_, '[only result]') = 0:
+	$quotes_ = "'"
+	$only_result_ = ''
 else
-	$quotes=""
-	$only_result='yep'
+	$quotes_ = ""
+	$only_result_ = 'yep'
 end
-loop local i,j,size=start_cell,end_cell,arrsize('em_arr_print_copy_array') while (i<size and (i<=j or j=0)) step i+=1:
+loop local i, j, size_ = start_cell_, end_cell_, arrsize('em_arr_print_copy_array_') while (i<size_ and (i<=j or j=0)) step i+=1:
 	!@ если не указано, что нужно вывести только значения массивов, к выводимым значениям добавляется название массива и номер ячейки
-	if $only_result='': $array_print+=$array_name+"[<<i>>]="
-	if $type='str':
+	if $only_result_ = '': $array_print_ += $array_name_ + "[<<i>>]="
+	if $type_ = 'str':
 		!@ если пытаемся получить строковые значения, это может быть строка или кортеж
-		if instr($em_arr_print_copy_array[i],'')=0:
-			$inline=$replace($em_arr_print_copy_array[i],$quotes,"''")
-			if instr($commands,'[trim]')<>0: $inline=$trim($inline)
-			$array_print+=$quotes+$inline+$quotes+$delimiter
+		if instr($em_arr_print_copy_array_[i], '') = 0:
+			$inline_ = $replace($em_arr_print_copy_array_[i], $quotes_, "''")
+			if instr($commands_, '[trim]') <> 0: $inline_ = $trim($inline_)
+			$array_print_ += $quotes_ + $inline_ + $quotes_ + $delimiter_
 		else
-			$array_print+="("+$replace($em_arr_print_copy_array[i],'',',')+')'+$delimiter
+			$array_print_ += "(" + $replace($em_arr_print_copy_array_[i], '', ',') + ')' + $delimiter_
 		end
-	elseif $type='int':
+	elseif $type_ = 'int':
 		!@ если пытаемся получить число, просто вписываем его
-		$array_print+=$str(em_arr_print_copy_array[i])+$delimiter
+		$array_print_ += $str(em_arr_print_copy_array_[i]) + $delimiter_
 	end
 end
 !@ если последний разделитель следует исключить, вырезаем
-if instr($commands,'[not last]')<>0: 
-	$array_print=$mid($array_print,1,len($array_print)-len($delimiter))
+if instr($commands_, '[not last]') <> 0: 
+	$array_print_ = $mid($array_print_, 1, len($array_print_) - len($delimiter_))
 end
-$result=$array_print	& !@ возвращаем результат
+$result = $array_print_	& !@ возвращаем результат
 --- em.arr.print ---------------------------------
 !@pp:endif
 
