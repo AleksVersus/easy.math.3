@@ -22,6 +22,8 @@ args['error_name_pos']=arrcomp('$args','[\s\S]*((\b\d+([A-Za-zа-яА-Я\$\._]+\
 !@ символ переноса строки
 $args['/n/r']='
 '
+args['start_count'] = 0
+args['end_count'] = -1
 if $args['command_in_last']='yep':
 	!@ если последний аргумент содержит хотя бы один пробел, его нельзя считать названием массива
 	!@ скорее всего это управляющая конструкция. Либо это действительно управляющая конструкция.
@@ -31,13 +33,10 @@ if $args['command_in_last']='yep':
 	!@ по управляющей конструкции понимаем, нужно ли выводить одни только результаты
 	if instr($args['construct'],'[only result]')<>0: $args['table']='' & $args['only result']='only result'
 	!@ получаем номера первого и последнего элементов, которые хотим вывести
-	if instr($args['construct'], '[range onscreen:')<>0:
+	if instr($args['construct'], '[range onscreen:') <> 0:
 		args['start_count'] = $strfind($args['construct'], '\[range onscreen:(\d+)\-\d+\]', 1)
 		!@ вместо последнего элемента нам нужен следующий за последним
 		args['end_count'] = $strfind($args['construct'], '\[range onscreen:\d+\-(\d+)\]', 1) + 1
-	else:
-		args['start_count'] = 0
-		args['end_count'] = -1
 	end
 	jump 'print'	& !@ переходим к выводу (содержится в этом же условии, поэтому jump)
 elseif args['error_name_pos']<>-1 and args['error_name_pos']<>args['last']:
@@ -74,7 +73,6 @@ else
 	elseif args['end_count'] <= args['start_count']:
 		args['end_count'] = args['start_count'] + 1
 	end
-	
 	!@ следующий цикл выводит уже непосредственно результаты
 	loop args['b']=args['start_count'] while args['b']<args['end_count'] step args['b']+=1:
 		!@ пока счётчик не достигнет размера самого большого массива
