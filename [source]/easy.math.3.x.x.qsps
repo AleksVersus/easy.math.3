@@ -69,6 +69,7 @@ end
 !@pp:var(em_str_inarr)
 !@pp:var(em_str_thin)
 !@pp:var(em_zero)
+!@pp:var(em_str_slice)
 Операции с шестнадцатеричными числами
 !@pp:var(em_col_inv)
 !@pp:var(en_col_inrgb)
