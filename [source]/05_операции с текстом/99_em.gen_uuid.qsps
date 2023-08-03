@@ -1,5 +1,6 @@
 QSP-Game Генерация UUID
 
+!@pp:if(em_gen_uuid):include
 # em.gen_uuid
 local $symbols_ = '0123456789abcdef'
 loop local i = 0 while i < 36 step i += 1:
@@ -10,4 +11,5 @@ loop local i = 0 while i < 36 step i += 1:
 	end
 end
 --- em.gen_uuid ---------------------------------
+!@pp:endif
 
