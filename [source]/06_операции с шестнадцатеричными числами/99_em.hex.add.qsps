@@ -50,8 +50,4 @@ end
 --- em.hex.add ---------------------------------
 !@pp:endif
 
-!@pp:if(em_hex_add!=True):nopp
-!@pp:var(em_zero)
-!@pp:endif
-
-
+Функция не использует иных функций библиотеки
