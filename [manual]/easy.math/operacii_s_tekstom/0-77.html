@@ -1,2064 +1,268 @@
 <!DOCTYPE html>
 <html lang="ru">
- <head>
-  <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
-  <meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-  <!-- TODO: favicon -->
-  <link href="../../res/css/easy.library.css" rel="stylesheet"/>
- </head>
- <body>
-  <div class="avs-page-wrapper">
-   <div class="easy-lib-page">
-    <div class="e-block">
-     <div class="avs-pages-button__left-combine">
-      <a class="avs-pages-button__link" href="../../easy.math/manual.html">
-       <div class="avs-pages-button">
-        Назад
-       </div>
-      </a>
-     </div>
-     <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
-      <h1 class="avs-article-h1">
-       easy.math.qsp v. 3.0.0
-      </h1>
-     </a>
-     <!-- Исправить ссылку -->
-     <h3 class="avs-article-h3">
-      Операции с текстом
-     </h3>
-     <a id="em_zero">
-     </a>
-     <h4 class="avs-article-h4">
-      em.zero
-     </h4>
-     <p class="avs-article-p">
-      Функция предназначена для генерации строки из повторяющихся групп символов.
-     </p>
-     <p class="em-block-arguments">
-      <code class="em-system">
-       args[
-       <code class="em-number">
-        0
-       </code>
-       ]
-      </code>
-      - количество генерируемых групп (только число)
-      <br/>
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        1
-       </code>
-       ]
-      </code>
-      - какие символы должны присутствовать в строке. По умолчанию
-      <code class="em-string">
-       '0'
-      </code>
-      . Только текстовое значение.
-     </p>
-     <p class="avs-article-p">
-      Если написать в
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        1
-       </code>
-       ]
-      </code>
-      не один символ а группу, будет сгенерирована строка из
-      <code class="em-system">
-       args[
-       <code class="em-number">
-        0
-       </code>
-       ]
-      </code>
-      повторяющихся групп символов.
-     </p>
-     <h5 class="avs-article-h5">
-      Результат работы функции:
-     </h5>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.zero
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       13
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '0000000000000'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.zero
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       13
-      </span>
-      ,
-      <span class="Monokai-String">
-       '1'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '1111111111111'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.zero
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       13
-      </span>
-      ,
-      <span class="Monokai-String">
-       '10'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '10101010101010101010101010'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.zero
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       13
-      </span>
-      ,
-      <span class="Monokai-String">
-       'a'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'aaaaaaaaaaaaa'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.zero
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       3
-      </span>
-      ,
-      <span class="Monokai-String">
-       'bla'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'blablabla'
-      </span>
-     </div>
-     <a id="em_str_random">
-     </a>
-     <h4 class="avs-article-h4">
-      em.str.random
-     </h4>
-     <p class="avs-article-p">
-      Функция получает строку случайных символов
-     </p>
-     <div class="em-block-arguments">
-      <code class="em-system">
-       args[
-       <code class="em-number">
-        0
-       </code>
-       ]
-      </code>
-      - необходимая длина строки. Если не задана, выбирается случайным образом от 1 до 8 символов. Только число
-      <br/>
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        1
-       </code>
-       ]
-      </code>
-      - символы, которых не должно быть в строке, либо управляющая конструкция:
-      <ul style="margin:0.1em auto;">
-       <li>
-        <code class="em-string">
-         [include]
-        </code>
-        или
-        <code class="em-string">
-         [inc]
-        </code>
-        - указывает, что нужно включить в набор только указанные предопределённые группы символов. Для указания групп используются дополнительные команды:
-        <ul>
-         <li>
-          <code class="em-string">
-           [\d]
-          </code>
-          - включить цифры
-         </li>
-         <li>
-          <code class="em-string">
-           [\h]
-          </code>
-          - включить шестнадцатеричные цифры
-         </li>
-         <li>
-          <code class="em-string">
-           [\s]
-          </code>
-          - включить пробел и символ табуляции
-         </li>
-         <li>
-          <code class="em-string">
-           [\w]
-          </code>
-          - включить буквы, цифры и символ подчёркивания (в т.ч. кириллица)
-         </li>
-         <li>
-          <code class="em-string">
-           [\я]
-          </code>
-          - включить кириллические символы
-         </li>
-         <li>
-          <code class="em-string">
-           [\z]
-          </code>
-          - включить латинские символы
-         </li>
-         <li>
-          <code class="em-string">
-           [\all]
-          </code>
-          - все выше перечисленные наборы символов
-         </li>
-        </ul>
-        Пример:
-        <code class="em-string">
-         [inc][\d][\z]
-        </code>
-        - цифры и латинские буквы.
-        <br/>
-        Дополнительно с этим можно использовать трансляцию регистра:
-        <ul>
-         <li>
-          <code class="em-string">
-           [lcase]
-          </code>
-          - перевести все символы в нижний регистр (только для букв)
-         </li>
-         <li>
-          <code class="em-string">
-           [ucase]
-          </code>
-          - перевести все символы в верхний регистр (только для букв)
-         </li>
-        </ul>
-       </li>
-       <li>
-        <code class="em-string">
-         [only this]
-        </code>
-        или
-        <code class="em-string">
-         [ot]
-        </code>
-        - указывает, что в набор нужно включить только символы, перечисленные в $args[2]
-       </li>
-      </ul>
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        2
-       </code>
-       ]
-      </code>
-      - символы, стоящие здесь, напротив включаются в строку (например, можно добавить пробел к стандартному набору символов, или символ табуляции). Только текст.
-     </div>
-     <h5 class="avs-article-h5">
-      Результат работы функции:
-     </h5>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.str.random
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'вЗНзГШмf'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.random
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       16
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[inc][\d][\z][\я]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'у1ЭAXВ6чГVЫДJМxD'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.random
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       16
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '"i!TОж5wПЬрYхв#а'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.random
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       16
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[inc][\d][\z][\я]'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '$ @ !'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'cл4фYЛ7@EnoiЪm А'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.random
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       16
-      </span>
-      ,
-      <span class="Monokai-String">
-       '24680'
-      </span>
-      ,
-      <span class="Monokai-String">
-       ' ©'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'f!с/ Xsэu\ZlcХ"u'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.random
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ ' c}fjрIЩB'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.random
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       16
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[inc][\d][\z][\я]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'БxПxуИЧаgрsмщю9д'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.random
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       16
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ ',5яN}BВPсИ&gt;kJlw['
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.random
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       16
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[inc][\d][\z][\я]'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '$ @ !'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '@rtwЪnЦFЩиВлМяf'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.random
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       16
-      </span>
-      ,
-      <span class="Monokai-String">
-       '2 4 6 8 0'
-      </span>
-      ,
-      <span class="Monokai-String">
-       ' ©'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'Q©)ь©gЪ*Вл&lt;С@ррх'
-      </span>
-     </div>
-     <a id="em_arr_search">
-     </a>
-     <h4 class="avs-article-h4">
-      em.arr.search
-     </h4>
-     <p class="avs-article-p">
-      Находит позицию элемента в массиве, содержащего регулярное выражение, либо возвращает -1
-     </p>
-     <p class="em-block-arguments">
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        0
-       </code>
-       ]
-      </code>
-      - имя массива
-      <br/>
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        1
-       </code>
-       ]
-      </code>
-      - регулярное выражение
-      <br/>
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        2
-       </code>
-       ]
-      </code>
-      -
-      <code class="em-string">
-       [first]
-      </code>
-      или
-      <code class="em-string">
-       [last]
-      </code>
-      - первая или последняя позиция
-      <br/>
-      <code class="em-system">
-       args[
-       <code class="em-number">
-        3
-       </code>
-       ]
-      </code>
-      ,
-      <code class="em-system">
-       args[
-       <code class="em-number">
-        4
-       </code>
-       ]
-      </code>
-      - с какого по какой элемент проводить поиск
-     </p>
-     <p class="avs-article-p">
-      Функция использует arrcomp, однако, в отличие от arrcomp, находит элемент, который
-      <span style="text-decoration:underline;">
-       содержит
-      </span>
-      строку, соответствующую регулярному выражению, а не тот элемент, который полностью соответствует регулярному выражению.
-     </p>
-     <p class="avs-article-p">
-      При больших размерах массива (более 1000 элементов на core-i5/x64/2,5 ГГц/8 Гб RAM), функция может заметно подвешивать плеер.
-     </p>
-     <a id="em_str_inarr">
-     </a>
-     <h4 class="avs-article-h4">
-      em.str.inArr
-     </h4>
-     <p class="avs-article-p">
-      Из переданного блока текста выбираются строки, находящиеся между разделителями, в том числе строка до первого разделителя и после последнего. В качестве разделителя можно задать что угодно: символ, слово, строку. Для того, чтобы задать несколько разделителей, или неявный разделитель (шаблон разделителя. Например, html-тег), можно использовать регулярные выражения.
-     </p>
-     <div class="em-block-arguments">
-      <p class="avs-article-p">
-       <code class="em-system">
-        $args[
-        <code class="em-number">
-         0
-        </code>
-        ]
-       </code>
-       - отрывок текста, который нужно разбить на строки
-       <br/>
-       <code class="em-system">
-        $args[
-        <code class="em-number">
-         1
-        </code>
-        ]
-       </code>
-       - имя массива, в который нужно поместить полученные строки
-       <br/>
-       <code class="em-system">
-        $args[
-        <code class="em-number">
-         2
-        </code>
-        ]
-       </code>
-       - разделитель, по которому нужно произвести выборку строк.
-       <br/>
-       <code class="em-system">
-        $args[
-        <code class="em-number">
-         3
-        </code>
-        ]
-       </code>
-       - дополнительные опции (можно комбинировать, записав через пробел):
-      </p>
-      <ul style="margin:0.1em auto;">
-       <li>
-        <code class="em-string">
-         [trim]
-        </code>
-        - если строка до первого разделителя и/или строка после последнего разделителя окажутся пустыми, они не будут добавлены в массив,
-       </li>
-       <li>
-        <code class="em-string">
-         [notspace]
-        </code>
-        - будут проигнорированы все пустые строки между разделителями,
-       </li>
-       <li>
-        <code class="em-string">
-         [left]
-        </code>
-        - сохранить в результирующей строке (строке, помещённой в массив) разделитель, поместив его слева (в начале строки),
-       </li>
-       <li>
-        <code class="em-string">
-         [right]
-        </code>
-        - сохранить в результирующей строке (строке, помещённой в массив) разделитель, поместив его справа (в конце строки),
-       </li>
-       <li>
-        <code class="em-string">
-         [regular]
-        </code>
-        - указанный в
-        <code class="em-system">
-         $args[
-         <code class="em-number">
-          2
-         </code>
-         ]
-        </code>
-        разделитель считается регулярным выражением. При использовании этой опции, опции
-        <code class="em-string">
-         [left]
-        </code>
-        и
-        <code class="em-string">
-         [right]
-        </code>
-        не работают.
-       </li>
-       <li>
-        <code class="em-string">
-         [ucase]
-        </code>
-        - все результирующие строки будут приведены к верхнему регистру. Имеет приоритет перед
-        <code class="em-string">
-         [lcase]
-        </code>
-        . Не влияет на разделители.
-       </li>
-       <li>
-        <code class="em-string">
-         [lcase]
-        </code>
-        - все результирующие строки будут приведены к нижнему регистру. Не влияет на разделители.
-       </li>
-       <li>
-        <code class="em-string">
-         [strip]
-        </code>
-        - у всех значений, обнаруженных между разделителями, будут отсечены прилегающие пробелы.
-       </li>
-      </ul>
-     </div>
-     <h5 class="avs-article-h5">
-      Примеры использования:
-     </h5>
-     <p class="avs-article-p">
-      Посмотрим на выборку строк по разным разделителям на примере одного текста. Текст помещаем в переменную для удобства записи:
-     </p>
-     <div class="Monokai-Code">
-      $text
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       "Адское Пекло и Небеса -
-       <br/>
-       Я весь мир мечтаю продать.
-       <br/>
-       Время - деньги. Пусть стрелки бегут на часах -
-       <br/>
-       И мне нечего больше желать."
-      </span>
-     </div>
-     <p class="avs-article-p">
-      Разбиваем на строки по символу переноса строки:
-     </p>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.str.inArr
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      $text
-      <span class="Monokai-Operator">
-       ,
-      </span>
-      <span class="Monokai-String">
-       '$mass'
-      </span>
-      <span class="Monokai-Operator">
-       ,
-      </span>
-      <span class="Monokai-String">
-       '
-       <br/>
-       '
-      </span>
-      <span class="Monokai-Operator">
-       ,
-      </span>
-      <span class="Monokai-String">
-       ''
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-     </div>
-     <p class="avs-article-p">
-      Результат:
-     </p>
-     <div class="Monokai-Code">
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        0
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'Адское Пекло и Небеса -'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        1
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'Я весь мир мечтаю продать.'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        2
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'Время - деньги. Пусть стрелки бегут на часах -'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        3
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'И мне нечего больше желать.'
-      </span>
-     </div>
-     <p class="avs-article-p">
-      Разбиваем на строки по пробелу:
-     </p>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.str.inArr
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      $text,
-      <span class="Monokai-String">
-       '$mass'
-      </span>
-      <span class="Monokai-Operator">
-       ,
-      </span>
-      <span class="Monokai-String">
-       ' '
-      </span>
-      <span class="Monokai-Operator">
-       ,
-      </span>
-      <span class="Monokai-String">
-       ''
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-     </div>
-     <p class="avs-article-p">
-      Результат (Заметьте, что символ переноса строки в этом случае попадает в результирующие строки. Туда же попадают знаки препинания и прочее):
-     </p>
-     <div class="Monokai-Code">
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        0
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'Адское'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        1
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'Пекло'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        2
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'и'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        3
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'Небеса'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        4
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       '-
-       <br/>
-       Я'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        5
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'весь'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        6
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'мир'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        7
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'мечтаю'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        8
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'продать.
-       <br/>
-       Время'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        9
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       '-'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        10
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'деньги.'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        11
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'Пусть'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        12
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'стрелки'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        13
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'бегут'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        14
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'на'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        15
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'часах'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        16
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       '-
-       <br/>
-       И'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        17
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'мне'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        18
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'нечего'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        19
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'больше'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        20
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'желать.'
-      </span>
-     </div>
-     <p class="avs-article-p">
-      А вот пример выборки по нескольким разделителям с игнорированием пустых строк. Из текста будут выбраны исключительно слова:
-     </p>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.str.inArr
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      $text
-      <span class="Monokai-Operator">
-       ,
-      </span>
-      <span class="Monokai-String">
-       '$mass'
-      </span>
-      <span class="Monokai-Operator">
-       ,
-      </span>
-      <span class="Monokai-String">
-       '("|!|\?|-|,|;|:|\.| |
-       <br/>
-       )'
-      </span>
-      <span class="Monokai-Operator">
-       ,
-      </span>
-      <span class="Monokai-String">
-       '[notspace] [regular] [lcase]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-     </div>
-     <p class="avs-article-p">
-      Результат:
-     </p>
-     <div class="Monokai-Code">
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        0
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'адское'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        1
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'пекло'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        2
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'и'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        3
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'небеса'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        4
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'я'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        5
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'весь'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        6
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'мир'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        7
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'мечтаю'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        8
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'продать'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        9
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'время'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        10
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'деньги'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        11
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'пусть'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        12
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'стрелки'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        13
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'бегут'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        14
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'на'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        15
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'часах'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        16
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'и'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        17
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'мне'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        18
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'нечего'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        19
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'больше'
-      </span>
-      <br/>
-      $mass
-      <span class="Monokai-Qbracket">
-       [
-       <span class="Monokai-Numeric">
-        20
-       </span>
-       ]
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       'желать'
-      </span>
-     </div>
-     <a id="em_str_widetrim">
-     </a>
-     <h4 class="avs-article-h4">
-      em.str.widetrim
-     </h4>
-     <p class="avs-article-p">
-      Функция похожа на функцию
-      <code class="em-func">
-       TRIM
-      </code>
-      . Она удаляет прилегающие символы пробелов, табуляций и переводов строк. Так же функция позволяет убирать все символы преформатирования из текста.
-     </p>
-     <p class="em-block-arguments">
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        0
-       </code>
-       ]
-      </code>
-      - обрабатываемый текст
-      <br/>
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        1
-       </code>
-       ]
-      </code>
-      - управляющее слово:
-      <code class="em-string">
-       [strip]
-      </code>
-      — в каждой строке отсекаются прилегающие пробелы.
-     </p>
-     <h5 class="avs-article-h5">
-      Пример работы:
-     </h5>
-     <p class="avs-article-p">
-      Для удобства помещаем текст в переменную:
-     </p>
-     <div class="Monokai-Code">
-      $text
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <span class="Monokai-String">
-       "
-       <br/>
-       <br/>
-       первая строка 1
-       <br/>
-       вторая строка 2
-       <br/>
-       <br/>
-       третья строка
-       <br/>
-       <br/>
-       "
-      </span>
-     </div>
-     <p class="avs-article-p">
-      Результат расширенного отсечения:
-     </p>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.str.widetrim
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      $text
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <br/>
-      <span class="Monokai-String" style="color:#8dd6a5;">
-       "   первая строка 1
-       <br/>
-       вторая строка 2
-       <br/>
-       <br/>
-       третья строка"
-      </span>
-     </div>
-     <p class="avs-article-p">
-      Результат отсечения символов преформатирования:
-     </p>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.str.widetrim
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      $text
-      <span class="Monokai-Operator">
-       ,
-      </span>
-      <span class="Monokai-String">
-       '[strip]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Assign">
-       =
-      </span>
-      <br/>
-      <span class="Monokai-String" style="color:#8dd6a5;">
-       "первая строка 1
-       <br/>
-       вторая строка 2
-       <br/>
-       <br/>
-       третья строка"
-      </span>
-     </div>
-     <p class="avs-article-p">
-      В последнем случае остекаются не только пробелы и символы табуляции перед строками, но и в конце.
-     </p>
-     <a id="em_str_thin">
-     </a>
-     <h4 class="avs-article-h4">
-      em.str.thin
-     </h4>
-     <p class="avs-article-p">
-      Предназначение этой функции разрежать строку. Через определённое количество символов в строку вставляются разделители.
-     </p>
-     <div class="em-block-arguments">
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        0
-       </code>
-       ]
-      </code>
-      - строка, текст;
-      <br/>
-      <code class="em-system">
-       args[
-       <code class="em-number">
-        1
-       </code>
-       ]
-      </code>
-      - через какое количество символов вставлять разделитель. По умолчанию разделитель вставляется через каждый один символ;
-      <br/>
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        2
-       </code>
-       ]
-      </code>
-      - разделитель. По умолчанию символ пробела;
-      <br/>
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        3
-       </code>
-       ]
-      </code>
-      - управление:
-      <ul style="margin: 0.1em auto;">
-       <li>
-        <code class="em-string">
-         [up]
-        </code>
-        - разрежает текст от последнего символа к первому;
-       </li>
-       <li>
-        <code class="em-string">
-         [right]
-        </code>
-        - добавляет разделитель в конце разрежаемой строки;
-       </li>
-       <li>
-        <code class="em-string">
-         [left]
-        </code>
-        - добавляет разделитель перед разрежаемой строкой.
-       </li>
-      </ul>
-     </div>
-     <h5 class="avs-article-h5">
-      Примеры:
-     </h5>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.str.thin
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'профессура'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ "п р о ф е с с у р а"
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.thin
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'профессура'
-      </span>
-      ,
-      <span class="Monokai-Numeric">
-       1
-      </span>
-      ,
-      <span class="Monokai-String">
-       '|'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ "п|р|о|ф|е|с|с|у|р|а"
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.thin
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'профессура'
-      </span>
-      ,
-      <span class="Monokai-Numeric">
-       1
-      </span>
-      ,
-      <span class="Monokai-String">
-       '|'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[right]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ "п|р|о|ф|е|с|с|у|р|а"
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.thin
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'профессура'
-      </span>
-      ,
-      <span class="Monokai-Numeric">
-       1
-      </span>
-      ,
-      <span class="Monokai-String">
-       '|'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[left]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ "п|р|о|ф|е|с|с|у|р|а"
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.thin
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'профессура'
-      </span>
-      ,
-      <span class="Monokai-Numeric">
-       1
-      </span>
-      ,
-      <span class="Monokai-String">
-       '|'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[right][left]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ "п|р|о|ф|е|с|с|у|р|а"
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.thin
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'профессура'
-      </span>
-      ,
-      <span class="Monokai-Numeric">
-       3
-      </span>
-      ,
-      <span class="Monokai-String">
-       '|'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ "про|фес|сур|а"
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.thin
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'профессура'
-      </span>
-      ,
-      <span class="Monokai-Numeric">
-       3
-      </span>
-      ,
-      <span class="Monokai-String">
-       '|'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[up]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ "п|роф|есс|ура"
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.thin
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'профессура'
-      </span>
-      ,
-      <span class="Monokai-Numeric">
-       3
-      </span>
-      ,
-      <span class="Monokai-String">
-       '|'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[left]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ "|про|фес|сур|а"
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.thin
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'профессура'
-      </span>
-      ,
-      <span class="Monokai-Numeric">
-       2
-      </span>
-      ,
-      <span class="Monokai-String">
-       '|'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[right]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ "пр|оф|ес|су|ра|"
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.str.thin
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'профессура'
-      </span>
-      ,
-      <span class="Monokai-Numeric">
-       1
-      </span>
-      ,
-      <span class="Monokai-String">
-       '||'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[left] [right]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ "||п||р||о||ф||е||с||с||у||р||а||"
-      </span>
-     </div>
-     <div class="avs-pages-button__left-combine">
-      <a class="avs-pages-button__link" href="../../easy.math/manual.html">
-       <div class="avs-pages-button">
-        Назад
-       </div>
-      </a>
-     </div>
-    </div>
-    <div class="e-block">
-     <div class="avs-page-stamp" id="em_subscribe">
-      <p class="avs-empty">
-       Aleks Versus'Easy Libraries'2013-
-       <span class="subscribe-year">
-        2023
-       </span>
-      </p>
-      <p class="avs-empty">
-       Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-
-       <span class="subscribe-year">
-        2023
-       </span>
-      </p>
-     </div>
-    </div>
-   </div>
-  </div>
-  <div class="em-stick-upper">
-   <a href="#UP" title="Вверх">
-    <img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/>
-   </a>
-  </div>
- </body>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<!-- TODO: favicon -->
+<link href="../../res/css/easy.library.css" rel="stylesheet"/></head>
+<body>
+<div class="avs-page-wrapper">
+<div class="easy-lib-page">
+<div class="e-block">
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+<a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+<h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+</a>
+<!-- Исправить ссылку -->
+<h3 class="avs-article-h3">Операции с текстом</h3>
+<a id="em_zero"></a>
+<h4 class="avs-article-h4">em.zero</h4>
+<p class="avs-article-p">Функция предназначена для генерации строки из повторяющихся групп символов.</p>
+<p class="em-block-arguments">
+<code class="em-system"> args[<code class="em-number">0</code>]</code> - количество генерируемых групп (только число)
+                    <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - какие символы должны присутствовать в строке. По умолчанию <code class="em-string">'0'</code>. Только текстовое значение.
+                </p>
+<p class="avs-article-p">Если написать в <code class="em-system">$args[<code class="em-number">1</code>]</code> не один символ а группу, будет сгенерирована строка из <code class="em-system"> args[<code class="em-number">0</code>]</code> повторяющихся групп символов.</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.zero</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">13</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0000000000000'</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'1'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '1111111111111'</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'10'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '10101010101010101010101010'</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'a'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'aaaaaaaaaaaaa'</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'bla'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'blablabla'</span>
+</div>
+<a id="em_str_random"></a>
+<h4 class="avs-article-h4">em.str.random</h4>
+<p class="avs-article-p">Функция получает строку случайных символов</p>
+<div class="em-block-arguments">
+<code class="em-system"> args[<code class="em-number">0</code>]</code> - необходимая длина строки. Если не задана, выбирается случайным образом от 1 до 8 символов. Только число
+                    <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - символы, которых не должно быть в строке, либо управляющая конструкция:
+                    <ul style="margin:0.1em auto;">
+<li><code class="em-string">[include]</code> или <code class="em-string">[inc]</code> - указывает, что нужно включить в набор только указанные предопределённые группы символов. Для указания групп используются дополнительные команды:
+                            <ul>
+<li><code class="em-string">[\d]</code> - включить цифры</li>
+<li><code class="em-string">[\h]</code> - включить шестнадцатеричные цифры</li>
+<li><code class="em-string">[\s]</code> - включить пробел и символ табуляции</li>
+<li><code class="em-string">[\w]</code> - включить буквы, цифры и символ подчёркивания (в т.ч. кириллица)</li>
+<li><code class="em-string">[\я]</code> - включить кириллические символы</li>
+<li><code class="em-string">[\z]</code> - включить латинские символы</li>
+<li><code class="em-string">[\all]</code> - все выше перечисленные наборы символов</li>
+</ul>
+                            Пример: <code class="em-string">[inc][\d][\z]</code> - цифры и латинские буквы.<br/>
+                            Дополнительно с этим можно использовать трансляцию регистра:
+                            <ul>
+<li><code class="em-string">[lcase]</code> - перевести все символы в нижний регистр (только для букв)</li>
+<li><code class="em-string">[ucase]</code> - перевести все символы в верхний регистр (только для букв)</li>
+</ul>
+</li>
+<li><code class="em-string">[only this]</code> или <code class="em-string">[ot]</code> - указывает, что в набор нужно включить только символы, перечисленные в $args[2]</li>
+</ul>
+<code class="em-system">$args[<code class="em-number">2</code>]</code> - символы, стоящие здесь, напротив включаются в строку (например, можно добавить пробел к стандартному набору символов, или символ табуляции). Только текст.
+                </div>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.str.random</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'вЗНзГШмf'</span><br/>
+<span class="Monokai-UnFunc">@em.str.random</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'[inc][\d][\z][\я]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'у1ЭAXВ6чГVЫДJМxD'</span><br/>
+<span class="Monokai-UnFunc">@em.str.random</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">16</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '"i!TОж5wПЬрYхв#а'</span><br/>
+<span class="Monokai-UnFunc">@em.str.random</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'[inc][\d][\z][\я]'</span>,<span class="Monokai-String">'$ @ !'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'cл4фYЛ7@EnoiЪm А'</span><br/>
+<span class="Monokai-UnFunc">@em.str.random</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'24680'</span>,<span class="Monokai-String">' ©'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'f!с/ Xsэu\ZlcХ"u'</span><br/>
+<span class="Monokai-UnFunc">@em.str.random</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ ' c}fjрIЩB'</span><br/>
+<span class="Monokai-UnFunc">@em.str.random</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'[inc][\d][\z][\я]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'БxПxуИЧаgрsмщю9д'</span><br/>
+<span class="Monokai-UnFunc">@em.str.random</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">16</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ ',5яN}BВPсИ&gt;kJlw['</span><br/>
+<span class="Monokai-UnFunc">@em.str.random</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'[inc][\d][\z][\я]'</span>,<span class="Monokai-String">'$ @ !'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '@rtwЪnЦFЩиВлМяf'</span><br/>
+<span class="Monokai-UnFunc">@em.str.random</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">16</span>,<span class="Monokai-String">'2 4 6 8 0'</span>,<span class="Monokai-String">' ©'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'Q©)ь©gЪ*Вл&lt;С@ррх'</span>
+</div>
+<a id="em_arr_search"></a>
+<h4 class="avs-article-h4">em.arr.search</h4>
+<p class="avs-article-p">Находит позицию элемента в массиве, содержащего регулярное выражение, либо возвращает -1</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - имя массива
+                    <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - регулярное выражение
+                    <br/><code class="em-system">$args[<code class="em-number">2</code>]</code> - <code class="em-string">[first]</code> или <code class="em-string">[last]</code> - первая или последняя позиция
+                    <br/><code class="em-system">args[<code class="em-number">3</code>]</code>, <code class="em-system">args[<code class="em-number">4</code>]</code> - с какого по какой элемент проводить поиск
+                </p>
+<p class="avs-article-p">Функция использует arrcomp, однако, в отличие от arrcomp, находит элемент, который <span style="text-decoration:underline;">содержит</span> строку, соответствующую регулярному выражению, а не тот элемент, который полностью соответствует регулярному выражению.</p>
+<p class="avs-article-p">При больших размерах массива (более 1000 элементов на core-i5/x64/2,5 ГГц/8 Гб RAM), функция может заметно подвешивать плеер.</p>
+<a id="em_str_inarr"></a>
+<h4 class="avs-article-h4">em.str.inArr</h4>
+<p class="avs-article-p">Из переданного блока текста выбираются строки, находящиеся между разделителями, в том числе строка до первого разделителя и после последнего. В качестве разделителя можно задать что угодно: символ, слово, строку. Для того, чтобы задать несколько разделителей, или неявный разделитель (шаблон разделителя. Например, html-тег), можно использовать регулярные выражения.</p>
+<div class="em-block-arguments">
+<p class="avs-article-p">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - отрывок текста, который нужно разбить на строки
+                        <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - имя массива, в который нужно поместить полученные строки
+                        <br/><code class="em-system">$args[<code class="em-number">2</code>]</code> - разделитель, по которому нужно произвести выборку строк.
+                        <br/><code class="em-system">$args[<code class="em-number">3</code>]</code> - дополнительные опции (можно комбинировать, записав через пробел):
+                    </p>
+<ul style="margin:0.1em auto;">
+<li><code class="em-string">[trim]</code> - если строка до первого разделителя и/или строка после последнего разделителя окажутся пустыми, они не будут добавлены в массив,</li>
+<li><code class="em-string">[notspace]</code> - будут проигнорированы все пустые строки между разделителями,</li>
+<li><code class="em-string">[left]</code> - сохранить в результирующей строке (строке, помещённой в массив) разделитель, поместив его слева (в начале строки),</li>
+<li><code class="em-string">[right]</code> - сохранить в результирующей строке (строке, помещённой в массив) разделитель, поместив его справа (в конце строки),</li>
+<li><code class="em-string">[regular]</code> - указанный в <code class="em-system">$args[<code class="em-number">2</code>]</code> разделитель считается регулярным выражением. При использовании этой опции, опции <code class="em-string">[left]</code> и <code class="em-string">[right]</code> не работают.</li>
+<li><code class="em-string">[ucase]</code> - все результирующие строки будут приведены к верхнему регистру. Имеет приоритет перед <code class="em-string">[lcase]</code>. Не влияет на разделители.</li>
+<li><code class="em-string">[lcase]</code> - все результирующие строки будут приведены к нижнему регистру. Не влияет на разделители.</li>
+<li><code class="em-string">[strip]</code> - у всех значений, обнаруженных между разделителями, будут отсечены прилегающие пробелы.</li>
+</ul>
+</div>
+<h5 class="avs-article-h5">Примеры использования:</h5>
+<p class="avs-article-p">Посмотрим на выборку строк по разным разделителям на примере одного текста. Текст помещаем в переменную для удобства записи:</p>
+<div class="Monokai-Code">
+                    $text<span class="Monokai-Assign">=</span><span class="Monokai-String">"Адское Пекло и Небеса -<br/>
+                        Я весь мир мечтаю продать.<br/>
+                        Время - деньги. Пусть стрелки бегут на часах -<br/>
+                        И мне нечего больше желать."</span>
+</div>
+<p class="avs-article-p">Разбиваем на строки по символу переноса строки:</p>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.str.inArr</span><span class="Monokai-Qbracket">(</span>$text<span class="Monokai-Operator">,</span><span class="Monokai-String">'$mass'</span><span class="Monokai-Operator">,</span><span class="Monokai-String">'<br/>
+                        '</span><span class="Monokai-Operator">,</span><span class="Monokai-String">''</span><span class="Monokai-Qbracket">)</span>
+</div>
+<p class="avs-article-p">Результат:</p>
+<div class="Monokai-Code">
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Адское Пекло и Небеса -'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Я весь мир мечтаю продать.'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Время - деньги. Пусть стрелки бегут на часах -'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'И мне нечего больше желать.'</span>
+</div>
+<p class="avs-article-p">Разбиваем на строки по пробелу:</p>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.str.inArr</span><span class="Monokai-Qbracket">(</span>$text,<span class="Monokai-String">'$mass'</span><span class="Monokai-Operator">,</span><span class="Monokai-String">' '</span><span class="Monokai-Operator">,</span><span class="Monokai-String">''</span><span class="Monokai-Qbracket">)</span>
+</div>
+<p class="avs-article-p">Результат (Заметьте, что символ переноса строки в этом случае попадает в результирующие строки. Туда же попадают знаки препинания и прочее):</p>
+<div class="Monokai-Code">
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Адское'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Пекло'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'и'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Небеса'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'-<br/>
+                        Я'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'весь'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'мир'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'мечтаю'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'продать.<br/>
+                        Время'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'-'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">10</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'деньги.'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">11</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'Пусть'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">12</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'стрелки'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">13</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'бегут'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">14</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'на'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">15</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'часах'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">16</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'-<br/>
+                        И'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">17</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'мне'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">18</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'нечего'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">19</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'больше'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">20</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'желать.'</span>
+</div>
+<p class="avs-article-p">А вот пример выборки по нескольким разделителям с игнорированием пустых строк. Из текста будут выбраны исключительно слова:</p>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.str.inArr</span><span class="Monokai-Qbracket">(</span>$text<span class="Monokai-Operator">,</span><span class="Monokai-String">'$mass'</span><span class="Monokai-Operator">,</span><span class="Monokai-String">'("|!|\?|-|,|;|:|\.| |<br/>
+                        )'</span><span class="Monokai-Operator">,</span><span class="Monokai-String">'[notspace] [regular] [lcase]'</span><span class="Monokai-Qbracket">)</span>
+</div>
+<p class="avs-article-p">Результат:</p>
+<div class="Monokai-Code">
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'адское'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'пекло'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'и'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'небеса'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'я'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'весь'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'мир'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'мечтаю'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'продать'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'время'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">10</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'деньги'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">11</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'пусть'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">12</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'стрелки'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">13</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'бегут'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">14</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'на'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">15</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'часах'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">16</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'и'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">17</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'мне'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">18</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'нечего'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">19</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'больше'</span><br/>
+                    $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">20</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'желать'</span>
+</div>
+<a id="em_str_widetrim"></a>
+<h4 class="avs-article-h4">em.str.widetrim</h4>
+<p class="avs-article-p">Функция похожа на функцию <code class="em-func">TRIM</code>. Она удаляет прилегающие символы пробелов, табуляций и переводов строк. Так же функция позволяет убирать все символы преформатирования из текста.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - обрабатываемый текст
+                    <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - управляющее слово: <code class="em-string">[strip]</code> — в каждой строке отсекаются прилегающие пробелы.
+                </p>
+<h5 class="avs-article-h5">Пример работы:</h5>
+<p class="avs-article-p">Для удобства помещаем текст в переменную:</p>
+<div class="Monokai-Code">
+                    $text<span class="Monokai-Assign">=</span><span class="Monokai-String">"    <br/>
+                           <br/>
+                           первая строка 1    <br/>
+                        вторая строка 2<br/>
+                           <br/>
+                          третья строка<br/>
+                           <br/>
+                               "</span>
+</div>
+<p class="avs-article-p">Результат расширенного отсечения:</p>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.str.widetrim</span><span class="Monokai-Qbracket">(</span>$text<span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><br/>
+<span class="Monokai-String" style="color:#8dd6a5;">"   первая строка 1    <br/>
+                        вторая строка 2<br/>
+                           <br/>
+                          третья строка"</span>
+</div>
+<p class="avs-article-p">Результат отсечения символов преформатирования:</p>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.str.widetrim</span><span class="Monokai-Qbracket">(</span>$text<span class="Monokai-Operator">,</span><span class="Monokai-String">'[strip]'</span><span class="Monokai-Qbracket">)</span><span class="Monokai-Assign">=</span><br/>
+<span class="Monokai-String" style="color:#8dd6a5;">"первая строка 1<br/>
+                        вторая строка 2<br/>
+<br/>
+                        третья строка"</span>
+</div>
+<p class="avs-article-p">В последнем случае остекаются не только пробелы и символы табуляции перед строками, но и в конце.</p>
+<a id="em_str_thin"></a>
+<h4 class="avs-article-h4">em.str.thin</h4>
+<p class="avs-article-p">Предназначение этой функции разрежать строку. Через определённое количество символов в строку вставляются разделители.</p>
+<div class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - строка, текст;
+                    <br/><code class="em-system"> args[<code class="em-number">1</code>]</code> - через какое количество символов вставлять разделитель. По умолчанию разделитель вставляется через каждый один символ;
+                    <br/><code class="em-system">$args[<code class="em-number">2</code>]</code> - разделитель. По умолчанию символ пробела;
+                    <br/><code class="em-system">$args[<code class="em-number">3</code>]</code> - управление:
+                    <ul style="margin: 0.1em auto;">
+<li><code class="em-string">[up]</code> - разрежает текст от последнего символа к первому;</li>
+<li><code class="em-string">[right]</code> - добавляет разделитель в конце разрежаемой строки;</li>
+<li><code class="em-string">[left]</code> - добавляет разделитель перед разрежаемой строкой.</li>
+</ul>
+</div>
+<h5 class="avs-article-h5">Примеры:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "п р о ф е с с у р а"</span><br/>
+<span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'|'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "п|р|о|ф|е|с|с|у|р|а"</span><br/>
+<span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[right]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "п|р|о|ф|е|с|с|у|р|а"</span><br/>
+<span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[left]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "п|р|о|ф|е|с|с|у|р|а"</span><br/>
+<span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[right][left]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "п|р|о|ф|е|с|с|у|р|а"</span><br/>
+<span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'|'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "про|фес|сур|а"</span><br/>
+<span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[up]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "п|роф|есс|ура"</span><br/>
+<span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[left]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "|про|фес|сур|а"</span><br/>
+<span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[right]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "пр|оф|ес|су|ра|"</span><br/>
+<span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'||'</span>,<span class="Monokai-String">'[left] [right]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "||п||р||о||ф||е||с||с||у||р||а||"</span>
+</div>
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+</div>
+<div class="e-block">
+<div class="avs-page-stamp" id="em_subscribe">
+<p class="avs-empty">Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2023</span></p>
+<p class="avs-empty">Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2023</span></p>
+</div>
+</div>
+</div>
+</div><div class="em-stick-upper"><a href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/></a></div></body>
 </html>

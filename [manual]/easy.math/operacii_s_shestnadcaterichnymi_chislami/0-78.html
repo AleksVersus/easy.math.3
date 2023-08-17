@@ -1,1256 +1,241 @@
 <!DOCTYPE html>
 <html lang="ru">
- <head>
-  <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
-  <meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-  <!-- TODO: favicon -->
-  <link href="../../res/css/easy.library.css" rel="stylesheet"/>
- </head>
- <body>
-  <div class="avs-page-wrapper">
-   <div class="easy-lib-page">
-    <div class="e-block">
-     <div class="avs-pages-button__left-combine">
-      <a class="avs-pages-button__link" href="../../easy.math/manual.html">
-       <div class="avs-pages-button">
-        Назад
-       </div>
-      </a>
-     </div>
-     <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
-      <h1 class="avs-article-h1">
-       easy.math.qsp v. 3.0.0
-      </h1>
-     </a>
-     <!-- Исправить ссылку -->
-     <h3 class="avs-article-h3">
-      Операции над шестнадцатеричными числами
-     </h3>
-     <a id="em_hex_indec">
-     </a>
-     <h4 class="avs-article-h4">
-      em.hex.inDec
-     </h4>
-     <p class="avs-article-p">
-      Функция перевода из гексаметричного числа в декаметричное. Не работает с отрицательными значениями.
-     </p>
-     <p class="avs-article-p">
-      Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет те же ограничения на значение результата, что и прочие фукции, т.е. результат должен лежать в пределе [-2147483647 ... 2147483647] (для Q.S.P. 5.8.0).
-     </p>
-     <p class="em-block-arguments">
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        0
-       </code>
-       ]
-      </code>
-      - шестнадцатеричное число (текстовое значение). Значения в пределе
-      <code class="em-string">
-       7fffffff
-      </code>
-      <br/>
-      <code class="em-system">
-       result
-      </code>
-      - полученное число
-     </p>
-     <h5 class="avs-article-h5">
-      Результат работы функции:
-     </h5>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.hex.inDec
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'ff'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Comment">
-       255
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.hex.inDec
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       '22'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Comment">
-       34
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.hex.inDec
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       '10'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Comment">
-       16
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.hex.inDec
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       '1'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Comment">
-       1
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.hex.inDec
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'a'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Comment">
-       10
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.hex.inDec
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'ffaa233'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Comment">
-       268083763
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.hex.inDec
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'ffaa23'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Comment">
-       16755235
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.hex.inDec
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'ffaa2'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Comment">
-       1047202
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.hex.inDec
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'ffaa233451'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Invalid">
-       -1440533423
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.hex.inDec
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'ffaa23345'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Invalid">
-       -90033339
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.hex.inDec
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'ffaa2334'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Invalid">
-       -5627084
-      </span>
-     </div>
-     <p class="avs-article-p">
-      Как видно, последние три результата получились отрицательными, значит превышены пределы значений результата, а соответственно и числа, которые переводятся в десятеричную систему тоже превышают предел.
-     </p>
-     <section id="em_dec_add">
-      <h4 class="avs-article-h4">
-       em.hex.add
-      </h4>
-      <p class="avs-article-p">
-       Функция складывает два шестнадцатеричных числа.
-      </p>
-      <div class="em-block-arguments">
-       <code class="em-system">
-        $args[
-        <code class="em-number">
-         0
-        </code>
-        ]
-       </code>
-       - шестнадцатеричное число (текстовое значение).
-       <br/>
-       <code class="em-system">
-        $args[
-        <code class="em-number">
-         1
-        </code>
-        ]
-       </code>
-       - шестнадцатеричное число (текстовое значение).
-      </div>
-      <h5 class="avs-article-h5">
-       Результат работы функции:
-      </h5>
-      <div class="Monokai-Code">
-       <span class="Monokai-UnFunc">
-        @em.hex.add
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-       </span>
-       <span class="Monokai-String">
-        '1a1'
-       </span>
-       ,
-       <span class="Monokai-String">
-        '97a'
-       </span>
-       <span class="Monokai-Qbracket">
-        )
-       </span>
-       <span class="Monokai-Operator">
-        &amp;
-       </span>
-       <span class="Monokai-Comment">
-        !
-       </span>
-       <span class="Monokai-Comment">
-        @
-       </span>
-       <span class="Monokai-Comment">
-        'b1b'
-       </span>
-      </div>
-     </section>
-     <a id="em_dec_inhex">
-     </a>
-     <h4 class="avs-article-h4">
-      em.dec.inHex
-     </h4>
-     <p class="avs-article-p">
-      Функция перевода из декаметричного числа в гексаметричное. Не работает с отрицательными значениями.
-     </p>
-     <p class="avs-article-p">
-      Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет ограничения на значения аргумента в пределе [-2147483647 ... 2147483647] (для Q.S.P. 5.8.0). Аргумент, превышающий предел, приводится к максимально возможному в QSP значению.
-     </p>
-     <p class="em-block-arguments">
-      <code class="em-system">
-       args[
-       <code class="em-number">
-        0
-       </code>
-       ]
-      </code>
-      - целое число (числовой вид). Значения в пределе 2147483647
-      <br/>
-      <code class="em-system">
-       $result
-      </code>
-      - полученная строка
-     </p>
-     <h5 class="avs-article-h5">
-      Результат работы функции:
-     </h5>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.dec.inHex
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       2147483647
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '7fffffff'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.dec.inHex
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       214
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'd6'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.dec.inHex
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       255
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'ff'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.dec.inHex
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       10
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'a'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.dec.inHex
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       9
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '9'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.dec.inHex
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       2147483648
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '7fffffff'
-      </span>
-     </div>
-     <a id="em_dec_incol">
-     </a>
-     <h4 class="avs-article-h4">
-      em.dec.inCol
-     </h4>
-     <p class="avs-article-p">
-      Преобразует десятеричное число в шестнадцатеричное. Отличием от функции
-      <code class="em-folder">
-       em.dec.inHex
-      </code>
-      является ограничение на значение аргумента в пределах [-255 ... 255]. Если пределы превышены, функция выдаёт в результат
-      <code class="em-string">
-       ff
-      </code>
-      . Любое число в пределах преобразуется к двуразрядному шестнадцатеричному числу. Таким образом ограничение на результат лежит в пределах [
-      <code class="em-string">
-       -ff
-      </code>
-      ...
-      <code class="em-string">
-       ff
-      </code>
-      ].
-     </p>
-     <p class="em-block-arguments">
-      <code class="em-system">
-       args[
-       <code class="em-number">
-        0
-       </code>
-       ]
-      </code>
-      - число целое, десятеричное.
-      <br/>
-      <code class="em-system">
-       $result
-      </code>
-      - шестнадцатеричное двуразрядное число (текстовое значение).
-     </p>
-     <h5 class="avs-article-h5">
-      Результат работы функции:
-     </h5>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.dec.inCol
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       2147483647
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'ff'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.dec.inCol
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       214
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'd6'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.dec.inCol
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       255
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'ff'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.dec.inCol
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Operator">
-       -
-      </span>
-      <span class="Monokai-Numeric">
-       10
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '-0a'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.dec.inCol
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       256
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'ff'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.dec.inCol
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       16
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '10'
-      </span>
-     </div>
-     <a id="em_col_add">
-     </a>
-     <h4 class="avs-article-h4">
-      em.col.add
-     </h4>
-     <p class="avs-article-p">
-      Функция предназначена для изменения цвета для HTML; использует функции
-      <code class="em-folder">
-       em.hex.inDec
-      </code>
-      и
-      <code class="em-folder">
-       em.dec.inCol
-      </code>
-      .
-     </p>
-     <p class="em-block-arguments">
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        0
-       </code>
-       ]
-      </code>
-      - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
-      <br/>
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        1
-       </code>
-       ]
-      </code>
-      - значение. Шестнадцатеричный формат, двузначное число. (может быть отрицательным)
-     </p>
-     <p class="avs-article-p">
-      Функция действует следующим образом: разбивает первый аргумент на три двузначных шестнадцатеричных числа, и к каждому из чисел прибавляет второй аргумент. Если сумма превышает значение
-      <code class="em-string">
-       ff
-      </code>
-      , она приводится к
-      <code class="em-string">
-       ff
-      </code>
-      . И напротив, если сумма оказывается меньше
-      <code class="em-number">
-       0
-      </code>
-      , она приводится к
-      <code class="em-number">
-       0
-      </code>
-      . Таким образом результат работы функции лежит в пределах [
-      <code class="em-string">
-       000000
-      </code>
-      ...
-      <code class="em-string">
-       ffffff
-      </code>
-      ]
-     </p>
-     <p class="avs-article-p">
-      Это может пригодиться для плавного гашения цвета, или наоборот. Функция используется в движке игры
-      <code class="em-string">
-       "МАГИКОН"
-      </code>
-      , чтобы гасить цвета заголовков в зависимости от уровней.
-     </p>
-     <h5 class="avs-article-h5">
-      Результат работы функции:
-     </h5>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.col.add
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'ff0000'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '-44'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'bb0000'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.col.add
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       '000000'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '-44'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '000000'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.col.add
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'dd0000'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '22'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'ff2222'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.col.add
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'dd8822'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '-44'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '994400'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.col.add
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'dd8822'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '44'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'ffcc66'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.col.add
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'dd882299'
-      </span>
-      ,
-      <span class="Monokai-String">
-       '44'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ 'ffcc6699' - составляющая альфаканала не затрагивается
-      </span>
-     </div>
-     <a id="em_col_inrgb">
-     </a>
-     <h4 class="avs-article-h4">
-      em.col.inRGB
-     </h4>
-     <p class="avs-article-p">
-      Данная функция преобразует цвет, записанный в шестнадцатеричной форме, в числовой код цвета, понятный QSP; использует функцию
-      <code class="em-folder">
-       em.hex.inDec
-      </code>
-      .
-     </p>
-     <p class="em-block-arguments">
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        0
-       </code>
-       ]
-      </code>
-      - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным);
-      <br/>
-      <code class="em-system">
-       result
-      </code>
-      - числовой код цвета в формате QSP.
-     </p>
-     <p class="avs-article-p">
-      Функция является как бы надстройкой системной функции
-      <code class="em-func">
-       rgb
-      </code>
-      и работает следующим образом: шестнадцатеричный код цвета разбивается на три двузначных шестнадцатеричных числа, которые преобразуются в десятеричные числа и передаются функции
-      <code class="em-func">
-       rgb
-      </code>
-      в качестве аргументов.
-     </p>
-     <p class="avs-article-p">
-      Если в качестве аргумента указать неверное шестнадцатеричное число, функция всё равно вернёт результат, заменив неверные символы нулями. То же самое произойдёт, если указать отрицательное шестнадцатеричное число. Минус будет считаться неизвестным символом и
-      <code class="em-folder">
-       em.hex.inDec
-      </code>
-      заменит его на ноль. Последняя цифра будет отсечена.
-     </p>
-     <h5 class="avs-article-h5">
-      Результат работы функции:
-     </h5>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.col.inRGB
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'ff0000'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '-16776961'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.col.inRGB
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       '000000'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '-16777216'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.col.inRGB
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'dd0000'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '-16776995'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.col.inRGB
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'dd8822'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '-14513955'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.col.inRGB
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       'ffmm00'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '0'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.col.inRGB
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       '-0000ff'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '0'
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.col.inRGB
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-String">
-       '238c9088'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !@ '-2003792861' — альфа-канал поддерживается
-      </span>
-     </div>
-     <a id="em_col_inv">
-     </a>
-     <h4 class="avs-article-h4">
-      em.col.inv
-     </h4>
-     <p class="avs-article-p">
-      Возвращает шестнадцатеричный код цвета противоположного указанному; использует функцию
-      <code class="em-folder">
-       em.col.add
-      </code>
-      .
-     </p>
-     <p class="em-block-arguments">
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        0
-       </code>
-       ]
-      </code>
-      - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
-     </p>
-     <p class="avs-article-p">
-      Принцип работы прост. Берётся максимальное значение для цветовой составляющей, и из него вычитается соответствующее значение цветовой составляющей исходного цвета. Полученные результаты склеиваются, в результате — цвет противоположный исходному.
-     </p>
-     <h5 class="avs-article-h5">
-      Результат работы функции:
-     </h5>
-     <p class="avs-article-p">
-      В качестве результата работы функции наглядная таблица исходных цветов и противоложных им.
-     </p>
-     <p class="avs-article-p">
-     </p>
-     <div class="Monokai-Code">
-      <table class="Monokai-Table">
-       <tr>
-        <td class="Monokai-Table__Cell">
-         Исходный
-        </td>
-        <td class="Monokai-Table__Cell">
-         Противоположный
-        </td>
-       </tr>
-       <tr>
-        <td class="Monokai-Table__Cell" style="color:#ffffff;background-color:#000000;width:50%;">
-         #000000
-        </td>
-        <td class="Monokai-Table__Cell" style="color:#000000;background-color:#ffffff;width:50%;">
-         #ffffff
-        </td>
-       </tr>
-       <tr>
-        <td class="Monokai-Table__Cell" style="color:#000000;background-color:#ffffff;width:50%;">
-         #ffffff
-        </td>
-        <td class="Monokai-Table__Cell" style="color:#ffffff;background-color:#000000;width:50%;">
-         #000000
-        </td>
-       </tr>
-       <tr>
-        <td class="Monokai-Table__Cell" style="color:#000;background-color:#238C90;width:50%;">
-         #238c90
-        </td>
-        <td class="Monokai-Table__Cell" style="color:#000;background-color:#dc736f;width:50%;">
-         #dc736f
-        </td>
-       </tr>
-       <tr>
-        <td class="Monokai-Table__Cell" style="color:#000;background-color:#902B10;width:50%;">
-         #902b10
-        </td>
-        <td class="Monokai-Table__Cell" style="color:#000;background-color:#6fd4ef;width:50%;">
-         #6fd4ef
-        </td>
-       </tr>
-       <tr>
-        <td class="Monokai-Table__Cell" style="color:#000;background-color:#C7C000;width:50%;">
-         #c7c000
-        </td>
-        <td class="Monokai-Table__Cell" style="color:#000;background-color:#383fff;width:50%;">
-         #383fff
-        </td>
-       </tr>
-       <tr>
-        <td class="Monokai-Table__Cell" style="color:#000;background-color:#07C701;width:50%;">
-         #07c701
-        </td>
-        <td class="Monokai-Table__Cell" style="color:#000;background-color:#f838fe;width:50%;">
-         #f838fe
-        </td>
-       </tr>
-      </table>
-      <span class="Monokai-Comment">
-       <br/>
-       !@ альфаканал не затрагивается. Инвертируются только цвета:
-      </span>
-      <br/>
-      <br/>
-      <table class="Monokai-Table">
-       <tr>
-        <td class="Monokai-Table__Cell">
-         Исходный
-        </td>
-        <td class="Monokai-Table__Cell">
-         Противоположный
-        </td>
-       </tr>
-       <tr>
-        <td class="Monokai-Table__Cell" style="color:#000000;background-color:#c7c00084;width:50%;">
-         #c7c00084
-        </td>
-        <td class="Monokai-Table__Cell" style="color:#000000;background-color:#383fff84;width:50%;">
-         #383fff84
-        </td>
-       </tr>
-       <tr>
-        <td class="Monokai-Table__Cell" style="color:#000000;background-color:#07c7014d;width:50%;">
-         #07c7014d
-        </td>
-        <td class="Monokai-Table__Cell" style="color:#000000;background-color:#f838fe4d;width:50%;">
-         #f838fe4d
-        </td>
-       </tr>
-      </table>
-     </div>
-     <p class="avs-article-p">
-     </p>
-     <div class="avs-pages-button__left-combine">
-      <a class="avs-pages-button__link" href="../../easy.math/manual.html">
-       <div class="avs-pages-button">
-        Назад
-       </div>
-      </a>
-     </div>
-    </div>
-    <div class="e-block">
-     <div class="avs-page-stamp" id="em_subscribe">
-      <p>
-       Aleks Versus'Easy Libraries'2013-
-       <span class="subscribe-year">
-        2023
-       </span>
-      </p>
-      <p>
-       Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-
-       <span class="subscribe-year">
-        2023
-       </span>
-      </p>
-     </div>
-    </div>
-   </div>
-  </div>
-  <div class="em-stick-upper">
-   <a href="#UP" title="Вверх">
-    <img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/>
-   </a>
-  </div>
- </body>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<!-- TODO: favicon -->
+<link href="../../res/css/easy.library.css" rel="stylesheet"/></head>
+<body>
+<div class="avs-page-wrapper">
+<div class="easy-lib-page">
+<div class="e-block">
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+<a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+<h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+</a>
+<!-- Исправить ссылку -->
+<h3 class="avs-article-h3">Операции над шестнадцатеричными числами</h3>
+<a id="em_hex_indec"></a>
+<h4 class="avs-article-h4">em.hex.inDec</h4>
+<p class="avs-article-p">Функция перевода из гексаметричного числа в декаметричное. Не работает с отрицательными значениями.</p>
+<p class="avs-article-p">Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет те же ограничения на значение результата, что и прочие фукции, т.е. результат должен лежать в пределе [-2147483647 ... 2147483647] (для Q.S.P. 5.8.0).</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - шестнадцатеричное число (текстовое значение). Значения в пределе <code class="em-string">7fffffff</code>
+<br/><code class="em-system">  result</code> - полученное число
+                </p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ff'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">255</span><br/>
+<span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'22'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">34</span><br/>
+<span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'10'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">16</span><br/>
+<span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1</span><br/>
+<span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'a'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">10</span><br/>
+<span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ffaa233'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">268083763</span><br/>
+<span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ffaa23'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">16755235</span><br/>
+<span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ffaa2'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1047202</span><br/>
+<span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ffaa233451'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Invalid">-1440533423</span><br/>
+<span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ffaa23345'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Invalid">-90033339</span><br/>
+<span class="Monokai-UnFunc">@em.hex.inDec</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ffaa2334'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Invalid">-5627084</span>
+</div>
+<p class="avs-article-p">Как видно, последние три результата получились отрицательными, значит превышены пределы значений результата, а соответственно и числа, которые переводятся в десятеричную систему тоже превышают предел.
+                </p>
+<section id="em_dec_add">
+<h4 class="avs-article-h4">em.hex.add</h4>
+<p class="avs-article-p">Функция складывает два шестнадцатеричных числа.</p>
+<div class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - шестнадцатеричное число (текстовое значение).
+                    <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - шестнадцатеричное число (текстовое значение).
+                  </div>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.hex.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1a1'</span>,<span class="Monokai-String">'97a'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">'b1b'</span>
+</div>
+</section>
+<a id="em_dec_inhex"></a>
+<h4 class="avs-article-h4">em.dec.inHex</h4>
+<p class="avs-article-p">Функция перевода из декаметричного числа в гексаметричное. Не работает с отрицательными значениями.</p>
+<p class="avs-article-p">Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет ограничения на значения аргумента в пределе [-2147483647 ... 2147483647] (для Q.S.P. 5.8.0). Аргумент, превышающий предел, приводится к максимально возможному в QSP значению.</p>
+<p class="em-block-arguments">
+<code class="em-system"> args[<code class="em-number">0</code>]</code> - целое число (числовой вид). Значения в пределе 2147483647
+                    <br/><code class="em-system"> $result</code> - полученная строка
+                </p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.dec.inHex</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">2147483647</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '7fffffff'</span><br/>
+<span class="Monokai-UnFunc">@em.dec.inHex</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">214</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'd6'</span><br/>
+<span class="Monokai-UnFunc">@em.dec.inHex</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">255</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'ff'</span><br/>
+<span class="Monokai-UnFunc">@em.dec.inHex</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">10</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'a'</span><br/>
+<span class="Monokai-UnFunc">@em.dec.inHex</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">9</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '9'</span><br/>
+<span class="Monokai-UnFunc">@em.dec.inHex</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">2147483648</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '7fffffff'</span>
+</div>
+<a id="em_dec_incol"></a>
+<h4 class="avs-article-h4">em.dec.inCol</h4>
+<p class="avs-article-p">Преобразует десятеричное число в шестнадцатеричное. Отличием от функции <code class="em-folder">em.dec.inHex</code> является ограничение на значение аргумента в пределах [-255 ... 255]. Если пределы превышены, функция выдаёт в результат <code class="em-string">ff</code>. Любое число в пределах преобразуется к двуразрядному шестнадцатеричному числу. Таким образом ограничение на результат лежит в пределах [<code class="em-string">-ff</code> ... <code class="em-string">ff</code>].</p>
+<p class="em-block-arguments">
+<code class="em-system"> args[<code class="em-number">0</code>]</code> - число целое, десятеричное.
+                    <br/><code class="em-system"> $result</code> - шестнадцатеричное двуразрядное число (текстовое значение).
+                </p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.dec.inCol</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">2147483647</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'ff'</span><br/>
+<span class="Monokai-UnFunc">@em.dec.inCol</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">214</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'd6'</span><br/>
+<span class="Monokai-UnFunc">@em.dec.inCol</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">255</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'ff'</span><br/>
+<span class="Monokai-UnFunc">@em.dec.inCol</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Operator">-</span><span class="Monokai-Numeric">10</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-0a'</span><br/>
+<span class="Monokai-UnFunc">@em.dec.inCol</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">256</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'ff'</span><br/>
+<span class="Monokai-UnFunc">@em.dec.inCol</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">16</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '10'</span>
+</div>
+<a id="em_col_add"></a>
+<h4 class="avs-article-h4">em.col.add</h4>
+<p class="avs-article-p">Функция предназначена для изменения цвета для HTML; использует функции <code class="em-folder">em.hex.inDec</code> и <code class="em-folder">em.dec.inCol</code>.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
+                    <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - значение. Шестнадцатеричный формат, двузначное число. (может быть отрицательным)
+                </p>
+<p class="avs-article-p">Функция действует следующим образом: разбивает первый аргумент на три двузначных шестнадцатеричных числа, и к каждому из чисел прибавляет второй аргумент. Если сумма превышает значение <code class="em-string">ff</code>, она приводится к <code class="em-string">ff</code>. И напротив, если сумма оказывается меньше <code class="em-number">0</code>, она приводится к <code class="em-number">0</code>. Таким образом результат работы функции лежит в пределах [<code class="em-string">000000</code> ... <code class="em-string">ffffff</code>]</p>
+<p class="avs-article-p">Это может пригодиться для плавного гашения цвета, или наоборот. Функция используется в движке игры <code class="em-string">"МАГИКОН"</code>, чтобы гасить цвета заголовков в зависимости от уровней.</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.col.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ff0000'</span>,<span class="Monokai-String">'-44'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'bb0000'</span><br/>
+<span class="Monokai-UnFunc">@em.col.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'000000'</span>,<span class="Monokai-String">'-44'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '000000'</span><br/>
+<span class="Monokai-UnFunc">@em.col.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'dd0000'</span>,<span class="Monokai-String">'22'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'ff2222'</span><br/>
+<span class="Monokai-UnFunc">@em.col.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'dd8822'</span>,<span class="Monokai-String">'-44'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '994400'</span><br/>
+<span class="Monokai-UnFunc">@em.col.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'dd8822'</span>,<span class="Monokai-String">'44'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'ffcc66'</span><br/>
+<span class="Monokai-UnFunc">@em.col.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'dd882299'</span>,<span class="Monokai-String">'44'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ 'ffcc6699' - составляющая альфаканала не затрагивается</span>
+</div>
+<a id="em_col_inrgb"></a>
+<h4 class="avs-article-h4">em.col.inRGB</h4>
+<p class="avs-article-p">Данная функция преобразует цвет, записанный в шестнадцатеричной форме, в числовой код цвета, понятный QSP; использует функцию <code class="em-folder">em.hex.inDec</code>.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным);<br/>
+<code class="em-system">result</code> - числовой код цвета в формате QSP.
+                </p>
+<p class="avs-article-p">Функция является как бы надстройкой системной функции <code class="em-func">rgb</code> и работает следующим образом: шестнадцатеричный код цвета разбивается на три двузначных шестнадцатеричных числа, которые преобразуются в десятеричные числа и передаются функции <code class="em-func">rgb</code> в качестве аргументов.</p>
+<p class="avs-article-p">Если в качестве аргумента указать неверное шестнадцатеричное число, функция всё равно вернёт результат, заменив неверные символы нулями. То же самое произойдёт, если указать отрицательное шестнадцатеричное число. Минус будет считаться неизвестным символом и <code class="em-folder">em.hex.inDec</code> заменит его на ноль. Последняя цифра будет отсечена.</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.col.inRGB</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ff0000'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-16776961'</span><br/>
+<span class="Monokai-UnFunc">@em.col.inRGB</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'000000'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-16777216'</span><br/>
+<span class="Monokai-UnFunc">@em.col.inRGB</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'dd0000'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-16776995'</span><br/>
+<span class="Monokai-UnFunc">@em.col.inRGB</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'dd8822'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-14513955'</span><br/>
+<span class="Monokai-UnFunc">@em.col.inRGB</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'ffmm00'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0'</span><br/>
+<span class="Monokai-UnFunc">@em.col.inRGB</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-0000ff'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0'</span><br/>
+<span class="Monokai-UnFunc">@em.col.inRGB</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'238c9088'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-2003792861' — альфа-канал поддерживается</span>
+</div>
+<a id="em_col_inv"></a>
+<h4 class="avs-article-h4">em.col.inv</h4>
+<p class="avs-article-p">Возвращает шестнадцатеричный код цвета противоположного указанному; использует функцию <code class="em-folder">em.col.add</code>.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
+                </p>
+<p class="avs-article-p">Принцип работы прост. Берётся максимальное значение для цветовой составляющей, и из него вычитается соответствующее значение цветовой составляющей исходного цвета. Полученные результаты склеиваются, в результате — цвет противоположный исходному.</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<p class="avs-article-p">В качестве результата работы функции наглядная таблица исходных цветов и противоложных им.</p>
+<p class="avs-article-p"></p>
+<div class="Monokai-Code">
+<table class="Monokai-Table">
+<tr>
+<td class="Monokai-Table__Cell">
+                                Исходный
+                            </td>
+<td class="Monokai-Table__Cell">
+                                Противоположный
+                            </td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell" style="color:#ffffff;background-color:#000000;width:50%;">
+                                #000000
+                            </td>
+<td class="Monokai-Table__Cell" style="color:#000000;background-color:#ffffff;width:50%;">
+                                #ffffff
+                            </td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell" style="color:#000000;background-color:#ffffff;width:50%;">
+                                #ffffff
+                            </td>
+<td class="Monokai-Table__Cell" style="color:#ffffff;background-color:#000000;width:50%;">
+                                #000000
+                            </td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell" style="color:#000;background-color:#238C90;width:50%;">
+                                #238c90
+                            </td>
+<td class="Monokai-Table__Cell" style="color:#000;background-color:#dc736f;width:50%;">
+                                #dc736f
+                            </td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell" style="color:#000;background-color:#902B10;width:50%;">
+                                #902b10
+                            </td>
+<td class="Monokai-Table__Cell" style="color:#000;background-color:#6fd4ef;width:50%;">
+                                #6fd4ef
+                            </td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell" style="color:#000;background-color:#C7C000;width:50%;">
+                                #c7c000
+                            </td>
+<td class="Monokai-Table__Cell" style="color:#000;background-color:#383fff;width:50%;">
+                                #383fff
+                            </td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell" style="color:#000;background-color:#07C701;width:50%;">
+                                #07c701
+                            </td>
+<td class="Monokai-Table__Cell" style="color:#000;background-color:#f838fe;width:50%;">
+                                #f838fe
+                            </td>
+</tr>
+</table>
+<span class="Monokai-Comment"><br/>!@ альфаканал не затрагивается. Инвертируются только цвета:</span>
+<br/><br/>
+<table class="Monokai-Table">
+<tr>
+<td class="Monokai-Table__Cell">
+                                Исходный
+                            </td>
+<td class="Monokai-Table__Cell">
+                                Противоположный
+                            </td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell" style="color:#000000;background-color:#c7c00084;width:50%;">
+                                #c7c00084
+                            </td>
+<td class="Monokai-Table__Cell" style="color:#000000;background-color:#383fff84;width:50%;">
+                                #383fff84
+                            </td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell" style="color:#000000;background-color:#07c7014d;width:50%;">
+                                #07c7014d
+                            </td>
+<td class="Monokai-Table__Cell" style="color:#000000;background-color:#f838fe4d;width:50%;">
+                                #f838fe4d
+                            </td>
+</tr>
+</table>
+</div>
+<p class="avs-article-p"> </p>
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+</div>
+<div class="e-block">
+<div class="avs-page-stamp" id="em_subscribe">
+<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2023</span></p>
+<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2023</span></p>
+</div>
+</div>
+</div>
+</div><div class="em-stick-upper"><a href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/></a></div></body>
 </html>

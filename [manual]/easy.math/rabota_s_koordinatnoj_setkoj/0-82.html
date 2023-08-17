@@ -1,319 +1,68 @@
 <!DOCTYPE html>
 <html lang="ru">
- <head>
-  <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
-  <meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-  <!-- TODO: favicon -->
-  <link href="../../res/css/easy.library.css" rel="stylesheet"/>
- </head>
- <body>
-  <div class="avs-page-wrapper">
-   <div class="easy-lib-page">
-    <div class="e-block">
-     <div class="avs-pages-button__left-combine">
-      <a class="avs-pages-button__link" href="../../easy.math/manual.html">
-       <div class="avs-pages-button">
-        Назад
-       </div>
-      </a>
-     </div>
-     <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
-      <h1 class="avs-article-h1">
-       easy.math.qsp v. 3.0.0
-      </h1>
-     </a>
-     <h3 class="avs-article-h3">
-      Работа с координатной сеткой
-     </h3>
-     <a id="em_map_cell_getcoords">
-     </a>
-     <h4 class="avs-article-h4">
-      em.map.cell.getCoords
-     </h4>
-     <p class="avs-article-p">
-      Определяет координаты ячейки по текущему номеру ячейки. Эта функция пригодится при организации двумерного массива, через одномерный, или при отрисовке игровых полей заданной ширины.
-     </p>
-     <div class="em-block-arguments">
-      <code class="em-system">
-       args[
-       <code class="em-number">
-        0
-       </code>
-       ]
-      </code>
-      - текущий номер ячейки или блока
-      <code>
-       N
-      </code>
-      ;
-      <br/>
-      <code class="em-system">
-       args[
-       <code class="em-number">
-        1
-       </code>
-       ]
-      </code>
-      - ширина поля
-      <code>
-       W
-      </code>
-      ;
-      <br/>
-      <code class="em-system">
-       $args[
-       <code class="em-number">
-        2
-       </code>
-       ]
-      </code>
-      - управление:
-      <ul>
-       <li>
-        <code class="em-string">
-         [x]
-        </code>
-        - координата по оси X;
-       </li>
-       <li>
-        <code class="em-string">
-         [y]
-        </code>
-        - координата по оси Y;
-       </li>
-       <li>
-        пустое значение,
-        <code class="em-string">
-         [xy]
-        </code>
-        или
-        <code class="em-string">
-         [x][y]
-        </code>
-        - обе координаты возвращаются в виде кортежа.
-       </li>
-      </ul>
-     </div>
-     <h5 class="avs-article-h5">
-      Пример таблицы:
-     </h5>
-     <div class="Monokai-Code">
-      y/x  |  0   1   2   3
-      <br/>
-      --- -|----------------      N = x + y * W
-      <br/>
-      0|  0   1   2   3           N - номер ячейки
-      <br/>
-      |                          x - координата по горизонтали
-      <br/>
-      1|  4   5   6   7           y - координата по вертикали
-      <br/>
-      |                          W - ширина прямоугольника =Xmax+1
-      <br/>
-      2|  8   9
-      <span style="background-color:#ffffff33;">
-       10
-      </span>
-      11
-      <br/>
-      |                          y = N/W
-      <br/>
-      3|  12  13  14  15          x = N - Y * W
-     </div>
-     <h5 class="avs-article-h5">
-      Результат работы функции:
-     </h5>
-     <div class="Monokai-Code">
-      <span class="Monokai-UnFunc">
-       @em.map.cell.getCoords
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       10
-      </span>
-      ,
-      <span class="Monokai-Numeric">
-       3
-      </span>
-      <span class="Monokai-Operator">
-       +
-      </span>
-      <span class="Monokai-Numeric">
-       1
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[x]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Comment">
-       2
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.map.cell.getCoords
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       10
-      </span>
-      ,
-      <span class="Monokai-Numeric">
-       3
-      </span>
-      <span class="Monokai-Operator">
-       +
-      </span>
-      <span class="Monokai-Numeric">
-       1
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[y]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Comment">
-       2
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.map.cell.getCoords
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       10
-      </span>
-      ,
-      <span class="Monokai-Numeric">
-       3
-      </span>
-      <span class="Monokai-Operator">
-       +
-      </span>
-      <span class="Monokai-Numeric">
-       1
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Comment">
-       кортеж
-      </span>
-      <span class="Monokai-Comment">
-       (
-      </span>
-      <span class="Monokai-Comment">
-       2,2)
-      </span>
-      <br/>
-      <span class="Monokai-UnFunc">
-       @em.map.cell.getCoords
-      </span>
-      <span class="Monokai-Qbracket">
-       (
-      </span>
-      <span class="Monokai-Numeric">
-       10
-      </span>
-      ,
-      <span class="Monokai-Numeric">
-       4
-      </span>
-      ,
-      <span class="Monokai-String">
-       '[x][y]'
-      </span>
-      <span class="Monokai-Qbracket">
-       )
-      </span>
-      <span class="Monokai-Operator">
-       &amp;
-      </span>
-      <span class="Monokai-Comment">
-       !
-      </span>
-      <span class="Monokai-Comment">
-       @
-      </span>
-      <span class="Monokai-Comment">
-       кортеж
-      </span>
-      <span class="Monokai-Comment">
-       (
-      </span>
-      <span class="Monokai-Comment">
-       2,2)
-      </span>
-     </div>
-     <p class="avs-article-p">
-     </p>
-     <div class="avs-pages-button__left-combine">
-      <a class="avs-pages-button__link" href="../../easy.math/manual.html">
-       <div class="avs-pages-button">
-        Назад
-       </div>
-      </a>
-     </div>
-    </div>
-    <div class="e-block">
-     <div class="avs-page-stamp" id="em_subscribe">
-      <p>
-       Aleks Versus'Easy Libraries'2013-
-       <span class="subscribe-year">
-        2023
-       </span>
-      </p>
-      <p>
-       Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-
-       <span class="subscribe-year">
-        2023
-       </span>
-      </p>
-     </div>
-    </div>
-   </div>
-  </div>
-  <div class="em-stick-upper">
-   <a href="#UP" title="Вверх">
-    <img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/>
-   </a>
-  </div>
- </body>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<!-- TODO: favicon -->
+<link href="../../res/css/easy.library.css" rel="stylesheet"/></head>
+<body>
+<div class="avs-page-wrapper">
+<div class="easy-lib-page">
+<div class="e-block">
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+<a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+<h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+</a>
+<h3 class="avs-article-h3">Работа с координатной сеткой</h3>
+<a id="em_map_cell_getcoords"></a>
+<h4 class="avs-article-h4">em.map.cell.getCoords</h4>
+<p class="avs-article-p">Определяет координаты ячейки по текущему номеру ячейки. Эта функция пригодится при организации двумерного массива, через одномерный, или при отрисовке игровых полей заданной ширины.</p>
+<div class="em-block-arguments">
+<code class="em-system"> args[<code class="em-number">0</code>]</code> - текущий номер ячейки или блока <code>N</code>;
+                    <br/><code class="em-system"> args[<code class="em-number">1</code>]</code> - ширина поля <code>W</code>;
+                    <br/><code class="em-system">$args[<code class="em-number">2</code>]</code> - управление:
+                    <ul>
+<li><code class="em-string">[x]</code> - координата по оси X;</li>
+<li><code class="em-string">[y]</code> - координата по оси Y;</li>
+<li>пустое значение, <code class="em-string">[xy]</code> или <code class="em-string">[x][y]</code> - обе координаты возвращаются в виде кортежа.</li>
+</ul>
+</div>
+<h5 class="avs-article-h5">Пример таблицы:</h5>
+<div class="Monokai-Code">
+                    y/x  |  0   1   2   3
+                    <br/>--- -|----------------      N = x + y * W
+                    <br/>    0|  0   1   2   3           N - номер ячейки
+                    <br/>     |                          x - координата по горизонтали
+                    <br/>    1|  4   5   6   7           y - координата по вертикали
+                    <br/>     |                          W - ширина прямоугольника =Xmax+1
+                    <br/>    2|  8   9  <span style="background-color:#ffffff33;"> 10 </span> 11
+                    <br/>     |                          y = N/W
+                    <br/>    3|  12  13  14  15          x = N - Y * W
+                </div>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.map.cell.getCoords</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3</span><span class="Monokai-Operator">+</span><span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'[x]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">2</span><br/>
+<span class="Monokai-UnFunc">@em.map.cell.getCoords</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3</span><span class="Monokai-Operator">+</span><span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'[y]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">2</span><br/>
+<span class="Monokai-UnFunc">@em.map.cell.getCoords</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3</span><span class="Monokai-Operator">+</span><span class="Monokai-Numeric">1</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">кортеж </span><span class="Monokai-Comment">(</span><span class="Monokai-Comment">2,2)</span><br/>
+<span class="Monokai-UnFunc">@em.map.cell.getCoords</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">4</span>,<span class="Monokai-String">'[x][y]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">кортеж </span><span class="Monokai-Comment">(</span><span class="Monokai-Comment">2,2)</span>
+</div>
+<p class="avs-article-p"> </p>
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+</div>
+<div class="e-block">
+<div class="avs-page-stamp" id="em_subscribe">
+<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2023</span></p>
+<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2023</span></p>
+</div>
+</div>
+</div>
+</div><div class="em-stick-upper"><a href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/></a></div></body>
 </html>

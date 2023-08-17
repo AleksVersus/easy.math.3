@@ -1,2392 +1,507 @@
 <!DOCTYPE html>
 <html lang="ru">
- <head>
-  <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
-  <meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-  <!-- TODO: favicon -->
-  <link href="../../res/css/easy.library.css" rel="stylesheet"/>
- </head>
- <body>
-  <div class="avs-page-wrapper" id="page-body">
-   <div class="easy-lib-page">
-    <div class="e-block">
-     <div class="avs-pages-button__wrapper">
-      <a class="avs-pages-button__link" href="../../easy.math/manual.html">
-       <div class="avs-pages-button">
-        Назад
-       </div>
-      </a>
-      <a class="avs-pages-button__link" href="http://aleksversus.narod.ru/index/easy_math_3/0-80">
-       <div class="avs-pages-button">
-        Операции с массивами. Страница 2
-       </div>
-      </a>
-     </div>
-     <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
-      <h1 class="avs-article-h1">
-       easy.math.qsp v. 3.0.0
-      </h1>
-     </a>
-     <h3 class="avs-article-h3">
-      Операции над массивами. Страница 1
-     </h3>
-     <section id="em_arrays_page_1">
-      <!-- Страница первая -->
-      <a id="em_arr_print">
-      </a>
-      <h4 class="avs-article-h4">
-       em.arr.print
-      </h4>
-      <p class="avs-article-p">
-       Иногда необходимо просмотреть содержимое массива, или записать его в удобном виде в переменную. Для этого приходится вводить цикличиские конструкции непосредственно в код. Данная функция предназначена для того, чтобы избавить Вас от необходимости строить такие конструкции каждый раз. Достаточно указать аргументом имя массива и функция вернёт в результате столбец со значениями.
-      </p>
-      <div class="em-block-arguments">
-       <p class="avs-article-p">
-        <code class="em-system">
-         $args[
-         <code class="em-number">
-          0
-         </code>
-         ]
-        </code>
-        - имя массива, содержимое которого необходимо просмотреть.
-        <br/>
-        <code class="em-system">
-         $args[
-         <code class="em-number">
-          1
-         </code>
-         ]
-        </code>
-        - управляющая конструкция. Можно использовать три команды в любых комбинациях:
-       </p>
-       <ul>
-        <li>
-         <code class="em-string">
-          [only result]
-         </code>
-         - выводит только содержимое массива, не показывая его названия и номера ячеек.
-        </li>
-        <li>
-         <code class="em-string">
-          [trim]
-         </code>
-         - отсекает прилегающие пробелы и символы табуляции при выводе значения элемента массива.
-        </li>
-        <li>
-         <code class="em-string">
-          [not last]
-         </code>
-         - исключает добавление разделителя за последним выводимым значением.
-        </li>
-       </ul>
-       <p class="avs-article-p">
-        <code class="em-system">
-         $args[
-         <code class="em-number">
-          2
-         </code>
-         ]
-        </code>
-        - этим параметром задаётся разделитель между выводимыми значениями. По умолчанию, т.е. когда параметр не указан или равен пустому значению, между выводимыми значениями вставляется символ перевода строки. Чтобы результаты выводились без вставки разделителя, необходимо указать ключ
-        <code class="em-string">
-         /se
-        </code>
-        .
-        <br/>
-        <code class="em-system">
-         args[
-         <code class="em-number">
-          3
-         </code>
-         ]
-        </code>
-        - начало вывода. Номер элемента, с которого начинается вывод значений (включительно).
-        <br/>
-        <code class="em-system">
-         args[
-         <code class="em-number">
-          4
-         </code>
-         ]
-        </code>
-        - окончание вывода. Номер элемента, до которого следует продолжать вывод значений (включительно).
-       </p>
-      </div>
-      <h5 class="avs-article-h5">
-       Примеры вызова функции:
-      </h5>
-      <div class="Monokai-Code">
-       <span class="Monokai-Operator">
-        *pl
-       </span>
-       <span class="Monokai-UnFunc">
-        @em.arr.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         'mass'
-        </span>
-        )
-       </span>
-       <br/>
-       <span class="Monokai-Comment">
-        - выведет на экран числовые значения массива 'mass'
-       </span>
-       <br/>
-       <span class="Monokai-Operator">
-        *pl
-       </span>
-       <span class="Monokai-UnFunc">
-        @em.arr.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         '$mass'
-        </span>
-        )
-       </span>
-       <br/>
-       <span class="Monokai-Comment">
-        - выведет на экран текстовые значения массива '$mass'
-       </span>
-       <br/>
-       <span class="Monokai-Operator">
-        *pl
-       </span>
-       <span class="Monokai-UnFunc">
-        @em.arr.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         '$mass'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '[only Result]'
-        </span>
-        )
-       </span>
-       <br/>
-       <span class="Monokai-Comment">
-        - выведет на экран только содержимое массива '$mass'
-       </span>
-      </div>
-      <h5 class="avs-article-h5">
-       Результаты вызова функции:
-      </h5>
-      <h6 class="avs-article-h6">
-       Заготовленный массив:
-      </h6>
-      <div class="Monokai-Code">
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        'нулевая ячейка'
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        ' первая ячейка '
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        ' вторая ячейка'
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        ''
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-       </span>
-       <span class="Monokai-Numeric">
-        1
-       </span>
-       ,
-       <span class="Monokai-Numeric">
-        2
-       </span>
-       ,
-       <span class="Monokai-Numeric">
-        3
-       </span>
-       ,
-       <span class="Monokai-Numeric">
-        5
-       </span>
-       ,
-       <span class="Monokai-Numeric">
-        6
-       </span>
-       <span class="Monokai-Qbracket">
-        )
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Operator">
-        =
-       </span>
-       <span class="Monokai-String">
-        ' пятая ячейка'
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        ''
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Operator">
-        =
-       </span>
-       <span class="Monokai-String">
-        'седьмая ячейка'
-       </span>
-      </div>
-      <h6 class="avs-article-h6">
-       Вывод массива:
-      </h6>
-      <div class="Monokai-Code">
-       <span class="Monokai-UnFunc">
-        @em.arr.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         '$a'
-        </span>
-        )
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <br/>
-       <span class="Monokai-String" style="color:#8dd6a5;">
-        "$a[0]='нулевая ячейка'
-        <br/>
-        $a[1]='   первая ячейка   '
-        <br/>
-        $a[2]=' вторая ячейка'
-        <br/>
-        $a[3]=''
-        <br/>
-        $a[4]='(1,2,3,5,6)'
-        <br/>
-        $a[5]='   пятая ячейка'
-        <br/>
-        $a[6]=''
-        <br/>
-        $a[7]='седьмая ячейка'
-        <br/>
-        "
-       </span>
-      </div>
-      <h6 class="avs-article-h6">
-       Выводим исключительно значения массива:
-      </h6>
-      <div class="Monokai-Code">
-       <span class="Monokai-UnFunc">
-        @em.arr.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         '$a'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '[only result]'
-        </span>
-        )
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <br/>
-       <span class="Monokai-String" style="color:#8dd6a5;">
-        "нулевая ячейка
-        <br/>
-        первая ячейка
-        <br/>
-        вторая ячейка
-        <br/>
-        <br/>
-        (1,2,3,5,6)
-        <br/>
-        пятая ячейка
-        <br/>
-        <br/>
-        седьмая ячейка
-        <br/>
-        "
-       </span>
-      </div>
-      <h6 class="avs-article-h6">
-       Выводим значения массива с отсечением прилегающих пробелов в каждом значении:
-      </h6>
-      <div class="Monokai-Code">
-       <span class="Monokai-UnFunc">
-        @em.arr.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         '$a'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '[trim]'
-        </span>
-        )
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <br/>
-       <span class="Monokai-String" style="color:#8dd6a5;">
-        "$a[0]='нулевая ячейка'
-        <br/>
-        $a[1]='первая ячейка'
-        <br/>
-        $a[2]='вторая ячейка'
-        <br/>
-        $a[3]=''
-        <br/>
-        $a[4]='(1,2,3,5,6)'
-        <br/>
-        $a[5]='пятая ячейка'
-        <br/>
-        $a[6]=''
-        <br/>
-        $a[7]='седьмая ячейка'
-        <br/>
-        "
-       </span>
-      </div>
-      <h6 class="avs-article-h6">
-       Выводим исключительно значения массива, со второго по пятый элемент, включительно, с отсечением прилегающих пробелов в каждом значении; в качестве разделителя используем вертикальную черту:
-      </h6>
-      <div class="Monokai-Code">
-       <span class="Monokai-UnFunc">
-        @em.arr.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         '$a'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '[trim] [only result]'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '|'
-        </span>
-        ,
-        <span class="Monokai-Numeric">
-         2
-        </span>
-        ,
-        <span class="Monokai-Numeric">
-         5
-        </span>
-        )
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <br/>
-       <span class="Monokai-String" style="color:#8dd6a5;">
-        "вторая ячейка||(1,2,3,5,6)|пятая ячейка|"
-       </span>
-      </div>
-      <h6 class="avs-article-h6">
-       Выводим исключительно значения массива, со второго по пятый элемент, включительно, с отсечением прилегающих пробелов в каждом значении; в качестве разделителя используем вертикальную черту; последний разделитель опускаем:
-      </h6>
-      <div class="Monokai-Code">
-       <span class="Monokai-UnFunc">
-        @em.arr.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         '$a'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '[trim] [only result] [not last]'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '|'
-        </span>
-        ,
-        <span class="Monokai-Numeric">
-         2
-        </span>
-        ,
-        <span class="Monokai-Numeric">
-         5
-        </span>
-        )
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <br/>
-       <span class="Monokai-String" style="color:#8dd6a5;">
-        "вторая ячейка||(1,2,3,5,6)|пятая ячейка"
-       </span>
-      </div>
-      <a id="em_fewarrs_print">
-      </a>
-      <h4 class="avs-article-h4">
-       em.fewArrs.print
-      </h4>
-      <p class="avs-article-p">
-       Данная функция позволяет выводить на экран содержимое сразу нескольких массивов, для сравнения например.
-      </p>
-      <p class="avs-article-p">
-       По умолчанию функция выводит содержимое всех массивов в виде таблицы, однако вывод таблицей можно отключить, использовав в последнем аргументе управляющую конструкцию
-       <code class="em-string">
-        [no table]
-       </code>
-       . Последним аргументом может быть как имя массива так и управляющая конструкция. Функция считает управляющей конструкцией всякую строку в последнем аргументе, в которой между непробельными символами находится пробельный (или другой недопустимый знак). Прилегающие пробелы в остальных аргументах уничтожаются, поэтому вы можете записать имя массива в аргументе скажем так
-       <code class="em-string">
-        " $mass "
-       </code>
-       (апострофы по правилам QSP для записи текстовых значений). Если же вы допустите в имени массива ошибку, функция известит вас об этом.
-      </p>
-      <div class="em-block-arguments">
-       <p class="avs-article-p">
-        <code class="em-system">
-         $args[
-         <code class="em-number">
-          0 ... 8
-         </code>
-         ]
-        </code>
-        - имена массивов, содержимое которых необходимо просмотреть.
-       </p>
-       <p class="avs-article-p">
-        <code class="em-system">
-         $args[
-         <code class="em-number">
-          8 ... 1
-         </code>
-         ]
-        </code>
-        - управляющая конструкция. Записывается последним аргументом. Можно использовать следующие конструкции в любых комбинациях:
-       </p>
-       <ul>
-        <li>
-         <code class="em-string">
-          [only result]
-         </code>
-         - выводит только содержимое массивов, не показывая их названий и номеров ячеек. Таблица при этом на экран выводиться не будет.
-        </li>
-        <li>
-         <code class="em-string">
-          [no table]
-         </code>
-         - выводит массивы на экран, но не облекает их в таблицу.
-        </li>
-       </ul>
-      </div>
-      <h5 class="avs-article-h5">
-       Результаты вызова функции:
-      </h5>
-      <h6 class="avs-article-h6">
-       Заготовленные массивы:
-      </h6>
-      <div class="Monokai-Code">
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        'нулевая ячейка'
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        ' первая ячейка '
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        ' вторая ячейка'
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        ''
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        'четвёртая'' ячейка'
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        " пятая яче'йка"
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        ''
-       </span>
-       <br/>
-       $a
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        'седьмая ячейка'
-       </span>
-       <br/>
-       <br/>
-       $b
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        'нулевая ячейка'
-       </span>
-       <br/>
-       $b
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        ' первая ячейка '
-       </span>
-       <br/>
-       $b
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        ' вторая ячейка'
-       </span>
-       <br/>
-       $b
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        '3'
-       </span>
-       <br/>
-       $b
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-       </span>
-       <span class="Monokai-Numeric">
-        3
-       </span>
-       ,
-       <span class="Monokai-Numeric">
-        5
-       </span>
-       ,
-       <span class="Monokai-Numeric">
-        6
-       </span>
-       ,
-       <span class="Monokai-String">
-        'string'
-       </span>
-       ,
-       <span class="Monokai-Numeric">
-        6
-       </span>
-       <span class="Monokai-Qbracket">
-        )
-       </span>
-       <br/>
-       $b
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        ' пятая ячейка'
-       </span>
-       <br/>
-       $b
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        '6'
-       </span>
-       <br/>
-       $b
-       <span class="Monokai-Qbracket">
-        []
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        '7'
-       </span>
-      </div>
-      <h6 class="avs-article-h6">
-       Вывод двух массивов:
-      </h6>
-      <div class="Monokai-Code">
-       <span class="Monokai-UnFunc">
-        @em.fewArrs.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         '$a'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '$b'
-        </span>
-        )
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <table class="Monokai-String" style="color:#8dd6a5;border:1px solid;border-spacing:0.3em;">
-        <tr>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          #
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          $a
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          $b
-         </td>
-        </tr>
-        <tr>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          0
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          нулевая ячейка
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          нулевая ячейка
-         </td>
-        </tr>
-        <tr>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          1
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          первая ячейка
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          первая ячейка
-         </td>
-        </tr>
-        <tr>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          2
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          вторая ячейка
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          вторая ячейка
-         </td>
-        </tr>
-        <tr>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          3
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          3
-         </td>
-        </tr>
-        <tr>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          4
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          четвёртая' ячейка
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          (3,5,6,string,6)
-         </td>
-        </tr>
-        <tr>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          5
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          пятая яче'йка
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          пятая ячейка
-         </td>
-        </tr>
-        <tr>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          6
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          6
-         </td>
-        </tr>
-        <tr>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          7
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          седьмая ячейка
-         </td>
-         <td style="border:1px solid;border-spacing:0.3em;">
-          7
-         </td>
-        </tr>
-       </table>
-      </div>
-      <h6 class="avs-article-h6">
-       Вывод двух массивов, только значения:
-      </h6>
-      <div class="Monokai-Code">
-       <span class="Monokai-UnFunc">
-        @em.fewArrs.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         '$a'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '$b'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '[only result]'
-        </span>
-        )
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <br/>
-       <span class="Monokai-String" style="color:#8dd6a5;">
-        "нулевая ячейка  нулевая ячейка
-        <br/>
-        первая ячейка       первая ячейка
-        <br/>
-        вторая ячейка   вторая ячейка
-        <br/>
-        3
-        <br/>
-        четвёртая' ячейка   (3,5,6,string,6)
-        <br/>
-        пятая яче'йка       пятая ячейка
-        <br/>
-        6
-        <br/>
-        седьмая ячейка  7"
-       </span>
-      </div>
-      <h6 class="avs-article-h6">
-       Вывод двух массивов, без таблицы:
-      </h6>
-      <div class="Monokai-Code">
-       <span class="Monokai-UnFunc">
-        @em.fewArrs.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         '$a'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '$b'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '[no table]'
-        </span>
-        )
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <br/>
-       <span class="Monokai-String" style="color:#8dd6a5;">
-        "$a[0]='нулевая ячейка'  &amp;   $b[0]='нулевая ячейка'
-        <br/>
-        $a[1]='   первая ячейка   ' &amp;   $b[1]='   первая ячейка   '
-        <br/>
-        $a[2]=' вторая ячейка'  &amp;   $b[2]=' вторая ячейка'
-        <br/>
-        $a[3]=''    &amp;   $b[3]='3'
-        <br/>
-        $a[4]='четвёртая'' ячейка'  &amp;   $b[4]='(3,5,6,string,6)'
-        <br/>
-        $a[5]='   пятая яче''йка'   &amp;   $b[5]='   пятая ячейка'
-        <br/>
-        $a[6]=''    &amp;   $b[6]='6'
-        <br/>
-        $a[7]='седьмая ячейка'  &amp;   $b[7]='7'"
-       </span>
-      </div>
-      <h6 class="avs-article-h6">
-       Вывод двух пустых массивов:
-      </h6>
-      <div class="Monokai-Code">
-       <span class="Monokai-UnFunc">
-        @em.fewArrs.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         '$c'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '$d'
-        </span>
-        )
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <br/>
-       <span class="Monokai-String" style="color:#8dd6a5;">
-        "All your massives are empty."
-       </span>
-      </div>
-      <h6 class="avs-article-h6">
-       Ошибочное написание имени массива:
-      </h6>
-      <div class="Monokai-Code">
-       <span class="Monokai-UnFunc">
-        @em.fewArrs.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         '$a'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '$b'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '[no table]'
-        </span>
-        ,
-        <span class="Monokai-String">
-         '$f'
-        </span>
-        )
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <br/>
-       <span class="Monokai-String" style="color:#8dd6a5;">
-        "Error: Array's name is not correct. ARGS[2]: '[no table]'"
-       </span>
-      </div>
-      <a id="em_arr_insert">
-      </a>
-      <h4 class="avs-article-h4">
-       em.arr.insert
-      </h4>
-      <p class="avs-article-p">
-       Функция для вставки элемента в массив со сдвигом вправо.
-      </p>
-      <p class="em-block-arguments">
-       <code class="em-system">
-        $args[
-        <code class="em-number">
-         0
-        </code>
-        ]
-       </code>
-       - название массива.
-       <br/>
-       <code class="em-system">
-        $args[
-        <code class="em-number">
-         1
-        </code>
-        ]
-       </code>
-       - значение, которое хотим присвоить элементу.
-       <br/>
-       <code class="em-system">
-        args[
-        <code class="em-number">
-         2
-        </code>
-        ]
-       </code>
-       - индекс элемента, куда хотим поместить новое значение.
-      </p>
-      <h5 class="avs-article-h5">
-       Результат работы функции:
-      </h5>
-      <h6 class="avs-article-h6">
-       Заготовленный массив:
-      </h6>
-      <div class="Monokai-Code">
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         0
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        574
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         1
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        668
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         2
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        413
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         3
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        765
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         4
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        478
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         5
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        205
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         6
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        701
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         7
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        272
-       </span>
-      </div>
-      <h6 class="avs-article-h6">
-       Вставка по числовому индексу:
-      </h6>
-      <div class="Monokai-Code">
-       <span class="Monokai-UnFunc">
-        @em.arr.insert
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         'mass'
-        </span>
-        ,
-        <span class="Monokai-Numeric">
-         6
-        </span>
-        ,
-        <span class="Monokai-Numeric">
-         4
-        </span>
-        )
-       </span>
-       <br/>
-       <span class="Monokai-Comment">
-        ! теперь массив содержит следующий набор значений:
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         0
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        574
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         1
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        668
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         2
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        413
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         3
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        765
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         4
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        6
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         5
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        478
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         6
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        205
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         7
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        701
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         8
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        272
-       </span>
-      </div>
-      <a id="em_arr_clear">
-      </a>
-      <h4 class="avs-article-h4">
-       em.arr.clear
-      </h4>
-      <p class="avs-article-p">
-       Функция для удаления из массива всех элементов с указанным значением.
-      </p>
-      <p class="em-block-arguments">
-       <code class="em-system">
-        $args[
-        <code class="em-number">
-         0
-        </code>
-        ]
-       </code>
-       - название массива.
-       <br/>
-       <code class="em-system">
-        $args[
-        <code class="em-number">
-         1
-        </code>
-        ]
-       </code>
-       - значение, которое хотим удалить из массива.
-      </p>
-      <h5 class="avs-article-h5">
-       Результат работы функции:
-      </h5>
-      <h6 class="avs-article-h6">
-       Заготовленный массив:
-      </h6>
-      <div class="Monokai-Code">
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         0
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        1
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         1
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        2
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         2
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        3
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         3
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        1
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         4
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        2
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         5
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        3
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         6
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        1
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         7
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        2
-       </span>
-      </div>
-      <h6 class="avs-article-h6">
-       Удаляем все двойки:
-      </h6>
-      <div class="Monokai-Code">
-       <span class="Monokai-UnFunc">
-        @em.arr.clear
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-        <span class="Monokai-String">
-         'mass'
-        </span>
-        ,
-        <span class="Monokai-Numeric">
-         2
-        </span>
-        )
-       </span>
-       <br/>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         0
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        1
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         1
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        3
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         2
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        1
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         3
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        3
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         4
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        1
-       </span>
-      </div>
-      <a id="em_arr_chtype">
-      </a>
-      <h4 class="avs-article-h4">
-       em.arr.chType
-      </h4>
-      <p class="avs-article-p">
-       Процедура изменяет тип содержимого массива. То есть меняется тип каждой отдельной ячейки.
-      </p>
-      <div class="em-block-arguments">
-       <code class="em-system">
-        $args[
-        <code class="em-number">
-         0
-        </code>
-        ]
-       </code>
-       - название массива, для которого требуется поменять тип. Можно указывать как с символом
-       <code class="em-string">
-        '$'
-       </code>
-       , так и без него перед именем.
-       <br/>
-       <code class="em-system">
-        $args[
-        <code class="em-number">
-         1
-        </code>
-        ]
-       </code>
-       - управление:
-       <ul style="margin-top:0.25em;margin-bottom:0.25em;">
-        <li>
-         <code class="em-string">
-          [string]
-         </code>
-         - все ячейки массива приводятся к строковому типу;
-        </li>
-        <li>
-         <code class="em-string">
-          [number]
-         </code>
-         - все ячейки массива приводятся к числовому типу;
-        </li>
-        <li>
-         <code class="em-string">
-          [reverse]
-         </code>
-         - тип ячеек меняется на противоположный (не знаю, кому это может понадобиться);
-        </li>
-        <li>
-         <code class="em-string">
-          [hard]
-         </code>
-         - режим, расширяющий работу режима
-         <code class="em-string">
-          [string]
-         </code>
-         , при этом ячейкам, тип которых определяется как
-         <code class="em-string">
-          'empty'
-         </code>
-         (см. функцию
-         <code class="em-folder">
-          em.var.getType
-         </code>
-         ), принудительно присваивается строковое значение
-         <code class="em-string">
-          '0'
-         </code>
-         .
-        </li>
-       </ul>
-       <code class="em-system">
-        $args[
-        <code class="em-number">
-         2
-        </code>
-        ]
-       </code>
-       - результирующий массив. Если не указано, результат помещается в исходный массив.
-      </div>
-      <h5 class="avs-article-h5">
-       Результаты работы функции:
-      </h5>
-      <p class="avs-article-p">
-       Пример заполнения массивов, вызова функции и вывода на экран получившихся значений:
-      </p>
-      <div class="Monokai-Code">
-       $mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         0
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        '123'
-       </span>
-       <br/>
-       $mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         1
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        '456'
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         2
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        789
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         3
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        901
-       </span>
-       <br/>
-       $mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         4
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        'stringAbout'
-       </span>
-       <br/>
-       $mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         5
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        '555'
-       </span>
-       <br/>
-       $mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         6
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-       </span>
-       <span class="Monokai-Numeric">
-        123
-       </span>
-       ,
-       <span class="Monokai-Numeric">
-        56
-       </span>
-       ,
-       <span class="Monokai-Numeric">
-        23
-       </span>
-       ,
-       <span class="Monokai-Numeric">
-        9
-       </span>
-       ,
-       <span class="Monokai-Numeric">
-        137
-       </span>
-       <span class="Monokai-Qbracket">
-        )
-       </span>
-       <br/>
-       $mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         7
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        ''
-       </span>
-       <br/>
-       $mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         8
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-String">
-        '123'
-       </span>
-       <br/>
-       mass
-       <span class="Monokai-Qbracket">
-        [
-        <span class="Monokai-Numeric">
-         9
-        </span>
-        ]
-       </span>
-       <span class="Monokai-Assign">
-        =
-       </span>
-       <span class="Monokai-Numeric">
-        4569
-       </span>
-       <br/>
-       <br/>
-       <span class="Monokai-UnFunc">
-        @em.arr.chType
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-       </span>
-       <span class="Monokai-String">
-        'mass'
-       </span>
-       ,
-       <span class="Monokai-String">
-        '[string]'
-       </span>
-       ,
-       <span class="Monokai-String">
-        'mass_str'
-       </span>
-       <span class="Monokai-Qbracket">
-        )
-       </span>
-       <br/>
-       <span class="Monokai-UnFunc">
-        @em.arr.chType
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-       </span>
-       <span class="Monokai-String">
-        'mass'
-       </span>
-       ,
-       <span class="Monokai-String">
-        '[number]'
-       </span>
-       ,
-       <span class="Monokai-String">
-        'mass_num'
-       </span>
-       <span class="Monokai-Qbracket">
-        )
-       </span>
-       <br/>
-       <span class="Monokai-UnFunc">
-        @em.arr.chType
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-       </span>
-       <span class="Monokai-String">
-        'mass'
-       </span>
-       ,
-       <span class="Monokai-String">
-        '[reverse]'
-       </span>
-       ,
-       <span class="Monokai-String">
-        'mass_rev'
-       </span>
-       <span class="Monokai-Qbracket">
-        )
-       </span>
-       <br/>
-       <span class="Monokai-UnFunc">
-        @em.arr.chType
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-       </span>
-       <span class="Monokai-String">
-        'mass'
-       </span>
-       ,
-       <span class="Monokai-String">
-        '[string][hard]'
-       </span>
-       ,
-       <span class="Monokai-String">
-        'mass_strh'
-       </span>
-       <span class="Monokai-Qbracket">
-        )
-       </span>
-       <br/>
-       <span class="Monokai-UnFunc">
-        @em.arr.chType
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-       </span>
-       <span class="Monokai-String">
-        'mass'
-       </span>
-       ,
-       <span class="Monokai-String">
-        '[reverse][hard]'
-       </span>
-       ,
-       <span class="Monokai-String">
-        'mass_revh'
-       </span>
-       <span class="Monokai-Qbracket">
-        )
-       </span>
-       <br/>
-       <span class="Monokai-UnFunc">
-        @em.fewArrs.print
-       </span>
-       <span class="Monokai-Qbracket">
-        (
-       </span>
-       <span class="Monokai-String">
-        '$mass'
-       </span>
-       ,
-       <span class="Monokai-String">
-        'mass'
-       </span>
-       ,
-       <span class="Monokai-String">
-        '$mass_str'
-       </span>
-       ,
-       <span class="Monokai-String">
-        'mass_num'
-       </span>
-       ,
-       <span class="Monokai-String">
-        '$mass_rev'
-       </span>
-       ,
-       <span class="Monokai-String">
-        'mass_rev'
-       </span>
-       ,
-       <span class="Monokai-String">
-        '$mass_strh'
-       </span>
-       ,
-       <span class="Monokai-String">
-        '$mass_revh'
-       </span>
-       ,
-       <span class="Monokai-String">
-        'mass_revh'
-       </span>
-       <span class="Monokai-Qbracket">
-        )
-       </span>
-      </div>
-      <p class="avs-article-p">
-       А вот так будет выглядеть содержимое этих массивов:
-      </p>
-      <div class="Monokai-Code__wrapper">
-       <div class="Monokai-Code">
-        <table class="Monokai-Table">
-         <tr>
-          <td class="Monokai-Table__Cell">
-           #
-          </td>
-          <td class="Monokai-Table__Cell">
-           $mass
-          </td>
-          <td class="Monokai-Table__Cell">
-           mass
-          </td>
-          <td class="Monokai-Table__Cell">
-           $mass_str
-          </td>
-          <td class="Monokai-Table__Cell">
-           mass_num
-          </td>
-          <td class="Monokai-Table__Cell">
-           $mass_rev
-          </td>
-          <td class="Monokai-Table__Cell">
-           mass_rev
-          </td>
-          <td class="Monokai-Table__Cell">
-           $mass_strh
-          </td>
-          <td class="Monokai-Table__Cell">
-           $mass_revh
-          </td>
-          <td class="Monokai-Table__Cell">
-           mass_revh
-          </td>
-         </tr>
-         <tr>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           123
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           123
-          </td>
-          <td class="Monokai-Table__Cell">
-           123
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           123
-          </td>
-          <td class="Monokai-Table__Cell">
-           123
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           123
-          </td>
-         </tr>
-         <tr>
-          <td class="Monokai-Table__Cell">
-           1
-          </td>
-          <td class="Monokai-Table__Cell">
-           456
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           456
-          </td>
-          <td class="Monokai-Table__Cell">
-           456
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           456
-          </td>
-          <td class="Monokai-Table__Cell">
-           456
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           456
-          </td>
-         </tr>
-         <tr>
-          <td class="Monokai-Table__Cell">
-           2
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           789
-          </td>
-          <td class="Monokai-Table__Cell">
-           789
-          </td>
-          <td class="Monokai-Table__Cell">
-           789
-          </td>
-          <td class="Monokai-Table__Cell">
-           789
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           789
-          </td>
-          <td class="Monokai-Table__Cell">
-           789
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-         </tr>
-         <tr>
-          <td class="Monokai-Table__Cell">
-           3
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           901
-          </td>
-          <td class="Monokai-Table__Cell">
-           901
-          </td>
-          <td class="Monokai-Table__Cell">
-           901
-          </td>
-          <td class="Monokai-Table__Cell">
-           901
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           901
-          </td>
-          <td class="Monokai-Table__Cell">
-           901
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-         </tr>
-         <tr>
-          <td class="Monokai-Table__Cell">
-           4
-          </td>
-          <td class="Monokai-Table__Cell">
-           stringAbout
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           stringAbout
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           stringAbout
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-         </tr>
-         <tr>
-          <td class="Monokai-Table__Cell">
-           5
-          </td>
-          <td class="Monokai-Table__Cell">
-           555
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           555
-          </td>
-          <td class="Monokai-Table__Cell">
-           555
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           555
-          </td>
-          <td class="Monokai-Table__Cell">
-           555
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           555
-          </td>
-         </tr>
-         <tr>
-          <td class="Monokai-Table__Cell">
-           6
-          </td>
-          <td class="Monokai-Table__Cell">
-           (123,56,23,9,137)
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           (123,56,23,9,137)
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           (123,56,23,9,137)
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-         </tr>
-         <tr>
-          <td class="Monokai-Table__Cell">
-           7
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-         </tr>
-         <tr>
-          <td class="Monokai-Table__Cell">
-           8
-          </td>
-          <td class="Monokai-Table__Cell">
-           123
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           123
-          </td>
-          <td class="Monokai-Table__Cell">
-           123
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           123
-          </td>
-          <td class="Monokai-Table__Cell">
-           123
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           123
-          </td>
-         </tr>
-         <tr>
-          <td class="Monokai-Table__Cell">
-           9
-          </td>
-          <td class="Monokai-Table__Cell">
-          </td>
-          <td class="Monokai-Table__Cell">
-           4569
-          </td>
-          <td class="Monokai-Table__Cell">
-           4569
-          </td>
-          <td class="Monokai-Table__Cell">
-           4569
-          </td>
-          <td class="Monokai-Table__Cell">
-           4569
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-          <td class="Monokai-Table__Cell">
-           4569
-          </td>
-          <td class="Monokai-Table__Cell">
-           4569
-          </td>
-          <td class="Monokai-Table__Cell">
-           0
-          </td>
-         </tr>
-        </table>
-       </div>
-      </div>
-      <p class="avs-article-p">
-       Поскольку функция фактически перебирает массив с созданием нового, она может заметно подвешивать игру при очень больших размерах массива: 7,5 сеекунд для массива из 100000 элементов. В 5.7.0 данная функция требовала 17 секунд на стотысячный массив.
-      </p>
-      <hr/>
-      <!-- конец первой страницы -->
-     </section>
-     <div class="avs-pages-button__wrapper">
-      <a class="avs-pages-button__link" href="../../easy.math/manual.html">
-       <div class="avs-pages-button">
-        Назад
-       </div>
-      </a>
-      <a class="avs-pages-button__link" href="http://aleksversus.narod.ru/index/easy_math_3/0-80">
-       <div class="avs-pages-button">
-        Операции с массивами. Страница 2
-       </div>
-      </a>
-     </div>
-    </div>
-    <div class="e-block">
-     <div class="avs-page-stamp" id="em_subscribe">
-      <p>
-       Aleks Versus'Easy Libraries'2013-
-       <span class="subscribe-year">
-        2023
-       </span>
-      </p>
-      <p>
-       Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-
-       <span class="subscribe-year">
-        2023
-       </span>
-      </p>
-     </div>
-    </div>
-   </div>
-  </div>
-  <div class="em-stick-upper">
-   <a href="#UP" title="Вверх">
-    <img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/>
-   </a>
-  </div>
- </body>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<!-- TODO: favicon -->
+<link href="../../res/css/easy.library.css" rel="stylesheet"/></head>
+<body>
+<div class="avs-page-wrapper" id="page-body">
+<div class="easy-lib-page">
+<div class="e-block">
+<div class="avs-pages-button__wrapper">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+<a class="avs-pages-button__link" href="http://aleksversus.narod.ru/index/easy_math_3/0-80">
+<div class="avs-pages-button">Операции с массивами. Страница 2</div>
+</a>
+</div><a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+<h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+</a>
+<h3 class="avs-article-h3">Операции над массивами. Страница 1</h3>
+<section id="em_arrays_page_1">
+<!-- Страница первая -->
+<a id="em_arr_print"></a>
+<h4 class="avs-article-h4">em.arr.print</h4>
+<p class="avs-article-p">Иногда необходимо просмотреть содержимое массива, или записать его в удобном виде в переменную. Для этого приходится вводить цикличиские конструкции непосредственно в код. Данная функция предназначена для того, чтобы избавить Вас от необходимости строить такие конструкции каждый раз. Достаточно указать аргументом имя массива и функция вернёт в результате столбец со значениями.</p>
+<div class="em-block-arguments">
+<p class="avs-article-p">
+<code class="em-system">$args[<code class="em-number">0</code>]</code>- имя массива, содержимое которого необходимо просмотреть.
+              <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - управляющая конструкция. Можно использовать три команды в любых комбинациях:
+            </p>
+<ul>
+<li>
+<code class="em-string">[only result]</code> - выводит только содержимое массива, не показывая его названия и номера ячеек.
+              </li>
+<li>
+<code class="em-string">[trim]</code> - отсекает прилегающие пробелы и символы табуляции при выводе значения элемента массива.
+              </li>
+<li>
+<code class="em-string">[not last]</code> - исключает добавление разделителя за последним выводимым значением.
+              </li>
+</ul>
+<p class="avs-article-p">
+<code class="em-system">$args[<code class="em-number">2</code>]</code> - этим параметром задаётся разделитель между выводимыми значениями. По умолчанию, т.е. когда параметр не указан или равен пустому значению, между выводимыми значениями вставляется символ перевода строки. Чтобы результаты выводились без вставки разделителя, необходимо указать ключ <code class="em-string">/se</code>.
+              <br/><code class="em-system"> args[<code class="em-number">3</code>]</code> - начало вывода. Номер элемента, с которого начинается вывод значений (включительно).
+              <br/><code class="em-system"> args[<code class="em-number">4</code>]</code> - окончание вывода. Номер элемента, до которого следует продолжать вывод значений (включительно).
+            </p>
+</div>
+<h5 class="avs-article-h5">Примеры вызова функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-Operator">*pl</span> <span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>)</span><br/>
+                <span class="Monokai-Comment"> - выведет на экран числовые значения массива 'mass'</span><br/>
+<span class="Monokai-Operator">*pl</span> <span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$mass'</span>)</span><br/>
+                <span class="Monokai-Comment"> - выведет на экран текстовые значения массива '$mass'</span><br/>
+<span class="Monokai-Operator">*pl</span> <span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'[only Result]'</span>)</span><br/>
+                <span class="Monokai-Comment"> - выведет на экран только содержимое массива '$mass'</span>
+</div>
+<h5 class="avs-article-h5">Результаты вызова функции:</h5>
+<h6 class="avs-article-h6">Заготовленный массив:</h6>
+<div class="Monokai-Code">
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'нулевая ячейка'</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">' первая ячейка '</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">' вторая ячейка'</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">1</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">5</span>,<span class="Monokai-Numeric">6</span><span class="Monokai-Qbracket">)</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Operator">=</span><span class="Monokai-String">' пятая ячейка'</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Operator">=</span><span class="Monokai-String">'седьмая ячейка'</span>
+</div>
+<h6 class="avs-article-h6">Вывод массива:</h6>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>)</span><span class="Monokai-Assign">=</span><br/>
+<span class="Monokai-String" style="color:#8dd6a5;">
+              "$a[0]='нулевая ячейка'<br/>
+              $a[1]='   первая ячейка   '<br/>
+              $a[2]=' вторая ячейка'<br/>
+              $a[3]=''<br/>
+              $a[4]='(1,2,3,5,6)'<br/>
+              $a[5]='   пятая ячейка'<br/>
+              $a[6]=''<br/>
+              $a[7]='седьмая ячейка'<br/>
+              "</span>
+</div>
+<h6 class="avs-article-h6">Выводим исключительно значения массива:</h6>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[only result]'</span>)</span><span class="Monokai-Assign">=</span><br/>
+<span class="Monokai-String" style="color:#8dd6a5;">"нулевая ячейка<br/>
+                 первая ячейка   <br/>
+                вторая ячейка<br/>
+<br/>
+              (1,2,3,5,6)<br/>
+                 пятая ячейка<br/>
+<br/>
+              седьмая ячейка<br/>
+              "</span>
+</div>
+<h6 class="avs-article-h6">Выводим значения массива с отсечением прилегающих пробелов в каждом значении:</h6>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim]'</span>)</span><span class="Monokai-Assign">=</span><br/>
+<span class="Monokai-String" style="color:#8dd6a5;">
+              "$a[0]='нулевая ячейка'<br/>
+              $a[1]='первая ячейка'<br/>
+              $a[2]='вторая ячейка'<br/>
+              $a[3]=''<br/>
+              $a[4]='(1,2,3,5,6)'<br/>
+              $a[5]='пятая ячейка'<br/>
+              $a[6]=''<br/>
+              $a[7]='седьмая ячейка'<br/>
+              "
+            </span>
+</div>
+<h6 class="avs-article-h6">Выводим исключительно значения массива, со второго по пятый элемент, включительно, с отсечением прилегающих пробелов в каждом значении; в качестве разделителя используем вертикальную черту:</h6>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim] [only result]'</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span>
+<br/><span class="Monokai-String" style="color:#8dd6a5;">"вторая ячейка||(1,2,3,5,6)|пятая ячейка|"</span>
+</div>
+<h6 class="avs-article-h6">Выводим исключительно значения массива, со второго по пятый элемент, включительно, с отсечением прилегающих пробелов в каждом значении; в качестве разделителя используем вертикальную черту; последний разделитель опускаем:</h6>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim] [only result] [not last]'</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span>
+<br/><span class="Monokai-String" style="color:#8dd6a5;">"вторая ячейка||(1,2,3,5,6)|пятая ячейка"</span>
+</div>
+<a id="em_fewarrs_print"></a>
+<h4 class="avs-article-h4">em.fewArrs.print</h4>
+<p class="avs-article-p">Данная функция позволяет выводить на экран содержимое сразу нескольких массивов, для сравнения например.</p>
+<p class="avs-article-p">По умолчанию функция выводит содержимое всех массивов в виде таблицы, однако вывод таблицей можно отключить, использовав в последнем аргументе управляющую конструкцию <code class="em-string">[no table]</code>. Последним аргументом может быть как имя массива так и управляющая конструкция. Функция считает управляющей конструкцией всякую строку в последнем аргументе, в которой между непробельными символами находится пробельный (или другой недопустимый знак). Прилегающие пробелы в остальных аргументах уничтожаются, поэтому вы можете записать имя массива в аргументе скажем так <code class="em-string">" $mass "</code> (апострофы по правилам QSP для записи текстовых значений). Если же вы допустите в имени массива ошибку, функция известит вас об этом.</p>
+<div class="em-block-arguments">
+<p class="avs-article-p"><code class="em-system">$args[<code class="em-number">0 ... 8</code>]</code>- имена массивов, содержимое которых необходимо просмотреть.</p>
+<p class="avs-article-p"><code class="em-system">$args[<code class="em-number">8 ... 1</code>]</code> - управляющая конструкция. Записывается последним аргументом. Можно использовать следующие конструкции в любых комбинациях:</p>
+<ul>
+<li>
+<code class="em-string">[only result]</code> - выводит только содержимое массивов, не показывая их названий и номеров ячеек. Таблица при этом на экран выводиться не будет.
+              </li>
+<li>
+<code class="em-string">[no table]</code> - выводит массивы на экран, но не облекает их в таблицу.
+              </li>
+</ul>
+</div>
+<h5 class="avs-article-h5">Результаты вызова функции:</h5>
+<h6 class="avs-article-h6">Заготовленные массивы:</h6>
+<div class="Monokai-Code">
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'нулевая ячейка'</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">' первая ячейка '</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">' вторая ячейка'</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'четвёртая'' ячейка'</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">" пятая яче'йка"</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span><br/>
+            $a<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'седьмая ячейка'</span><br/>
+<br/>
+            $b<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'нулевая ячейка'</span><br/>
+            $b<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">' первая ячейка '</span><br/>
+            $b<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">' вторая ячейка'</span><br/>
+            $b<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'3'</span><br/>
+            $b<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">5</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-String">'string'</span>,<span class="Monokai-Numeric">6</span><span class="Monokai-Qbracket">)</span><br/>
+            $b<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">' пятая ячейка'</span><br/>
+            $b<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'6'</span><br/>
+            $b<span class="Monokai-Qbracket">[]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'7'</span>
+</div>
+<h6 class="avs-article-h6">Вывод двух массивов:</h6>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.fewArrs.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>)</span><span class="Monokai-Assign">=</span>
+<table class="Monokai-String" style="color:#8dd6a5;border:1px solid;border-spacing:0.3em;">
+<tr>
+<td style="border:1px solid;border-spacing:0.3em;">#</td>
+<td style="border:1px solid;border-spacing:0.3em;">$a</td>
+<td style="border:1px solid;border-spacing:0.3em;">$b</td>
+</tr>
+<tr>
+<td style="border:1px solid;border-spacing:0.3em;">0</td>
+<td style="border:1px solid;border-spacing:0.3em;">нулевая ячейка</td>
+<td style="border:1px solid;border-spacing:0.3em;">нулевая ячейка</td>
+</tr>
+<tr>
+<td style="border:1px solid;border-spacing:0.3em;">1</td>
+<td style="border:1px solid;border-spacing:0.3em;">   первая ячейка   </td>
+<td style="border:1px solid;border-spacing:0.3em;">   первая ячейка   </td>
+</tr>
+<tr>
+<td style="border:1px solid;border-spacing:0.3em;">2</td>
+<td style="border:1px solid;border-spacing:0.3em;">    вторая ячейка</td>
+<td style="border:1px solid;border-spacing:0.3em;">  вторая ячейка</td>
+</tr>
+<tr>
+<td style="border:1px solid;border-spacing:0.3em;">3</td>
+<td style="border:1px solid;border-spacing:0.3em;"> </td>
+<td style="border:1px solid;border-spacing:0.3em;">3</td>
+</tr>
+<tr>
+<td style="border:1px solid;border-spacing:0.3em;">4</td>
+<td style="border:1px solid;border-spacing:0.3em;">четвёртая' ячейка</td>
+<td style="border:1px solid;border-spacing:0.3em;">(3,5,6,string,6)</td>
+</tr>
+<tr>
+<td style="border:1px solid;border-spacing:0.3em;">5</td>
+<td style="border:1px solid;border-spacing:0.3em;">   пятая яче'йка</td>
+<td style="border:1px solid;border-spacing:0.3em;">   пятая ячейка</td>
+</tr>
+<tr>
+<td style="border:1px solid;border-spacing:0.3em;">6</td>
+<td style="border:1px solid;border-spacing:0.3em;"> </td>
+<td style="border:1px solid;border-spacing:0.3em;">6</td>
+</tr>
+<tr>
+<td style="border:1px solid;border-spacing:0.3em;">7</td>
+<td style="border:1px solid;border-spacing:0.3em;">седьмая ячейка</td>
+<td style="border:1px solid;border-spacing:0.3em;">7</td>
+</tr>
+</table>
+</div>
+<h6 class="avs-article-h6">Вывод двух массивов, только значения:</h6>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.fewArrs.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>,<span class="Monokai-String">'[only result]'</span>)</span><span class="Monokai-Assign">=</span><br/>
+<span class="Monokai-String" style="color:#8dd6a5;">
+              "нулевая ячейка  нулевая ячейка<br/>
+                 первая ячейка       первая ячейка   <br/>
+               вторая ячейка   вторая ячейка<br/>
+                  3<br/>
+              четвёртая' ячейка   (3,5,6,string,6)<br/>
+                 пятая яче'йка       пятая ячейка<br/>
+                  6<br/>
+              седьмая ячейка  7"
+            </span>
+</div>
+<h6 class="avs-article-h6">Вывод двух массивов, без таблицы:</h6>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.fewArrs.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>,<span class="Monokai-String">'[no table]'</span>)</span><span class="Monokai-Assign">=</span><br/>
+<span class="Monokai-String" style="color:#8dd6a5;">
+              "$a[0]='нулевая ячейка'  &amp;   $b[0]='нулевая ячейка'<br/>
+              $a[1]='   первая ячейка   ' &amp;   $b[1]='   первая ячейка   '<br/>
+              $a[2]=' вторая ячейка'  &amp;   $b[2]=' вторая ячейка'<br/>
+              $a[3]=''    &amp;   $b[3]='3'<br/>
+              $a[4]='четвёртая'' ячейка'  &amp;   $b[4]='(3,5,6,string,6)'<br/>
+              $a[5]='   пятая яче''йка'   &amp;   $b[5]='   пятая ячейка'<br/>
+              $a[6]=''    &amp;   $b[6]='6'<br/>
+              $a[7]='седьмая ячейка'  &amp;   $b[7]='7'"
+            </span>
+</div>
+<h6 class="avs-article-h6">Вывод двух пустых массивов:</h6>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.fewArrs.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$c'</span>,<span class="Monokai-String">'$d'</span>)</span><span class="Monokai-Assign">=</span><br/>
+<span class="Monokai-String" style="color:#8dd6a5;">"All your massives are empty."</span>
+</div>
+<h6 class="avs-article-h6">Ошибочное написание имени массива:</h6>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.fewArrs.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>,<span class="Monokai-String">'[no table]'</span>,<span class="Monokai-String">'$f'</span>)</span><span class="Monokai-Assign">=</span><br/>
+<span class="Monokai-String" style="color:#8dd6a5;">"Error: Array's name is not correct. ARGS[2]: '[no table]'"</span>
+</div>
+<a id="em_arr_insert"></a>
+<h4 class="avs-article-h4">em.arr.insert</h4>
+<p class="avs-article-p">Функция для вставки элемента в массив со сдвигом вправо.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - название массива.
+            <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - значение, которое хотим присвоить элементу.
+            <br/><code class="em-system">args[<code class="em-number">2</code>]</code> - индекс элемента, куда хотим поместить новое значение.
+          </p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<h6 class="avs-article-h6">Заготовленный массив:</h6>
+<div class="Monokai-Code">
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">574</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">668</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">413</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">765</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">478</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">205</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">701</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">272</span>
+</div>
+<h6 class="avs-article-h6">Вставка по числовому индексу:</h6>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.arr.insert</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">4</span>)</span><br/>
+<span class="Monokai-Comment">! теперь массив содержит следующий набор значений:</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">574</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">668</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">413</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">765</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">6</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">478</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">205</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">701</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">272</span>
+</div>
+<a id="em_arr_clear"></a>
+<h4 class="avs-article-h4">em.arr.clear</h4>
+<p class="avs-article-p">Функция для удаления из массива всех элементов с указанным значением.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - название массива.
+            <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - значение, которое хотим удалить из массива.
+          </p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<h6 class="avs-article-h6">Заготовленный массив:</h6>
+<div class="Monokai-Code">
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span>
+</div>
+<h6 class="avs-article-h6">Удаляем все двойки:</h6>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.arr.clear</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">2</span>)</span><br/>
+<br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span>
+</div>
+<a id="em_arr_chtype"></a>
+<h4 class="avs-article-h4">em.arr.chType</h4>
+<p class="avs-article-p">Процедура изменяет тип содержимого массива. То есть меняется тип каждой отдельной ячейки.</p>
+<div class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - название массива, для которого требуется поменять тип. Можно указывать как с символом <code class="em-string">'$'</code>, так и без него перед именем.
+            <br/> <code class="em-system">$args[<code class="em-number">1</code>]</code> - управление:
+            <ul style="margin-top:0.25em;margin-bottom:0.25em;">
+<li><code class="em-string">[string]</code> - все ячейки массива приводятся к строковому типу;</li>
+<li><code class="em-string">[number]</code> - все ячейки массива приводятся к числовому типу;</li>
+<li><code class="em-string">[reverse]</code> - тип ячеек меняется на противоположный (не знаю, кому это может понадобиться);</li>
+<li><code class="em-string">[hard]</code> - режим, расширяющий работу режима <code class="em-string">[string]</code>, при этом ячейкам, тип которых определяется как <code class="em-string">'empty'</code> (см. функцию <code class="em-folder">em.var.getType</code>), принудительно присваивается строковое значение <code class="em-string">'0'</code>.</li>
+</ul>
+<code class="em-system">$args[<code class="em-number">2</code>]</code> - результирующий массив. Если не указано, результат помещается в исходный массив.
+          </div>
+<h5 class="avs-article-h5">Результаты работы функции:</h5>
+<p class="avs-article-p">Пример заполнения массивов, вызова функции и вывода на экран получившихся значений:</p>
+<div class="Monokai-Code">
+            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'123'</span> <br/>
+            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'456'</span> <br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">789</span> <br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">901</span> <br/>
+            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'stringAbout'</span><br/>
+            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'555'</span><br/>
+            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">123</span>,<span class="Monokai-Numeric">56</span>,<span class="Monokai-Numeric">23</span>,<span class="Monokai-Numeric">9</span>,<span class="Monokai-Numeric">137</span><span class="Monokai-Qbracket">)</span> <br/>
+            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span> <br/>
+            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'123'</span><br/>
+            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4569</span><br/>
+<br/>
+<span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[string]'</span>,<span class="Monokai-String">'mass_str'</span><span class="Monokai-Qbracket">)</span><br/>
+<span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[number]'</span>,<span class="Monokai-String">'mass_num'</span><span class="Monokai-Qbracket">)</span><br/>
+<span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[reverse]'</span>,<span class="Monokai-String">'mass_rev'</span><span class="Monokai-Qbracket">)</span><br/>
+<span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[string][hard]'</span>,<span class="Monokai-String">'mass_strh'</span><span class="Monokai-Qbracket">)</span><br/>
+<span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[reverse][hard]'</span>,<span class="Monokai-String">'mass_revh'</span><span class="Monokai-Qbracket">)</span><br/>
+<span class="Monokai-UnFunc">@em.fewArrs.print</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'$mass_str'</span>,<span class="Monokai-String">'mass_num'</span>,<span class="Monokai-String">'$mass_rev'</span>,<span class="Monokai-String">'mass_rev'</span>,<span class="Monokai-String">'$mass_strh'</span>,<span class="Monokai-String">'$mass_revh'</span>,<span class="Monokai-String">'mass_revh'</span><span class="Monokai-Qbracket">)</span>
+</div>
+<p class="avs-article-p">А вот так будет выглядеть содержимое этих массивов:</p>
+<div class="Monokai-Code__wrapper">
+<div class="Monokai-Code">
+<table class="Monokai-Table">
+<tr>
+<td class="Monokai-Table__Cell">#</td>
+<td class="Monokai-Table__Cell">$mass</td>
+<td class="Monokai-Table__Cell">mass</td>
+<td class="Monokai-Table__Cell">$mass_str</td>
+<td class="Monokai-Table__Cell">mass_num</td>
+<td class="Monokai-Table__Cell">$mass_rev</td>
+<td class="Monokai-Table__Cell">mass_rev</td>
+<td class="Monokai-Table__Cell">$mass_strh</td>
+<td class="Monokai-Table__Cell">$mass_revh</td>
+<td class="Monokai-Table__Cell">mass_revh</td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">123</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">123</td>
+<td class="Monokai-Table__Cell">123</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">123</td>
+<td class="Monokai-Table__Cell">123</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">123</td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell">1</td>
+<td class="Monokai-Table__Cell">456</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">456</td>
+<td class="Monokai-Table__Cell">456</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">456</td>
+<td class="Monokai-Table__Cell">456</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">456</td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell">2</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">789</td>
+<td class="Monokai-Table__Cell">789</td>
+<td class="Monokai-Table__Cell">789</td>
+<td class="Monokai-Table__Cell">789</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">789</td>
+<td class="Monokai-Table__Cell">789</td>
+<td class="Monokai-Table__Cell">0</td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell">3</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">901</td>
+<td class="Monokai-Table__Cell">901</td>
+<td class="Monokai-Table__Cell">901</td>
+<td class="Monokai-Table__Cell">901</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">901</td>
+<td class="Monokai-Table__Cell">901</td>
+<td class="Monokai-Table__Cell">0</td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell">4</td>
+<td class="Monokai-Table__Cell">stringAbout</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">stringAbout</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">stringAbout</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">0</td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell">5</td>
+<td class="Monokai-Table__Cell">555</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">555</td>
+<td class="Monokai-Table__Cell">555</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">555</td>
+<td class="Monokai-Table__Cell">555</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">555</td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell">6</td>
+<td class="Monokai-Table__Cell">(123,56,23,9,137)</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">(123,56,23,9,137)</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">(123,56,23,9,137)</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">0</td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell">7</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">0</td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell">8</td>
+<td class="Monokai-Table__Cell">123</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">123</td>
+<td class="Monokai-Table__Cell">123</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">123</td>
+<td class="Monokai-Table__Cell">123</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">123</td>
+</tr>
+<tr>
+<td class="Monokai-Table__Cell">9</td>
+<td class="Monokai-Table__Cell"> </td>
+<td class="Monokai-Table__Cell">4569</td>
+<td class="Monokai-Table__Cell">4569</td>
+<td class="Monokai-Table__Cell">4569</td>
+<td class="Monokai-Table__Cell">4569</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">4569</td>
+<td class="Monokai-Table__Cell">4569</td>
+<td class="Monokai-Table__Cell">0</td>
+</tr>
+</table>
+</div>
+</div>
+<p class="avs-article-p">Поскольку функция фактически перебирает массив с созданием нового, она может заметно подвешивать игру при очень больших размерах массива: 7,5 сеекунд для массива из 100000 элементов. В 5.7.0 данная функция требовала 17 секунд на стотысячный массив.</p>
+<hr/>
+<!-- конец первой страницы -->
+</section>
+<div class="avs-pages-button__wrapper">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+<a class="avs-pages-button__link" href="http://aleksversus.narod.ru/index/easy_math_3/0-80">
+<div class="avs-pages-button">Операции с массивами. Страница 2</div>
+</a>
+</div>
+</div>
+<div class="e-block">
+<div class="avs-page-stamp" id="em_subscribe">
+<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2023</span></p>
+<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2023</span></p>
+</div>
+</div>
+</div>
+</div><div class="em-stick-upper"><a href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/></a></div></body>
 </html>
