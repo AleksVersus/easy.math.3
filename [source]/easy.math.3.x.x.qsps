@@ -1,35 +1,44 @@
 QSP-Game стартовая локация для теста библиотеки easy.math.
 # !easy.math!
 if $args[0]="":
+	!@ включаем обработчик строки ввода:
+	$usercom[] = 'em.uc'
+	!@ отключаем распознавание html:
+	usehtml=0
+	!@ устанавливаем моноширинный текст для удобства тестов
+	$fname = "Consolas"
+	!@ отключаем ненужные окна
 	showobjs 0
 	showstat 0
 	showacts 0
-	$fname="Consolas"
-	usehtml=0
-	$usercom='em.uc'	
-	"easy.math v 3.0.0 для QSP 5.8.0"
-	"
-	Репозиторий с исходниками библиотеки:
 
-	*	https://github.com/AleksVersus/easy.math
+"Easy Math"
+"Библиотека математических и вспомогательных функций для QSP"
+"
+Репозиторий с исходниками библиотеки:
 
-	По всем вопросам и предложениям обращаться:
+*	https://github.com/AleksVersus/easy.math.3
 
-	*	aleksversus@mail.ru
-	*	https://vk.com/id40090736
+По всем вопросам и предложениям обращаться:
 
-	Заходите на мой сайт:
+*	aleksversus@mail.ru
+*	https://vk.com/id40090736
 
-	*	aleksversus.narod.ru
-	
-	Обучающие видео по программированию на QSP:
-	
-	*	https://www.youtube.com/channel/UCwX8RW2B9yTUFdlivtCGAgA
+Заходите на мой сайт:
 
-	Любую функцию можно опробовать прямо здесь, введя её в поле ввода.
+*	aleksversus.narod.ru
 
-	Для получения списка команд, введите команду 'help' в поле ввода.
-	"
+Поддержите проект, подписавшись на мой бусти:
+
+* https://boosty.to/aleksversus
+
+Обучающие видео по программированию на QSP:
+
+*	https://www.youtube.com/channel/UCwX8RW2B9yTUFdlivtCGAgA
+
+Любую функцию можно опробовать прямо здесь, введя её в поле ввода.
+
+Для получения списка команд, введите `em help` в строку ввода."
 elseif $args[0]='version':
 	result=3000
 end
