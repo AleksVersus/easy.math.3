@@ -3,37 +3,57 @@ $args[0] - первое число (сколько угодно длинное),
 $args[1] - второе число (сколько угодно длинное), можно  args[1] (ограниченное значение).
 !@pp:if(em_byte_add):include
 # em.byte.add
-!@ инициализация аргументов и приведение к единой длине:
-local $term, max_len
-if $args[0]='': $args[0]=$str(args[0]) else $args[0] = $args[0]	& !@ первое слагаемое
-if $args[1]='': $args[1]=$str(args[1]) else $args[1] = $args[1]	& !@ второе слагаемое
-max_len=max(len($args[0]),len($args[1]))
-$term[0]=@em.zero(max_len-len($args[0]))+$args[0]
-$term[1]=@em.zero(max_len-len($args[1]))+$args[1]
-loop local last_byte,run=0,1 while run:
-	$result=''
-	last_byte=0
-	loop local i,res_byte=max_len,0 while i>0 step i-=1:
-		!@ цикл выполняем, пока счётчик не достигнет нуля
-		!@ складываем две цифры на разряде
-		res_byte=val($mid($term[0],i,1))+val($mid($term[1],i,1))+last_byte
-		!@ вычисляем переполнение
-		last_byte=res_byte/10
-		!@ вычисляем полученную цифру на текущем разряде
-		res_byte=res_byte mod 10
-		!@ записываем полученную цифру в результат
-		$result=$str(res_byte)+$result
+!@ x + (99999 - y + 1) - 100000
+!@ получаем слагаемые
+if $args[0]='': $args[0]=$str(args[0]) else $args[0] = $args[0]
+if $args[1]='': $args[1]=$str(args[1]) else $args[1] = $args[1]
+local $x, $y = $args[0], $args[1]	& !@ локальные переменные для слагаемых
+!@ получаем длину слагаемого с максимальной длиной (число разрядов)
+local max_len_ = max(len($x), len($y))
+if no (strcomp($x, '\d+') and strcomp($y, '\d+')): $result = 'Not a Number' & exit
+!@ если число разрядов не кратно девяти, делаем его кратным девяти
+local digital_ = iif(max_len_ mod 9 = 0, max_len_, (max_len_ / 9 + 1) * 9)
+!@ локальные переменные для суммы и байта переполнения
+local $sum_, overflow_byte_
+loop local run_ = 1 while run_:
+	!@ дополняем недостающие разряды
+	$x = @em.zero(digital_ - len($x)) + $x
+	$y = @em.zero(digital_ - len($y)) + $y
+	!@ переназначаем сумму и байт переполнения
+	$sum_, overflow_byte_ = '', 0
+	!@ теперь с помощью цикла производим вычисления
+	loop local i = digital_ while i > 0 step i -= 9:
+		!@ складываем два девятизначных числа
+		$sum_['9'] = $str(val($mid($x, i-9+1, 9)) + val($mid($y, i-9+1, 9)) + overflow_byte_)
+		!@ максимальное число от сложения может быть 2 000 000 000
+		!@ это значит, что может случиться переполнение по последнему байту
+		if len($sum_['9'])>9:
+			overflow_byte_ = val($mid($sum_['9'], 1, 1))
+			$sum_['9'] = $mid($sum_['9'], 2)
+		else:
+			overflow_byte_ = 0
+		end
+		$sum_ = $sum_['9'] + $sum_
 	end
-	if last_byte>0:
-		!@ если после всех итерраций осталось число в переполнении
-		!@ новым первым слагаемым оказывается полученный результат
-		$term[0]=$result
-		!@ новым вторым слагаемым оказывается переполнение
-		$term[1]=@em.zero(max_len-len($str(last_byte)))+$str(last_byte)
-	else
-		run=0	& !@ прерываем внешний цикл
+	if overflow_byte_ > 0:
+		!@ когда цикл завершён, может остаться значение в байте переполнения.
+		!@ в этом случае нам снова нужно сложить два слагаемых, одно из которых
+		!@ байт переполнения
+		$x = $sum_	& !@ здесь сумма по идее имеет длину digital_
+		$y = @em.zero(digital_ - len($str(overflow_byte_))) + $str(overflow_byte_)
+	elseif val($mid($sum_, 1, len($sum_) - max_len_)) > 0:
+		!@ так же, поскольку мы обрабатываем числа фиксированной длины,
+		!@ нас не устроит, если эти числа изменят свою длину, а значит
+		!@ нам снова нужно сложить два слагаемых. Теперь мы отрезаем от суммы
+		!@ накрученные сверху разряды, делая их одним из слагаемых
+		$x = $mid($sum_, len($sum_) - max_len_ + 1)
+		$y = $mid($sum_, 1, len($sum_) - max_len_)
+	else:
+		!@ если ни один случай не сыграл, прерываем внешний цикл
+		run_ = 0
 	end
 end
+$result = @em.zero(max_len_ - len($sum_)) + $sum_
 --- em.byte.add ---------------------------------
 !@pp:endif
 
@@ -44,6 +64,6 @@ end
 !@pp:endif
 
 @em.byte.add(998765,273)	& !@ '999038'
-@em.byte.add('9987Y5','-273')	& !@ '998978'
+@em.byte.add('9987Y5','-273')	& !@ 'Not a Number'
 @em.byte.add('999999','6273')	& !@ '006273'
 @em.byte.add('998705','5773')	& !@ '004479'
