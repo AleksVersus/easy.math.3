@@ -10,7 +10,7 @@ if $args[1]='': $args[1]=$str(args[1]) else $args[1] = $args[1]
 local $x, $y = $args[0], $args[1]	& !@ локальные переменные для слагаемых
 !@ получаем длину слагаемого с максимальной длиной (число разрядов)
 local max_len_ = max(len($x), len($y))
-if no (strcomp($x, '\d+') and strcomp($y, '\d+')): $result = 'Not a Number' & exit
+if no (strcomp($x, '\d+') and strcomp($y, '\d+')): $result = '[not a number]' & exit
 !@ если число разрядов не кратно девяти, делаем его кратным девяти
 local digital_ = iif(max_len_ mod 9 = 0, max_len_, (max_len_ / 9 + 1) * 9)
 !@ локальные переменные для суммы и байта переполнения
@@ -64,6 +64,6 @@ $result = @em.zero(max_len_ - len($sum_)) + $sum_
 !@pp:endif
 
 @em.byte.add(998765,273)	& !@ '999038'
-@em.byte.add('9987Y5','-273')	& !@ 'Not a Number'
+@em.byte.add('9987Y5','-273')	& !@ '[not a number]'
 @em.byte.add('999999','6273')	& !@ '006273'
 @em.byte.add('998705','5773')	& !@ '004479'

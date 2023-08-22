@@ -7,7 +7,7 @@ $args[1]=$lcase($args[1])
 !@ em.byte.add
 if instr($args[0],'em.byte.add')<>0 or $args[0]='':
 $functions[]='em.byte.add'
-$example['em.byte.add']="999038998978006273004479"
+$example['em.byte.add']="999038[not a number]006273004479"
 end
 !@ em.byte.dev
 if instr($args[0],'em.byte.dev')<>0 or $args[0]='':
