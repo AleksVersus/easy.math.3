@@ -4,8 +4,12 @@ $args[1] - набор символов, который должен повтор
 !@pp:if(em_zero):include
 # em.zero
 if $args[1]='': $args[1]='0'
-loop while args[0]>0 step args[0]-=1:
-	$result+=$args[1]
+if $args[1]='0' and args[0]<=32:
+	$result = $mid('00000000000000000000000000000000', 1, args[0])
+else:
+	loop while args[0]>0 step args[0]-=1:
+		$result+=$args[1]
+	end
 end
 --- em.zero ---------------------------------
 !@pp:endif
