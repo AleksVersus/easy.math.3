@@ -7,10 +7,10 @@ $args[1] - второе число (сколько угодно длинное),
 !@ получаем слагаемые
 if $args[0]='': $args[0]=$str(args[0]) else $args[0] = $args[0]
 if $args[1]='': $args[1]=$str(args[1]) else $args[1] = $args[1]
+if no (strcomp($args[0], '\d+') and strcomp($args[1], '\d+')): $result = '[not a number]' & exit
 local $x, $y = $args[0], $args[1]	& !@ локальные переменные для слагаемых
 !@ получаем длину слагаемого с максимальной длиной (число разрядов)
 local max_len_ = max(len($x), len($y))
-if no (strcomp($x, '\d+') and strcomp($y, '\d+')): $result = '[not a number]' & exit
 !@ если число разрядов не кратно девяти, делаем его кратным девяти
 local digital_ = iif(max_len_ mod 9 = 0, max_len_, (max_len_ / 9 + 1) * 9)
 !@ локальные переменные для суммы и байта переполнения
