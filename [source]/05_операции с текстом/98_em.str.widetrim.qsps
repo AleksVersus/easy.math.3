@@ -51,3 +51,29 @@ $text="
 вторая строка 2
 
 третья строка"
+
+аналогичная, только более быстрая функция. Не имеет настроек. Просто чистит строки от преформатирования
+
+$args[0] - текст
+!@ !@pp:if(em_str_wt):include
+!@ # em.str.wt
+!@ local $nr_ = '
+!@ '
+!@ local run_, $not_trim_, $trim_ = 1, '', ''
+!@ loop while run_:
+!@ 	$not_trim_ = $strfind($args[0], '(?m:^.*$)')
+!@ 	$trim_ = $strfind($not_trim_, '^(.*?)[\s\r\n]+$', 1)
+!@ 	$trim_ = iif($trim_ = '', $trim($not_trim_), $trim($trim_))
+!@ 	$args[0] = $mid($args[0], len($not_trim_)+2)
+!@ 	*pl "[<<$args[0]>>]"
+!@ 	$result += $trim_
+!@ 	*pl "[<<$result>>]"
+!@ 	wait 1000
+!@ 	if $args[0]='':
+!@ 		run_ = 0
+!@ 	else:
+!@ 		$result += $nr_
+!@ 	end
+!@ end
+!@ --- em.str.wt ---------------------------------
+!@ !@pp:endif

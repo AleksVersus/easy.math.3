@@ -10,7 +10,6 @@
 			"files": [{"path":"D:\\my\\GameDev\\QuestSoftPlayer\\games\\+releases+\\+lib+\\launcher.em\\launcher.em.qsps"}]
 		}
 	],
-	"converter": "D:\\my\\GameDev\\QuestSoftPlayer\\QSP 580 QG 400b\\txt2gam.exe",
 	"player": "D:\\my\\GameDev\\QuestSoftPlayer\\QSP 580 QG 400b\\qspgui.exe",
 	"save_txt2gam": "True",
 	"start": "D:\\my\\GameDev\\QuestSoftPlayer\\games\\+releases+\\+lib+\\launcher.em\\launcher.em.qsp"
