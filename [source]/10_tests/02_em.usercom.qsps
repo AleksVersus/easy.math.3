@@ -1,77 +1,84 @@
 QSP-Game Локация предназначена для быстрого теста библиотеки. Монтируется безусловно.
 # em.uc
-local $em_test_parse, $nr
-$nr='
+if $args[0] = '' and instr($user_text, 'em ') = 1:
+	local $user_text_ = $mid($user_text, 4)
+	local $em_test_parse_, $nr_
+	$nr_ = '
 '
-local $commandline=$lcase($trim($user_text))
+	local $cmdline_ = $lcase($trim($user_text_))
 
-if instr($commandline,' ')<>0:
-	if loc('em.str.inArr'):
-		@em.str.inArr($commandline,'$em_test_parse',' ','[notspace][strip][lcase]')
-	else:
-		msg "Error. Function 'em.str.inArr' is not exist! Some commands shoudn't work."
-	end
-end
-if $commandline = 'help':
-	*pl & *pl "logs — выводит содержимое массива '$log'. В этот массив можно сохранять сообщения при отладке модуля."
-	*pl & *pl "sqrt(N) — выводит результат вычисления квадратного корня из числа N."
-	*pl & *pl "gen id — генерирует уникальный идентификатор типа UUID четвёртой версии."
-	*pl & *pl "gen pass — генерирует парольную фразу из шестнадцати случайных символов (буквы латинского алфавита, цифры, !@#$)."
-	*pl & *pl "gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS> — генерирует массив с именем <ARRAY_NAME> из <NUMBER_of_ELEMENTS> элементов."
-	*pl & *pl "autotest — запускает на выполнение автотесты библиотеки для проверки её работоспособности. Внимание!!! Автотесты нужны для отладки самой библиотеки, или для проверки корректности её функций перед окончательной сборкой. Из окончательной сборки автотесты можно удалить."
-	*pl "Для теста отдельной функции, можно указать её название как аргумент команде autotest. Например: `autotest em.str.thin`."
-	*pl & *pl "Любая иная строчка будет воспринята, как код QSP на выполнение. Таким образом вы можете выполнить любую строчку кода QSP, просто введя её в строке ввода."
-elseif $commandline='logs':
-	if loc('em.arr.print'):
-		*pl @em.arr.print('$log','[only result]')
-	else:
-		msg "Error. Function 'em.arr.print' is not exist! Print log by cycle:"
-		loop local i=0 while i<arrsize('$log') step i+=1:
-			*pl $log[i]
+	if instr($cmdline_,' ') <> 0:
+		if loc('em.str.inArr'):
+			@em.str.inArr($cmdline_, '$em_test_parse_', ' ', '[notspace][strip][lcase]')
+		else:
+			msg "Error. Function 'em.str.inArr' is not exist! Some commands shoudn't work."
 		end
 	end
-elseif instr($commandline,'sqrt')=1:
-	if loc('em.sqrt'):
-		killvar '$em_test_parse'
-		$em_test_parse[0]=$mid($commandline,instr($commandline,'(')+1,instr($commandline,')')-instr($commandline,'(')-1)
-		if isnum($em_test_parse[0])=0: $em_test_parse[0]=$dyneval("$result=$str(<<$em_test_parse[0]>>)")
-		*pl @em.sqrt($em_test_parse[0])
-	else:
-		msg "Error. Function 'em.sqrt' is not exist!"
-	end
-elseif $commandline='gen id':
-	if loc('em.gen_uuid'):
-		*pl @em.gen_uuid()
-	else:
-		msg "Error. Function 'em.gen_uuid' is not exist!"
-	end
-elseif $commandline='gen pass':
-	if loc('em.str.random'):
-		*pl @em.str.random(16,'[inc][\z][\d]','!@#$')
-	else:
-		msg "Error. Function 'em.str.random' is not exist!"
-	end
-elseif instr($trim($lcase($commandline)),'gen mass')=1:
-	if loc('em.arr.randFill') and loc('em.arr.print'):
-		local count
-		if $em_test_parse[2]<>'':
-			if $em_test_parse[3]<>'' and isnum($em_test_parse[3]): count=val($em_test_parse[3]) else count=10
-			@em.arr.randFill($em_test_parse[2],count)
-			@em.arr.print($em_test_parse[2])
-		else
-			*pl "Error input. Type:"
-			*pl "gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS>"
+	if $cmdline_ = 'help':
+		*pl & *pl "logs — выводит содержимое массива '$log'. В этот массив можно сохранять сообщения при отладке модуля."
+		*pl & *pl "sqrt(N) — выводит результат вычисления квадратного корня из числа N."
+		*pl & *pl "gen id — генерирует уникальный идентификатор типа UUID четвёртой версии."
+		*pl & *pl "gen pass — генерирует парольную фразу из шестнадцати случайных символов (буквы латинского алфавита, цифры, !@#$)."
+		*pl & *pl "gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS> — генерирует массив с именем <ARRAY_NAME> из <NUMBER_of_ELEMENTS> элементов."
+		*pl & *pl "autotest — запускает на выполнение автотесты библиотеки для проверки её работоспособности. Внимание!!! Автотесты нужны для отладки самой библиотеки, или для проверки корректности её функций перед окончательной сборкой. Из окончательной сборки автотесты можно удалить."
+		*pl "Для теста отдельной функции, можно указать её название как аргумент команде autotest. Например: `autotest em.str.thin`."
+		*pl & *pl "Любая иная строчка будет воспринята, как код QSP на выполнение. Таким образом вы можете выполнить любую строчку кода QSP, просто введя её в строке ввода."
+	elseif $cmdline_='logs':
+		if loc('em.arr.print'):
+			*pl @em.arr.print('$log','[only result]')
+		else:
+			msg "Error. Function 'em.arr.print' is not exist! Print log by cycle:"
+			loop local i=0 while i<arrsize('$log') step i+=1:
+				*pl $log[i]
+			end
+		end
+	elseif instr($cmdline_,'sqrt')=1:
+		if loc('em.sqrt'):
+			killvar '$em_test_parse_'
+			$em_test_parse_[0]=$mid($cmdline_,instr($cmdline_,'(')+1,instr($cmdline_,')')-instr($cmdline_,'(')-1)
+			if isnum($em_test_parse_[0])=0: $em_test_parse_[0]=$dyneval("$result=$str(<<$em_test_parse_[0]>>)")
+			*pl @em.sqrt($em_test_parse_[0])
+		else:
+			msg "Error. Function 'em.sqrt' is not exist!"
+		end
+	elseif $cmdline_='gen id':
+		if loc('em.gen_uuid'):
+			*pl @em.gen_uuid()
+		else:
+			msg "Error. Function 'em.gen_uuid' is not exist!"
+		end
+	elseif $cmdline_='gen pass':
+		if loc('em.str.random'):
+			*pl @em.str.random(16,'[inc][\z][\d]','!@#$')
+		else:
+			msg "Error. Function 'em.str.random' is not exist!"
+		end
+	elseif instr($trim($lcase($cmdline_)),'gen mass')=1:
+		if loc('em.arr.randFill') and loc('em.arr.print'):
+			local count
+			if $em_test_parse_[2]<>'':
+				if $em_test_parse_[3]<>'' and isnum($em_test_parse_[3]): count=val($em_test_parse_[3]) else count=10
+				@em.arr.randFill($em_test_parse_[2],count)
+				@em.arr.print($em_test_parse_[2])
+			else
+				*pl "Error input. Type:"
+				*pl "gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS>"
+			end
+		else:
+			msg "Error. Functions 'em.arr.randFill' and 'em.arr.print' are not exist!"
+		end
+	elseif instr($cmdline_,'autotest') = 1 and loc('em.autotest.self'):
+		if loc('em.autotest.self'):
+			@em.autotest.self($em_test_parse_[1], $em_test_parse_[2])
+		else:
+			msg "Error. Function 'em.autotest.self' is not exist!"
 		end
 	else:
-		msg "Error. Functions 'em.arr.randFill' and 'em.arr.print' are not exist!"
+		dynamic $cmdline_
 	end
-elseif instr($commandline,'autotest') = 1 and loc('em.autotest.self'):
-	if loc('em.autotest.self'):
-		@em.autotest.self($em_test_parse[1], $em_test_parse[2])
-	else:
-		msg "Error. Function 'em.autotest.self' is not exist!"
-	end
-else:
-	dynamic $commandline
+elseif $lcase($trim($args[0])) = 'on':
+	$usercom['em.uc'] = 'em.uc'
+elseif $lcase($trim($args[0])) = 'off':
+	killvar '$usercom', 'em.uc'
 end
 --- em.uc ---------------------------------
