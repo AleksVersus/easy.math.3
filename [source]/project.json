@@ -2,15 +2,12 @@
 	"project":
 	[
 		{
-			"build": "D:\\my\\GameDev\\QuestSoftPlayer\\games\\+releases+\\+lib+\\launcher.em\\easy.math.qsp",
-			"folders": [{"path":"D:\\my\\GameDev\\QuestSoftPlayer\\games\\+lib+\\easy.math.3\\[source]"}]
-		},
-		{
-			"build": "D:\\my\\GameDev\\QuestSoftPlayer\\games\\+releases+\\+lib+\\launcher.em\\launcher.em.qsp",
-			"files": [{"path":"D:\\my\\GameDev\\QuestSoftPlayer\\games\\+releases+\\+lib+\\launcher.em\\launcher.em.qsps"}]
+			"build": "..\\..\\[releases]\\easy.math\\easy.math.qsp",
+			"files": [{"path": ".\\00_sets\\_variables.qsps_"}],
+			"folders": [{"path":"."}]
 		}
 	],
-	"player": "D:\\my\\GameDev\\QuestSoftPlayer\\QSP 580 QG 400b\\qspgui.exe",
-	"save_txt2gam": "True",
-	"start": "D:\\my\\GameDev\\QuestSoftPlayer\\games\\+releases+\\+lib+\\launcher.em\\launcher.em.qsp"
+	"player": "..\\..\\..\\..\\QSP 580 QG 400b\\qspgui.exe",
+	"start": "..\\..\\[releases]\\easy.math\\easy.math.qsp",
+	"preprocessor": "On"
 }
