@@ -1,30 +1,30 @@
 QSP-Game Упрощённое заполнение массива
 $args[0]- название массива, элементы которого необходимо заполнить
 $args[1] - кортеж значений для заполнения массива
-$args[2] - режим:
+args[2] - с какого элемента начинать заполнение. По умолчанию с 0
+$args[3] - режим:
 	* Не указано - в массив передаются как текстовые так и числовые значения,
 	* [only number] или [num] - весь массив формируется, как числовой
 	* [only string] или [str] - весь массив формируется, как строковый
-args[3] - с какого элемента начинать заполнение. По умолчанию с 0
+
 !@pp:if(em_arr_fill):include
 # em.arr.fill
 $args[1] = $args[1]+""
-$args[2] = $lcase($args[2])
-if $args[2]='[only string]': $args[2] = '[str]'
-if $args[2]='[only number]': $args[2] = '[num]'
+$args[3] = $lcase($args[3])
+if $args[3]='[only string]': $args[3] = '[str]'
+if $args[3]='[only number]': $args[3] = '[num]'
 if instr($args[0],'$')=1: $args[0]=$mid($args[0],2) & !@ убираем из имени массива символ $
-local instring, $cut & !@ объявляем локальные переменные
 loop while len($args[1])>0:
     !@ циклом перебираем строку значений (кортеж)
-    instring=instr($args[1],"")
-    $cut=$mid($args[1],1,instring-1)
-    $args[1]=$mid($args[1],instring+1)
-    if (isnum($cut) and $args[2]='') or $args[2]='[num]':
-    	dynamic "<<$args[0]>>[<<args[3]>>]=args[0]",val($cut)
-    elseif (no isnum($cut) and $args[2]='') or $args[2]='[str]':
-    	dynamic "$<<$args[0]>>[<<args[3]>>]=$args[0]",$cut
+    $args['instring'] = instr($args[1],"")
+    $args['cut'] = $mid($args[1], 1, $args['instring'] - 1)
+    $args[1]=$mid($args[1], $args['instring'] + 1)
+    if (isnum($args['cut']) and $args[3]='') or $args[3]='[num]':
+    	dynamic "<<$args[0]>>[<<args[2]>>]=args[0]", val($args['cut'])
+    elseif (no isnum($args['cut']) and $args[3]='') or $args[3] = '[str]':
+    	dynamic "$<<$args[0]>>[<<args[2]>>] = $args[0]", $args['cut']
     end
-    args[3]+=1
+    args[2] += 1
 end
 --- em.arr.fill ---------------------------------
 !@pp:endif
@@ -32,6 +32,8 @@ end
 Функция не использует иных функций библиотеки
 
 Внимание!!! Функция не создаёт новый массив, а заполняет массив значениями!
+
+Для теста:
 
 @em.arr.fill('mass',(123,234,345))
 

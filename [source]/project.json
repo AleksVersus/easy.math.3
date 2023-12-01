@@ -9,5 +9,6 @@
 	],
 	"player": "..\\..\\..\\..\\QSP 580 QG 400b\\qspgui.exe",
 	"start": "..\\..\\[releases]\\easy.math\\easy.math.qsp",
+	"save_txt2gam": "True",
 	"preprocessor": "On"
 }

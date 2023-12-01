@@ -14,7 +14,7 @@
 <div class="avs-pages-button">Назад</div>
 </a>
 </div><a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
-<h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+<h1 class="avs-article-h1">easy.math.qsp v. 3.1.0</h1>
 </a>
 <!-- Исправить ссылку -->
 <h3 class="avs-article-h3">Логические операции</h3>
@@ -25,7 +25,7 @@
 <code class="em-system">$args[<code class="em-number">0</code>]</code> - первое число (сколько угодно длинное), можно <code class="em-system"> args[<code class="em-number">0</code>]</code> (ограниченное значение).
                     <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - второе число (сколько угодно длинное), можно <code class="em-system"> args[<code class="em-number">1</code>]</code> (ограниченное значение).
                 </p>
-<p class="avs-article-p">Любой посторонний символ интерпретируется, как <code class="em-number">0</code> (нуль). Т.е. суммируются только целые положительные числа.</p>
+<p class="avs-article-p">Если один из рагументов содержит запрещённые символы, т.е. не является числом в строковом или числовом представлении, функция вернёт <code class="em-number">[not a number]</code> в результат.</p>
 <p class="avs-article-p">Использует функцию <code class="em-folder">em.zero</code>.</p>
 <p class="avs-article-p">Суммирует два целых числа любой длины по следующим правилам:</p>
 <ul class="avs-articles-instruction">
@@ -80,7 +80,7 @@
 <h5 class="avs-article-h5">Результат работы функции:</h5>
 <div class="Monokai-Code">
 <span class="Monokai-UnFunc">@em.byte.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">998765</span>,<span class="Monokai-Numeric">273</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '999038'</span><br/>
-<span class="Monokai-UnFunc">@em.byte.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9987Y5'</span>,<span class="Monokai-String">'-273'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '998978'</span><br/>
+<span class="Monokai-UnFunc">@em.byte.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9987Y5'</span>,<span class="Monokai-String">'-273'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '[not a number]'</span><br/>
 <span class="Monokai-UnFunc">@em.byte.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'999999'</span>,<span class="Monokai-String">'6273'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '006273'</span><br/>
 <span class="Monokai-UnFunc">@em.byte.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'998705'</span>,<span class="Monokai-String">'5773'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '004479'</span>
 </div>

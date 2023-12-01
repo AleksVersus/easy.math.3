@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<!-- TODO: favicon -->
+<link href="../../res/css/easy.library.css" rel="stylesheet"/></head>
+<body>
+<div class="avs-page-wrapper">
+<div class="easy-lib-page">
+<div class="e-block">
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html#html_f">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+<a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+<h1 class="avs-article-h1">easy.math.qsp v. 3.1.0</h1>
+</a>
+<h3 class="avs-article-h3">Работа с HTML</h3>
+<a id="em_html_clr_pref"></a>
+<h4 class="avs-article-h4">em.html.clr_pref</h4>
+<p class="avs-article-p">Очищает html-разметку от преформатирования.</p>
+<p class="avs-article-p">Функция использует цикл для избавления от символов преформатирования, что может существенно подвешивать игру на больших фрагментах HTML-разметки. Используйте рационально.</p>
+<h5 class="avs-article-h5">Аргументы:</h5>
+<div class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - текст, в котором присутствует разметка.
+                    
+                </div>
+<h5 class="avs-article-h5">Пример вызова функции:</h5>
+<div class="Monokai-Code">
+                  $html <span class="Monokai-Assign">=</span> <span class="Monokai-Qbracket">{</span><br/>
+<span class="Monokai-Error">&lt;qhtml&gt;</span><br/>
+                    &lt;<span class="Monokai-TagName">table</span> <span class="Monokai-Markup">border</span>=<span class="Monokai-String">1</span>&gt;<br/>
+                      &lt;<span class="Monokai-TagName">tr</span>&gt;<br/>
+                        &lt;<span class="Monokai-TagName">td</span> <span class="Monokai-Markup">width</span>=<span class="Monokai-String">25%</span> <span class="Monokai-Markup">bgcolor</span>=<span class="Monokai-String">#ffffee</span>&gt;<br/>
+                           Некий текст<br/>
+                        &lt;/<span class="Monokai-TagName">td</span>&gt;<br/>
+                        &lt;<span class="Monokai-TagName">td</span>&gt;Ещё текст&lt;/<span class="Monokai-TagName">td</span>&gt;<br/>
+                      &lt;/<span class="Monokai-TagName">tr</span>&gt;<br/>
+                      &lt;<span class="Monokai-TagName">tr</span>&gt;<br/>
+                        &lt;<span class="Monokai-TagName">td</span> <span class="Monokai-Markup">width</span>=<span class="Monokai-String">25%</span> <span class="Monokai-Markup">bgcolor</span>=<span class="Monokai-String">#ffffee</span>&gt;<br/>
+                           Вторая строка<br/>
+                        &lt;/<span class="Monokai-TagName">td</span>&gt;<br/>
+                        &lt;<span class="Monokai-TagName">td</span>&gt;12345677 <span class="Monokai-Invalid">&lt; &gt;</span>&lt;/<span class="Monokai-TagName">td</span>&gt;<br/>
+                      &lt;/<span class="Monokai-TagName">tr</span>&gt;<br/>
+                    &lt;/<span class="Monokai-TagName">table</span>&gt;<br/>
+<span class="Monokai-Error">&lt;/qhtml&gt;</span><br/><span class="Monokai-Qbracket">}</span><br/>
+<br/>
+<span class="Monokai-UnFunc">@em.html.clr_pref</span>($html)
+                </div>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<p>(подсветка для наглядности)</p>
+<div class="Monokai-Code">
+<span class="Monokai-Error">&lt;qhtml&gt;</span>&lt;<span class="Monokai-TagName">table</span> <span class="Monokai-Markup">border</span>=<span class="Monokai-String">1</span>&gt;&lt;<span class="Monokai-TagName">tr</span>&gt;&lt;<span class="Monokai-TagName">td</span> <span class="Monokai-Markup">width</span>=<span class="Monokai-String">25%</span> <span class="Monokai-Markup">bgcolor</span>=<span class="Monokai-String">#ffffee</span>&gt;Некий текст&lt;/<span class="Monokai-TagName">td</span>&gt;&lt;<span class="Monokai-TagName">td</span>&gt;Ещё текст&lt;/<span class="Monokai-TagName">td</span>&gt;&lt;/<span class="Monokai-TagName">tr</span>&gt;&lt;<span class="Monokai-TagName">tr</span>&gt;&lt;<span class="Monokai-TagName">td</span> <span class="Monokai-Markup">width</span>=<span class="Monokai-String">25%</span> <span class="Monokai-Markup">bgcolor</span>=<span class="Monokai-String">#ffffee</span>&gt;Вторая строка&lt;/<span class="Monokai-TagName">td</span>&gt;&lt;<span class="Monokai-TagName">td</span>&gt;12345677<span class="Monokai-Invalid">&lt; &gt;</span>&lt;/<span class="Monokai-TagName">td</span>&gt;&lt;/<span class="Monokai-TagName">tr</span>&gt;&lt;/<span class="Monokai-TagName">table</span>&gt;<span class="Monokai-Error">&lt;/qhtml&gt;</span>
+</div>
+<a id="em_html_to_mnemonics"></a>
+<h4 class="avs-article-h4">em.html.to_mnemonics</h4>
+<p class="avs-article-p">Замена в тексте с html-разметкой символов <code class="em-string">&lt;</code> и <code class="em-string">&gt;</code> на мнемоники <code class="em-string">&amp;lt;</code> и <code class="em-string">&amp;gt;</code> соответственно.</p>
+<p class="avs-article-p">Бывает полезно, когда включен режим распознавания HTML, но при этом нужно вывести текст с разметкой как есть.</p>
+<h5 class="avs-article-h5">Аргументы:</h5>
+<div class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - текст, в котором присутствует разметка.
+                    
+                </div>
+<h5 class="avs-article-h5">Пример вызова функции:</h5>
+<p>(подсветка для наглядности)</p>
+<div class="Monokai-Code">
+                  $html <span class="Monokai-Assign">=</span> <span class="Monokai-Qbracket">{</span>&lt;<span class="Monokai-TagName">span</span> <span class="Monokai-Markup">style</span>=<span class="Monokai-String">"color:red;"</span>&gt;Подсвеченный красным &lt;<span class="Monokai-TagName">em</span>&gt;итальянский курсив&lt;/<span class="Monokai-TagName">em</span>&gt;&lt;/<span class="Monokai-TagName">span</span>&gt;<span class="Monokai-Qbracket">}</span><br/>
+<br/>
+<span class="Monokai-UnFunc">@em.html.to_mnemonics</span>($html)
+                </div>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+                    &amp;lt;span style="color:red;"&amp;gt;Подсвеченный красным &amp;lt;em&amp;gt;итальянский курсив&amp;lt;/em&amp;gt;&amp;lt;/span&amp;gt;
+                </div>
+<p class="avs-article-p"> </p>
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html#html_f">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+</div>
+<div class="e-block">
+<div class="avs-page-stamp" id="em_subscribe">
+<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2023</span></p>
+<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2023</span></p>
+</div>
+</div>
+</div>
+</div><div class="em-stick-upper"><a href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/></a></div></body>
+</html>

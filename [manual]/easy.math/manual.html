@@ -10,7 +10,7 @@
 <div class="easy-lib-page">
 <article class="e-block">
 <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
-<h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+<h1 class="avs-article-h1">easy.math.qsp v. 3.1.0</h1>
 </a>
 <p class="avs-articles-underhead">Библиотека математических функций для <a class="avs-page-external-link" href="https://qsp.org" target="_blank">Quest Soft Player</a></p>
 <p class="avs-article-p">
@@ -24,6 +24,7 @@
           <ul>
 <li>aleksversus@mail.ru</li>
 <li>Вконтакте: <a class="avs-page-external-link" href="https://vk.com/id40090736" target="_blank">id40090736</a></li>
+<li>Бусти: <a class="avs-page-external-link" href="https://boosty.to/aleksversus" target="_blank">boosty.to/aleksversus</a></li>
 </ul>
 <p class="avs-article-p-null-indent">Изначально библиотека создавалась для обеспечения нужд игры <a class="avs-page-external-link" href="http://aleksversus.narod.ru/index/magicon_fb/0-65" target="_blank">МАГИКОН</a>.</p>
 </div>
@@ -80,6 +81,10 @@
 <span class="Monokai-UnFunc">@em.zero</span>(<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'bla'</span>) <span class="Monokai-Operator">&amp;</span> <span class="Monokai-Comment">! ='blablabla'</span>
 </div>
 </div>
+<h3 class="avs-article-h3">Работа с исходниками</h3>
+<p class="avs-article-p">Вы можете <a class="avs-page-external-link" href="https://github.com/AleksVersus/easy.math.3/tree/main/%5Bsource%5D" target="_blank" title="Страница на гитхабе">скачать исходный код библиотеки с гитхаба</a> и собрать собственный модуль лишь из тех функций, которые вам нужны.</p>
+<p class="avs-article-p">Сборку рекомендуется осуществлять через билдер в Sublime Text из <a class="avs-page-external-link" href="https://github.com/AleksVersus/JAD_for_QSP" target="_blank" title="Страница на гитхабе">пакета QSP для SublimeText</a>.</p>
+<p class="avs-article-p">При включенном препроцессоре необходимо подключить файл <code class="em-folder">00_sets/_variables.qsps_</code> к сборке, чтобы все функции добавились в модуль, либо написать собственный файл с метками нужных функций и так же подключить его к сборке. Для примера, можно взять <code class="em-folder">project.json</code> из исходников.</p>
 <h2 class="avs-article-h2">История версий</h2>
 <!-- История версий -->
 <div class="avs-pages-button__wrapper">
@@ -137,6 +142,8 @@
 <li><a class="avs-page-internal-link" href="../easy.math/operacii_s_tekstom/0-77.html#em_str_inarr">em.str.inArr</a> - из блока текста выбирает все строки между указанными разделителями и помещает их в указанный массив.</li>
 <li><a class="avs-page-internal-link" href="../easy.math/operacii_s_tekstom/0-77.html#em_str_widetrim">em.str.widetrim</a> - удаление прилегающих пробелов, символов табуляции и переводов строк, или символов преформатирования.</li>
 <li><a class="avs-page-internal-link" href="../easy.math/operacii_s_tekstom/0-77.html#em_str_thin">em.str.thin</a> - разрежение строки строкой-разделителем.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_tekstom/0-77.html#em_str_slice">em.str.slice</a> - вырезает из строки подстроку по номерам символов.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_tekstom/0-77.html#em_gen_uuid">em.gen_uuid</a> - генерирует UUID-подобный идентификатор.</li>
 </ul>
 </li>
 <li>
@@ -163,6 +170,7 @@
 <li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami/0-79.html#em_arr_clear">em.arr.clear</a> - удаление всех элементов массива, соответствующих указанному значению.</li>
 <li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami/0-79.html#em_arr_chtype">em.arr.chType</a> - изменение типа массива.</li>
 <!-- вторая страница -->
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami_stranica_2/0-80.html#em_arr_fill">em.arr.fill</a> - упрощённое заполнение массива значениями;</li>
 <li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami_stranica_2/0-80.html#em_arr_randFill">em.arr.randFill</a> - заполнение элементов массива случайными числами</li>
 <li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami_stranica_2/0-80.html#em_arr_strtFill">em.arr.strtFill</a> - заполнение элементов массива подряд идущими числами.</li>
 <li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami_stranica_2/0-80.html#em_arr_sort">em.arr.sort</a> - многофункциональная сортировка содержимого массива.</li>
@@ -190,6 +198,14 @@
 <h3 class="avs-article-h3">Работа с координатной сеткой</h3>
 <ul class="avs-articles-structure">
 <li><a class="avs-page-internal-link" href="../easy.math/rabota_s_koordinatnoj_setkoj/0-82.html#em_map_cell_getcoords">em.map.cell.getCoords</a> - определяет координаты ячейки по текущему номеру ячейки.</li>
+</ul>
+</li>
+<li>
+<a id="html_f"></a>
+<h3 class="avs-article-h3">Работа с HTML</h3>
+<ul class="avs-articles-structure">
+<li><a class="avs-page-internal-link" href="../easy.math/rabota_s_html/0-89.html#em_html_clr_pref">em.html.clr_pref</a> - очищает текст с HTML-разметкой от символов преформатирования.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/rabota_s_html/0-89.html#em_html_to_mnemonics">em.html.to_mnemonics</a> - заменяет в тексте с HTML-разметкой символы <code class="em-string">&lt;</code> и <code class="em-string">&gt;</code> на соответствующие мнемоники.</li>
 </ul>
 </li>
 </ol>

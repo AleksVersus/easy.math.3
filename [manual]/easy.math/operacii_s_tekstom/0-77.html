@@ -15,7 +15,7 @@
 </a>
 </div>
 <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
-<h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+<h1 class="avs-article-h1">easy.math.qsp v. 3.1.0</h1>
 </a>
 <!-- Исправить ссылку -->
 <h3 class="avs-article-h3">Операции с текстом</h3>
@@ -251,6 +251,44 @@
 <span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-String">'[right]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "пр|оф|ес|су|ра|"</span><br/>
 <span class="Monokai-UnFunc">@em.str.thin</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'профессура'</span>,<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'||'</span>,<span class="Monokai-String">'[left] [right]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ "||п||р||о||ф||е||с||с||у||р||а||"</span>
 </div>
+<a id="em_str_slice"></a>
+<h4 class="avs-article-h4">em.str.slice</h4>
+<p class="avs-article-p">Функция расширяет возможности <code class="em-func">$mid</code>, позволяя указывать номера символов: с какого по какой вырезать из строки. Можно указывать отрицательные номера, тогда они считаются от конца строки.</p>
+<div class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - строка, текст;
+                  <br/><code class="em-system"> args[<code class="em-number">1</code>]</code> - номер, с какого символа начать вырезать строку. По умолчанию — <code class="em-number">2</code>. Если указать отрицательное значение, будет взят символ от конца строки;
+                  <br/><code class="em-system"> args[<code class="em-number">2</code>]</code> - номер, до какого символа вырезать строку.  По умолчанию — <code class="em-number">-2</code>. Если указать отрицательное значение, будет взят символ от конца строки.
+                </div>
+<h5 class="avs-article-h5">Примеры:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.str.slice</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'abcdefg'</span><span class="Monokai-Qbracket">)</span><br/>
+<span class="Monokai-Comment">!@ "bcdef"</span><br/>
+<span class="Monokai-UnFunc">@em.str.slice</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'abcdefghijklmnopqrstuvwxyz'</span>, <span class="Monokai-Numeric">-4</span>, <span class="Monokai-Numeric">-1</span><span class="Monokai-Qbracket">)</span> <br/>
+<span class="Monokai-Comment">!@ "wxyz"</span><br/>
+<span class="Monokai-UnFunc">@em.str.slice</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'abcdefghijklmnopqrstuvwxyz'</span>, <span class="Monokai-Numeric">15</span>, <span class="Monokai-Numeric">19</span><span class="Monokai-Qbracket">)</span> <br/>
+<span class="Monokai-Comment">!@ "opqrs"</span><br/>
+<span class="Monokai-UnFunc">@em.str.slice</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'abcdefghijklmnopqrstuvwxyz'</span>, <span class="Monokai-Numeric">10</span>, <span class="Monokai-Numeric">-10</span><span class="Monokai-Qbracket">)</span> <br/>
+<span class="Monokai-Comment">!@ "jklmnopq"</span><br/>
+</div>
+<a id="em_gen_uuid"></a>
+<h4 class="avs-article-h4">em.gen_uuid</h4>
+<p class="avs-article-p">Функция генерирует UUID-подобный набор символов, который можно использовать как уникальный идентификатор. Поскольку используется генератор псевдослучайных чисел, вероятность повторения есть, но она мала.</p>
+<div class="em-block-arguments">
+                    без аргументов
+                </div>
+<h5 class="avs-article-h5">Результаты работы функции:</h5>
+<div class="Monokai-Code">
+                    00ae0330-ce2d-9236-ca92-6b96134d320a<br/>
+                    51b14bd1-6c5e-2dfc-e788-a8726e996534<br/>
+                    6c826bbc-ca3c-d52a-c2c8-42b6c9b6edae<br/>
+                    542e75fc-db90-dd20-1597-c3d3c9922797<br/>
+                    5372fd62-0e74-539e-955e-c87680cc8083<br/>
+                    b5f2f11d-af6c-783e-c58c-1c0c1048365f<br/>
+                    36d5998b-5656-d260-8da3-e108cf86a71b<br/>
+                    43d9d164-980f-83c3-7c36-3266f64475c9<br/>
+                    c2e6199a-e87b-2654-af22-cb583612d69b<br/>
+                    3f8d9602-e8c8-6df4-c29b-82d1795c8b31
+                </div>
 <div class="avs-pages-button__left-combine">
 <a class="avs-pages-button__link" href="../../easy.math/manual.html">
 <div class="avs-pages-button">Назад</div>

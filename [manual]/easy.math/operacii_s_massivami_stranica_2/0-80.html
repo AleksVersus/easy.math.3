@@ -18,11 +18,32 @@
 </a>
 </div>
 <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
-<h1 class="avs-article-h1">easy.math.qsp v. 3.0.0</h1>
+<h1 class="avs-article-h1">easy.math.qsp v. 3.1.0</h1>
 </a>
 <h3 class="avs-article-h3">Операции над массивами. Страница 2</h3>
 <section id="em_arrays_page_2">
 <!-- Страница вторая -->
+<a id="#em_arr_fill"></a>
+<h4 class="avs-article-h4">em.arr.fill</h4>
+<p class="avs-article-p">Упрощённое заполнение массива значениями.</p>
+<div class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code>- название массива, элементы которого необходимо заполнить.
+                        <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - кортеж значений, которые нужно поместить в массив.
+                        <br/><code class="em-system"> args[<code class="em-number">2</code>]</code> - номер элемента, с которого необходимо начать.
+                        <br/><code class="em-system">$args[<code class="em-number">3</code>]</code> - управляющая конструкция:
+                        <ul>
+<li><code class="em-string">[only number]</code> или <code class="em-string">[num]</code> — массив будет заполнен только числовыми значениями. </li>
+<li><code class="em-string">[only string]</code> или <code class="em-string">[str]</code> — массив будет заполнен только строковыми значениями.</li>
+</ul>
+</div>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.arr.fill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>, <span class="Monokai-Qbracket">(<span class="Monokai-Numeric">123</span>, <span class="Monokai-Numeric">234</span>, <span class="Monokai-Numeric">345</span>)</span>)</span><br/>
+<br/>
+                        mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign"> = </span><span class="Monokai-Numeric">123</span><br/>
+                        mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign"> = </span><span class="Monokai-Numeric">234</span><br/>
+                        mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign"> = </span><span class="Monokai-Numeric">345</span>
+</div>
 <a id="#em_arr_randFill"></a>
 <h4 class="avs-article-h4">em.arr.randFill</h4>
 <p class="avs-article-p">Генерирует случайные числа и заполняет ими указанный массив. Если массив существует, новые значения затрут уже имеющиеся.</p>
