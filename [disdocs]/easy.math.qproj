@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<QGen-project version="4.0.0 beta 1">
+  <Structure>
+    <Location name="em.start"/>
+    <Folder name="system">
+      <Location name="em.uc"/>
+      <Location name="em.autotest"/>
+      <Location name="em.autotest.self"/>
+    </Folder>
+    <Folder name="02_вспомогательные функции">
+      <Location name="em.maxVar"/>
+      <Location name="em.minVar"/>
+      <Location name="em.deRGB"/>
+      <Location name="em.str.getWord"/>
+      <Location name="em.tag.getCont"/>
+      <Location name="em.tag.getNum"/>
+      <Location name="em.var.getType"/>
+    </Folder>
+    <Folder name="03_операции с дробными числами">
+      <Location name="em.add"/>
+      <Location name="em.div"/>
+      <Location name="em.mult"/>
+      <Location name="em.round"/>
+      <Location name="em.simpl"/>
+      <Location name="em.indiv"/>
+      <Location name="em.divdigs"/>
+      <Location name="em.dz"/>
+      <Location name="em.undiv"/>
+      <Location name="em.sqrt"/>
+    </Folder>
+    <Folder name="04_логические операции">
+      <Location name="em.byte.add"/>
+      <Location name="em.byte.dev"/>
+    </Folder>
+    <Folder name="05_операции с текстом">
+      <Location name="em.str.widetrim"/>
+      <Location name="em.arr.search"/>
+      <Location name="em.str.inArr"/>
+      <Location name="em.str.random"/>
+      <Location name="em.str.thin"/>
+      <Location name="em.zero"/>
+      <Location name="em.gen_uuid"/>
+      <Location name="em.str.slice"/>
+    </Folder>
+    <Folder name="06_операции с шестнадцатеричными числами">
+      <Location name="em.col.inv"/>
+      <Location name="em.col.add"/>
+      <Location name="em.col.inRGB"/>
+      <Location name="em.dec.inCol"/>
+      <Location name="em.dec.inHex"/>
+      <Location name="em.hex.inDec"/>
+      <Location name="em.hex.add"/>
+    </Folder>
+    <Folder name="07_операции над массивами">
+      <Location name="em.arr.chType"/>
+      <Location name="em.arr.clear"/>
+      <Location name="em.arr.deSort"/>
+      <Location name="em.arr.find"/>
+      <Location name="em.arr.insert"/>
+      <Location name="em.arr.print"/>
+      <Location name="em.arr.randFill"/>
+      <Location name="em.arr.restand"/>
+      <Location name="em.arr.sort"/>
+      <Location name="em.arr.strtFill"/>
+      <Location name="em.fewArrs.print"/>
+      <Location name="em.arr.simpl"/>
+      <Location name="em.arr.fill"/>
+    </Folder>
+    <Folder name="08_операции с целыми числами">
+      <Location name="em.abs"/>
+      <Location name="em.even"/>
+      <Location name="em.exp"/>
+      <Location name="em.log"/>
+      <Location name="em.random"/>
+      <Location name="em.summ"/>
+      <Location name="em.digs"/>
+    </Folder>
+    <Folder name="09_работа с координатной сеткой">
+      <Location name="em.map.cell.getCoords"/>
+    </Folder>
+    <Folder name="10_html">
+      <Location name="em.html.clr_pref"/>
+      <Location name="em.html.to_mnemonics"/>
+    </Folder>
+  </Structure>
+</QGen-project>
