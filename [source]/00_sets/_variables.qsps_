@@ -74,7 +74,8 @@ QSP-Game Список меток для всех функций библиоте
 Операции с html
 !@pp:var(em_html_to_mnemonics)
 !@pp:var(em_html_clr_pref)
-
+Операции с кортежами
+!@pp:var(em_tlp_in)
 !@pp:endif
 
 Символ разделения значений в кортеже ""
