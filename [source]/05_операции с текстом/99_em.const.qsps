@@ -1,6 +1,8 @@
 QSP-Game Текстовые константы
 
+!@pp:if(em_rn):include
 # em.RN
 $result = "
 "
 --- em.RN ---------------------------------
+!@pp:endif
