@@ -1,22 +1,23 @@
 QSP-Game Функция из строки вида aaa|bbb|ccc|...|yyy|zzz получает подстроку, стоящую в указанной позиции. Подстроки помещаются между разделителями. По умолчанию разделителем является вертикальная черта.
-$args[0] - строка
-args[1] - позиция, из которой нужно получить подстроку.
-$args[2] - разделитель. По умолчанию в качестве разделителя используется вертикальная черта.
+$[0] - строка
+[1] - позиция, из которой нужно получить подстроку.
+$[2] - разделитель. По умолчанию в качестве разделителя используется вертикальная черта.
 !@pp:if(em_str_getWord):include
 # em.str.getWord
-local $cut_string
-if $args[2] = '': $args[2]='|'	& !@ по умолчанию разделителем выступает вертикальная черта
-$args[0] = $args[0]+$args[2]	& !@ для упрощения вычислений добавляем разделитель к финалу
-loop local delimiter while len($args[0])>0 and args[1]>0 step args[1]-=1:
+local $src_string_, pos_, $delimiter_ = $args[0], args[1], $args[2]
+local $cut_string_
+if $delimiter_ = '': $delimiter_='|'	& !@ по умолчанию разделителем выступает вертикальная черта
+$src_string_ = $src_string_ + $delimiter_	& !@ для упрощения вычислений добавляем разделитель к финалу
+loop local instr_ while len($src_string_)>0 and pos_>0 step pos_-=1:
 	!@ вычисления продолжаются пока не разобрана вся строка, либо пока счётчик не будет исчерпан
-	delimiter=instr($args[0],$args[2])
-	if delimiter>0:
+	instr_ = instr($src_string_, $delimiter_)
+	if instr_ > 0:
 		!@ если разделитель в строке найден
-		$cut_string = $mid($args[0],1,delimiter+len($args[2])-1)	& !@ вырезаем до разделителя
-		$args[0] = $mid($args[0],delimiter+len($args[2]))	& !@ строкой становится хвост после разделителя
+		$cut_string_ = $mid($src_string_, 1, instr_ + len($delimiter_) - 1)	& !@ вырезаем до разделителя
+		$src_string_ = $mid($src_string_, instr_ + len($delimiter_))	& !@ строкой становится хвост после разделителя
 	end
 end
-$result=$replace($cut_string,$args[2])
+$result=$replace($cut_string_, $delimiter_)
 --- em.str.getWord ---------------------------------
 !@pp:endif
 
