@@ -1,0 +1,17 @@
+QSP-Game Удаление нескольких ячеек массива
+$args[0]- имя массива
+$args[1 ... 18] - индексы, числовые или строковые
+!@pp:if(em_arr_few_kill):include
+# em.arr.few_kill
+args['size'] = arrsize('$args')
+loop args['i'] = 1 while args['i'] < args['size'] step args['i'] += 1:
+	if $args[args['i']] = '':
+		killvar $args[0], args[args['i']]
+	else:
+		killvar $args[0], $args[args['i']]
+	end
+end
+--- em.arr.few_kill ---------------------------------
+!@pp:endif
+
+Функция не использует иных функций библиотеки
