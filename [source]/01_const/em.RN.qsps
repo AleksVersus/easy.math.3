@@ -1,4 +1,4 @@
-QSP-Game Текстовые константы
+QSP-Game Символ переноса строки
 
 !@pp:if(em_rn):include
 # em.RN

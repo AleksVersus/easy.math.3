@@ -7,6 +7,8 @@ QSP-Game Список меток для всех функций библиоте
 
 функции автотеста
 !@pp:var(em_autotest)
+Текстовые константы
+!@pp:var(em_rn)
 Вспомогательные операции
 !@pp:var(em_minvar)
 !@pp:var(em_maxvar)
@@ -35,17 +37,17 @@ QSP-Game Список меток для всех функций библиоте
 !@pp:var(em_str_random)
 !@pp:var(em_str_inarr)
 !@pp:var(em_str_thin)
-!@pp:var(em_zero)
 !@pp:var(em_str_slice)
 !@pp:var(em_gen_uuid)
+!@pp:var(em_zero)
 Операции с шестнадцатеричными числами
 !@pp:var(em_col_inv)
-!@pp:var(en_col_inrgb)
 !@pp:var(em_col_add)
+!@pp:var(en_col_inrgb)
 !@pp:var(em_dec_incol)
 !@pp:var(em_dec_inhex)
-!@pp:var(em_hex_indec)
 !@pp:var(em_hex_add)
+!@pp:var(em_hex_indec)
 Операции с массивами
 !@pp:var(em_arr_simp)
 !@pp:var(em_arr_chtype)
@@ -65,7 +67,6 @@ QSP-Game Список меток для всех функций библиоте
 !@pp:var(em_abs)
 !@pp:var(em_exp)
 !@pp:var(em_random)
-!@pp:var(em_lg)
 !@pp:var(em_log)
 !@pp:var(em_even)
 !@pp:var(em_digs)
@@ -77,8 +78,6 @@ QSP-Game Список меток для всех функций библиоте
 !@pp:var(em_html_clr_pref)
 Операции с кортежами
 !@pp:var(em_tlp_in)
-Текстовые константы
-!@pp:var(em_rn)
 !@pp:endif
 
 Символ разделения значений в кортеже ""
