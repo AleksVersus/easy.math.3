@@ -2,6 +2,8 @@ QSP-Game Замена некоторых символов разметки на 
 
 !@pp:if(em_html_to_mnemonics):include
 # em.html.to_mnemonics
-$result = $replace($replace($args[0], '<', '&lt;'),'>', '&gt;')
+$result = $replace($args[0], '&', '&amp;')
+$result = $replace($result, '<', '&lt;')
+$result = $replace($result,'>', '&gt;')
 --- em.html.to_mnemonics ---------------------------------
 !@pp:endif
