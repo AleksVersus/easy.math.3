@@ -1,0 +1,17 @@
+QSP-Game Распаковка кортежа
+
+!@ %0 кортеж
+!@ $1 название массива
+# em.tpl.unzip
+loop args[22] = len(%args[0]) while args[22] > 0 step args[22] -= 1:
+	$args[21], %args[0] = %args[0]
+	if isnum($args[21]):
+		dynamic "<<$args[1]>>[] = <<$args[21]>>"
+	elseif $mid($args[21], 1, 1) = '[' and $mid($args[21], len($args[21]), 1) = ']':
+		dynamic "%<<$args[1]>>[] = <<$args[21]>>"
+	else:
+		$args[21] = $replace($args[21], "'", "''")
+		dynamic "$<<$args[1]>>[] = '<<$args[21]>>'"
+	end
+end
+--- em.tpl.unzip ---

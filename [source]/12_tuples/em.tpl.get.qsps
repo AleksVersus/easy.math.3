@@ -1,0 +1,16 @@
+QSP-Game Получение значения в кортеже по индексу
+
+!@ %0 кортеж
+!@ #1 индекс
+# em.tpl.get
+local %t, i = %args[0], args[1]
+local em_tpl_get_
+@em.tpl.unzip(%t, 'em_tpl_get_')
+if %em_tpl_get_[i] <> []:
+	%result = %em_tpl_get_[i]
+elseif $em_tpl_get_[i] <> '':
+	$result = $em_tpl_get_[i]
+else:
+	result = em_tpl_get_[i]
+end
+--- em.tpl.get ---
