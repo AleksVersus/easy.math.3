@@ -2,9 +2,7 @@ QSP-Game Локация предназначена для быстрого те�
 # em.uc
 if $args[0] = '' and instr($user_text, 'em ') = 1:
 	local $user_text_ = $mid($user_text, 4)
-	local $em_test_parse_, $nr_
-	$nr_ = '
-'
+	local $em_test_parse_
 	local $cmdline_ = $lcase($trim($user_text_))
 
 	if instr($cmdline_,' ') <> 0:
