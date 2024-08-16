@@ -393,8 +393,7 @@ $mass_ex_3[17]='мне'
 $mass_ex_3[18]='нечего'
 $mass_ex_3[19]='больше'
 $mass_ex_3[20]='желать'
-@em.str.inArr($text,'$mass_res_1','
-','')
+@em.str.inArr($text, '$mass_res_1', @em.RN,'')
 
 loop local i,size=0,arrsize('$mass_res_1') while i<size step i+=1:
 	if $mass_res_1[i]<>$mass_ex_1[i]: result-=1
