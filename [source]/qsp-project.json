@@ -1,0 +1,20 @@
+{
+    "project": [
+        {
+            "files": [
+                {
+                    "path": ".\\00_sets\\_variables.qsps_"
+                }
+            ],
+            "folders": [
+                {
+                    "path": "."
+                }
+            ],
+            "module": "..\\..\\[releases]\\easy.math\\easy.math.qsp"
+        }
+    ],
+    "player": "..\\..\\..\\..\\QSP 580 QG 400b\\qspgui.exe",
+    "start": "..\\..\\[releases]\\easy.math\\easy.math.qsp",
+    "preprocessor": "On"
+}
