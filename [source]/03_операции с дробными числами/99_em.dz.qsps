@@ -13,17 +13,15 @@ if args[1]<1:
 	args[1]=1
 else:
 	!@ ------------ этот отрезок кода можно заменить на функцию em.digs -------------
-		local base_10=1 
-		loop while no (args[1]/base_10<10):
-			base_10*=10
-		end
-		args[1]=base_10
+		args[1] = dyneval({
+			loop result = 1 while no (args[0]/result < 10): result *= 10
+		}, args[1])
 	!@ ------------ этот отрезок кода можно заменить на функцию em.digs ------------
 end
 
-if instr($args[0],'.')=0:
+if no instr($args[0], '.'):
 	!@ если точки нет, добавляем
-	$args[0]+='.0'
+	$args[0] += '.0'
 end
 dot=instr($args[0],'.')	& !@ получаем позицию точки в строке
 $start_part=$mid($args[0],1,dot-1)	& !@ часть числа до точки
