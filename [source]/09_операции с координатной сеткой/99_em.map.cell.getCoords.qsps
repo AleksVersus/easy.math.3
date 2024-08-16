@@ -1,19 +1,13 @@
 QSP-Game Определяет координаты ячейки по текущему номеру ячейки. Эта функция пригодится при организации двумерного массива, через одномерный, или при отрисовке игровых полей заданной ширины.
-args[0] - текущий номер ячейки или блока N;
-args[1] - ширина поля W;
-$args[2] - управление: "[x]" - координата по оси X; "[y]" - координата по оси Y; пустое значение, [xy] или [x][y] - обе координаты возвращаются в виде кортежа.
+!@ #0 - текущий номер ячейки или блока N;
+!@ #1 - ширина поля W;
 !@pp:if(em_map_cell_getcoords):include
 # em.map.cell.getCoords
-$args[2]=$lcase($args[2])	& !@ инициализация аргументов и перевод управления в нижний регистр
-local cell,width,$commands = args[0],args[1],$args[2]
-local x, y, tape
-y=cell/width
-x=cell-y*width
-if instr($commands,'[x]')<>0 or instr($commands,'[xy]')<>0: tape+=1
-if instr($commands,'[y]')<>0 or instr($commands,'[xy]')<>0: tape+=2
-if $commands="" or tape=3: $result = (x,y)
-if tape=1: result=x
-if tape=2: result=y
+local cell, width = args[0], args[1]
+local x, y
+y = cell/width
+x = cell - y*width
+%result = [x, y]
 --- em.map.cell.getCoords ---------------------------------
 !@pp:endif
 

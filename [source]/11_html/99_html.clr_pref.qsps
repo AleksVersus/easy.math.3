@@ -5,7 +5,7 @@ $args[0]  — текст с разметкой HTML
 # em.html.clr_pref
 !@ задаём локальные переменные для удобства:
 local $prevtag_, $aftertag_
-loop local run_ = 1 while run_:
+loop while 1:
     !@ цикл будет выполняться, пока переменной run присвоена единица
     $prevtag_ = $strfind($args[0],'[\s\r\n]+<')    & !@ получаем символы преформатирования до начала тега и левую угловую скобку
     $aftertag_ = $strfind($args[0],'>[\s\r\n]+')    & !@ получаем правую угловую скобку и символы преформатирования после тега
@@ -17,9 +17,10 @@ loop local run_ = 1 while run_:
         $args[0] = $replace($args[0], $aftertag_, '>')
     else
         !@ если символы преформатирования около тега не найдены
-        run_ = 0
+        jump 'out'
     end
 end
+:out
 $result = $trim($args[0])
 --- em.html.clr_pref ---------------------------------
 !@pp:endif

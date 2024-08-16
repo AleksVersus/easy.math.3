@@ -3,10 +3,8 @@ args[0] - число, которое нужно возвести в степен
 args[1] - степень, в которую нужно возвести число
 !@pp:if(em_exp):include
 # em.exp
-result=1	& !@ результат по умолчанию
-loop while args[1]>0 step args[1]-=1:
-	result=result*args[0]
-end
+result = 1	& !@ результат по умолчанию
+loop while args[1]>0 step args[1] -= 1: result *= args[0]
 --- em.exp ---------------------------------
 !@pp:endif
 

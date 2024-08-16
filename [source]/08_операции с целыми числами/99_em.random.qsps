@@ -1,22 +1,22 @@
 QSP-Game Функция выбрасывания случайного числа в промежутках
-func('em.random','10-24','34-49')
+
+!@ %0 - %18 - промежутки
 !@pp:if(em_random):include
 # em.random
-local em_random_temp_array, j, k
-loop local i=0 while strcomp($args[i],'\d+\-\d+')<>0 step i+=1:
+local em_random_temp_array_, j, k
+loop local i=0 while i < arrsize('args') step i+=1:
 	!@ получение чисел. Можно использовать функцию em.str.getWord
-	j=val($strfind($args[i],'(\d+)(\-)',1))
-	k=val($strfind($args[i],'(\-)(\d+)',2))
-	loop while j<=k and arrpos('em_random_temp_array',j)=-1 step j+=1:
-		em_random_temp_array[]=j
+	j, k = %args[i]
+	loop while j <= k step j += 1:
+		if arrpos('em_random_temp_array_', j) = -1: em_random_temp_array_[] = j
 	end
 end
-result=em_random_temp_array[rand(0,arrsize('em_random_temp_array')-1)]
+result = em_random_temp_array_[rand(0, arrsize('em_random_temp_array_')-1)]
 --- em.random ---------------------------------
 !@pp:endif
 
 Функция не использует иных функций библиотеки
 
 act "Случ":
-	@em.random('10-24','34-49')
+	@em.random([10, 24], [34, 49])
 end
