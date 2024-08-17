@@ -1,0 +1,20 @@
+QSP-Game Заполняет указанный массив кортежами вида [index, value]
+
+!@ $0 - название массива
+!@ $1 - название целевого массива
+# em.arr.enumerate
+!@pp:if(em_fuse):include
+if $args[0]='' or $args[1]='': msg 'em.arr.enumerte: No array name → <<$args[0]>>, <<$args[1]>>' & exit
+if instr($args[0], '$')=1 or instr($args[0], '%')=1: msg 'em.var.enumerate: type prefix cannot be specified → <<$args[0]>>' & exit
+!@pp:endif
+killvar $args[1]
+loop args[21] = 0 while args[21]<arrsize($args[0]) step args[21] += 1:
+	$args[22] = @em.var.get_type_prefix($args[0], args[21], 'num')
+	dynamic "
+		%<<$args[1]>>[] = [<<args[21]>>, arritem('<<$args[22]>><<$args[0]>>', <<args[21]>>)]
+	"
+end
+--- em.arr.enumerate ---------------------------------
+
+args[21] - counter
+$args[22] - type of cell

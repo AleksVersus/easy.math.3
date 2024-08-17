@@ -42,6 +42,46 @@ elseif no (args[22] or args[23] or args[21]):
 	$result = '' & !@ переменная не содержит значений, либо содержит значения по-умолчанию
 end
 --- em.var.get_type ---
+
+# em.var.get_type_prefix
+!@pp:if(em_fuse):include
+if instr($args[0], '$')=1 or instr($args[0], '%')=1: msg 'em.var.get_type: type prefix cannot be specified → <<$args[0]>>' & exit
+!@pp:endif
+!@ определяем тип индекса (по умолчанию числовой)
+if arrsize('args')<2:
+	$args[2] = 'num'
+elseif $args[2] = '':
+	$args[2] = 'num'
+	if $args[1] <> '':
+		$args[2] = 'str'
+	elseif %args[1] <> []:
+		$args[2] = 'tpl'
+	end
+end
+if $args[2] = 'num':
+	args[21] = iif(arritem('%<<$args[0]>>', args[1]) <> [], 1, 0)		& !@ tuple?
+	args[22]= iif(arritem('$<<$args[0]>>', args[1]) <> '', 1, 0)	& !@ string?
+	args[23]= iif(arritem('<<$args[0]>>', args[1]) <> 0, 1, 0)	& !@ number?
+elseif $args[2] = 'str':
+	args[21] = iif(arritem('%<<$args[0]>>', $args[1]) <> [], 1, 0)
+	args[22]= iif(arritem('$<<$args[0]>>', $args[1]) <> '', 1, 0)
+	args[23]= iif(arritem('<<$args[0]>>', $args[1]) <> 0, 1, 0)
+elseif $args[2] = 'tpl':
+	args[21] = iif(arritem('%<<$args[0]>>', %args[1]) <> [], 1, 0)
+	args[22]= iif(arritem('$<<$args[0]>>', %args[1]) <> '', 1, 0)
+	args[23]= iif(arritem('<<$args[0]>>', %args[1]) <> 0, 1, 0)
+end
+if args[21]:
+	$result = '%'	& !@ кортеж
+elseif args[22]:
+	$result = '$' & !@ переменная содержит текстовое значение
+elseif args[23]:
+	$result = '' & !@ переменная содержит числовое значение
+elseif no (args[22] or args[23] or args[21]):
+	$result = '' & !@ переменная не содержит значений, либо содержит значения по-умолчанию
+end
+--- em.var.get_type_prefix ---------------------------------
+
 !@pp:endif
 
 Функция не использует иных функций библиотеки. Не допускается использование локальных переменных.
