@@ -9,7 +9,6 @@ $args[2] - управляющая конструкция.
 	* Если при сравнении необходимо исключить пустые ячейки, необходимо добавить управляющее слово "[se]" или "[space exclude]" к управляющей конструкции.
 !@pp:if(em_arr_simp):include
 # em.arr.simpl
-$args[9]=$args[9]	& !@ инициализация аргументов
 !@ создаём локальные массивы и копируем в них сравниваемые массивы. Так мы сможем работать с любыми локльными переменными,
 !@ не боясь пересечения имён с именами переданных на сравнение массивов
 local em_arr_simp_copy_array_0, em_arr_simp_copy_array_1
@@ -17,15 +16,16 @@ copyarr 'em_arr_simp_copy_array_0', $args[0]
 copyarr 'em_arr_simp_copy_array_1', $args[1]
 local $type, $simplificate
 if instr($args[0],'$')<>0 or instr($args[1],'$')<>0: $type='$'
+if instr($args[0],'%')<>0 or instr($args[1],'%')<>0: $type='%'	& !@ у кортежей приоритет перед строками
 $args[2]=$lcase($args[2])	& !@ переводим управляющие конструкции в нижний регистр
-local $array_name_0,$array_name_1,$commands=$type+'em_arr_simp_copy_array_0',$type+'em_arr_simp_copy_array_1',$args[2]
-$simplificate='true'	& !@ результат сравнения по умолчанию true
-if instr($commands,'[space exclude]')<>0: $commands=$replace($commands,'[space exclude]','[se]')
-if instr($commands,'[simp]')<>0 or instr($commands,'[se]')<>0:
+local $array_name_0, $array_name_1, $commands = $type+'em_arr_simp_copy_array_0', $type+'em_arr_simp_copy_array_1', $args[2]
+$simplificate = 'true'	& !@ результат сравнения по умолчанию true
+if instr($commands,'[space exclude]') <> 0: $commands = $replace($commands,'[space exclude]','[se]')
+if instr($commands,'[simp]') <> 0 or instr($commands,'[se]') <> 0:
 	!@ если сравниваем на подобие, или исключаем пустые значения
-	@em.arr.sort($array_name_0)	& !@ сортируем первый массив и помещаем его во временный
-	@em.arr.sort($array_name_1)	& !@ сортируем второй массив и помещаем его во временный
-	if instr($commands,'[se]')<>0:
+	sortarr $array_name_0	& !@ сортируем первый массив и помещаем его во временный
+	sortarr $array_name_1	& !@ сортируем второй массив и помещаем его во временный
+	if instr($commands,'[se]') <> 0:
 		!@ если нужно не учитывать пустые значения (нули), удаляем их из массивов
 		@em.arr.clear($array_name_0)
 		@em.arr.clear($array_name_1)
