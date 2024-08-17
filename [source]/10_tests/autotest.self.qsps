@@ -261,15 +261,20 @@ $example['em.str.thin']="п р о ф е с с у р а
 ||п||р||о||ф||е||с||с||у||р||а||
 "
 end
-*pl "Start of Autotest." & wait 1000
+
+if instr($args[0], 'em.var.get_type') <> 0 or $args[0] = '':
+	$functions[]= 'em.var.get_type'
+	$example['em.var.get_type'] = "[str][num][num][][][str][tpl]"
+end
+*pl "Start of Autotest." & wait 500
 loop local i,size=0,arrsize('$functions') while i<size step i+=1:
 	if loc($functions[i]):
 		*pl "Function '<<$functions[i]>>' is exist."
-		wait 1000
+		wait 500
 		$res=@em.autotest($functions[i])
 		if $res=$example[$functions[i]]:
 			*pl "Autotest of '<<$functions[i]>>' completed. All Ok!"
-			wait 1000
+			wait 500
 		else
 			*pl "Autotest Error. Dif Result:"
 			*pl "<table border=1 cellspacing=5><tr><td>Еxpected results:</td><td>Obtained results:</td></tr><tr><td><<$example[$functions[i]]>></td><td><<$res>></td></tr>"
@@ -281,13 +286,13 @@ loop local i,size=0,arrsize('$functions') while i<size step i+=1:
 					if $f<>$r: *p "[<<j>>:<<$f>>:<<$r>>] "
 				end
 			end
-			wait 1000
+			wait 500
 		end
 	else
 		*pl "Function '<<$functions[i]>>' doesn't exist. Location not found."
-		wait 1000
+		wait 500
 	end
 end
-*pl "End of Autotest." & wait 1000
+*pl "End of Autotest."
 - em.autotest.self
 !@pp:endif

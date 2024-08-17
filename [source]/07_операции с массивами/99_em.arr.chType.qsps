@@ -4,7 +4,7 @@ $args[1] - управление:
 	[string] - все ячейки массива приводятся к строковому типу (по умолчанию);
 	[number] - все ячейки массива приводятся к числовому типу;
 	[reverse] - тип ячеек меняется на противоположный (не знаю, кому это может понадобиться);
-	[hard] - режим, расширяющий работу режима [string], при этом ячейкам, тип которых определяется как 'empty' (см. функцию "em.var.getType"), принудительно присваивается строковое значение "0".
+	[hard] - режим, расширяющий работу режима [string], при этом ячейкам, тип которых определяется как 'empty' (см. функцию "em.var.get_type"), принудительно присваивается строковое значение "0".
 	Смысла конвертировать массив некортежей в массив кортежей нет, поэтому преобразование к кортежам не будет. Кортежи преобразуются в строки, но не в числа.
 $args[2] - результирующий массив. Если не указано, результат помещается в исходный массив.
 
@@ -36,7 +36,7 @@ $convert['StrInStr']={$em_arr_chtype_new_array[args[0]]=$em_arr_chtype_old_array
 $convert['NumInNum']={em_arr_chtype_new_array[args[0]]=em_arr_chtype_old_array[args[0]]}
 $convert['TplInStr']={$em_arr_chtype_new_array[args[0]]='('+$replace($em_arr_chtype_old_array[args[0]],'',',')+')'}
 loop local i,size=0,arrsize('em_arr_chtype_old_array') while i<size step i+=1:
-	!@ ------------------------- данный блок кода можно заменить на em.var.getType ------------------------
+	!@ ------------------------- данный блок кода можно заменить на em.var.get_type ------------------------
 		getType['tuple']=dyneval({result=iif($em_arr_chtype_old_array[args[0]]<>'' and instr($em_arr_chtype_old_array[args[0]],'')<>0,1,0)},i)
 		getType['string']=dyneval({result=iif($em_arr_chtype_old_array[args[0]]<>'',1,0)},i)
 		getType['number']=dyneval({result=iif(em_arr_chtype_old_array[args[0]]<>0,1,0)},i)
@@ -51,7 +51,7 @@ loop local i,size=0,arrsize('em_arr_chtype_old_array') while i<size step i+=1:
 		elseif no (getType['string'] or getType['number'] or getType['tuple']):
 			$resType='empty' & !@ переменная не содержит значений, либо содержит значения по-умолчанию
 		end
-	!@ ------------------------- данный блок кода можно заменить на em.var.getType ------------------------
+	!@ ------------------------- данный блок кода можно заменить на em.var.get_type ------------------------
 	!@ преобразуем в строковый
 	if $type='string' and ($resType='string' or $resType='empty' or $resType='both'): $mode='StrInStr'
 	if $type='string' and $resType='tuple': $mode='TplInStr'

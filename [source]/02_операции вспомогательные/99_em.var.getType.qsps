@@ -4,9 +4,9 @@
 !@ $2 - тип индекса: num, str, tpl
 !@ $r - тип переменной: num, str, tpl
 !@pp:if(em_var_gettype):include
-# em.var.getType
+# em.var.get_type
 !@pp:if(em_fuse):include
-if instr($args[0], '$')=1 or instr($args[0], '%')=1: msg 'em.var.getType: type prefix cannot be specified → <<$args[0]>>' & exit
+if instr($args[0], '$')=1 or instr($args[0], '%')=1: msg 'em.var.get_type: type prefix cannot be specified → <<$args[0]>>' & exit
 !@pp:endif
 !@ определяем тип индекса (по умолчанию числовой)
 if arrsize('args')<2:
@@ -41,7 +41,7 @@ elseif args[23]:
 elseif no (args[22] or args[23] or args[21]):
 	$result = '' & !@ переменная не содержит значений, либо содержит значения по-умолчанию
 end
---- em.var.getType ---
+--- em.var.get_type ---
 !@pp:endif
 
 Функция не использует иных функций библиотеки. Не допускается использование локальных переменных.
@@ -53,11 +53,11 @@ $emptyvar[0]=''
 emptyvar[1]=0
 $tuple=(1,2,3)
 ! результат работы функции
-@em.var.getType('$string')	& !@ 'string'
-@em.var.getType('number')	& !@ 'number'
-@em.var.getType('$number')	& !@ 'number'
-@em.var.getType('string')	& !@ 'string'
-@em.var.getType('$varname')	& !@ 'number'
-@em.var.getType('$emptyvar[0]')	& !@ 'empty'
-@em.var.getType('emptyvar[1]')	& !@ 'empty'
-@em.var.getType('$tuple')	& !@ 'tuple'
+@em.var.get_type('$string')	& !@ 'string'
+@em.var.get_type('number')	& !@ 'number'
+@em.var.get_type('$number')	& !@ 'number'
+@em.var.get_type('string')	& !@ 'string'
+@em.var.get_type('$varname')	& !@ 'number'
+@em.var.get_type('$emptyvar[0]')	& !@ 'empty'
+@em.var.get_type('emptyvar[1]')	& !@ 'empty'
+@em.var.get_type('$tuple')	& !@ 'tuple'
