@@ -65,6 +65,7 @@ QSP-Game Список меток для всех функций библиоте
 !@pp:var(em_arr_find)
 !@pp:var(em_arr_strtfill)
 !@pp:var(em_arr_few_kill)
+!@pp:var(em_arr_enumerate)
 Операции с целыми числами
 !@pp:var(em_abs)
 !@pp:var(em_exp)

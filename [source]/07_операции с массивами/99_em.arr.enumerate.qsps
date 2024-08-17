@@ -1,7 +1,8 @@
-QSP-Game Заполняет указанный массив кортежами вида [index, value]
+QSP-Game Заполняет указанный массив кортежами вида [value, index]
 
 !@ $0 - название массива
 !@ $1 - название целевого массива
+!@pp:if(em_arr_enumerate):include
 # em.arr.enumerate
 !@pp:if(em_fuse):include
 if $args[0]='' or $args[1]='': msg 'em.arr.enumerte: No array name → <<$args[0]>>, <<$args[1]>>' & exit
@@ -11,10 +12,12 @@ killvar $args[1]
 loop args[21] = 0 while args[21]<arrsize($args[0]) step args[21] += 1:
 	$args[22] = @em.var.get_type_prefix($args[0], args[21], 'num')
 	dynamic "
-		%<<$args[1]>>[] = [<<args[21]>>, arritem('<<$args[22]>><<$args[0]>>', <<args[21]>>)]
+		%<<$args[1]>>[] = [arritem('<<$args[22]>><<$args[0]>>', <<args[21]>>), <<args[21]>>]
 	"
 end
 --- em.arr.enumerate ---------------------------------
+!@pp:endif
 
+!@pp:var(em_var_gettype)
 args[21] - counter
 $args[22] - type of cell
