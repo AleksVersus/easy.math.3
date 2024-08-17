@@ -1,18 +1,17 @@
 QSP-Game Заполняет указанный массив кортежами вида [value, index]
 
-!@ $0 - название массива
-!@ $1 - название целевого массива
+!@ $0 - название массива (value приводится к типу, указанному в названии массива)
+!@ $1 - название целевого массива (только с префиксом %)
 !@pp:if(em_arr_enumerate):include
 # em.arr.enumerate
 !@pp:if(em_fuse):include
 if $args[0]='' or $args[1]='': msg 'em.arr.enumerte: No array name → <<$args[0]>>, <<$args[1]>>' & exit
-if instr($args[0], '$')=1 or instr($args[0], '%')=1: msg 'em.var.enumerate: type prefix cannot be specified → <<$args[0]>>' & exit
+if instr($args[1], '%') <> 1: msg 'em.var.enumerate: type prefix ''%'' not specified → <<$args[1]>>' & exit
 !@pp:endif
 killvar $args[1]
 loop args[21] = 0 while args[21]<arrsize($args[0]) step args[21] += 1:
-	$args[22] = @em.var.get_type_prefix($args[0], args[21], 'num')
 	dynamic "
-		%<<$args[1]>>[] = [arritem('<<$args[22]>><<$args[0]>>', <<args[21]>>), <<args[21]>>]
+		<<$args[1]>>[] = [arritem('<<$args[0]>>', <<args[21]>>), <<args[21]>>]
 	"
 end
 --- em.arr.enumerate ---------------------------------
@@ -20,4 +19,18 @@ end
 
 !@pp:var(em_var_gettype)
 args[21] - counter
-$args[22] - type of cell
+
+old_mass[0]=157
+old_mass[1]=250
+old_mass[2]=709
+old_mass[3]=413
+old_mass[4]=532
+old_mass[5]=779
+old_mass[6]=730
+old_mass[7]=565
+
+@em.arr.enumerate('old_mass', 'em_array')
+
+loop local i,size=0,arrsize('old_mass') while i<size step i+=1:
+	*pl "old_mass[<<i>>]=<<old_mass[i]>>; em_array[<<i>>]=<<em_array[i]>>"
+end

@@ -6,7 +6,7 @@
 !@pp:if(em_var_gettype):include
 # em.var.get_type
 !@pp:if(em_fuse):include
-if instr($args[0], '$')=1 or instr($args[0], '%')=1: msg 'em.var.get_type: type prefix cannot be specified → <<$args[0]>>' & exit
+if instr('$%', $mid($args[0],1,1)): msg 'em.var.get_type: type prefix cannot be specified → <<$args[0]>>' & exit
 !@pp:endif
 !@ определяем тип индекса (по умолчанию числовой)
 if arrsize('args')<2:
