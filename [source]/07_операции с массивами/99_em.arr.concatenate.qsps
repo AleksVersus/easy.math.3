@@ -1,0 +1,59 @@
+QSP-Game Соединяет перечисленные массивы в массив кортежей
+
+!@ $0 - название массива, в который нужно объединить остальные (только %)
+!@ $1 - ... $18 названия массивов с указанием префикса типа.
+# em.arr.concatenate
+!@pp:if(em_fuse):include
+if $args[0] = '': msg 'em.arr.concatenate: Wrong array name → <<$args[0]>>' & exit
+if instr($args[0], '%') <> 1: msg 'em.arr.concatenate: type prefix ''%'' not specified → <<$args[0]>>, need ' & exit
+!@pp:endif
+args[21], args[23] = arrsize('args'), 0
+!@ получаем размер самого длинного массива:
+loop args[22] = 1 while args[22] < args[21] step args[22] += 1:
+	args[23] = iif(arrsize($args[args[22]]) > args[23], arrsize($args[args[22]]), args[23])
+end
+local %em_arr_concatenate_temp_
+loop args[24] = 0 while args[24] < args[23] step args[24] += 1:
+	!@ новая ячейка
+	if args[21] > 3:
+		%em_arr_concatenate_temp_[args[24]] = []
+		loop args[22] = 1 while args[22] < args[21] step args[22] += 1:
+			%em_arr_concatenate_temp_[args[24]] = (%em_arr_concatenate_temp_[args[24]] & arritem($args[args[22]], args[24]))
+		end
+	else:
+		%em_arr_concatenate_temp_[args[24]] = [ arritem($args[1], args[24]), arritem($args[2], args[24]) ]
+	end
+end
+copyarr $args[0], '%em_arr_concatenate_temp_'
+--- em.arr.concatenate ---------------------------------
+
+old_mass[0]=967
+old_mass[1]=629
+old_mass[2]=541
+old_mass[3]=290
+old_mass[4]=852
+old_mass[5]=334
+old_mass[6]=318
+old_mass[7]=529
+
+$mass[0]='88ff88'
+$mass[1]='ff00ff'
+$mass[2]='0ff0f8'
+$mass[3]='ffffff'
+$mass[4]='8888ff'
+$mass[5]='fff8f8'
+
+$arr_mass[0]='голова'
+$arr_mass[1]='плечи'
+$arr_mass[2]='грудь'
+$arr_mass[3]='живот'
+$arr_mass[4]='бёдра'
+$arr_mass[5]='колени'
+$arr_mass[6]='икры'
+$arr_mass[7]='ступни'
+
+@em.arr.concatenate('%em_result', 'old_mass', '$mass', '$arr_mass')
+
+loop local i,size=0,arrsize('%em_result') while i<size step i+=1:
+	*pl "%em_result[<<i>>]=<<%em_result[i]>>"
+end
