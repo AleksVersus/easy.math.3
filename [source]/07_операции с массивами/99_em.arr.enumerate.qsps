@@ -17,7 +17,6 @@ end
 --- em.arr.enumerate ---------------------------------
 !@pp:endif
 
-!@pp:var(em_var_gettype)
 args[21] - counter
 
 old_mass[0]=157

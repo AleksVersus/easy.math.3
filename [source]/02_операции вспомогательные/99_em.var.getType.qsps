@@ -1,9 +1,9 @@
-Функция получает тип переменной.
+QSP-Game Функция получает тип переменной
 !@ $0 - имя переменной/массива (без указания типа).
 !@ #1 - индекс (может быть числом, строкой, кортежем)
 !@ $2 - тип индекса: num, str, tpl
 !@ $r - тип переменной: num, str, tpl
-!@pp:if(em_var_gettype):include
+!@pp:if(em_var_get_type):include
 # em.var.get_type
 !@pp:if(em_fuse):include
 if instr('$%', $mid($args[0],1,1)): msg 'em.var.get_type: type prefix cannot be specified → <<$args[0]>>' & exit
