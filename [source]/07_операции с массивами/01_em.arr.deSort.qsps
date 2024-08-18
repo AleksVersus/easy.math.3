@@ -1,0 +1,48 @@
+QSP-Game функция обратная функции сортировки. По опорному массиву восстанавливаем массив к состоянию до сортировки.
+!@ $0 - восстанавливаемый массив (тип должен определяться префиксом для строковых и кортежей)
+!@ $1 - опорный массив (только числовой!)
+!@ $2 - результиррующий массив
+!@pp:if(em_arr_desort):include
+# em.arr.deSort
+!@pp:if(em_fuse):include
+if $args[0] = '': msg 'em.arr.desort: Wrong array name → <<$args[0]>>' & exit
+if $args[1] <> '' and instr('$%', $mid($args[1], 1, 1)): msg 'em.arr.desort: type prefix cannot be specified → <<$args[1]>>' & exit
+!@pp:endif
+if $args[2] = '': $args[2] = $args[0]	& !@ если не указан массив результатов, результат помещается в исходный
+$args[21] = iif(instr('$%', $mid($args[0],1,1)), $mid($args[0],1,1), '')	& !@ type prefix
+local %em_arr_desort_reflect_array_
+!@ объединяем опорный и исходный массивы
+@em.arr.concatenate('%em_arr_desort_reflect_array_', $args[1], $args[0])
+!@ сортируем от меньшего к большему
+sortarr '%em_arr_desort_reflect_array_', 0
+!@ теперь циклом просто вытаскиваем значения из массива кортежей
+loop args[22], args[23] = 0, arrsize('em_arr_desort_reflect_array_') while args[22] < args[23] step args[22] += 1:
+	dynamic "
+		args[1], <<$args[21]>>em_arr_desort_reflect_array_[args[0]]  = %em_arr_desort_reflect_array_[args[0]]
+	", args[22]
+end
+!@ копируем перетасованный временный массив в результирующий
+copyarr $args[2], 'em_arr_desort_reflect_array_'
+--- em.arr.deSort ---------------------------------
+!@pp:endif
+
+Функция не использует иных функций библиотеки.
+
+em_arr_desort_source_array - исходный массив
+em_arr_desort_reflect_array_ - опорный массив
+
+old_mass[0]=949
+old_mass[1]=913
+old_mass[2]=269
+old_mass[3]=901
+old_mass[4]=257
+old_mass[5]=561
+old_mass[6]=529
+old_mass[7]=293
+!@ сортируем массив
+@em.arr.sort('old_mass','[down]','em_array')
+@em.arr.print('old_mass')
+@em.arr.print('em_array')
+!@ восстанавливаем исходный массив в новом массиве
+@em.arr.deSort('old_mass','em_array','new_mass')
+@em.arr.print('new_mass')
