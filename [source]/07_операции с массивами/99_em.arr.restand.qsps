@@ -1,20 +1,24 @@
 QSP-Game Процедура перетасовывает элементы массива согласно сведениям в массиве фиксации.
-$args[0] - массив, данные в котором необходимо перетасовать (исследуемый);
-$args[1] - массив фиксации, где находится список, согласно которому тасуются элементы (опорный);
-$args[2] - массив результатов - сюда помещается итог перетасовки, если не указан результат помещается в исходный массив.
+
+!@ $0 - массив, данные в котором необходимо перетасовать (исследуемый);
+!@ $1 - массив фиксации, где находится список, согласно которому тасуются элементы (опорный);
+!@ $2 - массив результатов - сюда помещается итог перетасовки, если не указан результат помещается в исходный массив.
 !@pp:if(em_arr_restand):include
 # em.arr.restand
-$args[9]=$args[9]	& !@ инициализация аргументов
-if instr($args[1],'$')=1: $args[1]=$mid($args[1],2)	& !@ опорный массив не может быть текстовым
-if $args[2]='': $args[2]=$args[0]	& !@ если не указан результирующий массив, результат помещается в исходный
-if instr($args[0],'$')=1: $args['$']='$' else $args['$']=''	& !@ маркер указания на тип
-local em_arr_restand_copy_array, em_arr_restand_sort_array
-copyarr 'em_arr_restand_sort_array',$args[1]	& !@ копируем опорный массив во временный
+!@pp:if(em_fuse):include
+if $args[0] = '': msg 'em.arr.desort: Wrong array name → <<$args[0]>>' & exit
+if $args[1] <> '' and instr('$%', $mid($args[1], 1, 1)): msg 'em.arr.desort: type prefix cannot be specified → <<$args[1]>>' & exit
+!@pp:endif
+if $args[2] = '': $args[2] = $args[0]	& !@ если не указан массив результатов, результат помещается в исходный
+$args[21] = iif(instr('$%', $mid($args[0],1,1)), $mid($args[0],1,1), '')	& !@ type prefix
+local em_arr_restand_copy_array_
 !@ с помощью цикла вставляем элементы во временный массив
-loop local i,size=0,arrsize('em_arr_restand_sort_array') while i<size step i+=1:
-	dynamic $args['$']+"em_arr_restand_copy_array[args[0]] = "+$args[0]+"[args[1]]",i,em_arr_restand_sort_array[i]
+loop local i,size=0,arrsize($args[1]) while i<size step i+=1:
+	dynamic "
+		<<$args[21]>>em_arr_restand_copy_array_[args[0]] = <<$args[0]>>[args[1]]
+	", i, arritem($args[1], i)
 end
-copyarr $args[2],$args['$']+"em_arr_restand_copy_array"	& !@ копируем данные из временного массива в результирующий
+copyarr $args[2], "em_arr_restand_copy_array_"	& !@ копируем данные из временного массива в результирующий
 --- em.arr.restand ---------------------------------
 !@pp:endif
 
