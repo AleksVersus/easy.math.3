@@ -1,63 +1,62 @@
 QSP-Game возвращает содержимое массива
-Аргументы см. ниже
+
+!@ $0 - название массива. Тип выводимых значений определяется по префиксу типа
+!@ $1 - управляющая конструкция. См. ниже.
+!@ $2 - разделитель. По умолчанию перенос строки. Если разделитель не нужен, указывается /se.
+!@ %3 - [начало, окончание] вывода. Номера элементов массива.
 !@pp:if(em_arr_print):include
 # em.arr.print
+args[21], args[22] = %iif(%args[3] = [], [0, arrsize($args[0])-1], %args[3])
+!@pp:if(em_fuse):include
+if $args[0]='': msg 'em.arr.print: No array name → <<$args[0]>>' & exit
+if args[22] < args[21] or args[21] < 0: msg 'em.arr.print: Out of range → <<%args[3]>>' & exit
+!@pp:endif
 local em_arr_print_copy_array_	& !@ объявляем локальный массив для хранения выводимых значений
-copyarr 'em_arr_print_copy_array_', $args[0]	& !@ копируем значения в локальный массив
+copyarr 'em_arr_print_copy_array_', $args[0], args[21], args[22] - args[21] + 1	& !@ копируем значения в локальный массив
 !@ инициализируем локальные переменные
-local $type_, $quotes_, $only_result_, $array_print_, $inline_
-local $array_name_, $commands_, $delimiter_, start_cell_, end_cell_ = $args[0], $args[1], $args[2], args[3], args[4]
-$commands_ = $lcase($commands_)	& !@ переводим команды в нижний регистр
-if $delimiter_ = '': $delimiter_ = '
-'	& !@ если $delimiter_ не указано, в качестве разделителя использует символ переноса строки
-if $delimiter_ = '/se': $delimiter_ = ''	& !@ если указан ключ,разделитель не используется
-if start_cell_ < 0: start_cell_ = 0	& !@ защита от дурака
-if end_cell_ < start_cell_: end_cell_ = 0	& !@ защита от дурака
-!@ если название массива начинается с $, мы имеем дело с текстовым массивом
-if instr($array_name_, '$') = 1: $type_ = 'str' else $type_ = 'int'
-!@ если не выводим только результаты, содержимое оборачивается в кавычки
-if instr($commands_, '[only result]') = 0:
-	$quotes_ = "'"
-	$only_result_ = ''
-else
-	$quotes_ = ""
-	$only_result_ = 'yep'
-end
-loop local i, j, size_ = start_cell_, end_cell_, arrsize('em_arr_print_copy_array_') while (i<size_ and (i<=j or j=0)) step i+=1:
+$args[1] = $lcase($args[1])	& !@ переводим команды в нижний регистр
+if $args[2] = '': $args[2] = @em.RN	& !@ если $args[2] не указано, в качестве разделителя использует символ переноса строки
+if $args[2] = '/se': $args[2] = ''	& !@ если указан ключ,разделитель не используется
+
+$args[23] = $iif(instr('$%', $mid($args[0], 1, 1)),  $mid($args[0], 1, 1), '')
+args[24] = iif(instr($args[1], '[only result]'), 1, 0)
+loop local i, size_ = args[21], arrsize('em_arr_print_copy_array_') while i<size_ step i+=1:
 	!@ если не указано, что нужно вывести только значения массивов, к выводимым значениям добавляется название массива и номер ячейки
-	if $only_result_ = '': $array_print_ += $array_name_ + "[<<i>>]="
-	if $type_ = 'str':
-		!@ если пытаемся получить строковые значения, это может быть строка или кортеж
-		if instr($em_arr_print_copy_array_[i], '') = 0:
-			$inline_ = $replace($em_arr_print_copy_array_[i], $quotes_, "''")
-			if instr($commands_, '[trim]') <> 0: $inline_ = $trim($inline_)
-			$array_print_ += $quotes_ + $inline_ + $quotes_ + $delimiter_
-		else
-			$array_print_ += "(" + $replace($em_arr_print_copy_array_[i], '', ',') + ')' + $delimiter_
+	if no args[24]: $result += $args[0] + "[<<i+args[21]>>] = "
+	if $args[23] = '%':
+		$result += $str(%em_arr_print_copy_array_[i])
+	elseif $args[23] = '$':
+		$args[25] = $em_arr_print_copy_array_[i]
+		if instr($args[1], '[trim]'): $args[25] = $trim($args[25])
+		if no args[24]:
+			$args[25] = $replace($args[25], $quotes_, "''")
+			$result += "'<<$args[25]>>'"
+		else:
+			$result += $args[25]
 		end
-	elseif $type_ = 'int':
+	else:
 		!@ если пытаемся получить число, просто вписываем его
-		$array_print_ += $str(em_arr_print_copy_array_[i]) + $delimiter_
+		$result += $str(em_arr_print_copy_array_[i])
+	end
+	if no (instr($args[1], '[not last]') and i = size_-1):
+		$result += $args[2]
 	end
 end
-!@ если последний разделитель следует исключить, вырезаем
-if instr($commands_, '[not last]') <> 0: 
-	$array_print_ = $mid($array_print_, 1, len($array_print_) - len($delimiter_))
-end
-$result = $array_print_	& !@ возвращаем результат
 --- em.arr.print ---------------------------------
 !@pp:endif
 
 Функция не использует иных функций библиотеки
 
-$args[0]- имя массива, содержимое которого необходимо просмотреть.
-$args[1] - управляющая конструкция. Можно использовать три команды в любых комбинациях:
+!@ $1 - управляющая конструкция. Можно использовать три команды в любых комбинациях:
 	* [only result] - выводит только содержимое массива, не показывая его названия и номера ячеек.
 	* [trim] - отсекает прилегающие пробелы и символы табуляции при выводе значения элемента массива.
 	* [not last] - исключает добавление разделителя за последним выводимым значением.
-$args[2] - этим параметром задаётся разделитель между выводимыми значениями. По умолчанию, т.е. когда параметр не указан или равен пустому значению, между выводимыми значениями вставляется символ перевода строки. Ключ /se, указанный вместо разделителя, отключает вставку разделителя.
-args[3] - начало вывода. Номер элемента, с которого начинается вывод значений (включительно).
-args[4] - окончание вывода. Номер элемента, до которого следует продолжать вывод значений (включительно).
+
+!@ #21 - с какой ячейки начинаем вывод %3[1]
+!@ #22 - до какой ячейки продолжаем вывод %3[2]
+!@ $23 - тип массива (выводимых значений)
+!@ #24 - only_result маркер. Выводить только содержимое ячеек?
+!@ $25 - хранение промежуточных результатов
 
 $a[]='нулевая ячейка'
 $a[]='   первая ячейка   '
