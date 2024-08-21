@@ -6,26 +6,27 @@ QSP-Game Функция для удаления из массива всех э�
 # em.arr.clear
 local em_arr_clear_copy_array_
 copyarr 'em_arr_clear_copy_array_', $args[0]
-loop local pos_ = 0 while 1:
+loop local args[21] = 0 while 1:
 	!@ в зависимости от того, название текстового или числового массива передано, ищем текстовое или числовое значение
 	if instr($args[0],'%')=1:
-		pos_ = arrpos('%em_arr_clear_copy_array_', %args[1], pos_)
+		args[21] = arrpos('%em_arr_clear_copy_array_', %args[1], args[21])
 	elseif instr($args[0],'$')=1:
 		!@ поиск среди текстовых значений массива
-		pos_ = arrpos('$em_arr_clear_copy_array_', $args[1], pos_)
+		args[21] = arrpos('$em_arr_clear_copy_array_', $args[1], args[21])
 	else
 		!@ поиск среди числовых значений массива
-		pos_ = arrpos('em_arr_clear_copy_array_', args[1], pos_)
+		args[21] = arrpos('em_arr_clear_copy_array_', args[1], args[21])
 	end
 	!@ если элемент найден, размер массива больше нуля, и счётчик не исчерпан
-	if pos_ = -1 or arrsize('em_arr_clear_copy_array_') = 0: jump 'break'
-	killvar 'em_arr_clear_copy_array_', pos_	& !@ удаляем элемент
+	if args[21] = -1 or arrsize('em_arr_clear_copy_array_') = 0: jump 'break'
+	killvar 'em_arr_clear_copy_array_', args[21]	& !@ удаляем элемент
 end
 :break
 copyarr $args[0],'em_arr_clear_copy_array_'
 --- em.arr.clear ---------------------------------
 !@pp:endif
 
+!@ #21 - позиция в массиве
 Функция не использует иных функций библиотеки
 
 i[0]=1
