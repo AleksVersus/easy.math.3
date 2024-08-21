@@ -59,7 +59,7 @@ QSP-Game Список меток для всех функций библиоте
 !@pp:var(em_arr_insert)
 !@pp:var(em_fewarrs_print)
 !@pp:var(em_arr_print)
-!@pp:var(em_arr_randfill)
+!@pp:var(em_arr_fill_rand)
 !@pp:var(em_arr_restand)
 !@pp:var(em_arr_sort)
 !@pp:var(em_arr_find)

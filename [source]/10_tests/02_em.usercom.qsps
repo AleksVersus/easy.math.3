@@ -52,18 +52,18 @@ if $args[0] = '' and instr($user_text, 'em ') = 1:
 			msg "Error. Function 'em.str.random' is not exist!"
 		end
 	elseif instr($trim($lcase($cmdline_)),'gen mass')=1:
-		if loc('em.arr.randFill') and loc('em.arr.print'):
+		if loc('em.arr.fill_rand') and loc('em.arr.print'):
 			local count
 			if $em_test_parse_[2]<>'':
 				if $em_test_parse_[3]<>'' and isnum($em_test_parse_[3]): count=val($em_test_parse_[3]) else count=10
-				@em.arr.randFill($em_test_parse_[2],count)
+				@em.arr.fill_rand($em_test_parse_[2],count)
 				@em.arr.print($em_test_parse_[2])
 			else
 				*pl "Error input. Type:"
 				*pl "gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS>"
 			end
 		else:
-			msg "Error. Functions 'em.arr.randFill' and 'em.arr.print' are not exist!"
+			msg "Error. Functions 'em.arr.fill_rand' and 'em.arr.print' are not exist!"
 		end
 	elseif instr($cmdline_,'autotest') = 1 and loc('em.autotest.self'):
 		if loc('em.autotest.self'):
