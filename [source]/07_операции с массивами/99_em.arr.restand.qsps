@@ -13,10 +13,10 @@ if $args[2] = '': $args[2] = $args[0]	& !@ если не указан масси
 $args[21] = iif(instr('$%', $mid($args[0],1,1)), $mid($args[0],1,1), '')	& !@ type prefix
 local em_arr_restand_copy_array_
 !@ с помощью цикла вставляем элементы во временный массив
-loop local i,size=0,arrsize($args[1]) while i<size step i+=1:
+loop args[22],args[23] = 0,arrsize[23]($args[1]) while args[22]<args[23] step args[22]+=1:
 	dynamic "
 		<<$args[21]>>em_arr_restand_copy_array_[args[0]] = <<$args[0]>>[args[1]]
-	", i, arritem($args[1], i)
+	", args[22], arritem($args[1], args[22])
 end
 copyarr $args[2], "em_arr_restand_copy_array_"	& !@ копируем данные из временного массива в результирующий
 --- em.arr.restand ---------------------------------
@@ -42,16 +42,10 @@ old_mass[5]=97
 old_mass[6]=649
 old_mass[7]=75
 
-@em.arr.sort('old_mass','[down]','em_array')
+@em.arr.sort('old_mass',0,'em_array')
 @em.arr.restand('$arr_mass','em_array','$new_mass')
 
-loop local i,size=0,arrsize('old_mass') while i<size step i+=1:
-	*pl "old_mass[<<i>>]=<<old_mass[i]>>"
-end
-loop local i,size=0,arrsize('em_array') while i<size step i+=1:
-	*pl "em_array[<<i>>]=<<em_array[i]>>"
-end
-loop local i,size=0,arrsize('$new_mass') while i<size step i+=1:
-	*pl "$new_mass[<<i>>]='<<$new_mass[i]>>'"
-end
+@em.arr.print('old_mass')
+@em.arr.print('em_array')
+@em.arr.print('$new_mass')
 
