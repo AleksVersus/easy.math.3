@@ -4,7 +4,7 @@ QSP-Game распечатка содержимого нескольких мас
 !@ $18 - ... $1 - управляющая конструкция. Записывается последним аргументом. См ниже.
 !@pp:if(em_fewarrs_print):include
 # em.fewArrs.print
-local last_is_command_, last_, error_name_pos_, start_count_, end_count_, $table_, show_table_
+local last_is_command_, last_, error_name_pos_, start_count_, end_count_, $table_, show_table_, only_result_
 last_=arrsize('$args')-1	& !@ получаем номер последнего аргумента
 last_is_command_ = iif($strfind($args[last_],'\[.+?\]')<>'', 1, 0)
 !@ получаем позицию неверно записанного названия массива
@@ -23,7 +23,7 @@ if last_is_command_:
 	!@ по управляющей конструкции понимаем, нужно строить таблицу или нет
 	show_table_ = iif(instr($args['construct'],'[no table]')<>0, 0, 1)
 	!@ по управляющей конструкции понимаем, нужно ли выводить одни только результаты
-	if instr($args['construct'],'[only result]')<>0: show_table_ = 0 & $args['only result']='only result'
+	if instr($args['construct'],'[only result]')<>0: show_table_ = 0 & only_result_ = 1
 	!@ получаем номера первого и последнего элементов, которые хотим вывести
 	if instr($args['construct'], '[range onscreen:') <> 0:
 		start_count_ = $strfind($args['construct'], '\[range onscreen:(\d+)\-\d+\]', 1)
@@ -71,7 +71,7 @@ loop args['b']=start_count_ while args['b']<end_count_ step args['b']+=1:
 	!@ этот цикл выводит содержимое ячеек под одним индексом
 	loop args['i']=0 while args['i']<last_+1 and $strfind($args[args['i']],'\[.+?\]')='' and $args[args['i']]<>'' step args['i']+=1:
 		!@ пока счётчик не достигнет девяти, или мы не встретим аргумент с управлением, или пустой аргумент
-		if $args['only result']<>'only result' and no show_table_:
+		if no only_result_ and no show_table_:
 			!@ это не режим только результат, но и не режим вывода таблицы
 			$args['cell']=$args[args['i']]+"[<<args['b']>>]="	& !@ перед добавляением значения, добавляем название массива и номер ячейки
 		else
@@ -100,7 +100,7 @@ loop args['b']=start_count_ while args['b']<end_count_ step args['b']+=1:
 				},args['b'],$args[args['i']])
 			else
 				!@ для не таблицы просто добавляем значение
-				if $args['only result']<>'only result':
+				if no only_result_:
 					$args['cell']+="'"+$dyneval({
 						!@ в ячейке может содержаться как кортеж, так и обычная строка
 						if instr($arritem($args[1],args[0]),'')<>0:
@@ -126,7 +126,7 @@ loop args['b']=start_count_ while args['b']<end_count_ step args['b']+=1:
 		end
 		if show_table_:
 			$table_ += '<td>'+$args['cell']+'</td>'	& !@ для таблицы создаём ячейку
-		elseif $args['only result']='only result' and args['i']<>0:
+		elseif only_result_ and args['i']<>0:
 			$args['result']+='	'+$args['cell']	& !@ для не таблицы добавляем отступ
 		elseif args['i']<>0:
 			$args['result']+='	&	'+$args['cell']	& !@ для не таблицы добавляем отступ
