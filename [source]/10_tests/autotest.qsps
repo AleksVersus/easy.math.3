@@ -295,7 +295,7 @@ elseif $args[0]='em.arr.print':
 		$result+=@em.arr.print('$a','[only result]')+$nr
 		$result+=@em.arr.print('$a','[trim]')+$nr
 		$result+=@em.arr.print('$a','[trim] [only result]',[2,5],'|')+$nr
-		$result+=@em.arr.print('$a','[trim] [only result] [not last]',[2,5],'|')+$nr
+		$result+=@em.arr.print('$a','[trim] [only result] [with last]',[2,5],'|')+$nr
 	})
 elseif $args[0]='em.arr.insert':
 	$result=$dyneval({
@@ -324,8 +324,113 @@ elseif $args[0]='em.arr.clear':
 		i[6]=1
 		i[7]=2
 
-		@em.arr.clear('i',2)
+		@em.arr.clear('i', 2)
 		$result=@em.arr.print('i')
+	})
+elseif $args[0]='em.arr.desort':
+	$result=$dyneval({
+		old_mass[0]=949
+		old_mass[1]=913
+		old_mass[2]=269
+		old_mass[3]=901
+		old_mass[4]=257
+		old_mass[5]=561
+		old_mass[6]=529
+		old_mass[7]=293
+		!@ сортируем массив
+		@em.arr.sort('old_mass',0,'em_array')
+		$result+=@em.arr.print('old_mass')+@em.RN
+		$result+=@em.arr.print('em_array')+@em.RN
+		!@ восстанавливаем исходный массив в новом массиве
+		@em.arr.deSort('old_mass','em_array','new_mass')
+		$result+=@em.arr.print('new_mass')
+	})
+elseif $args[0]='em.arr.sort':
+	$result=$dyneval({
+		old_mass[0]=157
+		old_mass[1]=250
+		old_mass[2]=709
+		old_mass[3]=413
+		old_mass[4]=532
+		old_mass[5]=779
+		old_mass[6]=730
+		old_mass[7]=565
+
+		@em.arr.sort('old_mass')
+		$result+=@em.arr.print('old_mass')+@em.RN
+
+		old_mass[0]=966
+		old_mass[1]=812
+		old_mass[2]=796
+		old_mass[3]=304
+		old_mass[4]=678
+		old_mass[5]=118
+		old_mass[6]=901
+		old_mass[7]=132
+
+		@em.arr.sort('old_mass',0,'em_array')
+		$result+=@em.arr.print('old_mass')+@em.RN
+		$result+=@em.arr.print('em_array')+@em.RN
+
+		%old_mass[0]=[967, 'голова']
+		%old_mass[1]=[629, 'плечи']
+		%old_mass[2]=[541, 'руки']
+		%old_mass[3]=[290, 'торс']
+		%old_mass[4]=[852, 'бёдра']
+		%old_mass[5]=[334, 'голени']
+		%old_mass[6]=[318, 'ступни']
+		%old_mass[7]=[529, 'нишваа']
+
+		@em.arr.sort('%old_mass',0,'em_array','%new_mass')
+
+		$result+=@em.arr.print('%old_mass')+@em.RN
+		$result+=@em.arr.print('em_array')+@em.RN
+		$result+=@em.arr.print('%new_mass')+@em.RN
+
+		$mass[0]='88ff88'
+		$mass[1]='ff00ff'
+		$mass[2]='0ff0f8'
+		$mass[3]='ffffff'
+		$mass[4]='8888ff'
+		$mass[5]='fff8f8'
+
+		@em.arr.sort('$mass',1,'em_array')
+		$result+=@em.arr.print('$mass')+@em.RN
+		$result+=@em.arr.print('em_array')
+	})
+elseif $args[0]='em.arr.simpl':
+	$result=$dyneval({
+		local mass1, mass2, mass3
+		mass1[0]=455
+		mass1[1]=705
+		mass1[2]=967
+		mass1[3]=452
+		mass1[4]=829
+		mass1[5]=84
+		mass1[6]=983
+		mass1[7]=824
+
+		mass2[0]=455
+		mass2[1]=705
+		mass2[2]=967
+		mass2[3]=452
+		mass2[4]=829
+		mass2[5]=84
+		mass2[6]=983
+		mass2[7]=824
+
+		mass3[0]=983
+		mass3[1]=967
+		mass3[2]=829
+		mass3[3]=824
+		mass3[4]=705
+		mass3[5]=455
+		mass3[6]=452
+		mass3[7]=84
+
+		$result+=$str(@em.arr.simpl('mass1','mass2'))
+		$result+=$str(@em.arr.simpl('mass1','mass3'))
+		$result+=$str(@em.arr.simpl('mass1','mass3','[simp]'))
 	})
 elseif $args[0]='em.zero':
 	$result=$dyneval({

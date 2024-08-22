@@ -4,15 +4,116 @@ QSP-Game часть автотеста, отвечающая за сравнен
 local $res, $example, $functions, $nr
 $args[0]=$lcase($args[0])
 $args[1]=$lcase($args[1])
+
+!@ em.arr.desort
+if instr($args[0], 'em.arr.desort') or $args[0]='':
+	$functions[] = 'em.arr.desort'
+	$example['em.arr.desort'] = "old_mass[0] = 257
+old_mass[1] = 269
+old_mass[2] = 293
+old_mass[3] = 529
+old_mass[4] = 561
+old_mass[5] = 901
+old_mass[6] = 913
+old_mass[7] = 949
+em_array[0] = 4
+em_array[1] = 2
+em_array[2] = 7
+em_array[3] = 6
+em_array[4] = 5
+em_array[5] = 3
+em_array[6] = 1
+em_array[7] = 0
+new_mass[0] = 949
+new_mass[1] = 913
+new_mass[2] = 269
+new_mass[3] = 901
+new_mass[4] = 257
+new_mass[5] = 561
+new_mass[6] = 529
+new_mass[7] = 293"
+end
+
+!@ em.arr.desort
+if instr($args[0], 'em.arr.sort') or $args[0]='':
+	$functions[] = 'em.arr.sort'
+	$example['em.arr.sort'] = "old_mass[0] = 157
+old_mass[1] = 250
+old_mass[2] = 413
+old_mass[3] = 532
+old_mass[4] = 565
+old_mass[5] = 709
+old_mass[6] = 730
+old_mass[7] = 779
+old_mass[0] = 118
+old_mass[1] = 132
+old_mass[2] = 304
+old_mass[3] = 678
+old_mass[4] = 796
+old_mass[5] = 812
+old_mass[6] = 901
+old_mass[7] = 966
+em_array[0] = 5
+em_array[1] = 7
+em_array[2] = 3
+em_array[3] = 4
+em_array[4] = 2
+em_array[5] = 1
+em_array[6] = 6
+em_array[7] = 0
+%old_mass[0] = [967,'голова']
+%old_mass[1] = [629,'плечи']
+%old_mass[2] = [541,'руки']
+%old_mass[3] = [290,'торс']
+%old_mass[4] = [852,'бёдра']
+%old_mass[5] = [334,'голени']
+%old_mass[6] = [318,'ступни']
+%old_mass[7] = [529,'нишваа']
+em_array[0] = 3
+em_array[1] = 6
+em_array[2] = 5
+em_array[3] = 7
+em_array[4] = 2
+em_array[5] = 1
+em_array[6] = 4
+em_array[7] = 0
+%new_mass[0] = [290,'торс']
+%new_mass[1] = [318,'ступни']
+%new_mass[2] = [334,'голени']
+%new_mass[3] = [529,'нишваа']
+%new_mass[4] = [541,'руки']
+%new_mass[5] = [629,'плечи']
+%new_mass[6] = [852,'бёдра']
+%new_mass[7] = [967,'голова']
+$mass[0] = 'ffffff'
+$mass[1] = 'fff8f8'
+$mass[2] = 'ff00ff'
+$mass[3] = '88ff88'
+$mass[4] = '8888ff'
+$mass[5] = '0ff0f8'
+em_array[0] = 3
+em_array[1] = 5
+em_array[2] = 1
+em_array[3] = 0
+em_array[4] = 4
+em_array[5] = 2"
+end
+
+!@ em.arr.simpl
+if instr($args[0],'em.arr.simpl')<>0 or $args[0]='':
+	$functions[]='em.arr.simpl'
+	$example['em.arr.simpl']="101"
+end
+
 !@ em.byte.add
 if instr($args[0],'em.byte.add')<>0 or $args[0]='':
-$functions[]='em.byte.add'
-$example['em.byte.add']="999038[not a number]006273004479"
+	$functions[]='em.byte.add'
+	$example['em.byte.add']="999038[not a number]006273004479"
 end
 !@ em.byte.dev
 if instr($args[0],'em.byte.dev')<>0 or $args[0]='':
-$functions[]='em.byte.dev'
-$example['em.byte.dev']="998492998432993726992932"
+	$functions[]='em.byte.dev'
+	$example['em.byte.dev']="998492998432993726992932"
 end
 !@ em.fewarrs.print
 if instr($args[0],'em.fewarrs.print')<>0 or $args[0]='':
@@ -163,7 +264,7 @@ $example['em.arr.print']="$a[0] = 'нулевая ячейка'
 $a[1] = '   первая ячейка   '
 $a[2] = ' вторая ячейка'
 $a[3] = ''
-$a[4] = [1,2,3,5,6]
+$a[4] = '[1,2,3,5,6]'
 $a[5] = '   пятая ячейка'
 $a[6] = ''
 $a[7] = 'седьмая ячейка'
@@ -179,27 +280,26 @@ $a[0] = 'нулевая ячейка'
 $a[1] = 'первая ячейка'
 $a[2] = 'вторая ячейка'
 $a[3] = ''
-$a[4] = [1,2,3,5,6]
+$a[4] = '[1,2,3,5,6]'
 $a[5] = 'пятая ячейка'
 $a[6] = ''
 $a[7] = 'седьмая ячейка'
-вторая ячейка||[1,2,3,5,6]|пятая ячейка|
 вторая ячейка||[1,2,3,5,6]|пятая ячейка
+вторая ячейка||[1,2,3,5,6]|пятая ячейка|
 "
 end
 !@ em.arr.insert
 if instr($args[0],'em.arr.insert')<>0 or $args[0]='':
 $functions[]='em.arr.insert'
-$example['em.arr.insert']="mass[0]=574
-mass[1]=668
-mass[2]=413
-mass[3]=765
-mass[4]=6
-mass[5]=478
-mass[6]=205
-mass[7]=701
-mass[8]=272
-"
+$example['em.arr.insert']="mass[0] = 574
+mass[1] = 668
+mass[2] = 413
+mass[3] = 765
+mass[4] = 6
+mass[5] = 478
+mass[6] = 205
+mass[7] = 701
+mass[8] = 272"
 end
 !@ em.arr.insert
 if instr($args[0],'em.hex.add')<>0 or $args[0]='':
@@ -215,12 +315,11 @@ end
 !@ em.arr.clear
 if instr($args[0],'em.arr.clear')<>0 or $args[0]='':
 $functions[]='em.arr.clear'
-$example['em.arr.clear']="i[0]=1
-i[1]=3
-i[2]=1
-i[3]=3
-i[4]=1
-"
+$example['em.arr.clear']="i[0] = 1
+i[1] = 3
+i[2] = 1
+i[3] = 3
+i[4] = 1"
 end
 
 !@ em.zero

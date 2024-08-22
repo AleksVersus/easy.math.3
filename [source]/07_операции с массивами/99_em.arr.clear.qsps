@@ -6,7 +6,7 @@ QSP-Game Функция для удаления из массива всех э�
 # em.arr.clear
 local em_arr_clear_copy_array_
 copyarr 'em_arr_clear_copy_array_', $args[0]
-loop local args[21] = 0 while 1:
+loop args[21] = 0 while 1:
 	!@ в зависимости от того, название текстового или числового массива передано, ищем текстовое или числовое значение
 	if instr($args[0],'%')=1:
 		args[21] = arrpos('%em_arr_clear_copy_array_', %args[1], args[21])

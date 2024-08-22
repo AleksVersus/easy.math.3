@@ -72,5 +72,5 @@ $a[]='седьмая ячейка'
 @em.arr.print('$a','[only result]')
 @em.arr.print('$a','[trim]')
 @em.arr.print('$a','[trim] [only result]',[2,5],'|')
-@em.arr.print('$a','[trim] [only result] [not last]',[2,5],'|')
+@em.arr.print('$a','[trim] [only result] [with last]',[2,5],'|')
 
