@@ -160,26 +160,27 @@ end
 
 Функция не использует иных функций библиотеки
 
+local $a, %b, $c, %d
 $a[]='нулевая ячейка'
-$a[]='   первая ячейка   '
-$a[]=' вторая ячейка'
+$a[]='первая ячейка'
+$a[]='вторая ячейка'
 $a[]=''
 $a[]='четвёртая'' ячейка'
-$a[]="   пятая яче'йка"
+$a[]="пятая яче'йка"
 $a[]=''
 $a[]='седьмая ячейка'
 
-$b[]='нулевая ячейка'
-$b[]='   первая ячейка   '
-$b[]=' вторая ячейка'
-$b[]='3'
-$b[]=(3,5,6,'string',6)
-$b[]='   пятая ячейка'
-$b[]='6'
-$b[]='7'
-usehtml=1
-@em.fewArrs.print('$a','$b')
-@em.fewArrs.print('$a','$b','[only result]')
-@em.fewArrs.print('$a','$b','[no table]')
-@em.fewArrs.print('$c','$d')
-@em.fewArrs.print('$a','$b','[no table]','$f')
+%b[]= [0, 'zero']
+%b[]= ['first', 1, 0]
+%b[]= [2, 'second', 2]
+%b[]= ['3']
+%b[]=(3,5,6,'string',6)
+%b[]='пятая ячейка'
+%b[]='6'
+%b[]='7'
+@em.fewArrs.print('$a','%b')
+@em.fewArrs.print('$a','%b', '[range onscreen:3-6]')
+@em.fewArrs.print('$a','%b','[only result]')
+@em.fewArrs.print('$a','%b','[no table]')
+@em.fewArrs.print('$c','%d', '[empty:EMPTY ARRAYS]')
+!@ @em.fewArrs.print('$a','$b','[no table]','$f')

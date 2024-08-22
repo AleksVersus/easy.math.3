@@ -4,8 +4,7 @@ QSP-Game Функция тестов для easy.math
 !@pp:if(em_autotest):include
 # em.autotest
 $args[0]=$lcase($args[0])
-local $nr='
-'
+local $nr=@em.RN
 if $args[0]='em.fewarrs.print':
 	$result=$dyneval({
 		local $a, %b, $c, %d
