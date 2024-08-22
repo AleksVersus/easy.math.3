@@ -81,7 +81,9 @@ loop args['b']=args[25] while args['b']<args[26] step args['b']+=1:
 			!@ это режим только результат, или режим вывода таблицы
 			$args['cell']=''	& !@ не добавляем ничего
 		end
-		if instr($args[args['i']],'$')=1:
+		if instr($args[args['i']],'%')=1:
+			$args['cell'] += @em.html.to_mnemonics($str(%arritem($args[args['i']],args['b'])))
+		elseif instr($args[args['i']],'$')=1:
 			!@ выводим строковые значения массива
 			if args[27]:
 				!@ если мы имеем дело с таблицей
@@ -89,9 +91,7 @@ loop args['b']=args[25] while args['b']<args[26] step args['b']+=1:
 					!@ $1 - название массива
 					!@ $0 - номер ячейки
 					if $arritem($args[1],args[0])<>'':
-						$result = $replace($arritem($args[1],args[0]),' ','&nbsp;')
-						$result = $replace($result,'<','&lt;')
-						$result = $replace($result,'>','&gt;')
+						$result = @em.html.to_mnemonics($arritem($args[1],args[0]))
 					else
 						!@ в пустых ячейках ставим пробелы
 						$result = '&nbsp;'
@@ -119,14 +119,18 @@ loop args['b']=args[25] while args['b']<args[26] step args['b']+=1:
 			$args['result']+=$args['cell']
 		end
 	end
-	if args[27]: $args[29] += "</tr>" else $args['result']+=@em.RN	& !@ для таблицы закрываем строку, для не таблицы начинаем новую
+	if args[27]:
+		$args[29] += "</tr>"
+	elseif args['b']+1<args[26]:
+		$args['result']+=@em.RN	& !@ для таблицы закрываем строку, для не таблицы начинаем новую
+	end
 end
 if args[27]: $args[29] += '</table>'
 
 if args[27]:
 	$result = $args[29]	& !@ если сгенерирована таблица, возвращаем таблицу
 elseif $args['result']<>'':
-	$result = $mid($args['result'],1,len($args['result'])-1)	& !@ возвращаем результат
+	$result = $args['result']
 else
 	msg 'em.fewArrs.print: If you see this message, that so wrong. Save the game and ask me on aleksversus@mail.ru. Error of easy.math.libs in em.fewArrs.print'
 end

@@ -17,26 +17,21 @@ end
 !@ em.fewarrs.print
 if instr($args[0],'em.fewarrs.print')<>0 or $args[0]='':
 $functions[]='em.fewarrs.print'
-$example['em.fewarrs.print']="<table border=1 cellpadding=5><tr><td>#</td><td>$a</td><td>$b</td></tr><tr><td>0</td><td>нулевая&nbsp;ячейка</td><td>нулевая&nbsp;ячейка</td></tr><tr><td>1</td><td>&nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;первая&nbsp;ячейка&nbsp;&nbsp;&nbsp;</td></tr><tr><td>2</td><td>&nbsp;вторая&nbsp;ячейка</td><td>&nbsp;вторая&nbsp;ячейка</td></tr><tr><td>3</td><td>&nbsp;</td><td>3</td></tr><tr><td>4</td><td>четвёртая'&nbsp;ячейка</td><td>(3,5,6,string,6)</td></tr><tr><td>5</td><td>&nbsp;&nbsp;&nbsp;пятая&nbsp;яче'йка</td><td>&nbsp;&nbsp;&nbsp;пятая&nbsp;ячейка</td></tr><tr><td>6</td><td>&nbsp;</td><td>6</td></tr><tr><td>7</td><td>седьмая&nbsp;ячейка</td><td>7</td></tr></table>
-нулевая ячейка нулевая ячейка
-   первая ячейка       первая ячейка   
- вторая ячейка  вторая ячейка
- 3
-четвёртая' ячейка (3,5,6,string,6)
-   пятая яче'йка    пятая ячейка
- 6
-седьмая ячейка 7
-$a[0]='нулевая ячейка' & $b[0]='нулевая ячейка'
-$a[1]='   первая ячейка   ' & $b[1]='   первая ячейка   '
-$a[2]=' вторая ячейка' & $b[2]=' вторая ячейка'
-$a[3]='' & $b[3]='3'
-$a[4]='четвёртая'' ячейка' & $b[4]='(3,5,6,string,6)'
-$a[5]='   пятая яче''йка' & $b[5]='   пятая ячейка'
-$a[6]='' & $b[6]='6'
-$a[7]='седьмая ячейка' & $b[7]='7'
-Error: All your massives are empty.
-Error: Array's name is not correct. ARGS[2]: '[no table]'
-"
+$example['em.fewarrs.print']="<table border=1 cellpadding=5><tr><td>#</td><td>$a</td><td>%b</td></tr><tr><td>0</td><td>нулевая ячейка</td><td>[0,'zero']</td></tr><tr><td>1</td><td>первая ячейка</td><td>['first',1,0]</td></tr><tr><td>2</td><td>вторая ячейка</td><td>[2,'second',2]</td></tr><tr><td>3</td><td>&nbsp;</td><td>['3']</td></tr><tr><td>4</td><td>четвёртая' ячейка</td><td>[3,5,6,'string',6]</td></tr><tr><td>5</td><td>пятая яче'йка</td><td>['пятая ячейка']</td></tr><tr><td>6</td><td>&nbsp;</td><td>['6']</td></tr><tr><td>7</td><td>седьмая ячейка</td><td>['7']</td></tr></table><table border=1 cellpadding=5><tr><td>#</td><td>$a</td><td>%b</td></tr><tr><td>3</td><td>&nbsp;</td><td>['3']</td></tr><tr><td>4</td><td>четвёртая' ячейка</td><td>[3,5,6,'string',6]</td></tr><tr><td>5</td><td>пятая яче'йка</td><td>['пятая ячейка']</td></tr><tr><td>6</td><td>&nbsp;</td><td>['6']</td></tr></table>нулевая ячейка	[0,'zero']
+первая ячейка	['first',1,0]
+вторая ячейка	[2,'second',2]
+	['3']
+четвёртая' ячейка	[3,5,6,'string',6]
+пятая яче'йка	['пятая ячейка']
+	['6']
+седьмая ячейка	['7']$a[0]='нулевая ячейка'	&	%b[0]=[0,'zero']
+$a[1]='первая ячейка'	&	%b[1]=['first',1,0]
+$a[2]='вторая ячейка'	&	%b[2]=[2,'second',2]
+$a[3]=''	&	%b[3]=['3']
+$a[4]='четвёртая'' ячейка'	&	%b[4]=[3,5,6,'string',6]
+$a[5]='пятая яче''йка'	&	%b[5]=['пятая ячейка']
+$a[6]=''	&	%b[6]=['6']
+$a[7]='седьмая ячейка'	&	%b[7]=['7']EMPTY ARRAYS"
 end
 !@ em.simpl
 if instr($args[0],'em.simpl')<>0 or $args[0]='':
@@ -277,13 +272,14 @@ loop local i,size=0,arrsize('$functions') while i<size step i+=1:
 			wait 500
 		else
 			*pl "Autotest Error. Dif Result:"
-			*pl "<table border=1 cellspacing=5><tr><td>Еxpected results:</td><td>Obtained results:</td></tr><tr><td><<$example[$functions[i]]>></td><td><<$res>></td></tr>"
+			usehtml = 1
+			*pl "<table border=1 cellspacing=5><tr><td>Еxpected results:</td><td>Obtained results:</td></tr><tr><td><<@em.html.to_mnemonics($example[$functions[i]])>></td><td><<@em.html.to_mnemonics($res)>></td></tr></table>"
 			if $args[1]='compile':
 				local $f,$r
 				loop local j,size=1,max(len($example[$functions[i]]),len($res)) while j<=size step j+=1:
 					$f=$mid($example[$functions[i]],j,1)
 					$r=$mid($res,j,1)
-					if $f<>$r: *p "[<<j>>:<<$f>>:<<$r>>] "
+					if $f<>$r: *pl "[<<j>>]<<$f>>	<<$r>> "
 				end
 			end
 			wait 500

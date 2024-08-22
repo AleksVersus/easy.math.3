@@ -8,29 +8,30 @@ local $nr='
 '
 if $args[0]='em.fewarrs.print':
 	$result=$dyneval({
-		local a, b
+		local $a, %b, $c, %d
 		$a[]='нулевая ячейка'
-		$a[]='   первая ячейка   '
-		$a[]=' вторая ячейка'
+		$a[]='первая ячейка'
+		$a[]='вторая ячейка'
 		$a[]=''
 		$a[]='четвёртая'' ячейка'
-		$a[]="   пятая яче'йка"
+		$a[]="пятая яче'йка"
 		$a[]=''
 		$a[]='седьмая ячейка'
 
-		$b[]='нулевая ячейка'
-		$b[]='   первая ячейка   '
-		$b[]=' вторая ячейка'
-		$b[]='3'
-		$b[]=(3,5,6,'string',6)
-		$b[]='   пятая ячейка'
-		$b[]='6'
-		$b[]='7'
-		$result+=@em.fewArrs.print('$a','$b')+$nr	
-		$result+=@em.fewArrs.print('$a','$b','[only result]')+$nr	
-		$result+=@em.fewArrs.print('$a','$b','[no table]')+$nr	
-		$result+=@em.fewArrs.print('$c','$d')+$nr	
-		$result+=@em.fewArrs.print('$a','$b','[no table]','$f')+$nr
+		%b[]= [0, 'zero']
+		%b[]= ['first', 1, 0]
+		%b[]= [2, 'second', 2]
+		%b[]= ['3']
+		%b[]=(3,5,6,'string',6)
+		%b[]='пятая ячейка'
+		%b[]='6'
+		%b[]='7'
+		!@ usehtml=1
+		$result += @em.fewArrs.print('$a','%b')
+		$result += @em.fewArrs.print('$a','%b', '[range onscreen:3-6]')
+		$result += @em.fewArrs.print('$a','%b','[only result]')
+		$result += @em.fewArrs.print('$a','%b','[no table]')
+		$result += @em.fewArrs.print('$c','%d', '[empty:EMPTY ARRAYS]')
 	})
 elseif $args[0]='em.simpl':
 	$result=dyneval ({
