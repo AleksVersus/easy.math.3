@@ -4,7 +4,7 @@ QSP-Game распечатка содержимого нескольких мас
 !@ $18 - ... $1 - управляющая конструкция. Записывается последним аргументом. См ниже.
 !@pp:if(em_fewarrs_print):include
 # em.fewArrs.print
-local last_is_command_, last_, error_name_pos_, start_count_, end_count_
+local last_is_command_, last_, error_name_pos_, start_count_, end_count_, $table_, show_table_
 last_=arrsize('$args')-1	& !@ получаем номер последнего аргумента
 last_is_command_ = iif($strfind($args[last_],'\[.+?\]')<>'', 1, 0)
 !@ получаем позицию неверно записанного названия массива
@@ -21,9 +21,9 @@ if last_is_command_:
 	!@ скорее всего это управляющая конструкция. Либо это действительно управляющая конструкция.
 	$args['construct']=$lcase($args[last_])	& !@ переводим в нижний регистр
 	!@ по управляющей конструкции понимаем, нужно строить таблицу или нет
-	if instr($args['construct'],'[no table]')<>0: $args['table']='' else $args['table']='yep'
+	show_table_ = iif(instr($args['construct'],'[no table]')<>0, 0, 1)
 	!@ по управляющей конструкции понимаем, нужно ли выводить одни только результаты
-	if instr($args['construct'],'[only result]')<>0: $args['table']='' & $args['only result']='only result'
+	if instr($args['construct'],'[only result]')<>0: show_table_ = 0 & $args['only result']='only result'
 	!@ получаем номера первого и последнего элементов, которые хотим вывести
 	if instr($args['construct'], '[range onscreen:') <> 0:
 		start_count_ = $strfind($args['construct'], '\[range onscreen:(\d+)\-\d+\]', 1)
@@ -31,21 +31,24 @@ if last_is_command_:
 		end_count_ = $strfind($args['construct'], '\[range onscreen:\d+\-(\d+)\]', 1) + 1
 	end
 	last_ -= 1
+else:
+	show_table_ = 1
+	only_result_ = 0
 end
 :print
 !@ если списка команд нет, или управление не отключает генерацию таблицы, добавляем теги таблицы.
-if $args['table']<>'' or no last_is_command_: $args['table']='<table border=1 cellpadding=5>'
-if $args['table']<>'': $args['table']+='<tr><td>#</td>'
+if show_table_ or no last_is_command_: $table_='<table border=1 cellpadding=5>'
+if show_table_: $table_ += '<tr><td>#</td>'
 
 !@ с помощью цикла добавляем имена массивов в список
 loop args['i']=0 while args['i']<last_+1 and $strfind($args[args['i']],'\[.+?\]')='' and $args[args['i']]<>'' step args['i']+=1:
 	!@ пока счётчик не достигнет девяти, или мы не встретим аргумент с управлением, или пустой аргумент
-	if $args['table']<>'': $args['table']+="<td><<$args[args['i']]>></td>"	& !@ создаём ячейку, только если уже набираем таблицу
+	if show_table_: $table_ += "<td><<$args[args['i']]>></td>"	& !@ создаём ячейку, только если уже набираем таблицу
 	args['this_size']=arrsize($args[args['i']])	& !@ получаем размер указанного массива
 	if args['this_size']>args['size']: args['size']=args['this_size']	& !@ если размер этого массива больше размера предыдущего массива, записываем размер текущего в переменную size
 end
 
-if $args['table']<>'': $args['table']+='</tr>'	& !@ закрываем строку
+if show_table_: $table_ += '</tr>'	& !@ закрываем строку
 
 if args['size']=0:
 	!@ если размеры всех массивов равны нулю, выводим сообщениме.
@@ -64,11 +67,11 @@ end
 !@ следующий цикл выводит уже непосредственно результаты
 loop args['b']=start_count_ while args['b']<end_count_ step args['b']+=1:
 	!@ пока счётчик не достигнет размера самого большого массива
-	if $args['table']<>'': $args['table']+="<tr><td><<args['b']>></td>"	& !@ для вывода в виде таблицы формируем строку и первую ячейку
+	if show_table_: $table_ += "<tr><td><<args['b']>></td>"	& !@ для вывода в виде таблицы формируем строку и первую ячейку
 	!@ этот цикл выводит содержимое ячеек под одним индексом
 	loop args['i']=0 while args['i']<last_+1 and $strfind($args[args['i']],'\[.+?\]')='' and $args[args['i']]<>'' step args['i']+=1:
 		!@ пока счётчик не достигнет девяти, или мы не встретим аргумент с управлением, или пустой аргумент
-		if $args['only result']<>'only result' and $args['table']='':
+		if $args['only result']<>'only result' and no show_table_:
 			!@ это не режим только результат, но и не режим вывода таблицы
 			$args['cell']=$args[args['i']]+"[<<args['b']>>]="	& !@ перед добавляением значения, добавляем название массива и номер ячейки
 		else
@@ -77,7 +80,7 @@ loop args['b']=start_count_ while args['b']<end_count_ step args['b']+=1:
 		end
 		if instr($args[args['i']],'$')=1:
 			!@ выводим строковые значения массива
-			if $args['table']<>'':
+			if show_table_:
 				!@ если мы имеем дело с таблицей
 				$args['cell']+=$dyneval({
 					!@ $args[1] - название массива
@@ -121,8 +124,8 @@ loop args['b']=start_count_ while args['b']<end_count_ step args['b']+=1:
 			!@ выводим числовые значения массива
 			$args['cell']+=$dyneval("$result=$str(<<$args[args['i']]>>[args[0]])",args['b'])
 		end
-		if $args['table']<>'':
-			$args['table']+='<td>'+$args['cell']+'</td>'	& !@ для таблицы создаём ячейку
+		if show_table_:
+			$table_ += '<td>'+$args['cell']+'</td>'	& !@ для таблицы создаём ячейку
 		elseif $args['only result']='only result' and args['i']<>0:
 			$args['result']+='	'+$args['cell']	& !@ для не таблицы добавляем отступ
 		elseif args['i']<>0:
@@ -131,13 +134,13 @@ loop args['b']=start_count_ while args['b']<end_count_ step args['b']+=1:
 			$args['result']+=$args['cell']
 		end
 	end
-	if $args['table']<>'': $args['table']+="</tr>" else $args['result']+=@em.RN	& !@ для таблицы закрываем строку, для не таблицы начинаем новую
+	if show_table_: $table_ += "</tr>" else $args['result']+=@em.RN	& !@ для таблицы закрываем строку, для не таблицы начинаем новую
 end
-if $args['table']<>'': $args['table']+='</table>'
+if show_table_: $table_ += '</table>'
 
 killvar '$result'	& !@ на всякий случай уничтожаем переменную result
-if $args['table']<>'':
-	$result=$args['table']	& !@ если сгенерирована таблица, возвращаем таблицу
+if show_table_:
+	$result=$table_	& !@ если сгенерирована таблица, возвращаем таблицу
 elseif $args['result']<>'':
 	$result=$mid($args['result'],1,len($args['result'])-1)	& !@ возвращаем результат
 else
