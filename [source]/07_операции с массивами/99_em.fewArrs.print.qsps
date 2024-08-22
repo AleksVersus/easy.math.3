@@ -4,26 +4,18 @@ QSP-Game распечатка содержимого нескольких мас
 !@ $18 - ... $1 - управляющая конструкция. Записывается последним аргументом. См ниже.
 !@pp:if(em_fewarrs_print):include
 # em.fewArrs.print
-!@ в принципе инициализация здесь не нужна. Все аргументы являются названиями массивов.
-args['last']=arrsize('$args')-1	& !@ получаем номер последнего аргумента
-if $strfind($args[args['last']],'\[.+?\]')<>'':
-	!@ если последняя строка похожа на команду, выставляем маркер, что это команда
-	$args['command_in_last']='yep'
-else
-	!@ в противном случае не выставляем маркер
-	$args['command_in_last']=''
-end
+local last_is_command_, last_
+last_=arrsize('$args')-1	& !@ получаем номер последнего аргумента
+last_is_command_ = iif($strfind($args[last_],'\[.+?\]')<>'', 1, 0)
 !@ получаем позицию неверно записанного названия массива
 args['error_name_pos']=arrcomp('$args','[\s\S]*((\b\d+([A-Za-zа-яА-Я\$\._]+\d*)+\b)|(\b[A-Za-zа-яА-Я\$\._]+[^A-Za-zа-яА-Я\$\._]+))[\s\S]*')
 !@ символ переноса строки
-$args['/n/r']='
-'
 args['start_count'] = 0
 args['end_count'] = -1
-if $args['command_in_last']='yep':
+if last_is_command_:
 	!@ если последний аргумент содержит хотя бы один пробел, его нельзя считать названием массива
 	!@ скорее всего это управляющая конструкция. Либо это действительно управляющая конструкция.
-	$args['construct']=$lcase($args[args['last']])	& !@ переводим в нижний регистр
+	$args['construct']=$lcase($args[last_])	& !@ переводим в нижний регистр
 	!@ по управляющей конструкции понимаем, нужно строить таблицу или нет
 	if instr($args['construct'],'[no table]')<>0: $args['table']='' else $args['table']='yep'
 	!@ по управляющей конструкции понимаем, нужно ли выводить одни только результаты
@@ -35,14 +27,14 @@ if $args['command_in_last']='yep':
 		args['end_count'] = $strfind($args['construct'], '\[range onscreen:\d+\-(\d+)\]', 1) + 1
 	end
 	jump 'print'	& !@ переходим к выводу (содержится в этом же условии, поэтому jump)
-elseif args['error_name_pos']<>-1 and args['error_name_pos']<>args['last']:
+elseif args['error_name_pos']<>-1 and args['error_name_pos']<>last_:
 	!@ если мы имеем дело не с командой, и это не последний аргумент, значит имя массива задано неверно, возвращаем 
 	$result="Error: Array's name is not correct. ARGS[<<args['error_name_pos']>>]: '<<$args[args['error_name_pos']]>>'"
 	exit
 else
 	:print
 	!@ если списка команд нет, или управление не отключает генерацию таблицы, добавляем теги таблицы.
-	if $args['table']<>'' or $args['command_in_last']='': $args['table']='<table border=1 cellpadding=5>'
+	if $args['table']<>'' or no last_is_command_: $args['table']='<table border=1 cellpadding=5>'
 	if $args['table']<>'': $args['table']+='<tr><td>#</td>'
 
 	!@ с помощью цикла добавляем имена массивов в список
@@ -139,7 +131,7 @@ else
 				$args['result']+=$args['cell']
 			end
 		end
-		if $args['table']<>'': $args['table']+="</tr>" else $args['result']+=$args['/n/r']	& !@ для таблицы закрываем строку, для не таблицы начинаем новую
+		if $args['table']<>'': $args['table']+="</tr>" else $args['result']+=@em.RN	& !@ для таблицы закрываем строку, для не таблицы начинаем новую
 	end
 	if $args['table']<>'': $args['table']+='</table>'
 end
