@@ -4,9 +4,10 @@ QSP-Game распечатка содержимого нескольких мас
 !@ $18 - ... $1 - управляющая конструкция. Записывается последним аргументом. См ниже.
 !@pp:if(em_fewarrs_print):include
 # em.fewArrs.print
-local last_is_command_, last_, error_name_pos_, start_count_, end_count_, $table_, show_table_, only_result_
+local last_is_command_, last_, error_name_pos_, start_count_, end_count_, $table_, show_table_, only_result_, $empty_message_
 last_=arrsize('$args')-1	& !@ получаем номер последнего аргумента
 last_is_command_ = iif($strfind($args[last_],'\[.+?\]')<>'', 1, 0)
+$empty_message_ = 'Error: All your massives are empty.'
 !@ получаем позицию неверно записанного названия массива
 error_name_pos_=arrcomp('$args','[\s\S]*((\b\d+([A-Za-zа-яА-Я\$\._]+\d*)+\b)|(\b[A-Za-zа-яА-Я\$\._]+[^A-Za-zа-яА-Я\$\._]+))[\s\S]*')
 if error_name_pos_<>-1 and error_name_pos_<>last_:
@@ -21,14 +22,17 @@ if last_is_command_:
 	!@ скорее всего это управляющая конструкция. Либо это действительно управляющая конструкция.
 	$args['construct']=$lcase($args[last_])	& !@ переводим в нижний регистр
 	!@ по управляющей конструкции понимаем, нужно строить таблицу или нет
-	show_table_ = iif(instr($args['construct'],'[no table]')<>0, 0, 1)
+	show_table_ = iif(instr($args['construct'],'[no table]'), 0, 1)
 	!@ по управляющей конструкции понимаем, нужно ли выводить одни только результаты
-	if instr($args['construct'],'[only result]')<>0: show_table_ = 0 & only_result_ = 1
+	if instr($args['construct'],'[only result]'): show_table_, only_result_ = 0, 1
 	!@ получаем номера первого и последнего элементов, которые хотим вывести
-	if instr($args['construct'], '[range onscreen:') <> 0:
+	if instr($args['construct'], '[range onscreen:'):
 		start_count_ = $strfind($args['construct'], '\[range onscreen:(\d+)\-\d+\]', 1)
 		!@ вместо последнего элемента нам нужен следующий за последним
 		end_count_ = $strfind($args['construct'], '\[range onscreen:\d+\-(\d+)\]', 1) + 1
+	end
+	if instr($args['construct'], '[empty:'):
+		$empty_message_ = $strfind($args[last_], '\[empty:(.+?)\]', 1)
 	end
 	last_ -= 1
 else:
@@ -52,7 +56,7 @@ if show_table_: $table_ += '</tr>'	& !@ закрываем строку
 
 if args['size']=0:
 	!@ если размеры всех массивов равны нулю, выводим сообщениме.
-	$result='Error: All your massives are empty.'
+	$result = $empty_message_
 	exit
 end
 if start_count_ > args['size'] - 1:
@@ -153,6 +157,7 @@ end
 	* [only result] - выводит только содержимое массивов, не показывая их названий и номеров ячеек. Таблица при этом на экран выводиться не будет.
 	* [no table] - выводит массивы на экран, но не облекает их в таблицу.
 	* [range onscreen:N-M] - указываем границы вывода
+	* [empty:TEXT] - что должна возвращать функция в случае, когда все массивы пустые.
 	
 Из-за того, что данная функция работает напрямую с данными из массивов было решено не использовать здесь локальные переменные,
 чтобы случайно не перекрыть возможные названия массивов.
