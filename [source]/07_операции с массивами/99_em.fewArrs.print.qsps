@@ -31,111 +31,110 @@ if last_is_command_:
 		end_count_ = $strfind($args['construct'], '\[range onscreen:\d+\-(\d+)\]', 1) + 1
 	end
 	last_ -= 1
-	jump 'print'	& !@ переходим к выводу (содержится в этом же условии, поэтому jump)
-else:
-	:print
-	!@ если списка команд нет, или управление не отключает генерацию таблицы, добавляем теги таблицы.
-	if $args['table']<>'' or no last_is_command_: $args['table']='<table border=1 cellpadding=5>'
-	if $args['table']<>'': $args['table']+='<tr><td>#</td>'
+end
+:print
+!@ если списка команд нет, или управление не отключает генерацию таблицы, добавляем теги таблицы.
+if $args['table']<>'' or no last_is_command_: $args['table']='<table border=1 cellpadding=5>'
+if $args['table']<>'': $args['table']+='<tr><td>#</td>'
 
-	!@ с помощью цикла добавляем имена массивов в список
+!@ с помощью цикла добавляем имена массивов в список
+loop args['i']=0 while args['i']<last_+1 and $strfind($args[args['i']],'\[.+?\]')='' and $args[args['i']]<>'' step args['i']+=1:
+	!@ пока счётчик не достигнет девяти, или мы не встретим аргумент с управлением, или пустой аргумент
+	if $args['table']<>'': $args['table']+="<td><<$args[args['i']]>></td>"	& !@ создаём ячейку, только если уже набираем таблицу
+	args['this_size']=arrsize($args[args['i']])	& !@ получаем размер указанного массива
+	if args['this_size']>args['size']: args['size']=args['this_size']	& !@ если размер этого массива больше размера предыдущего массива, записываем размер текущего в переменную size
+end
+
+if $args['table']<>'': $args['table']+='</tr>'	& !@ закрываем строку
+
+if args['size']=0:
+	!@ если размеры всех массивов равны нулю, выводим сообщениме.
+	$result='Error: All your massives are empty.'
+	exit
+end
+if start_count_ > args['size'] - 1:
+	!@ если мы превысили максимальный индекс, нужно приравнять начало к последнему возможному индексу
+	start_count_ = args['size'] - 1
+end
+if end_count_ > args['size'] or end_count_ = -1:
+	end_count_ = args['size']
+elseif end_count_ <= start_count_:
+	end_count_ = start_count_ + 1
+end
+!@ следующий цикл выводит уже непосредственно результаты
+loop args['b']=start_count_ while args['b']<end_count_ step args['b']+=1:
+	!@ пока счётчик не достигнет размера самого большого массива
+	if $args['table']<>'': $args['table']+="<tr><td><<args['b']>></td>"	& !@ для вывода в виде таблицы формируем строку и первую ячейку
+	!@ этот цикл выводит содержимое ячеек под одним индексом
 	loop args['i']=0 while args['i']<last_+1 and $strfind($args[args['i']],'\[.+?\]')='' and $args[args['i']]<>'' step args['i']+=1:
 		!@ пока счётчик не достигнет девяти, или мы не встретим аргумент с управлением, или пустой аргумент
-		if $args['table']<>'': $args['table']+="<td><<$args[args['i']]>></td>"	& !@ создаём ячейку, только если уже набираем таблицу
-		*pl '<<last_>>:'+$args[args['i']] & args['this_size']=arrsize($args[args['i']])	& !@ получаем размер указанного массива
-		if args['this_size']>args['size']: args['size']=args['this_size']	& !@ если размер этого массива больше размера предыдущего массива, записываем размер текущего в переменную size
-	end
-
-	if $args['table']<>'': $args['table']+='</tr>'	& !@ закрываем строку
-
-	if args['size']=0:
-		!@ если размеры всех массивов равны нулю, выводим сообщениме.
-		$result='Error: All your massives are empty.'
-		exit
-	end
-	if start_count_ > args['size'] - 1:
-		!@ если мы превысили максимальный индекс, нужно приравнять начало к последнему возможному индексу
-		start_count_ = args['size'] - 1
-	end
-	if end_count_ > args['size'] or end_count_ = -1:
-		end_count_ = args['size']
-	elseif end_count_ <= start_count_:
-		end_count_ = start_count_ + 1
-	end
-	!@ следующий цикл выводит уже непосредственно результаты
-	loop args['b']=start_count_ while args['b']<end_count_ step args['b']+=1:
-		!@ пока счётчик не достигнет размера самого большого массива
-		if $args['table']<>'': $args['table']+="<tr><td><<args['b']>></td>"	& !@ для вывода в виде таблицы формируем строку и первую ячейку
-		!@ этот цикл выводит содержимое ячеек под одним индексом
-		loop args['i']=0 while args['i']<last_+1 and $strfind($args[args['i']],'\[.+?\]')='' and $args[args['i']]<>'' step args['i']+=1:
-			!@ пока счётчик не достигнет девяти, или мы не встретим аргумент с управлением, или пустой аргумент
-			if $args['only result']<>'only result' and $args['table']='':
-				!@ это не режим только результат, но и не режим вывода таблицы
-				$args['cell']=$args[args['i']]+"[<<args['b']>>]="	& !@ перед добавляением значения, добавляем название массива и номер ячейки
+		if $args['only result']<>'only result' and $args['table']='':
+			!@ это не режим только результат, но и не режим вывода таблицы
+			$args['cell']=$args[args['i']]+"[<<args['b']>>]="	& !@ перед добавляением значения, добавляем название массива и номер ячейки
+		else
+			!@ это режим только результат, или режим вывода таблицы
+			$args['cell']=''	& !@ не добавляем ничего
+		end
+		if instr($args[args['i']],'$')=1:
+			!@ выводим строковые значения массива
+			if $args['table']<>'':
+				!@ если мы имеем дело с таблицей
+				$args['cell']+=$dyneval({
+					!@ $args[1] - название массива
+					!@ $args[0] - номер ячейки
+					!@ в ячейке может содержаться кортеж, тогда нам необходимо вывести кортеж
+					if instr($arritem($args[1],args[0]),'')<>0:
+						$result+='('+$replace($arritem($args[1],args[0]),'',',')+')'
+						!@ не пустые ячейки обрабатываем, чтобы заменить некоторые символы для вывода
+					elseif $arritem($args[1],args[0])<>'':
+						$result = $replace($arritem($args[1],args[0]),' ','&nbsp;')
+						$result = $replace($result,'<','&lt;')
+						$result = $replace($result,'>','&gt;')
+					else
+						!@ в пустых ячейках ставим пробелы
+						$result='&nbsp;'
+					end
+				},args['b'],$args[args['i']])
 			else
-				!@ это режим только результат, или режим вывода таблицы
-				$args['cell']=''	& !@ не добавляем ничего
-			end
-			if instr($args[args['i']],'$')=1:
-				!@ выводим строковые значения массива
-				if $args['table']<>'':
-					!@ если мы имеем дело с таблицей
-					$args['cell']+=$dyneval({
-						!@ $args[1] - название массива
-						!@ $args[0] - номер ячейки
-						!@ в ячейке может содержаться кортеж, тогда нам необходимо вывести кортеж
+				!@ для не таблицы просто добавляем значение
+				if $args['only result']<>'only result':
+					$args['cell']+="'"+$dyneval({
+						!@ в ячейке может содержаться как кортеж, так и обычная строка
 						if instr($arritem($args[1],args[0]),'')<>0:
 							$result+='('+$replace($arritem($args[1],args[0]),'',',')+')'
-							!@ не пустые ячейки обрабатываем, чтобы заменить некоторые символы для вывода
-						elseif $arritem($args[1],args[0])<>'':
-							$result = $replace($arritem($args[1],args[0]),' ','&nbsp;')
-							$result = $replace($result,'<','&lt;')
-							$result = $replace($result,'>','&gt;')
 						else
-							!@ в пустых ячейках ставим пробелы
-							$result='&nbsp;'
+							$result = $replace($arritem($args[1],args[0]),"'","''")
+						end
+					},args['b'],$args[args['i']])+"'"
+				else
+					$args['cell']+=$dyneval({
+						!@ в ячейке может содержаться, как кортеж, так и обычная строка
+						if instr($arritem($args[1],args[0]),'')<>0:
+							$result+='('+$replace($arritem($args[1],args[0]),'',',')+')'
+						else
+							$result = $arritem($args[1],args[0])
 						end
 					},args['b'],$args[args['i']])
-				else
-					!@ для не таблицы просто добавляем значение
-					if $args['only result']<>'only result':
-						$args['cell']+="'"+$dyneval({
-							!@ в ячейке может содержаться как кортеж, так и обычная строка
-							if instr($arritem($args[1],args[0]),'')<>0:
-								$result+='('+$replace($arritem($args[1],args[0]),'',',')+')'
-							else
-								$result = $replace($arritem($args[1],args[0]),"'","''")
-							end
-						},args['b'],$args[args['i']])+"'"
-					else
-						$args['cell']+=$dyneval({
-							!@ в ячейке может содержаться, как кортеж, так и обычная строка
-							if instr($arritem($args[1],args[0]),'')<>0:
-								$result+='('+$replace($arritem($args[1],args[0]),'',',')+')'
-							else
-								$result = $arritem($args[1],args[0])
-							end
-						},args['b'],$args[args['i']])
-					end
 				end
-			else
-				!@ выводим числовые значения массива
-				$args['cell']+=$dyneval("$result=$str(<<$args[args['i']]>>[args[0]])",args['b'])
 			end
-			if $args['table']<>'':
-				$args['table']+='<td>'+$args['cell']+'</td>'	& !@ для таблицы создаём ячейку
-			elseif $args['only result']='only result' and args['i']<>0:
-				$args['result']+='	'+$args['cell']	& !@ для не таблицы добавляем отступ
-			elseif args['i']<>0:
-				$args['result']+='	&	'+$args['cell']	& !@ для не таблицы добавляем отступ
-			else:
-				$args['result']+=$args['cell']
-			end
+		else
+			!@ выводим числовые значения массива
+			$args['cell']+=$dyneval("$result=$str(<<$args[args['i']]>>[args[0]])",args['b'])
 		end
-		if $args['table']<>'': $args['table']+="</tr>" else $args['result']+=@em.RN	& !@ для таблицы закрываем строку, для не таблицы начинаем новую
+		if $args['table']<>'':
+			$args['table']+='<td>'+$args['cell']+'</td>'	& !@ для таблицы создаём ячейку
+		elseif $args['only result']='only result' and args['i']<>0:
+			$args['result']+='	'+$args['cell']	& !@ для не таблицы добавляем отступ
+		elseif args['i']<>0:
+			$args['result']+='	&	'+$args['cell']	& !@ для не таблицы добавляем отступ
+		else:
+			$args['result']+=$args['cell']
+		end
 	end
-	if $args['table']<>'': $args['table']+='</table>'
+	if $args['table']<>'': $args['table']+="</tr>" else $args['result']+=@em.RN	& !@ для таблицы закрываем строку, для не таблицы начинаем новую
 end
+if $args['table']<>'': $args['table']+='</table>'
+
 killvar '$result'	& !@ на всякий случай уничтожаем переменную result
 if $args['table']<>'':
 	$result=$args['table']	& !@ если сгенерирована таблица, возвращаем таблицу
