@@ -6,7 +6,7 @@ QSP-Game Соединяет перечисленные массивы в мас�
 # em.arr.concatenate
 !@pp:if(em_fuse):include
 if $args[0] = '': msg 'em.arr.concatenate: Wrong array name → <<$args[0]>>' & exit
-if instr($args[0], '%') <> 1: msg 'em.arr.concatenate: type prefix ''%'' not specified → <<$args[0]>>, need ' & exit
+if instr($args[0], '%') <> 1: msg 'em.arr.concatenate: type prefix ''%'' not specified → <<$args[0]>>' & exit
 !@pp:endif
 args[21], args[23] = arrsize('args'), 0
 !@ получаем размер самого длинного массива:

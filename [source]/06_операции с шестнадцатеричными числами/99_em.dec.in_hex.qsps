@@ -1,8 +1,8 @@
 QSP-Game Функция, конвертирующая десятеричное число в шестнадцатеричное
 args[0] — десятеричное число
 $result - шестнадцатеричное число
-!@pp:if(em_dec_inhex):include
-# em.dec.inHex
+!@pp:if(em_dec_in_hex):include
+# em.dec.in_hex
 local $minus, base_16, num_of_digit
 $result=''
 if args[0]<0: args[0]=-args[0] & $minus='-'	& !@ поддержка отрицательных чисел
@@ -29,14 +29,14 @@ loop local run=1 while run:
 	end
 end
 $result=$minus+$result
---- em.dec.inHex ---------------------------------
+--- em.dec.in_hex ---------------------------------
 !@pp:endif
 
 Функция не использует иных функций библиотеки.
 
-@em.dec.inHex(2147483647)	& !@ '7fffffff'
-@em.dec.inHex(214)	& !@ 'd6'
-@em.dec.inHex(255)	& !@ 'ff'
-@em.dec.inHex(10)	& !@ 'a'
-@em.dec.inHex(9)	& !@ '9'
-@em.dec.inHex(2147483648)	& !@ '7fffffff'
+@em.dec.in_hex(2147483647)	& !@ '7fffffff'
+@em.dec.in_hex(214)	& !@ 'd6'
+@em.dec.in_hex(255)	& !@ 'ff'
+@em.dec.in_hex(10)	& !@ 'a'
+@em.dec.in_hex(9)	& !@ '9'
+@em.dec.in_hex(2147483648)	& !@ '7fffffff'

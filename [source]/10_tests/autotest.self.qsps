@@ -332,10 +332,10 @@ aaaaaaaaaaaaa
 blablabla
 "
 end
-!@ em.str.inarr
-if instr($args[0],'em.str.inarr')<>0 or $args[0]='':
-$functions[]='em.str.inarr'
-$example['em.str.inarr']="0"
+!@ em.str.in_arr
+if instr($args[0],'em.str.in_arr')<>0 or $args[0]='':
+$functions[]='em.str.in_arr'
+$example['em.str.in_arr']="0"
 end
 !@ em.str.thin
 if instr($args[0],'em.str.thin')<>0 or $args[0]='':
@@ -358,9 +358,9 @@ if instr($args[0], 'em.var.get_type') <> 0 or $args[0] = '':
 	$example['em.var.get_type'] = "[str][num][num][][][str][tpl]"
 end
 
-if instr($args[0], 'em.tag.getnum') <> 0 or $args[0] = '':
-	$functions[]= 'em.tag.getnum'
-	$example['em.tag.getnum'] = "[текст с пробелом][68][непробельные_символы][ff8899][многа букав][][ff8899]"
+if instr($args[0], 'em.tag.get_num') <> 0 or $args[0] = '':
+	$functions[]= 'em.tag.get_num'
+	$example['em.tag.get_num'] = "[текст с пробелом][68][непробельные_символы][ff8899][многа букав][][ff8899]"
 end
 
 *pl "Start of Autotest." & wait 500

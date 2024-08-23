@@ -6,10 +6,10 @@ if $args[0] = '' and instr($user_text, 'em ') = 1:
 	local $cmdline_ = $lcase($trim($user_text_))
 
 	if instr($cmdline_,' ') <> 0:
-		if loc('em.str.inArr'):
-			@em.str.inArr($cmdline_, '$em_test_parse_', ' ', '[notspace][strip][lcase]')
+		if loc('em.str.in_arr'):
+			@em.str.in_arr($cmdline_, '$em_test_parse_', ' ', '[notspace][strip][lcase]')
 		else:
-			msg "Error. Function 'em.str.inArr' is not exist! Some commands shoudn't work."
+			msg "Error. Function 'em.str.in_arr' is not exist! Some commands shoudn't work."
 		end
 	end
 	if $cmdline_ = 'help':

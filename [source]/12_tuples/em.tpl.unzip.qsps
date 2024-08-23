@@ -1,7 +1,8 @@
 QSP-Game Распаковка кортежа
 
-!@ %0 кортеж
-!@ $1 название массива
+!@ %0 - кортеж
+!@ $1 - название массива
+!@pp:if(em_tpl_unzip):include
 # em.tpl.unzip
 loop args[22] = len(%args[0]) while args[22] > 0 step args[22] -= 1:
 	$args[21], %args[0] = %args[0]
@@ -15,3 +16,6 @@ loop args[22] = len(%args[0]) while args[22] > 0 step args[22] -= 1:
 	end
 end
 --- em.tpl.unzip ---
+!@pp:endif
+
+тип извлекаемых значений определяется по префиксу типа в названии массива

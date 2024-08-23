@@ -440,7 +440,7 @@ elseif $args[0]='em.zero':
 		$result+=@em.zero(13,'a')+$nr	& !@ 'aaaaaaaaaaaaa'
 		$result+=@em.zero(3,'bla')+$nr	& !@ 'blablabla'
 	})
-elseif $args[0]='em.str.inarr':
+elseif $args[0]='em.str.in_arr':
 		$result=$dyneval({
 local $text, $mass_ex_1, $mass_ex_2, $mass_ex_3
 local $mass_res_1, $mass_res_2, $mass_res_3
@@ -497,19 +497,19 @@ $mass_ex_3[17]='мне'
 $mass_ex_3[18]='нечего'
 $mass_ex_3[19]='больше'
 $mass_ex_3[20]='желать'
-@em.str.inArr($text, '$mass_res_1', @em.RN,'')
+@em.str.in_arr($text, '$mass_res_1', @em.RN,'')
 
 loop local i,size=0,arrsize('$mass_res_1') while i<size step i+=1:
 	if $mass_res_1[i]<>$mass_ex_1[i]: result-=1
 end
 
-@em.str.inArr($text,'$mass_res_2',' ','')
+@em.str.in_arr($text,'$mass_res_2',' ','')
 
 loop local i,size=0,arrsize('$mass_res_1') while i<size step i+=1:
 	if $mass_res_2[i]<>$mass_ex_2[i]: result-=1
 end
 
-@em.str.inArr($text,'$mass_res_3','("|!|\?|-|,|;|:|\.| |
+@em.str.in_arr($text,'$mass_res_3','("|!|\?|-|,|;|:|\.| |
 )','[notspace] [regular] [lcase]')
 
 loop local i,size=0,arrsize('$mass_res_3') while i<size step i+=1:
@@ -557,16 +557,16 @@ elseif $args[0]='em.var.get_type':
 		$result+='['+@em.var.get_type('tuple')+']'   & !@ 'str'
 		$result+='['+@em.var.get_type('real_tuple')+']'   & !@ 'tpl'
 	})
-elseif $args[0]='em.tag.getnum':
+elseif $args[0]='em.tag.get_num':
 	$result = $dyneval({
 		local $text="[count:текст с пробелом] <cord:68> log:непробельные_символы color=#ff8899 tag='многа букав'"
-		$result += '[' + @em.tag.getNum($text,'count')+ ']'   & !@ "текст с пробелом"
-		$result += '[' + @em.tag.getNum($text,'cord')+ ']'     & !@ '68'
-		$result += '[' + @em.tag.getNum($text,'log')+ ']'  & !@ "непробельные_символы"
-		$result += '[' + @em.tag.getNum($text,'color')+ ']'    & !@ "ff8899"
-		$result += '[' + @em.tag.getNum($text,'tag')+ ']'  & !@ "многа букав"
-		$result += '[' + @em.tag.getNum($text,'tag/h')+ ']'    & !@ не выведет ничего
-		$result += '[' + @em.tag.getNum($text,'color/h')+ ']'  & !@ "ff8899"
+		$result += '[' + @em.tag.get_num($text,'count')+ ']'   & !@ "текст с пробелом"
+		$result += '[' + @em.tag.get_num($text,'cord')+ ']'     & !@ '68'
+		$result += '[' + @em.tag.get_num($text,'log')+ ']'  & !@ "непробельные_символы"
+		$result += '[' + @em.tag.get_num($text,'color')+ ']'    & !@ "ff8899"
+		$result += '[' + @em.tag.get_num($text,'tag')+ ']'  & !@ "многа букав"
+		$result += '[' + @em.tag.get_num($text,'tag/h')+ ']'    & !@ не выведет ничего
+		$result += '[' + @em.tag.get_num($text,'color/h')+ ']'  & !@ "ff8899"
 	})
 end
 --- em.autotest ---------------------------------

@@ -5,8 +5,8 @@ QSP-Game Заполняет массив порядковыми числами
 !@ %2 - [нижняя, верхняя] границы чисел. В каких пределах вести заполнение.
 !@ #3 - с какого элемента начинать заполнение.
 !@ #4 - шаг (по умолчанию: 1)
-!@pp:if(em_arr_strtfill):include
-# em.arr.strtFill
+!@pp:if(em_arr_fill_strt):include
+# em.arr.fill_strt
 !@pp:if(em_fuse):include
 if $args[0] <> '' and instr('$%', $mid($args[0], 1, 1)): msg 'em.arr.fill_rand: type prefix cannot be specified → <<$args[0]>>' & exit
 !@pp:endif
@@ -26,7 +26,7 @@ loop while args[1]>0 step args[1]-=1 & args[3]+=1:
 		if args[23]<args[22] and (args[21]<>0 or args[22]<>0): args[23]=args[21]
 	end
 end
---- em.arr.strtFill ---------------------------------
+--- em.arr.fill_strt ---------------------------------
 !@pp:endif
 
 Функция не использует иных функций библиотеки
@@ -38,25 +38,25 @@ end
 !@ #23 - число, которое вносим в массив
 !@ #24 - режим (реверс, или нет)
 
-@em.arr.strtFill('t',8)
+@em.arr.fill_strt('t',8)
 
 loop local i,size=0,arrsize('t') while i<size step i+=1:
 	*pl "t[<<i>>]=<<t[i]>>"
 end
 *pl
-@em.arr.strtFill('b',8,4)
+@em.arr.fill_strt('b',8,4)
 
 loop local i,size=0,arrsize('b') while i<size step i+=1:
 	*pl "b[<<i>>]=<<b[i]>>"
 end
 *pl
-@em.arr.strtFill('z',8,0,2)
+@em.arr.fill_strt('z',8,0,2)
 
 loop local i,size=0,arrsize('z') while i<size step i+=1:
 	*pl "z[<<i>>]=<<z[i]>>"
 end
 *pl
-@em.arr.strtFill('f',8,5,3,2)
+@em.arr.fill_strt('f',8,5,3,2)
 
 loop local i,size=0,arrsize('f') while i<size step i+=1:
 	*pl "f[<<i>>]=<<f[i]>>"

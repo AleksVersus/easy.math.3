@@ -5,7 +5,7 @@ $args[1] - управляющее слово: [strip].
 # em.str.widetrim
 $args[1]=$lcase($args[1])	& !@ переводим в нижний регистр
 local $em_str_widetrim_temp_array, $addcommand, $res
-@em.str.inArr($args[0],'$em_str_widetrim_temp_array','','[trim]')	& !@ разбиваем текст на строки и строки помещаем в массив
+@em.str.in_arr($args[0],'$em_str_widetrim_temp_array','','[trim]')	& !@ разбиваем текст на строки и строки помещаем в массив
 !@ если первый и последний элементы содержат только пробелы, или пусты, удаляем их
 loop while arrsize('$em_str_widetrim_temp_array')>0 and ($em_str_widetrim_temp_array[0]='' or strcomp($em_str_widetrim_temp_array[0],'\s+')<>0):
 	killvar '$em_str_widetrim_temp_array',0
@@ -24,9 +24,9 @@ $result=$mid($res,1,len($res)-1)
 --- em.str.widetrim ---------------------------------
 !@pp:endif
 
-Используется функция библиотеки em.str.inArr
+Используется функция библиотеки em.str.in_arr
 !@pp:if(em_str_widetrim!=True):nopp
-!@pp:var(em_str_inarr)
+!@pp:var(em_str_in_arr)
 !@pp:endif
 
 $text="    

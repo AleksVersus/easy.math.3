@@ -1,14 +1,14 @@
 QSP-Game Определяет координаты ячейки по текущему номеру ячейки. Эта функция пригодится при организации двумерного массива, через одномерный, или при отрисовке игровых полей заданной ширины.
 !@ #0 - текущий номер ячейки или блока N;
 !@ #1 - ширина поля W;
-!@pp:if(em_map_cell_getcoords):include
-# em.map.cell.getCoords
+!@pp:if(em_map_cell_get_coords):include
+# em.map.cell.get_сoords
 local cell, width = args[0], args[1]
 local x, y
 y = cell/width
 x = cell - y*width
 %result = [x, y]
---- em.map.cell.getCoords ---------------------------------
+--- em.map.cell.get_сoords ---------------------------------
 !@pp:endif
 
 Функция не использует иных функций библиотеки
@@ -23,7 +23,7 @@ y/x |  0   1   2   3
     |                          y = N/W
    3|  12  13  14  15          x = N - Y * W
 
-@em.map.cell.getCoords(10,3+1,'[x]')   & !@ 2
-@em.map.cell.getCoords(10,3+1,'[y]')   & !@ 2
-@em.map.cell.getCoords(10,3+1)   & !@ кортеж (2,2)
-@em.map.cell.getCoords(10,4,'[x][y]')   & !@ кортеж (2,2)
+@em.map.cell.get_сoords(10,3+1,'[x]')   & !@ 2
+@em.map.cell.get_сoords(10,3+1,'[y]')   & !@ 2
+@em.map.cell.get_сoords(10,3+1)   & !@ кортеж (2,2)
+@em.map.cell.get_сoords(10,4,'[x][y]')   & !@ кортеж (2,2)
