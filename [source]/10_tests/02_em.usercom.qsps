@@ -66,11 +66,7 @@ if $args[0] = '' and instr($user_text, 'em ') = 1:
 			msg "Error. Functions 'em.arr.fill_rand' and 'em.arr.print' are not exist!"
 		end
 	elseif instr($cmdline_,'autotest') = 1 and loc('em.autotest.self'):
-		if loc('em.autotest.self'):
-			@em.autotest.self($em_test_parse_[1], $em_test_parse_[2])
-		else:
-			msg "Error. Function 'em.autotest.self' is not exist!"
-		end
+		@em.autotest.self($em_test_parse_[1], $em_test_parse_[2])
 	else:
 		dynamic $cmdline_
 	end
