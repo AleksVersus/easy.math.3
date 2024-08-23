@@ -357,6 +357,12 @@ if instr($args[0], 'em.var.get_type') <> 0 or $args[0] = '':
 	$functions[]= 'em.var.get_type'
 	$example['em.var.get_type'] = "[str][num][num][][][str][tpl]"
 end
+
+if instr($args[0], 'em.tag.getnum') <> 0 or $args[0] = '':
+	$functions[]= 'em.tag.getnum'
+	$example['em.tag.getnum'] = "[текст с пробелом][68][непробельные_символы][ff8899][многа букав][][ff8899]"
+end
+
 *pl "Start of Autotest." & wait 500
 loop local i,size=0,arrsize('$functions') while i<size step i+=1:
 	if loc($functions[i]):

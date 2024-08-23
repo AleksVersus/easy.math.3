@@ -557,6 +557,17 @@ elseif $args[0]='em.var.get_type':
 		$result+='['+@em.var.get_type('tuple')+']'   & !@ 'str'
 		$result+='['+@em.var.get_type('real_tuple')+']'   & !@ 'tpl'
 	})
+elseif $args[0]='em.tag.getnum':
+	$result = $dyneval({
+		local $text="[count:текст с пробелом] <cord:68> log:непробельные_символы color=#ff8899 tag='многа букав'"
+		$result += '[' + @em.tag.getNum($text,'count')+ ']'   & !@ "текст с пробелом"
+		$result += '[' + @em.tag.getNum($text,'cord')+ ']'     & !@ '68'
+		$result += '[' + @em.tag.getNum($text,'log')+ ']'  & !@ "непробельные_символы"
+		$result += '[' + @em.tag.getNum($text,'color')+ ']'    & !@ "ff8899"
+		$result += '[' + @em.tag.getNum($text,'tag')+ ']'  & !@ "многа букав"
+		$result += '[' + @em.tag.getNum($text,'tag/h')+ ']'    & !@ не выведет ничего
+		$result += '[' + @em.tag.getNum($text,'color/h')+ ']'  & !@ "ff8899"
+	})
 end
 --- em.autotest ---------------------------------
 !@pp:endif
