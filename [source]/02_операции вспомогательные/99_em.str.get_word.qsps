@@ -7,19 +7,14 @@ QSP-Game Функция из строки вида aaa|bbb|ccc|...|yyy|zzz по�
 !@pp:if(em_str_get_word):include
 # em.str.get_word
 local $src_string_, pos_, $delimiter_ = $args[0], args[1], $args[2]
-local $cut_string_
+local $regexp_, $matches_
 if $delimiter_ = '': $delimiter_='|'	& !@ по умолчанию разделителем выступает вертикальная черта
 $src_string_ += $delimiter_	& !@ для упрощения вычислений добавляем разделитель к финалу
-loop local instr_ while len($src_string_)>0 and pos_>0 step pos_-=1:
-	!@ вычисления продолжаются пока не разобрана вся строка, либо пока счётчик не будет исчерпан
-	instr_ = instr($src_string_, $delimiter_)
-	if instr_ > 0:
-		!@ если разделитель в строке найден
-		$cut_string_ = $mid($src_string_, 1, instr_ + len($delimiter_) - 1)	& !@ вырезаем до разделителя
-		$src_string_ = $mid($src_string_, instr_ + len($delimiter_))	& !@ строкой становится хвост после разделителя
-	end
-end
-$result=$replace($cut_string_, $delimiter_)
+$regexp_ = '([\s\S]*?)' + @em.str.in_regexp($delimiter_)
+scanstr '$matches_', $src_string_, $regexp_
+if args[1] > arrsize('$matches_'): args[1] = arrsize('$matches_')
+$result = $matches_[args[1]-1]
+$result = $strfind($result, $regexp_+'$', 1)
 --- em.str.get_word ---------------------------------
 !@pp:endif
 
