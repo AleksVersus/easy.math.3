@@ -1,46 +1,36 @@
 QSP-Game Разрежает строку определённым разделителем
-$args[0] - строка текста
-args[1] - через какое количество символов вставлять разделитель (по умолчанию 1)
-$args[2] - разделитель (по умолчанию - пробел)
-$args[3] - управляющая конструкция, см ниже.
+
+!@ $0 - строка текста
+!@ #1 - через какое количество символов вставлять разделитель (по умолчанию 1)
+!@ $2 - разделитель (по умолчанию - пробел)
+!@ $3 - управляющая конструкция, см ниже.
 !@pp:if(em_str_thin):include
 # em.str.thin
-if args[1]<1: args[1]=1	& !@ если разрядность для разрежения не указана, или указана неверно, принимается равным 1
-if $args[2] = '': $args[2]=' '	& !@ если разделитель не указан, разделителем служит пробел
-$args[3]=$lcase($args[3])	& !@ переводим управляющие конструкции к нижнему регистру
-local $string,spacing,$delimiter,$commands=$args[0],args[1],$args[2],$args[3]	& !@ инициализация локальных переменных
-local $res
-if instr($commands,'[up]')<>0:
-	!@ если разрежение от последнего к первому символу
-	loop local $t='' while len($string)>0 step:
-		!@ цикл выполняется, пока длина строки превышает 0
-		$t=$mid($string,len($string)-(spacing-1))	& !@ вырезаем из строки последние символы числом spacing
-		$string=$mid($string,1,len($string)-spacing)	& !@ укорачиваем строку с конца на spacing символов
-		if instr($commands,'[left]')<>0 or len($string)>0:
-			!@ если передано управление [left] или длина строки всё ещё больше нуля
-			$res=$delimiter+$t+$res	& !@ добавляем к результату слева разделитель и вырезанные символы
-		else
-			!@ в противном случае
-			$res=$t+$res	& !@ добавляем только символы
-		end
-	end
-	if instr($commands,'[right]')<>0: $res+=$delimiter	& !@ если [right], добавляем разделитель справа к результату
-else
-	loop local $t='' while len($string)>0 step:
-		!@ цикл выполняется, пока длина строки превышает 0
-		$t=$mid($string,1,spacing)	& !@ вырезаем из строки первые символы числом spacing
-		$string=$mid($string,spacing+1)	& !@ строку укорачиваем на spacing символов с начала
-		if instr($commands,'[right]')<>0 or len($string)>0:
-			!@ если передано управление [right] или длина строки всё ещё больше нуля
-			$res+=$t+$delimiter	& !@ добавляем к результату справа разделитель и вырезанные символы
-		else
-			!@ в противном случае
-			$res+=$t	& !@ только символы
-		end
-	end
-	if instr($commands,'[left]')<>0: $res=$delimiter+$res	& !@ если [left], добавляем разделитель слева к результату
+local $string_, spacing_, $delimiter_, $mode_ = $args[0], args[1], $args[2], $args[3]	& !@ инициализация локальных переменных
+if spacing_ < 1: spacing_ = 1	& !@ если разрядность для разрежения не указана, или указана неверно, принимается равным 1
+if $delimiter_ = '': $delimiter_ = ' '	& !@ если разделитель не указан, разделителем служит пробел
+$mode_ = $lcase($mode_)	& !@ переводим управляющие конструкции к нижнему регистру
+local $res_, len_, mod_
+len_ = len($string_)
+mod_ = len_ mod spacing_
+if instr($mode_,'[up]') <> 0:
+	if mod_ > 0: $string_ = $mid($string_, 1, spacing_ - mod_) + $string_
+	scanstr '$res_', $string_, '[\s\S]{<<spacing_>>}'
+	if mod_ > 0: $res_[0] = $mid($res_[0], spacing_)
+else:
+	if mod_ > 0: $string_ += $mid($string_, 1, spacing_ - mod_)
+	scanstr '$res_', $string_, '[\s\S]{<<spacing_>>}'
+	if mod_ > 0: $res_[arrsize('$res_')-1] = $mid($res_[], 1, mod_)
 end
-$result = $res	& !@ возвращаем результат
+loop while arrsize('$res_'):
+	if len($result) or instr($mode_, '[left]'):
+		$result += $delimiter_ + $res_[0]
+	else:
+		$result += $res_[0]
+	end
+	killvar '$res_', 0
+end
+if instr($mode_,'[right]')<>0: $result += $delimiter_	& !@ если [right], добавляем разделитель справа к результату
 --- em.str.thin ---------------------------------
 !@pp:endif
 
@@ -61,3 +51,4 @@ $result = $res	& !@ возвращаем результат
 @em.str.thin('профессура',3,'|','[left]')	& !@ "|про|фес|сур|а"
 @em.str.thin('профессура',2,'|','[right]')	& !@ "пр|оф|ес|су|ра|"
 @em.str.thin('профессура',1,'||','[left] [right]')	& !@ "||п||р||о||ф||е||с||с||у||р||а||"
+010 123 456 789
