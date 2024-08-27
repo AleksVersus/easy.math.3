@@ -1,7 +1,6 @@
 QSP-Game Функция, обратная функции RGB. На основе числового кода получает составляющие
 (r*1)+(g*256)+(b*256*256)+(a*256*256*256)
 arsg[0] - числовой код цвета
-$args[1] - управление /wa — включить в результат альфаканал
 !@pp:if(em_dergb):include
 # em.deRGB
 local red, green, blue, alpha
@@ -21,13 +20,7 @@ else
 	green=(args[0] mod a mod b)/g
 	red=(args[0] mod a mod b mod g)/r
 end
-if $lcase($trim($args[1]))='/wa':
-	!@ если хотим получить все четыре параметра
-	$result=(red,green,blue,alpha)
-else
-	!@ если нам достаточно только цветов
-	$result=(red,green,blue)
-end
+%result = [red, green, blue, alpha]
 --- em.deRGB ---------------------------------
 !@pp:endif
 
