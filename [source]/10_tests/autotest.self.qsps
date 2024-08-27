@@ -333,10 +333,10 @@ blablabla
 "
 end
 !@ em.str.in_arr
-if instr($args[0],'em.str.in_arr')<>0 or $args[0]='':
-$functions[]='em.str.in_arr'
-$example['em.str.in_arr']="0"
-end
+!@ if instr($args[0],'em.str.in_arr')<>0 or $args[0]='':
+!@ $functions[]='em.str.in_arr'
+!@ $example['em.str.in_arr']="0"
+!@ end
 !@ em.str.thin
 if instr($args[0],'em.str.thin')<>0 or $args[0]='':
 $functions[]='em.str.thin'

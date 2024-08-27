@@ -35,7 +35,6 @@ QSP-Game Список меток для всех функций библиоте
 !@pp:var(em_str_widetrim)
 !@pp:var(em_arr_search)
 !@pp:var(em_str_random)
-!@pp:var(em_str_in_arr)
 !@pp:var(em_str_thin)
 !@pp:var(em_str_slice)
 !@pp:var(em_gen_uuid)
