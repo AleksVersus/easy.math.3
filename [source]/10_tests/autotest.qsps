@@ -476,23 +476,23 @@ $mass_ex_2[17]='мне'
 $mass_ex_2[18]='нечего'
 $mass_ex_2[19]='больше'
 $mass_ex_2[20]='желать.'
-$mass_ex_3[0]='адское'
-$mass_ex_3[1]='пекло'
+$mass_ex_3[0]='Адское'
+$mass_ex_3[1]='Пекло'
 $mass_ex_3[2]='и'
-$mass_ex_3[3]='небеса'
-$mass_ex_3[4]='я'
+$mass_ex_3[3]='Небеса'
+$mass_ex_3[4]='Я'
 $mass_ex_3[5]='весь'
 $mass_ex_3[6]='мир'
 $mass_ex_3[7]='мечтаю'
 $mass_ex_3[8]='продать'
-$mass_ex_3[9]='время'
+$mass_ex_3[9]='Время'
 $mass_ex_3[10]='деньги'
-$mass_ex_3[11]='пусть'
+$mass_ex_3[11]='Пусть'
 $mass_ex_3[12]='стрелки'
 $mass_ex_3[13]='бегут'
 $mass_ex_3[14]='на'
 $mass_ex_3[15]='часах'
-$mass_ex_3[16]='и'
+$mass_ex_3[16]='И'
 $mass_ex_3[17]='мне'
 $mass_ex_3[18]='нечего'
 $mass_ex_3[19]='больше'
@@ -500,20 +500,20 @@ $mass_ex_3[20]='желать'
 @em.str.in_arr($text, '$mass_res_1', @em.RN,'')
 
 loop local i,size=0,arrsize('$mass_res_1') while i<size step i+=1:
-	if $mass_res_1[i]<>$mass_ex_1[i]: result-=1
+	if $mass_res_1[i]<>$mass_ex_1[i]: result-=1 & *pl $mass_res_1[i] + '<>' + $mass_ex_1[i]
 end
 
 @em.str.in_arr($text,'$mass_res_2',' ','')
 
 loop local i,size=0,arrsize('$mass_res_1') while i<size step i+=1:
-	if $mass_res_2[i]<>$mass_ex_2[i]: result-=1
+	if $mass_res_2[i]<>$mass_ex_2[i]: result-=1 & *pl $mass_res_2[i] + '<>' + $mass_ex_2[i]
 end
 
 @em.str.in_arr($text,'$mass_res_3','("|!|\?|-|,|;|:|\.| |
-)','[notspace] [regular] [lcase]')
+)','[notspace] [regular]')
 
 loop local i,size=0,arrsize('$mass_res_3') while i<size step i+=1:
-	if $mass_res_3[i]<>$mass_ex_3[i]: result-=1
+	if $mass_res_3[i]<>$mass_ex_3[i]: result-=1 & *pl $mass_res_3[i] + '<>' + $mass_ex_3[i]
 end
 $result=$str(result)
 		})

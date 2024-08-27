@@ -44,7 +44,7 @@ loop local $temp while len($symbols_)>0:
 		!@ если символа в наборе запрещённых нет
 		$new_symbols_+=$temp	& !@ добавляем символ к новому набору
 	end
-	$symbols_=$replace($symbols_,$temp)	& !@ удаляем символ из старого набора (и дубликаты тоже)
+	$symbols_ = $replace($symbols_,$temp)	& !@ удаляем символ из старого набора (и дубликаты тоже)
 end
 $symbols_=$new_symbols_
 if $args[2]<>'': $symbols_+=$args[2]
