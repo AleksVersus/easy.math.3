@@ -1,32 +1,28 @@
 QSP-Game Функция похожа на функцию TRIM. Она удаляет прилегающие символы пробелов, табуляций и переводов строк. Так же функция позволяет убирать все символы преформатирования из текста.
-$args[0] - обрабатываемый текст
-$args[1] - управляющее слово: [strip].
+!@ $0 - обрабатываемый текст
+!@ $1 - управляющее слово: [strip].
 !@pp:if(em_str_widetrim):include
 # em.str.widetrim
-$args[1]=$lcase($args[1])	& !@ переводим в нижний регистр
-local $em_str_widetrim_temp_array, $addcommand, $res
-@em.str.in_arr($args[0],'$em_str_widetrim_temp_array','','[trim]')	& !@ разбиваем текст на строки и строки помещаем в массив
+$args[1] = $lcase($args[1])	& !@ переводим в нижний регистр
+local $em_str_widetrim_temp_array_, strip_it_
+scanstr '$em_str_widetrim_temp_array_', $args[0], '.+'	& !@ разбиваем текст на строки и строки помещаем в массив
 !@ если первый и последний элементы содержат только пробелы, или пусты, удаляем их
-loop while arrsize('$em_str_widetrim_temp_array')>0 and ($em_str_widetrim_temp_array[0]='' or strcomp($em_str_widetrim_temp_array[0],'\s+')<>0):
-	killvar '$em_str_widetrim_temp_array',0
+loop while arrsize('$em_str_widetrim_temp_array_')>0 and ($em_str_widetrim_temp_array_[0]='' or strcomp($em_str_widetrim_temp_array_[0],'[\s\n\r\t]+')<>0):
+	killvar '$em_str_widetrim_temp_array_',0
 end
-loop while arrsize('$em_str_widetrim_temp_array')>0 and ($em_str_widetrim_temp_array[]='' or strcomp($em_str_widetrim_temp_array[],'\s+')<>0):
-	killvar '$em_str_widetrim_temp_array',arrsize('$em_str_widetrim_temp_array')-1
+loop while arrsize('$em_str_widetrim_temp_array_')>0 and ($em_str_widetrim_temp_array_[]='' or strcomp($em_str_widetrim_temp_array_[],'[\s\n\r\t]+')<>0):
+	killvar '$em_str_widetrim_temp_array_', arrsize('$em_str_widetrim_temp_array_')-1
 end
-if instr($args[1],'[strip]')<>0: $addcommand='[strip]'	& !@ выставляем добавленную команду
-$res=""
-loop while arrsize('$em_str_widetrim_temp_array')>0:
-	if $addcommand='[strip]': $em_str_widetrim_temp_array[0]=$trim($em_str_widetrim_temp_array[0])
-	$res+=$em_str_widetrim_temp_array[0]+@em.RN
-	killvar '$em_str_widetrim_temp_array',0
+if instr($args[1],'[strip]')<>0: strip_it_ = 1	& !@ выставляем добавленную команду
+$result=""
+loop while arrsize('$em_str_widetrim_temp_array_')>0:
+	if strip_it_: $em_str_widetrim_temp_array_[0] = $trim($em_str_widetrim_temp_array_[0])
+	$result += $em_str_widetrim_temp_array_[0]
+	if arrsize('$em_str_widetrim_temp_array_')>1: $result += @em.RN
+	killvar '$em_str_widetrim_temp_array_',0
 end
-$result=$mid($res,1,len($res)-1)
+$result = $mid($result,1,len($result)-1)
 --- em.str.widetrim ---------------------------------
-!@pp:endif
-
-Используется функция библиотеки em.str.in_arr
-!@pp:if(em_str_widetrim!=True):nopp
-!@pp:var(em_str_in_arr)
 !@pp:endif
 
 $text="    
