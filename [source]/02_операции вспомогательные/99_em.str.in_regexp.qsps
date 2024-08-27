@@ -1,0 +1,26 @@
+QSP-Game Преобразует строку в регулярку
+
+!@ $0 - строка
+!@ $r - регулярка
+# em.str.in_regexp
+$result = $replace($args[0], '\', '\\')
+$result = $replace($result, '|', '\|')
+$result = $replace($result, '[', '\[')
+$result = $replace($result, ']', '\]')
+$result = $replace($result, '(', '\(')
+$result = $replace($result, ')', '\)')
+$result = $replace($result, '.', '\.')
+$result = $replace($result, '^', '\^')
+$result = $replace($result, ':', '\:')
+$result = $replace($result, '{', '\{')
+$result = $replace($result, '}', '\}')
+$result = $replace($result, '*', '\*')
+$result = $replace($result, '!', '\!')
+$result = $replace($result, '$', '\$')
+$result = $replace($result, '^', '\^')
+$result = $replace($result, '-', '\-')
+$result = $replace($result, '+', '\+')
+$result = $replace($result, '=', '\=')
+$result = $replace($result, ',', '\,')
+$result = $replace($result, '?', '\?')
+--- em.str.in_regexp ---------------------------------
