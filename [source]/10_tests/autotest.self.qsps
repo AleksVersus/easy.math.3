@@ -224,39 +224,7 @@ $example['em.sqrt']="31.6227
 0.8306
 "
 end
-!@ em.maxVar
-if instr($args[0],'em.maxvar')<>0 or $args[0]='':
-$functions[]='em.maxvar'
-$example['em.maxvar']="old_mass
-oldold[8]
-old_mass_2
-old_mass
-oldold[8]
-new_mass[4]
-old_mass_2
-old_mass[0]
-old_mass[0]
-old_mass[2]
-old_mass[4]
-old_mass[7]
-"
-end
-!@ em.minVar
-if instr($args[0],'em.minvar')<>0 or $args[0]='':
-$functions[]='em.minvar'
-$example['em.minvar']="new_mass
-new_mass[0]
-oldold[13]
-new_mass
-new_mass[0]
-oldold[13]
-old_mass[4]
-old_mass[4]
-old_mass[7]
-old_mass[4]
-old_mass[7]
-"
-end
+
 !@ em.arr.print
 if instr($args[0],'em.arr.print')<>0 or $args[0]='':
 $functions[]='em.arr.print'
