@@ -18,45 +18,39 @@
 </a>
 </div>
 <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
-<h1 class="avs-article-h1">easy.math.qsp v. 3.1.0</h1>
+<h1 class="avs-article-h1">easy.math.qsp v. 3.2.0</h1>
 </a>
 <h3 class="avs-article-h3">Операции над массивами. Страница 2</h3>
 <section id="em_arrays_page_2">
 <!-- Страница вторая -->
-<a id="#em_arr_fill"></a>
+<a id="em_arr_fill"></a>
 <h4 class="avs-article-h4">em.arr.fill</h4>
 <p class="avs-article-p">Упрощённое заполнение массива значениями.</p>
 <div class="em-block-arguments">
-<code class="em-system">$args[<code class="em-number">0</code>]</code>- название массива, элементы которого необходимо заполнить.
-                        <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - кортеж значений, которые нужно поместить в массив.
+<code class="em-system">$args[<code class="em-number">0</code>]</code>- название массива, элементы которого необходимо заполнить (тип значений определяется по префиксу!).
+                        <br/><code class="em-system">%args[<code class="em-number">1</code>]</code> - кортеж значений, которые нужно поместить в массив.
                         <br/><code class="em-system"> args[<code class="em-number">2</code>]</code> - номер элемента, с которого необходимо начать.
-                        <br/><code class="em-system">$args[<code class="em-number">3</code>]</code> - управляющая конструкция:
-                        <ul>
-<li><code class="em-string">[only number]</code> или <code class="em-string">[num]</code> — массив будет заполнен только числовыми значениями. </li>
-<li><code class="em-string">[only string]</code> или <code class="em-string">[str]</code> — массив будет заполнен только строковыми значениями.</li>
-</ul>
-</div>
+                    </div>
 <h5 class="avs-article-h5">Результат работы функции:</h5>
 <div class="Monokai-Code">
-<span class="Monokai-UnFunc">@em.arr.fill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>, <span class="Monokai-Qbracket">(<span class="Monokai-Numeric">123</span>, <span class="Monokai-Numeric">234</span>, <span class="Monokai-Numeric">345</span>)</span>)</span><br/>
+<span class="Monokai-UnFunc">@em.arr.fill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>, <span class="Monokai-Qbracket">[<span class="Monokai-Numeric">123</span>, <span class="Monokai-Numeric">234</span>, <span class="Monokai-Numeric">345</span>]</span>)</span><br/>
 <br/>
                         mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign"> = </span><span class="Monokai-Numeric">123</span><br/>
                         mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign"> = </span><span class="Monokai-Numeric">234</span><br/>
                         mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign"> = </span><span class="Monokai-Numeric">345</span>
 </div>
-<a id="#em_arr_randFill"></a>
-<h4 class="avs-article-h4">em.arr.randFill</h4>
+<a id="em_arr_randFill"></a>
+<h4 class="avs-article-h4">em.arr.fill_rand</h4>
 <p class="avs-article-p">Генерирует случайные числа и заполняет ими указанный массив. Если массив существует, новые значения затрут уже имеющиеся.</p>
 <p class="em-block-arguments">
 <code class="em-system">$args[<code class="em-number">0</code>]</code>- название массива, элементы которого необходимо сформировать (исследуемый массив), обязательный параметр
                         <br/><code class="em-system"> args[<code class="em-number">1</code>]</code> - количество формируемых элементов, обязательный параметр
-                        <br/><code class="em-system"> args[<code class="em-number">2</code>]</code> - номер элемента, с которого необходимо начать.
-                        <br/><code class="em-system"> args[<code class="em-number">3</code>]</code> - нижняя граница случайного числа (по умолчанию - ноль)
-                        <br/><code class="em-system"> args[<code class="em-number">4</code>]</code> - верхняя граница случайного числа (по умолчанию - тысяча)
+                        <br/><code class="em-system">%args[<code class="em-number">2</code>]</code> - [нижняя, верхняя] границs случайного числа (по умолчанию - [0, 1000]).
+                        <br/><code class="em-system"> args[<code class="em-number">3</code>]</code> - номер элемента, с которого необходимо начать.
                     </p>
 <h5 class="avs-article-h5">Результат работы функции:</h5>
 <div class="Monokai-Code">
-<span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass1'</span>,<span class="Monokai-Numeric">8</span>)</span><br/>
+<span class="Monokai-UnFunc">@em.arr.fill_rand</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass1'</span>,<span class="Monokai-Numeric">8</span>)</span><br/>
 <br/>
                         mass1<span class="Monokai-Operator">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">574</span><br/>
                         mass1<span class="Monokai-Operator">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">668</span><br/>
@@ -67,7 +61,7 @@
                         mass1<span class="Monokai-Operator">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">701</span><br/>
                         mass1<span class="Monokai-Operator">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">272</span><br/>
 <br/>
-<span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass2'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">2</span>)</span><br/>
+<span class="Monokai-UnFunc">@em.arr.fill_rand</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass2'</span>, <span class="Monokai-Numeric">6</span>, [], <span class="Monokai-Numeric">2</span>)</span><br/>
 <br/>
                         mass2<span class="Monokai-Operator">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br/>
                         mass2<span class="Monokai-Operator">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br/>
@@ -78,7 +72,7 @@
                         mass2<span class="Monokai-Operator">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">334</span><br/>
                         mass2<span class="Monokai-Operator">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">950</span><br/>
 <br/>
-<span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">20</span>)</span><br/>
+<span class="Monokai-UnFunc">@em.arr.fill_rand</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>, <span class="Monokai-Numeric">6</span>, [<span class="Monokai-Numeric">10</span>, <span class="Monokai-Numeric">20</span>], <span class="Monokai-Numeric">2</span>)</span><br/>
 <br/>
                         mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br/>
                         mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br/>
@@ -89,19 +83,19 @@
                         mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">10</span><br/>
                         mass<span class="Monokai-Operator">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">17</span>
 </div>
-<a id="#em_arr_strtFill"></a>
-<h4 class="avs-article-h4">em.arr.strtFill</h4>
+<a id="em_arr_strtFill"></a>
+<h4 class="avs-article-h4">em.arr.fill_strt</h4>
 <p class="avs-article-p">Заполняет массив порядковыми числами. Если массив существует, его значения будут перезаписаны.</p>
 <p class="em-block-arguments">
 <code class="em-system">$args[<code class="em-number">0</code>]</code>- название массива, элементы которого необходимо сформировать (исследуемый массив), обязательный параметр
                         <br/><code class="em-system"> args[<code class="em-number">1</code>]</code> - количество формируемых элементов, обязательный параметр
-                        <br/><code class="em-system"> args[<code class="em-number">2</code>]</code> - верхняя граница чисел. До какого числа вести заполнение.
-                        <br/><code class="em-system"> args[<code class="em-number">3</code>]</code> - нижняя граница чисел. С какого числа начинать заполнение.
-                        <br/><code class="em-system"> args[<code class="em-number">4</code>]</code> - с какого элемента начинать заполнение.
+                        <br/><code class="em-system">%args[<code class="em-number">2</code>]</code> - [нижняя, верхняя] границы чисел. В каких пределах вести заполнение.
+                        <br/><code class="em-system"> args[<code class="em-number">3</code>]</code> - с какого элемента начинать заполнение.
+                        <br/><code class="em-system"> args[<code class="em-number">4</code>]</code> - шаг, по умолчанию 1.
                     </p>
 <h5 class="avs-article-h5">Результат работы функции:</h5>
 <div class="Monokai-Code">
-<span class="Monokai-UnFunc">@em.arr.strtFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span>)</span><br/>
+<span class="Monokai-UnFunc">@em.arr.fill_strt</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'a'</span>,<span class="Monokai-Numeric">8</span>)</span><br/>
 <br/>
                         a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br/>
                         a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br/>
@@ -112,7 +106,7 @@
                         a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">6</span><br/>
                         a<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">7</span><br/>
 <br/>
-<span class="Monokai-UnFunc">@em.arr.strtFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'b'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">4</span>)</span><br/>
+<span class="Monokai-UnFunc">@em.arr.fill_strt</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'b'</span>,<span class="Monokai-Numeric">8</span>,[<span class="Monokai-Numeric">0</span>,<span class="Monokai-Numeric">4</span>])</span><br/>
 <br/>
                         b<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br/>
                         b<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br/>
@@ -123,7 +117,7 @@
                         b<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br/>
                         b<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br/>
 <br/>
-<span class="Monokai-UnFunc">@em.arr.strtFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'v'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">0</span>,<span class="Monokai-Numeric">2</span>)</span><br/>
+<span class="Monokai-UnFunc">@em.arr.fill_strt</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'v'</span>,<span class="Monokai-Numeric">8</span>,[<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">0</span>])</span><br/>
 <br/>
                         v<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br/>
                         v<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br/>
@@ -134,7 +128,7 @@
                         v<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">2</span><br/>
                         v<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span><br/>
 <br/>
-<span class="Monokai-UnFunc">@em.arr.strtFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'g'</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">5</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">2</span>)</span><br/>
+<span class="Monokai-UnFunc">@em.arr.fill_strt</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'g'</span>,<span class="Monokai-Numeric">8</span>,[<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">5</span>],<span class="Monokai-Numeric">2</span>)</span><br/>
 <br/>
                         g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br/>
                         g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">0</span><br/>
@@ -143,14 +137,16 @@
                         g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">5</span><br/>
                         g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br/>
                         g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4</span><br/>
-                        g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">5</span>
+                        g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">5</span><br/>
+                        g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br/>
+                        g<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4</span>
 </div>
-<a id="#em_arr_sort"></a>
+<a id="em_arr_sort"></a>
 <h4 class="avs-article-h4">em.arr.sort</h4>
 <p class="avs-article-p">Программа сортирует значения массива (используется метод сортировки "пузырьком"). Результатом работы программы могут быть три разных массива. Направление сортировки: от нулевого элемента к последнему.</p>
 <p class="em-block-arguments">
 <code class="em-system">$args[<code class="em-number">0</code>]</code> - название массива, элементы которого необходимо отсортировать (исследуемый массив), обязательный параметр
-                        <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - порядок сортировки элементов массива: <code class="em-string">'[up]'</code> или ничего - значения сортируются от большего к меньшему, <code class="em-string">'[down]'</code> - значения сортируются от меньшего к большему.
+                        <br/><code class="em-system">#args[<code class="em-number">1</code>]</code> - порядок сортировки: <code class="em-number">0</code> (по умолчанию) - от меньшего к большему, <code class="em-number">1</code> - от большего к меньшему.
                         <br/><code class="em-system">$args[<code class="em-number">2</code>]</code> - имя массива, в который будут помещены исходные номера элементов исследуемого массива в порядке сортировки. Например, если при сортировке местами поменялись первый и второй элемент, первый элемент указанного массива получит номер 2, а второй - 1.
                         <br/><code class="em-system">$args[<code class="em-number">3</code>]</code> - название массива результатов, т.е. массива, в который будут переданы результаты сортировки. Если не указано, массивом результатов становится исследуемый.
                     </p>
@@ -159,11 +155,11 @@
 <div class="Monokai-Code">
 <table class="Monokai-Command-Table">
 <tr>
-<td class="Monokai-Command-Table__Cell"><span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
+<td class="Monokai-Command-Table__Cell"><span class="Monokai-UnFunc">@em.arr.fill_rand</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
 <td><span class="Monokai-Comment">   (0) Генерируем массив случайных чисел</span></td>
 </tr>
 <tr>
-<td class="Monokai-Command-Table__Cell"><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>)</span></td>
+<td class="Monokai-Command-Table__Cell"><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>, <span class="Monokai-Numeric">1</span>)</span></td>
 <td class="Monokai-Command-Table__Cell"><span class="Monokai-Comment">   (1) Сортируем полученный массив</span></td>
 </tr>
 </table>
@@ -211,11 +207,11 @@
 <div class="Monokai-Code">
 <table class="Monokai-Command-Table">
 <tr>
-<td><span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
+<td><span class="Monokai-UnFunc">@em.arr.fill_rand</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
 <td><span class="Monokai-Comment">   (0) Генерируем массив случайных чисел</span></td>
 </tr>
 <tr>
-<td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span>)</span></td>
+<td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">0</span>,<span class="Monokai-String">'em_array'</span>)</span></td>
 <td><span class="Monokai-Comment">   (1) Сортируем полученный массив вниз</span></td>
 </tr>
 </table>
@@ -272,11 +268,11 @@
 <div class="Monokai-Code">
 <table class="Monokai-Command-Table">
 <tr>
-<td><span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
+<td><span class="Monokai-UnFunc">@em.arr.fill_rand</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
 <td><span class="Monokai-Comment">   (0) Генерируем массив случайных чисел</span></td>
 </tr>
 <tr>
-<td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">'new_mass'</span>)</span></td>
+<td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">'new_mass'</span>)</span></td>
 <td><span class="Monokai-Comment">   (1) Сортируем полученный массив вниз</span></td>
 </tr>
 </table>
@@ -342,7 +338,7 @@
 <div class="Monokai-Code">
 <table class="Monokai-Command-Table">
 <tr>
-<td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span>)</span></td>
+<td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$old_mass'</span>,<span class="Monokai-Numeric">0</span>,<span class="Monokai-String">'em_array'</span>)</span></td>
 <td><span class="Monokai-Comment">   (0) Сортировка текстовых значений массива</span></td>
 </tr>
 </table>
@@ -393,7 +389,6 @@
 <p class="avs-article-p">В массиве <code class="em-var-name">old_mass</code> число <code class="em-number">967</code> было в нулевой позиции (было значением нулевого элемента). После сортировки оно было помещено в седьмую позицию, поэтому в массиве <code class="em-var-name">em_array</code> в седьмую позицию добавлен номер старой позиции элемента со значением <code class="em-number">967</code>.</p>
 <p class="avs-article-p">Далее число <code class="em-number">629</code>, которое в массиве <code class="em-var-name">old_mass</code> было в первой позиции, переместилось в пятую позицию массива результатов (<code class="em-var-name">new_mass</code>). Поэтому в массиве <code class="em-var-name">em_array</code> в пятую позицию был добавлен номер <code class="em-number">1</code>.</p>
 <p class="avs-article-p">Для чего это нужно. Используя массив результатов и массив фиксации позиций (<code class="em-var-name">em_array</code>) можно вернуть исходное состоние массива, или изменить другие массивы соответственно массиву результатов.</p>
-<p class="avs-article-p-warning"><strong>ВНИМАНИЕ!</strong> Сортировка затрагивает лишь ту часть массива, которая указана. Если вы отсортировали текстовую часть массива, числовая останется неизменной. И наоборот: при сортировке числовой части массива, текстовая не меняется. Для сортировки обеих частей нужно отсортировать одну из них, с сохранением значений перестановки в массив фиксации, а затем по массиву фиксации функцией <code class="em-folder">em.arr.restand</code> перетасовать значения в другой части.</p>
 <p class="avs-article-p-warning"><strong>ВНИМАНИЕ!!!</strong> Во избежание ошибок не следует хранить в массиве одновременно текстовые и числовые значения!</p>
 <a id="em_arr_restand"></a>
 <h4 class="avs-article-h4">em.arr.restand</h4>
@@ -407,15 +402,15 @@
 <div class="Monokai-Code">
 <table class="Monokai-Command-Table">
 <tr>
-<td><span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
+<td><span class="Monokai-UnFunc">@em.arr.fill_rand</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
 <td style="vertical-align: top;"><span class="Monokai-Comment">   (0) Генерируем значения опорного массива (для примера)</span></td>
 </tr>
 <tr>
-<td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span>)</span></td>
+<td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">0</span>,<span class="Monokai-String">'em_array'</span>)</span></td>
 <td style="vertical-align: top;"><span class="Monokai-Comment">   (1) Сортировка значений в опорном массиве</span></td>
 </tr>
 <tr>
-<td><span class="Monokai-UnFunc">@em.arr.restand</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$arr_mass'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">$new_mass'</span></span><span class="Monokai-Qbracket">()</span></td>
+<td><span class="Monokai-UnFunc">@em.arr.restand</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$arr_mass'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">$new_mass'</span></span><span class="Monokai-Qbracket">)</span></td>
 <td style="vertical-align: top;"><span class="Monokai-Comment">   (2) Перетасовка значений из исходного массива в соответствии с данными из массива фиксации позиций</span></td>
 </tr>
 </table>
@@ -490,7 +485,7 @@
 </table>
 </div>
 <a id="em_arr_desort"></a>
-<h4 class="avs-article-h4">em.arr.deSort</h4>
+<h4 class="avs-article-h4">em.arr.desort</h4>
 <p class="avs-article-p">Процедура, восстанавливающая состояние массива до сортировки по значениям в массиве фиксации.</p>
 <p class="em-block-arguments">
 <code class="em-system">$args[<code class="em-number">0</code>]</code>- массив, данные в котором необходимо восстановить (исследуемый)
@@ -501,15 +496,15 @@
 <div class="Monokai-Code">
 <table class="Monokai-Command-Table">
 <tr>
-<td><span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
+<td><span class="Monokai-UnFunc">@em.arr.fill_rand</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
 <td><span class="Monokai-Comment">   (0) Генерируем случайный массив</span></td>
 </tr>
 <tr>
-<td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'[down]'</span>,<span class="Monokai-String">'em_array'</span>)</span></td>
+<td><span class="Monokai-UnFunc">@em.arr.sort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">0</span>,<span class="Monokai-String">'em_array'</span>)</span></td>
 <td><span class="Monokai-Comment">   (1) Сортируем значения в массиве</span></td>
 </tr>
 <tr>
-<td><span class="Monokai-UnFunc">@em.arr.deSort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">'new_mass'</span>)</span></td>
+<td><span class="Monokai-UnFunc">@em.arr.desort</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'old_mass'</span>,<span class="Monokai-String">'em_array'</span>,<span class="Monokai-String">'new_mass'</span>)</span></td>
 <td><span class="Monokai-Comment">   (2) Восстановление массива к исходному состоянию</span></td>
 </tr>
 </table>
@@ -575,7 +570,7 @@
 <h4 class="avs-article-h4">em.arr.simpl</h4>
 <p class="avs-article-p">Процедура сравнения содержимого двух массивов.</p>
 <div class="em-block-arguments">
-<p class="avs-article-p">
+<p class="">
 <code class="em-system">$args[<code class="em-number">0</code>]</code>- первый массив (исследуемый).
                             <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - второй массив (исследуемый).
                             <br/><code class="em-system">$args[<code class="em-number">2</code>]</code> - управляющая конструкция:
@@ -589,17 +584,17 @@
 </div>
 <h5 class="avs-article-h5">Результат работы функции:</h5>
 <div class="em-block-arguments">
-<p class="avs-article-p"><code class="em-system"> $result</code> - принимает два значения:</p>
+<p class=""><code class="em-system">result</code> - принимает два значения:</p>
 <ul>
-<li><code class="em-string">"true"</code> - массивы идентичны, подобны, либо в них есть совпадающие элементы (в зависимости от условий сравнения)</li>
-<li> <code class="em-string">"false"</code> - сравнение показало, что массивы не идентичны, не подобны, или не имеют совпадающих элементов (в зависимости от условий сравнения)</li>
+<li><code class="em-number">1</code> - массивы идентичны, подобны, либо в них есть совпадающие элементы (в зависимости от условий сравнения)</li>
+<li> <code class="em-number">0</code> - сравнение показало, что массивы не идентичны, не подобны, или не имеют совпадающих элементов (в зависимости от условий сравнения)</li>
 </ul>
 </div>
 <p class="avs-article-p"></p>
 <div class="Monokai-Code">
 <table class="Monokai-Command-Table">
 <tr>
-<td><span class="Monokai-UnFunc">@em.arr.randFill</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass1'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
+<td><span class="Monokai-UnFunc">@em.arr.fill_rand</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass1'</span>,<span class="Monokai-Numeric">8</span>)</span></td>
 <td><span class="Monokai-Comment">   (0) Генерируем случайный массив</span></td>
 </tr>
 <tr>
@@ -672,9 +667,9 @@
                                     mass3[6]=452<br/>
                                     mass3[7]=84
                                 </td>
-<td class="Monokai-Table__Cell">true</td>
-<td class="Monokai-Table__Cell">false</td>
-<td class="Monokai-Table__Cell">true</td>
+<td class="Monokai-Table__Cell">1</td>
+<td class="Monokai-Table__Cell">0</td>
+<td class="Monokai-Table__Cell">1</td>
 </tr>
 </table>
 </div>
@@ -684,21 +679,17 @@
 <p class="avs-article-p"></p>
 <p class="avs-article-p">Функция производит поиск максимального или минимального значения в массиве. В отличие от функций <code class="em-func">MAX</code> и <code class="em-func">MIN</code> можно указать область и пределы поиска, а так же запросить позицию найденного элемента. Если ни одно число по указанным параметрам не подходит, функция возвращает слово <code class="em-string">false</code>.</p>
 <div class="em-block-arguments">
-<code class="em-system">$args[<code class="em-number">0</code>]</code> - название массива.
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - название массива. Поиск проводится среди значений, определённых префиксом типа (%, $).
                         <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - управление (можно комбинировать):
                         <ul>
 <li><code class="em-string">[max]</code> - поиск максимального значения (по умолчанию);</li>
 <li><code class="em-string">[min]</code> - поиск минимального значения;</li>
-<li><code class="em-string">[pos]</code> - в результат возвращается позиция найденного элемента;</li>
-<li><code class="em-string">[all]</code> - в результат возвращются и позиция, и значение элемента в формете <code class="em-string">'pos:value'</code>.</li>
 </ul>
-<code class="em-system">$args[<code class="em-number">2</code>]</code> - нижний предел числа (по умолчанию минимальное число в массиве). Внимание! Для определения границы используются текстовые значения.
-                        <br/><code class="em-system">$args[<code class="em-number">3</code>]</code> - верхний предел числа (по умолчанию максимальное число в массиве). Внимание! Для определения границы используются текстовые значения.
-                        <br/><code class="em-system"> args[<code class="em-number">4</code>]</code> - от какого элемента вести поиск (по умолчанию от нулевого).
-                        <br/><code class="em-system"> args[<code class="em-number">5</code>]</code> - до какого элемента вести поиск (по умолчанию до последнего).
+<code class="em-system">%args[<code class="em-number">2</code>]</code> - кортеж границ [от какого, до какого] элемента вести поиск.
+                        <br/><code class="em-system">%args[<code class="em-number">3</code>]</code> - кортеж пределов [нижний предел числа, верхний предел числа] (по умолчанию минимальное и максимальное число в массиве).
                     </div>
 <h5 class="avs-article-h5">Результат работы функции:</h5>
-<p class="avs-article-p">Результат работы функции всегда возвращается в текстовом виде.</p>
+<p class="avs-article-p">Результат работы функции всегда возвращается в виде кортежа [позиция, значение].</p>
 <h6 class="avs-article-h6">Заготовленный массив:</h6>
 <div class="Monokai-Code">
                         mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">574</span><br/>
@@ -711,17 +702,15 @@
                         mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">272</span>
 </div>
 <h6 class="avs-article-h6">Поиск максимального значения:</h6>
-<div class="Monokai-Code"><span class="Monokai-UnFunc">@em.arr.find</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[max]'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'765'</span></div>
+<div class="Monokai-Code"><span class="Monokai-UnFunc">@em.arr.find</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[max]'</span>)</span><span class="Monokai-Assign"> = </span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">765</span>]</span></div>
 <h6 class="avs-article-h6">Поиск максимального значения в указанной области:</h6>
-<div class="Monokai-Code"><span class="Monokai-UnFunc">@em.arr.find</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[max]'</span>,<span class="Monokai-String">''</span>,<span class="Monokai-String">''</span>,<span class="Monokai-Numeric">0</span>,<span class="Monokai-Numeric">2</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'668'</span></div>
+<div class="Monokai-Code"><span class="Monokai-UnFunc">@em.arr.find</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[max]'</span>,[<span class="Monokai-Numeric">0</span>,<span class="Monokai-Numeric">2</span>])</span><span class="Monokai-Assign"> = </span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>,<span class="Monokai-String">668</span>]</span></div>
 <h6 class="avs-article-h6">Поиск минимального значения в заданных пределах:</h6>
-<div class="Monokai-Code"><span class="Monokai-UnFunc">@em.arr.find</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,<span class="Monokai-String">'400'</span>,<span class="Monokai-String">'600'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'413'</span></div>
+<div class="Monokai-Code"><span class="Monokai-UnFunc">@em.arr.find</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,[],[<span class="Monokai-String">400</span>,<span class="Monokai-String">600</span>])</span><span class="Monokai-Assign"> = </span><span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>,<span class="Monokai-String">413</span>]</span></div>
 <h6 class="avs-article-h6">Поиск минимального значения в заданных пределах и в указанной области:</h6>
-<div class="Monokai-Code"><span class="Monokai-UnFunc">@em.arr.find</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,<span class="Monokai-String">'400'</span>,<span class="Monokai-String">'600'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">6</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'478'</span></div>
-<h6 class="avs-article-h6">Поиск минимального значения в заданных пределах и в указанной области с получением позиции элемента:</h6>
-<div class="Monokai-Code"><span class="Monokai-UnFunc">@em.arr.find</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,<span class="Monokai-String">'400'</span>,<span class="Monokai-String">'600'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-String">'pos'</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'4'</span></div>
+<div class="Monokai-Code"><span class="Monokai-UnFunc">@em.arr.find</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,[<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">6</span>],[<span class="Monokai-String">400</span>,<span class="Monokai-String">600</span>])</span> <span class="Monokai-Assign">=</span> <span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>,<span class="Monokai-String">478</span>]</span></div>
 <h6 class="avs-article-h6">Поиск невозможного значения в заданных пределах и в указанной области:</h6>
-<div class="Monokai-Code"><span class="Monokai-UnFunc">@em.arr.find</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,<span class="Monokai-String">'900'</span>,<span class="Monokai-String">'1000'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">6</span>)</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'false'</span></div>
+<div class="Monokai-Code"><span class="Monokai-UnFunc">@em.arr.find</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[min]'</span>,[<span class="Monokai-Numeric">3</span>,<span class="Monokai-Numeric">6</span>],[<span class="Monokai-String">900</span>,<span class="Monokai-String">1000</span>])</span> <span class="Monokai-Assign">=</span> <span class="Monokai-Qbracket">[<span class="Monokai-Numeric">-1</span>,<span class="Monokai-String">0</span>]</span></div>
 <!-- конец второй страницы -->
 </section>
 <div class="avs-pages-button__left-combine">
@@ -735,8 +724,8 @@
 </div>
 <div class="e-block">
 <div class="avs-page-stamp" id="em_subscribe">
-<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2023</span></p>
-<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2023</span></p>
+<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2024</span></p>
+<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2024</span></p>
 </div>
 </div>
 </div>

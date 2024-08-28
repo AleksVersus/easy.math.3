@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<!-- TODO: favicon -->
+<link href="../../res/css/easy.library.css" rel="stylesheet"/></head>
+<body>
+<div class="avs-page-wrapper">
+<div class="easy-lib-page">
+<div class="e-block">
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html#tuple_f">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+<a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+<h1 class="avs-article-h1">easy.math.qsp v. 3.2.0</h1>
+</a>
+<h3 class="avs-article-h3">Работа с кортежами</h3>
+<a id="em_tpl_get"></a>
+<h4 class="avs-article-h4">em.tpl.get</h4>
+<p class="avs-article-p">Получает значение из кортежа по индексу.</p>
+<p class="avs-article-p">Функция использует для распаковки функцию <code class="em-string">em.tpl.unzip</code>.</p>
+<h5 class="avs-article-h5">Аргументы:</h5>
+<ul class="em-block-arguments">
+<li><code class="em-system">%args[<code class="em-number">0</code>]</code> - кортеж, из которого нужно извлечь значение.  </li>
+<li><code class="em-system">args[<code class="em-number">1</code>]</code> - индекс значения в кортеже (нумерация начинается с нуля).  </li>
+</ul>
+<h5 class="avs-article-h5">Пример вызова функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.tpl.get</span>([<span class="Monokai-Numeric">1</span>, <span class="Monokai-Numeric">2</span>, <span class="Monokai-Numeric">3</span>, <span class="Monokai-Numeric">4</span>, <span class="Monokai-Numeric">137</span>, <span class="Monokai-Numeric">11</span>], <span class="Monokai-Numeric">4</span>) <span class="Monokai-Operator">&amp;</span> <span class="Monokai-Comment">! = 137</span>
+</div>
+<a id="em_tpl_unzip"></a>
+<h4 class="avs-article-h4">em.tpl.unzip</h4>
+<p class="avs-article-p">Распаковывает кортеж в указанный массив. Тип извлекаемых из кортежа значений определяется по префиксу типа, указанному в названии массива.</p>
+<h5 class="avs-article-h5">Аргументы:</h5>
+<ul class="em-block-arguments">
+<li><code class="em-system">%args[<code class="em-number">0</code>]</code> - кортеж.  </li>
+<li><code class="em-system">$args[<code class="em-number">1</code>]</code> - название массива, в который распаковывается кортеж.  </li>
+</ul>
+<h5 class="avs-article-h5">Пример вызова функции:</h5>
+<div class="Monokai-Code">%tuple <span class="Monokai-Operator">=</span> [<span class="Monokai-Numeric">1</span>, <span class="Monokai-Numeric">137</span>, <span class="Monokai-Numeric">234</span>, <span class="Monokai-Numeric">456</span>]<br/><span class="Monokai-UnFunc">@em.tpl.unzip</span>(%tuple, <span class="Monokai-String">'mass'</span>)<br/><span class="Monokai-Koperator">loop</span> <span class="Monokai-UnFunc">local</span> i <span class="Monokai-Operator">=</span> <span class="Monokai-Numeric">0</span> <span class="Monokai-Koperator">while</span> i <span class="Monokai-Operator">&lt;</span> <span class="Monokai-Func">arrsize</span>(<span class="Monokai-String">'mass'</span>) <span class="Monokai-Koperator">step</span> i<span class="Monokai-Operator"> </span><span class="Monokai-Operator">+=</span> <span class="Monokai-Numeric">1</span>:<br/>
+                   <span class="Monokai-Operator">*pl</span> mass[i]<br/><span class="Monokai-Koperator">end</span></div>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-Numeric">1</span><br/>
+<span class="Monokai-Numeric">137</span><br/>
+<span class="Monokai-Numeric">234</span><br/>
+<span class="Monokai-Numeric">456</span>
+</div>
+<p class="avs-article-p"> </p>
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html#tuple_f">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+</div>
+<div class="e-block">
+<div class="avs-page-stamp" id="em_subscribe">
+<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2024</span></p>
+<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2024</span></p>
+</div>
+</div>
+</div>
+</div><div class="em-stick-upper"><a href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/></a></div></body>
+</html>

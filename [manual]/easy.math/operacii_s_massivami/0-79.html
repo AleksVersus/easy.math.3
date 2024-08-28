@@ -17,7 +17,7 @@
 <div class="avs-pages-button">Операции с массивами. Страница 2</div>
 </a>
 </div><a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
-<h1 class="avs-article-h1">easy.math.qsp v. 3.1.0</h1>
+<h1 class="avs-article-h1">easy.math.qsp v. 3.2.0</h1>
 </a>
 <h3 class="avs-article-h3">Операции над массивами. Страница 1</h3>
 <section id="em_arrays_page_1">
@@ -26,7 +26,7 @@
 <h4 class="avs-article-h4">em.arr.print</h4>
 <p class="avs-article-p">Иногда необходимо просмотреть содержимое массива, или записать его в удобном виде в переменную. Для этого приходится вводить цикличиские конструкции непосредственно в код. Данная функция предназначена для того, чтобы избавить Вас от необходимости строить такие конструкции каждый раз. Достаточно указать аргументом имя массива и функция вернёт в результате столбец со значениями.</p>
 <div class="em-block-arguments">
-<p class="avs-article-p">
+<p class="">
 <code class="em-system">$args[<code class="em-number">0</code>]</code>- имя массива, содержимое которого необходимо просмотреть.
               <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - управляющая конструкция. Можно использовать три команды в любых комбинациях:
             </p>
@@ -38,14 +38,13 @@
 <code class="em-string">[trim]</code> - отсекает прилегающие пробелы и символы табуляции при выводе значения элемента массива.
               </li>
 <li>
-<code class="em-string">[not last]</code> - исключает добавление разделителя за последним выводимым значением.
+<code class="em-string">[with last]</code> - разрешает добавление разделителя к последнему значению.
               </li>
 </ul>
-<p class="avs-article-p">
-<code class="em-system">$args[<code class="em-number">2</code>]</code> - этим параметром задаётся разделитель между выводимыми значениями. По умолчанию, т.е. когда параметр не указан или равен пустому значению, между выводимыми значениями вставляется символ перевода строки. Чтобы результаты выводились без вставки разделителя, необходимо указать ключ <code class="em-string">/se</code>.
-              <br/><code class="em-system"> args[<code class="em-number">3</code>]</code> - начало вывода. Номер элемента, с которого начинается вывод значений (включительно).
-              <br/><code class="em-system"> args[<code class="em-number">4</code>]</code> - окончание вывода. Номер элемента, до которого следует продолжать вывод значений (включительно).
-            </p>
+<p class="">
+<code class="em-system">%args[<code class="em-number">2</code>]</code> - начало и окончание вывода (кортеж с номерами элементов, с какого по какой выводить, включительно).
+              <br/><code class="em-system">$args[<code class="em-number">3</code>]</code> - разделитель, который нужно поместить между значениями при режиме <code class="em-string">[only result]</code>. По умолчанию перенос строки. Если разделитель не нужен указывается <code class="em-string">/se</code>
+</p>
 </div>
 <h5 class="avs-article-h5">Примеры вызова функции:</h5>
 <div class="Monokai-Code">
@@ -76,7 +75,7 @@
               $a[1]='   первая ячейка   '<br/>
               $a[2]=' вторая ячейка'<br/>
               $a[3]=''<br/>
-              $a[4]='(1,2,3,5,6)'<br/>
+              $a[4]='[1,2,3,5,6]'<br/>
               $a[5]='   пятая ячейка'<br/>
               $a[6]=''<br/>
               $a[7]='седьмая ячейка'<br/>
@@ -89,7 +88,7 @@
                  первая ячейка   <br/>
                 вторая ячейка<br/>
 <br/>
-              (1,2,3,5,6)<br/>
+              [1,2,3,5,6]<br/>
                  пятая ячейка<br/>
 <br/>
               седьмая ячейка<br/>
@@ -103,7 +102,7 @@
               $a[1]='первая ячейка'<br/>
               $a[2]='вторая ячейка'<br/>
               $a[3]=''<br/>
-              $a[4]='(1,2,3,5,6)'<br/>
+              $a[4]='[1,2,3,5,6]'<br/>
               $a[5]='пятая ячейка'<br/>
               $a[6]=''<br/>
               $a[7]='седьмая ячейка'<br/>
@@ -112,27 +111,33 @@
 </div>
 <h6 class="avs-article-h6">Выводим исключительно значения массива, со второго по пятый элемент, включительно, с отсечением прилегающих пробелов в каждом значении; в качестве разделителя используем вертикальную черту:</h6>
 <div class="Monokai-Code">
-<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim] [only result]'</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span>
-<br/><span class="Monokai-String" style="color:#8dd6a5;">"вторая ячейка||(1,2,3,5,6)|пятая ячейка|"</span>
+<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim] [only result]'</span>,[<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>],<span class="Monokai-String">'|'</span>)</span><span class="Monokai-Assign">=</span>
+<br/><span class="Monokai-String" style="color:#8dd6a5;">"вторая ячейка||[1,2,3,5,6]|пятая ячейка"</span>
 </div>
-<h6 class="avs-article-h6">Выводим исключительно значения массива, со второго по пятый элемент, включительно, с отсечением прилегающих пробелов в каждом значении; в качестве разделителя используем вертикальную черту; последний разделитель опускаем:</h6>
+<h6 class="avs-article-h6">Выводим исключительно значения массива, со второго по пятый элемент, включительно, с отсечением прилегающих пробелов в каждом значении; в качестве разделителя используем вертикальную черту; добавляем разделитель в конце:</h6>
 <div class="Monokai-Code">
-<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim] [only result] [not last]'</span>,<span class="Monokai-String">'|'</span>,<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>)</span><span class="Monokai-Assign">=</span>
-<br/><span class="Monokai-String" style="color:#8dd6a5;">"вторая ячейка||(1,2,3,5,6)|пятая ячейка"</span>
+<span class="Monokai-UnFunc">@em.arr.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'[trim] [only result] [with last]'</span>,[<span class="Monokai-Numeric">2</span>,<span class="Monokai-Numeric">5</span>],<span class="Monokai-String">'|'</span>)</span><span class="Monokai-Assign">=</span>
+<br/><span class="Monokai-String" style="color:#8dd6a5;">"вторая ячейка||[1,2,3,5,6]|пятая ячейка|"</span>
 </div>
 <a id="em_fewarrs_print"></a>
 <h4 class="avs-article-h4">em.fewArrs.print</h4>
 <p class="avs-article-p">Данная функция позволяет выводить на экран содержимое сразу нескольких массивов, для сравнения например.</p>
 <p class="avs-article-p">По умолчанию функция выводит содержимое всех массивов в виде таблицы, однако вывод таблицей можно отключить, использовав в последнем аргументе управляющую конструкцию <code class="em-string">[no table]</code>. Последним аргументом может быть как имя массива так и управляющая конструкция. Функция считает управляющей конструкцией всякую строку в последнем аргументе, в которой между непробельными символами находится пробельный (или другой недопустимый знак). Прилегающие пробелы в остальных аргументах уничтожаются, поэтому вы можете записать имя массива в аргументе скажем так <code class="em-string">" $mass "</code> (апострофы по правилам QSP для записи текстовых значений). Если же вы допустите в имени массива ошибку, функция известит вас об этом.</p>
 <div class="em-block-arguments">
-<p class="avs-article-p"><code class="em-system">$args[<code class="em-number">0 ... 8</code>]</code>- имена массивов, содержимое которых необходимо просмотреть.</p>
-<p class="avs-article-p"><code class="em-system">$args[<code class="em-number">8 ... 1</code>]</code> - управляющая конструкция. Записывается последним аргументом. Можно использовать следующие конструкции в любых комбинациях:</p>
+<p class="avs-article-p"><code class="em-system">$args[<code class="em-number">0 ... 18</code>]</code>- имена массивов, содержимое которых необходимо просмотреть.</p>
+<p class="avs-article-p"><code class="em-system">$args[<code class="em-number">18 ... 1</code>]</code> - управляющая конструкция. Записывается последним аргументом. Можно использовать следующие конструкции в любых комбинациях:</p>
 <ul>
 <li>
 <code class="em-string">[only result]</code> - выводит только содержимое массивов, не показывая их названий и номеров ячеек. Таблица при этом на экран выводиться не будет.
               </li>
 <li>
 <code class="em-string">[no table]</code> - выводит массивы на экран, но не облекает их в таблицу.
+              </li>
+<li>
+<code class="em-string">[range onscreen:N-M]</code> - указываем границы вывода, N и M — номера элементов.
+              </li>
+<li>
+<code class="em-string">[empty:TEXT]</code> - Замена стандартному значению, если все массивы окажутся пустыми.
               </li>
 </ul>
 </div>
@@ -189,7 +194,7 @@
 <tr>
 <td style="border:1px solid;border-spacing:0.3em;">4</td>
 <td style="border:1px solid;border-spacing:0.3em;">четвёртая' ячейка</td>
-<td style="border:1px solid;border-spacing:0.3em;">(3,5,6,string,6)</td>
+<td style="border:1px solid;border-spacing:0.3em;">[3,5,6,'string',6]</td>
 </tr>
 <tr>
 <td style="border:1px solid;border-spacing:0.3em;">5</td>
@@ -216,7 +221,7 @@
                  первая ячейка       первая ячейка   <br/>
                вторая ячейка   вторая ячейка<br/>
                   3<br/>
-              четвёртая' ячейка   (3,5,6,string,6)<br/>
+              четвёртая' ячейка   [3,5,6,'string',6]<br/>
                  пятая яче'йка       пятая ячейка<br/>
                   6<br/>
               седьмая ячейка  7"
@@ -230,7 +235,7 @@
               $a[1]='   первая ячейка   ' &amp;   $b[1]='   первая ячейка   '<br/>
               $a[2]=' вторая ячейка'  &amp;   $b[2]=' вторая ячейка'<br/>
               $a[3]=''    &amp;   $b[3]='3'<br/>
-              $a[4]='четвёртая'' ячейка'  &amp;   $b[4]='(3,5,6,string,6)'<br/>
+              $a[4]='четвёртая'' ячейка'  &amp;   $b[4]='[3,5,6,''string'',6]'<br/>
               $a[5]='   пятая яче''йка'   &amp;   $b[5]='   пятая ячейка'<br/>
               $a[6]=''    &amp;   $b[6]='6'<br/>
               $a[7]='седьмая ячейка'  &amp;   $b[7]='7'"
@@ -251,7 +256,7 @@
 <p class="avs-article-p">Функция для вставки элемента в массив со сдвигом вправо.</p>
 <p class="em-block-arguments">
 <code class="em-system">$args[<code class="em-number">0</code>]</code> - название массива.
-            <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - значение, которое хотим присвоить элементу.
+            <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - значение, которое хотим присвоить элементу (тип определяется по префиксу названия массива).
             <br/><code class="em-system">args[<code class="em-number">2</code>]</code> - индекс элемента, куда хотим поместить новое значение.
           </p>
 <h5 class="avs-article-h5">Результат работы функции:</h5>
@@ -309,182 +314,55 @@
             mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">3</span><br/>
             mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">1</span>
 </div>
-<a id="em_arr_chtype"></a>
-<h4 class="avs-article-h4">em.arr.chType</h4>
-<p class="avs-article-p">Процедура изменяет тип содержимого массива. То есть меняется тип каждой отдельной ячейки.</p>
-<div class="em-block-arguments">
-<code class="em-system">$args[<code class="em-number">0</code>]</code> - название массива, для которого требуется поменять тип. Можно указывать как с символом <code class="em-string">'$'</code>, так и без него перед именем.
-            <br/> <code class="em-system">$args[<code class="em-number">1</code>]</code> - управление:
-            <ul style="margin-top:0.25em;margin-bottom:0.25em;">
-<li><code class="em-string">[string]</code> - все ячейки массива приводятся к строковому типу;</li>
-<li><code class="em-string">[number]</code> - все ячейки массива приводятся к числовому типу;</li>
-<li><code class="em-string">[reverse]</code> - тип ячеек меняется на противоположный (не знаю, кому это может понадобиться);</li>
-<li><code class="em-string">[hard]</code> - режим, расширяющий работу режима <code class="em-string">[string]</code>, при этом ячейкам, тип которых определяется как <code class="em-string">'empty'</code> (см. функцию <code class="em-folder">em.var.getType</code>), принудительно присваивается строковое значение <code class="em-string">'0'</code>.</li>
-</ul>
-<code class="em-system">$args[<code class="em-number">2</code>]</code> - результирующий массив. Если не указано, результат помещается в исходный массив.
+<a id="em_arr_concatenate"></a>
+<h4 class="avs-article-h4">em.arr.concatenate</h4>
+<p class="avs-article-p">Объединяет в общий массив кортежей значения из двух и более массивов.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - название массива, в который нужно объединить остальные (только с префиксом '%').
+            <br/><code class="em-system">$args[<code class="em-number">1 ... 18</code>]</code> - названия массивов, значения из которых нужно объединить в массив кортежей. Тип извлекаемых из массивов значений определяется по префиксу типа.
+          </p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<h6 class="avs-article-h6">Заготовленные массивы, вызов функции и цикл для проверки:</h6>
+<div class="Monokai-Code" style="tab-size: 4;">
+            old_mass[<span style="color:#e8da5e;">0</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">967</span><br/>old_mass[<span style="color:#e8da5e;">1</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">629</span><br/>old_mass[<span style="color:#e8da5e;">2</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">541</span><br/>old_mass[<span style="color:#e8da5e;">3</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">290</span><br/>old_mass[<span style="color:#e8da5e;">4</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">852</span><br/>old_mass[<span style="color:#e8da5e;">5</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">334</span><br/>old_mass[<span style="color:#e8da5e;">6</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">318</span><br/>old_mass[<span style="color:#e8da5e;">7</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">529</span><br/><br/>$mass[<span style="color:#e8da5e;">0</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">88ff88</span><span style="color:#e8da5e;">'</span><br/>$mass[<span style="color:#e8da5e;">1</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">ff00ff</span><span style="color:#e8da5e;">'</span><br/>$mass[<span style="color:#e8da5e;">2</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">0ff0f8</span><span style="color:#e8da5e;">'</span><br/>$mass[<span style="color:#e8da5e;">3</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">ffffff</span><span style="color:#e8da5e;">'</span><br/>$mass[<span style="color:#e8da5e;">4</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">8888ff</span><span style="color:#e8da5e;">'</span><br/>$mass[<span style="color:#e8da5e;">5</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">fff8f8</span><span style="color:#e8da5e;">'</span><br/><br/>$arr_mass[<span style="color:#e8da5e;">0</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">голова</span><span style="color:#e8da5e;">'</span><br/>$arr_mass[<span style="color:#e8da5e;">1</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">плечи</span><span style="color:#e8da5e;">'</span><br/>$arr_mass[<span style="color:#e8da5e;">2</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">грудь</span><span style="color:#e8da5e;">'</span><br/>$arr_mass[<span style="color:#e8da5e;">3</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">живот</span><span style="color:#e8da5e;">'</span><br/>$arr_mass[<span style="color:#e8da5e;">4</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">бёдра</span><span style="color:#e8da5e;">'</span><br/>$arr_mass[<span style="color:#e8da5e;">5</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">колени</span><span style="color:#e8da5e;">'</span><br/>$arr_mass[<span style="color:#e8da5e;">6</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">икры</span><span style="color:#e8da5e;">'</span><br/>$arr_mass[<span style="color:#e8da5e;">7</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">ступни</span><span style="color:#e8da5e;">'</span><br/><br/><span style="color:#92b55f;">@</span><span style="color:#92b55f;font-style:italic;">em.arr.concatenate</span>(<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">%em_result</span><span style="color:#e8da5e;">'</span>, <span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">old_mass</span><span style="color:#e8da5e;">'</span>, <span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">$mass</span><span style="color:#e8da5e;">'</span>, <span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">$arr_mass</span><span style="color:#e8da5e;">'</span>)<br/><br/><span style="color:#487d76;font-style:italic;">loop</span> <span style="color:#92b55f;font-style:italic;">local</span> i,size<span style="color:#487d76;">=</span><span style="color:#e8da5e;">0</span>,<span style="color:#92b55f;">arrsize</span>(<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">%em_result</span><span style="color:#e8da5e;">'</span>) <span style="color:#487d76;font-style:italic;">while</span> i<span style="color:#487d76;">&lt;</span>size <span style="color:#487d76;font-style:italic;">step</span> i<span style="color:#487d76;">+=</span><span style="color:#e8da5e;">1</span>:<br/>
+               <span style="color:#487d76;">*</span><span style="color:#487d76;">pl</span> <span style="color:#e8da5e;">"</span><span style="color:#e8da5e;">%em_result[</span>&lt;&lt;i&gt;&gt;<span style="color:#e8da5e;">]=</span>&lt;&lt;%em_result[i]&gt;&gt;<span style="color:#e8da5e;">"</span><br/><span style="color:#487d76;font-style:italic;">end</span>
+</div>
+<h6 class="avs-article-h6">На экран выведется:</h6>
+<div class="Monokai-Code">
+            %em_result[<span style="color:#e8da5e;">0</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">967</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">88ff88</span><span style="color:#e8da5e;">'</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">голова</span><span style="color:#e8da5e;">'</span>]<br/>%em_result[<span style="color:#e8da5e;">1</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">629</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">ff00ff</span><span style="color:#e8da5e;">'</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">плечи</span><span style="color:#e8da5e;">'</span>]<br/>%em_result[<span style="color:#e8da5e;">2</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">541</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">0ff0f8</span><span style="color:#e8da5e;">'</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">грудь</span><span style="color:#e8da5e;">'</span>]<br/>%em_result[<span style="color:#e8da5e;">3</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">290</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">ffffff</span><span style="color:#e8da5e;">'</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">живот</span><span style="color:#e8da5e;">'</span>]<br/>%em_result[<span style="color:#e8da5e;">4</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">852</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">8888ff</span><span style="color:#e8da5e;">'</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">бёдра</span><span style="color:#e8da5e;">'</span>]<br/>%em_result[<span style="color:#e8da5e;">5</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">334</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">fff8f8</span><span style="color:#e8da5e;">'</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">колени</span><span style="color:#e8da5e;">'</span>]<br/>%em_result[<span style="color:#e8da5e;">6</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">318</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">'</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">икры</span><span style="color:#e8da5e;">'</span>]<br/>%em_result[<span style="color:#e8da5e;">7</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">529</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">'</span>,<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">ступни</span><span style="color:#e8da5e;">'</span>]
           </div>
-<h5 class="avs-article-h5">Результаты работы функции:</h5>
-<p class="avs-article-p">Пример заполнения массивов, вызова функции и вывода на экран получившихся значений:</p>
+<a id="em_arr_enumerate"></a>
+<h4 class="avs-article-h4">em.arr.enumerate</h4>
+<p class="avs-article-p">Генерирует массив кортежей на основе указанного массива. Каждый сгенерированный кортеж состоит из двух элементов: значение исходного массива, индекс.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - название исходного массива (тип извлекаемых значений определяется по префиксу типа в названии массива).
+            <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - название целевого массива (только с префиксом '%').
+          </p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<h6 class="avs-article-h6">Заготовленный массив, вызов функции, цикл проверки:</h6>
 <div class="Monokai-Code">
-            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'123'</span> <br/>
-            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'456'</span> <br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">789</span> <br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">901</span> <br/>
-            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'stringAbout'</span><br/>
-            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'555'</span><br/>
-            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">123</span>,<span class="Monokai-Numeric">56</span>,<span class="Monokai-Numeric">23</span>,<span class="Monokai-Numeric">9</span>,<span class="Monokai-Numeric">137</span><span class="Monokai-Qbracket">)</span> <br/>
-            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">''</span> <br/>
-            $mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-String">'123'</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">9</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">4569</span><br/>
-<br/>
-<span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[string]'</span>,<span class="Monokai-String">'mass_str'</span><span class="Monokai-Qbracket">)</span><br/>
-<span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[number]'</span>,<span class="Monokai-String">'mass_num'</span><span class="Monokai-Qbracket">)</span><br/>
-<span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[reverse]'</span>,<span class="Monokai-String">'mass_rev'</span><span class="Monokai-Qbracket">)</span><br/>
-<span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[string][hard]'</span>,<span class="Monokai-String">'mass_strh'</span><span class="Monokai-Qbracket">)</span><br/>
-<span class="Monokai-UnFunc">@em.arr.chType</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'[reverse][hard]'</span>,<span class="Monokai-String">'mass_revh'</span><span class="Monokai-Qbracket">)</span><br/>
-<span class="Monokai-UnFunc">@em.fewArrs.print</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'$mass'</span>,<span class="Monokai-String">'mass'</span>,<span class="Monokai-String">'$mass_str'</span>,<span class="Monokai-String">'mass_num'</span>,<span class="Monokai-String">'$mass_rev'</span>,<span class="Monokai-String">'mass_rev'</span>,<span class="Monokai-String">'$mass_strh'</span>,<span class="Monokai-String">'$mass_revh'</span>,<span class="Monokai-String">'mass_revh'</span><span class="Monokai-Qbracket">)</span>
+            old_mass[<span style="color:#e8da5e;">0</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">157</span><br/>old_mass[<span style="color:#e8da5e;">1</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">250</span><br/>old_mass[<span style="color:#e8da5e;">2</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">709</span><br/>old_mass[<span style="color:#e8da5e;">3</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">413</span><br/>old_mass[<span style="color:#e8da5e;">4</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">532</span><br/>old_mass[<span style="color:#e8da5e;">5</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">779</span><br/>old_mass[<span style="color:#e8da5e;">6</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">730</span><br/>old_mass[<span style="color:#e8da5e;">7</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">565</span><br/><br/><span style="color:#92b55f;">@</span><span style="color:#92b55f;font-style:italic;">em.arr.enumerate</span>(<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">old_mass</span><span style="color:#e8da5e;">'</span>, <span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">%em_array</span><span style="color:#e8da5e;">'</span>)<br/><br/><span style="color:#487d76;font-style:italic;">loop</span> <span style="color:#92b55f;font-style:italic;">local</span> i,size<span style="color:#487d76;">=</span><span style="color:#e8da5e;">0</span>,<span style="color:#92b55f;">arrsize</span>(<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">old_mass</span><span style="color:#e8da5e;">'</span>) <span style="color:#487d76;font-style:italic;">while</span> i<span style="color:#487d76;">&lt;</span>size <span style="color:#487d76;font-style:italic;">step</span> i<span style="color:#487d76;">+=</span><span style="color:#e8da5e;">1</span>:<br/> <span style="color:#487d76;">*</span><span style="color:#487d76;">pl</span> <span style="color:#e8da5e;">"</span><span style="color:#e8da5e;">old_mass[</span>&lt;&lt;i&gt;&gt;<span style="color:#e8da5e;">]=</span>&lt;&lt;old_mass[i]&gt;&gt;<span style="color:#e8da5e;">; </span><span style="color:#e8da5e;">%em_array[</span>&lt;&lt;i&gt;&gt;<span style="color:#e8da5e;">]=</span>&lt;&lt;%em_array[i]&gt;&gt;<span style="color:#e8da5e;">"</span><br/><span style="color:#487d76;font-style:italic;">end</span>
 </div>
-<p class="avs-article-p">А вот так будет выглядеть содержимое этих массивов:</p>
-<div class="Monokai-Code__wrapper">
+<h6 class="avs-article-h6">Вывод на экран:</h6>
 <div class="Monokai-Code">
-<table class="Monokai-Table">
-<tr>
-<td class="Monokai-Table__Cell">#</td>
-<td class="Monokai-Table__Cell">$mass</td>
-<td class="Monokai-Table__Cell">mass</td>
-<td class="Monokai-Table__Cell">$mass_str</td>
-<td class="Monokai-Table__Cell">mass_num</td>
-<td class="Monokai-Table__Cell">$mass_rev</td>
-<td class="Monokai-Table__Cell">mass_rev</td>
-<td class="Monokai-Table__Cell">$mass_strh</td>
-<td class="Monokai-Table__Cell">$mass_revh</td>
-<td class="Monokai-Table__Cell">mass_revh</td>
-</tr>
-<tr>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">123</td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">123</td>
-<td class="Monokai-Table__Cell">123</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">123</td>
-<td class="Monokai-Table__Cell">123</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">123</td>
-</tr>
-<tr>
-<td class="Monokai-Table__Cell">1</td>
-<td class="Monokai-Table__Cell">456</td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">456</td>
-<td class="Monokai-Table__Cell">456</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">456</td>
-<td class="Monokai-Table__Cell">456</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">456</td>
-</tr>
-<tr>
-<td class="Monokai-Table__Cell">2</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">789</td>
-<td class="Monokai-Table__Cell">789</td>
-<td class="Monokai-Table__Cell">789</td>
-<td class="Monokai-Table__Cell">789</td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">789</td>
-<td class="Monokai-Table__Cell">789</td>
-<td class="Monokai-Table__Cell">0</td>
-</tr>
-<tr>
-<td class="Monokai-Table__Cell">3</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">901</td>
-<td class="Monokai-Table__Cell">901</td>
-<td class="Monokai-Table__Cell">901</td>
-<td class="Monokai-Table__Cell">901</td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">901</td>
-<td class="Monokai-Table__Cell">901</td>
-<td class="Monokai-Table__Cell">0</td>
-</tr>
-<tr>
-<td class="Monokai-Table__Cell">4</td>
-<td class="Monokai-Table__Cell">stringAbout</td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">stringAbout</td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">stringAbout</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">0</td>
-</tr>
-<tr>
-<td class="Monokai-Table__Cell">5</td>
-<td class="Monokai-Table__Cell">555</td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">555</td>
-<td class="Monokai-Table__Cell">555</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">555</td>
-<td class="Monokai-Table__Cell">555</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">555</td>
-</tr>
-<tr>
-<td class="Monokai-Table__Cell">6</td>
-<td class="Monokai-Table__Cell">(123,56,23,9,137)</td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">(123,56,23,9,137)</td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">(123,56,23,9,137)</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">0</td>
-</tr>
-<tr>
-<td class="Monokai-Table__Cell">7</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">0</td>
-</tr>
-<tr>
-<td class="Monokai-Table__Cell">8</td>
-<td class="Monokai-Table__Cell">123</td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">123</td>
-<td class="Monokai-Table__Cell">123</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">123</td>
-<td class="Monokai-Table__Cell">123</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">123</td>
-</tr>
-<tr>
-<td class="Monokai-Table__Cell">9</td>
-<td class="Monokai-Table__Cell"> </td>
-<td class="Monokai-Table__Cell">4569</td>
-<td class="Monokai-Table__Cell">4569</td>
-<td class="Monokai-Table__Cell">4569</td>
-<td class="Monokai-Table__Cell">4569</td>
-<td class="Monokai-Table__Cell">0</td>
-<td class="Monokai-Table__Cell">4569</td>
-<td class="Monokai-Table__Cell">4569</td>
-<td class="Monokai-Table__Cell">0</td>
-</tr>
-</table>
+            old_mass[<span style="color:#e8da5e;">0</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">157</span>; %em_array[<span style="color:#e8da5e;">0</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">157</span>,<span style="color:#e8da5e;">0</span>]<br/>old_mass[<span style="color:#e8da5e;">1</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">250</span>; %em_array[<span style="color:#e8da5e;">1</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">250</span>,<span style="color:#e8da5e;">1</span>]<br/>old_mass[<span style="color:#e8da5e;">2</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">709</span>; %em_array[<span style="color:#e8da5e;">2</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">709</span>,<span style="color:#e8da5e;">2</span>]<br/>old_mass[<span style="color:#e8da5e;">3</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">413</span>; %em_array[<span style="color:#e8da5e;">3</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">413</span>,<span style="color:#e8da5e;">3</span>]<br/>old_mass[<span style="color:#e8da5e;">4</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">532</span>; %em_array[<span style="color:#e8da5e;">4</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">532</span>,<span style="color:#e8da5e;">4</span>]<br/>old_mass[<span style="color:#e8da5e;">5</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">779</span>; %em_array[<span style="color:#e8da5e;">5</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">779</span>,<span style="color:#e8da5e;">5</span>]<br/>old_mass[<span style="color:#e8da5e;">6</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">730</span>; %em_array[<span style="color:#e8da5e;">6</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">730</span>,<span style="color:#e8da5e;">6</span>]<br/>old_mass[<span style="color:#e8da5e;">7</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">565</span>; %em_array[<span style="color:#e8da5e;">7</span>]<span style="color:#487d76;">=</span>[<span style="color:#e8da5e;">565</span>,<span style="color:#e8da5e;">7</span>]
+          </div>
+<a id="em_arr_few_kill"></a>
+<h4 class="avs-article-h4">em.arr.few_kill</h4>
+<p class="avs-article-p">Множественное удаление элементов массива.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - название массива, в который нужно объединить остальные (только с префиксом '%').
+            <br/><code class="em-system">$args[<code class="em-number">1 ... 18</code>]</code> - индексы строковые, числовые, кортежи.
+          </p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<h6 class="avs-article-h6">Пример вызова функции:</h6>
+<div class="Monokai-Code">
+<div style="white-space:pre-wrap;font-family:Consolas;-moz-tab-size:4;tab-size:4;">mass[<span style="color:#e8da5e;">0</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">574</span><br/>mass[<span style="color:#e8da5e;">1</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">668</span><br/>mass[<span style="color:#e8da5e;">2</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">413</span><br/>mass[<span style="color:#e8da5e;">3</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">765</span><br/>mass[<span style="color:#e8da5e;">4</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">478</span><br/>mass[<span style="color:#e8da5e;">5</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">205</span><br/>mass[<span style="color:#e8da5e;">6</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">701</span><br/>mass[<span style="color:#e8da5e;">7</span>]<span style="color:#487d76;">=</span><span style="color:#e8da5e;">272</span><br/><br/><span style="color:#92b55f;">@</span><span style="color:#92b55f;font-style:italic;">em.arr.few_kill</span>(<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">mass</span><span style="color:#e8da5e;">'</span>, <span style="color:#e8da5e;">2</span>, <span style="color:#e8da5e;">4</span>, <span style="color:#e8da5e;">5</span>)<br/><span style="color:#92b55f;">@</span><span style="color:#92b55f;font-style:italic;">em.arr.print</span>(<span style="color:#e8da5e;">'</span><span style="color:#e8da5e;">mass</span><span style="color:#e8da5e;">'</span>)</div>
 </div>
+<h6 class="avs-article-h6">На экране:</h6>
+<div class="Monokai-Code">
+<div style="white-space:pre-wrap;font-family:Consolas;-moz-tab-size:4;tab-size:4;">mass[<span style="color:#e8da5e;">0</span>] <span style="color:#487d76;">=</span> <span style="color:#e8da5e;">574</span><br/>mass[<span style="color:#e8da5e;">1</span>] <span style="color:#487d76;">=</span> <span style="color:#e8da5e;">668</span><br/>mass[<span style="color:#e8da5e;">2</span>] <span style="color:#487d76;">=</span> <span style="color:#e8da5e;">765</span><br/>mass[<span style="color:#e8da5e;">3</span>] <span style="color:#487d76;">=</span> <span style="color:#e8da5e;">701</span><br/>mass[<span style="color:#e8da5e;">4</span>] <span style="color:#487d76;">=</span> <span style="color:#e8da5e;">272</span></div>
 </div>
-<p class="avs-article-p">Поскольку функция фактически перебирает массив с созданием нового, она может заметно подвешивать игру при очень больших размерах массива: 7,5 сеекунд для массива из 100000 элементов. В 5.7.0 данная функция требовала 17 секунд на стотысячный массив.</p>
-<hr/>
 <!-- конец первой страницы -->
 </section>
 <div class="avs-pages-button__wrapper">
@@ -498,8 +376,8 @@
 </div>
 <div class="e-block">
 <div class="avs-page-stamp" id="em_subscribe">
-<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2023</span></p>
-<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2023</span></p>
+<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2024</span></p>
+<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2024</span></p>
 </div>
 </div>
 </div>
