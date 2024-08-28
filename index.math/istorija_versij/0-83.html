@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<!-- TODO: favicon -->
+<link href="../../res/css/easy.library.css" rel="stylesheet"/></head>
+<body>
+<div class="avs-page-wrapper">
+<div class="easy-lib-page">
+<div class="e-block">
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div><a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+<h1 class="avs-article-h1">easy.math.qsp v. 3.2.0</h1>
+</a>
+<!-- Исправить ссылку -->
+<h2 class="avs-article-h2">История версий</h2>
+<p class="avs-article-p">История версий ветки 3.x.x совпадает с <a class="avs-page-external-link" href="http://aleksversus.narod.ru/index/istorija_versij/0-46" target="_blank">историей ветки 2.x.x</a> до версии 2.4.0.</p>
+<!-- -->
+<ul>
+<li>
+<h3 class="avs-article-h3">Версия 3.0.0:</h3>
+<ol>
+<li>Первая стабильная версия новой ветки.</li>
+<li>Переработан мануал, возможно с ошибками.</li>
+<li>Написан скрипт, конвертирующий офлайн-версию мануала в онлайн.</li>
+</ol>
+</li>
+<li>
+<h3 class="avs-article-h3">Версия 3.1.0:</h3>
+<ol>
+<li> Нигде в мануале не указано, что это библиотека для QSP-плеера. Исправил на стартовой странице.</li>
+<li> Теперь офлайн мануал собирается из онлайн-версии страниц.</li>
+<li> Добавлена функция <code class="em-gosub">em.hex.add</code> — складывает два шестнадцатеричных числа.</li>
+<li> Добавлена функция <code class="em-gosub">em.arr.fill</code> — упрощённое заполнение массива значениями (жертвуем скоростью в пользу удобства записи).</li>
+<li> Исправлена функция <code class="em-gosub">em.sqrt</code> — неверный аргумент.</li>
+<li> Добавлена функция <code class="em-gosub">em.gen_uuid</code> — генератор UUID.</li>
+<li> Добавлена функция <code class="em-gosub">em.str.slice</code> - вырезает из строки подстроку при указании символов</li>
+<li> Ускорена работа функции <code class="em-gosub">em.byte.add</code> минимум на треть. В некоторых случаях работает вдвое быстрее предыдущего варианта. Так же теперь, если функция принимает кривое значение в виде аргумента, она возвращает строку '<code class="em-string">[not a number]</code>'</li>
+<li> Добавлены функции работы с HTML.</li>
+<li> Вынесены в отдельный файл переменные, определяющие, какие функции будут добавлены в сборку.</li>
+</ol>
+</li>
+<li>
+<h3 class="avs-article-h3">Версия 3.2.0:</h3>
+<ol>
+<li>Добавлены операции с кортежами.</li>
+<li>Добавлена распространённая константа-функция: перенос строки — <code class="em-gosub">em.RN</code>.</li>
+<li>Добавлена функция множественного удаления элементов массива — <code class="em-gosub">em.arr.few_kill</code>.</li>
+<li>Добавлена функция приведения строки к регулярке— <code class="em-gosub">em.str.in_regexp</code>.</li>
+<li>Сделан большой рефакторинг кода и стилевые правки.</li>
+<li>Библиотека актуализирована для плееров версии 5.9.0.</li>
+<li>Многие функуции переименованы в змеиной нотации.</li>
+<li>Удалены лишние аргументы множества функций.</li>
+<li>Исправлены ошибки автотестов.</li>
+<li>Удалены функции minVar, maxVar, str.in_arr, arr.ch_type.</li>
+<li>Исправлены размещения исходников для более логичной сборки с препроцессором.</li>
+</ol>
+</li>
+</ul>
+<!-- История версий -->
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+</div>
+<div class="e-block">
+<div class="avs-page-stamp" id="em_subscribe">
+<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2024</span></p>
+<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2024</span></p>
+</div>
+</div>
+</div>
+</div><div class="em-stick-upper"><a href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/></a></div></body>
+</html>

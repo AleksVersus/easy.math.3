@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<!-- TODO: favicon -->
+<link href="../../res/css/easy.library.css" rel="stylesheet"/></head>
+<body>
+<div class="avs-page-wrapper">
+<div class="easy-lib-page">
+<div class="e-block">
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html#integer">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div><a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+<h1 class="avs-article-h1">easy.math.qsp v. 3.2.0</h1>
+</a>
+<!-- Исправить ссылку -->
+<h3 class="avs-article-h3">Операции с целыми числами</h3>
+<section>
+<a id="em_even"></a>
+<h4 class="avs-article-h4">em.even</h4>
+<p class="avs-article-p">Функция предназначена для округления целых чисел.</p>
+<p class="em-block-arguments">
+<code class="em-system"> args[<code class="em-number">0</code>]</code> - число
+                        <br/><code class="em-system"> args[<code class="em-number">1</code>]</code> - разрядность округления: <code class="em-number">10</code> - десятки, <code class="em-number">100</code> - сотни, <code class="em-number">1000</code> - тысячи, и т.д.; если не указано принимается равным <code class="em-number">100</code>.
+                        <br/><code class="em-system">$args[<code class="em-number">2</code>]</code> - правило округления числа: <code class="em-string">[up]</code> - в сторону увеличения; <code class="em-string">[down]</code> - в сторону уменьшения; пустое значение - по правилам округления: последнее число перед округляемым разрядом меньше пяти - округляем в меньшую сторону, больше четырёх - в большую.
+                    </p>
+<p class="avs-article-p">Округление отрицательных чисел поддерживается.</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.even</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">549</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-String">"[</span><span style="color:#e6db74;">up]"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">550</span><br/>
+<span class="Monokai-UnFunc">@em.even</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">549</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-String">"[</span><span style="color:#e6db74;">down]"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">540</span><br/>
+<span class="Monokai-UnFunc">@em.even</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">549</span>,<span class="Monokai-Numeric">1000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1000</span><br/>
+<span class="Monokai-UnFunc">@em.even</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Operator">-</span><span class="Monokai-Numeric">5545</span>,<span class="Monokai-Numeric">12</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">-5500</span><br/>
+<span class="Monokai-UnFunc">@em.even</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">45599</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">45600</span><br/>
+<span class="Monokai-UnFunc">@em.even</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Operator">-</span><span class="Monokai-Numeric">45599</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">-45600</span>
+</div>
+</section>
+<section>
+<a id="em_summ"></a>
+<h4 class="avs-article-h4">em.summ</h4>
+<p class="avs-article-p">Функция предназначена для суммирования значений всех элементов массива. Причём суммироваться будут даже элементы, индексируемые через текстовые значения.</p>
+<p class="avs-article-p">Используйте только для заведомо малых значений - функция корректно работает с числами, укладывающимися в определённые интервалы.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> — имя массива (текстовое значение).<br/>
+<code class="em-system">$args[<code class="em-number">1</code>]</code> — разделитель, который будет вставляться между значениями, если склеиваются значения элементов текстового массива. По умолчанию пробел. Склейка без разделителя через передачу <code class="em-string">/se</code>.
+                    </p>
+<p class="avs-article-p">Результатом работы функции может быть число или текст, в зависимости от того, сумму числового или текстового массива вы хотите получить. Значения массива при этом не изменяются.</p>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.summ</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass1'</span>)</span>
+</div>
+</section>
+<section>
+<a id="em_digs"></a>
+<h4 class="avs-article-h4">em.digs</h4>
+<p class="avs-article-p">Получает разрядность целого числа в виде круглого числа.</p>
+<p class="em-block-arguments">
+<code class="em-system"> args[<code class="em-number">0</code>]</code> - число
+                    </p>
+<p class="avs-article-p">Отрицательные числа поддерживаются.</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.digs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">36</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">10</span><br/>
+<span class="Monokai-UnFunc">@em.digs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">360</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">100</span><br/>
+<span class="Monokai-UnFunc">@em.digs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">366</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">100</span><br/>
+<span class="Monokai-UnFunc">@em.digs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">9999</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1000</span><br/>
+<span class="Monokai-UnFunc">@em.digs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Operator">-</span><span class="Monokai-Numeric">45023</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">10000</span>
+</div>
+</section>
+<section>
+<a id="em_exp"></a>
+<h4 class="avs-article-h4">em.exp</h4>
+<p class="avs-article-p">функция предназначена для возведения целого числа в степень.</p>
+<p class="em-block-arguments">
+<code class="em-system"> args[<code class="em-number">0</code>]</code> - основание, целое число
+                        <br/><code class="em-system"> args[<code class="em-number">1</code>]</code> - показатель, целое положительное число
+                    </p>
+<p class="avs-article-p">Следует заметить, что для подсчёта функция использует цикл. Если Вы возводите число, пусть даже единицу, в большую степень, вычисления на слабых компьютерах могут заметно подвешивать игру.</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.exp</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">6</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">46656</span><br/>
+<span class="Monokai-UnFunc">@em.exp</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">4</span>,<span class="Monokai-Numeric">2</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">16</span><br/>
+<span class="Monokai-UnFunc">@em.exp</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">4</span>,<span class="Monokai-Numeric">3</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">64</span><br/>
+<span class="Monokai-UnFunc">@em.exp</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">4</span>,<span class="Monokai-Numeric">4</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">256</span><br/>
+<span class="Monokai-UnFunc">@em.exp</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">250</span>,<span class="Monokai-Numeric">2</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">62500</span>
+</div>
+</section>
+<section>
+<a id="em_abs"></a>
+<h4 class="avs-article-h4">em.abs</h4>
+<p class="avs-article-p">Модуль разницы двух целых чисел.</p>
+<p class="em-block-arguments">
+<code class="em-system"> args[<code class="em-number">0</code>]</code> - первое число, целое
+                        <br/><code class="em-system"> args[<code class="em-number">1</code>]</code> - второе число, целое
+                    </p>
+<p class="avs-article-p">Эта функция несёт не столько какую-то практическую пользу, сколько сокращает запись. Например, есть две переменные, разницу между которыми нам надо вычислить. Вот запись без использования функции:</p>
+<div class="Monokai-Code">
+                        c<span class="Monokai-Assign"> = </span><span class="Monokai-Func">iif</span><span class="Monokai-Qbracket">(</span>a<span class="Monokai-Operator">&gt;</span>b,a<span class="Monokai-Operator">-</span>b,b<span class="Monokai-Operator">-</span>a<span class="Monokai-Qbracket">)</span>
+</div>
+<p class="avs-article-p">Восемнадцать знаков. Теперь функция:</p>
+<div class="Monokai-Code">
+                        c<span class="Monokai-Assign"> = </span><span class="Monokai-UnFunc">@em.abs</span><span class="Monokai-Qbracket">(</span>a,b<span class="Monokai-Qbracket">)</span>
+</div>
+<p class="avs-article-p">Четырнадцать знаков. Выглядит неубедительно, потому как взяты переменные с короткими именами. А что если вместо этих переменных пришлось использовать такие: </p>
+<div class="Monokai-Code">
+                        c_easy_math<span class="Monokai-Assign"> = </span><span class="Monokai-Func">iif</span><span class="Monokai-Qbracket">(</span>a_easy_math<span class="Monokai-Operator">&gt;</span>b_easy_math,a_easy_math<span class="Monokai-Operator">-</span>b_easy_math,b_easy_math<span class="Monokai-Operator">-</span>a_easy_math<span class="Monokai-Qbracket">)</span><br/>
+</div>
+<p class="avs-article-p">Восемьдесят восемь символов. А теперь функция:</p>
+<div class="Monokai-Code">
+                        c_easy_math<span class="Monokai-Assign"> = </span><span class="Monokai-UnFunc">@em.abs</span><span class="Monokai-Qbracket">(</span>a_easy_math,b_easy_math<span class="Monokai-Qbracket">)</span>
+</div>
+<p class="avs-article-p">сорок четыре символа - запись не только вдвое короче, но и легче чистается.</p>
+</section>
+<section>
+<a id="em_random"></a>
+<h4 class="avs-article-h4">em.random</h4>
+<p class="avs-article-p">Функция выбрасывает случайное число в указанных промежутках.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> ... <code class="em-system">$args[<code class="em-number">8</code>]</code> - промежутки чисел в формате <code class="em-string">'11-99'</code>.
+                    </p>
+<h5 class="avs-article-h5">Пример вызова функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.random</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'10-24'</span>,<span class="Monokai-String">'34-49'</span>)</span>
+</div>
+<p class="avs-article-p">В данном случае функция будет выбрасывать случайные числа от 10 до 24, и от 34 до 49, включительно.</p>
+</section>
+<section>
+<a id="em_log"></a>
+<h4 class="avs-article-h4">em.log</h4>
+<p class="avs-article-p">Логарифмирование по указанному основанию.</p>
+<p class="em-block-arguments">
+<code class="em-system">args[<code class="em-number">0</code>]</code> - число, которое логарифмируем;<br/>
+<code class="em-system">args[<code class="em-number">1</code>]</code> - основание, по которому логарифмируем (по умолчанию 10);<br/>
+<code class="em-system">result</code> - максимально близкая к этому числу степень по указанному основанию.
+                    </p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.log</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">10</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1</span><br/>
+<span class="Monokai-UnFunc">@em.log</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">100</span>,<span class="Monokai-Numeric">2</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">6</span><br/>
+<span class="Monokai-UnFunc">@em.log</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">1000</span>,<span class="Monokai-Numeric">5</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">4</span><br/>
+<span class="Monokai-UnFunc">@em.log</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">2345</span>,<span class="Monokai-Numeric">5</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">4</span><br/>
+<span class="Monokai-UnFunc">@em.log</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">1013</span>,<span class="Monokai-Numeric">13</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">2</span><br/>
+<span class="Monokai-UnFunc">@em.log</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">567</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">2</span>
+</div>
+</section>
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html#integer">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+</div>
+<!-- Page -->
+<div class="e-block">
+<div class="avs-page-stamp" id="em_subscribe">
+<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2024</span></p>
+<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2024</span></p>
+</div>
+</div>
+</div>
+</div><div class="em-stick-upper"><a href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/></a></div></body>
+</html>

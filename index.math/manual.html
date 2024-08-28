@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<!-- TODO: favicon -->
+<link href="../res/css/easy.library.css" rel="stylesheet"/></head>
+<body>
+<div class="avs-page-wrapper">
+<div class="easy-lib-page">
+<article class="e-block">
+<a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+<h1 class="avs-article-h1">easy.math.qsp v. 3.2.0</h1>
+</a>
+<p class="avs-articles-underhead">Библиотека математических функций для <a class="avs-page-external-link" href="https://qsp.org" target="_blank">Quest Soft Player</a></p>
+<p class="avs-article-p">
+          Разрабатывалась для плееров версий 5.9.0 — это: <a class="avs-page-external-link" href="https://qsp.org/index.php?option=com_content&amp;view=article&amp;id=64&amp;Itemid=87">классический плеер</a> версии 5.9.0 и <a class="avs-page-external-link" href="https://github.com/QSPFoundation/qspider">qSpider</a> версии [1.2.0]<!--TODO:поправить версию qSpider--> и выше. Не гарантируется правильная работа на плеерах иных версий. Некоторые функции имеют ограничения на значение числовых аргументов, это связано с используемыми плеером библиотеками. Для разных версий плеера могут быть разные ограничения, поэтому внимательно читайте документацию к плееру, под который разрабатываете игру.
+        </p>
+<div>
+          По всем вопросам и предложениям обращаться:
+          <ul>
+<li>aleksversus@mail.ru</li>
+<li>Вконтакте: <a class="avs-page-external-link" href="https://vk.com/id40090736" target="_blank">id40090736</a></li>
+<li>Бусти: <a class="avs-page-external-link" href="https://boosty.to/aleksversus" target="_blank">boosty.to/aleksversus</a></li>
+</ul>
+<p class="avs-article-p-null-indent">Изначально библиотека создавалась для обеспечения нужд игры <a class="avs-page-external-link" href="http://aleksversus.narod.ru/index/magicon_fb/0-65" target="_blank">МАГИКОН</a>.</p>
+</div>
+<p class="avs-article-p-null-indent">
+          Поддержать проект можно, подписавшись на Boosty: <a class="avs-page-external-link" href="https://boosty.to/aleksversus" target="_blank">aleksversus</a>.
+        </p>
+<h2 class="avs-article-h2">Подключение и использование</h2>
+<p class="avs-article-p">Предполагается, что вы читали <a class="avs-page-external-link" href="http://wiki.qsp.org/" target="_blank">справку по QSP</a>, пробовали писать игры и уже знаете, что такое локации, подпрограммы (процедуры) и функции, чем отличаются текстовые и числовые переменные, что такое аргументы и для чего они нужны.</p>
+<p class="avs-article-p">Чтобы использовать функции библиотеки при написании своей игры, сделайте следующее:</p>
+<ol class="avs-articles-instruction">
+<li class="avs-articles-instruction__item">
+<p>Скачайте архив с библиотекой <a class="avs-page-external-link" href="https://github.com/AleksVersus/easy.math.3/releases/" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">со страницы релизов</a>, и распакуйте в папку, где лежит ваша игра. В папке с вашей игрой должна появиться папка <code class="em-folder">"lib"</code>.</p>
+</li>
+<li class="avs-articles-instruction__item">
+<p>В своей игре на самой первой локации, в поле "выполнить при посещении" введите</p>
+<div class="Monokai-Code">
+<span class="Monokai-Operator">inclib</span> <span class="Monokai-String">'lib\easy.math.qsp'</span>
+</div>
+</li>
+<li class="avs-articles-instruction__item">
+            Теперь вы можете пользоваться функциями библиотеки.
+          </li>
+</ol>
+<p class="avs-article-p">Все функции библиотеки вызываются с помощью ключевого слова <code class="em-func">FUNC</code>( ) - для получения числовых значений, и <code class="em-func">$FUNC</code>( ) - для получения текстовых значений.</p>
+<p class="avs-article-p">Исключением являются функции, результат которых записывается в массив. Такие функции вызываются оператором <code class="em-operator">GOSUB</code>, или <code class="em-operator">GS</code>.</p>
+<div class="Monokai-Code">
+<span class="Monokai-Func">$FUNC</span>(<span class="Monokai-String">'em.foo'</span>,<span class="Monokai-SysVar">&lt;аргумент_<span class="Monokai-Numeric">0</span>&gt;</span>,<span class="Monokai-SysVar">&lt;аргумент_<span class="Monokai-Numeric">1</span>&gt;</span>,<span class="Monokai-SysVar">&lt;аргумент_<span class="Monokai-Numeric">2</span>&gt;</span>,<span class="Monokai-SysVar">&lt;аргумент_<span class="Monokai-Numeric">3</span>&gt;</span>,<span class="Monokai-SysVar">&lt;аргумент_<span class="Monokai-Numeric">4</span>&gt;</span>)
+        </div>
+<p class="avs-article-p">Аргументы могут быть текстовыми или числовыми в зависимости от требований и назначения функции.</p>
+<p class="avs-article-p">Можно использовать неявный вызов функций, если вам так удобнее. Функции, которые явно вызываются через <code class="em-operator">GOSUB</code>, не вернут результат даже при неявном вызове.</p>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.foo</span>(<span class="Monokai-SysVar">&lt;аргумент_<span class="Monokai-Numeric">0</span>&gt;</span>,<span class="Monokai-SysVar">&lt;аргумент_<span class="Monokai-Numeric">1</span>&gt;</span>,<span class="Monokai-SysVar">&lt;аргумент_<span class="Monokai-Numeric">2</span>&gt;</span>,<span class="Monokai-SysVar">&lt;аргумент_<span class="Monokai-Numeric">3</span>&gt;</span>,<span class="Monokai-SysVar">&lt;аргумент_<span class="Monokai-Numeric">4</span>&gt;</span>)
+        </div>
+<p class="avs-article-p">Далее все примеры будут писаться для варианта с неявным вызовом.</p>
+<p class="avs-article-p">Библиотека работает с переменными, имена которых включают префиксы, соответствующие названиям локаций, чтобы избежать пересечений с именами переменных, которые вы используете в своих играх. Если функция может принимать в качестве аргумента имя переменной/массива, удостоверьтесь, что значения локальных переменных в этой функии не перекроют передаваемые вами значения.</p>
+<p class="avs-article-p">Все переменные, использующиеся функциями, после - уничтожаются.</p>
+<p class="avs-article-p">Если результат работы функции помещается в массив, одним из параметров функции указывается имя массива, в который должен быть помещён результат. Имена массивов, передаваемые в аргументах функций, должны записываться по общим правилам записи имён переменных для плеера: текстовые массивы - с символом <code class="em-string">$</code> перед именем, числовые - без символа <code class="em-string">$</code> перед именем. Само имя не должно содержать символа <code class="em-string">$</code>, и других запрещённых символов.</p>
+<p class="avs-article-p">В руководстве приводятся примеры с результатами работы функции. Некоторые из таких примеров не являются валидным кодом QSP, и служат лишь для демонстрации вызова функций и результата, который они вернут. Чтобы превратить данные примеры в валидный код QSP, необходимо закомментировать часть с представленным результатом.</p>
+<div class="avs-articles-columned">
+<div class="Monokai-Code avs-articles-columned__column">
+<span class="Monokai-Comment">! не валидный код QSP</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span>(<span class="Monokai-Numeric">13</span>)<span class="Monokai-Assign">=</span><span class="Monokai-String">'0000000000000'</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span>(<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'1'</span>)<span class="Monokai-Assign">=</span><span class="Monokai-String">'1111111111111'</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span>(<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'10'</span>)<span class="Monokai-Assign">=</span><span class="Monokai-String">'10101010101010101010101010'</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span>(<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'a'</span>)<span class="Monokai-Assign">=</span><span class="Monokai-String">'aaaaaaaaaaaaa'</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span>(<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'bla'</span>)<span class="Monokai-Assign">=</span><span class="Monokai-String">'blablabla'</span>
+</div>
+<div class="Monokai-Code avs-articles-columned__column">
+<span class="Monokai-Comment">! валидный код QSP</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span>(<span class="Monokai-Numeric">13</span>) <span class="Monokai-Operator">&amp;</span> <span class="Monokai-Comment">! ='0000000000000'</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span>(<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'1'</span>) <span class="Monokai-Operator">&amp;</span> <span class="Monokai-Comment">! ='1111111111111'</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span>(<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'10'</span>) <span class="Monokai-Operator">&amp;</span> <span class="Monokai-Comment">! ='10101010101010101010101010'</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span>(<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'a'</span>) <span class="Monokai-Operator">&amp;</span> <span class="Monokai-Comment">! ='aaaaaaaaaaaaa'</span><br/>
+<span class="Monokai-UnFunc">@em.zero</span>(<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'bla'</span>) <span class="Monokai-Operator">&amp;</span> <span class="Monokai-Comment">! ='blablabla'</span>
+</div>
+</div>
+<h3 class="avs-article-h3">Работа с исходниками</h3>
+<p class="avs-article-p">Вы можете <a class="avs-page-external-link" href="https://github.com/AleksVersus/easy.math.3/tree/main/%5Bsource%5D" target="_blank" title="Страница на гитхабе">скачать исходный код библиотеки с гитхаба</a> и собрать собственный модуль лишь из тех функций, которые вам нужны.</p>
+<p class="avs-article-p">Сборку рекомендуется осуществлять через билдер в Sublime Text из <a class="avs-page-external-link" href="https://github.com/AleksVersus/JAD_for_QSP" target="_blank" title="Страница на гитхабе">пакета QSP для SublimeText</a>.</p>
+<p class="avs-article-p">При включенном препроцессоре необходимо подключить файл <code class="em-folder">00_sets/_variables.qsps_</code> к сборке, чтобы все функции добавились в модуль, либо написать собственный файл с метками нужных функций и так же подключить его к сборке. Для примера, можно взять <code class="em-folder">project.json</code> из исходников.</p>
+<h2 class="avs-article-h2">История версий</h2>
+<!-- История версий -->
+<div class="avs-pages-button__wrapper">
+<a class="avs-pages-button__link" href="../easy.math/istorija_versij/0-83.html" title="История версий отдельной страницей">
+<div class="avs-pages-button">Просмотреть историю версий</div>
+</a>
+</div>
+<!-- История версий -->
+<h2 class="avs-article-h2">Функции</h2>
+<ol>
+<li>
+<a id="supporting"></a>
+<h3 class="avs-article-h3">Вспомогательные функции</h3>
+<ul class="avs-articles-structure">
+<li><a class="avs-page-internal-link" href="../easy.math/vspomogatelnye_funkcii/0-74.html#rergb">em.dergb</a> - получает составляющие цвета на основе числового кода цвета QSP.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/vspomogatelnye_funkcii/0-74.html#em_str_getword">em.str.get_word</a> - из строки вида <code class="em-string">aaa|bbb|ccc|...|yyy|zzz</code> вычленяется подстрока, стоящая в указанной позиции.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/vspomogatelnye_funkcii/0-74.html#em_str_in_regexp">em.str.in_regexp</a> - преобразует обычную строку к регулярному выражению, экранируя символы, являющиеся в регулярках специальными.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/vspomogatelnye_funkcii/0-74.html#em_tag_getcont">em.tag.get_cont</a> - получает значение сдвоенного тега.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/vspomogatelnye_funkcii/0-74.html#em_tag_getnum">em.tag.get_num</a> - получает значение одиночного тега.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/vspomogatelnye_funkcii/0-74.html#em_var_gettype">em.var.get_type</a> - получение типа переменной.</li>
+</ul>
+</li>
+<li>
+<a id="floating"></a>
+<h3 class="avs-article-h3">Операции над вещественными (дробными) числами</h3>
+<ul class="avs-articles-structure">
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_drobnymi_chislami/0-75.html#em_sqrt">em.sqrt</a> - вычисление корня квадратного.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_drobnymi_chislami/0-75.html#em_add">em.add</a> - вычисление суммы рациональных чисел.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_drobnymi_chislami/0-75.html#em_div">em.div</a> - вычисление частного от деления рациональных чисел.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_drobnymi_chislami/0-75.html#em_mult">em.mult</a> - вычисление произведения рациональных чисел.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_drobnymi_chislami/0-75.html#em_round">em.round</a> - округляет рациональное число.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_drobnymi_chislami/0-75.html#em_simpl">em.simpl</a> - сравнение рациональных чисел.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_drobnymi_chislami/0-75.html#em_indiv">em.indiv</a> - рациональное частное от деления двух целых чисел</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_drobnymi_chislami/0-75.html#em_divdigs">em.divdigs</a> - получает разрядность дробной части числа</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_drobnymi_chislami/0-75.html#em_dz">em.dz</a> - отсечение нулей в дробной части числа</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_drobnymi_chislami/0-75.html#em_undiv">em.undiv</a> - превращает рациональное число в целое</li>
+</ul>
+</li>
+<li>
+<a id="logical"></a>
+<h3 class="avs-article-h3">Логические операции</h3>
+<ul class="avs-articles-structure">
+<li><a class="avs-page-internal-link" href="../easy.math/logicheskie_operacii/0-76.html#em_byte_add">em.byte.add</a> - "логическое" сложение</li>
+<li><a class="avs-page-internal-link" href="../easy.math/logicheskie_operacii/0-76.html#em_byte_dev">em.byte.dev</a> - "логическое" вычитание</li>
+</ul>
+</li>
+<li>
+<a id="string"></a>
+<h3 class="avs-article-h3">Операции над текстом</h3>
+<ul class="avs-articles-structure">
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_tekstom/0-77.html#em_arr_search">em.arr.search</a> - производит поиск элемента массива, содержащего строку, соответствующую регулярному выражению.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_tekstom/0-77.html#em_gen_uuid">em.gen_uuid</a> - генерирует UUID-подобный идентификатор.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_tekstom/0-77.html#em_str_random">em.str.random</a> - генерирует строку случайных символов</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_tekstom/0-77.html#em_str_slice">em.str.slice</a> - вырезает из строки подстроку по номерам символов.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_tekstom/0-77.html#em_str_thin">em.str.thin</a> - разрежение строки строкой-разделителем.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_tekstom/0-77.html#em_str_widetrim">em.str.widetrim</a> - удаление прилегающих пробелов, символов табуляции и переводов строк, или символов преформатирования.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_tekstom/0-77.html#em_zero">em.zero</a> - генерирует строку одинаковых символов</li>
+</ul>
+</li>
+<li>
+<a id="heximal"></a>
+<h3 class="avs-article-h3">Операции над шестнадцатеричными числами</h3>
+<ul class="avs-articles-structure">
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_shestnadcaterichnymi_chislami/0-78.html#em_col_inv">em.col.inv</a> - инвертирование цвета в формате RRGGBB, т.е. преобразование цвета к совершенно противоположному.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_shestnadcaterichnymi_chislami/0-78.html#em_col_add">em.col.add</a> - изменение цвета, записанного в шестнадцатеричном RGB.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_shestnadcaterichnymi_chislami/0-78.html#em_col_inrgb">em.col.in_rgb</a> - преобразование цвета из формата RRGGBB в формат rgb понятный QSP.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_shestnadcaterichnymi_chislami/0-78.html#em_dec_incol">em.dec.in_col</a> - превращает десятеричное число в шестнадцатеричное</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_shestnadcaterichnymi_chislami/0-78.html#em_dec_inhex">em.dec.in_hex</a> - перевод из десятеричной системы в шестнадцатеричную</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_shestnadcaterichnymi_chislami/0-78.html#em_hex_add">em.hex.add</a> - сложение двух шестнадцатеричных чисел</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_shestnadcaterichnymi_chislami/0-78.html#em_hex_indec">em.hex.in_dec</a> - перевод из шестнадцатеричной системы в десятеричную</li>
+</ul>
+</li>
+<li>
+<a id="arrays"></a>
+<h3 class="avs-article-h3">Операции над массивами</h3>
+<ul class="avs-articles-structure">
+<!-- первая страница -->
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami/0-79.html#em_arr_print">em.arr.print</a> - вывод содержимого всех элементов массива в виде текста</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami/0-79.html#em_fewarrs_print">em.fewArrs.print</a> - вывод содержимого нескольких массивов.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami/0-79.html#em_arr_insert">em.arr.insert</a> - вставка элемента в массив со сдвигом ячеек вправо.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami/0-79.html#em_arr_clear">em.arr.clear</a> - удаление всех элементов массива, соответствующих указанному значению.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami/0-79.html#em_arr_concatenate">em.arr.concatenate</a> - объединение двух массивов в массив кортежей.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami/0-79.html#em_arr_enumerate">em.arr.enumerate</a> - на основе исходного массива генерирует массив кортежей типа <code>[значение, индекс]</code>.</li>
+<li><a class="avs-page-internal-link" href="http://aleksversus.narod.ru/index/operacii_s_massivami_stranica_2/0-79#em_arr_few_kill">em.arr.few_kill</a> - удаление нескольких элементов массива одной командой.</li>
+<!-- вторая страница -->
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami_stranica_2/0-80.html#em_arr_fill">em.arr.fill</a> - упрощённое заполнение массива значениями;</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami_stranica_2/0-80.html#em_arr_randFill">em.arr.fill_rand</a> - заполнение элементов массива случайными числами</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami_stranica_2/0-80.html#em_arr_strtFill">em.arr.fill_strt</a> - заполнение элементов массива подряд идущими числами.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami_stranica_2/0-80.html#em_arr_sort">em.arr.sort</a> - многофункциональная сортировка содержимого массива.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami_stranica_2/0-80.html#em_arr_restand">em.arr.restand</a> - перетасовка элементов массива в соответствии с таблицей перестановки.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami_stranica_2/0-80.html#em_arr_desort">em.arr.desort</a> - операция обратная сортировке.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami_stranica_2/0-80.html#em_arr_simpl">em.arr.simpl</a> - сравнение содержимого двух массивов.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_massivami_stranica_2/0-80.html#em_arr_find">em.arr.find</a> - поиск максимального или минимального значения числового массива по указанной области и в заданных пределах.</li>
+</ul>
+</li>
+<li>
+<a id="integer"></a>
+<h3 class="avs-article-h3">Операции над целыми числами</h3>
+<ul class="avs-articles-structure">
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_celymi_chislami/0-81.html#em_abs">em.abs</a> - модуль от разности. <code class="em-command">c=|a-b|</code></li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_celymi_chislami/0-81.html#em_digs">em.digs</a> - получение разрядности целого числа</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_celymi_chislami/0-81.html#em_even">em.even</a> - округление целых чисел до указанной разрядности</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_celymi_chislami/0-81.html#em_exp">em.exp</a> - возведение целого числа в степень.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_celymi_chislami/0-81.html#em_log">em.log</a> - логарифмирование по указанному основанию.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_celymi_chislami/0-81.html#em_random">em.random</a> - случайное число в указанных промежутках.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/operacii_s_celymi_chislami/0-81.html#em_summ">em.summ</a> - подсчёт суммы всех элементов массива.</li>
+</ul>
+</li>
+<li>
+<a id="coords"></a>
+<h3 class="avs-article-h3">Работа с координатной сеткой</h3>
+<ul class="avs-articles-structure">
+<li><a class="avs-page-internal-link" href="../easy.math/rabota_s_koordinatnoj_setkoj/0-82.html#em_map_cell_getcoords">em.map.cell.get_coords</a> - определяет координаты ячейки по текущему номеру ячейки.</li>
+</ul>
+</li>
+<li>
+<a id="html_f"></a>
+<h3 class="avs-article-h3">Работа с HTML</h3>
+<ul class="avs-articles-structure">
+<li><a class="avs-page-internal-link" href="../easy.math/rabota_s_html/0-89.html#em_html_clr_pref">em.html.clr_pref</a> - очищает текст с HTML-разметкой от символов преформатирования.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/rabota_s_html/0-89.html#em_html_to_mnemonics">em.html.to_mnemonics</a> - заменяет в тексте с HTML-разметкой символы <code class="em-string">&lt;</code> и <code class="em-string">&gt;</code> на соответствующие мнемоники.</li>
+</ul>
+</li>
+<li>
+<a id="tuple_f"></a>
+<h3 class="avs-article-h3">Работа с HTML</h3>
+<ul class="avs-articles-structure">
+<li><a class="avs-page-internal-link" href="../easy.math/rabota_s_kortezhami/0-96.html#em_tpl_get">em.tpl.get</a> - получает элемент кортежа по индексу.</li>
+<li><a class="avs-page-internal-link" href="../easy.math/rabota_s_kortezhami/0-96.html#em_tpl_unzip">em.tpl.unzip</a> - распаковывает кортеж в массив.</li>
+</ul>
+</li>
+</ol>
+<h2 class="avs-article-h2">Перспективы</h2>
+<p class="avs-article-p">
+          Библиотека будет пополняться новыми функциями по мере необходимости, и если существование функции хоть как-то оправдано. Некоторые функции на сегодняшний день сделать невозможно - они будут либо слишком сложны, либо заметно снизят быстродействие игры. Вероятно, некоторые математические операции очень скоро будут встроены непосредственно в движок плеера, и необходимость в них отпадёт. Такие функции будут исключаться из последующих версий библиотеки. По возможности, алгоритмы будут упрощены и разгружены, а так же будут достраиваться необходимые для работы с функциями параметры.
+        </p>
+</article>
+<aside class="e-block">
+<div class="avs-page-stamp" id="em_subscribe">
+<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2024</span></p>
+<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2024</span></p>
+</div>
+</aside>
+</div>
+</div><div class="em-stick-upper"><a href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../res/img/uparrow_btn_.png"/></a></div></body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<!-- TODO: favicon -->
+<link href="../../res/css/easy.library.css" rel="stylesheet"/></head>
+<body>
+<div class="avs-page-wrapper">
+<div class="easy-lib-page">
+<div class="e-block">
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div><a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+<h1 class="avs-article-h1">easy.math.qsp v. 3.2.0</h1>
+</a>
+<h3 class="avs-article-h3">Операции с дробными числами</h3>
+<a id="em_dz"></a>
+<h4 class="avs-article-h4">em.dz</h4>
+<p class="avs-article-p">Одна из основных функций, позволяющая упразднять несущественные нули в конце натурального числа, а так же все несущественные нули в начале.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - обрабатываемое число, только в текстовом виде.
+                    <br/><code class="em-system"> args[<code class="em-number">1</code>]</code> - разряд до которого требуется удалить нули. 1 - до целых, 10 - до десятых, 100 - до сотых и т.д, по умолчанию 1.
+                    <br/><code class="em-system"> $result</code> - текстовое значение вида <code class="em-string">000.000</code>
+</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.dz</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'64'</span>,<span class="Monokai-Numeric">100</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '64'</span><br/>
+<span class="Monokai-UnFunc">@em.dz</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'64.0080000'</span>,<span class="Monokai-Numeric">1</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '64.008'</span><br/>
+<span class="Monokai-UnFunc">@em.dz</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'64.0080000'</span>,<span class="Monokai-Numeric">100</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '64.008'</span><br/>
+<span class="Monokai-UnFunc">@em.dz</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'64.0080000'</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '64.0080'</span>
+</div>
+<a id="em_indiv"></a>
+<h4 class="avs-article-h4">em.indiv</h4>
+<p class="avs-article-p">Вычисляет рациональное частное от целых чисел.</p>
+<p class="em-block-arguments">
+<code class="em-system"> args[<code class="em-number">0</code>]</code> - делимое;
+                    <br/><code class="em-system"> args[<code class="em-number">1</code>]</code> - делитель, по умолчанию = 100;
+                    <br/><code class="em-system"> args[<code class="em-number">2</code>]</code> - точность вычисления. 1 - до целых, 10 - до десятых, 100 - до сотых и т.д. По умолчанию, вычисляет до девятого знака после запятой (максимальное значение аргумента).<br/><code class="em-system"> $result</code> - текстовое значение вида <code class="em-string">000.000</code>
+</p>
+<p class="avs-article-p">Использует функцию <code class="em-folder">em.dz</code></p>
+<p class="avs-article-p">Имеются ограничения на значения аргументов (для QSP 5.8.0 в пределах [-2147483647 ... 2147483647]).</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.indiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Operator">-</span><span class="Monokai-Numeric">950000</span>,<span class="Monokai-Numeric">1000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-950'</span><br/>
+<span class="Monokai-UnFunc">@em.indiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">64</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0.64'</span><br/>
+<span class="Monokai-UnFunc">@em.indiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">64</span>,<span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">1</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '8'</span><br/>
+<span class="Monokai-UnFunc">@em.indiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">64</span>,<span class="Monokai-Numeric">7</span>,<span class="Monokai-Numeric">100000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '9.14285'</span><br/>
+<span class="Monokai-UnFunc">@em.indiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">64</span>,<span class="Monokai-Numeric">7</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '9.142857142'</span><br/>
+<span class="Monokai-UnFunc">@em.indiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">8</span>,<span class="Monokai-Numeric">125</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0.064'</span><br/>
+<span class="Monokai-UnFunc">@em.indiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">150</span>,<span class="Monokai-Numeric">100</span>,<span class="Monokai-Numeric">10</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '1.5'</span><br/>
+<span class="Monokai-UnFunc">@em.indiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">200</span>,<span class="Monokai-Numeric">100</span>,<span class="Monokai-Numeric">10</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '2'</span>
+</div>
+<a id="em_undiv"></a>
+<h4 class="avs-article-h4">em.undiv</h4>
+<p class="avs-article-p">Переводит рациональное число в целое (фактически умножает рациональное число на круглое число, с округлением-отсечением дробной части).</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - рациональное число
+                    <br/><code class="em-system"> args[<code class="em-number">1</code>]</code> - точность перевода 10 - один знак после запятой, 100 - два знака, и т.д, по умолчанию до последнего знака после запятой
+                    <br/><code class="em-system">  result</code> - целое число
+                </p>
+<p class="avs-article-p">Не использует дополнительных функций, однако есть ограничение на значения аргументов и результата (для QSP 5.8.0 в пределах [-2147483647 ... 2147483647]).</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.undiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1'</span>,<span class="Monokai-Numeric">1000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1000</span><br/>
+<span class="Monokai-UnFunc">@em.undiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-1'</span>,<span class="Monokai-Numeric">1000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">-1000</span><br/>
+<span class="Monokai-UnFunc">@em.undiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'0.123'</span>,<span class="Monokai-Numeric">100</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">12</span><br/>
+<span class="Monokai-UnFunc">@em.undiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'0.123'</span>,<span class="Monokai-Numeric">10</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1</span><br/>
+<span class="Monokai-UnFunc">@em.undiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'0.123'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">123</span><br/>
+<span class="Monokai-UnFunc">@em.undiv</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1.23'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">123</span>
+</div>
+<a id="em_divdigs"></a>
+<h4 class="avs-article-h4">em.divdigs</h4>
+<p class="avs-article-p">Получает разрядность дробной части числа в виде целого круглого числа</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - число в текстовом виде
+                    <br/><code class="em-system">  result</code> - число, в числовом виде (соответственно для QSP 5.8.0 в пределах [-2147483647 ... 2147483647])
+                </p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.divdigs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'0.64'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">100</span><br/>
+<span class="Monokai-UnFunc">@em.divdigs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'0.064'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1000</span><br/>
+<span class="Monokai-UnFunc">@em.divdigs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'0.640'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1000</span><br/>
+<span class="Monokai-UnFunc">@em.divdigs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'0.647777'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1000000</span><br/>
+<span class="Monokai-UnFunc">@em.divdigs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-7777.64'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">100</span><br/>
+<span class="Monokai-UnFunc">@em.divdigs</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Invalid">'-7777.646666666666666666666666'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">-1593835520 </span><span class="Monokai-Comment">&amp; </span><span class="Monokai-Comment">! </span><span class="Monokai-Comment">- </span><span class="Monokai-Comment">превышено </span><span class="Monokai-Comment">допустимое </span><span class="Monokai-Comment">значение, </span><span class="Monokai-Comment">результат </span><span class="Monokai-Comment">неверен!!!</span>
+</div>
+<a id="em_round"></a>
+<h4 class="avs-article-h4">em.round</h4>
+<p class="avs-article-p">Округляет число до указанной разрядности.</p>
+<p class="avs-article-p">Возможны варианты 1, 10, 100, 1000 и т.п., и 0.1, 0.01 и т.п.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - рациональное число в текстовом виде;
+                    <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - разрядность. Возможны варианты: 1, 10, 100, 1000 и т.п., и 0.1, 0.01 и т.п.;
+                    <br/><code class="em-system">$args[<code class="em-number">2</code>]</code> - <code class="em-string">[up]</code> в сторону увеличения, <code class="em-string">[down]</code> - с округлением-отсечением; если не указано, используются правила округления к ближайшему целому.
+                </p>
+<p class="avs-article-p">Использует функции <code class="em-folder">em.dz</code>, <code class="em-folder">em.zero</code>.</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"0.1"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '945.5'</span><br/>
+<span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"0.1"</span>,<span class="Monokai-String">'[</span><span style="color:#e6db74;">down]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '945.4'</span><br/>
+<span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"945.444"</span>,<span class="Monokai-String">"0.1"</span>,<span class="Monokai-String">'[</span><span style="color:#e6db74;">up]'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '945.5'</span><br/>
+<span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"0.01"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '945.46'</span><br/>
+<span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"0.001"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '945.459'</span><br/>
+<span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"1"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '945'</span><br/>
+<span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"10"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '950'</span><br/>
+<span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"945.459"</span>,<span class="Monokai-String">"100"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '900'</span><br/>
+<span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"-945.459"</span>,<span class="Monokai-String">"10"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-950'</span><br/>
+<span class="Monokai-UnFunc">@em.round</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"-945.459"</span>,<span class="Monokai-String">"0.01"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-945.46'</span>
+</div>
+<a id="em_add"></a>
+<h4 class="avs-article-h4">em.add</h4>
+<p class="avs-article-p">Функция сложения. Может суммировать целые и дробные числа любого знака любой длины (ограничение на значение текстовых переменных для QSP 5.8.0 около 2Гб).</p>
+<p class="avs-article-p">Использует функции <code class="em-folder">em.zero</code>, <code class="em-folder">em.byte.add</code>, <code class="em-folder">em.byte.dev</code>, <code class="em-folder">em.dz</code>. Каждая из этих функций включает в себя один и более циклов, в результате чего могут наблюдаться заметные подвисания плеера для ОЧЕНЬ больших чисел. Вычисления могут оказаться долгими, но они будет произведены - результат гарантирован.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> ... <code class="em-system">$args[<code class="em-number">8</code>]</code> - девять слагаемых. Могут быть переданы в числовом виде (для QSP 5.8.0 в пределах [-2147483647 ... 2147483647]).
+                    <br/><code class="em-system"> $result</code> - всегда текстовое значение.
+                </p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">'-9'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0.05'</span><br/>
+<span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">'-9.05'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0'</span><br/>
+<span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">'9'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '18.05'</span><br/>
+<span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">'9.55'</span>,<span class="Monokai-String">'9.25'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '27.85'</span><br/>
+<span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.99'</span>,<span class="Monokai-String">'9.999'</span>,<span class="Monokai-String">'9.9'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '29.889'</span><br/>
+<span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'384.384'</span>,<span class="Monokai-String">'92.8'</span>,<span class="Monokai-Numeric">3</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '480.184'</span><br/>
+<span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'283'</span>,<span class="Monokai-String">'126'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '409'</span><br/>
+<span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'283'</span>,<span class="Monokai-String">'-126'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '157'</span><br/>
+<span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-283'</span>,<span class="Monokai-String">'126'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-157'</span><br/>
+<span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-283'</span>,<span class="Monokai-String">'-126'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-409'</span><br/>
+<span class="Monokai-UnFunc">@em.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-234'</span>,<span class="Monokai-String">'125'</span>,<span class="Monokai-String">'-13.7890303'</span>,<span class="Monokai-String">'3484889'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '3484766.2109697'</span>
+</div>
+<a id="em_mult"></a>
+<h4 class="avs-article-h4">em.mult</h4>
+<p class="avs-article-p">Перемножает несколько чисел любой длины.</p>
+<p class="avs-article-p">Внимание! Функция использует функции <code class="em-folder">em.byte.add</code>, <code class="em-folder">em.zero</code>, <code class="em-folder">em.dz</code>, каждая из которых основана на циклических расчётах. Сама функция использует для подсчёта 4 цикла, что может замедлять работу программ при вычислении больших значений. Тем не менее функция работает, хотя и несколько подвешивает игру, если выполнять несколько умножений подряд.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> ... <code class="em-system">$args[<code class="em-number">8</code>]</code> - девять множителей. Могут быть переданы в числовом виде (для QSP 5.8.0 в пределах [-2147483647 ... 2147483647]).
+                    <br/><code class="em-system"> $result</code> - всегда текстовое значение.
+                </p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.mult</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"38.4"</span>,<span class="Monokai-String">"2.5"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '96'</span><br/>
+<span class="Monokai-UnFunc">@em.mult</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"-9.05"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-81.9025'</span><br/>
+<span class="Monokai-UnFunc">@em.mult</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"10"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '90.5'</span><br/>
+<span class="Monokai-UnFunc">@em.mult</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"9.55"</span>,<span class="Monokai-String">"9.25"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '799.454375'</span><br/>
+<span class="Monokai-UnFunc">@em.mult</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.99'</span>,<span class="Monokai-String">"-9.999"</span>,<span class="Monokai-String">"9.9"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-988.911099'</span><br/>
+<span class="Monokai-UnFunc">@em.mult</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span>,<span class="Monokai-String">'2'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '512'</span><br/>
+<span class="Monokai-UnFunc">@em.mult</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span>,<span class="Monokai-String">'-2'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-512'</span>
+</div>
+<a id="em_div"></a>
+<h4 class="avs-article-h4">em.div</h4>
+<p class="avs-article-p">Функция деления любого числа на любое.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - делимое, только текстовое
+                    <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - делитель, только текстовое
+                    <br/><code class="em-system"> args[<code class="em-number">2</code>]</code> - точность 1 -целые- 10 десятые доли, 100 сотые, 1000 - тысячные.
+                    <br/><code class="em-system"> $result</code> - частное, текстовое значение
+                </p>
+<p class="avs-article-p">Используются функции <code class="em-folder">em.dz</code>, <code class="em-folder">em.zero</code>, <code class="em-folder">em.byte.dev</code>.</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.div</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"-9"</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-1.0055'</span><br/>
+<span class="Monokai-UnFunc">@em.div</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">'-9.05'</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-1'</span><br/>
+<span class="Monokai-UnFunc">@em.div</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"10"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0.905'</span><br/>
+<span class="Monokai-UnFunc">@em.div</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"9.55"</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0.9476'</span><br/>
+<span class="Monokai-UnFunc">@em.div</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.99'</span>,<span class="Monokai-String">"9.999"</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0.999'</span><br/>
+<span class="Monokai-UnFunc">@em.div</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.99'</span>,<span class="Monokai-String">"9.999"</span>,<span class="Monokai-Numeric">1000000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '0.999099'</span><br/>
+<span class="Monokai-UnFunc">@em.div</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-1.69'</span>,<span class="Monokai-String">"1.3"</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-1.3'</span><br/>
+<span class="Monokai-UnFunc">@em.div</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1.69'</span>,<span class="Monokai-String">"1.3"</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '1.3'</span><br/>
+<span class="Monokai-UnFunc">@em.div</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-1.69'</span>,<span class="Monokai-String">"-1.3"</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '1.3'</span><br/>
+<span class="Monokai-UnFunc">@em.div</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1.69'</span>,<span class="Monokai-String">"-1.3"</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-1.3'</span>
+</div>
+<p class="avs-article-p">В <a class="avs-page-external-link" href="https://github.com/AleksVersus/easy.math.3/blob/main/%5Bsource%5D/03_операции%20с%20дробными%20числами/01_em.div.qsps" target="_blank">исходном коде</a> данной функции вы можете найти вариант с более быстрым вычислением частного от деления двух чисел. Однако для этого варианта существуют ограничения на принимаемые и возвращаемые значения, будьте внимательны, если собираетесь использовать его.</p>
+<a id="em_simpl"></a>
+<h4 class="avs-article-h4">em.simpl</h4>
+<p class="avs-article-p">Функция сравнивает два числа и выдаёт в результат большее.</p>
+<p class="avs-article-p">Функция использует функции <code class="em-folder">em.dz</code>, <code class="em-folder">em.zero</code>, соответственно для неё актуальны все ограничения связанные с этими функциями.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - первое число, только текстовое значение
+                    <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - второе число, только текстовое значение
+                    <br/><code class="em-system"> $result</code> - результат, текстовое значение
+                </p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"-9"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '9.05'</span><br/>
+<span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">'-9.05'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '9.05'</span><br/>
+<span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"10"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '10'</span><br/>
+<span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.05'</span>,<span class="Monokai-String">"9.55"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '9.55'</span><br/>
+<span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9.99'</span>,<span class="Monokai-String">"9.999"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '9.999'</span><br/>
+<span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-1.69'</span>,<span class="Monokai-String">"1.3"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '1.3'</span><br/>
+<span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'-1.69'</span>,<span class="Monokai-String">"-1.3"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '-1.3'</span><br/>
+<span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1.69'</span>,<span class="Monokai-String">"1.3"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '1.69'</span><br/>
+<span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1.69'</span>,<span class="Monokai-String">"-1.3"</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '1.69'</span>
+</div>
+<p class="avs-article-p">Внимание!!! Результаты функции даются в обработке функцией <code class="em-folder">em.dz</code>, а значит они могут отличаться по количеству символов с данными, передаваемыми в аргументах. Корректное сравнение возможно только при предварительном приведении чисел к общему виду через <code class="em-folder">em.dz</code>:</p>
+<div class="Monokai-Code">
+                    $first<span class="Monokai-Assign">=</span><span class="Monokai-UnFunc">@em.dz</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"19.050000"</span><span class="Monokai-Qbracket">)</span><br/>
+                    $second<span class="Monokai-Assign">=</span><span class="Monokai-UnFunc">@em.dz</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">"19.05"</span><span class="Monokai-Qbracket">)</span><br/>
+<span class="Monokai-UnFunc">@em.simpl</span><span class="Monokai-Qbracket">(</span>$first,$second<span class="Monokai-Qbracket">)</span>
+</div>
+<a id="em_sqrt"></a>
+<h4 class="avs-article-h4">em.sqrt</h4>
+<p class="avs-article-p">Вычисление квадратного корня методом Ньютона.</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - число, текстовое значение
+                    <br/><code class="em-system"> args[<code class="em-number">1</code>]</code> - точность. Целое число: 100 - сотые, 1000 - тысячные и т.д.
+                    <br/><code class="em-system">$args[<code class="em-number">2</code>]</code> - первое приближение, только текстовое значение. Вы можете указать примерно чему будет равен результат. Это ускорит вычисление
+                </p>
+<h5 class="avs-article-h5">Как работает:</h5>
+<p style="font-size:0.9em;padding-bottom:1em;">Существует простое линейное уравнение, повторяя вычисление которого несколько раз, мы получаем корень числа с некоторой погрешностью. Чем чаще мы производим вычисление, тем точнее результат. Округление числа производится до требуемого знака после запятой. Когда предыдущее вычисленное значение становится равно предыдущему, проверяется погрешность вычисления. Если погрешность не превышает 0.00000001, число принимается. В противном случае выдаётся ноль.</p>
+<p class="avs-article-p">Функция использует <code class="em-folder">em.div</code>, <code class="em-folder">em.mult</code>, <code class="em-folder">em.add</code>, в связи с чем к ней применимы те же ограничения, что и к этим функциям. Так же поскольку производится несколько десятков и сотен циклических вычислений, функция может заметно подвешивать игру даже при вычислении небольших значений. В настоящее время функция позволяет использовать значение первого приближения, чтобы сократить время расчётов. Значение необходимо передавать вторым аргументом (<code class="em-system">$args[<code class="em-number">2</code>]</code>). В функцию встроена собственная небольшая таблица приближений.</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1000'</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">31.6227</span><br/>
+<span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'16'</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">4</span><br/>
+<span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'257'</span>,<span class="Monokai-Numeric">100000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">16.03121</span><br/>
+<span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'257'</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">16.0312</span><br/>
+<span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'257'</span>,<span class="Monokai-Numeric">1000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">16.031</span><br/>
+<span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'257'</span>,<span class="Monokai-Numeric">100</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">16.03</span><br/>
+<span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'2.1'</span>,<span class="Monokai-Numeric">100</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1.44</span><br/>
+<span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'259'</span>,<span class="Monokai-Numeric">100</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">16.09</span><br/>
+<span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'260'</span>,<span class="Monokai-Numeric">100</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">16.12</span><br/>
+<span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'1.69'</span>,<span class="Monokai-Numeric">100</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">1.3</span><br/>
+<span class="Monokai-UnFunc">@em.sqrt</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'0.69'</span>,<span class="Monokai-Numeric">10000</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!</span><span class="Monokai-Comment">@ </span><span class="Monokai-Comment">0.8306</span>
+</div>
+<p class="avs-article-p">По сравнению с QSP версии 5.7.0 данная функция существенно ускорила свою работу. Для плееров версии 5.7.0 при вычислении без первого приближения расчёт для всех ниже приведённых вызовов в совокупности даёт 9 секунд задержки. При вычислении с первым приближением близким по значению к результату, время на все вычисления составило 3 секунды задержки. Наибольшее количество времени ушло на вычисление корня из 1000, причём без первого приближения это время оказалось в два раза больше, чем с первым приближением.</p>
+<p class="avs-article-p">Текущий вариант функции даёт полторы секунды задержки на все вычисления! И это без указания первого приближения, т.е. приближения берутся те, которые предоставляет сама функция.</p>
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+</div>
+<!-- Page -->
+<div class="e-block">
+<div class="avs-page-stamp" id="em_subscribe">
+<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2024</span></p>
+<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2024</span></p>
+</div>
+</div>
+</div>
+</div><div class="em-stick-upper"><a href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/></a></div></body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<!-- TODO: favicon -->
+<link href="../../res/css/easy.library.css" rel="stylesheet"/></head>
+<body>
+<div class="avs-page-wrapper">
+<div class="easy-lib-page">
+<div class="e-block">
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div><a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math.3/releases" id="UP" target="_blank" title="Скачать последнюю версию библиотеки со страницы релизов">
+<h1 class="avs-article-h1">easy.math.qsp v. 3.2.0</h1>
+</a>
+<!-- Исправить ссылку -->
+<h3 class="avs-article-h3">Логические операции</h3>
+<a id="em_byte_add"></a>
+<h4 class="avs-article-h4">em.byte.add</h4>
+<p class="avs-article-p">Функция выполняет побайтовое сложение двух чисел, с переполнением. Складывать можно два числа абсолютно любой длины (если используются числовые значения для аргументов, они должны укладываться в пределы от 0 до 2147483647).</p>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - первое число (сколько угодно длинное), можно <code class="em-system"> args[<code class="em-number">0</code>]</code> (ограниченное значение).
+                    <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - второе число (сколько угодно длинное), можно <code class="em-system"> args[<code class="em-number">1</code>]</code> (ограниченное значение).
+                </p>
+<p class="avs-article-p">Если один из рагументов содержит запрещённые символы, т.е. не является числом в строковом или числовом представлении, функция вернёт <code class="em-number">[not a number]</code> в результат.</p>
+<p class="avs-article-p">Использует функцию <code class="em-folder">em.zero</code>.</p>
+<p class="avs-article-p">Суммирует два целых числа любой длины по следующим правилам:</p>
+<ul class="avs-articles-instruction">
+<li class="avs-articles-instruction__item">
+                        Каждое число представляет собой запись из цифр. Цифры условно назовём байтами, само число - словом.
+                    </li>
+<li class="avs-articles-instruction__item">
+<p>Количество байтов в одном слове может быть больше, чем в другом. В таком случае слово с меньшим количеством байтов приводится к длине слова с большим количеством байтов.</p>
+<div class="Monokai-Code">
+                            Например <span class="Monokai-Numeric">998765</span>
+<br/>и           <span class="Monokai-Numeric">273</span>
+<br/><span class="Monokai-Numeric">273</span> приводится к длине <span class="Monokai-Numeric">998765</span> добавлением недостающих байтов.
+                            <br/><span class="Monokai-Numeric">273</span> -&gt;   <span class="Monokai-Numeric"><span style="color:#ff81ee;">000</span>273</span>
+</div>
+</li>
+<li class="avs-articles-instruction__item">
+<p>Байты нумеруются справа налево! По разрядам, начиная с нулевого.</p>
+<div class="Monokai-Code">
+                            слово       <span class="Monokai-Numeric">998765</span>
+<br/>номер байта <span class="Monokai-Func">5</span>4<span class="Monokai-Func">3</span>2<span class="Monokai-Func">1</span>0
+                        </div>
+</li>
+<li class="avs-articles-instruction__item">Слова суммируются побайтово (поразрядно), начиная с нулевого. Итог вычислений записывается в слово Сумма.</li>
+<li class="avs-articles-instruction__item">
+<p>Если при суммировании байтов на одном разряде происходит переполнение, т.е. число оказывается больше одного разряда, лишний разряд переносится на следующий байт. Пример:</p>
+<div class="Monokai-Code">
+<span class="Monokai-Numeric">998765</span>
+<br/>+
+                            <br/><span class="Monokai-Numeric">000273</span>
+<br/>------
+                            <br/><span class="Monokai-Numeric">999038</span> : /5+3=8/6+7=<span class="Monokai-SysVar">1</span>3/2+7+<span class="Monokai-SysVar">1</span>=<span class="Monokai-Func">1</span>0/8+<span class="Monokai-Func">1</span>+0=9/9+0=9/9+0=9/
+                            <br/><span class="Monokai-Numeric">999038</span> : /    8/     3/       0/      9/    9/    9/
+                        </div>
+</li>
+<li class="avs-articles-instruction__item">
+<p>В случае если переполнение происходит на суммировании последних байтов, лишний разряд переносится на нулевой байт Суммы. Пример:</p>
+<div class="Monokai-Code">
+                             <span class="Monokai-Numeric">998765</span>
+<br/> +     
+                            <br/> <span class="Monokai-Numeric">001273</span>
+<br/> ------
+                            <br/><span style="color:#888888;text-decoration:line-through;">1</span><span class="Monokai-Numeric">000038</span> - слово Сумма
+                            <br/>     +1
+                            <br/> ------
+                            <br/> <span class="Monokai-Numeric">000039</span> - итог. Слово Сумма. Будет записано в <span class="Monokai-SysVar">$result</span>
+</div>
+</li>
+<li class="avs-articles-instruction__item">
+                        Результатом работы функции является слово Сумма. Это текстовая запись числа без потери разрядов. Т.е. если были два числа: из пяти символов и из двух символов, - результат обязательно будет состоять из пяти символов.
+                    </li>
+</ul>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.byte.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">998765</span>,<span class="Monokai-Numeric">273</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '999038'</span><br/>
+<span class="Monokai-UnFunc">@em.byte.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9987Y5'</span>,<span class="Monokai-String">'-273'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '[not a number]'</span><br/>
+<span class="Monokai-UnFunc">@em.byte.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'999999'</span>,<span class="Monokai-String">'6273'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '006273'</span><br/>
+<span class="Monokai-UnFunc">@em.byte.add</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'998705'</span>,<span class="Monokai-String">'5773'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '004479'</span>
+</div>
+<a id="em_byte_dev"></a>
+<h4 class="avs-article-h4">em.byte.dev</h4>
+<p class="em-block-arguments">
+<code class="em-system">$args[<code class="em-number">0</code>]</code> - уменьшаемое (любой длины), можно <code class="em-system"> args[<code class="em-number">0</code>]</code> (ограниченное значение).
+                    <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - вычитаемое (любой длины), можно <code class="em-system"> args[<code class="em-number">1</code>]</code> (ограниченное значение).
+                </p>
+<p class="avs-article-p">Результат - текстовое значение (слово Сумма) без потери разрядов.</p>
+<p class="avs-article-p">Использует функцию <code class="em-folder">em.zero</code>.</p>
+<p class="avs-article-p">Побайтовое вычитание. Вычитает из одного числа другое. Оба числа приводятся к одной длине по аналогии с <code class="em-folder">em.byte.add</code>.</p>
+<p class="avs-article-p">Далее происходит поразрядное вычитание. Причём если в результате получается отрицательное число в байт записывается 10+число, в следующий разряд переносится -1.</p>
+<p class="avs-article-p">Пример:</p>
+<div class="Monokai-Code">
+<span class="Monokai-Numeric">990763</span><br/>
+                    -<br/>
+<span class="Monokai-Numeric">099271</span><br/>
+                    ------<br/>
+<span class="Monokai-Numeric">981492</span><br/>
+</div>
+<p class="avs-article-p">Если отрицательное число получается на последнем байте последний байт вычисляется по общим правилам, а из нулевого байта Суммы вычитается 1.</p>
+<h5 class="avs-article-h5">Результат работы функции:</h5>
+<div class="Monokai-Code">
+<span class="Monokai-UnFunc">@em.byte.dev</span><span class="Monokai-Qbracket">(</span><span class="Monokai-Numeric">998765</span>,<span class="Monokai-Numeric">273</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '998492'</span><br/>
+<span class="Monokai-UnFunc">@em.byte.dev</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'9987Y5'</span>,<span class="Monokai-String">'-273'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '998432'</span><br/>
+<span class="Monokai-UnFunc">@em.byte.dev</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'999999'</span>,<span class="Monokai-String">'6273'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '993726'</span><br/>
+<span class="Monokai-UnFunc">@em.byte.dev</span><span class="Monokai-Qbracket">(</span><span class="Monokai-String">'998705'</span>,<span class="Monokai-String">'5773'</span><span class="Monokai-Qbracket">)</span> <span class="Monokai-Operator">&amp; </span><span class="Monokai-Comment">!@ '992932'</span>
+</div>
+<div> </div>
+<div class="avs-pages-button__left-combine">
+<a class="avs-pages-button__link" href="../../easy.math/manual.html">
+<div class="avs-pages-button">Назад</div>
+</a>
+</div>
+</div>
+<div class="e-block">
+<div class="avs-page-stamp" id="em_subscribe">
+<p>Aleks Versus'Easy Libraries'2013-<span class="subscribe-year">2024</span></p>
+<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-<span class="subscribe-year">2024</span></p>
+</div>
+</div>
+</div>
+</div><div class="em-stick-upper"><a href="#UP" title="Вверх"><img class="em-stick-upper__image" src="../../res/img/uparrow_btn_.png"/></a></div></body>
+</html>
