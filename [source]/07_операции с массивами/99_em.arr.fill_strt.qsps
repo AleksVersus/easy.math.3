@@ -41,23 +41,23 @@ end
 @em.arr.fill_strt('t',8)
 
 loop local i,size=0,arrsize('t') while i<size step i+=1:
-	*pl "t[<<i>>]=<<t[i]>>"
+    *pl "t[<<i>>]=<<t[i]>>"
 end
 *pl
-@em.arr.fill_strt('b',8,4)
+@em.arr.fill_strt('b',8,[0,4])
 
 loop local i,size=0,arrsize('b') while i<size step i+=1:
-	*pl "b[<<i>>]=<<b[i]>>"
+    *pl "b[<<i>>]=<<b[i]>>"
 end
 *pl
-@em.arr.fill_strt('z',8,0,2)
+@em.arr.fill_strt('z',8,[2,0])
 
 loop local i,size=0,arrsize('z') while i<size step i+=1:
-	*pl "z[<<i>>]=<<z[i]>>"
+    *pl "z[<<i>>]=<<z[i]>>"
 end
 *pl
-@em.arr.fill_strt('f',8,5,3,2)
+@em.arr.fill_strt('f',8,[3,5],2)
 
 loop local i,size=0,arrsize('f') while i<size step i+=1:
-	*pl "f[<<i>>]=<<f[i]>>"
+    *pl "f[<<i>>]=<<f[i]>>"
 end

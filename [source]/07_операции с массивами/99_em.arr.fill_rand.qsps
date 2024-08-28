@@ -17,25 +17,23 @@ end
 --- em.arr.fill_rand ---------------------------------
 !@pp:endif
 
-Функция не использует иных функций библиотеки
-
 @em.arr.fill_rand('mass1',8)
 
 loop local i,size=0,arrsize('mass1') while i<size step i+=1:
-	*pl "mass1[<<i>>]=<<mass1[i]>>"
+    *pl "mass1[<<i>>]=<<mass1[i]>>"
 end
 *pl
 
-@em.arr.fill_rand('mass2',6,2)
+@em.arr.fill_rand('mass2', 6, [], 2)
 
 loop local i,size=0,arrsize('mass2') while i<size step i+=1:
-	*pl "mass2[<<i>>]=<<mass2[i]>>"
+    *pl "mass2[<<i>>]=<<mass2[i]>>"
 end
 *pl
 
-@em.arr.fill_rand('mass3',6,2,10,20)
+@em.arr.fill_rand('mass3', 6, [10,20], 2)
 
 loop local i,size=0,arrsize('mass3') while i<size step i+=1:
-	*pl "mass3[<<i>>]=<<mass3[i]>>"
+    *pl "mass3[<<i>>]=<<mass3[i]>>"
 end
 *pl

@@ -5,13 +5,13 @@ QSP-Game Удаление нескольких ячеек массива
 !@pp:if(em_arr_few_kill):include
 # em.arr.few_kill
 args[21] = arrsize('$args')
-loop args[22] = 1 while args[22] < args[21] step args[22] += 1:
-	if %args[args[22]] <> []:
-		killvar $args[0], %args[args[22]]
-	elseif $args[args[22]] <> '':
-		killvar $args[0], $args[args[22]]
+loop args[22] = args[21] while args[22] > 0 step args[22] -= 1:
+	if %args[args[22]-1] <> []:
+		killvar $args[0], %args[args[22]-1]
+	elseif $args[args[22]-1] <> '':
+		killvar $args[0], $args[args[22]-1]
 	else:
-		killvar $args[0], args[args[22]]
+		killvar $args[0], args[args[22]-1]
 	end
 end
 --- em.arr.few_kill ---------------------------------
