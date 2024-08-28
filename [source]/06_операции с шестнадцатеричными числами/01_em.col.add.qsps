@@ -1,22 +1,23 @@
 QSP-Game Функция предназначена для изменения цвета для HTML.
-$args[0] - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
-$args[1] - значение. Шестнадцатеричный формат, двузначное число. (может быть отрицательным)
+
+!@ $0 - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
+!@ $1 - значение. Шестнадцатеричный формат, двузначное число. (может быть отрицательным)
 !@pp:if(em_col_add):include
 # em.col.add
 if (no strcomp($args[0],'[A-Fa-f0-9]{6}')) and (no strcomp($args[0],'[A-Fa-f0-9]{8}')): $result = $args[0] & exit & !@ если переданное число не соответствует критериям, его и возвращаем
-local red,green,blue,$minus,$alpha
-if instr($args[1],'-')=1: $minus='-' & $args[1]=$mid($args[1],2) else $minus='+'
-red=dyneval('result = '+@em.hex.in_dec($mid($args[0],1,2))+$minus+@em.hex.in_dec($args[1]))
-green=dyneval('result = '+@em.hex.in_dec($mid($args[0],3,2))+$minus+@em.hex.in_dec($args[1]))
-blue=dyneval('result = '+@em.hex.in_dec($mid($args[0],5,2))+$minus+@em.hex.in_dec($args[1]))
-$alpha=$mid($args[0],7,2)
-if red>255: red=255
-if red<0: red=0
-if green>255: green=255
-if green<0: green=0
-if blue>255: blue=255
-if blue<0: blue=0
-$result=@em.dec.in_col(red)+@em.dec.in_col(green)+@em.dec.in_col(blue)+$alpha
+local red_,green_,blue_,$minus_,$alpha_
+if instr($args[1],'-')=1: $minus_='-' & $args[1]=$mid($args[1],2) else $minus_='+'
+red_=dyneval('result = '+@em.hex.in_dec($mid($args[0],1,2))+$minus_+@em.hex.in_dec($args[1]))
+green_=dyneval('result = '+@em.hex.in_dec($mid($args[0],3,2))+$minus_+@em.hex.in_dec($args[1]))
+blue_=dyneval('result = '+@em.hex.in_dec($mid($args[0],5,2))+$minus_+@em.hex.in_dec($args[1]))
+$alpha_=$mid($args[0],7,2)
+if red_>255: red_=255
+if red_<0: red_=0
+if green_>255: green_=255
+if green_<0: green_=0
+if blue_>255: blue_=255
+if blue_<0: blue_=0
+$result=@em.dec.in_col(red_)+@em.dec.in_col(green_)+@em.dec.in_col(blue_)+$alpha_
 --- em.col.add ---------------------------------
 !@pp:endif
 

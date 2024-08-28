@@ -1,4 +1,5 @@
 QSP-Game Суммирует все элементы массива
+
 !@ $0 - название массива
 !@ $1 - разделитель или ключ /se. (только для строковых значений) Если указан ключ - без разделителя.
 !@pp:if(em_summ):include
@@ -18,7 +19,7 @@ if instr($args[0],'$')=1:
 elseif instr($args[0],'%')=1:
 	$_='%'
 end
-loop local i,size=0,arrsize($args[0]) while i<size step i+=1:
+loop local i,size_ =0,arrsize($args[0]) while i<size_  step i+=1:
 	if $_='$':
 		!@ для текстовых массивов раюотает конкатенация
 		$res_ += $arritem($args[0], i) + $args[1]

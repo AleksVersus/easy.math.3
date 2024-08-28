@@ -1,24 +1,33 @@
 QSP-Game Локация предназначена для быстрого теста библиотеки. Монтируется безусловно.
+
 # em.uc
+!@ ----------------- switch on-off of input-string -----------------
+	if $lcase($args[0]) = 'on':
+		$usercom['em.uc'] = 'em.uc'
+		exit
+	elseif $lcase($args[0]) = 'off':
+		killvar '$usercom', 'em.uc'
+		exit
+	end
+!@ ----------------- switch on-off of input-string -----------------
+
 if $args[0] = '' and instr($user_text, 'em ') = 1:
 	local $user_text_ = $mid($user_text, 4)
 	local $em_test_parse_
 	local $cmdline_ = $lcase($trim($user_text_))
 
-	if instr($cmdline_,' ') <> 0:
-		if loc('em.str.in_arr'):
-			@em.str.in_arr($cmdline_, '$em_test_parse_', ' ', '[notspace][strip][lcase]')
-		else:
-			msg "Error. Function 'em.str.in_arr' is not exist! Some commands shoudn't work."
-		end
-	end
+	!@ ----------------- parse the words from input-line -----------------
+		scanstr '$em_test_parse_', $cmdline_, '[^\s]+'
+	!@ ----------------- parse the words from input-line -----------------
+
 	if $cmdline_ = 'help':
-		*pl & *pl "logs — выводит содержимое массива '$log'. В этот массив можно сохранять сообщения при отладке модуля."
-		*pl & *pl "sqrt(N) — выводит результат вычисления квадратного корня из числа N."
-		*pl & *pl "gen id — генерирует уникальный идентификатор типа UUID четвёртой версии."
-		*pl & *pl "gen pass — генерирует парольную фразу из шестнадцати случайных символов (буквы латинского алфавита, цифры, !@#$)."
-		*pl & *pl "gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS> — генерирует массив с именем <ARRAY_NAME> из <NUMBER_of_ELEMENTS> элементов."
-		*pl & *pl "autotest — запускает на выполнение автотесты библиотеки для проверки её работоспособности. Внимание!!! Автотесты нужны для отладки самой библиотеки, или для проверки корректности её функций перед окончательной сборкой. Из окончательной сборки автотесты можно удалить."
+		*pl & *pl 'ОСНОВНЫЕ КОМАНДЫ:'
+		*pl & *pl "* logs — выводит содержимое массива '$log'. В этот массив можно сохранять сообщения при отладке модуля."
+		*pl & *pl "* sqrt(N) — выводит результат вычисления квадратного корня из числа N."
+		*pl & *pl "* gen id — генерирует уникальный идентификатор типа UUID четвёртой версии."
+		*pl & *pl "* gen pass — генерирует парольную фразу из шестнадцати случайных символов (буквы латинского алфавита, цифры, !@#$)."
+		*pl & *pl "* gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS> — генерирует массив с именем <ARRAY_NAME> из <NUMBER_of_ELEMENTS> элементов."
+		*pl & *pl "* autotest — запускает на выполнение автотесты библиотеки для проверки её работоспособности. Внимание!!! Автотесты нужны для отладки самой библиотеки, или для проверки корректности её функций перед окончательной сборкой. Из окончательной сборки автотесты можно удалить."
 		*pl "Для теста отдельной функции, можно указать её название как аргумент команде autotest. Например: `autotest em.str.thin`."
 		*pl & *pl "Любая иная строчка будет воспринята, как код QSP на выполнение. Таким образом вы можете выполнить любую строчку кода QSP, просто введя её в строке ввода."
 	elseif $cmdline_='logs':
@@ -70,9 +79,5 @@ if $args[0] = '' and instr($user_text, 'em ') = 1:
 	else:
 		dynamic $cmdline_
 	end
-elseif $lcase($trim($args[0])) = 'on':
-	$usercom['em.uc'] = 'em.uc'
-elseif $lcase($trim($args[0])) = 'off':
-	killvar '$usercom', 'em.uc'
 end
 --- em.uc ---------------------------------

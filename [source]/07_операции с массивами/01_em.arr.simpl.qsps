@@ -63,10 +63,8 @@ end
 	* Если при сравнении необходимо исключить пустые ячейки, необходимо добавить управляющее слово "[se]" или "[space exclude]" к управляющей конструкции.
 Функция использует функции array.clr и array.sort
 
-!@pp:if(em_arr_simp!=True):nopp
-
+!@pp:if(em_arr_clear!=True):nopp
 !@pp:var(em_arr_clear)
-
 !@pp:endif
 
 mass1[0]=455
