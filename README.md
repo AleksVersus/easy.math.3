@@ -66,7 +66,7 @@ $FUNC('em.foo',$args[0],$args[1],$args[2],$args[3],$args[4],$args[5],$args[6],$a
 
 Онлайн руководство доступно по ссылкам:
 - [easy.math.3 на народе](https://aleksversus.narod.ru/index/easy_math_3/0-73)
-- 
+- [easy.math.3 на GitHub](https://aleksversus.github.io/easy.math.3)
 
 ## Перспективы
 
