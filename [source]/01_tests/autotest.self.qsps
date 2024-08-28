@@ -1,4 +1,5 @@
 QSP-Game часть автотеста, отвечающая за сравнение
+
 !@pp:if(em_autotest):include
 # em.autotest.self
 local $res, $example, $functions, $nr

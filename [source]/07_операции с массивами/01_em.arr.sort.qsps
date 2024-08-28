@@ -31,7 +31,9 @@ copyarr $args[3], '<<$args[22]>>em_arr_sort_result_array_'	& !@ копируем
 --- em.arr.sort ---------------------------------
 !@pp:endif
 
-Функция не использует иных функций библиотеки.
+!@pp:if(em_arr_desort!=True):nopp
+!@pp:var(em_arr_enumerate)
+!@pp:endif
 
 old_mass[0]=157
 old_mass[1]=250

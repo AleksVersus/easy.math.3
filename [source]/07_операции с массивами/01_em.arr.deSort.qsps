@@ -26,9 +26,10 @@ copyarr $args[2], 'em_arr_desort_reflect_array_'
 --- em.arr.deSort ---------------------------------
 !@pp:endif
 
-Функция не использует иных функций библиотеки.
+!@pp:if(em_arr_desort!=True):nopp
+!@pp:var(em_arr_concatenate)
+!@pp:endif
 
-em_arr_desort_source_array - исходный массив
 em_arr_desort_reflect_array_ - опорный массив
 
 old_mass[0]=949

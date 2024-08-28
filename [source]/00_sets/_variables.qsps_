@@ -48,7 +48,7 @@ QSP-Game Список меток для всех функций библиоте
 !@pp:var(em_hex_add)
 !@pp:var(em_hex_in_dec)
 Операции с массивами
-!@pp:var(em_arr_simp)
+!@pp:var(em_arr_simpl)
 !@pp:var(em_arr_clear)
 !@pp:var(em_arr_desort)
 !@pp:var(em_arr_fill)

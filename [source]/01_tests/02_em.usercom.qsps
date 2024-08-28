@@ -72,7 +72,7 @@ if $args[0] = '' and instr($user_text, 'em ') = 1:
 				*pl "gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS>"
 			end
 		else:
-			msg "Error. Functions 'em.arr.fill_rand' and 'em.arr.print' are not exist!"
+			msg "Error. Functions 'em.arr.fill_rand' or 'em.arr.print' are not exist!"
 		end
 	elseif instr($cmdline_,'autotest') = 1 and loc('em.autotest.self'):
 		@em.autotest.self($em_test_parse_[1], $em_test_parse_[2])
