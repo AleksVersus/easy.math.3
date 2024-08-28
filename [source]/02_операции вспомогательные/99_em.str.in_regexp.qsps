@@ -2,6 +2,7 @@ QSP-Game Преобразует строку в регулярку
 
 !@ $0 - строка
 !@ $r - регулярка
+!@pp:if(em_str_in_regexp):include
 # em.str.in_regexp
 $result = $replace($args[0], '\', '\\')
 $result = $replace($result, '|', '\|')
@@ -24,3 +25,4 @@ $result = $replace($result, '=', '\=')
 $result = $replace($result, ',', '\,')
 $result = $replace($result, '?', '\?')
 --- em.str.in_regexp ---------------------------------
+!@pp:endif

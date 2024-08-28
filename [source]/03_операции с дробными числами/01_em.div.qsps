@@ -1,16 +1,9 @@
 QSP-Game Функция деления любого числа на любое.
-$args[0] - делимое, только текстовое
-$args[1] - делитель, только текстовое
-args[2] - точность 1 -целые- 10 десятые доли, 100 сотые, 1000 - тысячные.
-$result - частное, текстовое значение
-minus - знак, а так же метка знака $minus
-$int - целая часть числа
-$fract - дробная часть числа
-fract_len — длина дробной части
-$divident - делимое
-$divisor - делитель
-$res - результат
-$approx - приближение
+
+!@ $0 - делимое, только текстовое
+!@ $1 - делитель, только текстовое
+!@ #2 - точность 1 -целые- 10 десятые доли, 100 сотые, 1000 - тысячные.
+!@ $r - частное, текстовое значение
 !@pp:if(em_div):include
 # em.div
 local minus, $int, $fract, $divident, $divisor, $res, $approx, digit, $subtract
@@ -84,17 +77,27 @@ $result=$minus+@em.dz($res)
 --- em.div ---------------------------------
 !@pp:endif
 
+minus - знак, а так же метка знака $minus
+$int - целая часть числа
+$fract - дробная часть числа
+fract_len — длина дробной части
+$divident - делимое
+$divisor - делитель
+$res - результат
+$approx - приближение
+
 Вариант функции для ускорения вычислений (есть ограничения на значения аргументов):
-!# em.div
-local maximal, $divident, $divisor, accuracy
-$divident=@em.dz($args[0],1)
-$divisor=@em.dz($args[1],1)
-accuracy = args[2]
-maximal=max(@em.divdigs($divident),@em.divdigs($divisor))
-divident = @em.undiv($divident,maximal)
-dividsor = @em.undiv($divisor,maximal)
-$result=@em.indiv(divident,divisor,accuracy)
-!--- em.div ---------------------------------
+
+!@ # em.div
+!@ local maximal, $divident, $divisor, accuracy
+!@ $divident=@em.dz($args[0],1)
+!@ $divisor=@em.dz($args[1],1)
+!@ accuracy = args[2]
+!@ maximal=max(@em.divdigs($divident),@em.divdigs($divisor))
+!@ divident = @em.undiv($divident,maximal)
+!@ dividsor = @em.undiv($divisor,maximal)
+!@ $result=@em.indiv(divident,divisor,accuracy)
+!@ --- em.div ---------------------------------
 
 Это давало повышенную скорость работы. Где-то в 10 раз быстрее. Однако это и накладывало некоторые ограничения на аргументы. Например, старая версия функции неверно вычисляла вот такие значения:
 $func('em.div','3123.869504',"3.7",1000000)

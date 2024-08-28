@@ -3,7 +3,7 @@ QSP-Game функция обратная функции сортировки. П
 !@ $1 - опорный массив (только числовой!)
 !@ $2 - результиррующий массив
 !@pp:if(em_arr_desort):include
-# em.arr.deSort
+# em.arr.desort
 !@pp:if(em_fuse):include
 if $args[0] = '': msg 'em.arr.desort: Wrong array name → <<$args[0]>>' & exit
 if $args[1] <> '' and instr('$%', $mid($args[1], 1, 1)): msg 'em.arr.desort: type prefix cannot be specified → <<$args[1]>>' & exit
