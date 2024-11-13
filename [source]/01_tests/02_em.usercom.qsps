@@ -1,12 +1,12 @@
 QSP-Game Локация предназначена для быстрого теста библиотеки. Монтируется безусловно.
 
-# em.uc
+# em.usercom
 !@ ----------------- switch on-off of input-string -----------------
 	if $lcase($args[0]) = 'on':
-		$usercom['em.uc'] = 'em.uc'
+		$usercom['em.usercom'] = 'em.usercom'
 		exit
 	elseif $lcase($args[0]) = 'off':
-		killvar '$usercom', 'em.uc'
+		killvar '$usercom', 'em.usercom'
 		exit
 	end
 !@ ----------------- switch on-off of input-string -----------------
@@ -80,4 +80,4 @@ if $args[0] = '' and instr($user_text, 'em ') = 1:
 		dynamic $cmdline_
 	end
 end
---- em.uc ---------------------------------
+--- em.usercom ---------------------------------

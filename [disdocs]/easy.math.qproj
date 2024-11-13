@@ -3,7 +3,7 @@
   <Structure>
     <Location name="em.start"/>
     <Folder name="system">
-      <Location name="em.uc"/>
+      <Location name="em.usercom"/>
       <Location name="em.autotest"/>
       <Location name="em.autotest.self"/>
     </Folder>

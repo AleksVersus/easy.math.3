@@ -1,0 +1,19 @@
+# switch
+{
+	switch x:
+		0: x*=99
+		1: x*=88
+		2: x*=77
+		3: x*=66
+		else: x*=11
+	end
+}
+!@ преобразуется в
+if 0:
+	elseif x = 0: x*=99
+	elseif x = 1: x*=88
+	elseif x = 2: x*=77
+	elseif x = 3: x*=66
+	else: x*=11
+end
+--- switch ---------------------------------
