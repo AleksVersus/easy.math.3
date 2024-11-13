@@ -1,6 +1,6 @@
 QSP-Game стартовая локация для теста библиотеки easy.math.
 # em.start
-if $args[0]="":
+!@ -------------- start settings for test easy.math --------------
 	!@ включаем обработчик строки ввода:
 	@em.usercom('on')
 	!@ отключаем распознавание html:
@@ -11,8 +11,9 @@ if $args[0]="":
 	showobjs 0
 	showstat 0
 	showacts 0
+!@ -------------- start settings for test easy.math --------------
 
-"Easy Math"
+"Easy Math v.<<@em.version('str')>>"
 "Библиотека математических и вспомогательных функций для QSP"
 "
 Репозиторий с исходниками библиотеки:
@@ -39,14 +40,6 @@ if $args[0]="":
 Любую функцию можно опробовать прямо здесь, введя её в поле ввода.
 
 Для получения списка команд, введите `em help` в строку ввода."
-elseif $args[0]='version':
-	%result = [3,2,0]
-	if $args[1] = 'str':
-		$result = $dyneval({
-			local y, m, d = @em.start('version')
-			$result = "<<y>>.<<m>>.<<d>>"
-		})
-	end
-end
+
 --- em.start ---------------------------------
 
