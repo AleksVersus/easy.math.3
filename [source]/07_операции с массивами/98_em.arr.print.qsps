@@ -7,7 +7,7 @@ QSP-Game возвращает содержимое массива
 !@pp:if(em_arr_print):include
 # em.arr.print
 args[21], args[22] = %iif(%args[2] = [] and arrsize($args[0])<>0, [0, arrsize($args[0])-1], %args[2])
-if no (args[22] or args[21]): exit
+if (args[22] < 0 or args[21] < 0): exit
 !@pp:if(em_fuse):include
 if $args[0]='': msg 'em.arr.print: No array name → <<$args[0]>>' & exit
 if args[22] < args[21] or args[21] < 0: msg 'em.arr.print: Out of range → <<[args[21], args[22]]>>' & exit
