@@ -17,7 +17,6 @@ loop while no (args[0]/base_16_<16):
 	num_of_digit_+=1
 end
 loop local run=1 while run:
-!@ если само число меньше 16
 	if num_of_digit_=0:
 		$result+=$mid('0123456789abcdef',args[0]+1,1)	& !@ получаем символ числа (hex-цифру)
 		run=0
@@ -25,12 +24,12 @@ loop local run=1 while run:
 		$result+=$mid('0123456789abcdef',args[0]/base_16_+1,1)	& !@ получаем hex-цифру
 		args[0]=args[0] mod base_16_	& !@ числом становится остаток от деления на основание
 		num_of_digit_-=1
-		!@ --- получение нового основания. Можно заменить на функцию #^# (em.EXP)
+		!@ ------ получение нового основания. Можно заменить на функцию em.exp ------
 			base_16_=1
 			loop local i=num_of_digit_ while i>0 step i-=1:
 				base_16_*=16
 			end
-		!@ ------------------------- получение нового основания -----------------
+		!@ ------ получение нового основания. Можно заменить на функцию em.exp ------
 	end
 end
 if len($result)=1:

@@ -4,15 +4,16 @@ QSP-Game Возвращает шестнадцатеричный код цвет
 !@ $r - результат: шестнадцатеричный код цвета
 !@pp:if(em_col_inv):include
 # em.col.inv
-if no (strcomp($args[0],'[A-Fa-f0-9]{6}') or strcomp($args[0],'[A-Fa-f0-9]{8}')): exit & !@ если переданное число не соответствует критериям, просто выходим
-local $red_, $green_, $blue_, $r_, $g_, $b_, $alpha_
-$r_ = '-'+$mid($args[0],1,2)
-$g_ = '-'+$mid($args[0],3,2)
-$b_ = '-'+$mid($args[0],5,2)
-$alpha_ = $iif(len($args[0]) = 8, $mid($args[0],7,2), '')
-$red_ = $mid(@em.col.add('ffffff', $r_), 1, 2)
-$green_ = $mid(@em.col.add('ffffff', $g_), 1, 2)
-$blue_ = $mid(@em.col.add('ffffff', $b_), 1, 2)
+local $r = '[A-Fa-f0-9]'
+if no (strcomp($args[0],$r+'{6}') or strcomp($args[0],$r+'{8}')): exit & !@ если переданное число не соответствует критериям, просто выходим
+local $red_, $green_, $blue_, r_, g_, b_, $alpha_
+r_ = 255 - @em.hex.in_dec($mid($args[0],1,2))
+g_ = 255 - @em.hex.in_dec($mid($args[0],3,2))
+b_ = 255 - @em.hex.in_dec($mid($args[0],5,2))
+$alpha_ = $mid($args[0],7,2)
+$red_ = @em.dec.in_col(r_)
+$green_ = @em.dec.in_col(g_)
+$blue_ = @em.dec.in_col(b_)
 $result = $red_ + $green_ + $blue_ + $alpha_
 --- em.col.inv ---------------------------------
 !@pp:endif
@@ -20,7 +21,8 @@ $result = $red_ + $green_ + $blue_ + $alpha_
 Функция использует функцию em.col.add бибилотеки.
 Подключение дополнительной функции:
 !@pp:if(em_col_inv!=True):nopp
-!@pp:var(em_col_add)
+!@pp:var(em_hex_in_dec)
+!@pp:var(em_dec_in_col)
 !@pp:endif
 
 @em.col.inv('000000')	& !@ 'ffffff'

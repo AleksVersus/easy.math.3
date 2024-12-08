@@ -1,7 +1,8 @@
 QSP-Game Функция складывает два шестнадцатеричных числа
 
-!@ $0 - первое слагаемое /обязательно текстовое/
-!@ $1 - второе слагаемое /обязательно текстовое/
+!@ $0 - первое слагаемое
+!@ $1 - второе слагаемое
+!@ $r - сумма двух чисел
 !@pp:if(em_hex_add):include
 # em.hex.add
 !@ инициализация локальных переменных и приведение слагаемых к единой длине
@@ -23,7 +24,7 @@ number_['c']=12 & $value_[12]='c'
 number_['d']=13 & $value_[13]='d'
 number_['e']=14 & $value_[14]='e'
 number_['f']=15 & $value_[15]='f'
-if len($first_add_)>len($second_add_): max_len_=len($first_add_) else max_len_=len($second_add_)
+max_len_ = iif(len($first_add_)>len($second_add_), len($first_add_), len($second_add_))
 local $em_zero_ = {	loop while args[0]>0 step args[0]-=1: $result+='0' } & !@ callback instead of using a function
 $first_add_ = $dyneval($em_zero_, max_len_-len($first_add_)) + $first_add_
 $second_add_ = $dyneval($em_zero_ ,max_len_-len($second_add_)) + $second_add_

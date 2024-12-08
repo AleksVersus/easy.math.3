@@ -12,6 +12,8 @@ if end_ = 0: end_ = -2
 !@ если номер передан, как отрицательное число, вычисляем его как положительное
 if start_ < 0: start_ = len($string_) + 1 + start_
 if end_ < 0: end_ = len($string_) + 1 + end_
+if start_ < 0: end_ += start_
+if start_ > len($string_) or end_ < 0: $result = '' & exit
 !@ в конце концов вычисляем результат
 $result = $mid($string_, start_, end_ - start_ + 1)
 --- em.str.slice ---------------------------------
@@ -21,7 +23,7 @@ $result = $mid($string_, start_, end_ - start_ + 1)
 с какого по какой вырезать из строки. Можно указывать отрицательные номера,
 тогда они считаются от конца строки.
 
-@em.slice('abcdefg') & ! bcdef
-@em.slice('abcdefghijklmnopqrstuvwxyz', -4, -1) & ! wxyz
-@em.slice('abcdefghijklmnopqrstuvwxyz', 15, 19) & ! opqrs
-@em.slice('abcdefghijklmnopqrstuvwxyz', 10, -10) & ! jklmnopq
+@em.str.slice('abcdefg') & ! bcdef
+@em.str.slice('abcdefghijklmnopqrstuvwxyz', -4, -1) & ! wxyz
+@em.str.slice('abcdefghijklmnopqrstuvwxyz', 15, 19) & ! opqrs
+@em.str.slice('abcdefghijklmnopqrstuvwxyz', 10, -10) & ! jklmnopq
