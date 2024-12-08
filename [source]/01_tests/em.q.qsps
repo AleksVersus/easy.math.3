@@ -1,0 +1,28 @@
+QSP-Game convert num in float
+
+!@ #0 - number
+!@ %r - float
+# em.q
+local l = len($str(args[0]))
+if l <= 6:
+	%result = [0, 0, args[0], 0, 0, 0]	
+else:
+	%result = [0, args[0]/1000000, args[0] mod 1000000, 0, 0, 0]
+end
+--- em.q ---------------------------------
+
+
+# em.q.summ
+local summ
+summ[0], summ[1], summ[2], summ[3], summ[4], summ[5] = %args[0]
+loop local j, add = 1, 0 while j < arrsize('%args') step j += 1:
+	add[0], add[1], add[2], add[3], add[4], add[5] = %args[j]
+	loop local i = 5 while i >= 0 step i -= 1:
+		summ[i] += add[i]
+		if len($str(summ[i])) > 6:
+			summ[i-1], summ[i] = summ[i-1]+summ[i]/1000000, summ[i] mod 1000000
+		end
+	end
+end
+%result = [summ[0], summ[1], summ[2], summ[3], summ[4], summ[5]]
+--- em.q.summ ---------------------------------

@@ -4,13 +4,16 @@ QSP-Game Функция предназначена для изменения ц�
 !@ $1 - значение. Шестнадцатеричный формат, двузначное число. (может быть отрицательным)
 !@pp:if(em_col_add):include
 # em.col.add
-if (no strcomp($args[0],'[A-Fa-f0-9]{6}')) and (no strcomp($args[0],'[A-Fa-f0-9]{8}')): $result = $args[0] & exit & !@ если переданное число не соответствует критериям, его и возвращаем
-local red_,green_,blue_,$minus_,$alpha_
-if instr($args[1],'-')=1: $minus_='-' & $args[1]=$mid($args[1],2) else $minus_='+'
-red_=dyneval('result = '+@em.hex.in_dec($mid($args[0],1,2))+$minus_+@em.hex.in_dec($args[1]))
-green_=dyneval('result = '+@em.hex.in_dec($mid($args[0],3,2))+$minus_+@em.hex.in_dec($args[1]))
-blue_=dyneval('result = '+@em.hex.in_dec($mid($args[0],5,2))+$minus_+@em.hex.in_dec($args[1]))
-$alpha_=$mid($args[0],7,2)
+local $r = '[A-Fa-f0-9]'
+!@ если переданное число не соответствует критериям, его и возвращаем
+if no (strcomp($args[0], $r+'{6}') or strcomp($args[0], $r+'{8}')): $result = $args[0] & exit
+local red_,green_,blue_,minus_,$alpha_,add_
+minus_, $args[1] = %iif(instr($args[1],'-')=1, [-1, $mid($args[1],2)], [1, $args[1]])
+add_ = minus_ * @em.hex.in_dec($args[1])
+red_	= @em.hex.in_dec($mid($args[0],1,2))+add_
+green_	= @em.hex.in_dec($mid($args[0],3,2))+add_
+blue_	= @em.hex.in_dec($mid($args[0],5,2))+add_
+$alpha_	= $mid($args[0],7,2)
 if red_>255: red_=255
 if red_<0: red_=0
 if green_>255: green_=255

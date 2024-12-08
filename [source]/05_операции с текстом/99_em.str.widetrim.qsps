@@ -52,8 +52,6 @@ $text="
 $args[0] - текст
 !@ !@pp:if(em_str_wt):include
 !@ # em.str.wt
-!@ local @em.RN_ = '
-!@ '
 !@ local run_, $not_trim_, $trim_ = 1, '', ''
 !@ loop while run_:
 !@ 	$not_trim_ = $strfind($args[0], '(?m:^.*$)')

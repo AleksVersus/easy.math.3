@@ -4,9 +4,15 @@ QSP-Game Преобразует цвет из шестнадцатеричног
 !@ #r - числовой код цвета в формате понятном QSP
 !@pp:if(en_col_in_rgb):include
 # em.col.in_rgb
-if (no strcomp($args[0],'[A-Fa-f0-9]{6}')) and (no strcomp($args[0],'[A-Fa-f0-9]{8}')): result = 0 & exit & !@ если переданное число не соответствует критериям, цветовой код по умолчанию
+local $r = '[A-Fa-f0-9]'
+local rr, gg, bb, aa
+if no (strcomp($args[0], $r+'{6}') or strcomp($args[0], $r+'{8}')): result = 0 & exit & !@ если переданное число не соответствует критериям, цветовой код по умолчанию
 if len($args[0])=6: $args[0]+='ff'
-result=rgb(@em.hex.in_dec($mid($args[0],1,2)),@em.hex.in_dec($mid($args[0],3,2)),@em.hex.in_dec($mid($args[0],5,2)),@em.hex.in_dec($mid($args[0],7,2)))
+rr = @em.hex.in_dec($mid($args[0],1,2))
+gg = @em.hex.in_dec($mid($args[0],3,2))
+bb = @em.hex.in_dec($mid($args[0],5,2))
+aa = @em.hex.in_dec($mid($args[0],7,2))
+result=rgb(rr,gg,bb,aa)
 --- em.col.in_rgb ---------------------------------
 !@pp:endif
 Функция использует функцию em.hex.in_dec. Для её автоматического подключения при сборке
