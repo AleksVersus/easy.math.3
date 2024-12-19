@@ -361,5 +361,5 @@ loop local i,size=0,arrsize('$functions') while i<size step i+=1:
 	end
 end
 *pl "End of Autotest."
-- em.autotest.self
+--- em.autotest.self ---------------------------------
 !@pp:endif

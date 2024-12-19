@@ -11,7 +11,7 @@ loop local base_ = 1 while no (args[0]/base_ < args[1]):
 	base_ *= args[1]
 	result += 1
 end
-- em.log
+--- em.log ---------------------------------
 !@pp:endif
 
 @em.log(10)	& !@ 1
