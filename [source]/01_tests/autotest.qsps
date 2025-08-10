@@ -169,8 +169,9 @@ elseif $args[0]='em.arr.clear':
 		@em.arr.clear('i', 2)
 		$result=@em.arr.print('i')
 	})
-elseif $args[0]='em.arr.desort':
-	$result=$dyneval({
+elseif $args[0] = 'em.arr.desort':
+	$result = $dyneval({
+		local old_mass, em_array, new_mass
 		old_mass[0]=949
 		old_mass[1]=913
 		old_mass[2]=269

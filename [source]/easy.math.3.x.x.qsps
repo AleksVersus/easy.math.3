@@ -1,4 +1,5 @@
-QSP-Game стартовая локация для теста библиотеки easy.math.
+QSP-Game стартовая локация библиотеки easy.math.
+
 # em.start
 !@ -------------- start settings for test easy.math --------------
 	!@ включаем обработчик строки ввода:

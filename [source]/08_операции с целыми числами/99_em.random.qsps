@@ -5,7 +5,7 @@ QSP-Game Функция выбрасывания случайного числа
 # em.random
 local em_random_temp_array_, j, k
 loop local i=0 while i < arrsize('args') step i+=1:
-	!@ получение чисел. Можно использовать функцию em.str.get_word
+	!@ получение чисел
 	j, k = %args[i]
 	loop while j <= k step j += 1:
 		if arrpos('em_random_temp_array_', j) = -1: em_random_temp_array_[] = j
