@@ -14,7 +14,7 @@
             "module": "..\\..\\[releases]\\easy.math\\easy.math.qsp"
         }
     ],
-    "player": "..\\..\\..\\..\\QSP 590 QG 410b\\qspgui.exe",
+    "player": "C:\\Program Files (x86)\\QSP Classic 0.0.0\\bin\\qspgui.exe",
     "start": "..\\..\\[releases]\\easy.math\\easy.math.qsp",
     "preprocessor": "On"
 }
