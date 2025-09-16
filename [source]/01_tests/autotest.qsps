@@ -169,7 +169,7 @@ elseif $args[0]='em.arr.clear':
 		@em.arr.clear('i', 2)
 		$result=@em.arr.print('i')
 	})
-elseif $args[0] = 'em.arr.desort':
+elseif $args[0]='em.arr.desort':
 	$result = $dyneval({
 		local old_mass, em_array, new_mass
 		old_mass[0]=949
@@ -380,24 +380,6 @@ elseif $args[0]='em.hex.add':
 		$result+=@em.hex.add('ffe','1')+$nr
 		$result+=@em.hex.add('fef','1')+$nr
 		$result+=@em.hex.add('aaaaaa','cc')+$nr
-	})
-elseif $args[0]='em.var.get_type':
-	$result = $dyneval({
-		local $string='text'
-		local number=123
-		local $varname[0]='text' & varname[0]=123
-		local $emptyvar[0]=''
-		local emptyvar[1]=0
-		local $tuple=(1,2,3)
-		local %real_tuple = (1, 2, 3)
-		! результат работы функции
-		$result+='['+@em.var.get_type('string')+']'  & !@ 'str'
-		$result+='['+@em.var.get_type('number')+']'   & !@ 'num'
-		$result+='['+@em.var.get_type('varname')+']' & !@ 'num'
-		$result+='['+@em.var.get_type('emptyvar', 0)+']' & !@ ''
-		$result+='['+@em.var.get_type('emptyvar', 1)+']'  & !@ ''
-		$result+='['+@em.var.get_type('tuple')+']'   & !@ 'str'
-		$result+='['+@em.var.get_type('real_tuple')+']'   & !@ 'tpl'
 	})
 elseif $args[0]='em.tag.get_num':
 	$result = $dyneval({

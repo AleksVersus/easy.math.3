@@ -322,11 +322,6 @@ $example['em.str.thin']="п р о ф е с с у р а
 "
 end
 
-if instr($args[0], 'em.var.get_type') <> 0 or $args[0] = '':
-	$functions[]= 'em.var.get_type'
-	$example['em.var.get_type'] = "[str][num][num][][][str][tpl]"
-end
-
 if instr($args[0], 'em.tag.get_num') <> 0 or $args[0] = '':
 	$functions[]= 'em.tag.get_num'
 	$example['em.tag.get_num'] = "[текст с пробелом][68][непробельные_символы][ff8899][многа букав][][ff8899]"
