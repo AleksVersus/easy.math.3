@@ -28,7 +28,7 @@ max_len_ = iif(len($first_add_)>len($second_add_), len($first_add_), len($second
 local $em_zero_ = {	loop while args[0]>0 step args[0]-=1: $result+='0' } & !@ callback instead of using a function
 $first_add_ = $dyneval($em_zero_, max_len_-len($first_add_)) + $first_add_
 $second_add_ = $dyneval($em_zero_ ,max_len_-len($second_add_)) + $second_add_
-loop local last_byte_,run=0,1 while run:
+loop local last_byte_, run_ = 0, 1 while run_:
 	$result=''
 	last_byte_=0
 	loop local i,res_byte_=max_len_,0 while i>0 step i-=1:
@@ -47,7 +47,7 @@ loop local last_byte_,run=0,1 while run:
 		!@ Это число ставим самым верхним разрядом
 		$result=$value_[last_byte_]+$result	
 	end
-	run=0	& !@ прерываем внешний цикл
+	run_=0	& !@ прерываем внешний цикл
 end
 --- em.hex.add ---------------------------------
 !@pp:endif

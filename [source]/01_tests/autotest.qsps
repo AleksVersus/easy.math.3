@@ -241,6 +241,33 @@ elseif $args[0]='em.arr.sort':
 		$result+=@em.arr.print('$mass')+@em.RN
 		$result+=@em.arr.print('em_array')
 	})
+elseif $args[0]='em.arr.restand':
+	$result = $dyneval({
+		$arr_mass[0]='голова'
+		$arr_mass[1]='плечи'
+		$arr_mass[2]='грудь'
+		$arr_mass[3]='живот'
+		$arr_mass[4]='бёдра'
+		$arr_mass[5]='колени'
+		$arr_mass[6]='икры'
+		$arr_mass[7]='ступни'
+
+		old_mass[0]=722
+		old_mass[1]=136
+		old_mass[2]=788
+		old_mass[3]=177
+		old_mass[4]=780
+		old_mass[5]=97
+		old_mass[6]=649
+		old_mass[7]=75
+
+		@@em.arr.sort('old_mass',0,'em_array')
+		@@em.arr.restand('$arr_mass','em_array','$new_mass')
+
+		$result+=@em.arr.print('old_mass')+@em.RN
+		$result+=@em.arr.print('em_array')+@em.RN
+		$result+=@em.arr.print('$new_mass')
+	})
 elseif $args[0]='em.arr.simpl':
 	$result=$dyneval({
 		local mass1, mass2, mass3

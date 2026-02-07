@@ -6,17 +6,18 @@ QSP-Game Процедура перетасовывает элементы мас
 !@pp:if(em_arr_restand):include
 # em.arr.restand
 !@pp:if(em_fuse):include
-if $args[0] = '': msg 'em.arr.desort: Wrong array name → <<$args[0]>>' & exit
-if $args[1] <> '' and instr('$%', $mid($args[1], 1, 1)): msg 'em.arr.desort: type prefix cannot be specified → <<$args[1]>>' & exit
+if no $args[0]: msg 'em.arr.desort: Wrong array name → <<$args[0]>>' & exit
+if $args[1] and instr('$%', $mid($args[1], 1, 1)): msg 'em.arr.desort: type prefix cannot be specified → <<$args[1]>>' & exit
 !@pp:endif
 if $args[2] = '': $args[2] = $args[0]	& !@ если не указан массив результатов, результат помещается в исходный
 $args[21] = iif(instr('$%', $mid($args[0],1,1)), $mid($args[0],1,1), '')	& !@ type prefix
 local em_arr_restand_copy_array_
 !@ с помощью цикла вставляем элементы во временный массив
-loop args[22],args[23] = 0,arrsize[23]($args[1]) while args[22]<args[23] step args[22]+=1:
-	dynamic "
-		<<$args[21]>>em_arr_restand_copy_array_[args[0]] = <<$args[0]>>[args[1]]
-	", args[22], arritem($args[1], args[22])
+loop args[22],args[23] = 0,arrsize($args[1]) while args[22]<args[23] step args[22]+=1:
+	!@ dynamic "
+	!@ 	<<$args[21]>>em_arr_restand_copy_array_[args[0]] = <<$args[0]>>[args[1]]
+	!@ ", args[22], arritem($args[1], args[22])
+	setvar '<<$args[21]>>em_arr_restand_copy_array_', arritem($args[0], arritem($args[1], args[22])), args[22]
 end
 copyarr $args[2], "em_arr_restand_copy_array_"	& !@ копируем данные из временного массива в результирующий
 --- em.arr.restand ---------------------------------

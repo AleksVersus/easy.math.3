@@ -7,7 +7,11 @@ loop local i = 0 while i < 36 step i += 1:
 	if instr('[8][13][18][23]', '[<<i>>]'):
 		$result += '-'
 	else
-		$result += $str($mid($symbols_, rand(1,len($symbols_)), 1))
+		$result += $str($mid(
+						$symbols_
+						, rand(1,len($symbols_))
+						, 1
+					))
 	end
 end
 --- em.gen_uuid ---------------------------------
