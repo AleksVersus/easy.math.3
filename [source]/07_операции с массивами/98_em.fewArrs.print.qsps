@@ -137,7 +137,7 @@ end
 --- em.fewArrs.print ---------------------------------
 !@pp:endif
 
-!@pp:if(em_fewarrs_print!=True):nopp
+!@pp:if(em_fewarrs_print!=True):off
 !@pp:var(em_rn)
 !@pp:var(em_html_to_mnemonics)
 !@pp:endif

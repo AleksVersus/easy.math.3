@@ -46,7 +46,7 @@ end
 --- em.arr.print ---------------------------------
 !@pp:endif
 
-!@pp:if(em_arr_print!=True):nopp
+!@pp:if(em_arr_print!=True):off
 !@pp:var(em_rn)
 !@pp:endif
 

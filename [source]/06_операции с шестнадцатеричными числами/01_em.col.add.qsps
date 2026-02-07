@@ -25,7 +25,7 @@ $result=@em.dec.in_col(red_)+@em.dec.in_col(green_)+@em.dec.in_col(blue_)+$alpha
 !@pp:endif
 
 Функция использует функции em.hex.in_dec и em.dec.in_hex
-!@pp:if(em_col_add!=True):nopp
+!@pp:if(em_col_add!=True):off
 !@pp:var(em_hex_in_dec)
 !@pp:var(em_dec_in_hex)
 !@pp:endif

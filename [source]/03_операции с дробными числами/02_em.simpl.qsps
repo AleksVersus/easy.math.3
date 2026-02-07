@@ -104,7 +104,7 @@ $result=@em.dz($result)
 !@pp:endif
 
 Функция использует функции библиотеки em.dz и em.zero
-!@pp:if(em_simpl!=True):nopp
+!@pp:if(em_simpl!=True):off
 !@pp:var(em_dz)
 !@pp:var(em_zero)
 !@pp:endif

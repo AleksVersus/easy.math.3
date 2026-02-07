@@ -26,7 +26,7 @@ copyarr $args[2], 'em_arr_desort_reflect_array_'
 --- em.arr.deSort ---------------------------------
 !@pp:endif
 
-!@pp:if(em_arr_desort!=True):nopp
+!@pp:if(em_arr_desort!=True):off
 !@pp:var(em_arr_concatenate)
 !@pp:endif
 

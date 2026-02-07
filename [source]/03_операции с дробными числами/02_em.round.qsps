@@ -72,7 +72,7 @@ $result=@em.dz($minus+$mid($float['number'],1,dot_pos)+'.'+$mid($float['number']
 
 Функция использует функции em.zero и em.dz.
 
-!@pp:if(em_round!=True):nopp
+!@pp:if(em_round!=True):off
 !@pp:var(em_dz)
 !@pp:var(em_zero)
 !@pp:endif

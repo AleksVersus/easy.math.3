@@ -16,7 +16,7 @@ result=rgb(rr_, gg_, bb_, aa_)
 --- em.col.in_rgb ---------------------------------
 !@pp:endif
 Функция использует функцию em.hex.in_dec. Для её автоматического подключения при сборке
-!@pp:if(en_col_in_rgb!=True):nopp
+!@pp:if(en_col_in_rgb!=True):off
 !@pp:var(em_hex_in_dec)
 !@pp:endif
 

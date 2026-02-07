@@ -78,7 +78,7 @@ end
 
 Функция использует функции em.dz, em.zero, em.byte.add
 
-!@pp:if(em_mult!=True):nopp
+!@pp:if(em_mult!=True):off
 !@pp:var(em_dz)
 !@pp:var(em_zero)
 !@pp:var(em_byet_add)

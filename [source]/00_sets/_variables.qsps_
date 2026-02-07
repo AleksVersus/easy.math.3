@@ -16,7 +16,7 @@ QSP-Game Список меток для всех функций библиоте
 !@pp:var(em_str_get_word)
 !@pp:var(em_str_in_regexp)
 !@pp:var(em_tag_get_cont)
-!@pp:var(em.tag.get_num)
+!@pp:var(em_tag_get_num)
 Операции с дробными числами
 !@pp:var(em_sqrt)
 !@pp:var(em_add)

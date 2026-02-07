@@ -83,7 +83,7 @@ end
 
 Используются функции 'em.div', em.add, 'em.mult'
 
-!@pp:if(em_sqrt!=True):nopp
+!@pp:if(em_sqrt!=True):off
 !@pp:var(em_mult)
 !@pp:var(em_add)
 !@pp:var(em_div)

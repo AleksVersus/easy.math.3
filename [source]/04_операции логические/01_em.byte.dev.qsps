@@ -45,7 +45,7 @@ end
 
 Функция использует функцию em.zero
 
-!@pp:if(em_byte_dev!=True):nopp
+!@pp:if(em_byte_dev!=True):off
 !@pp:var(em_zero)
 !@pp:endif
 

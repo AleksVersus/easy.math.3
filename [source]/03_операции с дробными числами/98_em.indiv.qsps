@@ -26,7 +26,7 @@ $result=$minus+@em.dz($res_indiv)	& !@ возвращаем результат
 
 Функция использует функцию delete_zero, она же em.dz, она же em.dz. В новой версии em.float.dz
 
-!@pp:if(em_indiv!=True):nopp
+!@pp:if(em_indiv!=True):off
 !@pp:var(em_dz)
 !@pp:endif
 

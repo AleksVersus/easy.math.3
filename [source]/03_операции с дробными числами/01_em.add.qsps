@@ -72,7 +72,7 @@ $summ_ - сумма
 
 Функция использует функции em.byte.add, em.byte.dev, em.zero, em.dz
 
-!@pp:if(em_add!=True):nopp
+!@pp:if(em_add!=True):off
 !@pp:var(em_dz)
 !@pp:var(em_zero)
 !@pp:var(em_byte_add)

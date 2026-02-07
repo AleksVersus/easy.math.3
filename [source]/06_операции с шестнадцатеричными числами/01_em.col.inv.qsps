@@ -20,7 +20,7 @@ $result = $red_ + $green_ + $blue_ + $alpha_
 
 Функция использует функцию em.col.add бибилотеки.
 Подключение дополнительной функции:
-!@pp:if(em_col_inv!=True):nopp
+!@pp:if(em_col_inv!=True):off
 !@pp:var(em_hex_in_dec)
 !@pp:var(em_dec_in_col)
 !@pp:endif

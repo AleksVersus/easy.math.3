@@ -59,7 +59,7 @@ $result = @em.zero(max_len_ - len($sum_)) + $sum_
 
 Функция использует функцию em.zero
 
-!@pp:if(em_byte_add!=True):nopp
+!@pp:if(em_byte_add!=True):off
 !@pp:var(em_zero)
 !@pp:endif
 

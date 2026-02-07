@@ -108,7 +108,7 @@ $func('em.div','3123.869504',"3.7",1000000)
 
 Функция использует функции em.dz em.byte.dev и em.zero
 
-!@pp:if(em_add!=True):nopp
+!@pp:if(em_add!=True):off
 !@pp:var(em_dz)
 !@pp:var(em_zero)
 !@pp:var(em_byte_dev)
