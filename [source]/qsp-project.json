@@ -11,7 +11,8 @@
                     "path": "."
                 }
             ],
-            "module": "..\\..\\[releases]\\easy.math\\easy.math.qsp"
+            "module": "..\\..\\[releases]\\easy.math\\easy.math.qsp",
+            "start_qsploc_file": ".\\easy.math.3.x.x.qsps"
         }
     ],
     "player": "..\\..\\..\\..\\QSP 000 QG 410b\\qspgui.exe",
