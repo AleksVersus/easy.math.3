@@ -2,16 +2,12 @@ QSP-Game Генерация UUID
 
 !@pp:if(em_gen_uuid):include
 # em.gen_uuid
-local $symbols_ = '0123456789abcdef'
+local $symbols_ = '0123456789abcdef' & !@ всегда 16 символов
 loop local i = 0 while i < 36 step i += 1:
 	if instr('[8][13][18][23]', '[<<i>>]'):
 		$result += '-'
-	else
-		$result += $str($mid(
-						$symbols_
-						, rand(1,len($symbols_))
-						, 1
-					))
+	else:
+		$result += $mid($symbols_, rand(1,16), 1)
 	end
 end
 --- em.gen_uuid ---------------------------------

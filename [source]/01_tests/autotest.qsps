@@ -181,7 +181,7 @@ elseif $args[0]='em.arr.desort':
 		old_mass[6]=529
 		old_mass[7]=293
 		!@ сортируем массив
-		@em.arr.sort('old_mass',0,'em_array')
+		@@em_arr_sort('old_mass',0,'em_array')
 		$result+=@em.arr.print('old_mass')+@em.RN
 		$result+=@em.arr.print('em_array')+@em.RN
 		!@ восстанавливаем исходный массив в новом массиве
@@ -199,7 +199,7 @@ elseif $args[0]='em.arr.sort':
 		old_mass[6]=730
 		old_mass[7]=565
 
-		@em.arr.sort('old_mass')
+		@@em_arr_sort('old_mass')
 		$result+=@em.arr.print('old_mass')+@em.RN
 
 		old_mass[0]=966
@@ -211,7 +211,7 @@ elseif $args[0]='em.arr.sort':
 		old_mass[6]=901
 		old_mass[7]=132
 
-		@em.arr.sort('old_mass',0,'em_array')
+		@@em_arr_sort('old_mass',0,'em_array')
 		$result+=@em.arr.print('old_mass')+@em.RN
 		$result+=@em.arr.print('em_array')+@em.RN
 
@@ -224,7 +224,7 @@ elseif $args[0]='em.arr.sort':
 		%old_mass[6]=[318, 'ступни']
 		%old_mass[7]=[529, 'нишваа']
 
-		@em.arr.sort('%old_mass',0,'em_array','%new_mass')
+		@@em_arr_sort('%old_mass',0,'em_array','%new_mass')
 
 		$result+=@em.arr.print('%old_mass')+@em.RN
 		$result+=@em.arr.print('em_array')+@em.RN
@@ -237,7 +237,7 @@ elseif $args[0]='em.arr.sort':
 		$mass[4]='8888ff'
 		$mass[5]='fff8f8'
 
-		@em.arr.sort('$mass',1,'em_array')
+		@@em_arr_sort('$mass',1,'em_array')
 		$result+=@em.arr.print('$mass')+@em.RN
 		$result+=@em.arr.print('em_array')
 	})
@@ -261,7 +261,7 @@ elseif $args[0]='em.arr.restand':
 		old_mass[6]=649
 		old_mass[7]=75
 
-		@@em.arr.sort('old_mass',0,'em_array')
+		@@em_arr_sort('old_mass',0,'em_array')
 		@@em.arr.restand('$arr_mass','em_array','$new_mass')
 
 		$result+=@em.arr.print('old_mass')+@em.RN

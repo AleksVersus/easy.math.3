@@ -30,7 +30,7 @@ loop local i, size_ = 0, arrsize('em_arr_print_copy_array_') while i<size_ step 
 		$args[25] = $em_arr_print_copy_array_[i]
 		if instr($args[1], '[trim]'): $args[25] = $trim($args[25])
 		if no args[24]:
-			$args[25] = $replace($args[25], $quotes_, "''")
+			$args[25] = $replace($args[25], $quotes_, "''") & !@ TODO: $quotes_ - не объявленная переменная
 			$result += "'<<$args[25]>>'"
 		else:
 			$result += $args[25]
