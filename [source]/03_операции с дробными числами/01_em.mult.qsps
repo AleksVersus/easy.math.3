@@ -5,7 +5,8 @@ minus - знак, который получится в результате ум
 !@pp:if(em_mult):include
 # em.mult
 !@ следующий цикл инициализирует числа
-local minus, dot_pos, fract_len
+local minus, dot_pos
+local fract_len = 0
 loop local i,size=0,arrsize('args') while i<size step i+=1:
 	if len($args[i])=0:
 		!@ если передано не строковое значение, значит передано числовое

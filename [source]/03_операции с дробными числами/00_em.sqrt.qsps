@@ -11,57 +11,57 @@ if $args[0]='0': $result = '0' & exit
 if args[1] = 0: args[1] = 100
 if $args[2]='':
 	$args[2]=$dyneval({
-		local $int	& !@ целая часть числа
-		if instr($args[0],'.')<>0: $int=$mid($args[0],1,instr($args[0],'.')-1) else $int=$args[0]
-		if len($int)>10 or (len($int)=10 and $mid($int,1,1)='2'): $result='46340' & exit
-		if (len($int)=10 and $mid($int,1,1)='1') or (len($int)=9 and $mid($int,1,1)='9'): $result='31622' & exit
-		if (len($int)=9 and $mid($int,1,1)='1') or (len($int)=8 and $mid($int,1,1)='9'): $result='10000' & exit
-		if (len($int)=8 and $mid($int,1,1)='1') or (len($int)=7 and $mid($int,1,1)='9'): $result='3162' & exit
-		if (len($int)=7 and $mid($int,1,1)='1') or (len($int)=6 and $mid($int,1,1)='9'): $result='1000' & exit
-		if (len($int)=6 and $mid($int,1,1)='1') or (len($int)=5 and $mid($int,1,1)='9'): $result='316' & exit
-		if (len($int)=5 and $mid($int,1,1)='1') or (len($int)=4 and $mid($int,1,1)='9'): $result='100' & exit
-		if (len($int)=4 and $mid($int,1,1)='8'): $result='90' & exit
-		if (len($int)=4 and $mid($int,1,1)='7'): $result='84' & exit
-		if (len($int)=4 and $mid($int,1,1)='6'): $result='78' & exit
-		if (len($int)=4 and $mid($int,1,1)='5'): $result='71' & exit
-		if (len($int)=4 and $mid($int,1,1)='4'): $result='64' & exit
-		if (len($int)=4 and $mid($int,1,1)='3'): $result='55' & exit
-		if (len($int)=4 and $mid($int,1,1)='2'): $result='45' & exit
-		if (len($int)=4 and $mid($int,1,1)='1'): $result='32' & exit
-		if len($int)=3:
-			int=val($int)
-			if int>960: $result='32' & exit
-			if int>900: $result='31' & exit
-			if int>841: $result='30' & exit
-			if int>784: $result='29' & exit
-			if int>729: $result='28' & exit
-			if int>676: $result='27' & exit
-			if int>625: $result='26' & exit
-			if int>576: $result='25' & exit
-			if int>529: $result='24' & exit
-			if int>484: $result='23' & exit
-			if int>441: $result='22' & exit
-			if int>400: $result='21' & exit
-			if int>361: $result='20' & exit
-			if int>324: $result='19' & exit
-			if int>289: $result='18' & exit
-			if int>256: $result='17' & exit
-			if int>225: $result='16' & exit
-			if int>196: $result='15' & exit
-			if int>169: $result='14' & exit
-			if int>144: $result='13' & exit
-			if int>121: $result='12' & exit
-			if int>100: $result='11' & exit
-			if int>81: $result='10' & exit
-			if int>64: $result='9' & exit
-			if int>49: $result='8' & exit
-			if int>36: $result='7' & exit
-			if int>25: $result='6' & exit
-			if int>16: $result='5' & exit
-			if int>9: $result='4' & exit
-			if int>4: $result='3' & exit
-			if int>1: $result='2' & exit
-			if int>0: $result='1' & exit
+		local $int_	& !@ целая часть числа
+		if instr($args[0],'.')<>0: $int_=$mid($args[0],1,instr($args[0],'.')-1) else $int_=$args[0]
+		if len($int_)>10 or (len($int_)=10 and $mid($int_,1,1)='2'): $result='46340' & exit
+		if (len($int_)=10 and $mid($int_,1,1)='1') or (len($int_)=9 and $mid($int_,1,1)='9'): $result='31622' & exit
+		if (len($int_)=9 and $mid($int_,1,1)='1') or (len($int_)=8 and $mid($int_,1,1)='9'): $result='10000' & exit
+		if (len($int_)=8 and $mid($int_,1,1)='1') or (len($int_)=7 and $mid($int_,1,1)='9'): $result='3162' & exit
+		if (len($int_)=7 and $mid($int_,1,1)='1') or (len($int_)=6 and $mid($int_,1,1)='9'): $result='1000' & exit
+		if (len($int_)=6 and $mid($int_,1,1)='1') or (len($int_)=5 and $mid($int_,1,1)='9'): $result='316' & exit
+		if (len($int_)=5 and $mid($int_,1,1)='1') or (len($int_)=4 and $mid($int_,1,1)='9'): $result='100' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='8'): $result='90' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='7'): $result='84' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='6'): $result='78' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='5'): $result='71' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='4'): $result='64' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='3'): $result='55' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='2'): $result='45' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='1'): $result='32' & exit
+		if len($int_)=3:
+			local i=val($int_)
+			if i>960: $result='32' & exit
+			if i>900: $result='31' & exit
+			if i>841: $result='30' & exit
+			if i>784: $result='29' & exit
+			if i>729: $result='28' & exit
+			if i>676: $result='27' & exit
+			if i>625: $result='26' & exit
+			if i>576: $result='25' & exit
+			if i>529: $result='24' & exit
+			if i>484: $result='23' & exit
+			if i>441: $result='22' & exit
+			if i>400: $result='21' & exit
+			if i>361: $result='20' & exit
+			if i>324: $result='19' & exit
+			if i>289: $result='18' & exit
+			if i>256: $result='17' & exit
+			if i>225: $result='16' & exit
+			if i>196: $result='15' & exit
+			if i>169: $result='14' & exit
+			if i>144: $result='13' & exit
+			if i>121: $result='12' & exit
+			if i>100: $result='11' & exit
+			if i>81: $result='10' & exit
+			if i>64: $result='9' & exit
+			if i>49: $result='8' & exit
+			if i>36: $result='7' & exit
+			if i>25: $result='6' & exit
+			if i>16: $result='5' & exit
+			if i>9: $result='4' & exit
+			if i>4: $result='3' & exit
+			if i>1: $result='2' & exit
+			if i>0: $result='1' & exit
 		end
 		$result='1'
 

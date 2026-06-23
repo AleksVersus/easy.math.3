@@ -5,9 +5,11 @@ QSP-Game Функция тестов для easy.math
 # em.autotest
 $args[0]=$lcase($args[0])
 local $nr=@em.RN
+$result = ''
 if $args[0]='em.fewarrs.print':
 	$result=$dyneval({
 		local $a, %b, $c, %d
+		$result = ''
 		$a[]='нулевая ячейка'
 		$a[]='первая ячейка'
 		$a[]='вторая ячейка'
@@ -33,6 +35,7 @@ if $args[0]='em.fewarrs.print':
 	})
 elseif $args[0]='em.simpl':
 	$result=dyneval ({
+		$result = ''
 		$result+=@em.simpl('9.05',"-9")+$nr		& !@ '9.05'
 		$result+=@em.simpl('9.05','-9.05')+$nr	& !@ '9.05'
 		$result+=@em.simpl('9.05',"10")+$nr		& !@ '10'
@@ -45,6 +48,7 @@ elseif $args[0]='em.simpl':
 	})
 elseif $args[0]='em.round':
 	$result=$dyneval ({
+		$result = ''
 		$result+=@em.round("945.459","0.1")+$nr  			& !@ '945.5'
 		$result+=@em.round("945.459","0.1",'[down]')+$nr	& !@ '945.4'
 		$result+=@em.round("945.444","0.1",'[up]')+$nr		& !@ '945.5'
@@ -58,6 +62,7 @@ elseif $args[0]='em.round':
 	})
 elseif $args[0]='em.mult':
 	$result=$dyneval ({
+		$result = ''
 		$result+=@em.mult("38.4","2.5")+$nr									& !@ '96'
 		$result+=@em.mult('9.05',"-9.05")+$nr								& !@ '-81.9025'
 		$result+=@em.mult('9.05',"10")+$nr									& !@ '90.5'
@@ -68,6 +73,7 @@ elseif $args[0]='em.mult':
 	})
 elseif $args[0]='em.div':
 	$result=$dyneval ({
+		$result = ''
 		$result+=@em.div('9.05',"-9",10000)+$nr		& !@ '-1.0055'
 		$result+=@em.div('9.05','-9.05',10000)+$nr	& !@ '-1'
 		$result+=@em.div('9.05',"10")+$nr			& !@ '0.905'
@@ -81,6 +87,7 @@ elseif $args[0]='em.div':
 	})
 elseif $args[0]='em.add':
 	$result=$dyneval({
+		$result = ''
 		$result+=@em.add('9.05','-9')+$nr							& !@ '0.05'
 		$result+=@em.add('9.05','-9.05')+$nr						& !@ '0'
 		$result+=@em.add('9.05','9')+$nr							& !@ '18.05'
@@ -95,6 +102,7 @@ elseif $args[0]='em.add':
 	})
 elseif $args[0]='em.sqrt':
 	$result=$dyneval({
+		$result = ''
 		$result+=@em.sqrt('1000',10000)+$nr	& !@ 31.6227
 		$result+=@em.sqrt('16',10000)+$nr	& !@ 4
 		$result+=@em.sqrt('257',100000)+$nr	& !@ 16.03121
@@ -109,6 +117,7 @@ elseif $args[0]='em.sqrt':
 	})
 elseif $args[0]='em.byte.add':
 	$result=$dyneval({
+		$result = ''
 		$result+=@em.byte.add(998765,273)	& !@ '999038'
 		$result+=@em.byte.add('9987Y5','-273')	& !@ '998978'
 		$result+=@em.byte.add('999999','6273')	& !@ '006273'
@@ -116,6 +125,7 @@ elseif $args[0]='em.byte.add':
 	})
 elseif $args[0]='em.byte.dev':
 	$result=$dyneval({
+		$result = ''
 		$result+=@em.byte.dev(998765,273)	& !@ '998492'
 		$result+=@em.byte.dev('9987Y5','-273')	& !@ '998432'
 		$result+=@em.byte.dev('999999','6273')	& !@ '993726'
@@ -123,6 +133,7 @@ elseif $args[0]='em.byte.dev':
 	})
 elseif $args[0]='em.arr.print':
 	$result=$dyneval({
+		$result = ''
 		local $a
 		$a[]='нулевая ячейка'
 		$a[]='   первая ячейка   '
@@ -141,6 +152,7 @@ elseif $args[0]='em.arr.print':
 	})
 elseif $args[0]='em.arr.insert':
 	$result=$dyneval({
+		$result = ''
 		local mass
 		mass[0]=574
 		mass[1]=668
@@ -151,11 +163,12 @@ elseif $args[0]='em.arr.insert':
 		mass[6]=701
 		mass[7]=272
 
-		@em.arr.insert('mass',6,4)
+		@@em.arr.insert 'mass',6,4
 		$result+=@em.arr.print('mass')
 	})
 elseif $args[0]='em.arr.clear':
 	$result=$dyneval({
+		$result = ''
 		local i
 		i[0]=1
 		i[1]=2
@@ -166,11 +179,12 @@ elseif $args[0]='em.arr.clear':
 		i[6]=1
 		i[7]=2
 
-		@em.arr.clear('i', 2)
+		@@em.arr.clear 'i', 2
 		$result=@em.arr.print('i')
 	})
 elseif $args[0]='em.arr.desort':
 	$result = $dyneval({
+		$result = ''
 		local old_mass, em_array, new_mass
 		old_mass[0]=949
 		old_mass[1]=913
@@ -181,15 +195,16 @@ elseif $args[0]='em.arr.desort':
 		old_mass[6]=529
 		old_mass[7]=293
 		!@ сортируем массив
-		@@em_arr_sort('old_mass',0,'em_array')
+		@@em.arr.sort 'old_mass',0,'em_array'
 		$result+=@em.arr.print('old_mass')+@em.RN
 		$result+=@em.arr.print('em_array')+@em.RN
 		!@ восстанавливаем исходный массив в новом массиве
-		@em.arr.deSort('old_mass','em_array','new_mass')
+		@@em.arr.deSort 'old_mass','em_array','new_mass'
 		$result+=@em.arr.print('new_mass')
 	})
 elseif $args[0]='em.arr.sort':
 	$result=$dyneval({
+		$result = ''
 		old_mass[0]=157
 		old_mass[1]=250
 		old_mass[2]=709
@@ -199,7 +214,7 @@ elseif $args[0]='em.arr.sort':
 		old_mass[6]=730
 		old_mass[7]=565
 
-		@@em_arr_sort('old_mass')
+		@@em.arr.sort('old_mass')
 		$result+=@em.arr.print('old_mass')+@em.RN
 
 		old_mass[0]=966
@@ -211,7 +226,7 @@ elseif $args[0]='em.arr.sort':
 		old_mass[6]=901
 		old_mass[7]=132
 
-		@@em_arr_sort('old_mass',0,'em_array')
+		@@em.arr.sort('old_mass',0,'em_array')
 		$result+=@em.arr.print('old_mass')+@em.RN
 		$result+=@em.arr.print('em_array')+@em.RN
 
@@ -224,7 +239,7 @@ elseif $args[0]='em.arr.sort':
 		%old_mass[6]=[318, 'ступни']
 		%old_mass[7]=[529, 'нишваа']
 
-		@@em_arr_sort('%old_mass',0,'em_array','%new_mass')
+		@@em.arr.sort('%old_mass',0,'em_array','%new_mass')
 
 		$result+=@em.arr.print('%old_mass')+@em.RN
 		$result+=@em.arr.print('em_array')+@em.RN
@@ -237,12 +252,13 @@ elseif $args[0]='em.arr.sort':
 		$mass[4]='8888ff'
 		$mass[5]='fff8f8'
 
-		@@em_arr_sort('$mass',1,'em_array')
+		@@em.arr.sort('$mass',1,'em_array')
 		$result+=@em.arr.print('$mass')+@em.RN
 		$result+=@em.arr.print('em_array')
 	})
 elseif $args[0]='em.arr.restand':
 	$result = $dyneval({
+		$result = ''
 		$arr_mass[0]='голова'
 		$arr_mass[1]='плечи'
 		$arr_mass[2]='грудь'
@@ -261,8 +277,8 @@ elseif $args[0]='em.arr.restand':
 		old_mass[6]=649
 		old_mass[7]=75
 
-		@@em_arr_sort('old_mass',0,'em_array')
-		@@em.arr.restand('$arr_mass','em_array','$new_mass')
+		@@em.arr.sort 'old_mass',0,'em_array'
+		@@em.arr.restand '$arr_mass','em_array','$new_mass'
 
 		$result+=@em.arr.print('old_mass')+@em.RN
 		$result+=@em.arr.print('em_array')+@em.RN
@@ -270,6 +286,7 @@ elseif $args[0]='em.arr.restand':
 	})
 elseif $args[0]='em.arr.simpl':
 	$result=$dyneval({
+		$result = ''
 		local mass1, mass2, mass3
 		mass1[0]=455
 		mass1[1]=705
@@ -304,6 +321,7 @@ elseif $args[0]='em.arr.simpl':
 	})
 elseif $args[0]='em.zero':
 	$result=$dyneval({
+		$result = ''
 		$result+=@em.zero(13)+$nr	& !@ '0000000000000'
 		$result+=@em.zero(13,'1')+$nr	& !@ '1111111111111'
 		$result+=@em.zero(13,'10')+$nr	& !@ '10101010101010101010101010'
@@ -388,6 +406,7 @@ elseif $args[0]='em.zero':
 !@ 		})
 elseif $args[0]='em.str.thin':
 	$result=$dyneval({
+		$result = ''
 		$result+=@em.str.thin('профессура')+$nr
 		$result+=@em.str.thin('профессура',1,'|')+$nr
 		$result+=@em.str.thin('профессура',1,'|','[right]')+$nr
@@ -401,6 +420,7 @@ elseif $args[0]='em.str.thin':
 	})
 elseif $args[0]='em.hex.add':
 	$result=$dyneval({
+		$result = ''
 		$result+=@em.hex.add('ffeeff','a1')+$nr
 		$result+=@em.hex.add('f0','f')+$nr
 		$result+=@em.hex.add('ff','1')+$nr
@@ -410,6 +430,7 @@ elseif $args[0]='em.hex.add':
 	})
 elseif $args[0]='em.tag.get_num':
 	$result = $dyneval({
+		$result = ''
 		local $text="[count:текст с пробелом] <cord:68> log:непробельные_символы color=#ff8899 tag='многа букав'"
 		$result += '[' + @em.tag.get_num($text,'count')+ ']'   & !@ "текст с пробелом"
 		$result += '[' + @em.tag.get_num($text,'cord')+ ']'     & !@ '68'

@@ -6,6 +6,7 @@ QSP-Game Возвращает строку случайных символов
 !@pp:if(em_str_random):include
 # em.str.random
 if args[0]=0: args[0]=rand(1,8)
+$result = ''
 local $symbols_, $new_symbols_ = '', ''	& !@ инициализируем переменную symbols и new_symbols
 if $strfind($args[1],'(?i)\[inc(lude)?\]')<>'':
 	$args[1]=$lcase($args[1])
