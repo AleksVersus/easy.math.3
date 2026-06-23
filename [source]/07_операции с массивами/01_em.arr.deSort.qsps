@@ -12,14 +12,19 @@ if $args[2] = '': $args[2] = $args[0]	& !@ если не указан масси
 $args[21] = iif(instr('$%', $mid($args[0],1,1)), $mid($args[0],1,1), '')	& !@ type prefix
 local %em_arr_desort_reflect_array_
 !@ объединяем опорный и исходный массивы
-@em.arr.concatenate('%em_arr_desort_reflect_array_', $args[1], $args[0])
+@@em.arr.concatenate '%em_arr_desort_reflect_array_', $args[1], $args[0]
 !@ сортируем от меньшего к большему
 sortarr '%em_arr_desort_reflect_array_', 0
 !@ теперь циклом просто вытаскиваем значения из массива кортежей
-loop args[22], args[23] = 0, arrsize('em_arr_desort_reflect_array_') while args[22] < args[23] step args[22] += 1:
-	dynamic "
-		args[1], <<$args[21]>>em_arr_desort_reflect_array_[args[0]]  = %em_arr_desort_reflect_array_[args[0]]
-	", args[22]
+loop args[22], args[23] = 0, arrsize('%em_arr_desort_reflect_array_') while args[22] < args[23] step args[22] += 1:
+	!@ чтобы убрать dynamic, пришлось ввести условия:
+	if $args[21] = '%':
+		args[24], %em_arr_desort_reflect_array_[args[22]] = %em_arr_desort_reflect_array_[args[22]]
+	elseif $args[21] = '$':
+		args[24], $em_arr_desort_reflect_array_[args[22]] = %em_arr_desort_reflect_array_[args[22]]
+	else:
+		args[24], em_arr_desort_reflect_array_[args[22]] = %em_arr_desort_reflect_array_[args[22]]
+	end
 end
 !@ копируем перетасованный временный массив в результирующий
 copyarr $args[2], 'em_arr_desort_reflect_array_'
@@ -30,7 +35,11 @@ copyarr $args[2], 'em_arr_desort_reflect_array_'
 !@pp:var(em_arr_concatenate)
 !@pp:endif
 
-em_arr_desort_reflect_array_ - опорный массив
+!@ $21 - префикс типа
+!@ #22 - счётчик
+!@ #23 - пределы счётчика
+!@ #24 - аналог _ в пайтон
+!@ em_arr_desort_reflect_array_ - опорный массив
 
 old_mass[0]=949
 old_mass[1]=913
