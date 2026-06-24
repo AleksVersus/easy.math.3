@@ -1,0 +1,10 @@
+QSP-Game TRUE
+
+# em.true
+result = 1
+-- em.true ---------------------------------
+
+# em.false
+result = 0
+-- em.false ---------------------------------
+
