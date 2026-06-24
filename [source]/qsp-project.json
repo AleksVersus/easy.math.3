@@ -15,8 +15,8 @@
             "start_qsploc_file": ".\\easy.math.3.x.x.qsps"
         }
     ],
-    "player": "..\\..\\..\\..\\QSP 000 QG 410b\\qspgui.exe",
+    "player": "..\\..\\..\\..\\QSP 590 QG 410b\\qspgui.exe",
     "start": "..\\..\\[releases]\\easy.math\\easy.math.qsp",
     "save_temp_files": true,
-    "preprocessor": "On"
+    "preprocessor": "Hard-off"
 }

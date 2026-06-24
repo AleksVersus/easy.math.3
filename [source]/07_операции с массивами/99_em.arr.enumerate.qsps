@@ -10,9 +10,7 @@ if instr($args[1], '%') <> 1: msg 'em.var.enumerate: type prefix ''%'' not speci
 !@pp:endif
 killvar $args[1]
 loop args[21] = 0 while args[21]<arrsize($args[0]) step args[21] += 1:
-	dynamic "
-		<<$args[1]>>[] = [arritem('<<$args[0]>>', <<args[21]>>), <<args[21]>>]
-	"
+	setvar $args[1], [arritem($args[0], args[21]), args[21]], arrsize($args[1])
 end
 --- em.arr.enumerate ---------------------------------
 !@pp:endif

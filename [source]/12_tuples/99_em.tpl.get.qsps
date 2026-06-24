@@ -6,10 +6,10 @@ QSP-Game Получение значения в кортеже по индекс
 # em.tpl.get
 local %t, i = %args[0], args[1]
 local em_tpl_get_
-@em.tpl.unzip(%t, 'em_tpl_get_')
-if %em_tpl_get_[i] <> []:
+unpackarr 'em_tpl_get_', %t
+if arrtype('em_tpl_get_', i) = '%':
 	%result = %em_tpl_get_[i]
-elseif $em_tpl_get_[i] <> '':
+elseif arrtype('em_tpl_get_', i) = '$':
 	$result = $em_tpl_get_[i]
 else:
 	result = em_tpl_get_[i]

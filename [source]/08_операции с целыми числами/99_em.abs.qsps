@@ -5,7 +5,7 @@ QSP-Game Модуль разницы двух чисел
 !@ #r - модуль разницы.
 !@pp:if(em_abs):include
 # em.abs
-result = iif(args[1]-args[0] > 0, args[1]-args[0], args[0]-args[1])
+result = iif(args[1] > args[0], args[1]-args[0], args[0]-args[1])
 --- em.abs ---------------------------------
 !@pp:endif
 

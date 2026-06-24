@@ -10,11 +10,11 @@ args[24] = arrcomp('$args','[\s\S]*((\b\d+([A-Za-zа-яА-Я\$\%\._]+\d*)+\b)|(\
 args[22] = iif($strfind($args[args[21]],'\[.+?\]')<>'', 1, 0)
 $args[23] = 'Error: All your massives are empty.'
 if args[24]<>-1 and args[24]<>args[21]:
-	!@ если мы имеем дело не с командой, и это не последний аргумент, значит имя массива задано неверно, возвращаем 
+	!@ если мы имеем дело не с командой, и это не последний аргумент, значит имя массива задано неверно, возвращаем
 	msg "em.fewArrs.print: Array's name is not correct. ARGS[<<args[24]>>]: '<<$args[args[24]]>>'"
 	exit
 end
-!@ символ переноса строки
+
 args[25], args[26] = 0, -1
 if args[22]:
 	!@ если последний аргумент содержит хотя бы один пробел, его нельзя считать названием массива
@@ -26,9 +26,9 @@ if args[22]:
 	if instr($args[30],'[only result]'): args[27], args[28] = 0, 1
 	!@ получаем номера первого и последнего элементов, которые хотим вывести
 	if instr($args[30], '[range onscreen:'):
-		args[25] = $strfind($args[30], '\[range onscreen:(\d+)\-\d+\]', 1)
+		args[25] = val($strfind($args[30], '\[range onscreen:(\d+)\-\d+\]', 1))
 		!@ вместо последнего элемента нам нужен следующий за последним
-		args[26] = $strfind($args[30], '\[range onscreen:\d+\-(\d+)\]', 1) + 1
+		args[26] = val($strfind($args[30], '\[range onscreen:\d+\-(\d+)\]', 1)) + 1
 	end
 	if instr($args[30], '[empty:'):
 		$args[23] = $strfind($args[args[21]], '(\[empty:)(.+?)\]', 2)
@@ -38,56 +38,58 @@ else:
 	args[27] = 1
 	args[28] = 0
 end
-:print
+
+!@ =========================================== P R I N T ===========================================
+
 !@ если списка команд нет, или управление не отключает генерацию таблицы, добавляем теги таблицы.
 if args[27] or no args[22]: $args[29]='<table border=1 cellpadding=5>'
 if args[27]: $args[29] += '<tr><td>#</td>'
 
 !@ с помощью цикла добавляем имена массивов в список
-loop args['i']=0 while args['i']<args[21]+1 and $strfind($args[args['i']],'\[.+?\]')='' and $args[args['i']]<>'' step args['i']+=1:
+loop args[31]=0 while args[31]<args[21]+1 and $strfind($args[args[31]],'\[.+?\]')='' and $args[args[31]]<>'' step args[31]+=1:
 	!@ пока счётчик не достигнет девяти, или мы не встретим аргумент с управлением, или пустой аргумент
-	if args[27]: $args[29] += "<td><<$args[args['i']]>></td>"	& !@ создаём ячейку, только если уже набираем таблицу
-	args['this_size']=arrsize($args[args['i']])	& !@ получаем размер указанного массива
-	if args['this_size']>args['size']: args['size']=args['this_size']	& !@ если размер этого массива больше размера предыдущего массива, записываем размер текущего в переменную size
+	if args[27]: $args[29] += "<td><<$args[args[31]]>></td>"	& !@ создаём ячейку, только если уже набираем таблицу
+	args[34]=arrsize($args[args[31]])	& !@ получаем размер указанного массива
+	if args[34]>args[35]: args[35]=args[34]	& !@ если размер этого массива больше размера предыдущего массива, записываем размер текущего в переменную size
 end
 
 if args[27]: $args[29] += '</tr>'	& !@ закрываем строку
 
-if args['size']=0:
+if args[35]=0:
 	!@ если размеры всех массивов равны нулю, выводим сообщениме.
 	$result = $args[23]
 	exit
 end
-if args[25] > args['size'] - 1:
+if args[25] > args[35] - 1:
 	!@ если мы превысили максимальный индекс, нужно приравнять начало к последнему возможному индексу
-	args[25] = args['size'] - 1
+	args[25] = args[35] - 1
 end
-if args[26] > args['size'] or args[26] = -1:
-	args[26] = args['size']
+if args[26] > args[35] or args[26] = -1:
+	args[26] = args[35]
 elseif args[26] <= args[25]:
 	args[26] = args[25] + 1
 end
 !@ следующий цикл выводит уже непосредственно результаты
-loop args['b']=args[25] while args['b']<args[26] step args['b']+=1:
+loop args[32]=args[25] while args[32]<args[26] step args[32]+=1:
 	!@ пока счётчик не достигнет размера самого большого массива
-	if args[27]: $args[29] += "<tr><td><<args['b']>></td>"	& !@ для вывода в виде таблицы формируем строку и первую ячейку
+	if args[27]: $args[29] += "<tr><td><<args[32]>></td>"	& !@ для вывода в виде таблицы формируем строку и первую ячейку
 	!@ этот цикл выводит содержимое ячеек под одним индексом
-	loop args['i']=0 while args['i']<args[21]+1 and $strfind($args[args['i']],'\[.+?\]')='' and $args[args['i']]<>'' step args['i']+=1:
+	loop args[31]=0 while args[31]<args[21]+1 and $strfind($args[args[31]],'\[.+?\]')='' and $args[args[31]]<>'' step args[31]+=1:
 		!@ пока счётчик не достигнет девяти, или мы не встретим аргумент с управлением, или пустой аргумент
 		if no args[28] and no args[27]:
 			!@ это не режим только результат, но и не режим вывода таблицы
-			$args['cell']=$args[args['i']]+"[<<args['b']>>]="	& !@ перед добавляением значения, добавляем название массива и номер ячейки
+			$args[33]=$args[args[31]]+"[<<args[32]>>]="	& !@ перед добавляением значения, добавляем название массива и номер ячейки
 		else
 			!@ это режим только результат, или режим вывода таблицы
-			$args['cell']=''	& !@ не добавляем ничего
+			$args[33]=''	& !@ не добавляем ничего
 		end
-		if instr($args[args['i']],'%')=1:
-			$args['cell'] += @em.html.to_mnemonics($str(%arritem($args[args['i']],args['b'])))
-		elseif instr($args[args['i']],'$')=1:
+		if instr($args[args[31]],'%')=1:
+			$args[33] += @em.html.to_mnemonics($str(%arritem($args[args[31]],args[32])))
+		elseif instr($args[args[31]],'$')=1:
 			!@ выводим строковые значения массива
 			if args[27]:
 				!@ если мы имеем дело с таблицей
-				$args['cell']+=$dyneval({
+				$args[33]+=$dyneval({
 					!@ $1 - название массива
 					!@ $0 - номер ячейки
 					if $arritem($args[1],args[0])<>'':
@@ -96,41 +98,41 @@ loop args['b']=args[25] while args['b']<args[26] step args['b']+=1:
 						!@ в пустых ячейках ставим пробелы
 						$result = '&nbsp;'
 					end
-				},args['b'],$args[args['i']])
+				},args[32],$args[args[31]])
 			else
 				!@ для не таблицы просто добавляем значение
 				if no args[28]:
-					$args['cell']+="'"+$replace($arritem($args[args['i']],args['b']),"'","''")+"'"
+					$args[33]+="'"+$replace($arritem($args[args[31]],args[32]),"'","''")+"'"
 				else
-					$args['cell'] += $arritem($args[args['i']],args['b'])
+					$args[33] += $arritem($args[args[31]],args[32])
 				end
 			end
 		else:
 			!@ выводим числовые значения массива или кортежи
-			$args['cell']+=$str(arritem($args[args['i']], args['b']))
+			$args[33]+=$str(arritem($args[args[31]], args[32]))
 		end
 		if args[27]:
-			$args[29] += '<td>'+$args['cell']+'</td>'	& !@ для таблицы создаём ячейку
-		elseif args[28] and args['i']<>0:
-			$args['result']+='	'+$args['cell']	& !@ для не таблицы добавляем отступ
-		elseif args['i']<>0:
-			$args['result']+='	&	'+$args['cell']	& !@ для не таблицы добавляем отступ
+			$args[29] += '<td>'+$args[33]+'</td>'	& !@ для таблицы создаём ячейку
+		elseif args[28] and args[31]<>0:
+			$args[36]+='	'+$args[33]	& !@ для не таблицы добавляем отступ
+		elseif args[31]<>0:
+			$args[36]+='	&	'+$args[33]	& !@ для не таблицы добавляем отступ
 		else:
-			$args['result']+=$args['cell']
+			$args[36]+=$args[33]
 		end
 	end
 	if args[27]:
 		$args[29] += "</tr>"
-	elseif args['b']+1<args[26]:
-		$args['result']+=@em.RN	& !@ для таблицы закрываем строку, для не таблицы начинаем новую
+	elseif args[32]+1<args[26]:
+		$args[36]+=@em.RN	& !@ для таблицы закрываем строку, для не таблицы начинаем новую
 	end
 end
 if args[27]: $args[29] += '</table>'
 
 if args[27]:
 	$result = $args[29]	& !@ если сгенерирована таблица, возвращаем таблицу
-elseif $args['result']<>'':
-	$result = $args['result']
+elseif $args[36]<>'':
+	$result = $args[36]
 else
 	msg 'em.fewArrs.print: If you see this message, that so wrong. Save the game and ask me on aleksversus@mail.ru. Error of easy.math.libs in em.fewArrs.print'
 end
@@ -158,10 +160,15 @@ end
 !@ #28 - only result (0|1)
 !@ $29 - сюда складывается таблица
 !@ $30 - конструкция с командами
+!@ #31 - счётчик i
+!@ #32 - счётчик b
+!@ $33 - содержимое ячейки cell
+!@ #34 - размер текущего массива this_size
+!@ #35 - размер массива size
+!@ $36 - промежуточный результат
 
-
-Из-за того, что данная функция работает напрямую с данными из массивов было решено не использовать здесь локальные переменные,
-чтобы случайно не перекрыть возможные названия массивов.
+Из-за того, что данная функция работает напрямую с данными из массивов было решено не использовать
+здесь локальные переменные, чтобы случайно не перекрыть возможные названия массивов.
 
 Функция не использует иных функций библиотеки
 

@@ -19,16 +19,15 @@ elseif instr($args[0],'$')<>0 or instr($args[1],'$')<>0:
 end
 local $array_name_0_, $array_name_1_= $type_+'em_arr_simp_copy_array_0_', $type_+'em_arr_simp_copy_array_1_'
 local $cmd_ = $lcase($args[2])	& !@ переводим управляющие конструкции в нижний регистр
-$simplificate = 'true'	& !@ результат сравнения по умолчанию true
 if instr($cmd_,'[space exclude]') <> 0: $cmd_ = $replace($cmd_,'[space exclude]','[se]')
 if instr($cmd_,'[simp]') <> 0 or instr($cmd_,'[se]') <> 0:
 	!@ если сравниваем на подобие, или исключаем пустые значения
-	sortarr $array_name_0_, 1	& !@ сортируем первый массив и помещаем его во временный
-	sortarr $array_name_1_, 1	& !@ сортируем второй массив и помещаем его во временный
+	sortarr $array_name_0_, 1	& !@ сортируем первый локальный массив
+	sortarr $array_name_1_, 1	& !@ сортируем второй локальный массив
 	if instr($cmd_, '[se]') <> 0:
 		!@ если нужно не учитывать пустые значения (нули), удаляем их из массивов
-		@em.arr.clear($array_name_0_)
-		@em.arr.clear($array_name_1_)
+		@@em.arr.clear $array_name_0_
+		@@em.arr.clear $array_name_1_
 	end
 end
 if arrsize($array_name_0_) <> arrsize($array_name_1_) and no instr($cmd_,'[conc]'):

@@ -13,34 +13,30 @@ if (args[22] < 0 or args[21] < 0): exit
 if $args[0]='': msg 'em.arr.print: No array name → <<$args[0]>>' & exit
 if args[22] < args[21] or args[21] < 0: msg 'em.arr.print: Out of range → <<[args[21], args[22]]>>' & exit
 !@pp:endif
-local em_arr_print_copy_array_	& !@ объявляем локальный массив для хранения выводимых значений
-copyarr 'em_arr_print_copy_array_', $args[0], args[21], args[22] - args[21] + 1	& !@ копируем значения в локальный массив
-!@ инициализируем локальные переменные
+
 $args[1] = $lcase($args[1])	& !@ переводим команды в нижний регистр
 if $args[3] = '': $args[3] = @em.RN	& !@ если $args[3] не указано, в качестве разделителя использует символ переноса строки
 if $args[3] = '/se': $args[3] = ''	& !@ если указан ключ,разделитель не используется
 
 $args[23] = $iif(instr('$%', $mid($args[0], 1, 1)),  $mid($args[0], 1, 1), '')
 args[24] = iif(instr($args[1], '[only result]'), 1, 0)
-loop local i, size_ = 0, arrsize('em_arr_print_copy_array_') while i<size_ step i+=1:
-	!@ если не указано, что нужно вывести только значения массивов, к выводимым значениям добавляется название массива и номер ячейки
-	if no args[24]: $result += $args[0] + "[<<i+args[21]>>] = "
-	if $args[23] = '%':
-		$result += $str(%em_arr_print_copy_array_[i])
-	elseif $args[23] = '$':
-		$args[25] = $em_arr_print_copy_array_[i]
+loop args[26], args[27] = args[21], args[22]+1 while args[26]<args[27] step args[26]+=1:
+	!@ если не указано, что выводим только значения, к ним добавляется название массива и номер ячейки
+	if no args[24]: $result += $args[0] + "[<<args[26]+args[21]>>] = "
+	if $args[23] = '$':
+		$args[25] = arritem($args[0], args[26])
 		if instr($args[1], '[trim]'): $args[25] = $trim($args[25])
 		if no args[24]:
-			$args[25] = $replace($args[25], $quotes_, "''") & !@ TODO: $quotes_ - не объявленная переменная
+			$args[25] = $replace($args[25], "'", "''")
 			$result += "'<<$args[25]>>'"
 		else:
 			$result += $args[25]
 		end
 	else:
-		!@ если пытаемся получить число, просто вписываем его
-		$result += $str(em_arr_print_copy_array_[i])
+		!@ если пытаемся получить число или кортеж, просто преобразуем их к строке
+		$result += $str(arritem($args[0], args[26]))
 	end
-	if instr($args[1], '[with last]') or i <> size_-1:
+	if instr($args[1], '[with last]') or args[26] <> args[27]-1:
 		$result += $args[3]
 	end
 end
@@ -61,6 +57,8 @@ end
 !@ $23 - тип массива (выводимых значений)
 !@ #24 - only_result маркер. Выводить только содержимое ячеек?
 !@ $25 - хранение промежуточных результатов
+!@ #26 - счётчик цикла
+!@ #27 - размер массива, который выводим
 
 $a[]='нулевая ячейка'
 $a[]='   первая ячейка   '

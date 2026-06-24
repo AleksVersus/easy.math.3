@@ -12,7 +12,7 @@ if $args[0] <> '' and instr('$%', $mid($args[0], 1, 1)): msg 'em.arr.fill_rand: 
 args[21], args[22] = %iif(%args[2] = [], [0, 1000], %args[2])
 loop while args[1]>0 step args[1]-=1 & args[3]+=1:
 	!@ пока args[1] больше нуля выполняем цикл
-	dynamic '<<$args[0]>>[<<args[3]>>] = rand(<<args[21]>>,<<args[22]>>)'
+    setvar $args[0], rand(args[21], args[22]), args[3]
 end
 --- em.arr.fill_rand ---------------------------------
 !@pp:endif

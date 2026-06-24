@@ -1,6 +1,6 @@
-QSP-Game сортирует значения массива
+QSP-Game сортирует значения массива, создавая опорный массив.
 
-!@ $0 - сортируемый массив, обязательный параметр. Тип данных определяется по префиксу типа.
+!@ $0 - сортируемый массив, обязательный параметр. Исследуемый. Тип данных определяется по префиксу типа.
 !@ #1 - порядок сортировки: 0 (по умолчанию) - от меньшего к большему, 1 - от большего к меньшему.
 !@ $2 - опорный массив (сюда вносятся исходные индексы элементов), только числовой массив.
 !@ $3 - название массива результатов, т.е. массива, в который будут переданы результаты сортировки. Если не указано, массивом результатов становится исследуемый. (результирующий)
@@ -12,18 +12,24 @@ if $args[2]<>'' and instr('$%', $mid($args[2],1,1)): msg 'em.arr.sort: type pref
 !@pp:endif
 if $args[3] = '': $args[3] = $args[0]	& !@ если результирующий массив не указан, результат помещается в исследуемый массив
 $args[21] = iif(instr('$%', $mid($args[0],1,1)), $mid($args[0],1,1), '')	& !@ type prefix
-local em_arr_sort_refl_array_ & !@ массив, в котором хранится порядок перетасованных элементов.
-local em_arr_sort_result_array_ & !@ массив, в который будет помещаться результат сортировки
-copyarr '<<$args[21]>>em_arr_sort_result_array_', $args[0]	& !@ копируем в результирующий массив исследуемый
-!@ Создаём опорный массив
-@em.arr.enumerate('<<$args[21]>>em_arr_sort_result_array_', '%em_arr_sort_refl_array_')
-!@ сортируем опорный массив:
-sortarr '%em_arr_sort_refl_array_', args[1]
-!@ распаковываем опорный массив:
-loop args[22] = 0 while args[22]<arrsize('%em_arr_sort_refl_array_') step args[22]+=1:
-	dynamic "
-		<<$args[21]>>em_arr_sort_result_array_[args[0]], em_arr_sort_refl_array_[args[0]] = %em_arr_sort_refl_array_[args[0]]
-	", args[22]
+local %em_arr_sort_enum_array_ & !@ массив для enumerate [element, index]
+local em_arr_sort_refl_array_ & !@ массив, где хранится порядок перетасованных элементов. indexes
+local em_arr_sort_result_array_ & !@ массив, где будет помещаться результат сортировки. elements
+!@ копируем в результирующий массив исследуемый, чтобы не создавать новый отдельный локальный массив:
+copyarr '<<$args[21]>>em_arr_sort_result_array_', $args[0]
+!@ Создаём enumerate-массив
+@@em.arr.enumerate '<<$args[21]>>em_arr_sort_result_array_', '%em_arr_sort_enum_array_'
+!@ сортируем enumerate-массив:
+sortarr '%em_arr_sort_enum_array_', args[1]
+!@ распаковываем enumerate-массив:
+loop args[22] = 0 while args[22]<arrsize('%em_arr_sort_enum_array_') step args[22]+=1:
+	if $args[21] = '%':
+		%em_arr_sort_result_array_[args[22]], em_arr_sort_refl_array_[args[22]] = %em_arr_sort_enum_array_[args[22]]
+	elseif $args[21] = '$':
+		$em_arr_sort_result_array_[args[22]], em_arr_sort_refl_array_[args[22]] = %em_arr_sort_enum_array_[args[22]]
+	else:
+		em_arr_sort_result_array_[args[22]], em_arr_sort_refl_array_[args[22]] = %em_arr_sort_enum_array_[args[22]]
+	end
 end
 
 if $args[2] <> '': copyarr $args[2], 'em_arr_sort_refl_array_'	& !@ если задан опорный, копируем в него перетасованные номера элементов

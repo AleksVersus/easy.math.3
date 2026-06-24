@@ -16,7 +16,7 @@ args[21], args[22] = %iif(%args[2] = [], [0,args[1]], %args[2])
 if args[21] > args[22]:	args[24] = 1
 args[23] = args[21]	& !@ выставляем первое вносимое в массив число
 loop while args[1]>0 step args[1]-=1 & args[3]+=1:
-	dynamic "<<$args[0]>>[<<args[3]>>] = <<args[23]>>"
+	setvar $args[0], args[23], args[3]
 	!@ в зависимости от направления заполнения, увеличиваем или уменьшаем значение
 	if no args[24]:
 		args[23] += args[4]
