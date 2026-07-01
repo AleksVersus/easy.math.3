@@ -34,6 +34,7 @@ QSP-Game Список меток для всех функций библиоте
 Операции с текстом
 !@pp:var(em_arr_search)
 !@pp:var(em_gen_uuid)
+!@pp:var(em_str_head_tail)
 !@pp:var(em_str_random)
 !@pp:var(em_str_slice)
 !@pp:var(em_str_thin)

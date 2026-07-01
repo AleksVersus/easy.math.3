@@ -1,0 +1,16 @@
+QSP-Game Разделяет строку на голову и хвост
+
+!@ $0 - строка
+!@ $1 - разделитель
+!@ %r - результатом становится кортеж: голова - строка до разделителя, хвост - строка после разделителя
+!@pp:if(em_str_head_tail):include
+# em.str.head_tail
+if $args[1] = '': $args[1] = '|'
+local i = instr($args[0], $args[1])
+%result = [$mid($args[0], 1, i-1), $mid($args[0], i+len($args[1]))]
+--- em.str.head_tail
+ ---------------------------------
+!@pp:endif
+
+fgtRAZfghdjks
+1234567890
