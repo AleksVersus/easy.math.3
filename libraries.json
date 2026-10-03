@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "libraries": [
+    {
+      "id": "easy-math-3",
+      "name": "Easy Math 3",
+      "description": { "en": "Auxable tools for QSP-games.", "ru": "Вспомогательные инструменты для игр QSP." },
+      "version": "3.2.0",
+      "file": "_export\\easy.math.qsps",
+      "sha256": "AF402E125CEB1F61CF3D4CBBA7D4E71D9411E557DCE93F24019A0B52C4B949F1",
+      "usage": "inclib 'libs/easy.math.qsp'",
+      "requires": []
+    }
+  ]
+}

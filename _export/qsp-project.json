@@ -1,0 +1,22 @@
+{
+    "project": [
+        {
+            "files": [
+                {
+                    "path": "..\\[source]\\00_sets\\_variables.qsps_"
+                }
+            ],
+            "folders": [
+                {
+                    "path": "..\\[source]"
+                }
+            ],
+            "module": ".\\easy.math.qsp",
+            "start_qsploc_file": "..\\[source]\\easy.math.3.x.x.qsps"
+        }
+    ],
+    "player": "..\\..\\..\\..\\QSP 590 QG 410b\\qspgui.exe",
+    "start": "..\\..\\[releases]\\easy.math\\easy.math.qsp",
+    "save_temp_files": true,
+    "preprocessor": "On"
+}

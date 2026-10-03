@@ -1,0 +1,2430 @@
+# em.start
+	@@em.usercom.on
+	usehtml = 0
+	$fname = "Consolas"
+	showobjs 0
+	showstat 0
+	showacts 0
+"Easy Math v.<<@em.version('str')>>"
+"Библиотека математических и вспомогательных функций для QSP"
+"
+Для плееров QSP с версией интерпретатора 5.9.5 и выше. Ваша версия: <<$qspver>>.
+
+Репозиторий с исходниками библиотеки:
+
+* https://github.com/AleksVersus/easy.math.3
+
+По всем вопросам и предложениям обращаться:
+
+* aleksversus@mail.ru
+* https://vk.com/id40090736
+
+Заходите на мой сайт:
+
+* aleksversus.narod.ru
+
+Поддержите проект, подписавшись на мой бусти:
+
+* https://boosty.to/aleksversus
+
+Обучающие видео по программированию на QSP:
+
+* https://www.youtube.com/channel/UCwX8RW2B9yTUFdlivtCGAgA
+
+Любую функцию можно опробовать прямо здесь, введя её в поле ввода.
+
+Для получения списка команд, введите `em help` в строку ввода."
+--- em.start ---------------------------------
+
+
+
+
+
+# em.version
+%result = [3,2,0]
+if $args[0] = 'str':
+	local y, m, d = %result
+	$result = "<<y>>.<<m>>.<<d>>"
+end
+--- em.version ---------------------------------
+
+
+# em.usercom
+if instr($user_text, 'em ') <> 1: exit
+local $user_text_ = $mid($user_text, 4)
+local $em_test_parse_
+local $cmdline_ = $lcase($trim($user_text_))
+	scanstr '$em_test_parse_', $cmdline_, '[^\s]+'
+if $cmdline_ = 'help':
+	*pl & *pl 'ОСНОВНЫЕ КОМАНДЫ:'
+	*pl & *pl "* sqrt(N) — выводит результат вычисления квадратного корня из числа N."
+	*pl & *pl "* gen id — генерирует уникальный идентификатор типа UUID четвёртой версии."
+	*pl & *pl "* gen pass — генерирует парольную фразу из шестнадцати случайных символов (буквы латинского алфавита, цифры, !@#$)."
+	*pl & *pl "* gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS> — генерирует массив с именем <ARRAY_NAME> из <NUMBER_of_ELEMENTS> элементов."
+	*pl & *pl "* autotest — запускает на выполнение автотесты библиотеки для проверки её работоспособности. Внимание!!! Автотесты нужны для отладки самой библиотеки, или для проверки корректности её функций перед окончательной сборкой. Из окончательной сборки автотесты можно удалить."
+	*pl "Для теста отдельной функции, можно указать её название как аргумент команде autotest. Например: `autotest em.str.thin`."
+	*pl & *pl "Любая иная строчка будет воспринята, как код QSP на выполнение. Таким образом вы можете выполнить любую строчку кода QSP, просто введя её в строке ввода."
+elseif $cmdline_='logs':
+	if loc('em.arr.print'):
+		*pl @em.arr.print('$log','[only result]')
+	else:
+		msg "Error. Function 'em.arr.print' is not exist! Print log by cycle:"
+		loop local i=0 while i<arrsize('$log') step i+=1:
+			*pl $log[i]
+		end
+	end
+elseif instr($cmdline_,'sqrt')=1:
+	if loc('em.sqrt'):
+		killvar '$em_test_parse_'
+		$em_test_parse_[0]=$mid($cmdline_,instr($cmdline_,'(')+1,instr($cmdline_,')')-instr($cmdline_,'(')-1)
+		$em_test_parse_[0]= $dyneval("$result=$str(<<$em_test_parse_[0]>>)")
+		*pl @em.sqrt($em_test_parse_[0])
+	else:
+		msg "Error. Function 'em.sqrt' is not exist!"
+	end
+elseif $cmdline_='gen id':
+	if loc('em.gen_uuid'):
+		*pl @em.gen_uuid()
+	else:
+		msg "Error. Function 'em.gen_uuid' is not exist!"
+	end
+elseif $cmdline_='gen pass':
+	if loc('em.str.random'):
+		*pl @em.str.random(16,'[inc][\z][\d]','!@#$')
+	else:
+		msg "Error. Function 'em.str.random' is not exist!"
+	end
+elseif instr($trim($lcase($cmdline_)),'gen mass')=1:
+	if loc('em.arr.fill_rand') and loc('em.arr.print'):
+		local count
+		if $em_test_parse_[2]<>'':
+			if $em_test_parse_[3]<>'' and isnum($em_test_parse_[3]): count=val($em_test_parse_[3]) else count=10
+			@@em.arr.fill_rand $em_test_parse_[2],count
+			@em.arr.print($em_test_parse_[2])
+		else
+			*pl "Error input. Type:"
+			*pl "gen mass <ARRAY_NAME> <NUMBER_of_ELEMENTS>"
+		end
+	else:
+		msg "Error. Functions 'em.arr.fill_rand' or 'em.arr.print' are not exist!"
+	end
+elseif instr($cmdline_,'autotest') = 1 and loc('em.autotest.self'):
+	@@em.autotest.self $em_test_parse_[1], $em_test_parse_[2]
+else:
+	dynamic $cmdline_
+end
+--- em.usercom ---------------------------------
+# em.usercom.on
+$usercom['em.usercom'] = 'em.usercom'
+-- em.usercom.on ---------------------------------
+# em.usercom.off
+killvar '$usercom', 'em.usercom'
+-- em.usercom.off ---------------------------------
+
+
+# em.autotest
+$args[0]=$lcase($args[0])
+local $nr=@em.RN
+$result = ''
+if $args[0]='em.fewarrs.print':
+	$result=$dyneval({
+		local $a, %b, $c, %d
+		$result = ''
+		$a[]='нулевая ячейка'
+		$a[]='первая ячейка'
+		$a[]='вторая ячейка'
+		$a[]=''
+		$a[]='четвёртая'' ячейка'
+		$a[]="пятая яче'йка"
+		$a[]=''
+		$a[]='седьмая ячейка'
+
+		%b[]= [0, 'zero']
+		%b[]= ['first', 1, 0]
+		%b[]= [2, 'second', 2]
+		%b[]= ['3']
+		%b[]=(3,5,6,'string',6)
+		%b[]='пятая ячейка'
+		%b[]='6'
+		%b[]='7'
+		$result += @em.fewArrs.print('$a','%b')
+		$result += @em.fewArrs.print('$a','%b', '[range onscreen:3-6]')
+		$result += @em.fewArrs.print('$a','%b','[only result]')
+		$result += @em.fewArrs.print('$a','%b','[no table]')
+		$result += @em.fewArrs.print('$c','%d', '[empty:EMPTY ARRAYS]')
+	})
+elseif $args[0]='em.simpl':
+	$result=dyneval ({
+		$result = ''
+		$result+=@em.simpl('9.05',"-9")+$nr		& !@ '9.05'
+		$result+=@em.simpl('9.05','-9.05')+$nr	& !@ '9.05'
+		$result+=@em.simpl('9.05',"10")+$nr		& !@ '10'
+		$result+=@em.simpl('9.05',"9.55")+$nr	& !@ '9.55'
+		$result+=@em.simpl('9.99',"9.999")+$nr	& !@ '9.999'
+		$result+=@em.simpl('-1.69',"1.3")+$nr	& !@ '1.3'
+		$result+=@em.simpl('-1.69',"-1.3")+$nr	& !@ '-1.3'
+		$result+=@em.simpl('1.69',"1.3")+$nr	& !@ '1.69'
+		$result+=@em.simpl('1.69',"-1.3")+$nr	& !@ '1.69'
+	})
+elseif $args[0]='em.round':
+	$result=$dyneval ({
+		$result = ''
+		$result+=@em.round("945.459","0.1")+$nr  			& !@ '945.5'
+		$result+=@em.round("945.459","0.1",'[down]')+$nr	& !@ '945.4'
+		$result+=@em.round("945.444","0.1",'[up]')+$nr		& !@ '945.5'
+		$result+=@em.round("945.459","0.01")+$nr  			& !@ '945.46'
+		$result+=@em.round("945.459","0.001")+$nr			& !@ '945.459'
+		$result+=@em.round("945.459","1")+$nr    			& !@ '945'
+		$result+=@em.round("945.459","10")+$nr   			& !@ '950'
+		$result+=@em.round("945.459","100")+$nr  			& !@ '900'
+		$result+=@em.round("-945.459","10")+$nr  			& !@ '-950'
+		$result+=@em.round("-945.459","0.01")+$nr			& !@ '-945.46'
+	})
+elseif $args[0]='em.mult':
+	$result=$dyneval ({
+		$result = ''
+		$result+=@em.mult("38.4","2.5")+$nr									& !@ '96'
+		$result+=@em.mult('9.05',"-9.05")+$nr								& !@ '-81.9025'
+		$result+=@em.mult('9.05',"10")+$nr									& !@ '90.5'
+		$result+=@em.mult('9.05',"9.55","9.25")+$nr							& !@ '799.454375'
+		$result+=@em.mult('9.99',"-9.999","9.9")+$nr						& !@ '-988.911099'
+		$result+=@em.mult('2','2','2','2','2','2','2','2','2')+$nr			& !@ '512'
+		$result+=@em.mult('-2','-2','-2','-2','-2','-2','-2','-2','-2')+$nr	& !@ '-512'
+	})
+elseif $args[0]='em.div':
+	$result=$dyneval ({
+		$result = ''
+		$result+=@em.div('9.05',"-9",10000)+$nr		& !@ '-1.0055'
+		$result+=@em.div('9.05','-9.05',10000)+$nr	& !@ '-1'
+		$result+=@em.div('9.05',"10")+$nr			& !@ '0.905'
+		$result+=@em.div('9.05',"9.55",10000)+$nr	& !@ '0.9476'
+		$result+=@em.div('9.99',"9.999",10000)+$nr	& !@ '0.999'
+		$result+=@em.div('9.99',"9.999",1000000)+$nr	& !@ '0.999099'
+		$result+=@em.div('-1.69',"1.3",10000)+$nr	& !@ '-1.3'
+		$result+=@em.div('1.69',"1.3",10000)+$nr		& !@ '1.3'
+		$result+=@em.div('-1.69',"-1.3",10000)+$nr	& !@ '1.3'
+		$result+=@em.div('1.69',"-1.3",10000)+$nr	& !@ '-1.3'
+	})
+elseif $args[0]='em.add':
+	$result=$dyneval({
+		$result = ''
+		$result+=@em.add('9.05','-9')+$nr							& !@ '0.05'
+		$result+=@em.add('9.05','-9.05')+$nr						& !@ '0'
+		$result+=@em.add('9.05','9')+$nr							& !@ '18.05'
+		$result+=@em.add('9.05','9.55','9.25')+$nr					& !@ '27.85'
+		$result+=@em.add('9.99','9.999','9.9')+$nr					& !@ '29.889'
+		$result+=@em.add('384.384','92.8',3)+$nr					& !@ '480.184'
+		$result+=@em.add('283','126')+$nr							& !@ '409'
+		$result+=@em.add('283','-126')+$nr							& !@ '157'
+		$result+=@em.add('-283','126')+$nr							& !@ '-157'
+		$result+=@em.add('-283','-126')+$nr							& !@ '-409'
+		$result+=@em.add('-234','125','-13.7890303','3484889')+$nr	& !@ '3484766.2109697'
+	})
+elseif $args[0]='em.sqrt':
+	$result=$dyneval({
+		$result = ''
+		$result+=@em.sqrt('1000',10000)+$nr	& !@ 31.6227
+		$result+=@em.sqrt('16',10000)+$nr	& !@ 4
+		$result+=@em.sqrt('257',100000)+$nr	& !@ 16.03121
+		$result+=@em.sqrt('257',10000)+$nr	& !@ 16.0312
+		$result+=@em.sqrt('257',1000)+$nr	& !@ 16.031
+		$result+=@em.sqrt('257',100)+$nr	& !@ 16.03
+		$result+=@em.sqrt('2.1',100)+$nr	& !@ 1.44
+		$result+=@em.sqrt('259',100)+$nr	& !@ 16.09
+		$result+=@em.sqrt('260',100)+$nr	& !@ 16.12
+		$result+=@em.sqrt('1.69',100)+$nr	& !@ 1.3
+		$result+=@em.sqrt('0.69',10000)+$nr	& !@ 0.8306
+	})
+elseif $args[0]='em.byte.add':
+	$result=$dyneval({
+		$result = ''
+		$result+=@em.byte.add(998765,273)	& !@ '999038'
+		$result+=@em.byte.add('9987Y5','-273')	& !@ '998978'
+		$result+=@em.byte.add('999999','6273')	& !@ '006273'
+		$result+=@em.byte.add('998705','5773')	& !@ '004479'
+	})
+elseif $args[0]='em.byte.dev':
+	$result=$dyneval({
+		$result = ''
+		$result+=@em.byte.dev(998765,273)	& !@ '998492'
+		$result+=@em.byte.dev('9987Y5','-273')	& !@ '998432'
+		$result+=@em.byte.dev('999999','6273')	& !@ '993726'
+		$result+=@em.byte.dev('998705','5773')	& !@ '992932'
+	})
+elseif $args[0]='em.arr.print':
+	$result=$dyneval({
+		$result = ''
+		local $a
+		$a[]='нулевая ячейка'
+		$a[]='   первая ячейка   '
+		$a[]=' вторая ячейка'
+		$a[]=''
+		$a[]=(1,2,3,5,6)
+		$a[]='   пятая ячейка'
+		$a[]=''
+		$a[]='седьмая ячейка'
+
+		$result+=@em.arr.print('$a')+$nr
+		$result+=@em.arr.print('$a','[only result]')+$nr
+		$result+=@em.arr.print('$a','[trim]')+$nr
+		$result+=@em.arr.print('$a','[trim] [only result]',[2,5],'|')+$nr
+		$result+=@em.arr.print('$a','[trim] [only result] [with last]',[2,5],'|')+$nr
+	})
+elseif $args[0]='em.arr.insert':
+	$result=$dyneval({
+		$result = ''
+		local mass
+		mass[0]=574
+		mass[1]=668
+		mass[2]=413
+		mass[3]=765
+		mass[4]=478
+		mass[5]=205
+		mass[6]=701
+		mass[7]=272
+
+		@@em.arr.insert 'mass',6,4
+		$result+=@em.arr.print('mass')
+	})
+elseif $args[0]='em.arr.clear':
+	$result=$dyneval({
+		$result = ''
+		local i
+		i[0]=1
+		i[1]=2
+		i[2]=3
+		i[3]=1
+		i[4]=2
+		i[5]=3
+		i[6]=1
+		i[7]=2
+
+		@@em.arr.clear 'i', 2
+		$result=@em.arr.print('i')
+	})
+elseif $args[0]='em.arr.desort':
+	$result = $dyneval({
+		$result = ''
+		local old_mass, em_array, new_mass
+		old_mass[0]=949
+		old_mass[1]=913
+		old_mass[2]=269
+		old_mass[3]=901
+		old_mass[4]=257
+		old_mass[5]=561
+		old_mass[6]=529
+		old_mass[7]=293
+		!@ сортируем массив
+		@@em.arr.sort 'old_mass',0,'em_array'
+		$result+=@em.arr.print('old_mass')+@em.RN
+		$result+=@em.arr.print('em_array')+@em.RN
+		!@ восстанавливаем исходный массив в новом массиве
+		@@em.arr.deSort 'old_mass','em_array','new_mass'
+		$result+=@em.arr.print('new_mass')
+	})
+elseif $args[0]='em.arr.sort':
+	$result=$dyneval({
+		$result = ''
+		old_mass[0]=157
+		old_mass[1]=250
+		old_mass[2]=709
+		old_mass[3]=413
+		old_mass[4]=532
+		old_mass[5]=779
+		old_mass[6]=730
+		old_mass[7]=565
+
+		@@em.arr.sort('old_mass')
+		$result+=@em.arr.print('old_mass')+@em.RN
+
+		old_mass[0]=966
+		old_mass[1]=812
+		old_mass[2]=796
+		old_mass[3]=304
+		old_mass[4]=678
+		old_mass[5]=118
+		old_mass[6]=901
+		old_mass[7]=132
+
+		@@em.arr.sort('old_mass',0,'em_array')
+		$result+=@em.arr.print('old_mass')+@em.RN
+		$result+=@em.arr.print('em_array')+@em.RN
+
+		%old_mass[0]=[967, 'голова']
+		%old_mass[1]=[629, 'плечи']
+		%old_mass[2]=[541, 'руки']
+		%old_mass[3]=[290, 'торс']
+		%old_mass[4]=[852, 'бёдра']
+		%old_mass[5]=[334, 'голени']
+		%old_mass[6]=[318, 'ступни']
+		%old_mass[7]=[529, 'нишваа']
+
+		@@em.arr.sort('%old_mass',0,'em_array','%new_mass')
+
+		$result+=@em.arr.print('%old_mass')+@em.RN
+		$result+=@em.arr.print('em_array')+@em.RN
+		$result+=@em.arr.print('%new_mass')+@em.RN
+
+		$mass[0]='88ff88'
+		$mass[1]='ff00ff'
+		$mass[2]='0ff0f8'
+		$mass[3]='ffffff'
+		$mass[4]='8888ff'
+		$mass[5]='fff8f8'
+
+		@@em.arr.sort('$mass',1,'em_array')
+		$result+=@em.arr.print('$mass')+@em.RN
+		$result+=@em.arr.print('em_array')
+	})
+elseif $args[0]='em.arr.restand':
+	$result = $dyneval({
+		$result = ''
+		$arr_mass[0]='голова'
+		$arr_mass[1]='плечи'
+		$arr_mass[2]='грудь'
+		$arr_mass[3]='живот'
+		$arr_mass[4]='бёдра'
+		$arr_mass[5]='колени'
+		$arr_mass[6]='икры'
+		$arr_mass[7]='ступни'
+
+		old_mass[0]=722
+		old_mass[1]=136
+		old_mass[2]=788
+		old_mass[3]=177
+		old_mass[4]=780
+		old_mass[5]=97
+		old_mass[6]=649
+		old_mass[7]=75
+
+		@@em.arr.sort 'old_mass',0,'em_array'
+		@@em.arr.restand '$arr_mass','em_array','$new_mass'
+
+		$result+=@em.arr.print('old_mass')+@em.RN
+		$result+=@em.arr.print('em_array')+@em.RN
+		$result+=@em.arr.print('$new_mass')
+	})
+elseif $args[0]='em.arr.simpl':
+	$result=$dyneval({
+		$result = ''
+		local mass1, mass2, mass3
+		mass1[0]=455
+		mass1[1]=705
+		mass1[2]=967
+		mass1[3]=452
+		mass1[4]=829
+		mass1[5]=84
+		mass1[6]=983
+		mass1[7]=824
+
+		mass2[0]=455
+		mass2[1]=705
+		mass2[2]=967
+		mass2[3]=452
+		mass2[4]=829
+		mass2[5]=84
+		mass2[6]=983
+		mass2[7]=824
+
+		mass3[0]=983
+		mass3[1]=967
+		mass3[2]=829
+		mass3[3]=824
+		mass3[4]=705
+		mass3[5]=455
+		mass3[6]=452
+		mass3[7]=84
+
+		$result+=$str(@em.arr.simpl('mass1','mass2'))
+		$result+=$str(@em.arr.simpl('mass1','mass3'))
+		$result+=$str(@em.arr.simpl('mass1','mass3','[simp]'))
+	})
+elseif $args[0]='em.zero':
+	$result=$dyneval({
+		$result = ''
+		$result+=@em.zero(13)+$nr	& !@ '0000000000000'
+		$result+=@em.zero(13,'1')+$nr	& !@ '1111111111111'
+		$result+=@em.zero(13,'10')+$nr	& !@ '10101010101010101010101010'
+		$result+=@em.zero(13,'a')+$nr	& !@ 'aaaaaaaaaaaaa'
+		$result+=@em.zero(3,'bla')+$nr	& !@ 'blablabla'
+	})
+elseif $args[0]='em.str.thin':
+	$result=$dyneval({
+		$result = ''
+		$result+=@em.str.thin('профессура')+$nr
+		$result+=@em.str.thin('профессура',1,'|')+$nr
+		$result+=@em.str.thin('профессура',1,'|','[right]')+$nr
+		$result+=@em.str.thin('профессура',1,'|','[left]')+$nr
+		$result+=@em.str.thin('профессура',1,'|','[right][left]')+$nr
+		$result+=@em.str.thin('профессура',3,'|')+$nr
+		$result+=@em.str.thin('профессура',3,'|','[up]')+$nr
+		$result+=@em.str.thin('профессура',3,'|','[left]')+$nr
+		$result+=@em.str.thin('профессура',2,'|','[right]')+$nr
+		$result+=@em.str.thin('профессура',1,'||','[left] [right]')+$nr
+	})
+elseif $args[0]='em.hex.add':
+	$result=$dyneval({
+		$result = ''
+		$result+=@em.hex.add('ffeeff','a1')+$nr
+		$result+=@em.hex.add('f0','f')+$nr
+		$result+=@em.hex.add('ff','1')+$nr
+		$result+=@em.hex.add('ffe','1')+$nr
+		$result+=@em.hex.add('fef','1')+$nr
+		$result+=@em.hex.add('aaaaaa','cc')+$nr
+	})
+elseif $args[0]='em.tag.get_num':
+	$result = $dyneval({
+		$result = ''
+		local $text="[count:текст с пробелом] <cord:68> log:непробельные_символы color=#ff8899 tag='многа букав'"
+		$result += '[' + @em.tag.get_num($text,'count')+ ']'   & !@ "текст с пробелом"
+		$result += '[' + @em.tag.get_num($text,'cord')+ ']'     & !@ '68'
+		$result += '[' + @em.tag.get_num($text,'log')+ ']'  & !@ "непробельные_символы"
+		$result += '[' + @em.tag.get_num($text,'color')+ ']'    & !@ "ff8899"
+		$result += '[' + @em.tag.get_num($text,'tag')+ ']'  & !@ "многа букав"
+		$result += '[' + @em.tag.get_num($text,'tag/h')+ ']'    & !@ не выведет ничего
+		$result += '[' + @em.tag.get_num($text,'color/h')+ ']'  & !@ "ff8899"
+	})
+end
+--- em.autotest ---------------------------------
+
+
+# em.autotest.self
+local $res, $example, $functions, $nr
+$args[0]=$lcase($args[0])
+$args[1]=$lcase($args[1])
+if instr($args[0], 'em.arr.desort') or $args[0]='':
+	$functions[] = 'em.arr.desort'
+	$example['em.arr.desort'] = "old_mass[0] = 257
+old_mass[1] = 269
+old_mass[2] = 293
+old_mass[3] = 529
+old_mass[4] = 561
+old_mass[5] = 901
+old_mass[6] = 913
+old_mass[7] = 949
+em_array[0] = 4
+em_array[1] = 2
+em_array[2] = 7
+em_array[3] = 6
+em_array[4] = 5
+em_array[5] = 3
+em_array[6] = 1
+em_array[7] = 0
+new_mass[0] = 949
+new_mass[1] = 913
+new_mass[2] = 269
+new_mass[3] = 901
+new_mass[4] = 257
+new_mass[5] = 561
+new_mass[6] = 529
+new_mass[7] = 293"
+end
+if instr($args[0], 'em.arr.sort') or $args[0]='':
+	$functions[] = 'em.arr.sort'
+	$example['em.arr.sort'] = "old_mass[0] = 157
+old_mass[1] = 250
+old_mass[2] = 413
+old_mass[3] = 532
+old_mass[4] = 565
+old_mass[5] = 709
+old_mass[6] = 730
+old_mass[7] = 779
+old_mass[0] = 118
+old_mass[1] = 132
+old_mass[2] = 304
+old_mass[3] = 678
+old_mass[4] = 796
+old_mass[5] = 812
+old_mass[6] = 901
+old_mass[7] = 966
+em_array[0] = 5
+em_array[1] = 7
+em_array[2] = 3
+em_array[3] = 4
+em_array[4] = 2
+em_array[5] = 1
+em_array[6] = 6
+em_array[7] = 0
+%old_mass[0] = [967,'голова']
+%old_mass[1] = [629,'плечи']
+%old_mass[2] = [541,'руки']
+%old_mass[3] = [290,'торс']
+%old_mass[4] = [852,'бёдра']
+%old_mass[5] = [334,'голени']
+%old_mass[6] = [318,'ступни']
+%old_mass[7] = [529,'нишваа']
+em_array[0] = 3
+em_array[1] = 6
+em_array[2] = 5
+em_array[3] = 7
+em_array[4] = 2
+em_array[5] = 1
+em_array[6] = 4
+em_array[7] = 0
+%new_mass[0] = [290,'торс']
+%new_mass[1] = [318,'ступни']
+%new_mass[2] = [334,'голени']
+%new_mass[3] = [529,'нишваа']
+%new_mass[4] = [541,'руки']
+%new_mass[5] = [629,'плечи']
+%new_mass[6] = [852,'бёдра']
+%new_mass[7] = [967,'голова']
+$mass[0] = 'ffffff'
+$mass[1] = 'fff8f8'
+$mass[2] = 'ff00ff'
+$mass[3] = '88ff88'
+$mass[4] = '8888ff'
+$mass[5] = '0ff0f8'
+em_array[0] = 3
+em_array[1] = 5
+em_array[2] = 1
+em_array[3] = 0
+em_array[4] = 4
+em_array[5] = 2"
+end
+if instr($args[0],'em.arr.simpl')<>0 or $args[0]='':
+	$functions[]='em.arr.simpl'
+	$example['em.arr.simpl']="101"
+end
+if instr($args[0],'em.byte.add')<>0 or $args[0]='':
+	$functions[]='em.byte.add'
+	$example['em.byte.add']="999038[not a number]006273004479"
+end
+if instr($args[0],'em.byte.dev')<>0 or $args[0]='':
+	$functions[]='em.byte.dev'
+	$example['em.byte.dev']="998492998432993726992932"
+end
+if instr($args[0],'em.fewarrs.print')<>0 or $args[0]='':
+$functions[]='em.fewarrs.print'
+$example['em.fewarrs.print']="<table border=1 cellpadding=5><tr><td>#</td><td>$a</td><td>%b</td></tr><tr><td>0</td><td>нулевая ячейка</td><td>[0,'zero']</td></tr><tr><td>1</td><td>первая ячейка</td><td>['first',1,0]</td></tr><tr><td>2</td><td>вторая ячейка</td><td>[2,'second',2]</td></tr><tr><td>3</td><td>&nbsp;</td><td>['3']</td></tr><tr><td>4</td><td>четвёртая' ячейка</td><td>[3,5,6,'string',6]</td></tr><tr><td>5</td><td>пятая яче'йка</td><td>['пятая ячейка']</td></tr><tr><td>6</td><td>&nbsp;</td><td>['6']</td></tr><tr><td>7</td><td>седьмая ячейка</td><td>['7']</td></tr></table><table border=1 cellpadding=5><tr><td>#</td><td>$a</td><td>%b</td></tr><tr><td>3</td><td>&nbsp;</td><td>['3']</td></tr><tr><td>4</td><td>четвёртая' ячейка</td><td>[3,5,6,'string',6]</td></tr><tr><td>5</td><td>пятая яче'йка</td><td>['пятая ячейка']</td></tr><tr><td>6</td><td>&nbsp;</td><td>['6']</td></tr></table>нулевая ячейка	[0,'zero']
+первая ячейка	['first',1,0]
+вторая ячейка	[2,'second',2]
+['3']
+четвёртая' ячейка	[3,5,6,'string',6]
+пятая яче'йка	['пятая ячейка']
+['6']
+седьмая ячейка	['7']$a[0]='нулевая ячейка'	&	%b[0]=[0,'zero']
+$a[1]='первая ячейка'	&	%b[1]=['first',1,0]
+$a[2]='вторая ячейка'	&	%b[2]=[2,'second',2]
+$a[3]=''	&	%b[3]=['3']
+$a[4]='четвёртая'' ячейка'	&	%b[4]=[3,5,6,'string',6]
+$a[5]='пятая яче''йка'	&	%b[5]=['пятая ячейка']
+$a[6]=''	&	%b[6]=['6']
+$a[7]='седьмая ячейка'	&	%b[7]=['7']EMPTY ARRAYS"
+end
+if instr($args[0],'em.simpl')<>0 or $args[0]='':
+$functions[]='em.simpl'
+$example['em.simpl']="9.05
+9.05
+10
+9.55
+9.999
+1.3
+-1.3
+1.69
+1.69
+"
+end
+if instr($args[0],'em.round')<>0 or $args[0]='':
+$functions[]='em.round'
+$example['em.round']="945.5
+945.4
+945.5
+945.46
+945.459
+945
+950
+900
+-950
+-945.46
+"
+end
+if instr($args[0],'em.mult')<>0 or $args[0]='':
+$functions[]='em.mult'
+$example['em.mult']="96
+-81.9025
+90.5
+799.454375
+-988.911099
+512
+-512
+"
+end
+if instr($args[0],'em.div')<>0 or $args[0]='':
+$functions[]='em.div'
+$example['em.div']="-1.0055
+-1
+0.905
+0.9476
+0.999
+0.999099
+-1.3
+1.3
+1.3
+-1.3
+"
+end
+if instr($args[0],'em.add')<>0 or $args[0]='':
+$functions[]='em.add'
+$example['em.add']="0.05
+0
+18.05
+27.85
+29.889
+480.184
+409
+157
+-157
+-409
+3484766.2109697
+"
+end
+if instr($args[0],'em.sqrt')<>0 or $args[0]='':
+$functions[]='em.sqrt'
+$example['em.sqrt']="31.6227
+4
+16.03121
+16.0312
+16.031
+16.03
+1.44
+16.09
+16.12
+1.3
+0.8306
+"
+end
+if instr($args[0],'em.arr.print')<>0 or $args[0]='':
+$functions[]='em.arr.print'
+$example['em.arr.print']="$a[0] = 'нулевая ячейка'
+$a[1] = '   первая ячейка   '
+$a[2] = ' вторая ячейка'
+$a[3] = ''
+$a[4] = '[1,2,3,5,6]'
+$a[5] = '   пятая ячейка'
+$a[6] = ''
+$a[7] = 'седьмая ячейка'
+нулевая ячейка
+первая ячейка   
+вторая ячейка
+
+[1,2,3,5,6]
+пятая ячейка
+
+седьмая ячейка
+$a[0] = 'нулевая ячейка'
+$a[1] = 'первая ячейка'
+$a[2] = 'вторая ячейка'
+$a[3] = ''
+$a[4] = '[1,2,3,5,6]'
+$a[5] = 'пятая ячейка'
+$a[6] = ''
+$a[7] = 'седьмая ячейка'
+вторая ячейка||[1,2,3,5,6]|пятая ячейка
+вторая ячейка||[1,2,3,5,6]|пятая ячейка|
+"
+end
+if instr($args[0],'em.arr.insert')<>0 or $args[0]='':
+$functions[]='em.arr.insert'
+$example['em.arr.insert']="mass[0] = 574
+mass[1] = 668
+mass[2] = 413
+mass[3] = 765
+mass[4] = 6
+mass[5] = 478
+mass[6] = 205
+mass[7] = 701
+mass[8] = 272"
+end
+if instr($args[0],'em.hex.add')<>0 or $args[0]='':
+$functions[]='em.hex.add'
+$example['em.hex.add']="ffefa0
+ff
+100
+fff
+ff0
+aaab76
+"
+end
+if instr($args[0],'em.arr.clear')<>0 or $args[0]='':
+$functions[]='em.arr.clear'
+$example['em.arr.clear']="i[0] = 1
+i[1] = 3
+i[2] = 1
+i[3] = 3
+i[4] = 1"
+end
+if instr($args[0],'em.zero')<>0 or $args[0]='':
+$functions[]='em.zero'
+$example['em.zero']="0000000000000
+1111111111111
+10101010101010101010101010
+aaaaaaaaaaaaa
+blablabla
+"
+end
+if instr($args[0],'em.str.thin')<>0 or $args[0]='':
+$functions[]='em.str.thin'
+$example['em.str.thin']="п р о ф е с с у р а
+п|р|о|ф|е|с|с|у|р|а
+п|р|о|ф|е|с|с|у|р|а|
+|п|р|о|ф|е|с|с|у|р|а
+|п|р|о|ф|е|с|с|у|р|а|
+про|фес|сур|а
+п|роф|есс|ура
+|про|фес|сур|а
+пр|оф|ес|су|ра|
+||п||р||о||ф||е||с||с||у||р||а||
+"
+end
+if instr($args[0], 'em.tag.get_num') <> 0 or $args[0] = '':
+	$functions[]= 'em.tag.get_num'
+	$example['em.tag.get_num'] = "[текст с пробелом][68][непробельные_символы][ff8899][многа букав][][ff8899]"
+end
+*pl "Start of Autotest." & wait 500
+loop local i,size=0,arrsize('$functions') while i<size step i+=1:
+	if loc($functions[i]):
+		*pl "Function '<<$functions[i]>>' is exist."
+		wait 500
+		$res=@em.autotest($functions[i])
+		if $res=$example[$functions[i]]:
+			*pl "Autotest of '<<$functions[i]>>' completed. All Ok!"
+			wait 500
+		else
+			*pl "Autotest Error. Dif Result:"
+			usehtml = 1
+			*pl "<table border=1 cellspacing=5><tr><td>Еxpected results:</td><td>Obtained results:</td></tr><tr><td><<@em.html.to_mnemonics($example[$functions[i]])>></td><td><<@em.html.to_mnemonics($res)>></td></tr></table>"
+			if $args[1]='compile':
+				local $f,$r
+				loop local j,size=1,max(len($example[$functions[i]]),len($res)) while j<=size step j+=1:
+					$f=$mid($example[$functions[i]],j,1)
+					$r=$mid($res,j,1)
+					if $f<>$r: *pl "[<<j>>]<<$f>>	<<$r>> "
+				end
+			end
+			wait 500
+		end
+	else
+		*pl "Function '<<$functions[i]>>' doesn't exist. Location not found."
+		wait 500
+	end
+end
+*pl "End of Autotest."
+--- em.autotest.self ---------------------------------
+
+
+# em.q
+local l = len($str(args[0]))
+if l <= 6:
+	%result = [0, 0, args[0], 0, 0, 0]	
+else:
+	%result = [0, args[0]/1000000, args[0] mod 1000000, 0, 0, 0]
+end
+--- em.q ---------------------------------
+# em.q.summ
+local summ
+summ[0], summ[1], summ[2], summ[3], summ[4], summ[5] = %args[0]
+loop local j, add = 1, 0 while j < arrsize('%args') step j += 1:
+	add[0], add[1], add[2], add[3], add[4], add[5] = %args[j]
+	loop local i = 5 while i >= 0 step i -= 1:
+		summ[i] += add[i]
+		if len($str(summ[i])) > 6:
+			summ[i-1], summ[i] = summ[i-1]+summ[i]/1000000, summ[i] mod 1000000
+		end
+	end
+end
+%result = [summ[0], summ[1], summ[2], summ[3], summ[4], summ[5]]
+--- em.q.summ ---------------------------------
+
+
+# em.deRGB
+local red, green, blue, alpha
+local zero = rgb(0,0,0,128)
+local r, g, b, a = 1, 256, 256*256, 256*256*256
+if args[0]>0:
+	alpha=args[0]/a
+	blue=(args[0] mod a)/b
+	green=(args[0] mod a mod b)/g
+	red=(args[0] mod a mod b mod g)/r
+else
+	args[0]-=zero
+	alpha=args[0]/a+128
+	blue=(args[0] mod a)/b
+	green=(args[0] mod a mod b)/g
+	red=(args[0] mod a mod b mod g)/r
+end
+%result = [red, green, blue, alpha]
+--- em.deRGB ---------------------------------
+
+
+# em.str.get_word
+local $src_string_, pos_ = $args[0], args[1]
+local $regexp_, $matches_
+$regexp_ = '[^|]+'
+scanstr '$matches_', $src_string_, $regexp_
+if pos_ > arrsize('$matches_'): pos_ = arrsize('$matches_')
+if pos_ = 0: pos_ = 1
+$result = $matches_[pos_ - 1]
+--- em.str.get_word ---------------------------------
+
+
+# em.str.in_regexp
+$result = $replace($args[0], '\', '\\')
+$result = $replace($result, '|', '\|')
+$result = $replace($result, '[', '\[')
+$result = $replace($result, ']', '\]')
+$result = $replace($result, '(', '\(')
+$result = $replace($result, ')', '\)')
+$result = $replace($result, '.', '\.')
+$result = $replace($result, '^', '\^')
+$result = $replace($result, ':', '\:')
+$result = $replace($result, '{', '\{')
+$result = $replace($result, '}', '\}')
+$result = $replace($result, '*', '\*')
+$result = $replace($result, '!', '\!')
+$result = $replace($result, '$', '\$')
+$result = $replace($result, '^', '\^')
+$result = $replace($result, '-', '\-')
+$result = $replace($result, '+', '\+')
+$result = $replace($result, '=', '\=')
+$result = $replace($result, ',', '\,')
+$result = $replace($result, '?', '\?')
+--- em.str.in_regexp ---------------------------------
+
+
+# em.tag.get_cont
+if ($args[1]='<!--!>' or $args[1]='<!>') and $strfind($args[0],'<!--([\s\S]+?)-->')<>'':
+	$result = $strfind($args[0],'<!--([\s\S]+?)-->',1)
+elseif $strfind($args[0],'\['+$args[1]+':([\s\S]+?):'+$args[1]+'\]')<>'':
+	$result = $strfind($args[0],'\['+$args[1]+':([\s\S]+?):'+$args[1]+'\]',1)
+elseif $strfind($args[0],'\('+$args[1]+':([\s\S]+?):'+$args[1]+'\)')<>'':
+	$result = $strfind($args[0],'\('+$args[1]+':([\s\S]+?):'+$args[1]+'\)',1)
+elseif $strfind($args[0],'\['+$args[1]+'\]([\s\S]+?)\[\/'+$args[1]+'\]')<>'':
+	$result = $strfind($args[0],'\['+$args[1]+'\]([\s\S]+?)\[\/'+$args[1]+'\]?',1)
+elseif $strfind($args[0],'<'+$args[1]+':([\s\S]+?):'+$args[1]+'>')<>'':
+	$result = $strfind($args[0],'<'+$args[1]+':([\s\S]+?):'+$args[1]+'>',1)
+elseif $strfind($args[0],'<'+$args[1]+'>([\s\S]+?)<\/'+$args[1]+'>')<>'':
+	$result = $strfind($args[0],'<'+$args[1]+'>([\s\S]+?)<\/'+$args[1]+'>',1)
+elseif $strfind($args[0],$args[1]+':([\s\S]+?):'+$args[1])<>'':
+	$result = $strfind($args[0],$args[1]+':([\s\S]+?):'+$args[1],1)
+end
+--- em.tag.get_cont ---------------------------------
+
+
+# em.tag.get_num
+local it_hex, $res_num = 0, ''
+if $mid($args[1],len($args[1])-1)='/h': $args[1]=$replace($args[1],'/h') & it_hex=1
+if $strfind($args[0],'\['+$args[1]+':'+'([^][]*?)'+'\]')<>'':
+	$res_num = $strfind($args[0],'\['+$args[1]+':'+'([^][]+?)'+'\]',1)
+elseif $strfind($args[0],'<'+$args[1]+':'+'([^><]*?)'+'>')<>'':
+	$res_num = $strfind($args[0],'<'+$args[1]+':'+'([^><]+?)'+'>',1)
+elseif $strfind($args[0],'\{'+$args[1]+':'+'([^}{]*?)'+'\}')<>'':
+	$res_num = $strfind($args[0],'\{'+$args[1]+':'+'([^}{]+?)'+'\}',1)
+elseif $strfind($args[0],'\('+$args[1]+':'+'([^)(]*?)'+'\)')<>'':
+	$res_num = $strfind($args[0],'\('+$args[1]+':'+'([^)(]+?)'+'\)',1)
+elseif $strfind($args[0],$args[1]+'=("|'+"')([\s\S]*?)\1")<>'':
+	$res_num = $strfind($args[0],$args[1]+'=("|'+"')([\s\S]*?)\1",2)
+elseif $strfind($args[0],$args[1]+'(:|=#)[\S]+')<>'':
+	$res_num = $strfind($args[0],$args[1]+'(:|=#)([\S]+)',2)
+end
+if it_hex and $strfind($res_num,'^([0-9A-Fa-f\-]+)([\S]*)$')='':
+	killvar '$result'
+	exit
+elseif it_hex:
+	$res_num = $strfind($res_num,'^([0-9A-Fa-f\-]+)([\S]*)$',1)
+end
+$result=$res_num
+--- em.tag.get_num ---------------------------------
+
+
+# em.sqrt
+local $res_
+if $args[0]='': $args[0]=$str(args[0])
+if $args[0]='0': $result = '0' & exit
+if args[1] = 0: args[1] = 100
+if $args[2]='':
+	$args[2]=$dyneval({
+		local $int_	& !@ целая часть числа
+		if instr($args[0],'.')<>0: $int_=$mid($args[0],1,instr($args[0],'.')-1) else $int_=$args[0]
+		if len($int_)>10 or (len($int_)=10 and $mid($int_,1,1)='2'): $result='46340' & exit
+		if (len($int_)=10 and $mid($int_,1,1)='1') or (len($int_)=9 and $mid($int_,1,1)='9'): $result='31622' & exit
+		if (len($int_)=9 and $mid($int_,1,1)='1') or (len($int_)=8 and $mid($int_,1,1)='9'): $result='10000' & exit
+		if (len($int_)=8 and $mid($int_,1,1)='1') or (len($int_)=7 and $mid($int_,1,1)='9'): $result='3162' & exit
+		if (len($int_)=7 and $mid($int_,1,1)='1') or (len($int_)=6 and $mid($int_,1,1)='9'): $result='1000' & exit
+		if (len($int_)=6 and $mid($int_,1,1)='1') or (len($int_)=5 and $mid($int_,1,1)='9'): $result='316' & exit
+		if (len($int_)=5 and $mid($int_,1,1)='1') or (len($int_)=4 and $mid($int_,1,1)='9'): $result='100' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='8'): $result='90' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='7'): $result='84' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='6'): $result='78' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='5'): $result='71' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='4'): $result='64' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='3'): $result='55' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='2'): $result='45' & exit
+		if (len($int_)=4 and $mid($int_,1,1)='1'): $result='32' & exit
+		if len($int_)=3:
+			local i=val($int_)
+			if i>960: $result='32' & exit
+			if i>900: $result='31' & exit
+			if i>841: $result='30' & exit
+			if i>784: $result='29' & exit
+			if i>729: $result='28' & exit
+			if i>676: $result='27' & exit
+			if i>625: $result='26' & exit
+			if i>576: $result='25' & exit
+			if i>529: $result='24' & exit
+			if i>484: $result='23' & exit
+			if i>441: $result='22' & exit
+			if i>400: $result='21' & exit
+			if i>361: $result='20' & exit
+			if i>324: $result='19' & exit
+			if i>289: $result='18' & exit
+			if i>256: $result='17' & exit
+			if i>225: $result='16' & exit
+			if i>196: $result='15' & exit
+			if i>169: $result='14' & exit
+			if i>144: $result='13' & exit
+			if i>121: $result='12' & exit
+			if i>100: $result='11' & exit
+			if i>81: $result='10' & exit
+			if i>64: $result='9' & exit
+			if i>49: $result='8' & exit
+			if i>36: $result='7' & exit
+			if i>25: $result='6' & exit
+			if i>16: $result='5' & exit
+			if i>9: $result='4' & exit
+			if i>4: $result='3' & exit
+			if i>1: $result='2' & exit
+			if i>0: $result='1' & exit
+		end
+		$result='1'
+
+	}, $args[0])
+end
+loop local run=1 while run:
+	$res_ = @em.div(@em.add($args[2], @em.div($args[0],$args[2],args[1])), '2', args[1])
+	if $res_<>$args[2]:
+		$args[2]=$res_
+	else
+		run=0
+		$result=$res_
+		exit
+	end
+end
+--- em.sqrt ---------------------------------
+
+
+# em.add
+local $int_, $fract_, $minus_, int_len_, fract_len_, $nines_
+local $number_, $summ_
+loop local i,b,size_=0,-1,arrsize('args') while i<size_ step i+=1:
+	if $args[i]='' and args[i]<>0:
+		$args[i]=$str(args[i])
+	end
+	if $args[i]<>'' and $strfind($args[i],'^0+(\.0+)?$')='':
+		b+=1	
+		if instr($args[i],'-')=1:
+			$minus_[b]='-'
+			$args[i]=$mid($args[i],2)
+		else
+			$minus_[b]=''
+			$args[i]=$args[i]
+		end
+		if instr($args[i],'.')<>0:
+			$int_[b]=$mid($args[i],1,instr($args[i],'.')-1)
+			$fract_[b]=$mid($args[i],instr($args[i],'.')+1)
+		else
+			$int_[b]=$args[i]
+			$fract_[b]='0'
+		end
+		if len($int_[b])>int_len_: int_len_=len($int_[b])
+		if len($fract_[b])>fract_len_: fract_len_=len($fract_[b])
+	end
+end
+int_len_+=2
+fract_len_+=2
+$nines_=@em.zero(int_len_+fract_len_,'9')
+loop local i,b=0,arrsize('$int_') while i<b step i+=1:
+	$number_[i]=@em.zero(int_len_-len($int_[i]))+$int_[i]+$fract_[i]+@em.zero(fract_len_-len($fract_[i]))
+	if $minus_[i]='-':
+		$number_[i]=@em.byte.dev($nines_,$number_[i])
+	end
+end
+$summ_=@em.zero(int_len_+fract_len_)
+loop local i,b=0,arrsize('$int_') while i<b step i+=1:
+	$summ_=@em.byte.add($summ_,$number_[i])
+end
+if instr($summ_,'9')=1:
+	$summ_=@em.byte.dev($nines_,$summ_)
+	$minus_='-'
+else
+	$summ_=$summ_
+	$minus_=''
+end
+$result=@em.dz($minus_+$mid($summ_,1,int_len_)+"."+$mid($summ_,int_len_+1))
+--- em.add ---------------------------------
+
+
+# em.div
+local minus, $int, $fract, $divident, $divisor, $res, $approx, digit, $subtract
+$args[0]=@em.dz($args[0],1)
+$args[1]=@em.dz($args[1],1)
+if args[2]<1: args[2]=1000
+if instr($args[0],'-')=1: $args[0]=$mid($args[0],2) & minus=1-minus
+if instr($args[1],'-')=1: $args[1]=$mid($args[1],2) & minus=1-minus
+if minus=1: $minus='-' else $minus=''
+if instr($args[0],'.')<>0:
+	$int[0]=$mid($args[0],1,instr($args[0],'.')-1)
+	$fract[0]=$mid($args[0],instr($args[0],'.')+1)
+else:
+	$int[0]=$args[0]
+	$fract[0]=''
+end
+fract_len[0]=len($fract[0])
+if instr($args[1],'.')<>0:
+	$int[1]=$mid($args[1],1,instr($args[1],'.')-1)
+	$fract[1]=$mid($args[1],instr($args[1],'.')+1)
+else:
+	$int[1]=$args[1]
+	$fract[1]=''
+end
+fract_len[1]=len($fract[1])
+if fract_len[1]>fract_len[0]:
+	$fract[0]+=@em.zero(fract_len[1]-fract_len[0])
+else
+	$fract[1]+=@em.zero(fract_len[0]-fract_len[1])
+end
+$divident=$int[0]+$fract[0]
+$divisor=$int[1]+$fract[1]
+$res='0'
+$approx=$mid($divident,1,len($divisor))
+$divident=$mid($divident,len($divisor)+1)
+digit=0
+loop local i=args[2] while i>0:
+	$subtract=@em.byte.dev('0'+$approx,'0'+$divisor)
+	if instr($subtract,'9')=1:
+		$res+=$str(digit)
+		digit=0
+		if len($divident)>0:
+			$approx+=$mid($divident,1,1)
+			$divident=$mid($divident,2)
+		else
+			if instr($res,'.')=0: $res+='.'
+			$approx+='0'
+		end
+		if instr($res,'.')<>0: i/=10
+	else
+		digit+=1	
+		$approx=$mid($subtract,2)
+	end
+end
+$result=$minus+@em.dz($res)
+--- em.div ---------------------------------
+
+
+# em.mult
+local minus, dot_pos
+local fract_len = 0
+loop local i,size=0,arrsize('args') while i<size step i+=1:
+	if len($args[i])=0:
+		$args[i]=$str(args[i])
+	end
+	if $args[i]='0': $result='0' & exit	
+	if instr($args[i],'-')=1:
+		$args[i]=$mid($args[i],2)
+		minus=1-minus	
+	end
+	if instr($args[i],'.')<>0:
+		dot_pos=instr($args[i],'.')
+		fract_len+=len($args[i])-dot_pos	
+		$args[i]=$replace($args[i],'.')
+	end
+end
+local $multiply, first_multiplier, second_multiplier, stack
+$multiply['result']=$args[0]
+loop local i,size=1,arrsize('args') while i<size step i+=1:
+	second_multiplier['digit']=len($args[i])
+	$multiply['last']=''
+	loop while second_multiplier['digit']>0 step second_multiplier['digit']-=1:
+		second_multiplier['value']=val($mid($args[i],second_multiplier['digit'],1))
+		first_multiplier['digit']=len($multiply['result'])
+		$multiply['next']=''
+		stack=0
+		loop while first_multiplier['digit']>0 step first_multiplier['digit']-=1:
+			first_multiplier['value']=val($mid($multiply['result'],first_multiplier['digit'],1))
+			multiply['itteration']=first_multiplier['value']*second_multiplier['value']+stack
+			multiply['digit']=(multiply['itteration'] mod 10)
+			stack=multiply['itteration']/10
+			$multiply['next']=$str(multiply['digit'])+$multiply['next']
+		end
+		if stack>0: $multiply['next']=$str(stack)+$multiply['next']
+		$multiply['next']+=@em.zero(len($args[i])-second_multiplier['digit'])
+		$multiply['last']=@em.byte.add($multiply['last'],$multiply['next'])
+	end
+	$multiply['result']=$multiply['last']
+end
+if minus=1: $minus='-' else $minus=''
+local $res
+$res['fract']=$mid($multiply['result'],len($multiply['result'])-fract_len+1)
+$res['int']=$mid($multiply['result'],1,len($multiply['result'])-fract_len)
+if $res['fract']<>'':
+	$result=$minus+@em.dz($res['int']+'.'+$res['fract'])
+else
+	$result=$minus+@em.dz($res['int'])
+end
+--- em.mult ---------------------------------
+
+
+# em.round
+local $minus, $float, $digits, int_len, dot_pos, dig
+if instr($args[0],'-')=1:
+	$args[0]=$mid($args[0],2)
+	$minus='-'
+else
+	$args[0]=$args[0]
+	$minus=''
+end
+if args[1]<>0: $args[1]=$str(args[1])
+if $args[1]='' or $args[1]='0': $args[1]='1'
+if instr($args[0],'.')=0: $args[0]+='.0'
+if instr($args[1],'.')=0: $args[1]+='.0'
+$result=$args[0]
+if strcomp($args[1],'(10*?\.0+)|(0.0*1)')=0: exit
+$float['int']=$mid($args[0],1,instr($args[0],'.')-1)
+$float['fract']=$mid($args[0],instr($args[0],'.')+1)
+$digits['int']=$mid($args[1],1,instr($args[1],'.')-1)
+$digits['fract']=$mid($args[1],instr($args[1],'.')+1)
+if len($float['int'])>len($digits['int']):
+	int_len=len($float['int'])-len($digits['int'])
+	$digits['int']=@em.zero(int_len+1)+$digits['int']
+	$float['int']='0'+$float['int']
+else
+	int_len=len($digits['int'])-len($float['int'])
+	$float['int']=@em.zero(int_len+1)+$float['int']
+	$digits['int']='0'+$digits['int']
+end
+if len($float['fract'])>len($digits['fract']):
+	int_len=len($float['fract'])-len($digits['fract'])
+	$digits['fract']+=@em.zero(int_len+1)
+	$float['fract']+='0'
+else
+	int_len=len($digits['fract'])-len($float['fract'])
+	$float['fract']+=@em.zero(int_len+1)
+	$digits['fract']+='0'
+end
+dot_pos=len($float['int'])
+$float['number']=$float['int']+$float['fract']
+$digits['number']=$digits['int']+$digits['fract']
+dig['after_pos']=instr($digits['number'],'1')+1	
+if instr($args[2],'[up]')<>0:
+	dig['after_value']=9
+elseif instr($args[2],'[down]')<>0:
+	dig['after_value']=0
+else:
+	dig['after_value']=val($mid($float['number'],dig['after_pos'],1))
+end
+if dig['after_value']<5: dig['next_value']=0 else dig['next_value']=1	
+$float['number']=$mid($float['number'],1,dig['after_pos']-1)+'0'+@em.zero(len($digits['number'])-dig['after_pos'])
+loop local dig_10, summ = 1,1 while dig['next_value']=1:
+	dig_10=val($mid($float['number'],dig['after_pos']-1,1))
+	summ=dig_10+dig['next_value']
+	dig['next_value']=summ/10
+	summ=summ mod 10
+	$float['number']=$mid($float['number'],1,dig['after_pos']-2)+$str(summ)+$mid($float['number'],dig['after_pos'])
+	dig['after_pos']-=1
+end
+$result=@em.dz($minus+$mid($float['number'],1,dot_pos)+'.'+$mid($float['number'],dot_pos+1))
+--- em.round ---------------------------------
+
+
+# em.simpl
+local $float, $digits, $minus, $int, int_len, $fract
+$float[0]=@em.dz($args[0],1)
+$float[1]=@em.dz($args[1],1)
+if instr($float[0],'.')=0: $float[0]+='.0'
+if instr($float[1],'.')=0: $float[1]+='.0'
+if $float[0]=$float[1]:
+	$result=@em.dz($float[0])
+	exit
+else
+	if instr($float[0],'-')=1:
+		$digits[0]=$mid($float[0],2)
+		$minus[0]='-'
+	else
+		$digits[0]=$float[0]
+		$minus[0]=''
+	end
+	if instr($float[1],'-')=1:
+		$digits[1]=$mid($float[1],2)
+		$minus[1]='-'
+	else
+		$digits[1]=$float[1]
+		$minus[1]=''
+	end
+	if $minus[0]='-' and $minus[1]<>'-':
+		$result=@em.dz($float[1])
+		exit
+	elseif $minus[1]='-' and $minus[0]<>'-':
+		$result=@em.dz($float[0])
+		exit
+	else
+		$int[0]=$mid($digits[0],1,instr($digits[0],'.')-1)
+		$int_len[0]=len($int[0])
+		$int[1]=$mid($digits[1],1,instr($digits[1],'.')-1)
+		$int_len[1]=len($int[1])
+		if $int_len[0]>$int_len[1]:
+			$int[1]=@em.zero($int_len[0]-$int_len[1])+$int[1]
+		elseif $int_len[0]<$int_len[1]:
+			$int[0]=@em.zero($int_len[1]-$int_len[0])+$int[0]
+		end
+		if $int[1]=$int[0]:
+			$fract[0]=$mid($digits[0],instr($digits[0],'.')+1)
+			$fract[1]=$mid($digits[1],instr($digits[1],'.')+1)
+			if $max($fract[1],$fract[0])=$fract[1]:
+				jump 'second'
+			elseif $max($fract[1],$fract[0])=$fract[0]:
+				jump 'first'
+			end
+		elseif $max($int[1],$int[0])=$int[1]:
+			:second
+			if $minus[1]='-':
+				$result=@em.dz($float[0])
+				exit
+			else
+				$result=@em.dz($float[1])
+				exit
+			end
+		elseif $max($int[1],$int[0])=$int[0]:
+			:first
+			if $minus[1]='-':
+				$result=@em.dz($float[1])
+				exit
+			else
+				$result=@em.dz($float[0])
+				exit
+			end
+		end
+	end
+end
+$result=@em.dz($result)
+--- em.simpl ---------------------------------
+
+
+# em.indiv
+local $minus, $res_indiv = '', ''
+if (args[0]<0 and args[1]>0) or (args[0]>0 and args[1]<0): $minus='-'
+if args[0]<0: args[0]=-args[0]
+if args[1]<0: args[1]=-args[1]
+if args[1]=0: args[1]=100	
+if args[2]=0: args[2]=1000000000	
+args[2]=len($str(args[2]))
+loop local i,div,rod=0,0,0 while i<args[2] step i+=1:
+	div=args[0]/args[1]
+	rod=args[0] mod args[1]
+	if i=1: $res_indiv+='.'
+	$res_indiv+=$str(div)
+	args[0]=rod*10	
+end
+$result=$minus+@em.dz($res_indiv)
+--- em.indiv ---------------------------------
+
+
+# em.divdigs
+local dot_in_str, div							
+dot_in_str=instr($args[0],'.')
+if dot_in_str=0: result=1 & exit				
+result=1
+loop local div=len($mid($args[0],dot_in_str+1)) while div>0 step div-=1:
+	result*=10
+end
+--- em.divdigs ---------------------------------
+
+
+# em.dz
+local $minus, dot, $start_part, $end_part, zero_num, $no_zeros	
+if instr($args[0],'-')=1:
+	$args[0]=$mid($args[0],2)
+	$minus='-'
+end
+if args[1]<1:
+	args[1]=1
+else:
+		args[1] = dyneval({
+			loop result = 1 while no (args[0]/result < 10): result *= 10
+		}, args[1])
+end
+if no instr($args[0], '.'):
+	$args[0] += '.0'
+end
+dot=instr($args[0],'.')
+$start_part=$mid($args[0],1,dot-1)
+$end_part=$mid($args[0],dot+1)
+zero_num=len($str(args[1]))-1	
+$no_zeros=$strfind($end_part,'(\d*?)(0*)$',1)
+if $no_zeros='':
+	$end_part=''
+elseif len($no_zeros)>=zero_num:
+	$end_part=$no_zeros	
+else
+	$end_part=$mid($end_part,1,zero_num)
+end
+$start_part=$strfind($start_part,'(0*)(\d*)$',2)
+if $start_part='': $start_part='0'
+! @ если дробная часть не отсеклась, возвращаем число с точкой, иначе - без
+if $end_part<>'':
+	$result=$minus+$start_part+'.'+$end_part
+elseif $start_part<>0:
+	$result=$minus+$start_part
+else
+	$result='0'
+end
+--- em.dz ---------------------------------
+
+
+# em.undiv
+local $zero_num, dot_in_str, $end_part, $start_part	
+if (args[1]<>0) and (args[1] mod 10 <> 0):
+		if args[1]<0: args[1]=-args[1]
+		local base_10=1 
+		loop while no (args[1]/base_10<10):
+			base_10*=10
+		end
+		args[1]=base_10
+end
+if isnum($args[0])<>0 and args[1]<>0:
+	result=val($args[0])*args[1]
+	exit
+elseif isnum($args[0])<>0 and args[1]=0:
+	result=val($args[0])
+else
+	$zero_num=$mid($str(args[1]),2)
+	if $zero_num='': result=val($replace($args[0],'.')) & exit
+	dot_in_str=instr($args[0],'.')
+	$end_part=$mid($args[0],dot_in_str+1)
+	$start_part=$mid($args[0],1,dot_in_str-1)
+	if len($end_part)>=len($zero_num):
+		result=val($start_part+$mid($end_part,1,len($zero_num)))
+	else
+		result=val($start_part+$end_part+$mid($zero_num,1,len($zero_num)-len($end_part)))
+	end
+end
+--- em.undiv ---------------------------------
+
+
+# em.byte.add
+if $args[0]='': $args[0]=$str(args[0]) else $args[0] = $args[0]
+if $args[1]='': $args[1]=$str(args[1]) else $args[1] = $args[1]
+if no (strcomp($args[0], '\d+') and strcomp($args[1], '\d+')): $result = '[not a number]' & exit
+local $x, $y = $args[0], $args[1]
+local max_len_ = max(len($x), len($y))
+local digital_ = iif(max_len_ mod 9 = 0, max_len_, (max_len_ / 9 + 1) * 9)
+local $sum_, overflow_byte_
+loop local run_ = 1 while run_:
+	$x = @em.zero(digital_ - len($x)) + $x
+	$y = @em.zero(digital_ - len($y)) + $y
+	$sum_, overflow_byte_ = '', 0
+	loop local i = digital_ while i > 0 step i -= 9:
+		$sum_['9'] = $str(val($mid($x, i-9+1, 9)) + val($mid($y, i-9+1, 9)) + overflow_byte_)
+		if len($sum_['9'])>9:
+			overflow_byte_ = val($mid($sum_['9'], 1, 1))
+			$sum_['9'] = $mid($sum_['9'], 2)
+		else:
+			overflow_byte_ = 0
+		end
+		$sum_ = $sum_['9'] + $sum_
+	end
+	if overflow_byte_ > 0:
+		$x = $sum_	
+		$y = @em.zero(digital_ - len($str(overflow_byte_))) + $str(overflow_byte_)
+	elseif val($mid($sum_, 1, len($sum_) - max_len_)) > 0:
+		$x = $mid($sum_, len($sum_) - max_len_ + 1)
+		$y = $mid($sum_, 1, len($sum_) - max_len_)
+	else:
+		run_ = 0
+	end
+end
+$result = @em.zero(max_len_ - len($sum_)) + $sum_
+--- em.byte.add ---------------------------------
+
+
+# em.byte.dev
+local max_len, $term
+if $args[0]='': $args[0]=$str(args[0]) else $args[0] = $args[0]
+if $args[1]='': $args[1]=$str(args[1]) else $args[1] = $args[1]
+max_len=max(len($args[0]),len($args[1]))
+$term[0]=@em.zero(max_len-len($args[0]))+$args[0]
+$term[1]=@em.zero(max_len-len($args[1]))+$args[1]
+loop local last_byte,run=0,1 while run:
+	$result=''
+	last_byte = 0	
+	loop local i,res_byte=max_len,0 while i>0 step i-=1:
+		res_byte=val($mid($term[0],i,1))-val($mid($term[1],i,1))+last_byte
+		if res_byte<0:
+			res_byte=10+res_byte
+			last_byte=-1
+		else
+			last_byte=0
+		end
+		$result=$str(res_byte)+$result
+	end
+	if last_byte=-1:
+		$term[0]=$result
+		$term[1]=@em.zero(max_len-1)+'1'
+	else
+		run=0
+	end
+end
+--- em.byte.dev ---------------------------------
+
+
+# em.arr.search
+if $args[0] = '': msg 'em.str.in_arr: Wrong array name → <<$args[0]>>' & exit
+if instr($args[0], '$') <> 1: msg 'em.str.in_arr: type prefix ''$'' not specified →  <<$args[0]>>' & exit
+local em_arr_search_temp_array_
+result = -1 
+$args[2] = $lcase($args[2])
+if args[4] < 1: args[4] = arrsize($args[0])-1	
+copyarr 'em_arr_search_temp_array_', $args[0], args[3], args[4] - args[3] + 1
+local pos_
+if instr($args[2], '[first]') <> 0 or $args[2] = '':
+	result = arrcomp('em_arr_search_temp_array_', '[\s\S]*' + $args[1] + '[\s\S]*')
+elseif instr($args[2], '[last]') <> 0:
+	loop local i, run_ = args[3], 1 while run_:
+		pos_ = arrcomp('em_arr_search_temp_array_', '[\s\S]*' + $args[1] + '[\s\S]*', i)
+		if pos_ = -1: jump 'break'
+		result = pos_	
+		i = result + 1	
+	end
+end
+:break
+if result <> -1: result += args[3]
+--- em.arr.search
+
+
+# em.gen_uuid
+local $symbols_ = '0123456789abcdef'
+$result = ''
+loop local i = 0 while i < 36 step i += 1:
+	if instr('[8][13][18][23]', '[<<i>>]'):
+		$result += '-'
+	else:
+		$result += $mid($symbols_, rand(1,16), 1)
+	end
+end
+--- em.gen_uuid ---------------------------------
+
+
+# em.str.head_tail
+if $args[1] = '': $args[1] = '|'
+local i = instr($args[0], $args[1])
+%result = [$mid($args[0], 1, i-1), $mid($args[0], i+len($args[1]))]
+--- em.str.head_tail
+
+
+# em.str.random
+if args[0]=0: args[0]=rand(1,8)
+$result = ''
+local $symbols_, $new_symbols_ = '', ''
+if $strfind($args[1],'(?i)\[inc(lude)?\]')<>'':
+	$args[1]=$lcase($args[1])
+	if instr($args[1],'[\all]')<>0 or instr($args[1],'[\d]')<>0: $symbols_+='1234567890'
+	if instr($args[1],'[\all]')<>0 or instr($args[1],'[\h]')<>0: $symbols_+='1234567890abcdef'
+	if instr($args[1],'[\all]')<>0 or instr($args[1],'[\s]')<>0: $symbols_+='	 '
+	if instr($args[1],'[\all]')<>0 or instr($args[1],'[\w]')<>0:
+		$symbols_+='QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm'
+		$symbols_+='ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮёйцукенгшщзхъфывапролджэячсмитьбю'
+		$symbols_+='1234567890_'
+	end
+	if instr($args[1],'[\all]')<>0 or instr($args[1],'[\я]')<>0:
+		$symbols_+='ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮёйцукенгшщзхъфывапролджэячсмитьбю'
+	end
+	if instr($args[1],'[\all]')<>0 or instr($args[1],'[\z]')<>0:
+		$symbols_+='QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm'
+	end
+	if instr($args[1],'[ucase]')<>0: $symbols_=$ucase($symbols_)
+	if instr($args[1],'[lcase]')<>0: $symbols_=$lcase($symbols_)
+	$args[1] = ''
+elseif $strfind($args[1],'(?i)\[only this\]')<>'' or $strfind($args[1],'(?i)\[ot\]')<>'':
+	$args[1] = ''
+else
+	$symbols_='QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?1234567890'
+	$symbols_+="!@#$%^&*()_+-=`~qwertyuiop[]asdfghjkl;'zxcvbnm,./\|№"
+	$symbols_+="ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ"
+end
+loop local $temp while len($symbols_)>0:
+	$temp=$mid($symbols_,1,1)
+	if instr($args[1],$temp)=0:
+		$new_symbols_+=$temp	
+	end
+	$symbols_ = $replace($symbols_,$temp)
+end
+$symbols_=$new_symbols_
+if $args[2]<>'': $symbols_+=$args[2]
+loop while args[0]>0 step args[0]-=1:
+	$result += ($mid($symbols_,rand(1,len($symbols_)),1))
+end
+--- em.str.random ---------------------------------
+
+
+# em.str.slice
+local $string_, start_, end_ = $args[0], args[1], args[2]
+if start_ = 0: start_ = 2
+if end_ = 0: end_ = -2
+if start_ < 0: start_ = len($string_) + 1 + start_
+if end_ < 0: end_ = len($string_) + 1 + end_
+if start_ < 0: end_ += start_
+if start_ > len($string_) or end_ < 0: $result = '' & exit
+$result = $mid($string_, start_, end_ - start_ + 1)
+--- em.str.slice ---------------------------------
+
+
+# em.str.thin
+$result = ''
+local $string_, spacing_, $delimiter_, $mode_ = $args[0], args[1], $args[2], $args[3]
+if spacing_ < 1: spacing_ = 1	
+if $delimiter_ = '': $delimiter_ = ' '
+$mode_ = $lcase($mode_)
+local $res_, len_, mod_
+len_ = len($string_)
+mod_ = len_ mod spacing_
+if instr($mode_,'[up]') <> 0:
+	if mod_ > 0: $string_ = $mid($string_, 1, spacing_ - mod_) + $string_
+	scanstr '$res_', $string_, '[\s\S]{<<spacing_>>}'
+	if mod_ > 0: $res_[0] = $mid($res_[0], spacing_)
+else:
+	if mod_ > 0: $string_ += $mid($string_, 1, spacing_ - mod_)
+	scanstr '$res_', $string_, '[\s\S]{<<spacing_>>}'
+	if mod_ > 0: $res_[arrsize('$res_')-1] = $mid($res_[], 1, mod_)
+end
+loop while arrsize('$res_'):
+	if len($result) or instr($mode_, '[left]'):
+		$result += $delimiter_ + $res_[0]
+	else:
+		$result += $res_[0]
+	end
+	killvar '$res_', 0
+end
+if instr($mode_,'[right]')<>0: $result += $delimiter_	
+--- em.str.thin ---------------------------------
+
+
+# em.str.widetrim
+$args[1] = $lcase($args[1])
+local $em_str_widetrim_temp_array_, strip_it_
+scanstr '$em_str_widetrim_temp_array_', $args[0], '.+'
+loop while arrsize('$em_str_widetrim_temp_array_')>0 and ($em_str_widetrim_temp_array_[0]='' or strcomp($em_str_widetrim_temp_array_[0],'[\s\n\r\t]+')<>0):
+	killvar '$em_str_widetrim_temp_array_',0
+end
+loop while arrsize('$em_str_widetrim_temp_array_')>0 and ($em_str_widetrim_temp_array_[]='' or strcomp($em_str_widetrim_temp_array_[],'[\s\n\r\t]+')<>0):
+	killvar '$em_str_widetrim_temp_array_', arrsize('$em_str_widetrim_temp_array_')-1
+end
+if instr($args[1],'[strip]')<>0: strip_it_ = 1	
+$result=""
+loop while arrsize('$em_str_widetrim_temp_array_')>0:
+	if strip_it_: $em_str_widetrim_temp_array_[0] = $trim($em_str_widetrim_temp_array_[0])
+	$result += $em_str_widetrim_temp_array_[0]
+	if arrsize('$em_str_widetrim_temp_array_')>1: $result += @em.RN
+	killvar '$em_str_widetrim_temp_array_',0
+end
+$result = $mid($result,1,len($result)-1)
+--- em.str.widetrim ---------------------------------
+
+
+# em.zero
+if $args[1]='': $args[1]='0'
+if $args[1]='0' and args[0]<=32:
+	$result = $mid('00000000000000000000000000000000', 1, args[0])
+else:
+	loop while args[0]>0 step args[0]-=1: $result+=$args[1]
+end
+--- em.zero ---------------------------------
+
+
+# em.col.add
+local $r = '[A-Fa-f0-9]'
+if no (strcomp($args[0], $r+'{6}') or strcomp($args[0], $r+'{8}')): $result = $args[0] & exit
+local red_,green_,blue_,minus_,$alpha_,add_
+minus_, $args[1] = %iif(instr($args[1],'-')=1, [-1, $mid($args[1],2)], [1, $args[1]])
+add_ = minus_ * @em.hex.in_dec($args[1])
+red_	= @em.hex.in_dec($mid($args[0],1,2))+add_
+green_	= @em.hex.in_dec($mid($args[0],3,2))+add_
+blue_	= @em.hex.in_dec($mid($args[0],5,2))+add_
+$alpha_	= $mid($args[0],7,2)
+if red_>255: red_=255
+if red_<0: red_=0
+if green_>255: green_=255
+if green_<0: green_=0
+if blue_>255: blue_=255
+if blue_<0: blue_=0
+$result=@em.dec.in_col(red_)+@em.dec.in_col(green_)+@em.dec.in_col(blue_)+$alpha_
+--- em.col.add ---------------------------------
+
+
+# em.col.inv
+local $r = '[A-Fa-f0-9]'
+if no (strcomp($args[0],$r+'{6}') or strcomp($args[0],$r+'{8}')): exit 
+local $red_, $green_, $blue_, r_, g_, b_, $alpha_
+r_ = 255 - @em.hex.in_dec($mid($args[0],1,2))
+g_ = 255 - @em.hex.in_dec($mid($args[0],3,2))
+b_ = 255 - @em.hex.in_dec($mid($args[0],5,2))
+$alpha_ = $mid($args[0],7,2)
+$red_ = @em.dec.in_col(r_)
+$green_ = @em.dec.in_col(g_)
+$blue_ = @em.dec.in_col(b_)
+$result = $red_ + $green_ + $blue_ + $alpha_
+--- em.col.inv ---------------------------------
+
+
+# em.col.in_rgb
+local $r = '[A-Fa-f0-9]'
+local rr_, gg_, bb_, aa_
+if no (strcomp($args[0], $r+'{6}') or strcomp($args[0], $r+'{8}')): result = 0 & exit 
+if len($args[0])=6: $args[0]+='ff'
+rr_ = @em.hex.in_dec($mid($args[0],1,2))
+gg_ = @em.hex.in_dec($mid($args[0],3,2))
+bb_ = @em.hex.in_dec($mid($args[0],5,2))
+aa_ = @em.hex.in_dec($mid($args[0],7,2))
+result=rgb(rr_, gg_, bb_, aa_)
+--- em.col.in_rgb ---------------------------------
+
+
+# em.dec.in_col
+local $minus_, base_16_, num_of_digit_
+$result=''
+if args[0]<0: args[0]=-args[0] & $minus_='-'
+if args[0]>255: args[0]=255
+base_16_=1
+num_of_digit_=0
+loop while no (args[0]/base_16_<16):
+	base_16_*=16
+	num_of_digit_+=1
+end
+loop local run=1 while run:
+	if num_of_digit_=0:
+		$result += $mid('0123456789abcdef',args[0]+1,1)
+		run=0
+	else:
+		$result += $mid('0123456789abcdef',args[0]/base_16_+1,1)
+		args[0]=args[0] mod base_16_	
+		num_of_digit_-=1
+			base_16_ = 1
+			loop local i=num_of_digit_ while i>0 step i-=1:	base_16_ *= 16
+	end
+end
+if len($result)=1:
+	$result = '0' + $result
+elseif no $result:
+	$result = '00'
+end
+$result = $minus_+$result
+--- em.dec.in_col ---------------------------------
+
+
+# em.dec.in_hex
+local $minus_, base_16_, num_of_digit_
+$result=''
+if args[0]<0: args[0]=-args[0] & $minus_='-'
+base_16_=1
+num_of_digit_=0
+loop while no (args[0]/base_16_<16) step num_of_digit_+=1:
+	base_16_*=16
+end
+loop local run=1 while run:
+	if num_of_digit_=0:
+		$result+=$mid('0123456789abcdef',args[0]+1,1)
+		run=0
+	else
+		$result+=$mid('0123456789abcdef',args[0]/base_16_+1,1)
+		args[0]=args[0] mod base_16_	
+		num_of_digit_-=1
+			base_16_=1
+			loop local i=num_of_digit_ while i>0 step i-=1:
+				base_16_*=16
+			end
+	end
+end
+$result=$minus_+$result
+--- em.dec.in_hex ---------------------------------
+
+
+# em.hex.add
+local $first_add_, $second_add_ = $lcase($args[0]), $lcase($args[1])
+local max_len_, number_, $value_
+number_['0']=0 & $value_[0]='0'
+number_['1']=1 & $value_[1]='1'
+number_['2']=2 & $value_[2]='2'
+number_['3']=3 & $value_[3]='3'
+number_['4']=4 & $value_[4]='4'
+number_['5']=5 & $value_[5]='5'
+number_['6']=6 & $value_[6]='6'
+number_['7']=7 & $value_[7]='7'
+number_['8']=8 & $value_[8]='8'
+number_['9']=9 & $value_[9]='9'
+number_['a']=10 & $value_[10]='a'
+number_['b']=11 & $value_[11]='b'
+number_['c']=12 & $value_[12]='c'
+number_['d']=13 & $value_[13]='d'
+number_['e']=14 & $value_[14]='e'
+number_['f']=15 & $value_[15]='f'
+max_len_ = iif(len($first_add_)>len($second_add_), len($first_add_), len($second_add_))
+local $em_zero_ = {	loop while args[0]>0 step args[0]-=1: $result+='0' }
+$first_add_ = $dyneval($em_zero_, max_len_-len($first_add_)) + $first_add_
+$second_add_ = $dyneval($em_zero_ ,max_len_-len($second_add_)) + $second_add_
+loop local last_byte_, run_ = 0, 1 while run_:
+	$result=''
+	last_byte_=0
+	loop local i,res_byte_=max_len_,0 while i>0 step i-=1:
+		res_byte_=number_[$mid($first_add_,i,1)]+number_[$mid($second_add_,i,1)]+last_byte_
+		last_byte_=res_byte_/16
+		res_byte_=res_byte_ mod 16
+		$result=$value_[res_byte_]+$result
+	end
+	if last_byte_>0:
+		$result=$value_[last_byte_]+$result	
+	end
+	run_=0	
+end
+--- em.hex.add ---------------------------------
+
+
+# em.hex.in_dec
+$args[0] = $lcase($args[0])
+local $last_symbol_
+result = 0
+loop local i, t, len_ = 0, 0, len($args[0]) while i < len_ step i += 1:
+	$last_symbol_ = $mid($args[0], len($args[0])-i, 1)
+	t = instr('0123456789abcdef', $last_symbol_) - 1 
+	loop local j = i while j > 0 step j -= 1: t *= 16
+	result += t	
+end
+--- em.hex.in_dec ---------------------------------
+
+
+# em.arr.desort
+if $args[0] = '': msg 'em.arr.desort: Wrong array name → <<$args[0]>>' & exit
+if $args[1] <> '' and instr('$%', $mid($args[1], 1, 1)): msg 'em.arr.desort: type prefix cannot be specified → <<$args[1]>>' & exit
+if $args[2] = '': $args[2] = $args[0]
+$args[21] = iif(instr('$%', $mid($args[0],1,1)), $mid($args[0],1,1), '')
+local %em_arr_desort_reflect_array_
+@@em.arr.concatenate '%em_arr_desort_reflect_array_', $args[1], $args[0]
+sortarr '%em_arr_desort_reflect_array_', 0
+loop args[22], args[23] = 0, arrsize('%em_arr_desort_reflect_array_') while args[22] < args[23] step args[22] += 1:
+	if $args[21] = '%':
+		args[24], %em_arr_desort_reflect_array_[args[22]] = %em_arr_desort_reflect_array_[args[22]]
+	elseif $args[21] = '$':
+		args[24], $em_arr_desort_reflect_array_[args[22]] = %em_arr_desort_reflect_array_[args[22]]
+	else:
+		args[24], em_arr_desort_reflect_array_[args[22]] = %em_arr_desort_reflect_array_[args[22]]
+	end
+end
+copyarr $args[2], 'em_arr_desort_reflect_array_'
+--- em.arr.deSort ---------------------------------
+
+
+# em.arr.simpl
+local em_arr_simp_copy_array_0_, em_arr_simp_copy_array_1_
+copyarr 'em_arr_simp_copy_array_0_', $args[0]
+copyarr 'em_arr_simp_copy_array_1_', $args[1]
+local $type_
+if instr($args[0],'%')<>0 or instr($args[1],'%')<>0:
+	$type_ = '%'
+elseif instr($args[0],'$')<>0 or instr($args[1],'$')<>0:
+	$type_ = '$'
+end
+local $array_name_0_, $array_name_1_= $type_+'em_arr_simp_copy_array_0_', $type_+'em_arr_simp_copy_array_1_'
+local $cmd_ = $lcase($args[2])
+if instr($cmd_,'[space exclude]') <> 0: $cmd_ = $replace($cmd_,'[space exclude]','[se]')
+if instr($cmd_,'[simp]') <> 0 or instr($cmd_,'[se]') <> 0:
+	sortarr $array_name_0_, 1	
+	sortarr $array_name_1_, 1	
+	if instr($cmd_, '[se]') <> 0:
+		@@em.arr.clear $array_name_0_
+		@@em.arr.clear $array_name_1_
+	end
+end
+if arrsize($array_name_0_) <> arrsize($array_name_1_) and no instr($cmd_,'[conc]'):
+	result = 0 & exit
+elseif (arrsize($array_name_0_)=0 or arrsize($array_name_1_)=0) and arrsize($array_name_0_) <> arrsize($array_name_1_):
+	result = 0 & exit
+elseif arrsize($array_name_0_) > arrsize($array_name_1_) and instr($cmd_,'[conc]') <> 0:
+	$array_name_0_, $array_name_1_ = $array_name_1_, $array_name_0_
+end
+loop local i = arrsize($array_name_0_)-1 while i > -1 step i -= 1:
+	if instr($cmd_, '[conc]') <> 0:
+		result = iif(arrpos($array_name_1_, arritem($array_name_0_, i)) <> -1, 1, 0)
+		if result: exit
+	else
+		result = iif(arritem($array_name_0_, i) = arritem($array_name_1_, i), 1, 0)
+		if no result: exit
+	end
+end
+--- em.arr.simpl ---------------------------------
+
+
+# em.arr.sort
+if $args[0] = '': msg 'em.arr.sort: Wrong array name → <<$args[0]>>' & exit
+if $args[2]<>'' and instr('$%', $mid($args[2],1,1)): msg 'em.arr.sort: type prefix cannot be specified → <<$args[2]>>' & exit
+if $args[3] = '': $args[3] = $args[0]
+$args[21] = iif(instr('$%', $mid($args[0],1,1)), $mid($args[0],1,1), '')
+local %em_arr_sort_enum_array_ 
+local em_arr_sort_refl_array_ 
+local em_arr_sort_result_array_ 
+copyarr '<<$args[21]>>em_arr_sort_result_array_', $args[0]
+@@em.arr.enumerate '<<$args[21]>>em_arr_sort_result_array_', '%em_arr_sort_enum_array_'
+sortarr '%em_arr_sort_enum_array_', args[1]
+loop args[22] = 0 while args[22]<arrsize('%em_arr_sort_enum_array_') step args[22]+=1:
+	if $args[21] = '%':
+		%em_arr_sort_result_array_[args[22]], em_arr_sort_refl_array_[args[22]] = %em_arr_sort_enum_array_[args[22]]
+	elseif $args[21] = '$':
+		$em_arr_sort_result_array_[args[22]], em_arr_sort_refl_array_[args[22]] = %em_arr_sort_enum_array_[args[22]]
+	else:
+		em_arr_sort_result_array_[args[22]], em_arr_sort_refl_array_[args[22]] = %em_arr_sort_enum_array_[args[22]]
+	end
+end
+if $args[2] <> '': copyarr $args[2], 'em_arr_sort_refl_array_'
+copyarr $args[3], '<<$args[22]>>em_arr_sort_result_array_'
+--- em.arr.sort ---------------------------------
+
+
+# em.arr.print
+args[21], args[22] = %iif(%args[2] = [] and arrsize($args[0])<>0, [0, arrsize($args[0])-1], %args[2])
+$result = ''
+if (args[22] < 0 or args[21] < 0): exit
+if $args[0]='': msg 'em.arr.print: No array name → <<$args[0]>>' & exit
+if args[22] < args[21] or args[21] < 0: msg 'em.arr.print: Out of range → <<[args[21], args[22]]>>' & exit
+$args[1] = $lcase($args[1])
+if $args[3] = '': $args[3] = @em.RN	
+if $args[3] = '/se': $args[3] = ''
+$args[23] = $iif(instr('$%', $mid($args[0], 1, 1)),  $mid($args[0], 1, 1), '')
+args[24] = iif(instr($args[1], '[only result]'), 1, 0)
+loop args[26], args[27] = args[21], args[22]+1 while args[26]<args[27] step args[26]+=1:
+	if no args[24]: $result += $args[0] + "[<<args[26]+args[21]>>] = "
+	if $args[23] = '$':
+		$args[25] = arritem($args[0], args[26])
+		if instr($args[1], '[trim]'): $args[25] = $trim($args[25])
+		if no args[24]:
+			$args[25] = $replace($args[25], "'", "''")
+			$result += "'<<$args[25]>>'"
+		else:
+			$result += $args[25]
+		end
+	else:
+		$result += $str(arritem($args[0], args[26]))
+	end
+	if instr($args[1], '[with last]') or args[26] <> args[27]-1:
+		$result += $args[3]
+	end
+end
+--- em.arr.print ---------------------------------
+
+
+# em.fewArrs.print
+args[21]=arrsize('$args')-1	
+args[24] = arrcomp('$args','[\s\S]*((\b\d+([A-Za-zа-яА-Я\$\%\._]+\d*)+\b)|(\b[A-Za-zа-яА-Я\$\%\._]+[^A-Za-zа-яА-Я\$\%\._]+))[\s\S]*')
+args[22] = iif($strfind($args[args[21]],'\[.+?\]')<>'', 1, 0)
+$args[23] = 'Error: All your massives are empty.'
+if args[24]<>-1 and args[24]<>args[21]:
+	msg "em.fewArrs.print: Array's name is not correct. ARGS[<<args[24]>>]: '<<$args[args[24]]>>'"
+	exit
+end
+args[25], args[26] = 0, -1
+if args[22]:
+	$args[30]=$lcase($args[args[21]])
+	args[27] = iif(instr($args[30],'[no table]'), 0, 1)
+	if instr($args[30],'[only result]'): args[27], args[28] = 0, 1
+	if instr($args[30], '[range onscreen:'):
+		args[25] = val($strfind($args[30], '\[range onscreen:(\d+)\-\d+\]', 1))
+		args[26] = val($strfind($args[30], '\[range onscreen:\d+\-(\d+)\]', 1)) + 1
+	end
+	if instr($args[30], '[empty:'):
+		$args[23] = $strfind($args[args[21]], '(\[empty:)(.+?)\]', 2)
+	end
+	args[21] -= 1
+else:
+	args[27] = 1
+	args[28] = 0
+end
+if args[27] or no args[22]: $args[29]='<table border=1 cellpadding=5>'
+if args[27]: $args[29] += '<tr><td>#</td>'
+loop args[31]=0 while args[31]<args[21]+1 and $strfind($args[args[31]],'\[.+?\]')='' and $args[args[31]]<>'' step args[31]+=1:
+	if args[27]: $args[29] += "<td><<$args[args[31]]>></td>"
+	args[34]=arrsize($args[args[31]])
+	if args[34]>args[35]: args[35]=args[34]
+end
+if args[27]: $args[29] += '</tr>'
+if args[35]=0:
+	$result = $args[23]
+	exit
+end
+if args[25] > args[35] - 1:
+	args[25] = args[35] - 1
+end
+if args[26] > args[35] or args[26] = -1:
+	args[26] = args[35]
+elseif args[26] <= args[25]:
+	args[26] = args[25] + 1
+end
+loop args[32]=args[25] while args[32]<args[26] step args[32]+=1:
+	if args[27]: $args[29] += "<tr><td><<args[32]>></td>"
+	loop args[31]=0 while args[31]<args[21]+1 and $strfind($args[args[31]],'\[.+?\]')='' and $args[args[31]]<>'' step args[31]+=1:
+		if no args[28] and no args[27]:
+			$args[33]=$args[args[31]]+"[<<args[32]>>]="
+		else
+			$args[33]=''
+		end
+		if instr($args[args[31]],'%')=1:
+			$args[33] += @em.html.to_mnemonics($str(%arritem($args[args[31]],args[32])))
+		elseif instr($args[args[31]],'$')=1:
+			if args[27]:
+				$args[33]+=$dyneval({
+					!@ $1 - название массива
+					!@ $0 - номер ячейки
+					if $arritem($args[1],args[0])<>'':
+						$result = @em.html.to_mnemonics($arritem($args[1],args[0]))
+					else
+						!@ в пустых ячейках ставим пробелы
+						$result = '&nbsp;'
+					end
+				},args[32],$args[args[31]])
+			else
+				if no args[28]:
+					$args[33]+="'"+$replace($arritem($args[args[31]],args[32]),"'","''")+"'"
+				else
+					$args[33] += $arritem($args[args[31]],args[32])
+				end
+			end
+		else:
+			$args[33]+=$str(arritem($args[args[31]], args[32]))
+		end
+		if args[27]:
+			$args[29] += '<td>'+$args[33]+'</td>'
+		elseif args[28] and args[31]<>0:
+			$args[36]+='	'+$args[33]
+		elseif args[31]<>0:
+			$args[36]+='	&	'+$args[33]
+		else:
+			$args[36]+=$args[33]
+		end
+	end
+	if args[27]:
+		$args[29] += "</tr>"
+	elseif args[32]+1<args[26]:
+		$args[36]+=@em.RN	
+	end
+end
+if args[27]: $args[29] += '</table>'
+if args[27]:
+	$result = $args[29]
+elseif $args[36]<>'':
+	$result = $args[36]
+else
+	msg 'em.fewArrs.print: If you see this message, that so wrong. Save the game and ask me on aleksversus@mail.ru. Error of easy.math.libs in em.fewArrs.print'
+end
+--- em.fewArrs.print ---------------------------------
+
+
+# em.arr.clear
+if 0:
+	elseif instr($args[0],'%')=1: $args[22] = '%'
+	elseif instr($args[0],'$')=1: $args[22] = '$'
+	else: $args[22] = ''
+end
+pl '('+arritem('<<$args[22]>>args', 1)+')'
+loop args[21] = 0 while 1:
+	args[21] = arrpos($args[0], arritem('<<$args[22]>>args', 1), args[21])
+	if args[21] = -1 or arrsize($args[0]) = 0: jump 'break'
+	killvar $args[0], args[21]
+end
+:break
+--- em.arr.clear ---------------------------------
+
+
+# em.arr.concatenate
+if $args[0] = '': msg 'em.arr.concatenate: Wrong array name → <<$args[0]>>' & exit
+if instr($args[0], '%') <> 1: msg 'em.arr.concatenate: type prefix ''%'' not specified → <<$args[0]>>' & exit
+args[21], args[23] = arrsize('args'), 0
+loop args[22] = 1 while args[22] < args[21] step args[22] += 1:
+	args[23] = iif(arrsize($args[args[22]]) > args[23], arrsize($args[args[22]]), args[23])
+end
+local %em_arr_concatenate_temp_
+loop args[24] = 0 while args[24] < args[23] step args[24] += 1:
+	if args[21] > 3:
+		%em_arr_concatenate_temp_[args[24]] = []
+		loop args[22] = 1 while args[22] < args[21] step args[22] += 1:
+			%em_arr_concatenate_temp_[args[24]] = (%em_arr_concatenate_temp_[args[24]] & arritem($args[args[22]], args[24]))
+		end
+	else:
+		%em_arr_concatenate_temp_[args[24]] = [ arritem($args[1], args[24]), arritem($args[2], args[24]) ]
+	end
+end
+copyarr $args[0], '%em_arr_concatenate_temp_'
+--- em.arr.concatenate ---------------------------------
+
+
+# em.arr.enumerate
+if $args[0]='' or $args[1]='': msg 'em.arr.enumerte: No array name → <<$args[0]>>, <<$args[1]>>' & exit
+if instr($args[1], '%') <> 1: msg 'em.var.enumerate: type prefix ''%'' not specified → <<$args[1]>>' & exit
+killvar $args[1]
+loop args[21] = 0 while args[21]<arrsize($args[0]) step args[21] += 1:
+	setvar $args[1], [arritem($args[0], args[21]), args[21]], arrsize($args[1])
+end
+--- em.arr.enumerate ---------------------------------
+
+
+# em.arr.few_kill
+args[21] = arrsize('args')
+loop args[22] = args[21] while args[22] > 0 step args[22] -= 1:
+	$args[23] = $arrtype('args', args[22]-1)
+	if $args[23] = '%':
+		killvar $args[0], %args[args[22]-1]
+	elseif $args[23] = '$':
+		killvar $args[0], $args[args[22]-1]
+	else:
+		killvar $args[0], args[args[22]-1]
+	end
+end
+--- em.arr.few_kill ---------------------------------
+
+
+# em.arr.fill
+$args[21] = $iif(instr('$%', $mid($args[0], 1, 1)), $mid($args[0], 1, 1), '')
+loop args[22] = len(%args[1]) while args[22]>0 step args[2] += 1 & args[22]-=1:
+    %args[1] = %dyneval("
+<<$args[0]>>[<<args[2]>>], %result = %args[0]
+", %args[1])
+end
+--- em.arr.fill ---------------------------------
+
+
+# em.arr.fill_rand
+if $args[0] <> '' and instr('$%', $mid($args[0], 1, 1)): msg 'em.arr.fill_rand: type prefix cannot be specified → <<$args[0]>>' & exit
+args[21], args[22] = %iif(%args[2] = [], [0, 1000], %args[2])
+loop while args[1]>0 step args[1]-=1 & args[3]+=1:
+    setvar $args[0], rand(args[21], args[22]), args[3]
+end
+--- em.arr.fill_rand ---------------------------------
+
+
+# em.arr.fill_strt
+if $args[0] <> '' and instr('$%', $mid($args[0], 1, 1)): msg 'em.arr.fill_rand: type prefix cannot be specified → <<$args[0]>>' & exit
+if args[4] < 1: args[4] = 1
+args[21], args[22] = %iif(%args[2] = [], [0,args[1]], %args[2])
+if args[21] > args[22]:	args[24] = 1
+args[23] = args[21]
+loop while args[1]>0 step args[1]-=1 & args[3]+=1:
+	setvar $args[0], args[23], args[3]
+	if no args[24]:
+		args[23] += args[4]
+		if args[23] > args[22] and (args[21]<>0 or args[22]<>0): args[23]=args[21]
+	else
+		args[23]-=args[4]
+		if args[23]<args[22] and (args[21]<>0 or args[22]<>0): args[23]=args[21]
+	end
+end
+--- em.arr.fill_strt ---------------------------------
+
+
+# em.arr.find
+if $args[0]='': msg 'em.arr.find: No array name → <<$args[0]>>' & exit
+$args[1] = $lcase($args[1])
+if no instr($args[1],'[min]'): $args[1]+='[max]'
+args['min_edge'], args['max_edge'] = %iif(%args[2] = [], [0, arrsize($args[0])-1], %args[2])
+if args['min_edge']>args['max_edge']: args['min_edge'], args['max_edge'] = args['max_edge'], args['min_edge']
+%result = [-1, 0]
+local easy_math_copy_array_
+copyarr 'easy_math_copy_array_', $args[0], args['min_edge'], args['max_edge']-args['min_edge']+1
+$args[22] = $iif(instr('%$', $mid($args[0], 1,1)), $mid($args[0], 1,1), '')
+if $args[22] = '%':
+	if %args[3] = []:
+		if instr($args[1],'[max]')<>0:
+			%args['m'] = %max('%easy_math_copy_array_')
+		elseif instr($args[1],'[min]')<>0:
+			%args['m'] = %min('%easy_math_copy_array_')
+		end
+		args['pos'] = arrpos('%easy_math_copy_array_', %args['m'])
+		%result = [args['pos'] + args['min_edge'], %args['m']]
+	else:
+		%args['min_num'], %args['max_num'] = %args[3]
+		if %args['min_num']>%args['max_num']: %args['max_num'], %args['min_num'] = %args['min_num'], %args['max_num']
+		loop args['edge'], args['size'] = 0, arrsize('easy_math_copy_array_') while args['edge']<args['size'] step args['edge']+=1:
+			if %easy_math_copy_array_[args['edge']]>=%args['min_num'] and %easy_math_copy_array_[args['edge']]<=%args['max_num']:
+				if instr($args[1],'[max]')<>0:
+					if (%args['m'] = [] and %result = [-1, 0]) or %easy_math_copy_array_[args['edge']]>%args['m']:
+						%args['m'] = %easy_math_copy_array_[args['edge']]
+						args['pos'] = args['edge']
+						%result = [args['pos'] + args['min_edge'], %args['m']]
+					end 
+				elseif instr($args[1],'[min]')<>0:
+					if (%args['m'] = [] and %result = [-1, 0]) or %easy_math_copy_array_[args['edge']]<%args['m']:
+						%args['m'] = %easy_math_copy_array_[args['edge']]
+						args['pos'] = args['edge']
+						%result = [args['pos'] + args['min_edge'], %args['m']]
+					end
+				end
+			end
+		end
+	end
+elseif $args[22] = '$':
+	if %args[3] = []:
+		if instr($args[1],'[max]')<>0:
+			$args['m'] = $max('$easy_math_copy_array_')
+		elseif instr($args[1],'[min]')<>0:
+			$args['m'] = $min('$easy_math_copy_array_')
+		end
+		args['pos'] = arrpos('$easy_math_copy_array_', $args['m'])
+		%result = [args['pos'] + args['min_edge'], $args['m']]
+	else:
+		$args['min_num'], $args['max_num'] = %args[3]
+		if $args['min_num']>$args['max_num']: $args['max_num'], $args['min_num'] = $args['min_num'], $args['max_num']
+		loop args['edge'], args['size'] = 0, arrsize('easy_math_copy_array_') while args['edge']<args['size'] step args['edge']+=1:
+			if $easy_math_copy_array_[args['edge']]>=$args['min_num'] and $easy_math_copy_array_[args['edge']]<=$args['max_num']:
+				if instr($args[1],'[max]')<>0:
+					if ($args['m'] = '' and %result = [-1, 0]) or $easy_math_copy_array_[args['edge']]>$args['m']:
+						$args['m'] = $easy_math_copy_array_[args['edge']]
+						args['pos'] = args['edge']
+						%result = [args['pos'] + args['min_edge'], $args['m']]
+					end 
+				elseif instr($args[1],'[min]')<>0:
+					if ($args['m'] = '' and %result = [-1, 0]) or $easy_math_copy_array_[args['edge']]<$args['m']:
+						$args['m'] = $easy_math_copy_array_[args['edge']]
+						args['pos'] = args['edge']
+						%result = [args['pos'] + args['min_edge'], $args['m']]
+					end
+				end
+			end
+		end
+	end
+else:
+	if %args[3] = []:
+		if instr($args[1], '[max]')<>0:
+			args['m'] = max('easy_math_copy_array_')
+		elseif instr($args[1], '[min]')<>0:
+			args['m'] = min('easy_math_copy_array_')
+		end
+		args['pos'] = arrpos('easy_math_copy_array_', args['m'])
+		%result = [args['pos'] + args['min_edge'], args['m']]
+	else:
+		args['min_num'], args['max_num'] = %args[3]
+		if args['min_num'] > args['max_num']: args['max_num'], args['min_num'] = args['min_num'], args['max_num']
+		loop args['edge'], args['size'] = 0, arrsize('easy_math_copy_array_') while args['edge']<args['size'] step args['edge']+=1:
+			if easy_math_copy_array_[args['edge']] >= args['min_num'] and easy_math_copy_array_[args['edge']] <= args['max_num']:
+				if instr($args[1],'[max]')<>0:
+					if (args['m'] = 0 and %result = [-1, 0]) or easy_math_copy_array_[args['edge']]>args['m']:
+						args['m'] = easy_math_copy_array_[args['edge']]
+						args['pos'] = args['edge']
+						%result = [args['pos'] + args['min_edge'], args['m']]
+					end 
+				elseif instr($args[1],'[min]')<>0:
+					if (args['m'] = 0 and %result = [-1, 0]) or easy_math_copy_array_[args['edge']]<args['m']:
+						args['m'] = easy_math_copy_array_[args['edge']]
+						args['pos'] = args['edge']
+						%result = [args['pos'] + args['min_edge'], args['m']]
+					end
+				end
+			end
+		end
+	end
+end
+--- em.arr.find ---------------------------------
+
+
+# em.arr.insert
+local em_arr_insert_copy_array_1_, em_arr_insert_copy_array_2_
+if instr($args[0],'%')=1:
+	$args[21]='%'
+	$args[22]=$str(%args[1])
+elseif instr($args[0],'$')=1:
+	$args[21]='$'
+	$args[22]="'<<$args[1]>>'"
+else
+	$args[21]=''
+	$args[22]=$str(args[1])
+end
+copyarr "em_arr_insert_copy_array_1_", $args[0], 0, args[2]
+copyarr "em_arr_insert_copy_array_2_", $args[0], args[2]
+setvar '<<$args[21]>>em_arr_insert_copy_array_1_', $args[22], arrsize('<<$args[21]>>em_arr_insert_copy_array_1_')
+loop while arrsize('<<$args[21]>>em_arr_insert_copy_array_2_')>0:
+	setvar '<<$args[21]>>em_arr_insert_copy_array_1_', $arritem('<<$args[21]>>em_arr_insert_copy_array_2_', 0), arrsize('<<$args[21]>>em_arr_insert_copy_array_1_')
+	killvar '<<$args[21]>>em_arr_insert_copy_array_2_', 0
+end
+copyarr $args[0], "<<$args[21]>>em_arr_insert_copy_array_1_"
+--- em.arr.insert ---------------------------------
+
+
+# em.arr.restand
+if no $args[0]: msg 'em.arr.desort: Wrong array name → <<$args[0]>>' & exit
+if $args[1] and instr('$%', $mid($args[1], 1, 1)): msg 'em.arr.desort: type prefix cannot be specified → <<$args[1]>>' & exit
+if $args[2] = '': $args[2] = $args[0]
+$args[21] = iif(instr('$%', $mid($args[0],1,1)), $mid($args[0],1,1), '')
+local em_arr_restand_copy_array_
+loop args[22],args[23] = 0,arrsize($args[1]) while args[22]<args[23] step args[22]+=1:
+	setvar '<<$args[21]>>em_arr_restand_copy_array_', arritem($args[0], arritem($args[1], args[22])), args[22]
+end
+copyarr $args[2], "em_arr_restand_copy_array_"
+--- em.arr.restand ---------------------------------
+
+
+# em.abs
+result = iif(args[1] > args[0], args[1]-args[0], args[0]-args[1])
+--- em.abs ---------------------------------
+
+
+# em.digs
+if args[0] < 0: args[0] = -args[0]
+result = 1
+loop while no (args[0]/result < 10): result *= 10
+--- em.digs ---------------------------------
+
+
+# em.even
+local module_, at49_, $minus_
+if args[1]=0 or strcomp($str(args[1]),'^1[0]+$')=0: args[1]=100
+if args[0]<0: args[0]=-args[0] & $minus_='-'
+$args[2]=$lcase($args[2])
+if instr($args[2],'[up]')=0 and instr($args[2],'[down]')=0:
+	module_=args[0] mod args[1]
+	at49_=5*args[1]/10-1	
+	if module_>at49_: $args[2]='[up]' else $args[2]='[down]'
+end
+if instr($args[2],'[up]')<>0:
+	result = (args[0]/args[1]+1)*args[1]
+elseif instr($args[2],'[down]')<>0:
+	result = (args[0]/args[1])*args[1]
+end
+if $minus_='-':
+	result = -result
+end
+--- em.even ---------------------------------
+
+
+# em.exp
+result = 1	
+loop while args[1]>0 step args[1] -= 1: result *= args[0]
+--- em.exp ---------------------------------
+
+
+# em.log
+if args[1]=0: args[1]=10
+result=0
+loop local base_ = 1 while no (args[0]/base_ < args[1]):
+	base_ *= args[1]
+	result += 1
+end
+--- em.log ---------------------------------
+
+
+# em.random
+local em_random_temp_array_, j, k
+loop local i=0 while i < arrsize('args') step i+=1:
+	j, k = %args[i]
+	loop while j <= k step j += 1:
+		if arrpos('em_random_temp_array_', j) = -1: em_random_temp_array_[] = j
+	end
+end
+result = em_random_temp_array_[rand(0, arrsize('em_random_temp_array_')-1)]
+--- em.random ---------------------------------
+
+
+# em.summ
+local $_, $res_ = '', ''
+if $args[0]='': exit	
+if instr($args[0],'$')=1:
+	$_='$'
+	if $args[1]='':
+		$args[1]=' '
+	elseif $args[1]='/se':
+		$args[1]=''
+	end
+elseif instr($args[0],'%')=1:
+	$_='%'
+end
+loop local i,size_ =0,arrsize($args[0]) while i<size_  step i+=1:
+	if $_='$':
+		$res_ += $arritem($args[0], i) + $args[1]
+	elseif $_ = '%':
+		%res_ = (%res_ & %arritem($args[0], i))
+	else:
+		res_ += arritem($args[0], i)
+	end
+end
+if $_='$':
+	$result = $res_
+elseif $_='%':
+	%result = %res_
+else
+	result = res_
+end
+--- em.summ ---------------------------------
+
+
+# em.map.cell.get_сoords
+local cell, width = args[0], args[1]
+local x, y
+y = cell/width
+x = cell - y*width
+%result = [x, y]
+--- em.map.cell.get_сoords ---------------------------------
+
+
+# em.html.clr_pref
+local $prevtag_, $aftertag_
+loop while 1:
+    $prevtag_ = $strfind($args[0],'[\s\r\n]+<')
+    $aftertag_ = $strfind($args[0],'>[\s\r\n]+')
+    if $prevtag_ <> '':
+        $args[0] = $replace($args[0], $prevtag_, '<')
+    elseif $aftertag_ <> '':
+        $args[0] = $replace($args[0], $aftertag_, '>')
+    else
+        jump 'out'
+    end
+end
+:out
+$result = $trim($args[0])
+--- em.html.clr_pref ---------------------------------
+
+
+# em.html.to_mnemonics
+$result = $replace($args[0], '&', '&amp;')
+$result = $replace($result, '<', '&lt;')
+$result = $replace($result,'>', '&gt;')
+--- em.html.to_mnemonics ---------------------------------
+
+
+# em.str.to_tpl
+%result = %dyneval("%result = <<$args[0]>>")
+--- em.str.to_tpl ---------------------------------
+
+
+# em.tpl.get
+local %t, i = %args[0], args[1]
+local em_tpl_get_
+unpackarr 'em_tpl_get_', %t
+if arrtype('em_tpl_get_', i) = '%':
+	%result = %em_tpl_get_[i]
+elseif arrtype('em_tpl_get_', i) = '$':
+	$result = $em_tpl_get_[i]
+else:
+	result = em_tpl_get_[i]
+end
+--- em.tpl.get ---
+
+
+# em.tpl.unzip
+unpackarr $args[1], %args[0]
+--- em.tpl.unzip ---
+
+
+# em.true
+result = 1
+-- em.true ---------------------------------
+# em.false
+result = 0
+-- em.false ---------------------------------
+
+
+# em.RN
+$result = "
+"
+--- em.RN ---------------------------------
+
+
