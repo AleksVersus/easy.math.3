@@ -5,8 +5,8 @@ $args[1] - второе число (сколько угодно длинное),
 # em.byte.add
 !@ x + (99999 - y + 1) - 100000
 !@ получаем слагаемые
-if $args[0]='': $args[0]=$str(args[0]) else $args[0] = $args[0]
-if $args[1]='': $args[1]=$str(args[1]) else $args[1] = $args[1]
+if $args[0]='': $args[0]=$str(#args[0]) else $args[0] = $args[0]
+if $args[1]='': $args[1]=$str(#args[1]) else $args[1] = $args[1]
 if no (strcomp($args[0], '\d+') and strcomp($args[1], '\d+')): $result = '[not a number]' & exit
 local $x, $y = $args[0], $args[1]	& !@ локальные переменные для слагаемых
 !@ получаем длину слагаемого с максимальной длиной (число разрядов)
