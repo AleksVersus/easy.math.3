@@ -28,24 +28,20 @@ $result - функция возвращает все три составляющ
 
 Функция не использует иных функций библиотеки.
 
-yellow=rgb(255,255,0)
-seablue=rgb(0,98,98)	& !@ #006262
-red,green,blue = @em.deRGB(yellow)
-*pl "<<red>>,<<green>>,<<blue>>"	& !@ 255,255,0
-red,green,blue = @em.deRGB(seablue)
-*pl "<<red>>,<<green>>,<<blue>>"	& !@ 0,98,98
+%result = []
+local y = rgb(255,255,0)
+local b = rgb(0,98,98)
+local k = rgb(240,230,140,100)
+local g = rgb(240,230,140,237)
 
-knaki=rgb(240,230,140,100)
-red,green,blue = @em.deRGB(knaki)
-*pl "<<red>>,<<green>>,<<blue>>"	& !@ 240,230,140
-red,green,blue,alpha = @em.deRGB(knaki,'/wa')
-*pl "<<red>>,<<green>>,<<blue>>,<<alpha>>"	& !@ 240,230,140,100
 
-knaki=rgb(240,230,140,237)
-red,green,blue = @em.deRGB(knaki)
-*pl "<<red>>,<<green>>,<<blue>>"	& !@ 240,230,140
-red,green,blue,alpha = @em.deRGB(knaki,'/wa')
-*pl "<<red>>,<<green>>,<<blue>>,<<alpha>>"	& !@ 240,230,140,237
+%result = (%result & @em.deRGB(y))
+%result = (%result & @em.deRGB(b))
+%result = (%result & @em.deRGB(k))
+%result = (%result & @em.deRGB(k, '/wa')) & !@ больше не поддерживается
+%result = (%result & @em.deRGB(g))
+
+$result = $str(%result)
 
 Думаю, следует пояснить способ представления целых числ в QSP.
 

@@ -6,6 +6,36 @@ local $res, $example, $functions, $nr
 $args[0]=$lcase($args[0])
 $args[1]=$lcase($args[1])
 
+!@ em.deRGB
+if instr($args[0], 'em.dergb') or $args[0]='':
+	$functions[] = 'em.dergb'
+	$example['em.deRGB'] = '[255, 255, 0, 255, 0, 98, 98, 255, 240, 230, 140, 100, 240, 230, 140, 100, 240, 230, 140, 237]'
+end
+
+!@ em.str.get_word
+if instr($args[0], 'em.str.get_word') or $args[0]='':
+	$functions[] = 'em.str.get_word'
+	$example['em.str.get_word'] = 'ЯнварьФевральМайАвгустНоябрьДекабрьДекабрь'
+end
+
+!@ em.str.in_regexp
+if instr($args[0], 'em.str.in_regexp') or $args[0]='':
+	$functions[] = 'em.str.in_regexp'
+	$example['em.str.in_regexp'] = '\(\[\\^\]\[\]\*\?\)\(\[\\^\]\[\]\+\?\)\(\[\\^><\]\*\?\)\(\[\\^><\]\+\?\)\(\[\\^\}\{\]\*\?\)\(\[\\^\}\{\]\+\?\)\(\[\\^\)\(\]\*\?\)\(\[\\^\)\(\]\+\?\)''\)\(\[\\s\\S\]\*\?\)\\1\(\:\|\=#\)\[\\S\]\+\(\:\|\=#\)\(\[\\S\]\+\)'
+end
+
+!@ em.tag.get_cont
+if instr($args[0], 'em.tag.get_cont') or $args[0]='':
+	$functions[] = 'em.tag.get_cont'
+	$example['em.tag.get_cont'] = 'текст с пробеломстранный и непонятный текстп р о б е л ь н ы е и непробельные символыff8899многа букав'
+end
+
+!@ em.arr.concatenate
+if instr($args[0], 'em.arr.concatenate') or $args[0]='':
+	$functions[] = 'em.arr.concatenate'
+	$example['em.arr.concatenate'] = "%em_result[0]=[967, '88ff88', 'голова']%em_result[1]=[629, 'ff00ff', 'плечи']%em_result[2]=[541, '0ff0f8', 'грудь']%em_result[3]=[290, 'ffffff', 'живот']%em_result[4]=[852, '8888ff', 'бёдра']%em_result[5]=[334, 'fff8f8', 'колени']%em_result[6]=[318, 'икры']%em_result[7]=[529, 'ступни']"
+end
+
 !@ em.arr.desort
 if instr($args[0], 'em.arr.desort') or $args[0]='':
 	$functions[] = 'em.arr.desort'

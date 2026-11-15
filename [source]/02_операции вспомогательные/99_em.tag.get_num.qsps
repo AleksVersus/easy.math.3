@@ -20,7 +20,7 @@ elseif $strfind($args[0],'\{'+$args[1]+':'+'([^}{]*?)'+'\}')<>'':
 elseif $strfind($args[0],'\('+$args[1]+':'+'([^)(]*?)'+'\)')<>'':
 	!@ (tag:any symbols)
 	$res_num = $strfind($args[0],'\('+$args[1]+':'+'([^)(]+?)'+'\)',1)
-elseif $strfind($args[0],$args[1]+'=("|'+"')([\s\S]*?)\1")<>'':
+elseif $strfind($args[0],$args[1]+'=("|'')([\s\S]*?)\1')<>'':
 	!@ tag="any symbols"
 	!@ tag='any symbols'
 	$res_num = $strfind($args[0],$args[1]+'=("|'+"')([\s\S]*?)\1",2)

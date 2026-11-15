@@ -6,7 +6,69 @@ QSP-Game Функция тестов для easy.math
 $args[0]=$lcase($args[0])
 local $nr=@em.RN
 $result = ''
-if $args[0]='em.fewarrs.print':
+if 0:
+	! pass
+elseif $args[0]='em.':
+	$result = $dyneval({
+
+	})
+elseif $args[0]='em.dergb':
+	$result = $dyneval({
+		%result = []
+		local y = rgb(255,255,0)
+		local b = rgb(0,98,98)
+		local k = rgb(240,230,140,100)
+		local g = rgb(240,230,140,237)
+
+
+		%result = (%result & @em.deRGB(y))
+		%result = (%result & @em.deRGB(b))
+		%result = (%result & @em.deRGB(k))
+		%result = (%result & @em.deRGB(k, '/wa')) & !@ больше не поддерживается
+		%result = (%result & @em.deRGB(g))
+
+		$result = $str(%result)
+	})
+elseif $args[0]='em.str.get_word':
+	$result = $dyneval({
+		local $text="Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь"
+
+		$result = @em.str.get_word($text)
+		$result += @em.str.get_word($text,2)
+		$result += @em.str.get_word($text,5)
+		$result += @em.str.get_word($text,8)
+		$result += @em.str.get_word($text,11)
+		$result += @em.str.get_word($text,14)
+		$result += @em.str.get_word('Декабрь',14)
+	})
+elseif $args[0]='em.str.in_regexp':
+	$result = $dyneval({
+		$result = @em.str.in_regexp('([^][]*?)([^][]+?)([^><]*?)([^><]+?)([^}{]*?)([^}{]+?)([^)(]*?)([^)(]+?)'')([\s\S]*?)\1(:|=#)[\S]+(:|=#)([\S]+)')
+	})
+elseif $args[0]='em.tag.get_cont':
+	$result = $dyneval({
+		local $text="[count:текст с пробелом:count] <cord:странный и непонятный текст:cord> log:п р о б е л ь н ы е и непробельные символы:log <color>ff8899</color> [tag]многа букав[/tag]"
+		$result = ''
+
+		$result += @em.tag.get_cont($text,'count')
+		$result += @em.tag.get_cont($text,'cord')
+		$result += @em.tag.get_cont($text,'log')
+		$result += @em.tag.get_cont($text,'color')
+		$result += @em.tag.get_cont($text,'tag')
+	})
+elseif $args[0]='em.tag.get_num':
+	$result = $dyneval({
+		$result = ''
+		local $text="[count:текст с пробелом] <cord:68> log:непробельные_символы color=#ff8899 tag='многа букав'"
+		$result += '[' + @em.tag.get_num($text,'count')+ ']'
+		$result += '[' + @em.tag.get_num($text,'cord')+ ']'
+		$result += '[' + @em.tag.get_num($text,'log')+ ']'
+		$result += '[' + @em.tag.get_num($text,'color')+ ']'
+		$result += '[' + @em.tag.get_num($text,'tag')+ ']'
+		$result += '[' + @em.tag.get_num($text,'tag/h')+ ']'
+		$result += '[' + @em.tag.get_num($text,'color/h')+ ']'
+	})
+elseif $args[0]='em.fewarrs.print':
 	$result=$dyneval({
 		local $a, %b, $c, %d
 		$result = ''
@@ -319,6 +381,41 @@ elseif $args[0]='em.arr.simpl':
 		$result+=$str(@em.arr.simpl('mass1','mass3'))
 		$result+=$str(@em.arr.simpl('mass1','mass3','[simp]'))
 	})
+elseif $args[0]='em.arr.concatenate':
+	$result=$dyneval({
+		local old_mass, mass, arr_mass, em_result
+		old_mass[0]=967
+		old_mass[1]=629
+		old_mass[2]=541
+		old_mass[3]=290
+		old_mass[4]=852
+		old_mass[5]=334
+		old_mass[6]=318
+		old_mass[7]=529
+
+		mass[0]='88ff88'
+		mass[1]='ff00ff'
+		mass[2]='0ff0f8'
+		mass[3]='ffffff'
+		mass[4]='8888ff'
+		mass[5]='fff8f8'
+
+		arr_mass[0]='голова'
+		arr_mass[1]='плечи'
+		arr_mass[2]='грудь'
+		arr_mass[3]='живот'
+		arr_mass[4]='бёдра'
+		arr_mass[5]='колени'
+		arr_mass[6]='икры'
+		arr_mass[7]='ступни'
+
+
+		@@em.arr.concatenate 'em_result', 'old_mass', 'mass', 'arr_mass'
+
+		loop local i,size=0,arrsize('em_result') while i<size step i+=1:
+		    $result+="%em_result[<<i>>]=<<em_result[i]>>"
+		end
+		})
 elseif $args[0]='em.zero':
 	$result=$dyneval({
 		$result = ''
@@ -427,18 +524,6 @@ elseif $args[0]='em.hex.add':
 		$result+=@em.hex.add('ffe','1')+$nr
 		$result+=@em.hex.add('fef','1')+$nr
 		$result+=@em.hex.add('aaaaaa','cc')+$nr
-	})
-elseif $args[0]='em.tag.get_num':
-	$result = $dyneval({
-		$result = ''
-		local $text="[count:текст с пробелом] <cord:68> log:непробельные_символы color=#ff8899 tag='многа букав'"
-		$result += '[' + @em.tag.get_num($text,'count')+ ']'   & !@ "текст с пробелом"
-		$result += '[' + @em.tag.get_num($text,'cord')+ ']'     & !@ '68'
-		$result += '[' + @em.tag.get_num($text,'log')+ ']'  & !@ "непробельные_символы"
-		$result += '[' + @em.tag.get_num($text,'color')+ ']'    & !@ "ff8899"
-		$result += '[' + @em.tag.get_num($text,'tag')+ ']'  & !@ "многа букав"
-		$result += '[' + @em.tag.get_num($text,'tag/h')+ ']'    & !@ не выведет ничего
-		$result += '[' + @em.tag.get_num($text,'color/h')+ ']'  & !@ "ff8899"
 	})
 end
 --- em.autotest ---------------------------------
