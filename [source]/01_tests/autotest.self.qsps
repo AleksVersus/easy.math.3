@@ -6,6 +6,8 @@ local $res, $example, $functions, $nr
 $args[0]=$lcase($args[0])
 $args[1]=$lcase($args[1])
 
+!@ -------------- Вспомогательные функции --------------
+
 !@ em.deRGB
 if instr($args[0], 'em.dergb') or $args[0]='':
 	$functions[] = 'em.dergb'
@@ -30,11 +32,83 @@ if instr($args[0], 'em.tag.get_cont') or $args[0]='':
 	$example['em.tag.get_cont'] = 'текст с пробеломстранный и непонятный текстп р о б е л ь н ы е и непробельные символыff8899многа букав'
 end
 
+!@ em.tag.get_num
+if instr($args[0], 'em.tag.get_num') <> 0 or $args[0] = '':
+	$functions[]= 'em.tag.get_num'
+	$example['em.tag.get_num'] = "[текст с пробелом][68][непробельные_символы][ff8899][многа букав][][ff8899]"
+end
+
+!@ -------------- Вспомогательные функции --------------
+
+!@ ------------ операции с дробными числами ------------
+
+!@ em.sqrt
+if instr($args[0],'em.sqrt')<>0 or $args[0]='':
+	$functions[]='em.sqrt'
+	$example['em.sqrt']="31.6227416.0312116.031216.03116.031.4416.0916.121.30.8306"
+end
+
+!@ em.add
+if instr($args[0],'em.add')<>0 or $args[0]='':
+	$functions[]='em.add'
+	$example['em.add']="0.05018.0527.8529.889480.184409157-157-4093484766.2109697"
+end
+
+!@ em.div
+if instr($args[0],'em.div')<>0 or $args[0]='':
+	$functions[]='em.div'
+	$example['em.div']="-1.0055-10.9050.94760.9990.999099-1.31.31.3-1.3"
+end
+
+!@ em.mult
+if instr($args[0],'em.mult')<>0 or $args[0]='':
+	$functions[]='em.mult'
+	$example['em.mult']="96-81.902590.5799.454375-988.911099512-512"
+end
+
+!@ em.round
+if instr($args[0],'em.round')<>0 or $args[0]='':
+	$functions[]='em.round'
+	$example['em.round']="945.5945.4945.5945.46945.459945950900-950-945.46"
+end
+
+!@ em.simpl
+if instr($args[0],'em.simpl')<>0 or $args[0]='':
+	$functions[]='em.simpl'
+	$example['em.simpl']="9.059.05109.559.9991.3-1.31.691.69"
+end
+
+!@ em.indiv
+if instr([0], 'em.indiv') or $args[0]='':
+	$functions[] = 'em.indiv'
+	$example['em.indiv'] = '-9500.6489.142859.1428571420.0641.52'
+end
+
+!@ em.divdigs
+if instr([0], 'em.divdigs') or $args[0]='':
+	$functions[] = 'em.divdigs'
+	$example['em.divdigs'] = '100100010001000000100-1593835520'
+end
+
+!@ em.dz
+if instr([0], 'em.dz') or $args[0]='':
+	$functions[] = 'em.dz'
+	$example['em.dz'] = '6464.00864.00864.0080'
+end
+
+!@ em.undiv
+if instr([0], 'em.undiv') or $args[0]='':
+	$functions[] = 'em.undiv'
+	$example['em.undiv'] = '1000-1000121123123'
+end
+
+!@ ------------ операции с дробными числами ------------
+
 !@ em.arr.concatenate
 if instr($args[0], 'em.arr.concatenate') or $args[0]='':
 	$functions[] = 'em.arr.concatenate'
 	$example['em.arr.concatenate'] = "%em_result[0]=[967, '88ff88', 'голова']%em_result[1]=[629, 'ff00ff', 'плечи']%em_result[2]=[541, '0ff0f8', 'грудь']%em_result[3]=[290, 'ffffff', 'живот']%em_result[4]=[852, '8888ff', 'бёдра']%em_result[5]=[334, 'fff8f8', 'колени']%em_result[6]=[318, 'икры']%em_result[7]=[529, 'ступни']"
-end
+end 31.6227416.0312116.031216.03116.031.4416.0916.121.30.8306
 
 !@ em.arr.desort
 if instr($args[0], 'em.arr.desort') or $args[0]='':
@@ -165,96 +239,11 @@ $a[5]='пятая яче''йка'	&	%b[5]=['пятая ячейка']
 $a[6]=''	&	%b[6]=['6']
 $a[7]='седьмая ячейка'	&	%b[7]=['7']EMPTY ARRAYS"
 end
-!@ em.simpl
-if instr($args[0],'em.simpl')<>0 or $args[0]='':
-$functions[]='em.simpl'
-$example['em.simpl']="9.05
-9.05
-10
-9.55
-9.999
-1.3
--1.3
-1.69
-1.69
-"
-end
 
-!@ em.round
-if instr($args[0],'em.round')<>0 or $args[0]='':
-$functions[]='em.round'
-$example['em.round']="945.5
-945.4
-945.5
-945.46
-945.459
-945
-950
-900
--950
--945.46
-"
-end
 
-!@ em.mult
-if instr($args[0],'em.mult')<>0 or $args[0]='':
-$functions[]='em.mult'
-$example['em.mult']="96
--81.9025
-90.5
-799.454375
--988.911099
-512
--512
-"
-end
-!@ em.div
-if instr($args[0],'em.div')<>0 or $args[0]='':
-$functions[]='em.div'
-$example['em.div']="-1.0055
--1
-0.905
-0.9476
-0.999
-0.999099
--1.3
-1.3
-1.3
--1.3
-"
-end
-!@ em.add
-if instr($args[0],'em.add')<>0 or $args[0]='':
-$functions[]='em.add'
-$example['em.add']="0.05
-0
-18.05
-27.85
-29.889
-480.184
-409
-157
--157
--409
-3484766.2109697
-"
-end
-!@ em.sqrt
-if instr($args[0],'em.sqrt')<>0 or $args[0]='':
-$functions[]='em.sqrt'
-$example['em.sqrt']="31.6227
-4
-16.03121
-16.0312
-16.031
-16.03
-1.44
-16.09
-16.12
-1.3
-0.8306
-"
-end
+
+
+
 
 !@ em.arr.print
 if instr($args[0],'em.arr.print')<>0 or $args[0]='':
@@ -352,10 +341,7 @@ $example['em.str.thin']="п р о ф е с с у р а
 "
 end
 
-if instr($args[0], 'em.tag.get_num') <> 0 or $args[0] = '':
-	$functions[]= 'em.tag.get_num'
-	$example['em.tag.get_num'] = "[текст с пробелом][68][непробельные_символы][ff8899][многа букав][][ff8899]"
-end
+
 
 *pl "Start of Autotest." & wait 500
 loop local i,size=0,arrsize('$functions') while i<size step i+=1:

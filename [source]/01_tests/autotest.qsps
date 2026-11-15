@@ -12,6 +12,9 @@ elseif $args[0]='em.':
 	$result = $dyneval({
 
 	})
+
+!@ ------------------------------------- Вспомогательные функции -------------------------------------
+
 elseif $args[0]='em.dergb':
 	$result = $dyneval({
 		%result = []
@@ -19,7 +22,6 @@ elseif $args[0]='em.dergb':
 		local b = rgb(0,98,98)
 		local k = rgb(240,230,140,100)
 		local g = rgb(240,230,140,237)
-
 
 		%result = (%result & @em.deRGB(y))
 		%result = (%result & @em.deRGB(b))
@@ -29,6 +31,7 @@ elseif $args[0]='em.dergb':
 
 		$result = $str(%result)
 	})
+
 elseif $args[0]='em.str.get_word':
 	$result = $dyneval({
 		local $text="Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь"
@@ -41,10 +44,12 @@ elseif $args[0]='em.str.get_word':
 		$result += @em.str.get_word($text,14)
 		$result += @em.str.get_word('Декабрь',14)
 	})
+
 elseif $args[0]='em.str.in_regexp':
 	$result = $dyneval({
 		$result = @em.str.in_regexp('([^][]*?)([^][]+?)([^><]*?)([^><]+?)([^}{]*?)([^}{]+?)([^)(]*?)([^)(]+?)'')([\s\S]*?)\1(:|=#)[\S]+(:|=#)([\S]+)')
 	})
+
 elseif $args[0]='em.tag.get_cont':
 	$result = $dyneval({
 		local $text="[count:текст с пробелом:count] <cord:странный и непонятный текст:cord> log:п р о б е л ь н ы е и непробельные символы:log <color>ff8899</color> [tag]многа букав[/tag]"
@@ -56,6 +61,7 @@ elseif $args[0]='em.tag.get_cont':
 		$result += @em.tag.get_cont($text,'color')
 		$result += @em.tag.get_cont($text,'tag')
 	})
+
 elseif $args[0]='em.tag.get_num':
 	$result = $dyneval({
 		$result = ''
@@ -68,6 +74,146 @@ elseif $args[0]='em.tag.get_num':
 		$result += '[' + @em.tag.get_num($text,'tag/h')+ ']'
 		$result += '[' + @em.tag.get_num($text,'color/h')+ ']'
 	})
+
+!@ ------------------------------------- Вспомогательные функции -------------------------------------
+
+!@ ----------------------------------- Операции с дробными числами -----------------------------------
+
+elseif $args[0]='em.sqrt':
+	$result=$dyneval({
+		$result = ''
+		$result+=@em.sqrt('1000',10000)
+		$result+=@em.sqrt('16',10000)
+		$result+=@em.sqrt('257',100000)
+		$result+=@em.sqrt('257',10000)
+		$result+=@em.sqrt('257',1000)
+		$result+=@em.sqrt('257',100)
+		$result+=@em.sqrt('2.1',100)
+		$result+=@em.sqrt('259',100)
+		$result+=@em.sqrt('260',100)
+		$result+=@em.sqrt('1.69',100)
+		$result+=@em.sqrt('0.69',10000)
+	})
+
+elseif $args[0]='em.add':
+	$result=$dyneval({
+		$result = ''
+		$result+=@em.add('9.05','-9')
+		$result+=@em.add('9.05','-9.05')
+		$result+=@em.add('9.05','9')
+		$result+=@em.add('9.05','9.55','9.25')
+		$result+=@em.add('9.99','9.999','9.9')
+		$result+=@em.add('384.384','92.8',3)
+		$result+=@em.add('283','126')
+		$result+=@em.add('283','-126')
+		$result+=@em.add('-283','126')
+		$result+=@em.add('-283','-126')
+		$result+=@em.add('-234','125','-13.7890303','3484889')
+	})
+
+elseif $args[0]='em.div':
+	$result=$dyneval ({
+		$result = ''
+		$result+=@em.div('9.05',"-9",10000)
+		$result+=@em.div('9.05','-9.05',10000)
+		$result+=@em.div('9.05',"10")
+		$result+=@em.div('9.05',"9.55",10000)
+		$result+=@em.div('9.99',"9.999",10000)
+		$result+=@em.div('9.99',"9.999",1000000)
+		$result+=@em.div('-1.69',"1.3",10000)
+		$result+=@em.div('1.69',"1.3",10000)
+		$result+=@em.div('-1.69',"-1.3",10000)
+		$result+=@em.div('1.69',"-1.3",10000)
+	})
+
+elseif $args[0]='em.mult':
+	$result=$dyneval ({
+		$result = ''
+		$result+=@em.mult("38.4","2.5")
+		$result+=@em.mult('9.05',"-9.05")
+		$result+=@em.mult('9.05',"10")
+		$result+=@em.mult('9.05',"9.55","9.25")
+		$result+=@em.mult('9.99',"-9.999","9.9")
+		$result+=@em.mult('2','2','2','2','2','2','2','2','2')
+		$result+=@em.mult('-2','-2','-2','-2','-2','-2','-2','-2','-2')
+	})
+
+elseif $args[0]='em.round':
+	$result=$dyneval ({
+		$result = ''
+		$result+=@em.round("945.459","0.1")
+		$result+=@em.round("945.459","0.1",'[down]')
+		$result+=@em.round("945.444","0.1",'[up]')
+		$result+=@em.round("945.459","0.01")
+		$result+=@em.round("945.459","0.001")
+		$result+=@em.round("945.459","1")
+		$result+=@em.round("945.459","10")
+		$result+=@em.round("945.459","100")
+		$result+=@em.round("-945.459","10")
+		$result+=@em.round("-945.459","0.01")
+	})
+
+elseif $args[0]='em.simpl':
+	$result=dyneval ({
+		$result = ''
+		$result+=@em.simpl('9.05',"-9")
+		$result+=@em.simpl('9.05','-9.05')
+		$result+=@em.simpl('9.05',"10")
+		$result+=@em.simpl('9.05',"9.55")
+		$result+=@em.simpl('9.99',"9.999")
+		$result+=@em.simpl('-1.69',"1.3")
+		$result+=@em.simpl('-1.69',"-1.3")
+		$result+=@em.simpl('1.69',"1.3")
+		$result+=@em.simpl('1.69',"-1.3")
+	})
+
+elseif $args[0]='em.indiv':
+	$result = $dyneval({
+		$result = ''
+		$result += @em.indiv(-950000,1000)
+		$result += @em.indiv(64)
+		$result += @em.indiv(64,8,1)
+		$result += @em.indiv(64,7,100000)
+		$result += @em.indiv(64,7)
+		$result += @em.indiv(8,125)
+		$result += @em.indiv(150,100,10)
+		$result += @em.indiv(200,100,10)
+	})
+
+elseif $args[0]='em.divdigs':
+	$result = $dyneval({
+		$result = ''
+		$result += $str(@em.divdigs('0.64'))
+		$result += $str(@em.divdigs('0.064'))
+		$result += $str(@em.divdigs('0.640'))
+		$result += $str(@em.divdigs('0.647777'))
+		$result += $str(@em.divdigs('-7777.64'))
+		$result += $str(@em.divdigs('-7777.646666666666666666666666'))
+	})
+
+elseif $args[0]='em.dz':
+	$result = $dyneval({
+		$result = ''
+		$result += @em.dz('64',100)
+		$result += @em.dz('64.0080000',1)
+		$result += @em.dz('64.0080000',100)
+		$result += @em.dz('64.0080000',10000)
+	})
+
+
+elseif $args[0]='em.undiv':
+	$result = $dyneval({
+		$result = ''
+		$result += $str(@em.undiv('1',1000))
+		$result += $str(@em.undiv('-1',1000))
+		$result += $str(@em.undiv('0.123',100))
+		$result += $str(@em.undiv('0.123',10))
+		$result += $str(@em.undiv('0.123'))
+		$result += $str(@em.undiv('1.23'))
+	})
+
+!@ ----------------------------------- Операции с дробными числами -----------------------------------
+
 elseif $args[0]='em.fewarrs.print':
 	$result=$dyneval({
 		local $a, %b, $c, %d
@@ -95,88 +241,7 @@ elseif $args[0]='em.fewarrs.print':
 		$result += @em.fewArrs.print('$a','%b','[no table]')
 		$result += @em.fewArrs.print('$c','%d', '[empty:EMPTY ARRAYS]')
 	})
-elseif $args[0]='em.simpl':
-	$result=dyneval ({
-		$result = ''
-		$result+=@em.simpl('9.05',"-9")+$nr		& !@ '9.05'
-		$result+=@em.simpl('9.05','-9.05')+$nr	& !@ '9.05'
-		$result+=@em.simpl('9.05',"10")+$nr		& !@ '10'
-		$result+=@em.simpl('9.05',"9.55")+$nr	& !@ '9.55'
-		$result+=@em.simpl('9.99',"9.999")+$nr	& !@ '9.999'
-		$result+=@em.simpl('-1.69',"1.3")+$nr	& !@ '1.3'
-		$result+=@em.simpl('-1.69',"-1.3")+$nr	& !@ '-1.3'
-		$result+=@em.simpl('1.69',"1.3")+$nr	& !@ '1.69'
-		$result+=@em.simpl('1.69',"-1.3")+$nr	& !@ '1.69'
-	})
-elseif $args[0]='em.round':
-	$result=$dyneval ({
-		$result = ''
-		$result+=@em.round("945.459","0.1")+$nr  			& !@ '945.5'
-		$result+=@em.round("945.459","0.1",'[down]')+$nr	& !@ '945.4'
-		$result+=@em.round("945.444","0.1",'[up]')+$nr		& !@ '945.5'
-		$result+=@em.round("945.459","0.01")+$nr  			& !@ '945.46'
-		$result+=@em.round("945.459","0.001")+$nr			& !@ '945.459'
-		$result+=@em.round("945.459","1")+$nr    			& !@ '945'
-		$result+=@em.round("945.459","10")+$nr   			& !@ '950'
-		$result+=@em.round("945.459","100")+$nr  			& !@ '900'
-		$result+=@em.round("-945.459","10")+$nr  			& !@ '-950'
-		$result+=@em.round("-945.459","0.01")+$nr			& !@ '-945.46'
-	})
-elseif $args[0]='em.mult':
-	$result=$dyneval ({
-		$result = ''
-		$result+=@em.mult("38.4","2.5")+$nr									& !@ '96'
-		$result+=@em.mult('9.05',"-9.05")+$nr								& !@ '-81.9025'
-		$result+=@em.mult('9.05',"10")+$nr									& !@ '90.5'
-		$result+=@em.mult('9.05',"9.55","9.25")+$nr							& !@ '799.454375'
-		$result+=@em.mult('9.99',"-9.999","9.9")+$nr						& !@ '-988.911099'
-		$result+=@em.mult('2','2','2','2','2','2','2','2','2')+$nr			& !@ '512'
-		$result+=@em.mult('-2','-2','-2','-2','-2','-2','-2','-2','-2')+$nr	& !@ '-512'
-	})
-elseif $args[0]='em.div':
-	$result=$dyneval ({
-		$result = ''
-		$result+=@em.div('9.05',"-9",10000)+$nr		& !@ '-1.0055'
-		$result+=@em.div('9.05','-9.05',10000)+$nr	& !@ '-1'
-		$result+=@em.div('9.05',"10")+$nr			& !@ '0.905'
-		$result+=@em.div('9.05',"9.55",10000)+$nr	& !@ '0.9476'
-		$result+=@em.div('9.99',"9.999",10000)+$nr	& !@ '0.999'
-		$result+=@em.div('9.99',"9.999",1000000)+$nr	& !@ '0.999099'
-		$result+=@em.div('-1.69',"1.3",10000)+$nr	& !@ '-1.3'
-		$result+=@em.div('1.69',"1.3",10000)+$nr		& !@ '1.3'
-		$result+=@em.div('-1.69',"-1.3",10000)+$nr	& !@ '1.3'
-		$result+=@em.div('1.69',"-1.3",10000)+$nr	& !@ '-1.3'
-	})
-elseif $args[0]='em.add':
-	$result=$dyneval({
-		$result = ''
-		$result+=@em.add('9.05','-9')+$nr							& !@ '0.05'
-		$result+=@em.add('9.05','-9.05')+$nr						& !@ '0'
-		$result+=@em.add('9.05','9')+$nr							& !@ '18.05'
-		$result+=@em.add('9.05','9.55','9.25')+$nr					& !@ '27.85'
-		$result+=@em.add('9.99','9.999','9.9')+$nr					& !@ '29.889'
-		$result+=@em.add('384.384','92.8',3)+$nr					& !@ '480.184'
-		$result+=@em.add('283','126')+$nr							& !@ '409'
-		$result+=@em.add('283','-126')+$nr							& !@ '157'
-		$result+=@em.add('-283','126')+$nr							& !@ '-157'
-		$result+=@em.add('-283','-126')+$nr							& !@ '-409'
-		$result+=@em.add('-234','125','-13.7890303','3484889')+$nr	& !@ '3484766.2109697'
-	})
-elseif $args[0]='em.sqrt':
-	$result=$dyneval({
-		$result = ''
-		$result+=@em.sqrt('1000',10000)+$nr	& !@ 31.6227
-		$result+=@em.sqrt('16',10000)+$nr	& !@ 4
-		$result+=@em.sqrt('257',100000)+$nr	& !@ 16.03121
-		$result+=@em.sqrt('257',10000)+$nr	& !@ 16.0312
-		$result+=@em.sqrt('257',1000)+$nr	& !@ 16.031
-		$result+=@em.sqrt('257',100)+$nr	& !@ 16.03
-		$result+=@em.sqrt('2.1',100)+$nr	& !@ 1.44
-		$result+=@em.sqrt('259',100)+$nr	& !@ 16.09
-		$result+=@em.sqrt('260',100)+$nr	& !@ 16.12
-		$result+=@em.sqrt('1.69',100)+$nr	& !@ 1.3
-		$result+=@em.sqrt('0.69',10000)+$nr	& !@ 0.8306
-	})
+
 elseif $args[0]='em.byte.add':
 	$result=$dyneval({
 		$result = ''
