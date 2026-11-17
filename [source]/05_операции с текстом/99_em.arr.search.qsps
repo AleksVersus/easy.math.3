@@ -4,24 +4,25 @@ QSP-Game Находит позицию элемента в массиве, со�
 !@ $1 - регулярное выражение
 !@ $2 - [first] или [last] - первая или последняя позиция
 !@ #3 ... #4 - с какого по какой элемент проводить поиск
+!@ #r - позиция в массиве, или -1
 !@pp:if(em_arr_search):include
 # em.arr.search
 !@pp:if(em_fuse):include
 if $args[0] = '': msg 'em.str.in_arr: Wrong array name → <<$args[0]>>' & exit
-if instr($args[0], '$') <> 1: msg 'em.str.in_arr: type prefix ''$'' not specified →  <<$args[0]>>' & exit
 !@pp:endif
 local em_arr_search_temp_array_
 result = -1 & !@ результат по умолчанию
 $args[2] = $lcase($args[2])	& !@ переводим в нижний регистр
-if args[4] < 1: args[4] = arrsize($args[0])-1	& !@ если верхняя позиция не указана, принимается равной размеру массива
+if args[4] < 1: args[4] = arrsize($args[0])-1	& !@ "если верхняя позиция не указана,
+													принимается равной размеру массива"
 copyarr 'em_arr_search_temp_array_', $args[0], args[3], args[4] - args[3] + 1
-local pos_
 if instr($args[2], '[first]') <> 0 or $args[2] = '':
 	!@ режим поиска самого первого элемента, содержащего указанную строку
 	result = arrcomp('em_arr_search_temp_array_', '[\s\S]*' + $args[1] + '[\s\S]*')
 elseif instr($args[2], '[last]') <> 0:
-	loop local i, run_ = args[3], 1 while run_:
-		pos_ = arrcomp('em_arr_search_temp_array_', '[\s\S]*' + $args[1] + '[\s\S]*', i)
+	local pos_
+	loop local i = 0 while 1:
+		pos_ = arrcomp('em_arr_search_temp_array_', '[\s\S]*<<$args[1]>>[\s\S]*', i)
 		if pos_ = -1: jump 'break'
 		!@ если позиция найдена, и не превышает верхнюю границу
 		result = pos_	& !@ запоминаем найденную позицию
