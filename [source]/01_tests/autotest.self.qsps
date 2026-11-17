@@ -79,25 +79,25 @@ $args[1]=$lcase($args[1])
 	end
 
 	!@ em.indiv
-	if instr([0], 'em.indiv') or $args[0]='':
+	if instr($args[0], 'em.indiv') or $args[0]='':
 		$functions[] = 'em.indiv'
 		$example['em.indiv'] = '-9500.6489.142859.1428571420.0641.52'
 	end
 
 	!@ em.divdigs
-	if instr([0], 'em.divdigs') or $args[0]='':
+	if instr($args[0], 'em.divdigs') or $args[0]='':
 		$functions[] = 'em.divdigs'
 		$example['em.divdigs'] = '100100010001000000100-1593835520'
 	end
 
 	!@ em.dz
-	if instr([0], 'em.dz') or $args[0]='':
+	if instr($args[0], 'em.dz') or $args[0]='':
 		$functions[] = 'em.dz'
 		$example['em.dz'] = '6464.00864.00864.0080'
 	end
 
 	!@ em.undiv
-	if instr([0], 'em.undiv') or $args[0]='':
+	if instr($args[0], 'em.undiv') or $args[0]='':
 		$functions[] = 'em.undiv'
 		$example['em.undiv'] = '1000-1000121123123'
 	end
@@ -123,25 +123,25 @@ $args[1]=$lcase($args[1])
 !@ ---------------- операции  текстовые ----------------
 
 	!@ em.arr.search
-	if instr([0], 'em.arr.search') or $args[0]='':
+	if instr($args[0], 'em.arr.search') or $args[0]='':
 		$functions[] = 'em.arr.search'
 		$example['em.arr.search'] = '38-1-13888'
 	end
 
 	!@ em.gen_uuid
-	if instr([0], 'em.gen_uuid') or $args[0]='':
+	if instr($args[0], 'em.gen_uuid') or $args[0]='':
 		$functions[] = 'em.gen_uuid'
 		$example['em.gen_uuid'] = '1'
 	end
 
 	!@ em.head_tail
-	if instr([0], 'em.head_tail') or $args[0]='':
+	if instr($args[0], 'em.head_tail') or $args[0]='':
 		$functions[] = 'em.head_tail'
 		$example['em.head_tail'] = "[['Январь', 'Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь'], ['Январь|Февраль|Март|', 'прель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь'], ['Январь|Февраль|Март|Апрель|Май|Июнь|Июль|', 'густ|Сентябрь|Октябрь|Ноябрь|Декабрь'], ['Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентя', '|Октябрь|Ноябрь|Декабрь']]"
 	end
 
 	!@ em.str.random
-	if instr([0], 'em.str.random') or $args[0]='':
+	if instr($args[0], 'em.str.random') or $args[0]='':
 		$functions[] = 'em.str.random'
 		$example['em.str.random'] = '[1, 1, 1, 1, 1, 1]'
 	end
@@ -163,24 +163,30 @@ $args[1]=$lcase($args[1])
 !@ ------------ операции  шестнадцатеричные ------------
 
 	!@ em.col.add
-	if instr([0], 'em.col.add') or $args[0]='':
+	if instr($args[0], 'em.col.add') or $args[0]='':
 		$functions[] = 'em.col.add'
 		$example['em.col.add'] = "['bb0000', '000000', 'ff2222', '994400', 'ffcc66', 'ffcc6699']"
 	end
 
 	!@ em.col.in_rgb
-	if instr([0], 'em.col.in_rgb') or $args[0]='':
+	if instr($args[0], 'em.col.in_rgb') or $args[0]='':
 		$functions[] = 'em.col.in_rgb'
 		$example['em.col.in_rgb'] = '[-16776961, -16777216, -16776995, -14513955, 0, 0, -2003792861]'
 	end
 
 	!@ em.col.inv
-	if instr([0], 'em.col.inv') or $args[0]='':
+	if instr($args[0], 'em.col.inv') or $args[0]='':
 		$functions[] = 'em.col.inv'
 		$example['em.col.inv'] = "['ffffff', '000000', 'dc736f', '6fd4ef', '383fff', 'f838fe', '383fff84', 'f838fe4d']"
 	end
 
-	
+	!@ em.dec.in_col
+	if instr($args[0], 'em.dec.in_col') or $args[0]='':
+		$functions[] = 'em.dec.in_col'
+		$example['em.dec.in_col'] = "['ff', 'd6', 'ff', '-0a', 'ff', '10']"
+	end
+
+
 
 !@ ------------ операции  шестнадцатеричные ------------
 
