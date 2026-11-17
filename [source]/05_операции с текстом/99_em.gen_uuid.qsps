@@ -14,3 +14,12 @@ end
 --- em.gen_uuid ---------------------------------
 !@pp:endif
 
+ae578072-e13f-0e6e-eec7-5d85c206596c
+[A-Fa-f0-9]{8}(\-[A-Fa-f0-9]{4}){3}\-[A-Fa-f0-9]{12}
+
+!@ #result = 1
+!@ loop local i=0 while i<10 step i+=1:
+!@     #result = strcomp(@em.gen_uuid(), '[A-Fa-f0-9]{8}(\-[A-Fa-f0-9]{4}){3}\-[A-Fa-f0-9]{12}')
+!@ end
+!@ $result = $str(#result)
+

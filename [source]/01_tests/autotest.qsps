@@ -1,218 +1,362 @@
-QSP-Game Функция тестов для easy.math
+QSP-Game Функция автотестов для easy.math
 
-Автоматические тесты для easy.math
 !@pp:if(em_autotest):include
 # em.autotest
 $args[0]=$lcase($args[0])
 local $nr=@em.RN
 $result = ''
+
 if 0:
 	! pass
-elseif $args[0]='em.':
-	$result = $dyneval({
-
-	})
 
 !@ ------------------------------------- Вспомогательные функции -------------------------------------
 
-elseif $args[0]='em.dergb':
-	$result = $dyneval({
-		%result = []
-		local y = rgb(255,255,0)
-		local b = rgb(0,98,98)
-		local k = rgb(240,230,140,100)
-		local g = rgb(240,230,140,237)
+	elseif $args[0]='em.dergb':
+		$result = $dyneval({
+			$result = $str([
+				@em.deRGB(rgb(255,255,0)),
+				@em.deRGB(rgb(0,98,98)),
+				@em.deRGB(rgb(240,230,140,100)),
+				@em.deRGB(rgb(240,230,140,100), '/wa'),
+				@em.deRGB(rgb(240,230,140,237)),
+			])
+		})
 
-		%result = (%result & @em.deRGB(y))
-		%result = (%result & @em.deRGB(b))
-		%result = (%result & @em.deRGB(k))
-		%result = (%result & @em.deRGB(k, '/wa')) & !@ больше не поддерживается
-		%result = (%result & @em.deRGB(g))
+	elseif $args[0]='em.str.get_word':
+		$result = $dyneval({
+			local $text="Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь"
 
-		$result = $str(%result)
-	})
+			$result = @em.str.get_word($text)
+			$result += @em.str.get_word($text,2)
+			$result += @em.str.get_word($text,5)
+			$result += @em.str.get_word($text,8)
+			$result += @em.str.get_word($text,11)
+			$result += @em.str.get_word($text,14)
+			$result += @em.str.get_word('Декабрь',14)
+		})
 
-elseif $args[0]='em.str.get_word':
-	$result = $dyneval({
-		local $text="Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь"
+	elseif $args[0]='em.str.in_regexp':
+		$result = $dyneval({
+			$result = @em.str.in_regexp('([^][]*?)([^][]+?)([^><]*?)([^><]+?)([^}{]*?)([^}{]+?)([^)(]*?)([^)(]+?)'')([\s\S]*?)\1(:|=#)[\S]+(:|=#)([\S]+)')
+		})
 
-		$result = @em.str.get_word($text)
-		$result += @em.str.get_word($text,2)
-		$result += @em.str.get_word($text,5)
-		$result += @em.str.get_word($text,8)
-		$result += @em.str.get_word($text,11)
-		$result += @em.str.get_word($text,14)
-		$result += @em.str.get_word('Декабрь',14)
-	})
+	elseif $args[0]='em.tag.get_cont':
+		$result = $dyneval({
+			local $text="[count:текст с пробелом:count] <cord:странный и непонятный текст:cord> log:п р о б е л ь н ы е и непробельные символы:log <color>ff8899</color> [tag]многа букав[/tag]"
+			$result = ''
 
-elseif $args[0]='em.str.in_regexp':
-	$result = $dyneval({
-		$result = @em.str.in_regexp('([^][]*?)([^][]+?)([^><]*?)([^><]+?)([^}{]*?)([^}{]+?)([^)(]*?)([^)(]+?)'')([\s\S]*?)\1(:|=#)[\S]+(:|=#)([\S]+)')
-	})
+			$result += @em.tag.get_cont($text,'count')
+			$result += @em.tag.get_cont($text,'cord')
+			$result += @em.tag.get_cont($text,'log')
+			$result += @em.tag.get_cont($text,'color')
+			$result += @em.tag.get_cont($text,'tag')
+		})
 
-elseif $args[0]='em.tag.get_cont':
-	$result = $dyneval({
-		local $text="[count:текст с пробелом:count] <cord:странный и непонятный текст:cord> log:п р о б е л ь н ы е и непробельные символы:log <color>ff8899</color> [tag]многа букав[/tag]"
-		$result = ''
-
-		$result += @em.tag.get_cont($text,'count')
-		$result += @em.tag.get_cont($text,'cord')
-		$result += @em.tag.get_cont($text,'log')
-		$result += @em.tag.get_cont($text,'color')
-		$result += @em.tag.get_cont($text,'tag')
-	})
-
-elseif $args[0]='em.tag.get_num':
-	$result = $dyneval({
-		$result = ''
-		local $text="[count:текст с пробелом] <cord:68> log:непробельные_символы color=#ff8899 tag='многа букав'"
-		$result += '[' + @em.tag.get_num($text,'count')+ ']'
-		$result += '[' + @em.tag.get_num($text,'cord')+ ']'
-		$result += '[' + @em.tag.get_num($text,'log')+ ']'
-		$result += '[' + @em.tag.get_num($text,'color')+ ']'
-		$result += '[' + @em.tag.get_num($text,'tag')+ ']'
-		$result += '[' + @em.tag.get_num($text,'tag/h')+ ']'
-		$result += '[' + @em.tag.get_num($text,'color/h')+ ']'
-	})
+	elseif $args[0]='em.tag.get_num':
+		$result = $dyneval({
+			$result = ''
+			local $text="[count:текст с пробелом] <cord:68> log:непробельные_символы color=#ff8899 tag='многа букав'"
+			$result += '[' + @em.tag.get_num($text,'count')+ ']'
+			$result += '[' + @em.tag.get_num($text,'cord')+ ']'
+			$result += '[' + @em.tag.get_num($text,'log')+ ']'
+			$result += '[' + @em.tag.get_num($text,'color')+ ']'
+			$result += '[' + @em.tag.get_num($text,'tag')+ ']'
+			$result += '[' + @em.tag.get_num($text,'tag/h')+ ']'
+			$result += '[' + @em.tag.get_num($text,'color/h')+ ']'
+		})
 
 !@ ------------------------------------- Вспомогательные функции -------------------------------------
 
 !@ ----------------------------------- Операции с дробными числами -----------------------------------
 
-elseif $args[0]='em.sqrt':
-	$result=$dyneval({
-		$result = ''
-		$result+=@em.sqrt('1000',10000)
-		$result+=@em.sqrt('16',10000)
-		$result+=@em.sqrt('257',100000)
-		$result+=@em.sqrt('257',10000)
-		$result+=@em.sqrt('257',1000)
-		$result+=@em.sqrt('257',100)
-		$result+=@em.sqrt('2.1',100)
-		$result+=@em.sqrt('259',100)
-		$result+=@em.sqrt('260',100)
-		$result+=@em.sqrt('1.69',100)
-		$result+=@em.sqrt('0.69',10000)
-	})
+	elseif $args[0]='em.sqrt':
+		$result=$dyneval({
+			$result = ''
+			$result+=@em.sqrt('1000',10000)
+			$result+=@em.sqrt('16',10000)
+			$result+=@em.sqrt('257',100000)
+			$result+=@em.sqrt('257',10000)
+			$result+=@em.sqrt('257',1000)
+			$result+=@em.sqrt('257',100)
+			$result+=@em.sqrt('2.1',100)
+			$result+=@em.sqrt('259',100)
+			$result+=@em.sqrt('260',100)
+			$result+=@em.sqrt('1.69',100)
+			$result+=@em.sqrt('0.69',10000)
+		})
 
-elseif $args[0]='em.add':
-	$result=$dyneval({
-		$result = ''
-		$result+=@em.add('9.05','-9')
-		$result+=@em.add('9.05','-9.05')
-		$result+=@em.add('9.05','9')
-		$result+=@em.add('9.05','9.55','9.25')
-		$result+=@em.add('9.99','9.999','9.9')
-		$result+=@em.add('384.384','92.8',3)
-		$result+=@em.add('283','126')
-		$result+=@em.add('283','-126')
-		$result+=@em.add('-283','126')
-		$result+=@em.add('-283','-126')
-		$result+=@em.add('-234','125','-13.7890303','3484889')
-	})
+	elseif $args[0]='em.add':
+		$result=$dyneval({
+			$result = ''
+			$result+=@em.add('9.05','-9')
+			$result+=@em.add('9.05','-9.05')
+			$result+=@em.add('9.05','9')
+			$result+=@em.add('9.05','9.55','9.25')
+			$result+=@em.add('9.99','9.999','9.9')
+			$result+=@em.add('384.384','92.8',3)
+			$result+=@em.add('283','126')
+			$result+=@em.add('283','-126')
+			$result+=@em.add('-283','126')
+			$result+=@em.add('-283','-126')
+			$result+=@em.add('-234','125','-13.7890303','3484889')
+		})
 
-elseif $args[0]='em.div':
-	$result=$dyneval ({
-		$result = ''
-		$result+=@em.div('9.05',"-9",10000)
-		$result+=@em.div('9.05','-9.05',10000)
-		$result+=@em.div('9.05',"10")
-		$result+=@em.div('9.05',"9.55",10000)
-		$result+=@em.div('9.99',"9.999",10000)
-		$result+=@em.div('9.99',"9.999",1000000)
-		$result+=@em.div('-1.69',"1.3",10000)
-		$result+=@em.div('1.69',"1.3",10000)
-		$result+=@em.div('-1.69',"-1.3",10000)
-		$result+=@em.div('1.69',"-1.3",10000)
-	})
+	elseif $args[0]='em.div':
+		$result=$dyneval ({
+			$result = ''
+			$result+=@em.div('9.05',"-9",10000)
+			$result+=@em.div('9.05','-9.05',10000)
+			$result+=@em.div('9.05',"10")
+			$result+=@em.div('9.05',"9.55",10000)
+			$result+=@em.div('9.99',"9.999",10000)
+			$result+=@em.div('9.99',"9.999",1000000)
+			$result+=@em.div('-1.69',"1.3",10000)
+			$result+=@em.div('1.69',"1.3",10000)
+			$result+=@em.div('-1.69',"-1.3",10000)
+			$result+=@em.div('1.69',"-1.3",10000)
+		})
 
-elseif $args[0]='em.mult':
-	$result=$dyneval ({
-		$result = ''
-		$result+=@em.mult("38.4","2.5")
-		$result+=@em.mult('9.05',"-9.05")
-		$result+=@em.mult('9.05',"10")
-		$result+=@em.mult('9.05',"9.55","9.25")
-		$result+=@em.mult('9.99',"-9.999","9.9")
-		$result+=@em.mult('2','2','2','2','2','2','2','2','2')
-		$result+=@em.mult('-2','-2','-2','-2','-2','-2','-2','-2','-2')
-	})
+	elseif $args[0]='em.mult':
+		$result=$dyneval ({
+			$result = ''
+			$result+=@em.mult("38.4","2.5")
+			$result+=@em.mult('9.05',"-9.05")
+			$result+=@em.mult('9.05',"10")
+			$result+=@em.mult('9.05',"9.55","9.25")
+			$result+=@em.mult('9.99',"-9.999","9.9")
+			$result+=@em.mult('2','2','2','2','2','2','2','2','2')
+			$result+=@em.mult('-2','-2','-2','-2','-2','-2','-2','-2','-2')
+		})
 
-elseif $args[0]='em.round':
-	$result=$dyneval ({
-		$result = ''
-		$result+=@em.round("945.459","0.1")
-		$result+=@em.round("945.459","0.1",'[down]')
-		$result+=@em.round("945.444","0.1",'[up]')
-		$result+=@em.round("945.459","0.01")
-		$result+=@em.round("945.459","0.001")
-		$result+=@em.round("945.459","1")
-		$result+=@em.round("945.459","10")
-		$result+=@em.round("945.459","100")
-		$result+=@em.round("-945.459","10")
-		$result+=@em.round("-945.459","0.01")
-	})
+	elseif $args[0]='em.round':
+		$result=$dyneval ({
+			$result = ''
+			$result+=@em.round("945.459","0.1")
+			$result+=@em.round("945.459","0.1",'[down]')
+			$result+=@em.round("945.444","0.1",'[up]')
+			$result+=@em.round("945.459","0.01")
+			$result+=@em.round("945.459","0.001")
+			$result+=@em.round("945.459","1")
+			$result+=@em.round("945.459","10")
+			$result+=@em.round("945.459","100")
+			$result+=@em.round("-945.459","10")
+			$result+=@em.round("-945.459","0.01")
+		})
 
-elseif $args[0]='em.simpl':
-	$result=dyneval ({
-		$result = ''
-		$result+=@em.simpl('9.05',"-9")
-		$result+=@em.simpl('9.05','-9.05')
-		$result+=@em.simpl('9.05',"10")
-		$result+=@em.simpl('9.05',"9.55")
-		$result+=@em.simpl('9.99',"9.999")
-		$result+=@em.simpl('-1.69',"1.3")
-		$result+=@em.simpl('-1.69',"-1.3")
-		$result+=@em.simpl('1.69',"1.3")
-		$result+=@em.simpl('1.69',"-1.3")
-	})
+	elseif $args[0]='em.simpl':
+		$result=dyneval ({
+			$result = ''
+			$result+=@em.simpl('9.05',"-9")
+			$result+=@em.simpl('9.05','-9.05')
+			$result+=@em.simpl('9.05',"10")
+			$result+=@em.simpl('9.05',"9.55")
+			$result+=@em.simpl('9.99',"9.999")
+			$result+=@em.simpl('-1.69',"1.3")
+			$result+=@em.simpl('-1.69',"-1.3")
+			$result+=@em.simpl('1.69',"1.3")
+			$result+=@em.simpl('1.69',"-1.3")
+		})
 
-elseif $args[0]='em.indiv':
-	$result = $dyneval({
-		$result = ''
-		$result += @em.indiv(-950000,1000)
-		$result += @em.indiv(64)
-		$result += @em.indiv(64,8,1)
-		$result += @em.indiv(64,7,100000)
-		$result += @em.indiv(64,7)
-		$result += @em.indiv(8,125)
-		$result += @em.indiv(150,100,10)
-		$result += @em.indiv(200,100,10)
-	})
+	elseif $args[0]='em.indiv':
+		$result = $dyneval({
+			$result = ''
+			$result += @em.indiv(-950000,1000)
+			$result += @em.indiv(64)
+			$result += @em.indiv(64,8,1)
+			$result += @em.indiv(64,7,100000)
+			$result += @em.indiv(64,7)
+			$result += @em.indiv(8,125)
+			$result += @em.indiv(150,100,10)
+			$result += @em.indiv(200,100,10)
+		})
 
-elseif $args[0]='em.divdigs':
-	$result = $dyneval({
-		$result = ''
-		$result += $str(@em.divdigs('0.64'))
-		$result += $str(@em.divdigs('0.064'))
-		$result += $str(@em.divdigs('0.640'))
-		$result += $str(@em.divdigs('0.647777'))
-		$result += $str(@em.divdigs('-7777.64'))
-		$result += $str(@em.divdigs('-7777.646666666666666666666666'))
-	})
+	elseif $args[0]='em.divdigs':
+		$result = $dyneval({
+			$result = ''
+			$result += $str(@em.divdigs('0.64'))
+			$result += $str(@em.divdigs('0.064'))
+			$result += $str(@em.divdigs('0.640'))
+			$result += $str(@em.divdigs('0.647777'))
+			$result += $str(@em.divdigs('-7777.64'))
+			$result += $str(@em.divdigs('-7777.646666666666666666666666'))
+		})
 
-elseif $args[0]='em.dz':
-	$result = $dyneval({
-		$result = ''
-		$result += @em.dz('64',100)
-		$result += @em.dz('64.0080000',1)
-		$result += @em.dz('64.0080000',100)
-		$result += @em.dz('64.0080000',10000)
-	})
+	elseif $args[0]='em.dz':
+		$result = $dyneval({
+			$result = ''
+			$result += @em.dz('64',100)
+			$result += @em.dz('64.0080000',1)
+			$result += @em.dz('64.0080000',100)
+			$result += @em.dz('64.0080000',10000)
+		})
 
 
-elseif $args[0]='em.undiv':
-	$result = $dyneval({
-		$result = ''
-		$result += $str(@em.undiv('1',1000))
-		$result += $str(@em.undiv('-1',1000))
-		$result += $str(@em.undiv('0.123',100))
-		$result += $str(@em.undiv('0.123',10))
-		$result += $str(@em.undiv('0.123'))
-		$result += $str(@em.undiv('1.23'))
-	})
+	elseif $args[0]='em.undiv':
+		$result = $dyneval({
+			$result = ''
+			$result += $str(@em.undiv('1',1000))
+			$result += $str(@em.undiv('-1',1000))
+			$result += $str(@em.undiv('0.123',100))
+			$result += $str(@em.undiv('0.123',10))
+			$result += $str(@em.undiv('0.123'))
+			$result += $str(@em.undiv('1.23'))
+		})
 
 !@ ----------------------------------- Операции с дробными числами -----------------------------------
+
+!@ --------------------------------------- Операции логические ---------------------------------------
+
+	elseif $args[0]='em.byte.add':
+		$result=$dyneval({
+			$result = ''
+			$result += @em.byte.add(998765,273)
+			$result += @em.byte.add('9987Y5','-273')
+			$result += @em.byte.add('999999','6273')
+			$result += @em.byte.add('998705','5773')
+		})
+
+	elseif $args[0]='em.byte.dev':
+		$result=$dyneval({
+			$result = ''
+			$result += @em.byte.dev(998765,273)
+			$result += @em.byte.dev('9987Y5','-273')
+			$result += @em.byte.dev('999999','6273')
+			$result += @em.byte.dev('998705','5773')
+		})
+
+!@ --------------------------------------- Операции логические ---------------------------------------
+
+!@ --------------------------------------- Операции  текстовые ---------------------------------------
+
+	elseif $args[0]='em.arr.search':
+		$result = $dyneval({
+			local $mass
+			$mass[0]='привет красное яблоко'
+			$mass[1]='привет оранжевое яблоко'
+			$mass[2]='привет жёлтое яблоко'
+			$mass[3]='привет зелёное яблоко'
+			$mass[4]='привет синее яблоко'
+			$mass[5]='привет голубое яблоко'
+			$mass[6]='привет фиолетовое яблоко'
+			$mass[7]='привет чёрное яблоко'
+			$mass[8]='привет зелёный банан'
+			$mass[9]='привет голубое яблоко'
+			$mass[10]='привет фиолетовое яблоко'
+			$mass[11]='привет чёрный банан'
+			$result = $str(@em.arr.search('$mass','зелён(ое|ый)'))
+			$result += $str(@em.arr.search('$mass','зелён(ое|ый)','[last]'))
+			$result += $str(@em.arr.search('$mass','зелён(ое|ый)','[past]'))
+			$result += $str(@em.arr.search('$mass','зелён(ое|ый)','',4,7))
+			$result += $str(@em.arr.search('$mass','зелён(ое|ый)','',3,8))
+			$result += $str(@em.arr.search('$mass','зелён(ое|ый)','[last]',3,8))
+			$result += $str(@em.arr.search('$mass','зелён(ое|ый)','',6))
+			$result += $str(@em.arr.search('$mass','зелён(ое|ый)','[last]',6))
+		})
+
+	elseif $args[0]='em.gen_uuid':
+		$result = $dyneval({
+			#result = 1
+			loop local i=0 while i<10 step i+=1:
+			    #result = strcomp(@em.gen_uuid(), '[A-Fa-f0-9]{8}(\-[A-Fa-f0-9]{4}){3}\-[A-Fa-f0-9]{12}')
+			end
+			$result = $str(#result)
+		})
+
+	elseif $args[0]='em.str.head_tail':
+		$result = $dyneval({
+			local $text="Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь"
+
+			$result = $str([
+			    @em.str.head_tail($text),
+			    @em.str.head_tail($text,'А'),
+			    @em.str.head_tail($text,'Ав'),
+			    @em.str.head_tail($text,'брь')
+			])
+		})
+
+	elseif $args[0]='em.str.random':
+		$result = $dyneval({
+			$result = $str([
+				strcomp(@em.str.random(), '.+'),
+				strcomp(@em.str.random(16,'[inc][\d][\z][\я]'), '[0-9A-Za-zА-Еа-еЖ-Яж-яёЁ]{16}'),
+				strcomp(@em.str.random(16), '.{16}'),
+				strcomp(@em.str.random(16,'[inc][\d][\z][\я]','$ @ !'), '[0-9A-Za-zА-Еа-еЖ-Яж-яёЁ$ @!]{16}'),
+				strcomp(@em.str.random(16,'24680','  ©'), '([ ©]|[^24680]){16}'),
+				strcomp(@em.str.random(16,'2 4 6 8 0','  ©'), '([ ©]|[^24680]){16}')
+			])
+		})
+
+	elseif $args[0]='em.str.thin':
+		$result=$dyneval({
+			$result = $str([
+				@em.str.thin('профессура'),
+				@em.str.thin('профессура',1,'|'),
+				@em.str.thin('профессура',1,'|','[right]'),
+				@em.str.thin('профессура',1,'|','[left]'),
+				@em.str.thin('профессура',1,'|','[right][left]'),
+				@em.str.thin('профессура',3,'|'),
+				@em.str.thin('профессура',3,'|','[up]'),
+				@em.str.thin('профессура',3,'|','[left]'),
+				@em.str.thin('профессура',2,'|','[right]'),
+				@em.str.thin('профессура',1,'||','[left] [right]')
+			])
+		})
+
+	elseif $args[0]='em.zero':
+		$result=$dyneval({
+			$result = $str([
+				@em.zero(13),
+				@em.zero(13,'1'),
+				@em.zero(13,'10'),
+				@em.zero(13,'a'),
+				@em.zero(3,'bla')
+			])
+		})
+
+!@ --------------------------------------- Операции  текстовые ---------------------------------------
+
+!@ ------------------------------ Операции с шестнадцатеричными числами ------------------------------
+
+	elseif $args[0]='em.col.add':
+		$result = $dyneval({
+			$result = $str([
+				@em.col.add('ff0000','-44'),
+				@em.col.add('000000','-44'),
+				@em.col.add('dd0000','22'),
+				@em.col.add('dd8822','-44'),
+				@em.col.add('dd8822','44'),
+				@em.col.add('dd882299','44')
+			])
+		})
+
+	elseif $args[0]='em.col.in_rgb':
+		$result = $dyneval({
+			$result = $str([
+				@em.col.in_rgb('ff0000'),
+				@em.col.in_rgb('000000'),
+				@em.col.in_rgb('dd0000'),
+				@em.col.in_rgb('dd8822'),
+				@em.col.in_rgb('ffmm00'),
+				@em.col.in_rgb('-0000ff'),
+				@em.col.in_rgb('238c9088')
+			])
+		})
+
+	elseif $args[0]='em.col.inv':
+		$result = $dyneval({
+			$result = $str([
+				@em.col.inv('000000'),
+				@em.col.inv('ffffff'),
+				@em.col.inv('238c90'),
+				@em.col.inv('902b10'),
+				@em.col.inv('c7c000'),
+				@em.col.inv('07c701'),
+				@em.col.inv('c7c00084'),
+				@em.col.inv('07c7014d')
+			])
+		})
+
+!@ ------------------------------ Операции с шестнадцатеричными числами ------------------------------
 
 elseif $args[0]='em.fewarrs.print':
 	$result=$dyneval({
@@ -242,22 +386,6 @@ elseif $args[0]='em.fewarrs.print':
 		$result += @em.fewArrs.print('$c','%d', '[empty:EMPTY ARRAYS]')
 	})
 
-elseif $args[0]='em.byte.add':
-	$result=$dyneval({
-		$result = ''
-		$result+=@em.byte.add(998765,273)	& !@ '999038'
-		$result+=@em.byte.add('9987Y5','-273')	& !@ '998978'
-		$result+=@em.byte.add('999999','6273')	& !@ '006273'
-		$result+=@em.byte.add('998705','5773')	& !@ '004479'
-	})
-elseif $args[0]='em.byte.dev':
-	$result=$dyneval({
-		$result = ''
-		$result+=@em.byte.dev(998765,273)	& !@ '998492'
-		$result+=@em.byte.dev('9987Y5','-273')	& !@ '998432'
-		$result+=@em.byte.dev('999999','6273')	& !@ '993726'
-		$result+=@em.byte.dev('998705','5773')	& !@ '992932'
-	})
 elseif $args[0]='em.arr.print':
 	$result=$dyneval({
 		$result = ''
@@ -481,15 +609,7 @@ elseif $args[0]='em.arr.concatenate':
 		    $result+="%em_result[<<i>>]=<<em_result[i]>>"
 		end
 		})
-elseif $args[0]='em.zero':
-	$result=$dyneval({
-		$result = ''
-		$result+=@em.zero(13)+$nr	& !@ '0000000000000'
-		$result+=@em.zero(13,'1')+$nr	& !@ '1111111111111'
-		$result+=@em.zero(13,'10')+$nr	& !@ '10101010101010101010101010'
-		$result+=@em.zero(13,'a')+$nr	& !@ 'aaaaaaaaaaaaa'
-		$result+=@em.zero(3,'bla')+$nr	& !@ 'blablabla'
-	})
+
 !@ elseif $args[0]='em.str.in_arr':
 !@ 		$result=$dyneval({
 !@ local $text, $mass_ex_1, $mass_ex_2, $mass_ex_3
@@ -566,20 +686,7 @@ elseif $args[0]='em.zero':
 !@ end
 !@ $result=$str(result)
 !@ 		})
-elseif $args[0]='em.str.thin':
-	$result=$dyneval({
-		$result = ''
-		$result+=@em.str.thin('профессура')+$nr
-		$result+=@em.str.thin('профессура',1,'|')+$nr
-		$result+=@em.str.thin('профессура',1,'|','[right]')+$nr
-		$result+=@em.str.thin('профессура',1,'|','[left]')+$nr
-		$result+=@em.str.thin('профессура',1,'|','[right][left]')+$nr
-		$result+=@em.str.thin('профессура',3,'|')+$nr
-		$result+=@em.str.thin('профессура',3,'|','[up]')+$nr
-		$result+=@em.str.thin('профессура',3,'|','[left]')+$nr
-		$result+=@em.str.thin('профессура',2,'|','[right]')+$nr
-		$result+=@em.str.thin('профессура',1,'||','[left] [right]')+$nr
-	})
+
 elseif $args[0]='em.hex.add':
 	$result=$dyneval({
 		$result = ''
