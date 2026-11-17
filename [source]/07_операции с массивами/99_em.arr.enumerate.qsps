@@ -6,7 +6,6 @@ QSP-Game Заполняет указанный массив кортежами �
 # em.arr.enumerate
 !@pp:if(em_fuse):include
 if $args[0]='' or $args[1]='': msg 'em.arr.enumerte: No array name → <<$args[0]>>, <<$args[1]>>' & exit
-if instr($args[1], '%') <> 1: msg 'em.var.enumerate: type prefix ''%'' not specified → <<$args[1]>>' & exit
 !@pp:endif
 killvar $args[1]
 loop args[21] = 0 while args[21]<arrsize($args[0]) step args[21] += 1:

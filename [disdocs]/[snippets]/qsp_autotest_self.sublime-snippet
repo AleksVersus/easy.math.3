@@ -1,13 +1,13 @@
 <snippet>
 	<content><![CDATA[
-!@ ${1:location}
-if instr(\$args[0],'${1:location}')<>0 or \$args[0]='':
-\$functions[]='${1:location}'
-\$example['${1:location}']="${2:textforsimple}"
+!@ em.${1:this}
+if instr(\$args[0], 'em.${1:this}') or \$args[0]='':
+	\$functions[] = 'em.${1:this}'
+	\$example['em.${1:this}'] = '${2:result}'
 end
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>testinsert</tabTrigger>
+	<tabTrigger>emautoself</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<scope>source.QSP</scope>
+	<scope>source.qsp</scope>
 </snippet>

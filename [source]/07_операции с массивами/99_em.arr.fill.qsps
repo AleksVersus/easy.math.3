@@ -6,10 +6,10 @@ QSP-Game Упрощённое заполнение массива
 !@pp:if(em_arr_fill):include
 # em.arr.fill
 $args[21] = $iif(instr('$%', $mid($args[0], 1, 1)), $mid($args[0], 1, 1), '')
-loop args[22] = len(%args[1]) while args[22]>0 step args[2] += 1 & args[22]-=1:
+loop #args[22] = len(%args[1]) while #args[22]>0 step #args[2] += 1 & #args[22]-=1:
     !@ циклом перебираем кортеж
     %args[1] = %dyneval("
-        <<$args[0]>>[<<args[2]>>], %result = %args[0]
+        <<$args[0]>>[<<#args[2]>>], %result = %args[0]
     ", %args[1])
 end
 --- em.arr.fill ---------------------------------

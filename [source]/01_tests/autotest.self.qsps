@@ -206,137 +206,30 @@ $args[1]=$lcase($args[1])
 
 !@ ------------ операции  шестнадцатеричные ------------
 
-!@ em.arr.concatenate
-if instr($args[0], 'em.arr.concatenate') or $args[0]='':
-	$functions[] = 'em.arr.concatenate'
-	$example['em.arr.concatenate'] = "%em_result[0]=[967, '88ff88', 'голова']%em_result[1]=[629, 'ff00ff', 'плечи']%em_result[2]=[541, '0ff0f8', 'грудь']%em_result[3]=[290, 'ffffff', 'живот']%em_result[4]=[852, '8888ff', 'бёдра']%em_result[5]=[334, 'fff8f8', 'колени']%em_result[6]=[318, 'икры']%em_result[7]=[529, 'ступни']"
-end
+!@ --------------- операции над массивами ---------------
 
-!@ em.arr.desort
-if instr($args[0], 'em.arr.desort') or $args[0]='':
-	$functions[] = 'em.arr.desort'
-	$example['em.arr.desort'] = "old_mass[0] = 257
-old_mass[1] = 269
-old_mass[2] = 293
-old_mass[3] = 529
-old_mass[4] = 561
-old_mass[5] = 901
-old_mass[6] = 913
-old_mass[7] = 949
-em_array[0] = 4
-em_array[1] = 2
-em_array[2] = 7
-em_array[3] = 6
-em_array[4] = 5
-em_array[5] = 3
-em_array[6] = 1
-em_array[7] = 0
-new_mass[0] = 949
-new_mass[1] = 913
-new_mass[2] = 269
-new_mass[3] = 901
-new_mass[4] = 257
-new_mass[5] = 561
-new_mass[6] = 529
-new_mass[7] = 293"
-end
+	!@ em.arr.desort
+	if instr($args[0], 'em.arr.desort') or $args[0]='':
+		$functions[] = 'em.arr.desort'
+		$example['em.arr.desort'] = "[[257, 269, 293, 529, 561, 901, 913, 949], [4, 2, 7, 6, 5, 3, 1, 0], [949, 913, 269, 901, 257, 561, 529, 293]]"
+	end
 
-!@ em.arr.desort
-if instr($args[0], 'em.arr.sort') or $args[0]='':
-	$functions[] = 'em.arr.sort'
-	$example['em.arr.sort'] = "old_mass[0] = 157
-old_mass[1] = 250
-old_mass[2] = 413
-old_mass[3] = 532
-old_mass[4] = 565
-old_mass[5] = 709
-old_mass[6] = 730
-old_mass[7] = 779
-old_mass[0] = 118
-old_mass[1] = 132
-old_mass[2] = 304
-old_mass[3] = 678
-old_mass[4] = 796
-old_mass[5] = 812
-old_mass[6] = 901
-old_mass[7] = 966
-em_array[0] = 5
-em_array[1] = 7
-em_array[2] = 3
-em_array[3] = 4
-em_array[4] = 2
-em_array[5] = 1
-em_array[6] = 6
-em_array[7] = 0
-%old_mass[0] = [967,'голова']
-%old_mass[1] = [629,'плечи']
-%old_mass[2] = [541,'руки']
-%old_mass[3] = [290,'торс']
-%old_mass[4] = [852,'бёдра']
-%old_mass[5] = [334,'голени']
-%old_mass[6] = [318,'ступни']
-%old_mass[7] = [529,'нишваа']
-em_array[0] = 3
-em_array[1] = 6
-em_array[2] = 5
-em_array[3] = 7
-em_array[4] = 2
-em_array[5] = 1
-em_array[6] = 4
-em_array[7] = 0
-%new_mass[0] = [290,'торс']
-%new_mass[1] = [318,'ступни']
-%new_mass[2] = [334,'голени']
-%new_mass[3] = [529,'нишваа']
-%new_mass[4] = [541,'руки']
-%new_mass[5] = [629,'плечи']
-%new_mass[6] = [852,'бёдра']
-%new_mass[7] = [967,'голова']
-$mass[0] = 'ffffff'
-$mass[1] = 'fff8f8'
-$mass[2] = 'ff00ff'
-$mass[3] = '88ff88'
-$mass[4] = '8888ff'
-$mass[5] = '0ff0f8'
-em_array[0] = 3
-em_array[1] = 5
-em_array[2] = 1
-em_array[3] = 0
-em_array[4] = 4
-em_array[5] = 2"
-end
+	!@ em.arr.simpl
+	if instr($args[0],'em.arr.simpl')<>0 or $args[0]='':
+		$functions[]='em.arr.simpl'
+		$example['em.arr.simpl']="[1, 0, 1]"
+	end
 
-!@ em.arr.simpl
-if instr($args[0],'em.arr.simpl')<>0 or $args[0]='':
-	$functions[]='em.arr.simpl'
-	$example['em.arr.simpl']="101"
-end
+	!@ em.arr.sort
+	if instr($args[0], 'em.arr.sort') or $args[0]='':
+		$functions[] = 'em.arr.sort'
+		$example['em.arr.sort'] = "[[157, 250, 413, 532, 565, 709, 730, 779], [[118, 132, 304, 678, 796, 812, 901, 966], [5, 7, 3, 4, 2, 1, 6, 0]], [[[967, 'голова'], [629, 'плечи'], [541, 'руки'], [290, 'торс'], [852, 'бёдра'], [334, 'голени'], [318, 'ступни'], [529, 'нишваа']], [3, 6, 5, 7, 2, 1, 4, 0], [[290, 'торс'], [318, 'ступни'], [334, 'голени'], [529, 'нишваа'], [541, 'руки'], [629, 'плечи'], [852, 'бёдра'], [967, 'голова']]], [['ffffff', 'fff8f8', 'ff00ff', '88ff88', '8888ff', '0ff0f8'], [3, 5, 1, 0, 4, 2]]]"
+	end
 
-
-!@ em.fewarrs.print
-if instr($args[0],'em.fewarrs.print')<>0 or $args[0]='':
-$functions[]='em.fewarrs.print'
-$example['em.fewarrs.print']="<table border=1 cellpadding=5><tr><td>#</td><td>$a</td><td>%b</td></tr><tr><td>0</td><td>нулевая ячейка</td><td>[0,'zero']</td></tr><tr><td>1</td><td>первая ячейка</td><td>['first',1,0]</td></tr><tr><td>2</td><td>вторая ячейка</td><td>[2,'second',2]</td></tr><tr><td>3</td><td>&nbsp;</td><td>['3']</td></tr><tr><td>4</td><td>четвёртая' ячейка</td><td>[3,5,6,'string',6]</td></tr><tr><td>5</td><td>пятая яче'йка</td><td>['пятая ячейка']</td></tr><tr><td>6</td><td>&nbsp;</td><td>['6']</td></tr><tr><td>7</td><td>седьмая ячейка</td><td>['7']</td></tr></table><table border=1 cellpadding=5><tr><td>#</td><td>$a</td><td>%b</td></tr><tr><td>3</td><td>&nbsp;</td><td>['3']</td></tr><tr><td>4</td><td>четвёртая' ячейка</td><td>[3,5,6,'string',6]</td></tr><tr><td>5</td><td>пятая яче'йка</td><td>['пятая ячейка']</td></tr><tr><td>6</td><td>&nbsp;</td><td>['6']</td></tr></table>нулевая ячейка	[0,'zero']
-первая ячейка	['first',1,0]
-вторая ячейка	[2,'second',2]
-	['3']
-четвёртая' ячейка	[3,5,6,'string',6]
-пятая яче'йка	['пятая ячейка']
-	['6']
-седьмая ячейка	['7']$a[0]='нулевая ячейка'	&	%b[0]=[0,'zero']
-$a[1]='первая ячейка'	&	%b[1]=['first',1,0]
-$a[2]='вторая ячейка'	&	%b[2]=[2,'second',2]
-$a[3]=''	&	%b[3]=['3']
-$a[4]='четвёртая'' ячейка'	&	%b[4]=[3,5,6,'string',6]
-$a[5]='пятая яче''йка'	&	%b[5]=['пятая ячейка']
-$a[6]=''	&	%b[6]=['6']
-$a[7]='седьмая ячейка'	&	%b[7]=['7']EMPTY ARRAYS"
-end
-
-
-
-
-
+!@ для arr.print и fewArrs.print: при выводе на экран табуляции могут быть заменены пробелами
+!@ поэтому копирование текста с экрана копирует не тот же вывод, который в действительности
+!@ дают функции. То же самое с пустыми строками. При копировании текста с экрана, пустые
+!@ строки не копируются. Строить проверку на скопированной с экрана информации опасно.
 
 !@ em.arr.print
 if instr($args[0],'em.arr.print')<>0 or $args[0]='':
@@ -345,30 +238,102 @@ $example['em.arr.print']="$a[0] = 'нулевая ячейка'
 $a[1] = '   первая ячейка   '
 $a[2] = ' вторая ячейка'
 $a[3] = ''
-$a[4] = '[1,2,3,5,6]'
+$a[4] = '[1, 2, 3, 5, 6]'
 $a[5] = '   пятая ячейка'
 $a[6] = ''
-$a[7] = 'седьмая ячейка'
-нулевая ячейка
+$a[7] = 'седьмая ячейка'нулевая ячейка
    первая ячейка   
  вторая ячейка
 
-[1,2,3,5,6]
+[1, 2, 3, 5, 6]
    пятая ячейка
 
-седьмая ячейка
-$a[0] = 'нулевая ячейка'
+седьмая ячейка$a[0] = 'нулевая ячейка'
 $a[1] = 'первая ячейка'
 $a[2] = 'вторая ячейка'
 $a[3] = ''
-$a[4] = '[1,2,3,5,6]'
+$a[4] = '[1, 2, 3, 5, 6]'
 $a[5] = 'пятая ячейка'
 $a[6] = ''
-$a[7] = 'седьмая ячейка'
-вторая ячейка||[1,2,3,5,6]|пятая ячейка
-вторая ячейка||[1,2,3,5,6]|пятая ячейка|
-"
+$a[7] = 'седьмая ячейка'вторая ячейка||[1, 2, 3, 5, 6]|пятая ячейкавторая ячейка||[1, 2, 3, 5, 6]|пятая ячейка|"
 end
+
+!@ em.fewarrs.print
+if instr($args[0],'em.fewarrs.print')<>0 or $args[0]='':
+$functions[]='em.fewarrs.print'
+$example['em.fewarrs.print']="<table border=1 cellpadding=5><tr><td>#</td><td>$a</td><td>%b</td></tr><tr><td>0</td><td>нулевая ячейка</td><td>[0, 'zero']</td></tr><tr><td>1</td><td>первая ячейка</td><td>['first', 1, 0]</td></tr><tr><td>2</td><td>вторая ячейка</td><td>[2, 'second', 2]</td></tr><tr><td>3</td><td>&nbsp;</td><td>['3']</td></tr><tr><td>4</td><td>четвёртая' ячейка</td><td>[3, 5, 6, 'string', 6]</td></tr><tr><td>5</td><td>пятая яче'йка</td><td>['пятая ячейка']</td></tr><tr><td>6</td><td>&nbsp;</td><td>['6']</td></tr><tr><td>7</td><td>седьмая ячейка</td><td>['7']</td></tr></table><table border=1 cellpadding=5><tr><td>#</td><td>$a</td><td>%b</td></tr><tr><td>3</td><td>&nbsp;</td><td>['3']</td></tr><tr><td>4</td><td>четвёртая' ячейка</td><td>[3, 5, 6, 'string', 6]</td></tr><tr><td>5</td><td>пятая яче'йка</td><td>['пятая ячейка']</td></tr><tr><td>6</td><td>&nbsp;</td><td>['6']</td></tr></table>нулевая ячейка	[0, 'zero']
+первая ячейка	['first', 1, 0]
+вторая ячейка	[2, 'second', 2]
+	['3']
+четвёртая' ячейка	[3, 5, 6, 'string', 6]
+пятая яче'йка	['пятая ячейка']
+	['6']
+седьмая ячейка	['7']$a[0]='нулевая ячейка'	&	%b[0]=[0, 'zero']
+$a[1]='первая ячейка'	&	%b[1]=['first', 1, 0]
+$a[2]='вторая ячейка'	&	%b[2]=[2, 'second', 2]
+$a[3]=''	&	%b[3]=['3']
+$a[4]='четвёртая'' ячейка'	&	%b[4]=[3, 5, 6, 'string', 6]
+$a[5]='пятая яче''йка'	&	%b[5]=['пятая ячейка']
+$a[6]=''	&	%b[6]=['6']
+$a[7]='седьмая ячейка'	&	%b[7]=['7']EMPTY ARRAYS"
+end
+
+	!@ em.arr.clear
+	if instr($args[0],'em.arr.clear')<>0 or $args[0]='':
+		$functions[]='em.arr.clear'
+		$example['em.arr.clear']="[1, 3, 1, 3, 1]"
+	end
+
+	!@ em.arr.concatenate
+	if instr($args[0], 'em.arr.concatenate') or $args[0]='':
+		$functions[] = 'em.arr.concatenate'
+		$example['em.arr.concatenate'] = "[[967, '88ff88', 'голова'], [629, 'ff00ff', 'плечи'], [541, '0ff0f8', 'грудь'], [290, 'ffffff', 'живот'], [852, '8888ff', 'бёдра'], [334, 'fff8f8', 'колени'], [318, 'икры'], [529, 'ступни']]"
+	end
+
+	!@ em.arr.enumerate
+	if instr($args[0], 'em.arr.enumerate') or $args[0]='':
+		$functions[] = 'em.arr.enumerate'
+		$example['em.arr.enumerate'] = '[[157, 0], [250, 1], [709, 2], [413, 3], [532, 4], [779, 5], [730, 6], [565, 7]]'
+	end
+
+	!@ em.arr.few_kill
+	if instr($args[0], 'em.arr.few_kill') or $args[0]='':
+		$functions[] = 'em.arr.few_kill'
+		$example['em.arr.few_kill'] = '[[250, 709, 532, 779, 565], [A: 250, V: 709, N: 532, B: 779, W: 565], [250, 709, 532, 779, 565]]'
+	end
+
+	!@ em.arr.fill
+	if instr($args[0], 'em.arr.fill') or $args[0]='':
+		$functions[] = 'em.arr.fill'
+		$example['em.arr.fill'] = "[[966, 812, 796, 304, 678, 118, 901, 132], [966, 812, 796, 304, 678, 118, 901, 132, 157, 250, 709, 413, 532, 779], [[967, 'голова'], [629, 'плечи'], [541, 'руки'], [290, 'торс'], ?, ?, ?, [852, 'бёдра'], [334, 'голени'], [318]], ['88ff88', 'ffffff', '8888ff', 'fff8f8']]"
+	end
+
+	!@ em.arr.fill_rand
+	if instr($args[0], 'em.arr.fill_rand') or $args[0]='':
+		$functions[] = 'em.arr.fill_rand'
+		$example['em.arr.fill_rand'] = '111'
+	end
+
+	!@ em.arr.fil_strt
+	if instr($args[0], 'em.arr.fil_strt') or $args[0]='':
+		$functions[] = 'em.arr.fil_strt'
+		$example['em.arr.fil_strt'] = '[[0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 0, 1, 2], [2, 1, 0, 2, 1, 0, 2, 1], [?, ?, 3, 4, 5, 3, 4, 5, 3, 4]]'
+	end
+
+	!@ em.arr.insert
+	if instr($args[0], 'em.arr.insert') or $args[0]='':
+		$functions[] = 'em.arr.insert'
+		$example['em.arr.insert'] = '[[574, 668, 413, 765, '6', 478, 205, 701, 272], [[574, 0], [668, 1], [413, 2], '[''inserted'']', [765, 3], [478, 4], [205, 5], [701, 6], [272, 7]]]'
+	end
+
+	!@ em.arr.restand
+	if instr($args[0], 'em.arr.restand') or $args[0]='':
+		$functions[] = 'em.arr.restand'
+		$example['em.arr.restand'] = "[['бёдра', 'голова', 'грудь', 'живот', 'икры', 'колени', 'плечи', 'ступни'], ['икры', 'бёдра', 'грудь', 'живот', 'плечи', 'колени', 'голова', 'ступни'], [4, 0, 2, 3, 6, 5, 1, 7]]"
+	end
+
+!@ --------------- операции над массивами ---------------
+
 !@ em.arr.insert
 if instr($args[0],'em.arr.insert')<>0 or $args[0]='':
 $functions[]='em.arr.insert'
@@ -382,15 +347,7 @@ mass[6] = 205
 mass[7] = 701
 mass[8] = 272"
 end
-!@ em.arr.clear
-if instr($args[0],'em.arr.clear')<>0 or $args[0]='':
-$functions[]='em.arr.clear'
-$example['em.arr.clear']="i[0] = 1
-i[1] = 3
-i[2] = 1
-i[3] = 3
-i[4] = 1"
-end
+
 
 
 !@ em.str.in_arr
@@ -398,9 +355,6 @@ end
 !@ $functions[]='em.str.in_arr'
 !@ $example['em.str.in_arr']="0"
 !@ end
-
-
-
 
 *pl "Start of Autotest." & wait 500
 loop local i,size=0,arrsize('$functions') while i<size step i+=1:
