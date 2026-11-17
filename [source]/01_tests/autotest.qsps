@@ -18,7 +18,7 @@ if 0:
 				@em.deRGB(rgb(0,98,98)),
 				@em.deRGB(rgb(240,230,140,100)),
 				@em.deRGB(rgb(240,230,140,100), '/wa'),
-				@em.deRGB(rgb(240,230,140,237)),
+				@em.deRGB(rgb(240,230,140,237))
 			])
 		})
 
@@ -368,6 +368,54 @@ if 0:
 			])
 		})
 
+		elseif $args[0]='em.hex.in_dec':
+			$result = $dyneval({
+				$result = $str([
+					@em.hex.in_dec('ff'),
+					@em.hex.in_dec('22'),
+					@em.hex.in_dec('10'),
+					@em.hex.in_dec('1'),
+					@em.hex.in_dec('a'),
+					@em.hex.in_dec('ffaa233'),
+					@em.hex.in_dec('ffaa23'),
+					@em.hex.in_dec('ffaa2'),
+					@em.hex.in_dec('ffaa233451'),
+					@em.hex.in_dec('ffaa23345'),
+					@em.hex.in_dec('ffaa2334')
+				])
+			})
+
+		
+		elseif $args[0]='em.hex.add':
+			$result = $dyneval({
+				$result = $str([
+					@em.hex.add('ffefa0','ff'),
+					@em.hex.add('ff','ff'),
+					@em.hex.add('100','ff'),
+					@em.hex.add('fff','ff'),
+					@em.hex.add('ff0','aaab76'),
+					@em.hex.add('aaab76','cc'),
+					@em.hex.add('ffeeff','a1'),
+					@em.hex.add('f0','f'),
+					@em.hex.add('ff','1'),
+					@em.hex.add('ffe','1'),
+					@em.hex.add('fef','1'),
+					@em.hex.add('aaaaaa','cc')
+				])
+			})
+
+		elseif $args[0]='em.dec.in_hex':
+			$result = $dyneval({
+				$result = $str([
+					@em.dec.in_hex(2147483647),
+					@em.dec.in_hex(214),
+					@em.dec.in_hex(255),
+					@em.dec.in_hex(10),
+					@em.dec.in_hex(9),
+					@em.dec.in_hex(2147483648)
+				])
+			})
+
 !@ ------------------------------ Операции с шеснадцатеричными числами ------------------------------
 
 elseif $args[0]='em.fewarrs.print':
@@ -699,16 +747,7 @@ elseif $args[0]='em.arr.concatenate':
 !@ $result=$str(result)
 !@ 		})
 
-elseif $args[0]='em.hex.add':
-	$result=$dyneval({
-		$result = ''
-		$result+=@em.hex.add('ffeeff','a1')+$nr
-		$result+=@em.hex.add('f0','f')+$nr
-		$result+=@em.hex.add('ff','1')+$nr
-		$result+=@em.hex.add('ffe','1')+$nr
-		$result+=@em.hex.add('fef','1')+$nr
-		$result+=@em.hex.add('aaaaaa','cc')+$nr
-	})
+
 end
 --- em.autotest ---------------------------------
 !@pp:endif
