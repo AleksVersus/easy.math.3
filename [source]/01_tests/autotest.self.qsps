@@ -334,27 +334,52 @@ end
 
 !@ --------------- операции над массивами ---------------
 
-!@ em.arr.insert
-if instr($args[0],'em.arr.insert')<>0 or $args[0]='':
-$functions[]='em.arr.insert'
-$example['em.arr.insert']="mass[0] = 574
-mass[1] = 668
-mass[2] = 413
-mass[3] = 765
-mass[4] = 6
-mass[5] = 478
-mass[6] = 205
-mass[7] = 701
-mass[8] = 272"
-end
+!@ -------------- операции с целыми числами -------------
 
+	!@ em.abs
+	if instr($args[0], 'em.abs') or $args[0]='':
+		$functions[] = 'em.abs'
+		$example['em.abs'] = '[333, 333, 333, 0, 579, 579]'
+	end
 
+	!@ em.digs
+	if instr($args[0], 'em.digs') or $args[0]='':
+		$functions[] = 'em.digs'
+		$example['em.digs'] = '[10, 100, 100, 1000, 10000]'
+	end
 
-!@ em.str.in_arr
-!@ if instr($args[0],'em.str.in_arr')<>0 or $args[0]='':
-!@ $functions[]='em.str.in_arr'
-!@ $example['em.str.in_arr']="0"
-!@ end
+	!@ em.even
+	if instr($args[0], 'em.even') or $args[0]='':
+		$functions[] = 'em.even'
+		$example['em.even'] = '[550, 540, 1000, -5500, 45600, -45600]'
+	end
+
+	!@ em.exp
+	if instr($args[0], 'em.exp') or $args[0]='':
+		$functions[] = 'em.exp'
+		$example['em.exp'] = '[46656, 16, 64, 256, 62500]'
+	end
+
+	!@ em.log
+	if instr($args[0], 'em.log') or $args[0]='':
+		$functions[] = 'em.log'
+		$example['em.log'] = '[1, 6, 4, 4, 2, 2]'
+	end
+
+	!@ em.random
+	if instr($args[0], 'em.random') or $args[0]='':
+		$functions[] = 'em.random'
+		$example['em.random'] = 'true'
+	end
+
+	!@ em.summ
+	if instr($args[0], 'em.summ') or $args[0]='':
+		$functions[] = 'em.summ'
+		$example['em.summ'] = "[4460, 'голова плечи грудь живот бёдра колени икры ступни ', [0, 'zero', 'first', 1, 0, 2, 'second', 2, '3', 3, 5, 6, 'string', 6, 'пятая ячейка', '6', '7']]"
+	end
+
+!@ -------------- операции с целыми числами -------------
+
 
 *pl "Start of Autotest." & wait 500
 loop local i,size=0,arrsize('$functions') while i<size step i+=1:

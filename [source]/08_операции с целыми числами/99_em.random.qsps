@@ -1,6 +1,6 @@
 QSP-Game Функция выбрасывания случайного числа в промежутках
 
-!@ %0 - %18 - промежутки
+!@ %0 ... %18 - промежутки
 !@pp:if(em_random):include
 # em.random
 local em_random_temp_array_, j, k
