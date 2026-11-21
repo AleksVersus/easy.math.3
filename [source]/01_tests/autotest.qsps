@@ -528,7 +528,7 @@ if 0:
 		$result = $dyneval({
 			local old_mass, em_array
 			unpackarr 'old_mass', [157, 250, 709, 413, 532, 779, 730, 565]
-			@em.arr.enumerate('old_mass', 'em_array')
+			@@em.arr.enumerate 'old_mass', 'em_array'
 			$result = $str(%arrpack('em_array'))
 		})
 
@@ -536,12 +536,12 @@ if 0:
 		$result=$dyneval({
 			local mass1, em_array
 			unpackarr 'mass1', [157, 250, 709, 413, 532, 779, 730, 565]
-			@em.arr.few_kill('mass1', 0, 3, 6)
+			@@em.arr.few_kill 'mass1', 0, 3, 6
 			unpackarr 'mass2', [x:157, a:250, v:709, y:413, n:532, b:779, z:730, w:565]
-			@em.arr.few_kill('mass2', 'x', 'y', 'z')
+			@@em.arr.few_kill 'mass2', 'x', 'y', 'z'
 			set mass3[0,1], mass3[0,2], mass3[0,3], mass3[0,0] = 157, 250, 709, 413
 			set mass3[1,0], mass3[1,1], mass3[1,2], mass3[1,3] = 532, 779, 730, 565
-			@em.arr.few_kill('mass3', [0,1], [0,0], [1,2])
+			@@em.arr.few_kill 'mass3', [0,1], [0,0], [1,2]
 			$result = $str([%arrpack('mass1'), %arrpack('mass2'), %arrpack('mass3')])
 		})
 
@@ -581,10 +581,10 @@ if 0:
 	elseif $args[0]='em.arr.fill_strt':
 		$result = $dyneval({
 			local t, b, z, f
-			@em.arr.fill_strt('t',8)
-			@em.arr.fill_strt('b',8,[0,4])
-			@em.arr.fill_strt('z',8,[2,0])
-			@em.arr.fill_strt('f',8,[3,5],2)
+			@@em.arr.fill_strt 't',8
+			@@em.arr.fill_strt 'b',8,[0,4]
+			@@em.arr.fill_strt 'z',8,[2,0]
+			@@em.arr.fill_strt 'f',8,[3,5],2
 
 			$result = $str([%arrpack('t'), %arrpack('b'), %arrpack('z'), %arrpack('f')])
 		})
@@ -703,6 +703,64 @@ if 0:
 
 !@ ----------------------------------- Операции с целыми числами -----------------------------------
 
+!@ -------------------------------- Операции с координатной сеткой ---------------------------------
+
+	elseif $args[0]='em.map.cell.get_coords':
+		$result = $dyneval({
+			$result = $str([
+				@em.map.cell.get_coords(0,3+1),
+				@em.map.cell.get_coords(10,3+1),
+				@em.map.cell.get_coords(15,3+1),
+				@em.map.cell.get_coords(26,4)
+			])
+		})
+
+!@ -------------------------------- Операции с координатной сеткой ---------------------------------
+
+!@ ---------------------------------------- Операции с HTML ----------------------------------------
+
+	elseif $args[0]='em.html.clr_pref':
+		$result = $dyneval({
+			$result = @em.html.clr_pref("
+				<table width=50% border=1>
+			        <tr>
+			            <td>первая ячейка первой строки</td>
+			            <td> вторая ячейка первой строки</td>
+			        </tr>
+			        <tr>
+			            <td>первая ячейка второй строки</td>
+			            <td> вторая ячейка второй строки</td>
+			        </tr>
+			    </table>
+    		")
+		})
+
+	elseif $args[0]='em.html.to_mnemonic':
+		$result = $dyneval({
+			$result = @em.html.to_mnemonics("<table width=50% border=1><tr><td>&первая ячейка первой строки</td><td>вторая ячейка первой строки</td></tr><tr><td>первая ячейка второй строки</td><td>вторая ячейка второй строки&</td></tr></table>")
+		})
+
+!@ ---------------------------------------- Операции с HTML ----------------------------------------
+
+!@ -------------------------------------- Операции с кортежами -------------------------------------
+
+	elseif $args[0]='em.str.to_tpl':
+		$result = $dyneval({
+			$result = $str(@em.str.to_tpl("[852, 'бёдра', [3, 5, 6, 'string', 6]]"))
+		})
+
+	elseif $args[0]='em.tpl.get':
+		$result = $dyneval({
+			$result = $str([
+				@em.tpl.get([967, 629, 541, 290, 852, 334, 318, 529],  4),
+				@em.tpl.get(['голова', 'плечи', 'грудь', 'живот',
+								'бёдра', 'колени', 'икры', 'ступни'], 4),
+				@em.tpl.get([[0, 'zero'], ['first', 1, 0], [2, 'second', 2], ['3'],
+								[3,5,6,'string',6], ['пятая ячейка'], ['6'], ['7']], 4)
+			])
+		})
+
+!@ -------------------------------------- Операции с кортежами -------------------------------------
 
 
 end

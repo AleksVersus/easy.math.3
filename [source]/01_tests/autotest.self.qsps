@@ -11,7 +11,7 @@ $args[1]=$lcase($args[1])
 	!@ em.deRGB
 	if instr($args[0], 'em.dergb') or $args[0]='':
 		$functions[] = 'em.dergb'
-		$example['em.deRGB'] = '[255, 255, 0, 255, 0, 98, 98, 255, 240, 230, 140, 100, 240, 230, 140, 100, 240, 230, 140, 237]'
+		$example['em.deRGB'] = '[[255, 255, 0, 255], [0, 98, 98, 255], [240, 230, 140, 100], [240, 230, 140, 100], [240, 230, 140, 237]]'
 	end
 
 	!@ em.str.get_word
@@ -134,10 +134,10 @@ $args[1]=$lcase($args[1])
 		$example['em.gen_uuid'] = '1'
 	end
 
-	!@ em.head_tail
-	if instr($args[0], 'em.head_tail') or $args[0]='':
-		$functions[] = 'em.head_tail'
-		$example['em.head_tail'] = "[['Январь', 'Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь'], ['Январь|Февраль|Март|', 'прель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь'], ['Январь|Февраль|Март|Апрель|Май|Июнь|Июль|', 'густ|Сентябрь|Октябрь|Ноябрь|Декабрь'], ['Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентя', '|Октябрь|Ноябрь|Декабрь']]"
+	!@ em.str.head_tail
+	if instr($args[0], 'em.str.head_tail') or $args[0]='':
+		$functions[] = 'em.str.head_tail'
+		$example['em.str.head_tail'] = "[['Январь', 'Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь'], ['Январь|Февраль|Март|', 'прель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь'], ['Январь|Февраль|Март|Апрель|Май|Июнь|Июль|', 'густ|Сентябрь|Октябрь|Ноябрь|Декабрь'], ['Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентя', '|Октябрь|Ноябрь|Декабрь']]"
 	end
 
 	!@ em.str.random
@@ -315,15 +315,15 @@ end
 	end
 
 	!@ em.arr.fil_strt
-	if instr($args[0], 'em.arr.fil_strt') or $args[0]='':
-		$functions[] = 'em.arr.fil_strt'
-		$example['em.arr.fil_strt'] = '[[0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 0, 1, 2], [2, 1, 0, 2, 1, 0, 2, 1], [?, ?, 3, 4, 5, 3, 4, 5, 3, 4]]'
+	if instr($args[0], 'em.arr.fill_strt') or $args[0]='':
+		$functions[] = 'em.arr.fill_strt'
+		$example['em.arr.fill_strt'] = '[[0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 0, 1, 2], [2, 1, 0, 2, 1, 0, 2, 1], [?, ?, 3, 4, 5, 3, 4, 5, 3, 4]]'
 	end
 
 	!@ em.arr.insert
 	if instr($args[0], 'em.arr.insert') or $args[0]='':
 		$functions[] = 'em.arr.insert'
-		$example['em.arr.insert'] = '[[574, 668, 413, 765, '6', 478, 205, 701, 272], [[574, 0], [668, 1], [413, 2], '[''inserted'']', [765, 3], [478, 4], [205, 5], [701, 6], [272, 7]]]'
+		$example['em.arr.insert'] = '[[574, 668, 413, 765, 6, 478, 205, 701, 272], [[574, 0], [668, 1], [413, 2], [''inserted''], [765, 3], [478, 4], [205, 5], [701, 6], [272, 7]]]'
 	end
 
 	!@ em.arr.restand
@@ -379,6 +379,53 @@ end
 	end
 
 !@ -------------- операции с целыми числами -------------
+
+!@ ----------- операции с координатной сеткой -----------
+
+	!@ em.map.cell.get_coords
+	if instr($args[0], 'em.map.cell.get_coords') or $args[0]='':
+		$functions[] = 'em.map.cell.get_coords'
+		$example['em.map.cell.get_coords'] = '[[0, 0], [2, 2], [3, 3], [2, 6]]'
+	end
+
+!@ ----------- операции с координатной сеткой -----------
+
+!@ ------------------- операции с HTML ------------------
+
+	!@ em.html.clr_pref
+	if instr($args[0], 'em.html.clr_pref') or $args[0]='':
+		$functions[] = 'em.html.clr_pref'
+		$example['em.html.clr_pref'] = '<table width=50% border=1><tr><td>первая ячейка первой строки</td><td>вторая ячейка первой строки</td></tr><tr><td>первая ячейка второй строки</td><td>вторая ячейка второй строки</td></tr></table>'
+	end
+
+	!@ em.html.to_mnenonic
+	if instr($args[0], 'em.html.to_mnemonic') or $args[0]='':
+		$functions[] = 'em.html.to_mnemonic'
+		$example['em.html.to_mnemonic'] = '&lt;table width=50% border=1&gt;&lt;tr&gt;&lt;td&gt;&amp;первая ячейка первой строки&lt;/td&gt;&lt;td&gt;вторая ячейка первой строки&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;первая ячейка второй строки&lt;/td&gt;&lt;td&gt;вторая ячейка второй строки&amp;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;'
+	end
+
+
+!@ ------------------- операции с HTML ------------------
+
+
+
+
+
+!@ ---------------- операции с кортежами ----------------
+
+	!@ em.str.to_tpl
+	if instr($args[0], 'em.str.to_tpl') or $args[0]='':
+		$functions[] = 'em.str.to_tpl'
+		$example['em.str.to_tpl'] = "[852, 'бёдра', [3, 5, 6, 'string', 6]]"
+	end
+
+	!@ em.tpl.get
+	if instr($args[0], 'em.tpl.get') or $args[0]='':
+		$functions[] = 'em.tpl.get'
+		$example['em.tpl.get'] = "[852, 'бёдра', [3, 5, 6, 'string', 6]]"
+	end
+
+!@ ---------------- операции с кортежами ----------------
 
 
 *pl "Start of Autotest." & wait 500

@@ -2,13 +2,13 @@ QSP-Game Определяет координаты ячейки по текущ�
 !@ #0 - текущий номер ячейки или блока N;
 !@ #1 - ширина поля W;
 !@pp:if(em_map_cell_get_coords):include
-# em.map.cell.get_сoords
+# em.map.cell.get_coords
 local cell, width = args[0], args[1]
 local x, y
 y = cell/width
 x = cell - y*width
 %result = [x, y]
---- em.map.cell.get_сoords ---------------------------------
+--- em.map.cell.get_coords ---------------------------------
 !@pp:endif
 
 Функция не использует иных функций библиотеки

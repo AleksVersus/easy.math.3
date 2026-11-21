@@ -8,15 +8,12 @@ QSP-Game Вставка элемента в массив со сдвигом в�
 local em_arr_insert_copy_array_1_, em_arr_insert_copy_array_2_
 if instr($args[0],'%')=1:
 	$args[21]='%'
-	$args[22]=$str(%args[1])
 elseif instr($args[0],'$')=1:
 	!@ если имеем дело с текстовым массивом
 	$args[21]='$'	& !@ выставляем переменной-маркеру значение '$' (используется как префикc названию массива)
-	$args[22]="'<<$args[1]>>'"	& !@ для dyneval и dynamic значение из аргумента замыкаем в апострофы
 else
 	!@ если имеем дело с числовым массивом
 	$args[21]=''	& !@ переменная-маркер с пустым значением
-	$args[22]=$str(args[1])	& !@ для dyneval и dynamic значение из аргумента просто приводится к строке
 end
 copyarr "em_arr_insert_copy_array_1_", $args[0], 0, args[2]	& !@ копируем во временный массив первую часть исходного массива
 copyarr "em_arr_insert_copy_array_2_", $args[0], args[2]	& !@ копируем во второй временный массив вторую часть исх. массива
@@ -26,7 +23,13 @@ copyarr "em_arr_insert_copy_array_2_", $args[0], args[2]	& !@ копируем �
 !@ но тогда мне вообще не нужен dynamic и arritem.
 
 !@ вставляем элемент в конец массива
-setvar '<<$args[21]>>em_arr_insert_copy_array_1_', $args[22], arrsize('<<$args[21]>>em_arr_insert_copy_array_1_')
+if $args[21] = '%':
+	setvar 'em_arr_insert_copy_array_1_', %args[1], arrsize('em_arr_insert_copy_array_1_')
+elseif $args[21] = '$':
+	setvar 'em_arr_insert_copy_array_1_', $args[1], arrsize('em_arr_insert_copy_array_1_')
+else:
+	setvar 'em_arr_insert_copy_array_1_', args[1], arrsize('em_arr_insert_copy_array_1_')
+end
 !@ циклом переносим из временного массива вторую часть массива в исходный
 loop while arrsize('<<$args[21]>>em_arr_insert_copy_array_2_')>0:
 	setvar '<<$args[21]>>em_arr_insert_copy_array_1_', $arritem('<<$args[21]>>em_arr_insert_copy_array_2_', 0), arrsize('<<$args[21]>>em_arr_insert_copy_array_1_')
