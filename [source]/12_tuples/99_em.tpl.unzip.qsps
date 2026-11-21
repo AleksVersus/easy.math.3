@@ -1,9 +1,0 @@
-QSP-Game Распаковка кортежа
-
-!@ %0 - кортеж
-!@ $1 - название массива
-!@pp:if(em_tpl_unzip):include
-# em.tpl.unzip
-unpackarr $args[1], %args[0]
---- em.tpl.unzip ---
-!@pp:endif
