@@ -76,7 +76,6 @@ elseif instr($lcase($cmdline_),'autotest') = 1 and loc('em.autotest.self'):
 		end
 		local compile_ = arrpos('$arguments_', 'compile')
 		killvar '$arguments_', compile_
-		local %funcs_ = %arrpack('$arguments_')
 		local try_, fail_ = 0, 0
 		local $format_ = {
 			local func_name_, o_, e_ = %args[1]
@@ -88,7 +87,7 @@ elseif instr($lcase($cmdline_),'autotest') = 1 and loc('em.autotest.self'):
 				elseif $args[0] = 'compile': *pl "<<func_name_>>:	e[<<e_>>]	o[<<o_>>]"
 			end
 		}
-		@@em.autotest.self %funcs_, $iif(compile_<>-1, 'compile', ?), $format_
+		@@em.autotest.self %arrpack('$arguments_'), $iif(compile_<>-1, 'compile', ?), $format_
 	}
 	
 else:

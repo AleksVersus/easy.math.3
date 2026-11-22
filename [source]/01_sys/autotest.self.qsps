@@ -19,7 +19,7 @@ loop local i, s = 0, arrsize('funcs_') while i < s step i += 1:
 		if obtained_ = funcs_[i].expected:
 			dynamic format_, 'ok-signal', [funcs_[i].name, obtained_, funcs_[i].expected]
 		else
-			dynamic format_, 'err-signal', [funcs_[i].name, $obtained_, funcs_[i].expected]
+			dynamic format_, 'err-signal', [funcs_[i].name, obtained_, funcs_[i].expected]
 			dynamic format_, 'simpl', [funcs_[i].name, obtained_, funcs_[i].expected]
 			if mode_ = 'compile':
 				dynamic {
