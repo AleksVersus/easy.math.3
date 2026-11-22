@@ -596,14 +596,17 @@ if 0:
 
 	elseif $args[0]='em.arr.restand':
 		$result = $dyneval({
-			local mass1, mass2, em_array
+			local mass1, mass2, mass3, mass4, em_array
 			unpackarr 'mass1', ['голова', 'плечи', 'грудь', 'живот',
 								'бёдра', 'колени', 'икры', 'ступни']
 			unpackarr 'mass2', ['722', '136', '788', '177', '780', '97', '649', '75']
+			unpackarr 'mass4', [-7, -6, -5, -4, -3, -2, -1, 0]
 			@@em.arr.sort 'mass1', 0, 'em_array'
-			@@em.arr.restand 'mass1', 'em_array', 'mass2'
+			@@em.arr.restand 'mass2', 'em_array', 'mass3'
+			@@em.arr.restand 'mass4', 'em_array'
 
-			$result = $str([%arrpack('mass1'), %arrpack('mass2'), %arrpack('em_array')])
+			$result = $str([%arrpack('mass1'), %arrpack('mass2'), %arrpack('mass3'),
+							%arrpack('mass4'), %arrpack('em_array')])
 		})
 
 !@ -------------------------------------- Операции с массивами -------------------------------------
