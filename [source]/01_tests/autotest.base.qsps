@@ -53,7 +53,7 @@ alias %em_autotest_base_temp_array_ = $args[1]
 !@ ------------ операции с дробными числами ------------
 
 	!@ em.sqrt
-	if instr($args[0],'em.sqrt')<>0 or $comms_ = '[]':
+	if instr($comms_,"'em.sqrt'")<>0 or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [
 			name: 'em.sqrt',
 			expected: "31.6227416.0312116.031216.03116.031.4416.0916.121.30.8306"
@@ -61,7 +61,7 @@ alias %em_autotest_base_temp_array_ = $args[1]
 	end
 
 	!@ em.add
-	if instr($args[0],'em.add')<>0 or $comms_ = '[]':
+	if instr($comms_,"'em.add'")<>0 or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [
 			name: 'em.add',
 			expected: "0.05018.0527.8529.889480.184409157-157-4093484766.2109697"
@@ -69,7 +69,7 @@ alias %em_autotest_base_temp_array_ = $args[1]
 	end
 
 	!@ em.div
-	if instr($args[0],'em.div')<>0 or $comms_ = '[]':
+	if instr($comms_,"'em.div'")<>0 or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [
 			name: 'em.div',
 			expected: "-1.0055-10.9050.94760.9990.999099-1.31.31.3-1.3"
@@ -77,7 +77,7 @@ alias %em_autotest_base_temp_array_ = $args[1]
 	end
 
 	!@ em.mult
-	if instr($args[0],'em.mult')<>0 or $comms_ = '[]':
+	if instr($comms_,"'em.mult'")<>0 or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [
 			name: 'em.mult',
 			expected: "96-81.902590.5799.454375-988.911099512-512"
@@ -85,7 +85,7 @@ alias %em_autotest_base_temp_array_ = $args[1]
 	end
 
 	!@ em.round
-	if instr($args[0],'em.round')<>0 or $comms_ = '[]':
+	if instr($comms_,"'em.round'")<>0 or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [
 			name: 'em.round',
 			expected: "945.5945.4945.5945.46945.459945950900-950-945.46"
@@ -93,7 +93,7 @@ alias %em_autotest_base_temp_array_ = $args[1]
 	end
 
 	!@ em.simpl
-	if instr($args[0],'em.simpl')<>0 or $comms_ = '[]':
+	if instr($comms_,"'em.simpl'")<>0 or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [
 			name: 'em.simpl',
 			expected: "9.059.05109.559.9991.3-1.31.691.69"
@@ -137,7 +137,7 @@ alias %em_autotest_base_temp_array_ = $args[1]
 !@ ---------------- операции логические ----------------
 
 	!@ em.byte.add
-	if instr($args[0],'em.byte.add')<>0 or $comms_ = '[]':
+	if instr($comms_,"'em.byte.add'")<>0 or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [
 			name: 'em.byte.add',
 			expected: "999038[not a number]006273004479"
@@ -145,7 +145,7 @@ alias %em_autotest_base_temp_array_ = $args[1]
 	end
 	
 	!@ em.byte.dev
-	if instr($args[0],'em.byte.dev')<>0 or $comms_ = '[]':
+	if instr($comms_,"'em.byte.dev'")<>0 or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [
 			name: 'em.byte.dev',
 			expected: "998492998432993726992932"
@@ -189,7 +189,7 @@ alias %em_autotest_base_temp_array_ = $args[1]
 	end
 
 	!@ em.str.thin
-	if instr($args[0],'em.str.thin')<>0 or $comms_ = '[]':
+	if instr($comms_,"'em.str.thin'")<>0 or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [
 			name: 'em.str.thin',
 			expected: "['п р о ф е с с у р а', 'п|р|о|ф|е|с|с|у|р|а', 'п|р|о|ф|е|с|с|у|р|а|', '|п|р|о|ф|е|с|с|у|р|а', '|п|р|о|ф|е|с|с|у|р|а|', 'про|фес|сур|а', 'п|роф|есс|ура', '|про|фес|сур|а', 'пр|оф|ес|су|ра|', '||п||р||о||ф||е||с||с||у||р||а||']"
@@ -197,7 +197,7 @@ alias %em_autotest_base_temp_array_ = $args[1]
 	end
 
 	!@ em.zero
-	if instr($args[0],'em.zero')<>0 or $comms_ = '[]':
+	if instr($comms_,"'em.zero'")<>0 or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [
 			name: 'em.zero',
 			expected: "['0000000000000', '1111111111111', '10101010101010101010101010', 'aaaaaaaaaaaaa', 'blablabla']"
@@ -277,7 +277,7 @@ alias %em_autotest_base_temp_array_ = $args[1]
 	end
 
 	!@ em.arr.simpl
-	if instr($args[0],'em.arr.simpl')<>0 or $comms_ = '[]':
+	if instr($comms_,"'em.arr.simpl'")<>0 or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [
 			name: 'em.arr.simpl',
 			expected: "[1, 0, 1]"
@@ -298,7 +298,7 @@ alias %em_autotest_base_temp_array_ = $args[1]
 !@ строки не копируются. Строить проверку на скопированной с экрана информации опасно.
 
 !@ em.arr.print
-if instr($args[0],'em.arr.print')<>0 or $comms_ = '[]':
+if instr($comms_,"'em.arr.print'")<>0 or $comms_ = '[]':
 	%em_autotest_base_temp_array_[] = [
 		name: 'em.arr.print',
 		expected: "$a[0] = 'нулевая ячейка'
@@ -310,7 +310,7 @@ $a[5] = '   пятая ячейка'
 $a[6] = ''
 $a[7] = 'седьмая ячейка'нулевая ячейка
    первая ячейка   
-вторая ячейка
+ вторая ячейка
 
 [1, 2, 3, 5, 6]
    пятая ячейка
@@ -324,10 +324,10 @@ $a[5] = 'пятая ячейка'
 $a[6] = ''
 $a[7] = 'седьмая ячейка'вторая ячейка||[1, 2, 3, 5, 6]|пятая ячейкавторая ячейка||[1, 2, 3, 5, 6]|пятая ячейка|"
 	]
-	end
+end
 
 !@ em.fewarrs.print
-if instr($args[0],'em.fewarrs.print')<>0 or $comms_ = '[]':
+if instr($comms_,"'em.fewarrs.print'")<>0 or $comms_ = '[]':
 	%em_autotest_base_temp_array_[] = [
 		name: 'em.fewarrs.print',
 		expected: "<table border=1 cellpadding=5><tr><td>#</td><td>$a</td><td>%b</td></tr><tr><td>0</td><td>нулевая ячейка</td><td>[0, 'zero']</td></tr><tr><td>1</td><td>первая ячейка</td><td>['first', 1, 0]</td></tr><tr><td>2</td><td>вторая ячейка</td><td>[2, 'second', 2]</td></tr><tr><td>3</td><td>&nbsp;</td><td>['3']</td></tr><tr><td>4</td><td>четвёртая' ячейка</td><td>[3, 5, 6, 'string', 6]</td></tr><tr><td>5</td><td>пятая яче'йка</td><td>['пятая ячейка']</td></tr><tr><td>6</td><td>&nbsp;</td><td>['6']</td></tr><tr><td>7</td><td>седьмая ячейка</td><td>['7']</td></tr></table><table border=1 cellpadding=5><tr><td>#</td><td>$a</td><td>%b</td></tr><tr><td>3</td><td>&nbsp;</td><td>['3']</td></tr><tr><td>4</td><td>четвёртая' ячейка</td><td>[3, 5, 6, 'string', 6]</td></tr><tr><td>5</td><td>пятая яче'йка</td><td>['пятая ячейка']</td></tr><tr><td>6</td><td>&nbsp;</td><td>['6']</td></tr></table>нулевая ячейка	[0, 'zero']
@@ -349,7 +349,7 @@ $a[7]='седьмая ячейка'	&	%b[7]=['7']EMPTY ARRAYS"
 	end
 
 	!@ em.arr.clear
-	if instr($args[0],'em.arr.clear')<>0 or $comms_ = '[]':
+	if instr($comms_,"'em.arr.clear'")<>0 or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [
 			name: 'em.arr.clear',
 			expected: "[1, 3, 1, 3, 1]"

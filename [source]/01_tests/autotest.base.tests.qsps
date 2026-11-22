@@ -727,7 +727,7 @@ if 0:
     		")
 		})
 
-	elseif $args[0]='em.html.to_mnemonic':
+	elseif $args[0]='em.html.to_mnemonics':
 		$result = $dyneval({
 			$result = @em.html.to_mnemonics("<table width=50% border=1><tr><td>&первая ячейка первой строки</td><td>вторая ячейка первой строки</td></tr><tr><td>первая ячейка второй строки</td><td>вторая ячейка второй строки&</td></tr></table>")
 		})

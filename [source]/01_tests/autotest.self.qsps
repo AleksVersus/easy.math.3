@@ -3,39 +3,60 @@ QSP-Game часть автотеста, отвечающая за сравнен
 
 !@ %0 - функции на автотест (если пустой, проверяются все)
 !@ $1 - управление. compile ← посимвольное сравнение ожидаемого и полученного значений.
+!@ $2 - колбэк для форматирования вывода
 !@pp:if(em_autotest):include
 # em.autotest.self
-local $res, $example_, $funcs_, $comms_
-$comms_ = $str(%args[0])
+local %funcs_, $obtained_
+local $format_, $mode_ = $args[2], $args[1]
+@@em.autotest.base %args[0], '$funcs_'
 
-*pl "Start of Autotest." & wait 500
-loop local i,size=0,arrsize('$funcs_') while i<size step i+=1:
-	if loc($funcs_[i]):
-		*pl "Function '<<$funcs_[i]>>' is exist."
-		wait 500
-		$res=@em.autotest.base.tests($funcs_[i])
-		if $res=$example_[$funcs_[i]]:
-			*pl "Autotest of '<<$funcs_[i]>>' completed. All Ok!"
-			wait 500
+dynamic $format_, 'start'
+loop local i, s = 0, arrsize('%funcs_') while i < s step i += 1:
+	dynamic $format_, 'start-iteration', [$funcs_[i].name, ?, ?]
+	if loc($funcs_[i].name):
+		dynamic $format_, 'func-exist', [$funcs_[i].name, ?, ?]
+		$obtained_ = @em.autotest.base.tests($funcs_[i].name)
+		if $obtained_ = $funcs_[i].expected:
+			dynamic $format_, 'ok-signal', [$funcs_[i].name, $obtained_, $funcs_[i].expected]
 		else
-			*pl "Autotest Error. Dif Result:"
-			usehtml = 1
-			*pl "<table border=1 cellspacing=5><tr><td>Еxpected results:</td><td>Obtained results:</td></tr><tr><td><<@em.html.to_mnemonics($example_[$funcs_[i]])>></td><td><<@em.html.to_mnemonics($res)>></td></tr></table>"
-			if $args[1]='compile':
-				local $f,$r
-				loop local j,size=1,max(len($example_[$funcs_[i]]),len($res)) while j<=size step j+=1:
-					$f=$mid($example_[$funcs_[i]],j,1)
-					$r=$mid($res,j,1)
-					if $f<>$r: *pl "[<<j>>]<<$f>>	<<$r>> "
-				end
+			dynamic $format_, 'err-signal', [$funcs_[i].name, $obtained_, $funcs_[i].expected]
+			dynamic $format_, 'simpl', [$funcs_[i].name, $obtained_, $funcs_[i].expected]
+			if $mode_ = 'compile':
+				dynamic {
+					local $f,$r
+					loop local j,s = 1, max(len($funcs_[i].expected),len($obtained_)) while j <= s step j += 1:
+						$f = $mid($funcs_[i].expected,j,1)
+						$r = $mid($obtained_,j,1)
+						if $f <> $r: dynamic $format_, 'compile', [$str(j), $r, $f]
+					end
+				}
 			end
-			wait 500
 		end
-	else
-		*pl "Function '<<$funcs_[i]>>' doesn't exist. Location not found."
-		wait 500
+	else:
+		dynamic $format_, 'func-not-exist', [$funcs_[i].name, ?, ?]
 	end
+	dynamic $format_, 'end-iteration', [$funcs_[i].name, ?, ?]
 end
-*pl "End of Autotest."
+dynamic $format_, 'end'
 --- em.autotest.self ---------------------------------
 !@pp:endif
+
+Примерно так выглядит форматирование вывода для того, чтоб выводить все надписи:
+
+{
+	local $func_name_, $obtained_, $expected_ = %args[1]
+	if 0:
+		elseif $args[0] = 'start': *pl "Start of Autotest." & wait 500
+		elseif $args[0] = 'end': *pl "End of Autotest." & wait 500
+		elseif $args[0] = 'start-iteration': & !@ pass
+		elseif $args[0] = 'end-iteration': wait 500
+		elseif $args[0] = 'func-exist': *pl "Function '<<$func_name_>>' is exist."
+		elseif $args[0] = 'func-not-exist': *pl "Function '<<$func_name_>>' doesn't exist. Location not found."
+		elseif $args[0] = 'ok-signal': wait 500 & *pl "Autotest of '<<$func_name_>>' completed. All Ok!"
+		elseif $args[0] = 'err-signal': wait 500 & *pl "Autotest Error. Dif Result:"
+		elseif $args[0] = 'simpl':
+			usehtml = 1
+			*pl "<table border=1 cellspacing=5><tr><td>Еxpected results:</td><td>Obtained results:</td></tr><tr><td><<@em.html.to_mnemonics($expected_)>></td><td><<@em.html.to_mnemonics($obtained_)>></td></tr></table>"
+		elseif $args[0] = 'compile': *pl "<<$func_name_>>:	e[<<$expected_>>]	o[<<$obtained_>>]"
+	end
+}
