@@ -75,25 +75,17 @@ elseif instr($lcase($cmdline_),'autotest') = 1 and loc('em.autotest.self'):
 			$arguments_[i] = $lcase($arguments_[i])
 		end
 		local compile_ = arrpos('$arguments_', 'compile')
-		local %funcs_ = %iif(compile_ <> -1,
-								%arrpack('$arguments_', 0, compile_+1),
-								%arrpack('$arguments_')
-						)
+		killvar '$arguments_', compile_
+		local %funcs_ = %arrpack('$arguments_')
+		local try_, fail_ = 0, 0
 		local $format_ = {
-			local $func_name_, $obtained_, $expected_ = %args[1]
+			local func_name_, o_, e_ = %args[1]
 			if 0:
-				elseif $args[0] = 'start': *pl "Start of Autotest." & wait 500
-				elseif $args[0] = 'end': *pl "End of Autotest." & wait 500
-				elseif $args[0] = 'start-iteration': & !@ pass
-				elseif $args[0] = 'end-iteration': wait 500
-				elseif $args[0] = 'func-exist': *pl "Function '<<$func_name_>>' is exist."
-				elseif $args[0] = 'func-not-exist': *pl "Function '<<$func_name_>>' doesn't exist. Location not found."
-				elseif $args[0] = 'ok-signal': wait 500 & *pl "Autotest of '<<$func_name_>>' completed. All Ok!"
-				elseif $args[0] = 'err-signal': wait 500 & *pl "Autotest Error. Dif Result:"
-				elseif $args[0] = 'simpl':
-					usehtml = 1
-					*pl "<table border=1 cellspacing=5><tr><td>Еxpected results:</td><td>Obtained results:</td></tr><tr><td><<@em.html.to_mnemonics($expected_)>></td><td><<@em.html.to_mnemonics($obtained_)>></td></tr></table>"
-				elseif $args[0] = 'compile': *pl "<<$func_name_>>:	e[<<$expected_>>]	o[<<$obtained_>>]"
+				elseif $args[0] = 'end': *pl "Autotests completed! Try: <<try_>>, fail: <<fail_>>, successful: <<try_-fail_>>."
+				elseif $args[0] = 'start-iteration': try_ += 1
+				elseif $args[0] = 'func-not-exist': *pl "Func '<<func_name_>>' not exist." & fail_ += 1
+				elseif $args[0] = 'err-signal': *pl "Func '<<func_name_>>': unexpected result." & fail_ += 1
+				elseif $args[0] = 'compile': *pl "<<func_name_>>:	e[<<e_>>]	o[<<o_>>]"
 			end
 		}
 		@@em.autotest.self %funcs_, $iif(compile_<>-1, 'compile', ?), $format_

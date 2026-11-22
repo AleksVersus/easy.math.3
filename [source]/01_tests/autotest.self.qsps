@@ -6,38 +6,38 @@ QSP-Game часть автотеста, отвечающая за сравнен
 !@ $2 - колбэк для форматирования вывода
 !@pp:if(em_autotest):include
 # em.autotest.self
-local %funcs_, $obtained_
-local $format_, $mode_ = $args[2], $args[1]
-@@em.autotest.base %args[0], '$funcs_'
+local funcs_, obtained_
+local format_, mode_ = args[2], args[1]
+@@em.autotest.base args[0], 'funcs_'
 
-dynamic $format_, 'start'
-loop local i, s = 0, arrsize('%funcs_') while i < s step i += 1:
-	dynamic $format_, 'start-iteration', [$funcs_[i].name, ?, ?]
-	if loc($funcs_[i].name):
-		dynamic $format_, 'func-exist', [$funcs_[i].name, ?, ?]
-		$obtained_ = @em.autotest.base.tests($funcs_[i].name)
-		if $obtained_ = $funcs_[i].expected:
-			dynamic $format_, 'ok-signal', [$funcs_[i].name, $obtained_, $funcs_[i].expected]
+dynamic format_, 'start'
+loop local i, s = 0, arrsize('funcs_') while i < s step i += 1:
+	dynamic format_, 'start-iteration', [funcs_[i].name, ?, ?]
+	if loc(funcs_[i].name):
+		dynamic format_, 'func-exist', [funcs_[i].name, ?, ?]
+		obtained_ = @em.autotest.base.tests(funcs_[i].name)
+		if obtained_ = funcs_[i].expected:
+			dynamic format_, 'ok-signal', [funcs_[i].name, obtained_, funcs_[i].expected]
 		else
-			dynamic $format_, 'err-signal', [$funcs_[i].name, $obtained_, $funcs_[i].expected]
-			dynamic $format_, 'simpl', [$funcs_[i].name, $obtained_, $funcs_[i].expected]
-			if $mode_ = 'compile':
+			dynamic format_, 'err-signal', [funcs_[i].name, $obtained_, funcs_[i].expected]
+			dynamic format_, 'simpl', [funcs_[i].name, obtained_, funcs_[i].expected]
+			if mode_ = 'compile':
 				dynamic {
-					local $f,$r
-					loop local j,s = 1, max(len($funcs_[i].expected),len($obtained_)) while j <= s step j += 1:
-						$f = $mid($funcs_[i].expected,j,1)
-						$r = $mid($obtained_,j,1)
-						if $f <> $r: dynamic $format_, 'compile', [$str(j), $r, $f]
+					local f,r
+					loop local j,s = 1, max(len(funcs_[i].expected),len(obtained_)) while j <= s step j += 1:
+						f = $mid(funcs_[i].expected,j,1)
+						r = $mid(obtained_,j,1)
+						if f <> r: dynamic format_, 'compile', [$str(j), r, f]
 					end
 				}
 			end
 		end
 	else:
-		dynamic $format_, 'func-not-exist', [$funcs_[i].name, ?, ?]
+		dynamic format_, 'func-not-exist', [funcs_[i].name, ?, ?]
 	end
-	dynamic $format_, 'end-iteration', [$funcs_[i].name, ?, ?]
+	dynamic format_, 'end-iteration', [funcs_[i].name, ?, ?]
 end
-dynamic $format_, 'end'
+dynamic format_, 'end'
 --- em.autotest.self ---------------------------------
 !@pp:endif
 
