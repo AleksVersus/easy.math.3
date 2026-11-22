@@ -1,0 +1,19 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "snapshot": false,
+  "mcp": {
+    "qsp": {
+      "type": "local",
+      "command": [
+        "C:\\Users\\aleks\\AppData\\Local\\Programs\\Qoder IDE\\Qoder IDE.exe",
+        "c:\\Users\\aleks\\.qoder\\extensions\\qspfoundation.qsp-lsp-0.5.0\\out\\mcp\\server.js",
+        "--workspace",
+        "d:\\my\\GameDev\\QuestSoftPlayer\\games\\[lib]\\easy.math.3"
+      ],
+      "environment": {
+        "ELECTRON_RUN_AS_NODE": "1"
+      },
+      "enabled": true
+    }
+  }
+}

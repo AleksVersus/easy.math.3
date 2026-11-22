@@ -1,0 +1,539 @@
+QSP-Game База ожидаемых значений по каждому автотесту
+
+!@ %0 - кортеж с именами тестируемых функций
+!@ $1 - имя массива, в который возвращаем базу
+# em.autotest.base
+if $args[1] = '': msg 'em.autotest.base: не указано имя массива' & exit
+local $comms_ = $str(%args[0])
+alias %em_autotest_base_temp_array_ = $args[1]
+!@ -------------- Вспомогательные функции --------------
+
+	!@ em.deRGB
+	if instr($comms_, "'em.dergb'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.dergb',
+			expected: '[[255, 255, 0, 255], [0, 98, 98, 255], [240, 230, 140, 100], [240, 230, 140, 100], [240, 230, 140, 237]]'
+		]
+	end
+
+	!@ em.str.get_word
+	if instr($comms_, "'em.str.get_word'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.str.get_word',
+			expected: 'ЯнварьФевральМайАвгустНоябрьДекабрьДекабрь'
+		]
+	end
+
+	!@ em.str.in_regexp
+	if instr($comms_, "'em.str.in_regexp'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.str.in_regexp',
+			expected: '\(\[\\^\]\[\]\*\?\)\(\[\\^\]\[\]\+\?\)\(\[\\^><\]\*\?\)\(\[\\^><\]\+\?\)\(\[\\^\}\{\]\*\?\)\(\[\\^\}\{\]\+\?\)\(\[\\^\)\(\]\*\?\)\(\[\\^\)\(\]\+\?\)''\)\(\[\\s\\S\]\*\?\)\\1\(\:\|\=#\)\[\\S\]\+\(\:\|\=#\)\(\[\\S\]\+\)'
+		]
+	end
+
+	!@ em.tag.get_cont
+	if instr($comms_, "'em.tag.get_cont'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.tag.get_cont',
+			expected: 'текст с пробеломстранный и непонятный текстп р о б е л ь н ы е и непробельные символыff8899многа букав'
+		]
+	end
+
+	!@ em.tag.get_num
+	if instr($comms_, "'em.tag.get_num'") <> 0 or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.tag.get_num',
+			expected: "[текст с пробелом][68][непробельные_символы][ff8899][многа букав][][ff8899]"
+		]
+	end
+
+!@ -------------- Вспомогательные функции --------------
+
+!@ ------------ операции с дробными числами ------------
+
+	!@ em.sqrt
+	if instr($args[0],'em.sqrt')<>0 or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.sqrt',
+			expected: "31.6227416.0312116.031216.03116.031.4416.0916.121.30.8306"
+		]
+	end
+
+	!@ em.add
+	if instr($args[0],'em.add')<>0 or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.add',
+			expected: "0.05018.0527.8529.889480.184409157-157-4093484766.2109697"
+		]
+	end
+
+	!@ em.div
+	if instr($args[0],'em.div')<>0 or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.div',
+			expected: "-1.0055-10.9050.94760.9990.999099-1.31.31.3-1.3"
+		]
+	end
+
+	!@ em.mult
+	if instr($args[0],'em.mult')<>0 or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.mult',
+			expected: "96-81.902590.5799.454375-988.911099512-512"
+		]
+	end
+
+	!@ em.round
+	if instr($args[0],'em.round')<>0 or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.round',
+			expected: "945.5945.4945.5945.46945.459945950900-950-945.46"
+		]
+	end
+
+	!@ em.simpl
+	if instr($args[0],'em.simpl')<>0 or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.simpl',
+			expected: "9.059.05109.559.9991.3-1.31.691.69"
+		]
+	end
+
+	!@ em.indiv
+	if instr($comms_, "'em.indiv'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.indiv',
+			expected: '-9500.6489.142859.1428571420.0641.52'
+		]
+	end
+
+	!@ em.divdigs
+	if instr($comms_, "'em.divdigs'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.divdigs',
+			expected: '100100010001000000100-1593835520'
+		]
+	end
+
+	!@ em.dz
+	if instr($comms_, "'em.dz'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.dz',
+			expected: '6464.00864.00864.0080'
+		]
+	end
+
+	!@ em.undiv
+	if instr($comms_, "'em.undiv'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.undiv',
+			expected: '1000-1000121123123'
+		]
+	end
+
+!@ ------------ операции с дробными числами ------------
+
+!@ ---------------- операции логические ----------------
+
+	!@ em.byte.add
+	if instr($args[0],'em.byte.add')<>0 or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.byte.add',
+			expected: "999038[not a number]006273004479"
+		]
+	end
+	
+	!@ em.byte.dev
+	if instr($args[0],'em.byte.dev')<>0 or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.byte.dev',
+			expected: "998492998432993726992932"
+		]
+	end
+
+!@ ---------------- операции логические ----------------
+
+!@ ---------------- операции  текстовые ----------------
+
+	!@ em.arr.search
+	if instr($comms_, "'em.arr.search'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.search',
+			expected: '38-1-13888'
+		]
+	end
+
+	!@ em.gen_uuid
+	if instr($comms_, "'em.gen_uuid'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.gen_uuid',
+			expected: '1'
+		]
+	end
+
+	!@ em.str.head_tail
+	if instr($comms_, "'em.str.head_tail'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.str.head_tail',
+			expected: "[['Январь', 'Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь'], ['Январь|Февраль|Март|', 'прель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь'], ['Январь|Февраль|Март|Апрель|Май|Июнь|Июль|', 'густ|Сентябрь|Октябрь|Ноябрь|Декабрь'], ['Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентя', '|Октябрь|Ноябрь|Декабрь']]"
+		]
+	end
+
+	!@ em.str.random
+	if instr($comms_, "'em.str.random'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.str.random',
+			expected: '[1, 1, 1, 1, 1, 1]'
+		]
+	end
+
+	!@ em.str.thin
+	if instr($args[0],'em.str.thin')<>0 or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.str.thin',
+			expected: "['п р о ф е с с у р а', 'п|р|о|ф|е|с|с|у|р|а', 'п|р|о|ф|е|с|с|у|р|а|', '|п|р|о|ф|е|с|с|у|р|а', '|п|р|о|ф|е|с|с|у|р|а|', 'про|фес|сур|а', 'п|роф|есс|ура', '|про|фес|сур|а', 'пр|оф|ес|су|ра|', '||п||р||о||ф||е||с||с||у||р||а||']"
+		]
+	end
+
+	!@ em.zero
+	if instr($args[0],'em.zero')<>0 or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.zero',
+			expected: "['0000000000000', '1111111111111', '10101010101010101010101010', 'aaaaaaaaaaaaa', 'blablabla']"
+		]
+	end
+
+!@ ---------------- операции  текстовые ----------------
+
+!@ ------------ операции  шестнадцатеричные ------------
+
+	!@ em.col.add
+	if instr($comms_, "'em.col.add'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.col.add',
+			expected: "['bb0000', '000000', 'ff2222', '994400', 'ffcc66', 'ffcc6699']"
+		]
+	end
+
+	!@ em.col.in_rgb
+	if instr($comms_, "'em.col.in_rgb'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.col.in_rgb',
+			expected: '[-16776961, -16777216, -16776995, -14513955, 0, 0, -2003792861]'
+		]
+	end
+
+	!@ em.col.inv
+	if instr($comms_, "'em.col.inv'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.col.inv',
+			expected: "['ffffff', '000000', 'dc736f', '6fd4ef', '383fff', 'f838fe', '383fff84', 'f838fe4d']"
+		]
+	end
+
+	!@ em.dec.in_col
+	if instr($comms_, "'em.dec.in_col'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.dec.in_col',
+			expected: "['ff', 'd6', 'ff', '-0a', 'ff', '10']"
+		]
+	end
+
+	!@ em.hex.in_dec
+	if instr($comms_, "'em.hex.in_dec'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.hex.in_dec',
+			expected: "[255, 34, 16, 1, 10, 268083763, 16755235, 1047202, -1440533423, -90033339, -5627084]"
+		]
+	end
+
+	!@ em.hex.add
+	if instr($comms_, "'em.hex.add'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.hex.add',
+			expected: "['fff09f', '1fe', '1ff', '10fe', 'aabb66', 'aaac42', 'ffefa0', 'ff', '100', 'fff', 'ff0', 'aaab76']"
+		]
+	end
+
+	!@ em.dec.in_hex
+	if instr($comms_, "'em.dec.in_hex'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.dec.in_hex',
+			expected: "['7fffffff', 'd6', 'ff', 'a', '9', '7fffffff']"
+		]
+	end
+
+!@ ------------ операции  шестнадцатеричные ------------
+
+!@ --------------- операции над массивами ---------------
+
+	!@ em.arr.desort
+	if instr($comms_, "'em.arr.desort'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.desort',
+			expected: "[[257, 269, 293, 529, 561, 901, 913, 949], [4, 2, 7, 6, 5, 3, 1, 0], [949, 913, 269, 901, 257, 561, 529, 293]]"
+		]
+	end
+
+	!@ em.arr.simpl
+	if instr($args[0],'em.arr.simpl')<>0 or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.simpl',
+			expected: "[1, 0, 1]"
+		]
+	end
+
+	!@ em.arr.sort
+	if instr($comms_, "'em.arr.sort'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.sort',
+			expected: "[[157, 250, 413, 532, 565, 709, 730, 779], [[118, 132, 304, 678, 796, 812, 901, 966], [5, 7, 3, 4, 2, 1, 6, 0]], [[[967, 'голова'], [629, 'плечи'], [541, 'руки'], [290, 'торс'], [852, 'бёдра'], [334, 'голени'], [318, 'ступни'], [529, 'нишваа']], [3, 6, 5, 7, 2, 1, 4, 0], [[290, 'торс'], [318, 'ступни'], [334, 'голени'], [529, 'нишваа'], [541, 'руки'], [629, 'плечи'], [852, 'бёдра'], [967, 'голова']]], [['ffffff', 'fff8f8', 'ff00ff', '88ff88', '8888ff', '0ff0f8'], [3, 5, 1, 0, 4, 2]]]"
+		]
+	end
+
+!@ для arr.print и fewArrs.print: при выводе на экран табуляции могут быть заменены пробелами
+!@ поэтому копирование текста с экрана копирует не тот же вывод, который в действительности
+!@ дают функции. То же самое с пустыми строками. При копировании текста с экрана, пустые
+!@ строки не копируются. Строить проверку на скопированной с экрана информации опасно.
+
+!@ em.arr.print
+if instr($args[0],'em.arr.print')<>0 or $comms_ = '[]':
+	%em_autotest_base_temp_array_[] = [
+		name: 'em.arr.print',
+		expected: "$a[0] = 'нулевая ячейка'
+$a[1] = '   первая ячейка   '
+$a[2] = ' вторая ячейка'
+$a[3] = ''
+$a[4] = '[1, 2, 3, 5, 6]'
+$a[5] = '   пятая ячейка'
+$a[6] = ''
+$a[7] = 'седьмая ячейка'нулевая ячейка
+   первая ячейка   
+вторая ячейка
+
+[1, 2, 3, 5, 6]
+   пятая ячейка
+
+седьмая ячейка$a[0] = 'нулевая ячейка'
+$a[1] = 'первая ячейка'
+$a[2] = 'вторая ячейка'
+$a[3] = ''
+$a[4] = '[1, 2, 3, 5, 6]'
+$a[5] = 'пятая ячейка'
+$a[6] = ''
+$a[7] = 'седьмая ячейка'вторая ячейка||[1, 2, 3, 5, 6]|пятая ячейкавторая ячейка||[1, 2, 3, 5, 6]|пятая ячейка|"
+	]
+	end
+
+!@ em.fewarrs.print
+if instr($args[0],'em.fewarrs.print')<>0 or $comms_ = '[]':
+	%em_autotest_base_temp_array_[] = [
+		name: 'em.fewarrs.print',
+		expected: "<table border=1 cellpadding=5><tr><td>#</td><td>$a</td><td>%b</td></tr><tr><td>0</td><td>нулевая ячейка</td><td>[0, 'zero']</td></tr><tr><td>1</td><td>первая ячейка</td><td>['first', 1, 0]</td></tr><tr><td>2</td><td>вторая ячейка</td><td>[2, 'second', 2]</td></tr><tr><td>3</td><td>&nbsp;</td><td>['3']</td></tr><tr><td>4</td><td>четвёртая' ячейка</td><td>[3, 5, 6, 'string', 6]</td></tr><tr><td>5</td><td>пятая яче'йка</td><td>['пятая ячейка']</td></tr><tr><td>6</td><td>&nbsp;</td><td>['6']</td></tr><tr><td>7</td><td>седьмая ячейка</td><td>['7']</td></tr></table><table border=1 cellpadding=5><tr><td>#</td><td>$a</td><td>%b</td></tr><tr><td>3</td><td>&nbsp;</td><td>['3']</td></tr><tr><td>4</td><td>четвёртая' ячейка</td><td>[3, 5, 6, 'string', 6]</td></tr><tr><td>5</td><td>пятая яче'йка</td><td>['пятая ячейка']</td></tr><tr><td>6</td><td>&nbsp;</td><td>['6']</td></tr></table>нулевая ячейка	[0, 'zero']
+первая ячейка	['first', 1, 0]
+вторая ячейка	[2, 'second', 2]
+	['3']
+четвёртая' ячейка	[3, 5, 6, 'string', 6]
+пятая яче'йка	['пятая ячейка']
+	['6']
+седьмая ячейка	['7']$a[0]='нулевая ячейка'	&	%b[0]=[0, 'zero']
+$a[1]='первая ячейка'	&	%b[1]=['first', 1, 0]
+$a[2]='вторая ячейка'	&	%b[2]=[2, 'second', 2]
+$a[3]=''	&	%b[3]=['3']
+$a[4]='четвёртая'' ячейка'	&	%b[4]=[3, 5, 6, 'string', 6]
+$a[5]='пятая яче''йка'	&	%b[5]=['пятая ячейка']
+$a[6]=''	&	%b[6]=['6']
+$a[7]='седьмая ячейка'	&	%b[7]=['7']EMPTY ARRAYS"
+	]
+	end
+
+	!@ em.arr.clear
+	if instr($args[0],'em.arr.clear')<>0 or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.clear',
+			expected: "[1, 3, 1, 3, 1]"
+		]
+	end
+
+	!@ em.arr.concatenate
+	if instr($comms_, "'em.arr.concatenate'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.concatenate',
+			expected: "[[967, '88ff88', 'голова'], [629, 'ff00ff', 'плечи'], [541, '0ff0f8', 'грудь'], [290, 'ffffff', 'живот'], [852, '8888ff', 'бёдра'], [334, 'fff8f8', 'колени'], [318, 'икры'], [529, 'ступни']]"
+		]
+	end
+
+	!@ em.arr.enumerate
+	if instr($comms_, "'em.arr.enumerate'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.enumerate',
+			expected: '[[157, 0], [250, 1], [709, 2], [413, 3], [532, 4], [779, 5], [730, 6], [565, 7]]'
+		]
+	end
+
+	!@ em.arr.few_kill
+	if instr($comms_, "'em.arr.few_kill'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.few_kill',
+			expected: '[[250, 709, 532, 779, 565], [A: 250, V: 709, N: 532, B: 779, W: 565], [250, 709, 532, 779, 565]]'
+		]
+	end
+
+	!@ em.arr.fill
+	if instr($comms_, "'em.arr.fill'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.fill',
+			expected: "[[966, 812, 796, 304, 678, 118, 901, 132], [966, 812, 796, 304, 678, 118, 901, 132, 157, 250, 709, 413, 532, 779], [[967, 'голова'], [629, 'плечи'], [541, 'руки'], [290, 'торс'], ?, ?, ?, [852, 'бёдра'], [334, 'голени'], [318]], ['88ff88', 'ffffff', '8888ff', 'fff8f8']]"
+		]
+	end
+
+	!@ em.arr.fill_rand
+	if instr($comms_, "'em.arr.fill_rand'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.fill_rand',
+			expected: '111'
+		]
+	end
+
+	!@ em.arr.fil_strt
+	if instr($comms_, "'em.arr.fill_strt'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.fill_strt',
+			expected: '[[0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 0, 1, 2], [2, 1, 0, 2, 1, 0, 2, 1], [?, ?, 3, 4, 5, 3, 4, 5, 3, 4]]'
+		]
+	end
+
+	!@ em.arr.insert
+	if instr($comms_, "'em.arr.insert'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.insert',
+			expected: '[[574, 668, 413, 765, 6, 478, 205, 701, 272], [[574, 0], [668, 1], [413, 2], [''inserted''], [765, 3], [478, 4], [205, 5], [701, 6], [272, 7]]]'
+		]
+	end
+
+	!@ em.arr.restand
+	if instr($comms_, "'em.arr.restand'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.restand',
+			expected: "[['бёдра', 'голова', 'грудь', 'живот', 'икры', 'колени', 'плечи', 'ступни'], ['икры', 'бёдра', 'грудь', 'живот', 'плечи', 'колени', 'голова', 'ступни'], [4, 0, 2, 3, 6, 5, 1, 7]]"
+		]
+	end
+
+!@ --------------- операции над массивами ---------------
+
+!@ -------------- операции с целыми числами -------------
+
+	!@ em.abs
+	if instr($comms_, "'em.abs'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.abs',
+			expected: '[333, 333, 333, 0, 579, 579]'
+		]
+	end
+
+	!@ em.digs
+	if instr($comms_, "'em.digs'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.digs',
+			expected: '[10, 100, 100, 1000, 10000]'
+		]
+	end
+
+	!@ em.even
+	if instr($comms_, "'em.even'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.even',
+			expected: '[550, 540, 1000, -5500, 45600, -45600]'
+		]
+	end
+
+	!@ em.exp
+	if instr($comms_, "'em.exp'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.exp',
+			expected: '[46656, 16, 64, 256, 62500]'
+		]
+	end
+
+	!@ em.log
+	if instr($comms_, "'em.log'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.log',
+			expected: '[1, 6, 4, 4, 2, 2]'
+		]
+	end
+
+	!@ em.random
+	if instr($comms_, "'em.random'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.random',
+			expected: 'true'
+		]
+	end
+
+	!@ em.summ
+	if instr($comms_, "'em.summ'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.summ',
+			expected: "[4460, 'голова плечи грудь живот бёдра колени икры ступни ', [0, 'zero', 'first', 1, 0, 2, 'second', 2, '3', 3, 5, 6, 'string', 6, 'пятая ячейка', '6', '7']]"
+		]
+	end
+
+!@ -------------- операции с целыми числами -------------
+
+!@ ----------- операции с координатной сеткой -----------
+
+	!@ em.map.cell.get_coords
+	if instr($comms_, "'em.map.cell.get_coords'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.map.cell.get_coords',
+			expected: '[[0, 0], [2, 2], [3, 3], [2, 6]]'
+		]
+	end
+
+!@ ----------- операции с координатной сеткой -----------
+
+!@ ------------------- операции с HTML ------------------
+
+	!@ em.html.clr_pref
+	if instr($comms_, "'em.html.clr_pref'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.html.clr_pref',
+			expected: '<table width=50% border=1><tr><td>первая ячейка первой строки</td><td>вторая ячейка первой строки</td></tr><tr><td>первая ячейка второй строки</td><td>вторая ячейка второй строки</td></tr></table>'
+		]
+	end
+
+	!@ em.html.to_mnenonic
+	if instr($comms_, "'em.html.to_mnemonics'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.html.to_mnemonics',
+			expected: '&lt;table width=50% border=1&gt;&lt;tr&gt;&lt;td&gt;&amp;первая ячейка первой строки&lt;/td&gt;&lt;td&gt;вторая ячейка первой строки&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;первая ячейка второй строки&lt;/td&gt;&lt;td&gt;вторая ячейка второй строки&amp;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;'
+		]
+	end
+
+
+!@ ------------------- операции с HTML ------------------
+
+!@ ---------------- операции с кортежами ----------------
+
+	!@ em.str.to_tpl
+	if instr($comms_, "'em.str.to_tpl'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.str.to_tpl',
+			expected: "[852, 'бёдра', [3, 5, 6, 'string', 6]]"
+		]
+	end
+
+	!@ em.tpl.get
+	if instr($comms_, "'em.tpl.get'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.tpl.get',
+			expected: "[852, 'бёдра', [3, 5, 6, 'string', 6]]"
+		]
+	end
+
+!@ ---------------- операции с кортежами ----------------
+--- em.autotest.base ---------------------------------
+
+

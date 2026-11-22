@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "qsp": {
+      "command": "C:\\Users\\aleks\\AppData\\Local\\Programs\\Qoder IDE\\Qoder IDE.exe",
+      "args": [
+        "c:\\Users\\aleks\\.qoder\\extensions\\qspfoundation.qsp-lsp-0.5.0\\out\\mcp\\server.js",
+        "--workspace",
+        "d:\\my\\GameDev\\QuestSoftPlayer\\games\\[lib]\\easy.math.3"
+      ],
+      "env": {
+        "ELECTRON_RUN_AS_NODE": "1"
+      }
+    }
+  }
+}

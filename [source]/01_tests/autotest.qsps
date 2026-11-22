@@ -1,9 +1,8 @@
 QSP-Game Функция автотестов для easy.math
 
 !@pp:if(em_autotest):include
-# em.autotest
+# em.autotest.base.tests
 $args[0]=$lcase($args[0])
-local $nr=@em.RN
 $result = ''
 
 if 0:
@@ -14,11 +13,8 @@ if 0:
 	elseif $args[0]='em.dergb':
 		$result = $dyneval({
 			$result = $str([
-				@em.deRGB(rgb(255,255,0)),
-				@em.deRGB(rgb(0,98,98)),
-				@em.deRGB(rgb(240,230,140,100)),
-				@em.deRGB(rgb(240,230,140,100), '/wa'),
-				@em.deRGB(rgb(240,230,140,237))
+				@em.deRGB(rgb(255,255,0)), @em.deRGB(rgb(0,98,98)),	@em.deRGB(rgb(240,230,140,100)),
+				@em.deRGB(rgb(240,230,140,100), '/wa'),	@em.deRGB(rgb(240,230,140,237))
 			])
 		})
 
@@ -26,12 +22,8 @@ if 0:
 		$result = $dyneval({
 			local $text="Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь"
 
-			$result = @em.str.get_word($text)
-			$result += @em.str.get_word($text,2)
-			$result += @em.str.get_word($text,5)
-			$result += @em.str.get_word($text,8)
-			$result += @em.str.get_word($text,11)
-			$result += @em.str.get_word($text,14)
+			$result = @em.str.get_word($text) + @em.str.get_word($text,2) + @em.str.get_word($text,5)
+			$result += @em.str.get_word($text,8) + @em.str.get_word($text,11) + @em.str.get_word($text,14)
 			$result += @em.str.get_word('Декабрь',14)
 		})
 
