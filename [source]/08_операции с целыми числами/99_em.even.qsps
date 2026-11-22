@@ -5,28 +5,26 @@ QSP-Game функция округления целых чисел
 !@ $2 - правило округления числа: [up] - увеличение; [down] - уменьшение; пустое значение - по правилам округления.
 !@pp:if(em_even):include
 # em.even
-local module_, at49_, $minus_
+local #module_, #at49_, $minus_
 !@ если разрядность не задана, или задана неверно, выставляем разрядность на 100:
-if args[1]=0 or strcomp($str(args[1]),'^1[0]+$')=0: args[1]=100
+if #args[1]=0 or strcomp($str(#args[1]),'^1[0]+$')=0: #args[1]=100
 !@ if args[1]>args[0]: result=args[0] & exit	& !@ если разрядность округления больше числа, то число возвращается, как есть
-if args[0]<0: args[0]=-args[0] & $minus_='-'	& !@ вводим переменную-маркер отрицательного числа
+if #args[0]<0: #args[0]=-#args[0] & $minus_='-'	& !@ вводим переменную-маркер отрицательного числа
 $args[2]=$lcase($args[2])	& !@ переводим в нижний регистр для удобства
 
 if instr($args[2],'[up]')=0 and instr($args[2],'[down]')=0:
-	module_=args[0] mod args[1]	& !@ остаток от деления
-	at49_=5*args[1]/10-1	& !@ ограничениеб по которому оценивается, в какую сторону проводить округление
-	if module_>at49_: $args[2]='[up]' else $args[2]='[down]'	& !@ вариантов округления
+	#module_=#args[0] mod #args[1]	& !@ остаток от деления
+	#at49_=5*args[1]/10-1	& !@ ограничениеб по которому оценивается, в какую сторону проводить округление
+	if #module_>#at49_: $args[2]='[up]' else $args[2]='[down]'	& !@ вариантов округления
 end
 if instr($args[2],'[up]')<>0:
 	!@ если нужно округлить в сторону увеличения
-	result = (args[0]/args[1]+1)*args[1]
+	#result = (#args[0]/#args[1]+1)*#args[1]
 elseif instr($args[2],'[down]')<>0:
-	result = (args[0]/args[1])*args[1]
+	#result = (#args[0]/#args[1])*#args[1]
 end
 !@ выставляем результат
-if $minus_='-':
-	result = -result
-end
+if $minus_='-':	#result = -#result
 --- em.even ---------------------------------
 !@pp:endif
 

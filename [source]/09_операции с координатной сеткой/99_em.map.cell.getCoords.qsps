@@ -3,11 +3,11 @@ QSP-Game Определяет координаты ячейки по текущ�
 !@ #1 - ширина поля W;
 !@pp:if(em_map_cell_get_coords):include
 # em.map.cell.get_coords
-local cell, width = args[0], args[1]
-local x, y
-y = cell/width
-x = cell - y*width
-%result = [x, y]
+local #cell, #width = #args[0], #args[1]
+local #x, #y
+#y = #cell/#width
+#x = #cell - #y*#width
+%result = [#x, #y]
 --- em.map.cell.get_coords ---------------------------------
 !@pp:endif
 
@@ -22,8 +22,3 @@ y/x |  0   1   2   3
    2|  8   9   10  11
     |                          y = N/W
    3|  12  13  14  15          x = N - Y * W
-
-@em.map.cell.get_сoords(10,3+1,'[x]')   & !@ 2
-@em.map.cell.get_сoords(10,3+1,'[y]')   & !@ 2
-@em.map.cell.get_сoords(10,3+1)   & !@ кортеж (2,2)
-@em.map.cell.get_сoords(10,4,'[x][y]')   & !@ кортеж (2,2)

@@ -4,16 +4,8 @@ QSP-Game Получение значения в кортеже по индекс
 !@ #1 - индекс (нумерация с нуля)
 !@pp:if(em_tpl_get):include
 # em.tpl.get
-local %t, i = %args[0], args[1]
 local em_tpl_get_
-unpackarr 'em_tpl_get_', %t
-if arrtype('em_tpl_get_', i) = '%':
-	%result = %em_tpl_get_[i]
-elseif arrtype('em_tpl_get_', i) = '$':
-	$result = $em_tpl_get_[i]
-else:
-	result = em_tpl_get_[i]
-end
+unpackarr 'em_tpl_get_', args[0]
+result = em_tpl_get_[args[1]]
 --- em.tpl.get ---
 !@pp:endif
-
