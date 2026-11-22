@@ -678,7 +678,7 @@ if 0:
 			:break_em_random
 		})
 
-	elseif $args[0]='em.summ':
+	elseif $args[0]='em.arr.summ':
 		$result = $dyneval({
 			local mass1, mass2, mass3
 			unpackarr 'mass1', [967, 629, 541, 290, 852, 334, 318, 529]
@@ -687,9 +687,9 @@ if 0:
 			unpackarr 'mass3', [[0, 'zero'], ['first', 1, 0], [2, 'second', 2], ['3'],
 								[3,5,6,'string',6], ['пятая ячейка'], ['6'], ['7']]
 			$result = $str([
-				@em.summ('mass1'),
-				@em.summ('$mass2'),
-				@em.summ('%mass3')
+				@em.arr.summ('mass1'),
+				@em.arr.summ('$mass2'),
+				@em.arr.summ('%mass3')
 			])
 		})
 

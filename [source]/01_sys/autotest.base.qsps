@@ -472,10 +472,10 @@ $a[7]='седьмая ячейка'	&	%b[7]=['7']EMPTY ARRAYS"
 		]
 	end
 
-	!@ em.summ
-	if instr($comms_, "'em.summ'") or $comms_ = '[]':
+	!@ em.arr.summ
+	if instr($comms_, "'em.arr.summ'") or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [
-			name: 'em.summ',
+			name: 'em.arr.summ',
 			expected: "[4460, 'голова плечи грудь живот бёдра колени икры ступни ', [0, 'zero', 'first', 1, 0, 2, 'second', 2, '3', 3, 5, 6, 'string', 6, 'пятая ячейка', '6', '7']]"
 		]
 	end

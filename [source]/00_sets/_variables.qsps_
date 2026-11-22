@@ -71,7 +71,7 @@ QSP-Game Список меток для всех функций библиоте
 !@pp:var(em_exp)
 !@pp:var(em_log)
 !@pp:var(em_random)
-!@pp:var(em_summ)
+!@pp:var(em_arr_summ)
 Операции с координатной сеткой
 !@pp:var(em_map_cell_get_coords)
 Операции с html
