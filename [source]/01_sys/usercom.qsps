@@ -67,7 +67,7 @@ elseif instr($lcase($cmdline_),'gen mass')=1:
 		msg "Error. Functions 'em.arr.fill_rand' or 'em.arr.print' are not exist!"
 	end
 elseif instr($lcase($cmdline_),'autotest') = 1 and loc('em.autotest.self'):
-	!@ em autotest em.arr.search em.arr.insert em.arr.concatenate compile
+	!@ em autotest em.arr.search em.arr.fill em.arr.concatenate compile
 	dynamic {
 		local $arguments_
 		copyarr '$arguments_', '$em_test_parse_', 1

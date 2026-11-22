@@ -581,19 +581,6 @@ if 0:
 			$result = $str([%arrpack('t'), %arrpack('b'), %arrpack('z'), %arrpack('f')])
 		})
 
-	elseif $args[0]='em.arr.insert':
-		$result = $dyneval({
-			local mass1, mass2
-			unpackarr 'mass1', [574, 668, 413, 765, 478, 205, 701, 272]
-			@@em.arr.insert 'mass1', 6, 4
-
-			unpackarr 'mass2', [
-				[574, 0], [668, 1], [413, 2], [765, 3],
-				[478, 4], [205, 5], [701, 6], [272, 7] ] 
-			@@em.arr.insert 'mass2', ['inserted'], 3
-			$result = $str([%arrpack('mass1'), %arrpack('mass2')])
-		})
-
 	elseif $args[0]='em.arr.restand':
 		$result = $dyneval({
 			local mass1, mass2, mass3, mass4, em_array

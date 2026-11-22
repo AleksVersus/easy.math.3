@@ -404,14 +404,6 @@ $a[7]='седьмая ячейка'	&	%b[7]=['7']EMPTY ARRAYS"
 		]
 	end
 
-	!@ em.arr.insert
-	if instr($comms_, "'em.arr.insert'") or $comms_ = '[]':
-		%em_autotest_base_temp_array_[] = [
-			name: 'em.arr.insert',
-			expected: '[[574, 668, 413, 765, 6, 478, 205, 701, 272], [[574, 0], [668, 1], [413, 2], [''inserted''], [765, 3], [478, 4], [205, 5], [701, 6], [272, 7]]]'
-		]
-	end
-
 	!@ em.arr.restand
 	if instr($comms_, "'em.arr.restand'") or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [

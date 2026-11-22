@@ -251,40 +251,6 @@
 <span class="Monokai-UnFunc">@em.fewArrs.print</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'$a'</span>,<span class="Monokai-String">'$b'</span>,<span class="Monokai-String">'[no table]'</span>,<span class="Monokai-String">'$f'</span>)</span><span class="Monokai-Assign">=</span><br/>
 <span class="Monokai-String" style="color:#8dd6a5;">"Error: Array's name is not correct. ARGS[2]: '[no table]'"</span>
 </div>
-<a id="em_arr_insert"></a>
-<h4 class="avs-article-h4">em.arr.insert</h4>
-<p class="avs-article-p">Функция для вставки элемента в массив со сдвигом вправо.</p>
-<p class="em-block-arguments">
-<code class="em-system">$args[<code class="em-number">0</code>]</code> - название массива.
-            <br/><code class="em-system">$args[<code class="em-number">1</code>]</code> - значение, которое хотим присвоить элементу (тип определяется по префиксу названия массива).
-            <br/><code class="em-system">args[<code class="em-number">2</code>]</code> - индекс элемента, куда хотим поместить новое значение.
-          </p>
-<h5 class="avs-article-h5">Результат работы функции:</h5>
-<h6 class="avs-article-h6">Заготовленный массив:</h6>
-<div class="Monokai-Code">
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">574</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">668</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">413</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">765</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">478</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">205</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">701</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">272</span>
-</div>
-<h6 class="avs-article-h6">Вставка по числовому индексу:</h6>
-<div class="Monokai-Code">
-<span class="Monokai-UnFunc">@em.arr.insert</span><span class="Monokai-Qbracket">(<span class="Monokai-String">'mass'</span>,<span class="Monokai-Numeric">6</span>,<span class="Monokai-Numeric">4</span>)</span><br/>
-<span class="Monokai-Comment">! теперь массив содержит следующий набор значений:</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">0</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">574</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">1</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">668</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">2</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">413</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">3</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">765</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">4</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">6</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">5</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">478</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">6</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">205</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">7</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">701</span><br/>
-            mass<span class="Monokai-Qbracket">[<span class="Monokai-Numeric">8</span>]</span><span class="Monokai-Assign">=</span><span class="Monokai-Numeric">272</span>
-</div>
 <a id="em_arr_clear"></a>
 <h4 class="avs-article-h4">em.arr.clear</h4>
 <p class="avs-article-p">Функция для удаления из массива всех элементов с указанным значением.</p>
