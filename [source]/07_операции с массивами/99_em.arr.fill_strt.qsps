@@ -1,4 +1,4 @@
-QSP-Game Заполняет массив порядковыми числами
+QSP-Game Заполняет массив числами по порядку
 
 !@ $0 - название массива, элементы которого необходимо сформировать (исследуемый массив), обязательный параметр
 !@ #1 - Сколько элементов необходимо заполнить, обязательный параметр
@@ -8,10 +8,10 @@ QSP-Game Заполняет массив порядковыми числами
 !@pp:if(em_arr_fill_strt):include
 # em.arr.fill_strt
 !@pp:if(em_fuse):include
-if $args[0] <> '' and instr('$%', $mid($args[0], 1, 1)): msg 'em.arr.fill_rand: type prefix cannot be specified → <<$args[0]>>' & exit
+if $args[0] = '': msg 'em.arr.fill_rand: wrong array-name → ''<<$args[0]>>''' & exit
 !@pp:endif
 if args[4] < 1: args[4] = 1
-args[21], args[22] = %iif(%args[2] = [], [0,args[1]], %args[2])
+args[21], args[22] = %iif(%args[2], %args[2], [0,args[1]])
 !@ если нужно включаем обратный порядок заполнения
 if args[21] > args[22]:	args[24] = 1
 args[23] = args[21]	& !@ выставляем первое вносимое в массив число
@@ -31,33 +31,9 @@ end
 
 Функция не использует иных функций библиотеки
 
-Внимание!!! Функция не создаёт новый массив, а заполняет массив значениями!
+Внимание!!! Функция не создаёт новый массив, а заполняет указанный массив значениями!
 
 !@ #21 - нижняя граница числа, по умолчанию 0
 !@ #22 - верхняя граница числа, по умолчанию количество элементов
 !@ #23 - число, которое вносим в массив
 !@ #24 - режим (реверс, или нет)
-
-@em.arr.fill_strt('t',8)
-
-loop local i,size=0,arrsize('t') while i<size step i+=1:
-    *pl "t[<<i>>]=<<t[i]>>"
-end
-*pl
-@em.arr.fill_strt('b',8,[0,4])
-
-loop local i,size=0,arrsize('b') while i<size step i+=1:
-    *pl "b[<<i>>]=<<b[i]>>"
-end
-*pl
-@em.arr.fill_strt('z',8,[2,0])
-
-loop local i,size=0,arrsize('z') while i<size step i+=1:
-    *pl "z[<<i>>]=<<z[i]>>"
-end
-*pl
-@em.arr.fill_strt('f',8,[3,5],2)
-
-loop local i,size=0,arrsize('f') while i<size step i+=1:
-    *pl "f[<<i>>]=<<f[i]>>"
-end
