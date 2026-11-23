@@ -7,7 +7,7 @@ QSP-Game Процедура перетасовывает элементы мас
 # em.arr.restand
 !@pp:if(em_fuse):include
 if no $args[0]: msg 'em.arr.desort: Wrong base-array name → ''<<$args[0]>>''' & exit
-if no $args[1]: msg 'em.arr.desort: Wrong index-array name → ''<<$args[1>>''' & exit
+if no $args[1]: msg 'em.arr.desort: Wrong index-array name → ''<<$args[1]>>''' & exit
 !@pp:endif
 if $args[2] = '': $args[2] = $args[0]	& !@ если не указан массив результатов, результат помещается в исходный
 local em_arr_restand_copy_array_

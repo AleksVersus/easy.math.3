@@ -581,6 +581,23 @@ if 0:
 			$result = $str([%arrpack('t'), %arrpack('b'), %arrpack('z'), %arrpack('f')])
 		})
 
+	elseif $args[0]='em.arr.find':
+		$result = $dyneval({
+			local mass1, mass2
+			unpackarr 'mass1', [574, 668, 413, 765, 478, 205, 701, 272]
+			unpackarr 'mass2', [[3, 'd'], [4, 'e'], [1, 'b'], [2, 'c'], [8, 'j'],
+								[5, 'f'], [0, 'a'], [6, 'g'], [7, 'h'], [9, 'k']]
+			$result = $str([
+				@em.arr.find('mass1', '[max]'),
+				@em.arr.find('mass1', '[max]', [0, 2]),
+				@em.arr.find('mass1', '[min]', [], [400, 600]),
+				@em.arr.find('mass1', '[min]', [3, 6], [400, 600]),
+				@em.arr.find('mass1', '[min]', [3, 6], [900, 1000]),
+				@em.arr.find('mass2', '', [2, 6]),
+				@em.arr.find('mass2', '', [0, 3])
+			])
+		})
+
 	elseif $args[0]='em.arr.restand':
 		$result = $dyneval({
 			local mass1, mass2, mass3, mass4, em_array

@@ -1,4 +1,6 @@
-Game-QSP поиск максимального или минимального значения в массиве. В отличие от функций MAX и MIN можно указать область и пределы поиска, а так же запросить позицию найденного элемента. Если ни одно число по указанным параметрам не подходит, функция возвращает слово false.
+QSP-Game Поиск максимального или минимального значения в массиве
+
+В отличие от функций MAX и MIN можно указать область и пределы поиска, а так же получить позицию найденного элемента. Если ни одно число по указанным параметрам не подходит, функция возвращает кортеж [-1, 0].
 
 !@ $0 - название массива. Поиск проводится среди значений, определённых префиксом типа (%, $).
 !@ $1 - управление: [max] - поиск максимального значения (по умолчанию), [min] - поиск минимального значения
@@ -12,118 +14,43 @@ if $args[0]='': msg 'em.arr.find: No array name → <<$args[0]>>' & exit
 !@pp:endif
 $args[1] = $lcase($args[1])
 if no instr($args[1],'[min]'): $args[1]+='[max]'
-args['min_edge'], args['max_edge'] = %iif(%args[2] = [], [0, arrsize($args[0])-1], %args[2])
-if args['min_edge']>args['max_edge']: args['min_edge'], args['max_edge'] = args['max_edge'], args['min_edge']
+args['l_edge'], args['r_edge'] = %iif(%args[2] = [], [0, arrsize($args[0])-1], %args[2])
+if args['l_edge']>args['r_edge']: args['l_edge'], args['r_edge'] = args['r_edge'], args['l_edge']
 %result = [-1, 0]	& !@ результат по умолчанию
 local easy_math_copy_array_
-copyarr 'easy_math_copy_array_', $args[0], args['min_edge'], args['max_edge']-args['min_edge']+1
-$args[22] = $iif(instr('%$', $mid($args[0], 1,1)), $mid($args[0], 1,1), '')
-!@ *pl $args[0] + $str($args[1]) + $str(%args[2]) + $str(%args[3])
-!@ *pl 'edges: ' + $str([args['min_edge'], args['max_edge']])
-if $args[22] = '%':
-	!@ поиск среди кортежей
-	if %args[3] = []:
-		if instr($args[1],'[max]')<>0:
-			%args['m'] = %max('%easy_math_copy_array_')
-		elseif instr($args[1],'[min]')<>0:
-			%args['m'] = %min('%easy_math_copy_array_')
-		end
-		args['pos'] = arrpos('%easy_math_copy_array_', %args['m'])
-		%result = [args['pos'] + args['min_edge'], %args['m']]
+copyarr 'easy_math_copy_array_', $args[0], args['l_edge'], args['r_edge']-args['l_edge']+1
+if %args[3] = []:
+	if instr($args[1],'[max]')<>0:
+		args['m'] = max('easy_math_copy_array_')
 	else:
-		%args['min_num'], %args['max_num'] = %args[3]
-		if %args['min_num']>%args['max_num']: %args['max_num'], %args['min_num'] = %args['min_num'], %args['max_num']
-		loop args['edge'], args['size'] = 0, arrsize('easy_math_copy_array_') while args['edge']<args['size'] step args['edge']+=1:
-			!@ args['edge'] - выступает счётчиком. Пока счётчик не превысит верхнюю границу, выполняем
-			if %easy_math_copy_array_[args['edge']]>=%args['min_num'] and %easy_math_copy_array_[args['edge']]<=%args['max_num']:
-				!@ следующий фрагмент кода не упрощается.
-				if instr($args[1],'[max]')<>0:
-					!@ если ищем максимальное значение
-					if (%args['m'] = [] and %result = [-1, 0]) or %easy_math_copy_array_[args['edge']]>%args['m']:
-						!@ если рассматриваемое значение больше найденного, или это первая итеррация
-						%args['m'] = %easy_math_copy_array_[args['edge']]	& !@ присваиваем промежуточной переменной найденное значение
-						args['pos'] = args['edge']	& !@ переменной pos присваиваем позицию элемента
-						%result = [args['pos'] + args['min_edge'], %args['m']]
-					end 
-				elseif instr($args[1],'[min]')<>0:
-					!@ если ищем минимальное, всё то же, что и для максимального значения, только проверяем, не меньше ли текущее
-					if (%args['m'] = [] and %result = [-1, 0]) or %easy_math_copy_array_[args['edge']]<%args['m']:
-						%args['m'] = %easy_math_copy_array_[args['edge']]
-						args['pos'] = args['edge']
-						%result = [args['pos'] + args['min_edge'], %args['m']]
-					end
-				end
-			end
-		end
+		args['m'] = min('easy_math_copy_array_')
 	end
-elseif $args[22] = '$':
-	if %args[3] = []:
-		if instr($args[1],'[max]')<>0:
-			$args['m'] = $max('$easy_math_copy_array_')
-		elseif instr($args[1],'[min]')<>0:
-			$args['m'] = $min('$easy_math_copy_array_')
-		end
-		args['pos'] = arrpos('$easy_math_copy_array_', $args['m'])
-		%result = [args['pos'] + args['min_edge'], $args['m']]
-	else:
-		$args['min_num'], $args['max_num'] = %args[3]
-		if $args['min_num']>$args['max_num']: $args['max_num'], $args['min_num'] = $args['min_num'], $args['max_num']
-		loop args['edge'], args['size'] = 0, arrsize('easy_math_copy_array_') while args['edge']<args['size'] step args['edge']+=1:
-			!@ args['edge'] - выступает счётчиком. Пока счётчик не превысит верхнюю границу, выполняем
-			if $easy_math_copy_array_[args['edge']]>=$args['min_num'] and $easy_math_copy_array_[args['edge']]<=$args['max_num']:
-				!@ следующий фрагмент кода не упрощается.
-				if instr($args[1],'[max]')<>0:
-					!@ если ищем максимальное значение
-					if ($args['m'] = '' and %result = [-1, 0]) or $easy_math_copy_array_[args['edge']]>$args['m']:
-						!@ если рассматриваемое значение больше найденного, или это первая итеррация
-						$args['m'] = $easy_math_copy_array_[args['edge']]	& !@ присваиваем промежуточной переменной найденное значение
-						args['pos'] = args['edge']	& !@ переменной pos присваиваем позицию элемента
-						%result = [args['pos'] + args['min_edge'], $args['m']]
-					end 
-				elseif instr($args[1],'[min]')<>0:
-					!@ если ищем минимальное, всё то же, что и для максимального значения, только проверяем, не меньше ли текущее
-					if ($args['m'] = '' and %result = [-1, 0]) or $easy_math_copy_array_[args['edge']]<$args['m']:
-						$args['m'] = $easy_math_copy_array_[args['edge']]
-						args['pos'] = args['edge']
-						%result = [args['pos'] + args['min_edge'], $args['m']]
-					end
-				end
-			end
-		end
-	end
+	args['pos'] = arrpos('easy_math_copy_array_', args['m'])
+	%result = [args['pos'] + args['l_edge'], args['m']]
+	exit
 else:
-	if %args[3] = []:
-		if instr($args[1], '[max]')<>0:
-			args['m'] = max('easy_math_copy_array_')
-		elseif instr($args[1], '[min]')<>0:
-			args['m'] = min('easy_math_copy_array_')
-		end
-		args['pos'] = arrpos('easy_math_copy_array_', args['m'])
-		%result = [args['pos'] + args['min_edge'], args['m']]
-	else:
-		args['min_num'], args['max_num'] = %args[3]
-		if args['min_num'] > args['max_num']: args['max_num'], args['min_num'] = args['min_num'], args['max_num']
-		!@ *p 'loop: '
-		loop args['edge'], args['size'] = 0, arrsize('easy_math_copy_array_') while args['edge']<args['size'] step args['edge']+=1:
-			!@ args['edge'] - выступает счётчиком. Пока счётчик не превысит верхнюю границу, выполняем
-			!@ *p $str(easy_math_copy_array_[args['edge']]) + ','
-			if easy_math_copy_array_[args['edge']] >= args['min_num'] and easy_math_copy_array_[args['edge']] <= args['max_num']:
-				!@ следующий фрагмент кода не упрощается.
-				if instr($args[1],'[max]')<>0:
-					!@ если ищем максимальное значение
-					if (args['m'] = 0 and %result = [-1, 0]) or easy_math_copy_array_[args['edge']]>args['m']:
-						!@ если рассматриваемое значение больше найденного, или это первая итеррация
-						args['m'] = easy_math_copy_array_[args['edge']]	& !@ присваиваем промежуточной переменной найденное значение
-						args['pos'] = args['edge']	& !@ переменной pos присваиваем позицию элемента
-						%result = [args['pos'] + args['min_edge'], args['m']]
-					end 
-				elseif instr($args[1],'[min]')<>0:
-					!@ если ищем минимальное, всё то же, что и для максимального значения, только проверяем, не меньше ли текущее
-					if (args['m'] = 0 and %result = [-1, 0]) or easy_math_copy_array_[args['edge']]<args['m']:
-						args['m'] = easy_math_copy_array_[args['edge']]
-						args['pos'] = args['edge']
-						%result = [args['pos'] + args['min_edge'], args['m']]
-					end
+	args['min_num'], args['max_num'] = %args[3]
+	if args['min_num']>args['max_num']: args['max_num'], args['min_num'] = args['min_num'], args['max_num']
+	args['m'] = ?
+	loop args['edge'], args['size'] = 0, arrsize('easy_math_copy_array_') while args['edge']<args['size'] step args['edge']+=1:
+		!@ args['edge'] - выступает счётчиком. Пока счётчик не превысит верхнюю границу, выполняем
+		if easy_math_copy_array_[args['edge']]>=args['min_num'] and easy_math_copy_array_[args['edge']]<=args['max_num']:
+			!@ следующий фрагмент кода не упрощается. TODO: можно переделать в одно сложное условие
+			!@ когда поддержим многострочные операции or, and, + - в скобках
+			if instr($args[1],'[max]')<>0:
+				!@ если ищем максимальное значение
+				if (args['m'] = ? and %result = [-1, 0]) or (easy_math_copy_array_[args['edge']] > args['m']):
+					!@ если рассматриваемое значение больше найденного, или это первая итеррация
+					args['m'] = easy_math_copy_array_[args['edge']]	& !@ присваиваем промежуточной переменной найденное значение
+					args['pos'] = args['edge']	& !@ переменной pos присваиваем позицию элемента
+					result = [args['pos'] + args['l_edge'], args['m']]
+				end 
+			else:
+				!@ если ищем минимальное, всё то же, что и для максимального значения, только проверяем, не меньше ли текущее
+				if (args['m'] = ? and %result = [-1, 0]) or easy_math_copy_array_[args['edge']]<args['m']:
+					args['m'] = easy_math_copy_array_[args['edge']]
+					args['pos'] = args['edge']
+					result = [args['pos'] + args['l_edge'], args['m']]
 				end
 			end
 		end
@@ -133,19 +60,3 @@ end
 !@pp:endif
 
 Функция не использует иных функций библиотеки
-
-mass[0]=574
-mass[1]=668
-mass[2]=413
-mass[3]=765
-mass[4]=478
-mass[5]=205
-mass[6]=701
-mass[7]=272
-
-@em.arr.find('mass','[max]')	& !@ '765'
-@em.arr.find('mass','[max]','','',0,2)	& !@ '668'
-@em.arr.find('mass','[min]','400','600')	& !@ '413'
-@em.arr.find('mass','[min]','400','600',3,6)	& !@ '478'
-@em.arr.find('mass','[min]','400','600',3,6)	& !@ '4'
-@em.arr.find('mass','[min]','900','1000',3,6)	& !@ 'false'
