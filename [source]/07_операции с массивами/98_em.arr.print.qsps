@@ -3,43 +3,58 @@ QSP-Game возвращает содержимое массива
 !@ $0 - название массива. Тип выводимых значений определяется по префиксу типа
 !@ $1 - управляющая конструкция. См. ниже.
 !@ %2 - [начало, окончание] вывода. Номера элементов массива.
-!@ $3 - разделитель. По умолчанию перенос строки. Если разделитель не нужен, указывается /se.
+!@ $3 - колбэк форматирования.
+!@ %4 - дополнительные данные
 !@pp:if(em_arr_print):include
 # em.arr.print
-args[21], args[22] = %iif(%args[2] = [] and arrsize($args[0])<>0, [0, arrsize($args[0])-1], %args[2])
-$result = ''
-if (args[22] < 0 or args[21] < 0): exit
+args[21], args[22] = %iif(%args[2], %args[2], [0, arrsize($args[0])-1])
+$args[28] = $lcase($args[1])	& !@ переводим команды в нижний регистр
 !@pp:if(em_fuse):include
-if $args[0]='': msg 'em.arr.print: No array name → <<$args[0]>>' & exit
-if args[22] < args[21] or args[21] < 0: msg 'em.arr.print: Out of range → <<[args[21], args[22]]>>' & exit
+if $args[0]='': msg 'em.arr.print: No array name → ''<<$args[0]>>''.' & exit
+if args[22] < args[21] or args[21] < 0 or args[22] < 0:
+	msg 'em.arr.print: Out of range → <<[args[21], args[22]]>>' & exit
+end
 !@pp:endif
 
-$args[1] = $lcase($args[1])	& !@ переводим команды в нижний регистр
-if $args[3] = '': $args[3] = @em.RN	& !@ если $args[3] не указано, в качестве разделителя использует символ переноса строки
-if $args[3] = '/se': $args[3] = ''	& !@ если указан ключ,разделитель не используется
+result = ''
 
-$args[23] = $iif(instr('$%', $mid($args[0], 1, 1)),  $mid($args[0], 1, 1), '')
-args[24] = iif(instr($args[1], '[only result]'), 1, 0)
-loop args[26], args[27] = args[21], args[22]+1 while args[26]<args[27] step args[26]+=1:
-	!@ если не указано, что выводим только значения, к ним добавляется название массива и номер ячейки
-	if no args[24]: $result += $args[0] + "[<<args[26]+args[21]>>] = "
-	if $args[23] = '$':
-		$args[25] = arritem($args[0], args[26])
-		if instr($args[1], '[trim]'): $args[25] = $trim($args[25])
-		if no args[24]:
-			$args[25] = $replace($args[25], "'", "''")
-			$result += "'<<$args[25]>>'"
-		else:
-			$result += $args[25]
-		end
+if $args[3] = '': !@ собственное форматирование не задано
+	if instr($args[28], '[only result]'):
+		!@ 0:mode, 1:result, 2:value, 3:arrname, 4:[l_edge, r_edge], 5:cur_index, 6:[additional values]
+		$args[3] = {
+			result = args[1]
+			if 0:
+				elseif $args[0] = 'cell':
+					args[21], args[22] = %args[4]
+					if args[5] <> args[21]: result += @em.RN
+					result += $args[2]
+			end
+		}
 	else:
-		!@ если пытаемся получить число или кортеж, просто преобразуем их к строке
-		$result += $str(arritem($args[0], args[26]))
-	end
-	if instr($args[1], '[with last]') or args[26] <> args[27]-1:
-		$result += $args[3]
+		$args[3] = {
+			result = args[1]
+			if 0:
+				elseif $args[0] = 'cell':
+					args[21], args[22] = %args[4]
+					$args[23] = $iif(instr('$#%',$mid($args[3],1,1)),$mid($args[3],1,1), $arrtype($args[3], args[5]))
+					if $args[23] = '$': $args[2] = "'<<$replace($args[2], '''', '''''')>>'"
+					if args[5] <> args[21]: result += @em.RN
+					result += '<<$args[3]>>[<<args[5]>>] = <<$args[2]>>'
+			end
+		}
 	end
 end
+!@ #26 - счётчик (стартует с #21).
+!@ #27 - предел (на 1 больше номера последнего элемента)
+!@ 0:mode, 1:result, 2:value, 3:arrname, 4:[l_edge, r_edge], 5:cur_index, 6:additional
+result = dyneval($args[3], 'header', result, ?, $args[0], [args[21], args[22]], ?, %args[4])
+loop args[26], args[27] = args[21], args[22]+1 while args[26] < args[27] step args[26]+=1:
+	!@ если не указано, что выводим только значения, к ним добавляется название массива и номер ячейки
+	$args[25] = $str(arritem($args[0], args[26]))
+	result = dyneval($args[3], 'cell', result, $args[25], $args[0],
+							[args[21], args[22]], args[26], %args[4])
+end
+result = dyneval($args[3], 'footer', result, ?, $args[0], [args[21], args[22]], ?, %args[4])
 --- em.arr.print ---------------------------------
 !@pp:endif
 
@@ -49,29 +64,13 @@ end
 
 !@ $1 - управляющая конструкция. Можно использовать три команды в любых комбинациях:
 	* [only result] - выводит только содержимое массива, не показывая его названия и номера ячеек.
-	* [trim] - отсекает прилегающие пробелы и символы табуляции при выводе значения элемента массива.
+	* [trim] - отсекает прилегающие пробелы и символы табуляции при выводе значения.
 	* [with last] - добавляет разделитель к выводу последнего элемента.
 
-!@ #21 - с какой ячейки начинаем вывод %3[1]
-!@ #22 - до какой ячейки продолжаем вывод %3[2]
-!@ $23 - тип массива (выводимых значений)
+!@ #21 - с какой ячейки начинаем вывод
+!@ #22 - до какой ячейки продолжаем вывод
+!@ $23 - тип массива
 !@ #24 - only_result маркер. Выводить только содержимое ячеек?
 !@ $25 - хранение промежуточных результатов
 !@ #26 - счётчик цикла
-!@ #27 - размер массива, который выводим
-
-$a[]='нулевая ячейка'
-$a[]='   первая ячейка   '
-$a[]=' вторая ячейка'
-$a[]=''
-$a[]=(1,2,3,5,6)
-$a[]='   пятая ячейка'
-$a[]=''
-$a[]='седьмая ячейка'
-
-@em.arr.print('$a')
-@em.arr.print('$a','[only result]')
-@em.arr.print('$a','[trim]')
-@em.arr.print('$a','[trim] [only result]',[2,5],'|')
-@em.arr.print('$a','[trim] [only result] [with last]',[2,5],'|')
-
+!@ #27 - до какого элемента надо остановиться

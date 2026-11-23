@@ -469,13 +469,37 @@ if 0:
 			unpackarr '$a', [
 				'нулевая ячейка','   первая ячейка   ',' вторая ячейка','',
 				$str([1,2,3,5,6]),'   пятая ячейка','','седьмая ячейка'
-			] 
+			]
+			local $trim_ = {
+				result = args[1]
+				if 0:
+					elseif $args[0] = 'cell':
+						args[21], args[22] = %args[4]
+						$args[23] = $iif(instr('$#%',$mid($args[3],1,1)),$mid($args[3],1,1), $arrtype($args[3], args[5]))
+						if $args[23] = '$': $args[2] = "'<<$replace($trim($args[2]), '''', '''''')>>'"
+						if args[5] <> args[21]: result += @em.RN
+						result += '<<$args[3]>>[<<args[5]>>] = <<$args[2]>>'
+				end
+			}
+			local $trim_only_result_ = {
+				result = args[1]
+				if 0:
+					elseif $args[0] = 'cell':
+						args[21], args[22] = %args[4]
+						$args[30], %args[6] = %args[6]
+						if args[5] <> args[21]: result += $iif($args[30], $args[30], @em.RN)
+						result += $trim($args[2])
+					elseif $args[0] = 'footer':
+						$args[30], $args[31] = %args[6]
+						if $args[31] = 'with last': result += $args[30]
+				end
+			}
 
 			$result =  @em.arr.print('$a')
 			$result += @em.arr.print('$a','[only result]')
-			$result += @em.arr.print('$a','[trim]')
-			$result += @em.arr.print('$a','[trim] [only result]',[2,5],'|')
-			$result += @em.arr.print('$a','[trim] [only result] [with last]',[2,5],'|')
+			$result += @em.arr.print('$a', ?, ?, $trim_)
+			$result += @em.arr.print('$a', ?, [2,5], $trim_only_result_, ['|'])
+			$result += @em.arr.print('$a', ?, [2,5], $trim_only_result_, ['|', 'with last'])
 		})
 
 	elseif $args[0]='em.fewarrs.print':
