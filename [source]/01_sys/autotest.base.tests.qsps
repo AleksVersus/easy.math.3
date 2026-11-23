@@ -489,11 +489,25 @@ if 0:
 				[0, 'zero'], ['first', 1, 0], [2, 'second', 2], ['3'],
 				[3,5,6,'string',6], ['пятая ячейка'], ['6'], ['7']
 			]
-			$result =  @em.fewArrs.print('$a','%b')
-			$result += @em.fewArrs.print('$a','%b', '[range onscreen:3-6]')
-			$result += @em.fewArrs.print('$a','%b','[only result]')
-			$result += @em.fewArrs.print('$a','%b','[no table]')
-			$result += @em.fewArrs.print('$c','%d', '[empty:EMPTY ARRAYS]')
+			local $callback_ = {
+				result = args[1]
+					if 0:
+						elseif $args[0] = 'cell':
+							$args[24] = $iif(instr('$#%',$mid($args[5],1,1)),$mid($args[5],1,1), $arrtype($args[5], args[3]))
+							if $args[24] = '$': $args[4] = "'<<$replace($args[4], '''', '''''')>>'"
+							if args[6] <> 0: result += '|'
+							result += $args[4]
+						elseif $args[0] = 'row-end':
+							if args[3] < args[6]-1: result += '|...|'
+					end
+			}
+			$result =  @em.fewArrs.print(['$a','%b'])
+			$result += @em.fewArrs.print(['$a','%b'], '[range onscreen:3-6]')
+			$result += @em.fewArrs.print(['$a','%b'],'[only result]')
+			$result += @em.fewArrs.print(['$a','%b'],'[no table]')
+			$result += @em.fewArrs.print(['$c','%d'], '[empty:EMPTY ARRAYS]')
+			$result += @em.fewArrs.print(['$a','$b'],'[no table]')
+			$result += @em.fewArrs.print(['$a','b'],'[range onscreen:3-6]',$callback_)
 		})
 
 	elseif $args[0]='em.arr.clear':

@@ -45,8 +45,7 @@ end
 args[21] = len(%args[22])
 
 if $args[2] = '':
-if args[27]:
-	!@ table
+if args[27]: !@ table
 	$args[2] = {
 		result = args[1]
 		if 0:
@@ -69,8 +68,7 @@ if args[27]:
 			elseif $args[0] = 'footer': result += '</table>'
 		end
 	}
-elseif args[28]:
-	!@ only results
+elseif args[28]: !@ only results
 	$args[2] = {
 		result = args[1]
 		if 0:
@@ -78,22 +76,22 @@ elseif args[28]:
 			elseif $args[0] = 'cell':
 				if args[6] <> 0: result += '	'
 				result += $args[4]
-			elseif $args[0] = 'row-end': result += @em.RN
+			elseif $args[0] = 'row-end':
+				if args[3] < args[6]-1: result += @em.RN
 		end
 	}
-else:
-	!@ no table
+else: !@ no table
 	$args[2] = {
 		result = args[1]
 		if 0:
 			elseif $args[0] = 'arrs-empty': result = $args[4]
 			elseif $args[0] = 'cell':
-				!@ 0:mode, 1:result, 2:arrs-names, 3:row-index, 4:value, 5:arr-name, 6:arr-number
 				$args[24] = $iif(instr('$#%',$mid($args[5],1,1)),$mid($args[5],1,1), $arrtype($args[5], args[3]))
 				if $args[24] = '$': $args[4] = "'<<$replace($args[4], '''', '''''')>>'"
 				if args[6] <> 0: result += '	&	'
 				result += '<<$args[5]>>[<<args[3]>>]=<<$args[4]>>'
-			elseif $args[0] = 'row-end': result += @em.RN
+			elseif $args[0] = 'row-end':
+				if args[3] < args[6]-1: result += @em.RN
 		end
 	}
 end
