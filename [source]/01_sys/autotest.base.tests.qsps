@@ -508,7 +508,7 @@ if 0:
 		$result=$dyneval({
 			local old_mass, mass, arr_mass, em_result
 			unpackarr 'old_mass', [967, 629, 541, 290, 852, 334, 318, 529 ]
-			unpackarr 'mass', ['88ff88', 'ff00ff', '0ff0f8', 'ffffff', '8888ff', 'fff8f8' ]
+			unpackarr 'mass', ['88ff88', 'ff00ff', '0ff0f8', 'ffffff', '8888ff', 'fff8f8']
 			unpackarr 'arr_mass', ['голова', 'плечи', 'грудь', 'живот',
 									'бёдра', 'колени', 'икры', 'ступни']
 
