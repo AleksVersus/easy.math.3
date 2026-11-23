@@ -1,25 +1,19 @@
 QSP-Game распечатка содержимого нескольких массивов. Удобно для вывода данных
 
-!@ $0 ... $18 - имена массивов, содержимое которых необходимо просмотреть.
-!@ $18 ... $1 - управляющая конструкция. Записывается последним аргументом. См ниже.
+!@ %0 - имена массивов, содержимое которых необходимо распечатать.
+!@ $1 - управляющая конструкция.
+!@ $2 - колбэк формата
 !@pp:if(em_fewarrs_print):include
 # em.fewArrs.print
-args[21]=arrsize('$args')-1	& !@ получаем номер последнего аргумента
-!@ получаем позицию неверно записанного названия массива
-args[24] = arrcomp('$args','[\s\S]*((\b\d+([A-Za-zа-яА-Я\$\%\._]+\d*)+\b)|(\b[A-Za-zа-яА-Я\$\%\._]+[^A-Za-zа-яА-Я\$\%\._]+))[\s\S]*')
-args[22] = iif($strfind($args[args[21]],'\[.+?\]')<>'', 1, 0)
-$args[23] = 'Error: All your massives are empty.'
-if args[24]<>-1 and args[24]<>args[21]:
-	!@ если мы имеем дело не с командой, и это не последний аргумент, значит имя массива задано неверно, возвращаем
-	msg "em.fewArrs.print: Array's name is not correct. ARGS[<<args[24]>>]: '<<$args[args[24]]>>'"
-	exit
-end
-
+args[21] = len(%args[0])	& !@ получаем число массивов к выводу
+$args[23] = 'Error: All your massives are empty.' & !@ текст, если все массивы пустые
 args[25], args[26] = 0, -1
-if args[22]:
-	!@ если последний аргумент содержит хотя бы один пробел, его нельзя считать названием массива
-	!@ скорее всего это управляющая конструкция. Либо это действительно управляющая конструкция.
-	$args[30]=$lcase($args[args[21]])	& !@ переводим в нижний регистр
+args[27], args[28] = 1, 0
+result = ''
+!@ ======================================= P R E P A R E ===========================================
+
+if $args[1]:
+	$args[30] = $lcase($args[1])	& !@ переводим в нижний регистр
 	!@ по управляющей конструкции понимаем, нужно строить таблицу или нет
 	args[27] = iif(instr($args[30],'[no table]'), 0, 1)
 	!@ по управляющей конструкции понимаем, нужно ли выводить одни только результаты
@@ -30,112 +24,123 @@ if args[22]:
 		!@ вместо последнего элемента нам нужен следующий за последним
 		args[26] = val($strfind($args[30], '\[range onscreen:\d+\-(\d+)\]', 1)) + 1
 	end
-	if instr($args[30], '[empty:'):
-		$args[23] = $strfind($args[args[21]], '(\[empty:)(.+?)\]', 2)
+	if instr($args[1], '[empty:'):
+		$args[23] = $strfind($args[1], '(?i)\[empty:(.*?)\]', 1)
 	end
-	args[21] -= 1
+end
+!@ %37 - валидные имена массивов
+!@ $38 - текущее имя массива
+%args[22], args[29] = [], 0
+loop args[31] = 0 while args[31]<args[21] step args[31] += 1:
+	$args[24], %args[0] = %args[0]
+	if strcomp($args[24], '[#%$]?[\p{L}_\.][\p{L}_\.0-9]*'):
+		!@ valid array name
+		%args[22] = (%args[22] & $args[24])	& !@ add name to list
+		args[34] = arrsize($args[24])	& !@ get arr-size
+		if args[34]>args[29]: args[29]=args[34]	& !@ get max arr-size
+	else:
+		msg "em.fewArrs.print: Array's name is not correct. <<[%args[22], %args[0]]>>: '<<$args[24]>>'"
+	end
+end
+args[21] = len(%args[22])
+
+if $args[2] = '':
+if args[27]:
+	!@ table
+	$args[2] = {
+		result = args[1]
+		if 0:
+			elseif $args[0] = 'arrs-empty': result = $args[4]
+			elseif $args[0] = 'header':
+				result += '<table border=1 cellpadding=5>'
+				result += '<tr><th>#</th>'
+					args[31], args[21] = 0, len(%args[2])
+					loop while args[31] < args[21] step args[31] += 1:
+						$args[24], %args[2] = %args[2]
+						result += '<th><<$args[24]>></th>'
+					end
+				result += '</tr>'
+			elseif $args[0] = 'row-start':
+				result += '<tr><td><<args[3]>></td>'
+			elseif $args[0] = 'cell':
+				$args[4] = $iif($args[4], @em.html.to_mnemonics($args[4]), '&nbsp;')
+				result += '<td><<$args[4]>></td>'
+			elseif $args[0] = 'row-end': result += '</tr>'
+			elseif $args[0] = 'footer': result += '</table>'
+		end
+	}
+elseif args[28]:
+	!@ only results
+	$args[2] = {
+		result = args[1]
+		if 0:
+			elseif $args[0] = 'arrs-empty': result = $args[4]
+			elseif $args[0] = 'cell':
+				if args[6] <> 0: result += '	'
+				result += $args[4]
+			elseif $args[0] = 'row-end': result += @em.RN
+		end
+	}
 else:
-	args[27] = 1
-	args[28] = 0
+	!@ no table
+	$args[2] = {
+		result = args[1]
+		if 0:
+			elseif $args[0] = 'arrs-empty': result = $args[4]
+			elseif $args[0] = 'cell':
+				!@ 0:mode, 1:result, 2:arrs-names, 3:row-index, 4:value, 5:arr-name, 6:arr-number
+				$args[24] = $iif(instr('$#%',$mid($args[5],1,1)),$mid($args[5],1,1), $arrtype($args[5], args[3]))
+				if $args[24] = '$': $args[4] = "'<<$replace($args[4], '''', '''''')>>'"
+				if args[6] <> 0: result += '	&	'
+				result += '<<$args[5]>>[<<args[3]>>]=<<$args[4]>>'
+			elseif $args[0] = 'row-end': result += @em.RN
+		end
+	}
+end
+end
+
+if args[29] = 0:
+	!@ если размеры всех массивов равны нулю, выводим сообщение.
+!@pp:if(em_fuse):include
+	msg 'em.fewArrs.print: All your massives are empty.'
+!@pp:endif
+	!@ сообщение возвращается в результат
+	result = dyneval($args[2], 'arrs-empty', result, %args[22], ?, $args[23])
+	exit
 end
 
 !@ =========================================== P R I N T ===========================================
 
-!@ если списка команд нет, или управление не отключает генерацию таблицы, добавляем теги таблицы.
-if args[27] or no args[22]: $args[29]='<table border=1 cellpadding=5>'
-if args[27]: $args[29] += '<tr><td>#</td>'
+!@ до перебора строк, применяем форматирование:
+result = dyneval($args[2], 'header', result, %args[22])
 
-!@ с помощью цикла добавляем имена массивов в список
-loop args[31]=0 while args[31]<args[21]+1 and $strfind($args[args[31]],'\[.+?\]')='' and $args[args[31]]<>'' step args[31]+=1:
-	!@ пока счётчик не достигнет девяти, или мы не встретим аргумент с управлением, или пустой аргумент
-	if args[27]: $args[29] += "<td><<$args[args[31]]>></td>"	& !@ создаём ячейку, только если уже набираем таблицу
-	args[34]=arrsize($args[args[31]])	& !@ получаем размер указанного массива
-	if args[34]>args[35]: args[35]=args[34]	& !@ если размер этого массива больше размера предыдущего массива, записываем размер текущего в переменную size
-end
+!@ #25 - с какого элемента начинать вывод
+!@ #26 - до какого элемента продолжать вывод (больше на 1 для удобства)
+!@ если мы превысили максимальный индекс, нужно приравнять начало к последнему возможному индексу
+if args[25] > args[29] - 1: args[25] = args[29] - 1
 
-if args[27]: $args[29] += '</tr>'	& !@ закрываем строку
-
-if args[35]=0:
-	!@ если размеры всех массивов равны нулю, выводим сообщениме.
-	$result = $args[23]
-	exit
-end
-if args[25] > args[35] - 1:
-	!@ если мы превысили максимальный индекс, нужно приравнять начало к последнему возможному индексу
-	args[25] = args[35] - 1
-end
-if args[26] > args[35] or args[26] = -1:
-	args[26] = args[35]
+if args[26] > args[29] or args[26] = -1:
+	args[26] = args[29]
 elseif args[26] <= args[25]:
 	args[26] = args[25] + 1
 end
+!@ #32 - считает от #25 до #26-1 (индексы)
 !@ следующий цикл выводит уже непосредственно результаты
-loop args[32]=args[25] while args[32]<args[26] step args[32]+=1:
-	!@ пока счётчик не достигнет размера самого большого массива
-	if args[27]: $args[29] += "<tr><td><<args[32]>></td>"	& !@ для вывода в виде таблицы формируем строку и первую ячейку
+loop args[32] = args[25] while args[32]<args[26] step args[32]+=1:
+	!@ пока счётчик не достигнет предела
+	result = dyneval($args[2], 'row-start', result, %args[22], args[32])
 	!@ этот цикл выводит содержимое ячеек под одним индексом
-	loop args[31]=0 while args[31]<args[21]+1 and $strfind($args[args[31]],'\[.+?\]')='' and $args[args[31]]<>'' step args[31]+=1:
-		!@ пока счётчик не достигнет девяти, или мы не встретим аргумент с управлением, или пустой аргумент
-		if no args[28] and no args[27]:
-			!@ это не режим только результат, но и не режим вывода таблицы
-			$args[33]=$args[args[31]]+"[<<args[32]>>]="	& !@ перед добавляением значения, добавляем название массива и номер ячейки
-		else
-			!@ это режим только результат, или режим вывода таблицы
-			$args[33]=''	& !@ не добавляем ничего
-		end
-		if instr($args[args[31]],'%')=1:
-			$args[33] += @em.html.to_mnemonics($str(%arritem($args[args[31]],args[32])))
-		elseif instr($args[args[31]],'$')=1:
-			!@ выводим строковые значения массива
-			if args[27]:
-				!@ если мы имеем дело с таблицей
-				$args[33]+=$dyneval({
-					!@ $1 - название массива
-					!@ $0 - номер ячейки
-					if $arritem($args[1],args[0])<>'':
-						$result = @em.html.to_mnemonics($arritem($args[1],args[0]))
-					else
-						!@ в пустых ячейках ставим пробелы
-						$result = '&nbsp;'
-					end
-				},args[32],$args[args[31]])
-			else
-				!@ для не таблицы просто добавляем значение
-				if no args[28]:
-					$args[33]+="'"+$replace($arritem($args[args[31]],args[32]),"'","''")+"'"
-				else
-					$args[33] += $arritem($args[args[31]],args[32])
-				end
-			end
-		else:
-			!@ выводим числовые значения массива или кортежи
-			$args[33]+=$str(arritem($args[args[31]], args[32]))
-		end
-		if args[27]:
-			$args[29] += '<td>'+$args[33]+'</td>'	& !@ для таблицы создаём ячейку
-		elseif args[28] and args[31]<>0:
-			$args[36]+='	'+$args[33]	& !@ для не таблицы добавляем отступ
-		elseif args[31]<>0:
-			$args[36]+='	&	'+$args[33]	& !@ для не таблицы добавляем отступ
-		else:
-			$args[36]+=$args[33]
-		end
+	%args[0] = %args[22]
+	loop args[31] = 0 while args[31]<args[21] step args[31] += 1:
+		!@ перебираем весь список массивов
+		$args[24], %args[0] = %args[0]
+		$args[33] = $str(arritem($args[24],args[32]))
+		result = dyneval($args[2], 'cell', result, %args[22], args[32], $args[33], $args[24], args[31])
+		!@ 0:mode, 1:result, 2:arrs-names, 3:row-index, 4:value, 5:arr-name, 6:arr-number
 	end
-	if args[27]:
-		$args[29] += "</tr>"
-	elseif args[32]+1<args[26]:
-		$args[36]+=@em.RN	& !@ для таблицы закрываем строку, для не таблицы начинаем новую
-	end
+	result = dyneval($args[2], 'row-end', result, %args[22], args[32], ?, ?, args[26])
 end
-if args[27]: $args[29] += '</table>'
-
-if args[27]:
-	$result = $args[29]	& !@ если сгенерирована таблица, возвращаем таблицу
-elseif $args[36]<>'':
-	$result = $args[36]
-else
-	msg 'em.fewArrs.print: If you see this message, that so wrong. Save the game and ask me on aleksversus@mail.ru. Error of easy.math.libs in em.fewArrs.print'
-end
+result = dyneval($args[2], 'footer', result, %args[22])
 --- em.fewArrs.print ---------------------------------
 !@pp:endif
 
@@ -144,28 +149,26 @@ end
 !@pp:var(em_html_to_mnemonics)
 !@pp:endif
 
-!@ $18 ... $1 - Можно использовать следующие конструкции в любых комбинациях:
+!@ $1 - Можно использовать следующие конструкции в любых комбинациях:
 	* [only result] - выводит только содержимое массивов, не показывая их названий и номеров ячеек. Таблица при этом на экран выводиться не будет.
 	* [no table] - выводит массивы на экран, но не облекает их в таблицу.
 	* [range onscreen:N-M] - указываем границы вывода
 	* [empty:TEXT] - что должна возвращать функция в случае, когда все массивы пустые.
 
-!@ #21 - номер последнего элемента в переданных данных
-!@ #22 - маркер last is command
-!@ $23 - что будет выводиться, если все массивы пусты.
-!@ #24 - номер элемента, который содержит неверное имя массива
+!@ #21 - число массивов к выводу
+!@ %22 - кортеж валидных имён массивов
+!@ $23 - сообщение, если все массивы пусты.
+!@ $24 - текущее имя массива
 !@ #25 - с какого элемента начинать вывод
 !@ #26 - до какого элемента продолжать вывод
 !@ #27 - show table (0|1)
 !@ #28 - only result (0|1)
-!@ $29 - сюда складывается таблица
-!@ $30 - конструкция с командами
+!@ #29 - размер максимального массива
+!@ $30 - управляющая конструкция, приведённая к нижнему регистру
 !@ #31 - счётчик i
 !@ #32 - счётчик b
 !@ $33 - содержимое ячейки cell
 !@ #34 - размер текущего массива this_size
-!@ #35 - размер массива size
-!@ $36 - промежуточный результат
 
 Из-за того, что данная функция работает напрямую с данными из массивов было решено не использовать
 здесь локальные переменные, чтобы случайно не перекрыть возможные названия массивов.
@@ -195,4 +198,4 @@ $a[]='седьмая ячейка'
 @em.fewArrs.print('$a','%b','[only result]')
 @em.fewArrs.print('$a','%b','[no table]')
 @em.fewArrs.print('$c','%d', '[empty:EMPTY ARRAYS]')
-!@ @em.fewArrs.print('$a','$b','[no table]','$f')
+@em.fewArrs.print('$a','$b','[no table]','$f')
