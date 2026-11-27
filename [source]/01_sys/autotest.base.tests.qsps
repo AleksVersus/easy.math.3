@@ -441,11 +441,11 @@ if 0:
 			local old_mass_n, old_mass_t, em_array, new_mass, mass, %r
 
 			unpackarr 'old_mass_n', [157, 250, 709, 413, 532, 779, 730, 565]
-			@@em.arr.sort('old_mass_n')
+			@@em.arr.sort 'old_mass_n'
 			%r[] = %arrpack('old_mass_n')
 
 			unpackarr 'old_mass_n', [966, 812, 796, 304, 678, 118, 901, 132]
-			@@em.arr.sort('old_mass_n', 0, 'em_array')
+			@@em.arr.sort 'old_mass_n', 0, 'em_array'
 			%r[] = [%arrpack('old_mass_n'), %arrpack('em_array')]
 
 			unpackarr 'old_mass_t', [
@@ -456,8 +456,16 @@ if 0:
 			%r[] = [%arrpack('old_mass_t'), %arrpack('em_array'), %arrpack('new_mass')]
 
 			unpackarr 'mass', ['88ff88','ff00ff','0ff0f8','ffffff','8888ff','fff8f8']
-			@@em.arr.sort('mass', 1, 'em_array')
+			@@em.arr.sort 'mass', 1, 'em_array'
 			%r[] = [%arrpack('mass'), %arrpack('em_array')]
+
+			local old_mass_g
+			unpackarr 'old_mass_g', [
+				голова:967, плечи:629,  руки:541,   торс:290,
+				бёдра:852,  голени:334, ступни:318, нишваа:529
+			]
+			@@em.arr.sort 'old_mass_g'
+			%r[] = %arrpack('old_mass_g')
 
 			$result = $str(%arrpack('%r'))
 		})
