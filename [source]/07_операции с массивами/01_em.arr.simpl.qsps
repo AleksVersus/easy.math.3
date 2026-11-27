@@ -2,97 +2,78 @@ QSP-Game Процедура сравнения содержимого двух �
 
 !@ $0 - первый массив (исследуемый).
 !@ $1 - второй массив (исследуемый).
-!@ $2 - управляющая конструкция: '' - на идентичность, '[simp]' - на подобие, '[conc]' - хотя бы одно совпадение, '[se]' - исключить пустые
+!@ $2 - управляющая конструкция.
+!@ %3 - исключить из сравнения эти значения.
 !@ #r - 1 = успешно (true), 0 = не успешно (false)
 !@pp:if(em_arr_simpl):include
 # em.arr.simpl
+result = 1
 !@ создаём локальные массивы и копируем в них сравниваемые массивы. Так мы сможем работать с любыми локльными переменными,
 !@ не боясь пересечения имён с именами переданных на сравнение массивов
 local em_arr_simp_copy_array_0_, em_arr_simp_copy_array_1_
 copyarr 'em_arr_simp_copy_array_0_', $args[0]
 copyarr 'em_arr_simp_copy_array_1_', $args[1]
-local $type_
-if instr($args[0],'%')<>0 or instr($args[1],'%')<>0:
-	$type_ = '%'	& !@ у кортежей приоритет перед строками
-elseif instr($args[0],'$')<>0 or instr($args[1],'$')<>0:
-	$type_ = '$'
-end
-local $array_name_0_, $array_name_1_= $type_+'em_arr_simp_copy_array_0_', $type_+'em_arr_simp_copy_array_1_'
-local $cmd_ = $lcase($args[2])	& !@ переводим управляющие конструкции в нижний регистр
-if instr($cmd_,'[space exclude]') <> 0: $cmd_ = $replace($cmd_,'[space exclude]','[se]')
-if instr($cmd_,'[simp]') <> 0 or instr($cmd_,'[se]') <> 0:
+!@ $20 - имя первого массива
+!@ $21 - имя второго массива
+set $args[20], $args[21]= 'em_arr_simp_copy_array_0_', 'em_arr_simp_copy_array_1_'
+!@ $22 - упарвляющая конструкция
+$args[22] = $lcase($args[2])	& !@ переводим управляющие конструкции в нижний регистр
+if instr($args[22],'[space exclude]') <> 0: $args[22] = $replace($args[22],'[space exclude]','[se]')
+if instr($args[22],'[simp]') <> 0 or instr($args[22],'[se]') <> 0:
 	!@ если сравниваем на подобие, или исключаем пустые значения
-	sortarr $array_name_0_, 1	& !@ сортируем первый локальный массив
-	sortarr $array_name_1_, 1	& !@ сортируем второй локальный массив
-	if instr($cmd_, '[se]') <> 0:
+	sortarr $args[20], 1	& !@ сортируем первый локальный массив
+	sortarr $args[21], 1	& !@ сортируем второй локальный массив
+end
+if instr($args[22], '[se]') <> 0: %args[3] = (%args[3] & [?])	& !@ к исключаемым из сравнения добавляем undefined
+if %args[3]:
+	!@ #23 - число исключаемых значений
+	!@ #24 - счётчик цикла
+	!@ 25 - исключаемое значение
+	args[23] = len(%args[3])
+	loop args[24] = 0 while args[24] < args[23] step args[24] += 1:
 		!@ если нужно не учитывать пустые значения (нули), удаляем их из массивов
-		@@em.arr.clear $array_name_0_
-		@@em.arr.clear $array_name_1_
+		args[25], %args[3] = %args[3]
+		@@em.arr.clear $args[20], args[25]
+		@@em.arr.clear $args[21], args[25]
 	end
 end
-if arrsize($array_name_0_) <> arrsize($array_name_1_) and no instr($cmd_,'[conc]'):
+if arrsize($args[20]) <> arrsize($args[21]) and no instr($args[22],'[conc]'):
 	!@ если сравниваем на подобие или идентичность и размеры массивов отличаются - массивы не могут быть подобны или идентичны
 	result = 0 & exit
-elseif (arrsize($array_name_0_)=0 or arrsize($array_name_1_)=0) and arrsize($array_name_0_) <> arrsize($array_name_1_):
+elseif (arrsize($args[20])=0 or arrsize($args[21])=0) and arrsize($args[20]) <> arrsize($args[21]):
 	!@ если размер одного массива равен нулю, а другого нет - массивы не равны
 	result = 0 & exit
-elseif arrsize($array_name_0_) > arrsize($array_name_1_) and instr($cmd_,'[conc]') <> 0:
+elseif arrsize($args[20]) > arrsize($args[21]) and instr($args[22],'[conc]') <> 0:
 	!@ нам достаточно перебрать элементы меньшего массива, чтобы проверить на совпадение хотя бы одного элемента
-	$array_name_0_, $array_name_1_ = $array_name_1_, $array_name_0_
+	$args[20], $args[21] = $args[21], $args[20]
 end
-loop local i = arrsize($array_name_0_)-1 while i > -1 step i -= 1:
-	!@ пока счётчик больше -1, выполняем:
-	if instr($cmd_, '[conc]') <> 0:
+if instr($args[22], '[conc]') <> 0:
+	loop args[24] = arrsize($args[20])-1 while args[24] > -1 step args[24] -= 1:
 		!@ если сравниваем на совпадение хотя бы одного элемента
-		result = iif(arrpos($array_name_1_, arritem($array_name_0_, i)) <> -1, 1, 0)
+		result = iif(arrpos($args[21], arritem($args[20], args[24])) = -1, 0, 1)
 		!@ если элемент присутствует в массиве, значит мы получили нужный результат
 		if result: exit
-	else
-		!@ теперь сравниваем на идентичность, так как к этому моменту массивы уже отсортированы и почищены (опционально)
-		result = iif(arritem($array_name_0_, i) = arritem($array_name_1_, i), 1, 0)
+	end
+else:
+	loop args[24] = arrsize($args[20])-1 while args[24] > -1 step args[24] -= 1:
+		!@ или сравниваем на идентичность, так как к этому моменту массивы уже отсортированы и почищены (опционально)
+		result = iif(arritem($args[20], args[24]) = arritem($args[21], args[24]), 1, 0)
 		!@ если элементы совпадают, возвращаем 1, и поиск будет происходить до тех пор, пока не исчерпается счётчик, или dyneval не вернёт false
 		if no result: exit
 	end
 end
 --- em.arr.simpl ---------------------------------
 !@pp:endif
+
+!@ $2 - управляющая конструкция:
 	* Если указано пустое значение - массивы сравниваются на предмет полной идентичности.
 	* Если указано "[simp]" - массивы сортируются по одинаковым правилам и вновь сравниваются. Такое сравнение называется сравнением на подобие, т.е. в обоих массивах присутствуют одинаковые элементы, но расположенные в разном порядке. Сортировка производится во временные массивы и на исследуемые массивы не влияет.
 	* Если указано "[conc]" массивы сравниваются на совпадение хотя бы одного элемента.
-	* Если при сравнении необходимо исключить пустые ячейки, необходимо добавить управляющее слово "[se]" или "[space exclude]" к управляющей конструкции.
+	* Если при сравнении необходимо исключить пустые ячейки (значения ? (undefined)), необходимо добавить управляющее слово "[se]" или "[space exclude]" к управляющей конструкции.
+
 Функция использует функции array.clr и array.sort
 
 !@pp:if(em_arr_simpl!=True):off
 !@pp:var(em_arr_clear)
 !@pp:endif
 
-mass1[0]=455
-mass1[1]=705
-mass1[2]=967
-mass1[3]=452
-mass1[4]=829
-mass1[5]=84
-mass1[6]=983
-mass1[7]=824
-
-mass2[0]=455
-mass2[1]=705
-mass2[2]=967
-mass2[3]=452
-mass2[4]=829
-mass2[5]=84
-mass2[6]=983
-mass2[7]=824
-
-mass3[0]=983
-mass3[1]=967
-mass3[2]=829
-mass3[3]=824
-mass3[4]=705
-mass3[5]=455
-mass3[6]=452
-mass3[7]=84
-
-@em.arr.simpl('mass1','mass2')			& !@ (3) Сравниваем на идентичность идентичные массивы
-@em.arr.simpl('mass1','mass3')			& !@ (4) Сравниваем на идентичность подобные массивы
-@em.arr.simpl('mass1','mass3','[simp]')	& !@ (5) Сравниваем на подобие подобные массивы
