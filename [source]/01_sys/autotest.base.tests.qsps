@@ -556,10 +556,13 @@ if 0:
 
 	elseif $args[0]='em.arr.enumerate':
 		$result = $dyneval({
-			local old_mass, em_array
-			unpackarr 'old_mass', [157, 250, 709, 413, 532, 779, 730, 565]
-			@@em.arr.enumerate 'old_mass', 'em_array'
-			$result = $str(%arrpack('em_array'))
+			local mass1, mass2, em_array, mass3
+			unpackarr 'mass1', [157, 250, 709, 413, 532, 779, 730, 565]
+			unpackarr 'mass2', [голова:157, плечи:250, руки:709, крюки:413, 
+								пояс:532, стопы:779, нишхваа:730, аад:565]
+			@@em.arr.enumerate 'mass1', 'em_array'
+			@@em.arr.enumerate 'mass2', 'mass3'
+			$result = $str([%arrpack('em_array'), %arrpack('mass3')])
 		})
 
 	elseif $args[0]='em.arr.few_kill':
