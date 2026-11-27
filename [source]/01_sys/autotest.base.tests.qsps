@@ -562,6 +562,16 @@ if 0:
 			$result = $str(%arrpack('em_result'))
 		})
 
+	$result=$dyneval({
+			local old_mass, arr_mass, em_result
+			unpackarr 'old_mass', [967, 629, 541, 290, 852, 334, 318, 529 ]
+			unpackarr 'arr_mass', [голова:23, плечи:34, 'грудь', 'живот',
+									'бёдра', 'колени', 'икры', 'ступни']
+
+			@@em.arr.attach 'em_result', 'old_mass', 'arr_mass'
+			$result = $str(%arrpack('em_result'))
+		})
+
 	elseif $args[0]='em.arr.enumerate':
 		$result = $dyneval({
 			local mass1, mass2, em_array, mass3

@@ -371,6 +371,14 @@ $a[7]='седьмая ячейка'	&	$b[7]=''''|['3']|...|'четвёртая''
 		]
 	end
 
+	!@ em.arr.attach
+	if instr($comms_, "'em.arr.attach'") or $comms_ = '[]':
+		%em_autotest_base_temp_array_[] = [
+			name: 'em.arr.attach',
+			expected: "[[967, 23, 'ГОЛОВА'], [629, 34, 'ПЛЕЧИ'], [541, 'грудь', ?], [290, 'живот', ?], [852, 'бёдра', ?], [334, 'колени', ?], [318, 'икры', ?], [529, 'ступни', ?]]"
+		]
+	end
+
 	!@ em.arr.enumerate
 	if instr($comms_, "'em.arr.enumerate'") or $comms_ = '[]':
 		%em_autotest_base_temp_array_[] = [

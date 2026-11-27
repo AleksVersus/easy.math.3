@@ -23,8 +23,37 @@ loop args[24] = 0 while args[24] < args[23] step args[24] += 1:
 	end
 end
 --- em.arr.concatenate ---------------------------------
+!@pp:endif
 
 !@ #21 - размер массива args
 !@ #22 - счётчик для перебора имён массивов, начинается с 1
 !@ #23 - размер самого длинного массива
 !@ #24 - счётчик до размера самого длинного массива
+
+QSP-Game соединяет массив индексов и исходный массив
+
+!@ $0 - название целевого массива
+!@ $1 - название массива индексов (опорный)
+!@ $2 - название массива с данными (исходный)
+!@pp:if(em_arr_attach):include
+# em.arr.attach
+!@pp:if(em_fuse):include
+if no ($args[0] and $args[1] and $args[2]): msg 'em.arr.attach: Wrong array name → 0:''<<$args[0]>>'', 1:''<<$args[1]>>'' 2:<<$args[2]>>' & exit
+!@pp:endif
+args[21] = arrsize($args[1])
+alias %em_arr_concatenate_temp_ = $args[0]
+killvar '%em_arr_concatenate_temp_'
+loop args[24] = 0 while args[24] < args[21] step args[24] += 1:
+	args[22] = arrkey($args[2], args[24])
+	!@ новая ячейка
+	%em_arr_concatenate_temp_[args[24]] = [
+		arritem($args[1], args[24]), arritem($args[2], args[24]), args[22]]
+end
+--- em.arr.attach ---------------------------------
+!@pp:endif
+
+!@ #21 - заполняется на все индексы из массива индексов
+!@ 22 - key
+
+!@ #24 - счётчик до размера самого длинного массива
+
